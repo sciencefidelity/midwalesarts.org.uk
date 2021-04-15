@@ -11,6 +11,8 @@ import post from './post'
 import author from './author'
 import artist from './artist'
 import discipline from './discipline'
+import frontPage from './frontPage'
+import frontPageSection from './frontPageSection'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -21,6 +23,8 @@ export default createSchema({
   types: schemaTypes.concat([
     // The following are document types which will appear
     // in the studio.
+    frontPage,
+    frontPageSection,
     post,
     author,
     category,
