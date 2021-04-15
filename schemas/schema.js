@@ -8,7 +8,6 @@ import schemaTypes from 'all:part:@sanity/base/schema-type'
 import blockContent from './blockContent'
 import category from './category'
 import post from './post'
-import author from './author'
 import artist from './artist'
 import discipline from './discipline'
 import frontPage from './frontPage'
@@ -26,7 +25,6 @@ export default createSchema({
     frontPage,
     frontPageSection,
     post,
-    author,
     category,
     artist,
     discipline,
