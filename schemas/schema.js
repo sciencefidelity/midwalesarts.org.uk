@@ -7,7 +7,22 @@ import schemaTypes from 'all:part:@sanity/base/schema-type'
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
   // We name our schema
-  name: 'default',
+  title: 'Front Page',
+  name: 'front-page',
+  type: "document",
+  fields: [
+    // This document has only one field
+    {
+      // The display name for this field
+      title: "Name",
+
+      // The identifier for this field used in the api's
+      name: "name",
+
+      // The type of this field
+      type: "string",
+    }
+  ],
   // Then proceed to concatenate our document type
   // to the ones provided by any plugins that are installed
   types: schemaTypes.concat([
