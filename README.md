@@ -1,1 +1,0 @@
-# midwalesarts.sanity.studio
