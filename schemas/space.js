@@ -1,6 +1,6 @@
 export default {
-  name: 'spaces',
-  title: 'Spaces',
+  name: 'space',
+  title: 'Space',
   type: 'document',
   fields: [
     {
