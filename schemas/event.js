@@ -1,11 +1,11 @@
 export default {
-  name: 'artist',
-  title: 'Artist',
+  name: 'exhibition',
+  title: 'Exhibition',
   type: 'document',
   fields: [
     {
       name: 'title',
-      title: 'Name',
+      title: 'Title',
       type: 'string',
     },
     {
@@ -18,15 +18,24 @@ export default {
       },
     },
     {
-      name: 'body',
-      title: 'Biography',
-      type: 'blockContent',
+      name: 'briteLink',
+      title: 'Eventbrite link',
+      type: 'url',
     },
     {
-      name: 'disciplines',
-      title: 'Disciplines',
-      type: 'array',
-      of: [{type: 'reference', to: {type: 'discipline'}}],
+      name: 'dateStart',
+      title: 'Start date',
+      type: 'datetime',
+    },
+    {
+      name: 'dateEnd',
+      title: 'End date',
+      type: 'datetime',
+    },
+    {
+      name: 'body',
+      title: 'Body',
+      type: 'blockContent',
     },
     {
       name: 'mainImage',

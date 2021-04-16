@@ -13,6 +13,9 @@ import discipline from './discipline'
 import frontPage from './frontPage'
 import frontPageSection from './frontPageSection'
 import spaces from './spaces'
+import artwork from './artwork'
+import video from './video'
+import exhibition from './exhibition'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -23,13 +26,16 @@ export default createSchema({
   types: schemaTypes.concat([
     // The following are document types which will appear
     // in the studio.
+    artist,
+    artwork,
+    spaces,
+    post,
+    video,
     frontPage,
     frontPageSection,
-    post,
-    category,
-    artist,
     discipline,
-    spaces,
+    category,
+    exhibition,
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
     blockContent,

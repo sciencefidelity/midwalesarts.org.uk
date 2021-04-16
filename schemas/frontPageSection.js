@@ -47,7 +47,7 @@ export default {
     {
       name: 'ctaLink',
       title: 'Link',
-      type: 'string',
+      type: 'url',
     },
   ],
   preview: {

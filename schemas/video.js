@@ -1,11 +1,11 @@
 export default {
-  name: 'artist',
-  title: 'Artist',
+  name: 'video',
+  title: 'Video',
   type: 'document',
   fields: [
     {
       name: 'title',
-      title: 'Name',
+      title: 'Title',
       type: 'string',
     },
     {
@@ -18,15 +18,14 @@ export default {
       },
     },
     {
-      name: 'body',
-      title: 'Biography',
-      type: 'blockContent',
+      name: 'videoLink',
+      title: 'Video Link',
+      type: 'url',
     },
     {
-      name: 'disciplines',
-      title: 'Disciplines',
-      type: 'array',
-      of: [{type: 'reference', to: {type: 'discipline'}}],
+      name: 'body',
+      title: 'Body',
+      type: 'blockContent',
     },
     {
       name: 'mainImage',
