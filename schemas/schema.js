@@ -12,6 +12,7 @@ import artist from './artist'
 import discipline from './discipline'
 import frontPage from './frontPage'
 import frontPageSection from './frontPageSection'
+import spaces from './spaces'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -28,6 +29,7 @@ export default createSchema({
     category,
     artist,
     discipline,
+    spaces,
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
     blockContent,
