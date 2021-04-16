@@ -23,6 +23,11 @@ export default {
       type: 'url',
     },
     {
+      name: 'publishDate',
+      title: 'Publish date',
+      type: 'date',
+    },
+    {
       name: 'body',
       title: 'Body',
       type: 'blockContent',
