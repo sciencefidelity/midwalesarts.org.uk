@@ -14,8 +14,8 @@ export default {
       type: 'string',
     },
     {
-      name: 'media',
-      title: 'Media',
+      name: 'medium',
+      title: 'Medium',
       type: 'string',
     },
     {
@@ -37,6 +37,12 @@ export default {
       name: 'sold',
       title: 'Sold?',
       type: 'boolean',
+    },
+    {
+      name: 'exhibition',
+      title: 'In exhibition',
+      type: 'array',
+      of: [{type: 'reference', to: {type: 'exhibition'}}],
     },
     {
       name: 'mainImage',
