@@ -6,14 +6,26 @@ export default {
     {
       name: 'title',
       title: 'Title',
-      type: 'string',
+      type: 'object',
+      fields: [
+        {
+          title: 'English',
+          name: 'en',
+          type: 'string',
+        },
+        {
+          title: 'Welsh',
+          name: 'cy',
+          type: 'string',
+        }
+      ]
     },
     {
       name: 'slug',
       title: 'Slug',
       type: 'slug',
       options: {
-        source: 'title',
+        source: 'title.en',
         maxLength: 96,
       },
     },
@@ -45,8 +57,7 @@ export default {
 
   preview: {
     select: {
-      title: 'title',
-      author: 'author.name',
+      title: 'title.en',
       media: 'mainImage',
     },
   },

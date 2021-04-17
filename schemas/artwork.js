@@ -57,6 +57,7 @@ export default {
   preview: {
     select: {
       title: 'title',
+      subtitle: 'artist',
       media: 'mainImage',
     },
   },
