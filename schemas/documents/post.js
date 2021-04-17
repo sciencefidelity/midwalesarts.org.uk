@@ -6,19 +6,7 @@ export default {
     {
       name: 'title',
       title: 'Title',
-      type: 'object',
-      fields: [
-        {
-          title: 'English',
-          name: 'en',
-          type: 'string',
-        },
-        {
-          title: 'Welsh',
-          name: 'cy',
-          type: 'string',
-        }
-      ]
+      type: 'localeString',
     },
     {
       name: 'slug',
@@ -51,7 +39,7 @@ export default {
     {
       name: 'body',
       title: 'Body',
-      type: 'blockContent',
+      type: 'text',
     },
   ],
 
