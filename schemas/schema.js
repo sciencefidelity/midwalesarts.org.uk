@@ -5,17 +5,22 @@ import createSchema from 'part:@sanity/base/schema-creator'
 import schemaTypes from 'all:part:@sanity/base/schema-type'
 
 // We import object and document schemas
-import blockContent from './blockContent'
-import artist from './artist'
-import artwork from './artwork'
-import category from './category'
-import discipline from './discipline'
-import exhibition from './exhibition'
-import frontPage from './frontPage'
-import frontPageSection from './frontPageSection'
-import post from './post'
-import space from './space'
-import video from './video'
+
+// objects
+import blockContent from './objects/blockContent'
+import languages from './objects/languages'
+import localeString from './objects/localeString'
+// documents
+import artist from './documents/artist'
+import artwork from './documents/artwork'
+import category from './documents/category'
+import discipline from './documents/discipline'
+import exhibition from './documents/exhibition'
+import frontPage from './documents/frontPage'
+import frontPageSection from './documents/frontPageSection'
+import post from './documents/post'
+import space from './documents/space'
+import video from './documents/video'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -39,5 +44,7 @@ export default createSchema({
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
     blockContent,
+    languages,
+    localeString,
   ]),
 })
