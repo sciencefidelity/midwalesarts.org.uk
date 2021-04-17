@@ -2,6 +2,7 @@ export default {
   name: 'post',
   title: 'Post',
   type: 'document',
+  localize: false,
   fields: [
     {
       name: 'title',
@@ -12,11 +13,7 @@ export default {
     {
       name: 'slug',
       title: 'Slug',
-      type: 'slug',
-      options: {
-        source: 'title.en',
-        maxLength: 96,
-      },
+      type: 'localeSlug',
     },
     {
       name: 'mainImage',
@@ -48,6 +45,7 @@ export default {
   preview: {
     select: {
       title: 'title',
+      subtitle: 'publishedAt',
       media: 'mainImage',
     },
   },
