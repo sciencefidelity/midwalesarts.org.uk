@@ -2,7 +2,6 @@ export default {
   name: 'post',
   title: 'Post',
   type: 'document',
-  localize: false,
   fields: [
     {
       name: 'title',
@@ -16,8 +15,8 @@ export default {
       type: 'localeSlug',
     },
     {
-      name: 'mainImage',
-      title: 'Main image',
+      name: 'image',
+      title: 'Image',
       type: 'image',
       options: {
         hotspot: true,
@@ -45,8 +44,6 @@ export default {
   preview: {
     select: {
       title: 'title',
-      subtitle: 'publishedAt',
-      media: 'mainImage',
     },
   },
 }
