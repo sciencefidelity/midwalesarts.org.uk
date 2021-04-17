@@ -6,7 +6,8 @@ export default {
     {
       name: 'title',
       title: 'Title',
-      type: 'localeString',
+      type: 'string',
+      localize: true,
     },
     {
       name: 'slug',
@@ -39,13 +40,14 @@ export default {
     {
       name: 'body',
       title: 'Body',
-      type: 'text',
+      type: 'blockContent',
+      localize: true,
     },
   ],
 
   preview: {
     select: {
-      title: 'title.en',
+      title: 'title',
       media: 'mainImage',
     },
   },

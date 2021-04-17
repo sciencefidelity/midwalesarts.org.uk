@@ -5,11 +5,9 @@ import createSchema from 'part:@sanity/base/schema-creator'
 import schemaTypes from 'all:part:@sanity/base/schema-type'
 
 // We import object and document schemas
-
+import { translateFields } from './fieldTranslation'
 // objects
 import blockContent from './objects/blockContent'
-import languages from './objects/languages'
-import localeString from './objects/localeString'
 // documents
 import artist from './documents/artist'
 import artwork from './documents/artwork'
@@ -28,23 +26,24 @@ export default createSchema({
   name: 'default',
   // Then proceed to concatenate our document type
   // to the ones provided by any plugins that are installed
-  types: schemaTypes.concat([
-    // The following are document types which will appear
-    // in the studio.
-    artist,
-    artwork,
-    category,
-    discipline,
-    exhibition,
-    frontPage,
-    frontPageSection,
-    space,
-    post,
-    video,
-    // When added to this list, object types can be used as
-    // { type: 'typename' } in other document schemas
-    blockContent,
-    languages,
-    localeString,
-  ]),
+  types: schemaTypes
+    .concat(translateFields([
+      // The following are document types which will appear
+      // in the studio.
+      artist,
+      artwork,
+      category,
+      discipline,
+      exhibition,
+      frontPage,
+      frontPageSection,
+      space,
+      post,
+      video,
+    ]))
+      // When added to this list, object types can be used as
+      // { type: 'typename' } in other document schemas
+    .concat([
+      blockContent,
+    ]),
 })

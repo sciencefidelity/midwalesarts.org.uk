@@ -3,4 +3,5 @@ export const languages = [
   { name: 'cy', title: 'Welsh' },
 ];
 
-export const baseLanguage = supportedLanguages.find(l => l.isDefault)
+//export const baseLanguage = supportedLanguages.find(l => l.isDefault)
+export const baseLanguage = languages[0]
