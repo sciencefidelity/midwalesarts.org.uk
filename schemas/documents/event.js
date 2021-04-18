@@ -1,21 +1,18 @@
 export default {
-  name: 'exhibition',
-  title: 'Exhibition',
+  name: 'event',
+  title: 'Event',
   type: 'document',
   fields: [
     {
       name: 'title',
       title: 'Title',
       type: 'string',
+      localize: true,
     },
     {
       name: 'slug',
       title: 'Slug',
-      type: 'slug',
-      options: {
-        source: 'title',
-        maxLength: 96,
-      },
+      type: 'localeSlug',
     },
     {
       name: 'briteLink',
@@ -23,19 +20,15 @@ export default {
       type: 'url',
     },
     {
-      name: 'dateStart',
-      title: 'Start date',
-      type: 'datetime',
-    },
-    {
-      name: 'dateEnd',
-      title: 'End date',
+      name: 'date',
+      title: 'Date and time',
       type: 'datetime',
     },
     {
       name: 'body',
       title: 'Body',
       type: 'blockContent',
+      localize: true,
     },
     {
       name: 'mainImage',

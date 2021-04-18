@@ -10,6 +10,7 @@ import localeSlug from './objects/localeSlug'
 // documents
 import artist from './documents/artist'
 import artwork from './documents/artwork'
+import event from './documents/event'
 import exhibition from './documents/exhibition'
 import frontPage from './documents/frontPage'
 import frontPageSection from './documents/frontPageSection'
@@ -28,6 +29,7 @@ export default createSchema({
       // documents
       artist,
       artwork,
+      event,
       exhibition,
       frontPage,
       frontPageSection,
