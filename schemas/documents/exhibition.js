@@ -7,15 +7,12 @@ export default {
       name: 'title',
       title: 'Title',
       type: 'string',
+      localize: true,
     },
     {
       name: 'slug',
       title: 'Slug',
-      type: 'slug',
-      options: {
-        source: 'title',
-        maxLength: 96,
-      },
+      type: 'localeSlug',
     },
     {
       name: 'dateStart',
@@ -31,6 +28,7 @@ export default {
       name: 'body',
       title: 'Body',
       type: 'blockContent',
+      localize: true,
     },
     {
       name: 'mainImage',
