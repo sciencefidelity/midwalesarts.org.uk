@@ -24,8 +24,13 @@ import discipline from './taxonomy/discipline'
 
 export default createSchema({
   name: 'default',
-  types: schemaTypes
-  
+  types: schemaTypes.concat([
+      // objects
+      blockContent,
+      captionImage,
+      localeSlug,
+    ])
+    
     .concat(translateFields([
       // documents
       artist,
@@ -43,11 +48,4 @@ export default createSchema({
       category,
       discipline,
     ]))
-
-    .concat([
-      // objects
-      blockContent,
-      captionImage,
-      localeSlug,
-    ]),
 })
