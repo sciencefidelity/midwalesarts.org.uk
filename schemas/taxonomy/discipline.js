@@ -7,11 +7,12 @@ export default {
       name: 'title',
       title: 'Title',
       type: 'string',
-    },
-    {
-      name: 'description',
-      title: 'Description',
-      type: 'text',
+      localize: true,
     },
   ],
+  preview: {
+    select: {
+      title: 'title',
+    },
+  },
 }
