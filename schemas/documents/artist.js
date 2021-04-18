@@ -21,6 +21,7 @@ export default {
       name: 'body',
       title: 'Biography',
       type: 'blockContent',
+      localize: true,
     },
     {
       name: 'disciplines',
@@ -38,10 +39,10 @@ export default {
     },
   ],
 
-  preview: {
-    select: {
-      title: 'title',
-      media: 'mainImage',
-    },
-  },
+  // preview: {
+  //   select: {
+  //     title: 'title',
+  //     media: 'mainImage',
+  //   },
+  // },
 }
