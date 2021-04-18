@@ -2,6 +2,7 @@ export default {
   name: 'space',
   title: 'Space',
   type: 'document',
+  localize: true,
   fields: [
     {
       name: 'title',
@@ -11,11 +12,8 @@ export default {
     {
       name: 'slug',
       title: 'Slug',
-      type: 'slug',
-      options: {
-        source: 'title',
-        maxLength: 96,
-      },
+      type: 'localeSlug',
+      localize: false,
     },
     {
       name: 'mainImage',
@@ -24,6 +22,7 @@ export default {
       options: {
         hotspot: true,
       },
+      localize: false,
     },
     {
       name: 'body',
