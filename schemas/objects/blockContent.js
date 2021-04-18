@@ -1,11 +1,11 @@
 export default {
+  title: 'Block Content',
   name: 'blockContent',
   type: 'array',
-  title: 'Block Content',
   of: [
     {
-      type: 'block',
       title: 'Block',
+      type: 'block',
       styles: [
         {title: 'Normal', value: 'normal'},
         {title: 'H1', value: 'h1'},
