@@ -7,6 +7,7 @@ export default {
       name: 'title',
       title: 'Title',
       type: 'string',
+      localize: true,
     },
     {
       name: 'artist',
@@ -17,6 +18,7 @@ export default {
       name: 'medium',
       title: 'Medium',
       type: 'string',
+      localize: true,
     },
     {
       name: 'dimensions',

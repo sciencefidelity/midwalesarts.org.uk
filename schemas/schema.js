@@ -8,6 +8,7 @@ import schemaTypes from 'all:part:@sanity/base/schema-type'
 import { translateFields } from './fieldTranslation'
 // objects
 import blockContent from './objects/blockContent'
+import captionImage from './objects/captionImage'
 import localeSlug from './objects/localeSlug'
 // documents
 import artist from './documents/artist'
@@ -46,6 +47,7 @@ export default createSchema({
       // { type: 'typename' } in other document schemas
     .concat([
       blockContent,
+      captionImage,
       localeSlug,
     ]),
 })

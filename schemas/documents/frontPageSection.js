@@ -2,6 +2,7 @@ export default {
   name: 'frontPageSection',
   title: 'Front Page Section',
   type: 'document',
+  localize: true,
   fields: [
     {
       name: 'title',
@@ -16,18 +17,20 @@ export default {
     {
       name: 'mainImage',
       title: 'Main image',
-      type: 'image',
+      type: 'captionImage',
       options: {
         hotspot: true,
       },
+      localize: false,
     },
     {
       name: 'subImage',
       title: 'Inset image',
-      type: 'image',
+      type: 'captionImage',
       options: {
         hotspot: true,
       },
+      localize: false,
     },
     {
       name: 'heading',
@@ -48,6 +51,7 @@ export default {
       name: 'ctaLink',
       title: 'Link',
       type: 'url',
+      localize: false,
     },
   ],
   preview: {

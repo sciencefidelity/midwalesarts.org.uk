@@ -28,9 +28,9 @@ const localizePreview = (preview) => {
       ...(select.title
         && { title: `${select.title}.${baseLanguage.name}` }),
       ...(select.subtitle
-        && { subtitle: `${select.subtitle}.${baseLanguage.name}` }),
+        && { subtitle: `${select.subtitle}` }),
       ...(select.media
-        && { media: `${select.media}.${baseLanguage.name}` }),
+        && { media: `${select.media}` }),
     }
   }
 }
