@@ -14,6 +14,7 @@ import event from './documents/event'
 import exhibition from './documents/exhibition'
 import frontPage from './documents/frontPage'
 import frontPageSection from './documents/frontPageSection'
+import page from './documents/page'
 import post from './documents/post'
 import space from './documents/space'
 import video from './documents/video'
@@ -33,6 +34,7 @@ export default createSchema({
       exhibition,
       frontPage,
       frontPageSection,
+      page,
       space,
       post,
       video,

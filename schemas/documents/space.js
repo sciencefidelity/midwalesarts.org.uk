@@ -1,6 +1,6 @@
 export default {
   name: 'space',
-  title: 'Space',
+  title: 'Our Spaces',
   type: 'document',
   localize: true,
   fields: [
