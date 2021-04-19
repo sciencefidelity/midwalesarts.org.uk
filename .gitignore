@@ -1,5 +1,7 @@
-.nova/
 .DS_Store
-node_modules/
+
+.nova/
 *.bak
 
+node_modules/
+dist/
