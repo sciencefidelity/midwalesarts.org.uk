@@ -6,29 +6,33 @@ export default {
     {
       name: 'title',
       title: 'Title',
-      type: 'string',
-      localize: true,
-    },
-    {
-      name: 'slug',
-      title: 'Slug',
-      type: 'localeSlug',
+      type: 'localeString',
     },
     {
       name: 'dateStart',
       title: 'Start date',
       type: 'date',
+      options: {
+        dateFormat: 'dddd, MMMM Do YYYY,',
+      }
     },
     {
       name: 'dateEnd',
       title: 'End date',
       type: 'date',
+      options: {
+        dateFormat: 'dddd, MMMM Do YYYY,',
+      }
     },
     {
       name: 'body',
       title: 'Body',
-      type: 'blockContent',
-      localize: true,
+      type: 'localeRichText',
+    },
+    {
+      name: 'slug',
+      title: 'Slug',
+      type: 'localeSlug',
     },
     {
       name: 'mainImage',
@@ -42,7 +46,7 @@ export default {
 
   preview: {
     select: {
-      title: 'title',
+      title: 'title.en',
       media: 'mainImage',
     },
   },

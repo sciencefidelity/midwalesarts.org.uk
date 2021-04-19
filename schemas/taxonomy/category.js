@@ -6,14 +6,13 @@ export default {
     {
       name: 'title',
       title: 'Title',
-      type: 'string',
-      localize: true,
+      type: 'localeString',
     },
   ],
   
   preview: {
     select: {
-      title: 'title',
+      title: 'title.en',
     },
   },
 }

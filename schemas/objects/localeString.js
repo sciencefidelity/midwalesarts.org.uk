@@ -1,8 +1,6 @@
-import { supportedLanguages } from '../languages'
-
 export default {
-  name: 'localeSlug',
-  title: 'Localized slugs',
+  name: 'localeString',
+  title: 'Localized string',
   type: 'object',
   fieldsets: [
     {
@@ -16,19 +14,13 @@ export default {
     {
       title: 'English',
       name: 'en',
-      type: 'slug',
-      options: {
-        source: `title.${supportedLanguages[0].name}`,
-      },
+      type: 'string',
     },
     {
       title: 'Welsh',
       name: 'cy',
-      type: 'slug',
+      type: 'string',
       fieldset: 'translations',
-      options: {
-        source: `title.${supportedLanguages[1].name}`,
-      },
     },
   ],
 }

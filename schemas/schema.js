@@ -1,12 +1,16 @@
 import createSchema from 'part:@sanity/base/schema-creator'
 import schemaTypes from 'all:part:@sanity/base/schema-type'
 
-// localization
-import { translateFields } from './fieldTranslation'
 // objects
 import blockContent from './objects/blockContent'
 import captionImage from './objects/captionImage'
+
+// localization
+// import { baseLanguage, supportedLanguages } from './languages'
+import localeRichText from './objects/localeRichText'
 import localeSlug from './objects/localeSlug'
+import localeString from './objects/localeString'
+
 // documents
 import artist from './documents/artist'
 import artwork from './documents/artwork'
@@ -18,6 +22,7 @@ import page from './documents/page'
 import post from './documents/post'
 import space from './documents/space'
 import video from './documents/video'
+
 // taxonomy
 import category from './taxonomy/category'
 import discipline from './taxonomy/discipline'
@@ -25,13 +30,14 @@ import discipline from './taxonomy/discipline'
 export default createSchema({
   name: 'default',
   types: schemaTypes.concat([
+
       // objects
       blockContent,
       captionImage,
+      localeRichText,
       localeSlug,
-    ])
-    
-    .concat(translateFields([
+      localeString,
+
       // documents
       artist,
       artwork,
@@ -47,5 +53,6 @@ export default createSchema({
       // taxonomy
       category,
       discipline,
-    ]))
+      
+    ])
 })

@@ -2,12 +2,36 @@ export default {
   name: 'frontPage',
   title: 'Front Page',
   type: 'document',
-  localize: true,
   fields: [
     {
       name: 'title',
       title: 'Title',
-      type: 'string',
+      type: 'localeString',
+    },
+    {
+      name: 'imageTitle',
+      title: 'Headline',
+      type: 'localeString',
+    },
+    {
+      name: 'imageCaption',
+      title: 'Subheading',
+      type: 'localeString',
+    },
+    {
+      name: 'body',
+      title: 'Introduction',
+      type: 'localeRichText',
+    },
+    {
+      name: 'cta',
+      title: 'Call to Action',
+      type: 'localeString',
+    },
+    {
+      name: 'ctaLink',
+      title: 'Link',
+      type: 'url',
     },
     {
       name: 'mainImage',
@@ -16,17 +40,6 @@ export default {
       options: {
         hotspot: true,
       },
-      localize: false,
-    },
-    {
-      name: 'imageTitle',
-      title: 'Image title',
-      type: 'string',
-    },
-    {
-      name: 'imageCaption',
-      title: 'Image caption',
-      type: 'string',
     },
     {
       name: 'subImage',
@@ -35,28 +48,11 @@ export default {
       options: {
         hotspot: true,
       },
-      localize: false,
-    },
-    {
-      name: 'body',
-      title: 'Introduction',
-      type: 'blockContent',
-    },
-    {
-      name: 'cta',
-      title: 'Call to Action',
-      type: 'string',
-    },
-    {
-      name: 'ctaLink',
-      title: 'Link',
-      type: 'url',
-      localize: false,
     },
   ],
   preview: {
     select: {
-      title: 'title',
+      title: 'title.en',
       media: 'mainImage',
     },
   },

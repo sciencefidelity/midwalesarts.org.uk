@@ -2,18 +2,21 @@ export default {
   name: 'space',
   title: 'Our Spaces',
   type: 'document',
-  localize: true,
   fields: [
     {
       name: 'title',
       title: 'Title',
-      type: 'string',
+      type: 'localeString',
+    },
+    {
+      name: 'body',
+      title: 'Body',
+      type: 'localeRichText',
     },
     {
       name: 'slug',
       title: 'Slug',
       type: 'localeSlug',
-      localize: false,
     },
     {
       name: 'mainImage',
@@ -22,19 +25,12 @@ export default {
       options: {
         hotspot: true,
       },
-      localize: false,
-    },
-    {
-      name: 'body',
-      title: 'Body',
-      type: 'blockContent',
     },
   ],
 
   preview: {
     select: {
-      title: 'title',
-      author: 'author.name',
+      title: 'title.en',
       media: 'mainImage',
     },
   },

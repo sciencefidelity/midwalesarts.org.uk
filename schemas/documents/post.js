@@ -6,8 +6,28 @@ export default {
     {
       name: 'title',
       title: 'Title',
-      type: 'string',
-      localize: true,
+      type: 'localeString',
+    },
+    {
+      name: 'body',
+      title: 'Body',
+      type: 'localeRichText',
+    },
+    {
+      name: 'categories',
+      title: 'Categories',
+      type: 'array',
+      of: [{type: 'reference', to: {type: 'category'}}],
+    },
+    {
+      name: 'publishedAt',
+      title: 'Published on',
+      type: 'datetime',
+      options: {
+        dateFormat: 'dddd, MMMM Do YYYY,',
+        timeFormat: 'h:mm a',
+        calendarTodayLabel: 'Today'
+      }
     },
     {
       name: 'slug',
@@ -22,28 +42,11 @@ export default {
         hotspot: true,
       },
     },
-    {
-      name: 'categories',
-      title: 'Categories',
-      type: 'array',
-      of: [{type: 'reference', to: {type: 'category'}}],
-    },
-    {
-      name: 'publishedAt',
-      title: 'Published at',
-      type: 'datetime',
-    },
-    {
-      name: 'body',
-      title: 'Body',
-      type: 'blockContent',
-      localize: true,
-    },
   ],
 
   preview: {
     select: {
-      title: 'title',
+      title: 'title.en',
       media: 'image',
     },
   },

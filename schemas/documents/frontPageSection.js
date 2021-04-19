@@ -6,13 +6,33 @@ export default {
   fields: [
     {
       name: 'title',
-      title: 'Title',
-      type: 'string',
+      title: 'Headline',
+      type: 'localeString',
     },
     {
       name: 'caption',
-      title: 'Caption',
-      type: 'string',
+      title: 'Subheading',
+      type: 'localeString',
+    },
+    {
+      name: 'heading',
+      title: 'Heading',
+      type: 'localeString',
+    },
+    {
+      name: 'body',
+      title: 'Body',
+      type: 'localeRichText',
+    },
+    {
+      name: 'cta',
+      title: 'Call to Action',
+      type: 'localeString',
+    },
+    {
+      name: 'ctaLink',
+      title: 'Link',
+      type: 'url',
     },
     {
       name: 'mainImage',
@@ -21,7 +41,6 @@ export default {
       options: {
         hotspot: true,
       },
-      localize: false,
     },
     {
       name: 'subImage',
@@ -30,33 +49,11 @@ export default {
       options: {
         hotspot: true,
       },
-      localize: false,
-    },
-    {
-      name: 'heading',
-      title: 'Heading',
-      type: 'string',
-    },
-    {
-      name: 'body',
-      title: 'Introduction',
-      type: 'blockContent',
-    },
-    {
-      name: 'cta',
-      title: 'Call to Action',
-      type: 'string',
-    },
-    {
-      name: 'ctaLink',
-      title: 'Link',
-      type: 'url',
-      localize: false,
     },
   ],
   preview: {
     select: {
-      title: 'title',
+      title: 'title.en',
       media: 'mainImage',
     },
   },

@@ -9,6 +9,17 @@ export default {
       type: 'string',
     },
     {
+      name: 'body',
+      title: 'Biography',
+      type: 'localeRichText',
+    },
+    {
+      name: 'disciplines',
+      title: 'Disciplines',
+      type: 'array',
+      of: [{type: 'reference', to: {type: 'discipline'}}],
+    },
+    {
       name: 'slug',
       title: 'Slug',
       type: 'slug',
@@ -16,18 +27,6 @@ export default {
         source: 'title',
         maxLength: 96,
       },
-    },
-    {
-      name: 'body',
-      title: 'Biography',
-      type: 'blockContent',
-      localize: true,
-    },
-    {
-      name: 'disciplines',
-      title: 'Disciplines',
-      type: 'array',
-      of: [{type: 'reference', to: {type: 'discipline'}}],
     },
     {
       name: 'mainImage',
@@ -39,4 +38,10 @@ export default {
     },
   ],
   
+  preview: {
+    select: {
+      title: 'title',
+      media: 'mainImage',
+    },
+  },
 }

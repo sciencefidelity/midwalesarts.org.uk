@@ -6,8 +6,7 @@ export default {
     {
       name: 'title',
       title: 'Title',
-      type: 'string',
-      localize: true,
+      type: 'localeString',
     },
     {
       name: 'slug',
@@ -15,20 +14,25 @@ export default {
       type: 'localeSlug',
     },
     {
+      name: 'date',
+      title: 'Date and time',
+      type: 'datetime',
+      options: {
+        dateFormat: 'dddd, MMMM Do YYYY,',
+        timeFormat: 'h:mm a',
+        timeStep: 15,
+        calendarTodayLabel: 'Today'
+      }
+    },
+    {
       name: 'briteLink',
       title: 'Eventbrite link',
       type: 'url',
     },
     {
-      name: 'date',
-      title: 'Date and time',
-      type: 'datetime',
-    },
-    {
       name: 'body',
       title: 'Body',
-      type: 'blockContent',
-      localize: true,
+      type: 'localeRichText',
     },
     {
       name: 'mainImage',
@@ -42,7 +46,7 @@ export default {
 
   preview: {
     select: {
-      title: 'title',
+      title: 'title.en',
       media: 'mainImage',
     },
   },

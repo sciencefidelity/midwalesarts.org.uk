@@ -6,8 +6,7 @@ export default {
     {
       name: 'title',
       title: 'Title',
-      type: 'string',
-      localize: true,
+      type: 'localeString',
     },
     {
       name: 'artist',
@@ -17,8 +16,7 @@ export default {
     {
       name: 'medium',
       title: 'Medium',
-      type: 'string',
-      localize: true,
+      type: 'localeString',
     },
     {
       name: 'dimensions',
@@ -58,7 +56,7 @@ export default {
 
   preview: {
     select: {
-      title: 'title',
+      title: 'title.en',
       subtitle: 'artist',
       media: 'mainImage',
     },

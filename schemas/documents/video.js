@@ -6,13 +6,12 @@ export default {
     {
       name: 'title',
       title: 'Title',
-      type: 'string',
-      localize: true,
+      type: 'localeString',
     },
     {
-      name: 'slug',
-      title: 'Slug',
-      type: 'localeSlug',
+      name: 'body',
+      title: 'Body',
+      type: 'localeRichText',
     },
     {
       name: 'videoLink',
@@ -23,12 +22,15 @@ export default {
       name: 'publishDate',
       title: 'Publish date',
       type: 'date',
+      options: {
+        dateFormat: 'dddd, MMMM Do YYYY,',
+        calendarTodayLabel: 'Today'
+      }
     },
     {
-      name: 'body',
-      title: 'Body',
-      type: 'blockContent',
-      localize: true,
+      name: 'slug',
+      title: 'Slug',
+      type: 'localeSlug',
     },
     {
       name: 'mainImage',
@@ -42,7 +44,7 @@ export default {
 
   preview: {
     select: {
-      title: 'title',
+      title: 'title.en',
       media: 'mainImage',
     },
   },
