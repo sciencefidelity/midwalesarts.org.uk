@@ -1,0 +1,39 @@
+
+@use 'colors' as c;
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+  &::before,
+  &::after {
+    box-sizing: border-box;
+  }
+}
+
+* + * {
+  margin-top: 1rem;
+}
+
+html {
+  font-family: "Sofia Pro", sans-serif;
+  font-size: 65.5%;
+}
+
+body {
+  background: c.$bg;
+  color: c.$text;
+}
+
+h1 {
+  font-family: "Halis", sans-serif;
+  font-size: 5em;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: c.$primary;
+  margin: 0;
+  line-height: 1;
+}
+
+.brand {
+  font-weight: 500;
+}
