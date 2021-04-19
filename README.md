@@ -1,6 +1,6 @@
 # Mid Wales Arts
 
-*Online base of **Mid Wales Arts**, and arts and cutrural center near Newtown, Wales, UK.*
+*Online base of **Mid Wales Arts**, and arts and cultural centre near Newtown, Wales, UK.*
 
 [midwalesarts.org.uk](https://midwalesarts.org.uk)
 
