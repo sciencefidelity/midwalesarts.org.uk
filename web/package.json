@@ -16,6 +16,7 @@
     "gatsby-source-filesystem": "^3.2.0",
     "gatsby-source-sanity": "^7.0.4",
     "gatsby-transformer-sharp": "^3.2.0",
+    "get-youtube-id": "^1.0.1",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
