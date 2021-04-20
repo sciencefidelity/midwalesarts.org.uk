@@ -5,7 +5,7 @@ import { useStaticQuery, graphql } from "gatsby"
 const VideoEmbed = () => {
   const data = useStaticQuery(graphql`
     query videoQuery {
-      sanityVideo {
+      sanityVideo(title: {en: {eq: "Six of the Best"}}) {
         id
         title {
           en
@@ -24,6 +24,7 @@ const VideoEmbed = () => {
   return (
     <section>
       <div>
+        <h1>{data.sanityVideo.title.en}</h1>
         <iframe 
           width="560"
           height="315"
@@ -32,7 +33,6 @@ const VideoEmbed = () => {
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           frameBorder="0"
           allowFullScreen
-          
         >
         </iframe>
       </div>
