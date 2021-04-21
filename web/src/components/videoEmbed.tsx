@@ -1,6 +1,6 @@
 import * as React from "react"
-import getYouTubeID from "get-youtube-id"
 import { useStaticQuery, graphql } from "gatsby"
+import getYouTubeID from "get-youtube-id"
 
 const VideoEmbed = () => {
   const data = useStaticQuery(graphql`

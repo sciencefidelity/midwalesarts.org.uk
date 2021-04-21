@@ -7184,6 +7184,12 @@ sanity-diff-patch@^1.0.9:
   dependencies:
     diff-match-patch "^1.0.5"
 
+sanity-plugin-media-library@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.npmjs.org/sanity-plugin-media-library/-/sanity-plugin-media-library-1.0.5.tgz#28aa3e6ea2f6e7f30b624550484287a152ce29cd"
+  dependencies:
+    styled-components "^5.2.1"
+
 sax@~1.2.4:
   version "1.2.4"
   resolved "https://registry.npmjs.org/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
