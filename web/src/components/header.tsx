@@ -1,22 +1,38 @@
 import * as React from "react"
-import PropTypes from "prop-types"
+import { StaticQuery, graphql } from "gatsby"
+import { GatsbyImage } from "gatsby-plugin-image"
 
-const Header = ({ siteTitle }) => (
-  <header>
-    <div className="container">
-      <h1 className={`brand`}>Mid</h1>
-      <h1 className={`brand`}>Wales</h1>
-      <h1>Arts</h1>
-    </div>
-  </header>
+import "../scss/header.scss"
+
+const Header = () => (
+  <>
+    <header>
+      <div className="hero">
+        <StaticQuery
+          query={query}
+          render={data => (
+            <GatsbyImage 
+              image={data.sanityFrontPage.mainImage.asset.gatsbyImageData}
+              alt="an image"
+              className="heroImage"
+            />
+          )}
+        />
+      </div>
+    </header>
+  </>
 )
 
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-}
-
-Header.defaultProps = {
-  siteTitle: ``,
-}
+const query = graphql`
+  query MyQuery {
+    sanityFrontPage {
+      mainImage {
+        asset {
+          gatsbyImageData(height: 450, formats: AUTO, placeholder: BLURRED)
+        }
+      }
+    }
+  }
+`
 
 export default Header

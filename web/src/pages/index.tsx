@@ -8,7 +8,12 @@ import TextComponent from "../components/textComponent"
 const IndexPage = () => (
   <Layout>
     <SEO title="Home" />
-    <div className="container">
+      <div className="container">
+        <div className="container">
+        <h1 className="brand">Mid</h1>
+        <h1 className="brand">Wales</h1>
+        <h1 className="brand bold">Arts</h1>
+      </div>
       <VideoEmbed />
       <TextComponent />
     </div>
