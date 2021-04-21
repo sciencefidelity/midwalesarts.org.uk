@@ -1,5 +1,7 @@
 require('dotenv').config()
 
+const clientConfig = require('./client-config')
+
 module.exports = {
   siteMetadata: {
     title: `Mid Wales Arts | Gallery, Sculpture Trail, Cafe & Accommodation`,
@@ -34,9 +36,7 @@ module.exports = {
     {
       resolve: `gatsby-source-sanity`,
       options: {
-        projectId: process.env.SANITY_PROJECT_ID,
-        dataset: process.env.SANITY_DATASET,
-        graphqlTag: 'default',
+        ...clientConfig.sanity
       },
     },
     `gatsby-plugin-gatsby-cloud`,
