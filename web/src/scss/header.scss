@@ -1,7 +1,41 @@
-.hero {
-  height: 43rem;
-  margin-bottom: 9.3rem;
+@use 'foundation/colors' as c;
+
+header {
+  background: c.$primary;
 }
+
+.hero {
+  height: 45rem;
+  margin-bottom: 9.3rem;
+  position: relative;
+  margin: auto;
+}
+
 .heroImage {
   height: 100%;
+  margin-top: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.menuOverlay {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 27.5rem;
+  margin-top: 0;
+  background: c.$menu;
+  z-index: 2;
+}
+
+.titleContainer {
+  position: absolute;
+  background: c.$primary;
+  width: 46.6rem;
+  height: 14.2rem;
+  bottom: -10%;
+  left: 29.3rem;
+  box-shadow: 4px 4px 20px 0 rgba(black, 0.6);
+  z-index: 3
 }

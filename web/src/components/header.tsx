@@ -18,6 +18,8 @@ const Header = () => (
             />
           )}
         />
+        <div className="menuOverlay"></div>
+        <div className="titleContainer"></div>
       </div>
     </header>
   </>
