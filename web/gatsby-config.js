@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 module.exports = {
   siteMetadata: {
     title: `Mid Wales Arts | Gallery, Sculpture Trail, Cafe & Accommodation`,
@@ -32,14 +34,8 @@ module.exports = {
     {
       resolve: `gatsby-source-sanity`,
       options: {
-        projectId: `e5f80r5a`,
-        dataset: `production`,
-        // a token with read permissions is required
-        // if you have a private dataset
-        token: process.env.SANITY_TOKEN,
-
-        // If the Sanity GraphQL API was deployed using `--tag <name>`,
-        // use `graphqlTag` to specify the tag name. Defaults to `default`.
+        projectId: process.env.SANITY_PROJECT_ID,
+        dataset: process.env.SANITY_DATASET,
         graphqlTag: 'default',
       },
     },
