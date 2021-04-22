@@ -3,22 +3,22 @@ import * as React from "react"
 const Brand = () => (
   <>
     <h1 className="brand">
-      <span>M</span>
-      <span>i</span>
-      <span>d</span>
+      <span style={{letterSpacing: `0.0rem`}}>M</span>
+      <span style={{letterSpacing: `0.0rem`}}>i</span>
+      <span style={{letterSpacing: `0.0rem`}}>d</span>
     </h1>
     <h1 className="brand">
-      <span>W</span>
-      <span>a</span>
-      <span>l</span>
-      <span>e</span>
-      <span>s</span>
+      <span style={{letterSpacing: `0.0rem`}}>W</span>
+      <span style={{letterSpacing: `0.0rem`}}>a</span>
+      <span style={{letterSpacing: `0.0rem`}}>l</span>
+      <span style={{letterSpacing: `0.0rem`}}>e</span>
+      <span style={{letterSpacing: `0.0rem`}}>s</span>
     </h1>
     <h1 className="brand bold">
-      <span>A</span>
-      <span>r</span>
-      <span>t</span>
-      <span>s</span>
+      <span style={{letterSpacing: `0.0rem`}}>A</span>
+      <span style={{letterSpacing: `0.0rem`}}>r</span>
+      <span style={{letterSpacing: `0.0rem`}}>t</span>
+      <span style={{letterSpacing: `0.0rem`}}>s</span>
     </h1>
   </>
 )
