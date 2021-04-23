@@ -1,4 +1,4 @@
-# Mid Wales Arts
+# Mid Wales Arts 🦚 🎨
 
 *Online base of **Mid Wales Arts**, an arts and cultural centre near Newtown, Wales, UK.*
 
@@ -8,4 +8,3 @@ The brief is to make a site to showcase their program of Exhibitions, workshops 
 
 The frontend is a static site built with [Gatsby](https://www.gatsbyjs.com/).
 the backend API is a headless CMS the uses [Sanity Studio](https://sanity.io/).
-
