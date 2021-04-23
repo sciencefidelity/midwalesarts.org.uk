@@ -54,3 +54,24 @@ header {
   left: -14%;
   z-index: 2;
 }
+
+.hamburger {
+  margin: 4.2rem 2.5rem;
+  width: 5rem;
+  height: 0.6rem;
+  background: c.$footer;
+  &::before,
+  &::after {
+    content: "";
+    display: block;
+    background: c.$footer;
+    width: 5rem;
+    height: 0.6rem;
+  }
+  &::before {
+    transform: translateY(1.45rem);
+  }
+  &::after {
+    transform: translateY(-2.05rem);
+  }
+}

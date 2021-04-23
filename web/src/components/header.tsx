@@ -2,6 +2,7 @@ import * as React from "react"
 import { StaticQuery, graphql } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 
+import Navigation from "./navigation"
 import HeaderLogo from "./headerLogo"
 
 import "../scss/header.scss"
@@ -19,7 +20,9 @@ const Header = () => (
                 alt="an image"
                 className="heroImage"
               />
-              <div className="menuOverlay"></div>
+              <div className="menuOverlay">
+                <Navigation />
+              </div>
               <div className="headerContainer">
                 <div className="titleContainer">
                   <h2>{data.sanityFrontPage.imageTitle.en}</h2>
