@@ -35,12 +35,14 @@ h1 {
 }
 
 p {
-  font-size: 2em;
+  font-size: 2.3em;
+  line-height: 1.39;
 }
 
 .container {
-  max-width: 100rem;
+  max-width: 85rem;
   margin: auto;
+
 }
 
 .brand {
@@ -49,6 +51,11 @@ p {
   line-height: 0.96;
 }
 .bold {
-  padding-top: 0.1em;
   font-weight: 800;
+}
+
+.introduction {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 6.5rem;
 }

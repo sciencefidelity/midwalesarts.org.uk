@@ -2,17 +2,17 @@ import * as React from "react"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import Brand from "../components/brand"
-import VideoEmbed from "../components/videoEmbed"
-import TextComponent from "../components/textComponent"
+import Brand from "../components/brand.en"
+import Intro from "../components/intro"
 
 const IndexPage = () => (
   <Layout>
   <SEO title="Home" />
     <div className="container">
-      <Brand />
-      <VideoEmbed />
-      <TextComponent />
+      <div className="introduction">
+        <Brand />
+        <Intro />
+      </div>
     </div>
   </Layout>
 )
