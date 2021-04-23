@@ -11,15 +11,20 @@ const Header = () => (
         <StaticQuery
           query={query}
           render={data => (
-            <GatsbyImage 
-              image={data.sanityFrontPage.mainImage.asset.gatsbyImageData}
-              alt="an image"
-              className="heroImage"
-            />
+            <>
+              <GatsbyImage 
+                image={data.sanityFrontPage.mainImage.asset.gatsbyImageData}
+                alt="an image"
+                className="heroImage"
+              />
+              <div className="menuOverlay"></div>
+              <div className="titleContainer">
+                <h2>{data.sanityFrontPage.imageTitle.en}</h2>
+                <h3>{data.sanityFrontPage.imageCaption.en}</h3>
+              </div>
+            </>
           )}
         />
-        <div className="menuOverlay"></div>
-        <div className="titleContainer"></div>
       </div>
     </header>
   </>
@@ -28,6 +33,12 @@ const Header = () => (
 const query = graphql`
   query MyQuery {
     sanityFrontPage {
+      imageTitle {
+        en
+      }
+      imageCaption {
+        en
+      }
       mainImage {
         asset {
           gatsbyImageData(height: 450, formats: AUTO, placeholder: BLURRED)
