@@ -2,6 +2,7 @@
 
 header {
   margin-bottom: 10.5rem;
+  position: relative;
 }
 
 .hero {
@@ -29,12 +30,27 @@ header {
   z-index: 2;
 }
 
+.headerContainer {
+  position: relative;
+  max-width: 85rem;
+  margin: auto;
+}
+
 .titleContainer {
-  position: absolute;
+  position: relative;
+  display: inline-block;
   background: c.$primary;
   padding: 2.5rem 3.7rem 3.5rem;
-  bottom: -10%;
-  left: 29.3rem;
+  top: -10.5rem;
+  left: 0;
   box-shadow: 4px 4px 20px 0 rgba(black, 0.6);
-  z-index: 3
+  z-index: 3;
+}
+
+.headerLogo {
+  position: absolute;
+  width: 45rem;
+  bottom: -19%;
+  left: -14%;
+  z-index: 2;
 }

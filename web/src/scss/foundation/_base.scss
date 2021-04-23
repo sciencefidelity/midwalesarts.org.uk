@@ -59,9 +59,10 @@ p {
 }
 
 .container {
+  position: relative;
   max-width: 85rem;
   margin: auto;
-
+  z-index: 3;
 }
 
 .brand {

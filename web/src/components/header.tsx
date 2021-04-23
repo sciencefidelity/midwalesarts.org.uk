@@ -2,6 +2,8 @@ import * as React from "react"
 import { StaticQuery, graphql } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 
+import HeaderLogo from "./headerLogo"
+
 import "../scss/header.scss"
 
 const Header = () => (
@@ -18,9 +20,12 @@ const Header = () => (
                 className="heroImage"
               />
               <div className="menuOverlay"></div>
-              <div className="titleContainer">
-                <h2>{data.sanityFrontPage.imageTitle.en}</h2>
-                <h3>{data.sanityFrontPage.imageCaption.en}</h3>
+              <div className="headerContainer">
+                <div className="titleContainer">
+                  <h2>{data.sanityFrontPage.imageTitle.en}</h2>
+                  <h3>{data.sanityFrontPage.imageCaption.en}</h3>
+                </div>
+                <HeaderLogo />
               </div>
             </>
           )}
