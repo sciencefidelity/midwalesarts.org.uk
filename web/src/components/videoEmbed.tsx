@@ -16,7 +16,7 @@ const VideoEmbed = () => {
   `)
     
   const id = getYouTubeID(data.sanityVideo.videoLink)
-  const url = `https://www.youtube.com/embed/${id}`
+  const url = `https://www.youtube-nocookie.com/embed/${id}?modestbranding=1`
 
   if(!id) {
     return <div>YouTube video missing</div>
@@ -33,6 +33,7 @@ const VideoEmbed = () => {
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           frameBorder="0"
           allowFullScreen
+          loading="lazy"
         >
         </iframe>
       </div>
