@@ -55,12 +55,17 @@ header {
   z-index: 2;
 }
 
+.hamburgerContainer {
+  cursor: pointer;
+  height: 4.7rem;
+  width: 5rem;
+  margin: 2.9rem 2.5rem 0rem;
+}
+
 .hamburger {
-  margin: 4.2rem 2.5rem;
   width: 5rem;
   height: 0.6rem;
   background: c.$footer;
-  cursor: pointer;
   &::before,
   &::after {
     content: "";
@@ -73,7 +78,7 @@ header {
     transform: translateY(1.45rem);
   }
   &::after {
-    transform: translateY(-2.05rem);
+    transform: translateY(2.35rem);
   }
 }
 
@@ -83,12 +88,12 @@ header {
   font-size: 3.6rem;
   font-weight: 700;
   letter-spacing: 0.1rem;
-  margin: 0rem 2.5rem 13.3rem;
+  margin: 1.2rem 2.5rem 13.6rem;
   cursor: pointer;
   display: inline-block;
 }
 
 .social {
-  margin: 0.7rem 3rem;
-  width: 4rem;
+  margin: 0.8rem 3rem;
+  width: 3.8rem;
 }

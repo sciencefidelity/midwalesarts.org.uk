@@ -1,8 +1,8 @@
 import React from "react"
 
 const Navigation = () => (
-  <div>
-    <div className="hamburger"></div>
+  <div className="nav">
+    <div className="hamburgerContainer"><div className="hamburger"></div></div>
     <div className="languageSwitcher">CY</div>
     <div className="social">
       <a href="#">
