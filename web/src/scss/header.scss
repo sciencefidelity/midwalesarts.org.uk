@@ -97,3 +97,58 @@ header {
   margin: 0.8rem 3rem;
   width: 3.8rem;
 }
+
+.headerMenu {
+  position: absolute;
+  width: 120rem;
+  height: 120rem;
+  background: c.$bg;
+  border-radius: 50%;
+  clip-path: circle(50% at 50% 50%);
+  z-index: -1;
+  right: calc(22.5rem - 60rem);
+  bottom: -19.6rem;
+  transition: clip-path 1.5s ease-in-out;
+  ul {
+    position: absolute;
+    top: 47%;
+    left: 21%;
+    font-size: 2.5rem;
+    color: c.$text;
+    list-style: none;
+    padding: 0 4rem;
+    li {
+      padding: 0.4rem 0;
+      a:hover {
+        border-bottom: 0.2rem solid c.$text;
+      }
+      &:first-child {
+        font-weight: 700;
+        font-size: 3.5rem;
+        margin: 0 -7rem 1.5rem;
+        a {
+          color: c.$primary;
+          &:hover {
+            border: none;
+            padding: 0.2rem 0 -0.2rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+.marker {
+  width: 2px;
+  height: 2px;
+  position: absolute;
+  background: cyan;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50% -50%);
+}
+
+.hidden {
+  clip-path: circle(0% at 50% 50%);
+  transition: clip-path 1.5s ease-in;
+}

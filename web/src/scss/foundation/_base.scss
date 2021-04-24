@@ -22,6 +22,9 @@ html {
 body {
   background: c.$bg;
   color: c.$text;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 h1 {
@@ -58,6 +61,11 @@ p {
   line-height: 1.49;
 }
 
+a {
+  text-decoration: none;
+  color: c.$text;
+}
+
 .container {
   position: relative;
   max-width: 85rem;
@@ -78,4 +86,8 @@ p {
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 6.5rem;
+}
+
+.introText {
+  padding-top: 13rem;
 }
