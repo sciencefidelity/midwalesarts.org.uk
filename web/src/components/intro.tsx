@@ -20,6 +20,7 @@ const Intro = () => {
   return (
     <>
       <div className="introText">
+        <div className="introHr"></div>
         {data.sanityFrontPage.body._rawEn && <PortableText blocks={data.sanityFrontPage.body._rawEn} />}
       </div>
     </>

@@ -88,6 +88,16 @@ a {
   gap: 6.5rem;
 }
 
+.introHr {
+  position: absolute;
+  top: 7.5rem;
+  left: -4rem;
+  height: 0.45rem;
+  width: 200rem;
+  background: c.$primary;
+}
+
 .introText {
+  position: relative;
   padding-top: 13rem;
 }
