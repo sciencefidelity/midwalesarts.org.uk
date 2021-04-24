@@ -1,7 +1,7 @@
 import React from "react"
 
 const HeaderMenu = () => (
-  <div className="headerMenu">
+  <div className="headerMenu hidden">
     <div className="marker"></div>
     <ul>
       <li><a href="#">Mid Wales Arts</a></li>

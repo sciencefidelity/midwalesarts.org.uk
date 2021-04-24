@@ -66,6 +66,7 @@ header {
   width: 5rem;
   height: 0.6rem;
   background: c.$footer;
+  transition: transform 1.5s;
   &::before,
   &::after {
     content: "";
@@ -76,9 +77,24 @@ header {
   }
   &::before {
     transform: translateY(1.45rem);
+    transition: transform 1.5s;
   }
   &::after {
     transform: translateY(2.35rem);
+    transition: width 1.5s;
+  }
+}
+
+.active {
+  transform: translateY(1.45rem) rotate(-45deg);
+  transition: transform 1.5s;
+  &::before {
+    transform: rotate(90deg);
+    transition: transform 1.5s;
+  }
+  &::after {
+    width: 0;
+    transition: width 1.5s;
   }
 }
 
@@ -108,7 +124,7 @@ header {
   z-index: -1;
   right: calc(22.5rem - 60rem);
   bottom: -19.6rem;
-  transition: clip-path 1.5s ease-in-out;
+  transition: clip-path 1.5s ease-in;
   ul {
     position: absolute;
     top: 47%;
@@ -150,5 +166,5 @@ header {
 
 .hidden {
   clip-path: circle(0% at 50% 50%);
-  transition: clip-path 1.5s ease-in;
+  transition: clip-path 1.5s ease-out;
 }
