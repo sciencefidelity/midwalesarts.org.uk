@@ -3,7 +3,7 @@ import { StaticQuery, graphql } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 
 import Navigation from "./navigation"
-import HeaderLogo from "./headerLogo"
+import HeaderLogo from "./logos/headerLogo"
 
 import "../scss/header.scss"
 
