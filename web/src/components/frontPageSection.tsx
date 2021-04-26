@@ -20,6 +20,7 @@ const FrontPageSection = () => (
               alt="an image"
               className="sectionInset"
             />
+            <div className="caption">{data.sanityFrontPageSection.subImage.caption}</div>
           </div>
         </>
       )}

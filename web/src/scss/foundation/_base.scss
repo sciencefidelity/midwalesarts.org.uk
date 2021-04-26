@@ -14,6 +14,10 @@
   margin-top: 1rem;
 }
 
+#query-on-demand-indicator-element {
+  margin: 0;
+}
+
 html {
   font-family: "Sofia Pro", sans-serif;
   font-size: 62.5%;
@@ -64,6 +68,10 @@ p {
 a {
   text-decoration: none;
   color: c.$text;
+}
+
+.caption {
+  font-size: 1.4rem;
 }
 
 .container {

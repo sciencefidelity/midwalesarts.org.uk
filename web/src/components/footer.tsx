@@ -2,10 +2,12 @@ import * as React from "react"
 import PropTypes from "prop-types"
 import { Link } from "gatsby"
 
+import "../scss/footer.scss"
+
 const Footer = ({ siteTitle }) => (
   <footer>
     <div>
-
+      
     </div>
   </footer>
 )

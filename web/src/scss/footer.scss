@@ -1,0 +1,8 @@
+
+@use 'foundation/colors' as c;
+
+footer {
+  height: 30rem;
+  background: c.$footer;
+  margin-top: 23rem;
+}
