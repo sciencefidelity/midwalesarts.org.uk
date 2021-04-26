@@ -172,3 +172,10 @@ header {
   clip-path: circle(0% at 50% 50%);
   transition: clip-path 1.5s ease-out;
 }
+
+.heroCaption {
+  position: absolute;
+  font-size: 1.4rem;
+  right: -2rem;
+  bottom: 12.4rem;
+}

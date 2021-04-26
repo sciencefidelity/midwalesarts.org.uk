@@ -29,8 +29,8 @@ const Header = () => (
                   <h3>{data.sanityFrontPage.imageCaption.en}</h3>
                 </div>
                 <HeaderLogo />
+                <div className="heroCaption">{data.sanityFrontPage.mainImage.caption}</div>
               </div>
-              <div>{data.sanityFrontPage.mainImage.caption}</div>
             </>
           )}
         />
