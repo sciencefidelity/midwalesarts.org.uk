@@ -43,3 +43,23 @@
   height: 31.7rem;
   width: auto;
 }
+
+.sectionContainer {
+  padding-top: 11rem;
+  margin: auto;
+  width: 108rem;
+}
+
+.sectionHero {
+  height: 45rem;
+  width: 100%;
+  margin: auto;
+  
+}
+
+.sectionInset {
+  border: 0.4rem solid c.$bg;
+  margin-top: -7.5rem;
+  box-shadow: c.$shadow;
+  height: 46.5rem;
+}

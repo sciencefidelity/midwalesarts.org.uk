@@ -9,11 +9,13 @@ import SEO from "../components/seo"
 import Brand from "../components/brand.en"
 import Intro from "../components/intro"
 import ColorLogo from "../components/logos/colorLogo"
+import FrontPageSection from "../components/frontPageSection"
 
 const IndexPage = () => (
   <>
     <Layout>
     <SEO title="Home" />
+      <section>
       <div className="container">
         <ColorLogo />
         <div className="introduction">
@@ -36,6 +38,8 @@ const IndexPage = () => (
           <Intro />
         </div>
       </div>
+      </section>
+      <FrontPageSection />
     </Layout>
   </>
 )
