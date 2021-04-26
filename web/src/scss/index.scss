@@ -1,3 +1,6 @@
+
+@use 'foundation/colors' as c;
+
 .colorLogo {
   position: absolute;
   width: 16rem;
@@ -5,4 +8,30 @@
   top: -0.9rem;
   transform: rotate(-33deg);
   clip-path: polygon(0 0, 100% 0, 100% 95%, 0 30%);
+}
+
+.brand {
+  font-size: 8.5rem;
+  font-weight: 500;
+  line-height: 0.96;
+}
+
+.introHr {
+  position: absolute;
+  top: 7.5rem;
+  left: -4rem;
+  height: 0.45rem;
+  width: 200rem;
+  background: c.$primary;
+}
+
+.introText {
+  position: relative;
+  padding-top: 13rem;
+}
+
+.sideImage {
+  position: absolute;
+  bottom: 0;
+  left: -19rem;
 }

@@ -39,7 +39,7 @@ const Header = () => (
 )
 
 const query = graphql`
-  query MyQuery {
+  query HeroQuery {
     sanityFrontPage {
       imageTitle {
         en

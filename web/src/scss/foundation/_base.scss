@@ -73,11 +73,6 @@ a {
   z-index: 3;
 }
 
-.brand {
-  font-size: 8.5rem;
-  font-weight: 500;
-  line-height: 0.96;
-}
 .bold {
   font-weight: 800;
 }
@@ -86,21 +81,7 @@ a {
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 6.5rem;
-  padding-bottom: 30rem;
-}
-
-.introHr {
-  position: absolute;
-  top: 7.5rem;
-  left: -4rem;
-  height: 0.45rem;
-  width: 200rem;
-  background: c.$primary;
-}
-
-.introText {
-  position: relative;
-  padding-top: 13rem;
+  padding-bottom: 3.5rem;
 }
 
 .cta {
