@@ -21,11 +21,16 @@ const IndexPage = () => (
           <StaticQuery
             query={query}
             render={data => (
-              <GatsbyImage 
-                image={data.sanityFrontPage.subImage.asset.gatsbyImageData}
-                alt="an image"
-                className="sideImage"
-              />
+              <>
+                <div className="sideImageContainer">
+                  <GatsbyImage 
+                    image={data.sanityFrontPage.subImage.asset.gatsbyImageData}
+                    alt="an image"
+                    className="sideImage"
+                  />
+                  <div>{data.sanityFrontPage.subImage.caption}</div>
+                </div>
+              </>
             )}
           />
           <Intro />

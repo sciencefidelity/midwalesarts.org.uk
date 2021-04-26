@@ -30,6 +30,7 @@ const Header = () => (
                 </div>
                 <HeaderLogo />
               </div>
+              <div>{data.sanityFrontPage.mainImage.caption}</div>
             </>
           )}
         />
@@ -48,6 +49,7 @@ const query = graphql`
         en
       }
       mainImage {
+        caption
         asset {
           gatsbyImageData(height: 450, formats: AUTO, placeholder: BLURRED)
         }

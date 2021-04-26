@@ -30,8 +30,16 @@
   padding-top: 13rem;
 }
 
-.sideImage {
+.sideImageContainer {
   position: absolute;
   bottom: 0;
   left: -19rem;
+  font-size: 1.4rem;
+  line-height: 1;
+  text-align: right;
+}
+
+.sideImage {
+  height: 31.7rem;
+  width: auto;
 }
