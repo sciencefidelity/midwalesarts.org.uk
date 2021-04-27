@@ -9,6 +9,7 @@ const HeaderMenu = () => (
       <li><a href="#">Artists</a></li>
       <li><a href="#">Events</a></li>
       <li><a href="#">Exhibitions</a></li>
+      <li><a href="#">News</a></li>
       <li><a href="#">Support us</a></li>
       <li><a href="#">Videos</a></li>
       <li><a href="#">Visit us</a></li>

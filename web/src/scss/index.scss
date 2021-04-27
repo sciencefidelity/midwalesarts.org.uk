@@ -21,7 +21,7 @@
   top: 7.5rem;
   left: -4rem;
   height: 0.45rem;
-  width: 200rem;
+  width: 100rem;
   background: c.$primary;
 }
 
@@ -45,6 +45,7 @@
 }
 
 .sectionContainer {
+  position: relative;
   padding-top: 11rem;
   margin: auto;
   width: 108rem;
@@ -58,12 +59,22 @@
   z-index: -5;
 }
 
+.sectionHeroCaption {
+  position: absolute;
+  top: 7rem;
+  right: 10rem;
+}
+
 .sectionContent {
   display: flex;
-  gap: 6rem;
+  // gap: 6rem;
   width: 97rem;
   margin: auto;
   z-index: 4;
+}
+
+.sectionText {
+  margin-left: 6rem;
 }
 
 .sectionInset {

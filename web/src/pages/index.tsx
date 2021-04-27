@@ -60,6 +60,18 @@ const IndexPage = () => (
 const query = graphql`
   query ImageQuery {
     sanityFrontPage {
+      imageTitle {
+        en
+      }
+      imageCaption {
+        en
+      }
+      mainImage {
+        caption
+        asset {
+          gatsbyImageData(height: 450, formats: AUTO, placeholder: BLURRED)
+        }
+      }
       subImage {
         caption
         asset {
