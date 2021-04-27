@@ -70,7 +70,7 @@ header {
   width: 5rem;
   height: 0.6rem;
   background: c.$footer;
-  transition: transform 1.5s;
+  transition: transform 0.5s;
   &::before,
   &::after {
     content: "";
@@ -81,24 +81,27 @@ header {
   }
   &::before {
     transform: translateY(1.45rem);
-    transition: transform 1.5s;
+    transition: transform 0.5s;
   }
   &::after {
     transform: translateY(2.35rem);
-    transition: width 1.5s;
+    transition: transform 0.5s;
+    transition-delay: 0.5s;
   }
 }
 
 .active {
   transform: translateY(1.45rem) rotate(-45deg);
-  transition: transform 1.5s;
+  transition: transform 0.5s;
+  transition-delay: 0.5s;
   &::before {
     transform: rotate(90deg);
-    transition: transform 1.5s;
+    transition: transform 0.5s;
+    transition-delay: 0.5s;
   }
   &::after {
-    width: 0;
-    transition: width 1.5s;
+    transform: translateY(-0.6rem);
+    transition: transform 0.5s;
   }
 }
 
@@ -124,19 +127,18 @@ header {
   height: calc(104vw * 2);
   background: rgba(c.$bg, 0.9);
   border-radius: 50%;
-  clip-path: circle(50% at 50% 50%);
   z-index: -1;
   right: calc(4.8rem - 104vw);
   top: calc(4.8rem - 104vw);
-  transition: clip-path 1s ease-in;
+  clip-path: circle(0% at 50% 50%);
+  transition: clip-path 1s ease-out;
   text-align: right;
   ul {
     position: absolute;
-    top: calc(50% - 4rem);
+    top: calc(50% - 3rem);
     left: calc(50% - 23rem);
     font-size: 2.15rem;
     font-weight: 700;
-    
     list-style: none;
     padding: 0 4rem;
     li {
@@ -154,19 +156,9 @@ header {
   }
 }
 
-.marker {
-  width: 2px;
-  height: 2px;
-  position: absolute;
-  background: cyan;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50% -50%);
-}
-
-.hidden {
-  clip-path: circle(0% at 50% 50%);
-  transition: clip-path 1s ease-out;
+.isActive {
+  clip-path: circle(50% at 50% 50%);
+  transition: clip-path 1s ease-in;
 }
 
 .heroCaption {
