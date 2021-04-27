@@ -8,7 +8,10 @@ const PortableText = ({blocks}) => (
   <BasePortableText blocks={blocks} {...clientConfig.sanity} />
 )
 
-const FrontPageSection = () => (
+const FrontPageSection = ({ 
+  title, caption, heading, body, cta, ctaLink, 
+  mainImage, mainImageCaption, subImage, subImageCaption 
+}) => (
   <section>
     <div className="sectionContainer">
     <StaticQuery
@@ -16,33 +19,33 @@ const FrontPageSection = () => (
       render={data => (
         <>
           <GatsbyImage 
-            image={data.sanityFrontPageSection.mainImage.asset.gatsbyImageData}
+            image={mainImage}
             alt="an image"
             className="sectionHero"
           />
           <div className="sectionContent">
             <div>
               <GatsbyImage 
-                image={data.sanityFrontPageSection.subImage.asset.gatsbyImageData}
+                image={subImage}
                 alt="an image"
                 className="sectionInset"
               />
-              <div className="caption">{data.sanityFrontPageSection.subImage.caption}</div>
+              <div className="caption">{subImageCaption}</div>
             </div>
             <div>
               <div className="sectionTitleContainer">
-                <h2>{data.sanityFrontPageSection.title.en}</h2>
-                <h3>{data.sanityFrontPageSection.caption.en}</h3>
+                <h2>{title}</h2>
+                <h3>{caption}</h3>
               </div>
-              <h4>{data.sanityFrontPageSection.heading.en}</h4>
-              {data.sanityFrontPageSection.body._rawEn && 
-                <PortableText blocks={data.sanityFrontPageSection.body._rawEn} />}
+              <h4>{heading}</h4>
+              {body && 
+                <PortableText blocks={body} />}
             </div>
           </div>
           <div className="sectionCta">
             <div className="ctaHrRight"></div>
             <a href="#">
-              <h2 className="ctaRight">{data.sanityFrontPageSection.cta.en}</h2>
+              <h2 className="ctaRight">{cta}</h2>
             </a>
           </div>
         </>
@@ -54,7 +57,7 @@ const FrontPageSection = () => (
 
 const query = graphql`
   query SectionQuery {
-    sanityFrontPageSection {
+    sanityFrontPageSection(title: {en: {eq: "Stop! Act!"}}) {
       title {
         en
       }
