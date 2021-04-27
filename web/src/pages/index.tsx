@@ -54,9 +54,9 @@ const IndexPage = () => (
               subImageCaption={section.node.subImage.caption}
             />
           )}
-    </Layout>
-        )}
-      />
+        </Layout>
+      )}
+    />
   </>
 )
 

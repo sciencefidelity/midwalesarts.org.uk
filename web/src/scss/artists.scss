@@ -1,0 +1,13 @@
+.imageGrid {
+  padding-top: 7.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 3rem;
+  max-width: 108rem;
+  margin: auto;
+  z-index: 5;
+}
+
+.artistName {
+  font-size: 1.8rem;
+}

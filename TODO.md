@@ -1,0 +1,2 @@
+- Create a place in the studio to select hero images.
+  - Artists Page
