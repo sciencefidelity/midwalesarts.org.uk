@@ -51,10 +51,15 @@ exports.createPages = ({ graphql, actions }) => {
       allSanityArtist {
         edges {
           node {
+            title
             slug {
               current
             }
-            title
+            mainImage {
+              asset {
+                gatsbyImageData(width: 1440, formats: WEBP, placeholder: BLURRED)
+              }
+            }
           }
         }
       }
@@ -71,7 +76,9 @@ exports.createPages = ({ graphql, actions }) => {
         path: `${edge.node.slug.current}`,
         component: artistTemplate,
         context: {
-          name: `${edge.node.title}`
+          name: `${edge.node.title}`,
+          slug: `${edge.node.slug.current}`,
+          mainImage: `${edge.node.mainImage.asset.gatsbyImageData}`
         },
       })
     })
