@@ -13,12 +13,16 @@ import FrontPageSection from "../components/frontPageSection"
 
 const IndexPage = () => (
   <>
-    <Layout>
-    <SEO title="Home" />
     <StaticQuery
       query={query}
       render={data => (
-        <>
+        <Layout
+          heroImage={data.sanityFrontPage.mainImage.asset.gatsbyImageData}
+          heroImageCaption={data.sanityFrontPage.mainImage.caption}
+          heroTitle={data.sanityFrontPage.imageTitle.en}
+          heroCaption={data.sanityFrontPage.imageCaption.en}
+        >
+        <SEO title="Home" />
           <section>
             <div className="container">
               <ColorLogo />
@@ -50,10 +54,9 @@ const IndexPage = () => (
               subImageCaption={section.node.subImage.caption}
             />
           )}
-        </>
+    </Layout>
         )}
       />
-    </Layout>
   </>
 )
 
