@@ -82,7 +82,7 @@ const query = graphql`
         }
       }
     }
-    allSanityFrontPageSection {
+    allSanityFrontPageSection(sort: {fields: order, order: ASC}) {
       edges {
         node {
           id
