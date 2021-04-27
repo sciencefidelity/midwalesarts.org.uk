@@ -120,39 +120,35 @@ header {
 
 .headerMenu {
   position: absolute;
-  width: 120rem;
-  height: 120rem;
-  background: c.$bg;
+  width: calc(104vw * 2);
+  height: calc(104vw * 2);
+  background: rgba(c.$bg, 0.9);
   border-radius: 50%;
   clip-path: circle(50% at 50% 50%);
   z-index: -1;
-  right: calc(4.8rem - 60rem);
-  bottom: -19.6rem;
-  transition: clip-path 1.5s ease-in;
+  right: calc(4.8rem - 104vw);
+  top: calc(4.8rem - 104vw);
+  transition: clip-path 1s ease-in;
+  text-align: right;
   ul {
     position: absolute;
-    top: 47%;
-    left: 21%;
-    font-size: 2.5rem;
-    color: c.$text;
+    top: calc(50% - 4rem);
+    left: calc(50% - 23rem);
+    font-size: 2.15rem;
+    font-weight: 700;
+    
     list-style: none;
     padding: 0 4rem;
     li {
-      padding: 0.4rem 0;
-      a:hover {
-        border-bottom: 0.2rem solid c.$text;
+      padding: 0.35rem 0;
+      a {
+        color: c.$footer;
+        border-bottom: 0.3rem solid rgba(c.$footer, 0);
+        transition: border-bottom 0.5s ease-in-out;
       }
-      &:first-child {
-        font-weight: 700;
-        font-size: 3.5rem;
-        margin: 0 -7rem 1.5rem;
-        a {
-          color: c.$primary;
-          &:hover {
-            border: none;
-            padding: 0.2rem 0 -0.2rem;
-          }
-        }
+      a:hover {
+        border-bottom: 0.3rem solid rgba(c.$footer, 1);
+        transition: border-bottom 0.5s ease-in-out;
       }
     }
   }
@@ -170,7 +166,7 @@ header {
 
 .hidden {
   clip-path: circle(0% at 50% 50%);
-  transition: clip-path 1.5s ease-out;
+  transition: clip-path 1s ease-out;
 }
 
 .heroCaption {
@@ -178,4 +174,5 @@ header {
   font-size: 1.4rem;
   right: -2rem;
   bottom: 12.4rem;
+  z-index: 5;
 }

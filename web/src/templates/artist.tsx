@@ -11,7 +11,7 @@ const ArtistPage = ({ pageContext }) => (
     render={data => (
       <Layout
         heroImage={pageContext.mainImage}
-        heroImageCaption="Diane Rose, A Swoop of Swallows, 2020"
+        heroImageCaption="&nbsp;"
         heroTitle={pageContext.name}
         heroCaption="&nbsp;"
       >

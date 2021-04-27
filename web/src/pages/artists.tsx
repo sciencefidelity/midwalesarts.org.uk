@@ -21,7 +21,7 @@ const ArtistsPage = () => (
             <div className="imageGrid">
               {data.allSanityArtist.edges.map(artists => (
                 <>
-                  <Link to="/">
+                  <Link to={`/${artists.node.slug.current}/`}>
                     <div>
                       <GatsbyImage 
                         image={artists.node.mainImage.asset.gatsbyImageData}
@@ -42,7 +42,7 @@ const ArtistsPage = () => (
 
 const query = graphql `
   query ArtistsQuery {
-    allSanityArtist {
+    allSanityArtist(sort: {fields: title, order: ASC}) {
       edges {
         node {
           id

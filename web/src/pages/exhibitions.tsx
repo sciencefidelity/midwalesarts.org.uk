@@ -27,6 +27,7 @@ const Exhibitions = () => (
                       alt=""
                     />
                     <div className="artistName">{exhibitions.node.title.en}</div>
+                    <div className="artistName">{exhibitions.node.dateStart} to {exhibitions.node.dateEnd}</div>
                   </div>
                 </>
               ))}
@@ -40,7 +41,7 @@ const Exhibitions = () => (
 
 const query = graphql `
   query ExhibitionQuery {
-    allSanityExhibition {
+    allSanityExhibition(sort: {fields: dateStart, order: DESC}) {
       edges {
         node {
           title {
@@ -56,8 +57,8 @@ const query = graphql `
               gatsbyImageData(width: 400, height: 400, formats: WEBP, placeholder: BLURRED)
             }
           }
-          dateStart(formatString: "dddd, MMMM Do YYYY")
-          dateEnd(formatString: "dddd, MMMM Do YYYY")
+          dateStart(formatString: "Do MMMM")
+          dateEnd(formatString: "Do MMMM YYYY")
           id
           body {
             _rawEn

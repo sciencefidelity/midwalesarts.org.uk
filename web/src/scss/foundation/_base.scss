@@ -32,6 +32,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+main {
+  position: relative;
+  z-index: 5;
+}
+
 h1 {
   font-family: "Halis", sans-serif;
   font-size: 5em;
@@ -139,7 +144,8 @@ a {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 3rem;
-  max-width: 108rem;
+  width: 108rem;
+  max-width: 88%;
   margin: auto;
   z-index: 5;
 }

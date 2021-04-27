@@ -5,7 +5,7 @@ const HeaderMenu = () => (
   <div className="headerMenu">
     <div className="marker"></div>
     <ul>
-      <li><Link to="/">Mid Wales Arts</Link></li>
+      <li><Link to="/">Home</Link></li>
       <li><Link to="/about/">About us</Link></li>
       <li><Link to="/artists/">Artists</Link></li>
       <li><Link to="/events/">Events</Link></li>
