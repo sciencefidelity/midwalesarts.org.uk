@@ -3,7 +3,13 @@ export default {
   title: 'Front Page Section',
   type: 'document',
   localize: true,
-  fields: [
+  fields: [    
+    {
+      name: 'order',
+      title: 'Order',
+      description: 'The order that items appear on the fromt page (1 to 4)',
+      type: 'number',
+    },
     {
       name: 'title',
       title: 'Headline',
