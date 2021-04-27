@@ -1,5 +1,5 @@
 import * as React from "react"
-import { StaticQuery, graphql } from "gatsby"
+import { StaticQuery, graphql, Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 
 import "../scss/artists.scss"
@@ -21,13 +21,15 @@ const ArtistsPage = () => (
             <div className="imageGrid">
               {data.allSanityArtist.edges.map(artists => (
                 <>
-                  <div>
-                    <GatsbyImage 
-                      image={artists.node.mainImage.asset.gatsbyImageData}
-                      alt=""
-                    />
-                    <div className="artistName">{artists.node.title}</div>
-                  </div>
+                  <Link to="/{artists.node.slug.current}/">
+                    <div>
+                      <GatsbyImage 
+                        image={artists.node.mainImage.asset.gatsbyImageData}
+                        alt=""
+                      />
+                      <div className="artistName">{artists.node.title}</div>
+                    </div>
+                  </Link>
                 </>
               ))}
             </div>
