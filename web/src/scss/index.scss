@@ -55,7 +55,15 @@
   max-width: 108rem;
   width: 100vw;
   margin: auto;
-  
+  z-index: -5;
+}
+
+.sectionContent {
+  display: flex;
+  gap: 10rem;
+  width: 97rem;
+  margin: auto;
+  z-index: 4;
 }
 
 .sectionInset {
@@ -63,4 +71,32 @@
   margin-top: -7.5rem;
   box-shadow: c.$shadow;
   height: 46.5rem;
+  width: 31rem;
+}
+
+.sectionTitleContainer {
+  position: relative;
+  right: -15rem;
+  display: inline-block;
+  background: c.$primary;
+  padding: 2.5rem 3.7rem 3.5rem;
+  margin: -9.5rem 0 6.2rem;
+  box-shadow: c.$shadow;
+  h2 {
+    color: c.$bg;
+    font-size: 5rem;
+  }
+}
+
+.sectionCta {
+  position: relative;
+}
+
+.ctaHrRight {
+  position: absolute;
+  bottom: 2rem;
+  left: -20rem;
+  height: 0.45rem;
+  width: 74rem;
+  background: c.$primary;
 }
