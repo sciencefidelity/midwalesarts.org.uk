@@ -56,7 +56,7 @@ const query = graphql `
               gatsbyImageData(width: 400, height: 400, formats: WEBP, placeholder: BLURRED)
             }
           }
-          publishedAt(formatString: "\"dddd, MMMM Do YYYY\"")
+          publishedAt(formatString: "dddd, MMMM Do YYYY")
           slug {
             en {
               current
@@ -71,7 +71,7 @@ const query = graphql `
     sanityPost {
       image {
         asset {
-          gatsbyImageData(sizes: "1440", formats: WEBP, placeholder: BLURRED)
+          gatsbyImageData(width: 1440, formats: WEBP, placeholder: BLURRED)
         }
       }
     }

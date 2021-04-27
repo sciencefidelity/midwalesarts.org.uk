@@ -12,8 +12,8 @@ const Events = () => (
         <Layout
           heroImage={data.sanityEvent.mainImage.asset.gatsbyImageData}
           heroImageCaption="Day of the Dead Halloween Masks with Megan Elinor"
-          heroTitle="Videos"
-          heroCaption="Watch & Learn"
+          heroTitle="Events"
+          heroCaption="Workshops & performances"
         >
           <section>
             <div className="imageGrid">

@@ -23,10 +23,12 @@ const ArtistsPage = () => (
                 <>
                   <Link to={`/${artists.node.slug.current}/`}>
                     <div>
-                      <GatsbyImage 
-                        image={artists.node.mainImage.asset.gatsbyImageData}
-                        alt=""
-                      />
+                      <div className="gridImage">
+                        <GatsbyImage 
+                          image={artists.node.mainImage.asset.gatsbyImageData}
+                          alt=""
+                        />
+                      </div>
                       <div className="artistName">{artists.node.title}</div>
                     </div>
                   </Link>
