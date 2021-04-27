@@ -32,7 +32,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-main {
+main,
+footer {
   position: relative;
   z-index: 5;
 }

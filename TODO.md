@@ -1,3 +1,4 @@
 - Create a place in the studio to select hero images.
   - Artists Page
 - Create a place in the studio for the social media links.
+- Add subhedings for pages to studio.
