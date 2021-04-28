@@ -1,21 +1,44 @@
 import * as React from "react"
-import { GatsbyImage } from "gatsby-plugin-image"
+import { graphql } from "gatsby"
 
 import Layout from "../components/layout"
 
-const EventPage = ({ pageContext }) => (
-  <>
+export const query = graphql `
+  query SingleEventQuery($slug: String!) {
+    sanityEvent(slug: {en: {current: { eq: $slug }}}) {
+      body {
+        _rawEn(resolveReferences: {maxDepth: 10})
+      }
+      briteLink
+      date(formatString: "DDMMYYYY")
+      id
+      title {
+        en
+      }
+      mainImage {
+        asset {
+          gatsbyImageData(width: 1440, formats: WEBP, placeholder: BLURRED)
+        }
+      }
+    }
+  }
+`
+
+const EventPage = props => {
+  const { data } = props
+  const event = data && data.sanityEvent
+  return (
     <Layout
-      heroImage={pageContext.mainImage}
+      heroImage={event.mainImage.asset.gatsbyImageData}
       heroImageCaption="&nbsp;"
-      heroTitle={pageContext.date}
-      heroCaption="&nbsp;"
+      heroTitle="Event"
+      heroCaption={event.title.en}
     >
       <section>
         
       </section>
     </Layout>
-  </>
-)
+  )
+}
 
 export default EventPage

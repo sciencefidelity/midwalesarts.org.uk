@@ -53,20 +53,6 @@ exports.createPages = ({ graphql, actions }) => {
       allSanityArtist {
         edges {
           node {
-            body {
-              _rawEn(resolveReferences: {maxDepth: 10})
-            }
-            disciplines {
-              title {
-                en
-              }
-            }
-            id
-            mainImage {
-              asset {
-                gatsbyImageData(sizes: "1440", formats: WEBP, placeholder: BLURRED)
-              }
-            }
             slug {
               current
             }
@@ -82,37 +68,12 @@ exports.createPages = ({ graphql, actions }) => {
                 current
               }
             }
-            mainImage {
-              asset {
-                gatsbyImageData(width: 1440, formats: WEBP, placeholder: BLURRED)
-              }
-            }
-            briteLink
-            body {
-              _rawEn(resolveReferences: {maxDepth: 10})
-            }
-            id
-            date(formatString: "DDMMYYYY")
-            title {
-              en
-            }
           }
         }
       }
       allSanityExhibition {
         edges {
           node {
-            body {
-              _rawEn(resolveReferences: {maxDepth: 10})
-            }
-            dateEnd(formatString: "")
-            dateStart(formatString: "")
-            id
-            mainImage {
-              asset {
-                gatsbyImageData(width: 1440, placeholder: BLURRED, formats: WEBP)
-              }
-            }
             slug {
               en {
                 current
@@ -127,23 +88,10 @@ exports.createPages = ({ graphql, actions }) => {
       allSanityPost {
         edges {
           node {
-            body {
-              _rawEn(resolveReferences: {maxDepth: 10})
-            }
-            id
-            image {
-              asset {
-                gatsbyImageData(width: 1440, formats: WEBP, placeholder: BLURRED)
-              }
-            }
-            publishedAt(formatString: "DDMMYYYY")
             slug {
               en {
                 current
               }
-            }
-            title {
-              en
             }
           }
         }
@@ -151,25 +99,11 @@ exports.createPages = ({ graphql, actions }) => {
       allSanityVideo {
         edges {
           node {
-            body {
-              _rawEn(resolveReferences: {maxDepth: 10})
-            }
-            id
-            mainImage {
-              asset {
-                gatsbyImageData(width: 1440, formats: WEBP, placeholder: BLURRED)
-              }
-            }
-            publishDate(formatString: "DDMMYYYY")
             slug {
               en {
                 current
               }
             }
-            title {
-              en
-            }
-            videoLink
           }
         }
       }
@@ -185,9 +119,7 @@ exports.createPages = ({ graphql, actions }) => {
         path: `/artist/${edge.node.slug.current}`,
         component: artistTemplate,
         context: {
-          // name: `${edge.node.title}`,
-          // slug: `${edge.node.slug.current}`,
-          // mainImage: `${edge.node.mainImage.asset.gatsbyImageData}`
+          name: `${edge.node.title}`,
         },
       })
     })
@@ -198,11 +130,7 @@ exports.createPages = ({ graphql, actions }) => {
         path: `/event/${edge.node.slug.en.current}`,
         component: eventTemplate,
         context: {
-          // title: `${edge.node.title.en}`,
-          // body: `${edge.node.body._rawEn}`,
-          // date: `${edge.node.body.date}`,
-          // slug: `${edge.node.slug.current}`,
-          // mainImage: `${edge.node.mainImage.asset.gatsbyImageData}`
+          slug: `${edge.node.slug.en.current}`,
         },
       })
     })
@@ -213,12 +141,7 @@ exports.createPages = ({ graphql, actions }) => {
         path: `/exhibition/${edge.node.slug.en.current}`,
         component: exhibitionTemplate,
         context: {
-          // title: `${edge.node.title}`,
-          // body: `${edge.node.body._rawEn}`,
-          // startDate: `${edge.node.body.dateStart}`,
-          // endDate: `${edge.node.body.dateEnd}`,
-          // slug: `${edge.node.slug.current}`,
-          // mainImage: `${edge.node.mainImage.asset.gatsbyImageData}`
+          title: `${edge.node.title.en}`,
         },
       })
     })
@@ -229,12 +152,7 @@ exports.createPages = ({ graphql, actions }) => {
         path: `/news/${edge.node.slug.en.current}`,
         component: postTemplate,
         context: {
-          // title: `${edge.node.title}`,
-          // body: `${edge.node.body._rawEn}`,
-          // startDate: `${edge.node.body.dateStart}`,
-          // endDate: `${edge.node.body.dateEnd}`,
-          // slug: `${edge.node.slug.current}`,
-          // mainImage: `${edge.node.mainImage.asset.gatsbyImageData}`
+          slug: `${edge.node.slug.en.current}`,
         },
       })
     })
@@ -245,12 +163,7 @@ exports.createPages = ({ graphql, actions }) => {
         path: `/video/${edge.node.slug.en.current}`,
         component: videoTemplate,
         context: {
-          // title: `${edge.node.title}`,
-          // body: `${edge.node.body._rawEn}`,
-          // startDate: `${edge.node.body.dateStart}`,
-          // endDate: `${edge.node.body.dateEnd}`,
-          // slug: `${edge.node.slug.current}`,
-          // mainImage: `${edge.node.mainImage.asset.gatsbyImageData}`
+          slug: `${edge.node.slug.en.current}`,
         },
       })
     })
