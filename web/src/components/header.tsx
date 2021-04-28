@@ -2,7 +2,7 @@ import * as React from "react"
 import { GatsbyImage } from "gatsby-plugin-image"
 
 import Navigation from "./navigation"
-import HeaderLogo from "./logos/headerLogo"
+import ColorLogo from "../components/logos/colorLogo"
 
 import "../scss/header.scss"
 
@@ -11,6 +11,7 @@ const Header = ({
 }) => (
   <>
     <header>
+      <ColorLogo />
       <div className="hero">
         <GatsbyImage 
           image={heroImage}

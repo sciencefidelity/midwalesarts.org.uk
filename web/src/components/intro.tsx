@@ -20,7 +20,6 @@ const Intro = () => {
   return (
     <>
       <div className="introText">
-        <div className="introHr"></div>
         {data.sanityFrontPage.body._rawEn && <PortableText blocks={data.sanityFrontPage.body._rawEn} />}
         <a href="#"><h2 className="cta">Get involved</h2></a>
         <div className="ctaHr"></div>
