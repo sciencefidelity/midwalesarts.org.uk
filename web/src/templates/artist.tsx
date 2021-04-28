@@ -56,10 +56,12 @@ const ArtistPage = props => {
     <Layout
       heroImage={artist.mainImage.asset.gatsbyImageData}
       heroImageCaption="&nbsp;"
-      heroTitle="artist"
-      heroCaption={artist.title}
     >
       <section>
+        <div className="container">
+          <h1>Artist</h1>
+          <p>{artist.title}</p>
+        </div>
         <div className="imageGrid">
           {artwork.edges.map(artworks => (
             <>
@@ -68,7 +70,7 @@ const ArtistPage = props => {
                   image={artworks.node.mainImage.asset.gatsbyImageData}
                   alt=""
                 />
-                <div className="gridCaption">{artworks.node.title.en}</div>
+                <div className="gridCaption">{artworks.node.title.en} ({artworks.node.date})</div>
               </div>
             </>
           ))}
