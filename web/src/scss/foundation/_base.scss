@@ -20,6 +20,7 @@
 
 html {
   font-family: "Brandon Grotesque", sans-serif;
+  color: c.$paragraph;
   font-size: 62.5%;
   overflow-x: hidden;
   margin: 0;
@@ -61,7 +62,7 @@ h2 {
 h3 {
   font-size: 3.1em;
   font-weight: 300;
-  color: c.$bg;
+  color: c.$text;
   margin: 0;
   line-height: 1;
 }
@@ -69,7 +70,7 @@ h3 {
 h4 {
   font-size: 4em;
   font-weight: 700;
-  color: c.$darkheading;
+  color: c.$text;
   margin: 0 0 2.2rem;
   line-height: 1;
 }
