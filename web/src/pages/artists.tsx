@@ -14,17 +14,19 @@ const ArtistsPage = () => (
         <Layout
           heroImage={data.sanityArtist.mainImage.asset.gatsbyImageData}
           heroImageCaption="Diane Rose, A Swoop of Swallows, 2020"
-          heroTitle="Artists"
-          heroCaption="Works available"
         >
           <section>
+            <div className="container">
+              <h1>Artists</h1>
+              <p>Works Available</p>
+            </div>
             <div className="imageGrid">
               {data.allSanityArtist.edges.map(artists => (
                 <>
                   <Link 
                     to={`/artist/${artists.node.slug.current}/`}
                     style={{margin: 0}}
-                    >
+                  >
                     <div className="">
                       <GatsbyImage 
                         image={artists.node.mainImage.asset.gatsbyImageData}

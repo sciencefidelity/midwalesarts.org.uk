@@ -18,8 +18,6 @@ const IndexPage = () => (
         <Layout
           heroImage={data.sanityFrontPage.mainImage.asset.gatsbyImageData}
           heroImageCaption={data.sanityFrontPage.mainImage.caption}
-          heroTitle={data.sanityFrontPage.imageTitle.en}
-          heroCaption={data.sanityFrontPage.imageCaption.en}
         >
         <SEO title="Home" />
           <section>
@@ -61,12 +59,6 @@ const IndexPage = () => (
 const query = graphql`
   query ImageQuery {
     sanityFrontPage {
-      imageTitle {
-        en
-      }
-      imageCaption {
-        en
-      }
       mainImage {
         caption
         asset {

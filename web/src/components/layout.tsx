@@ -11,10 +11,11 @@ import { useStaticQuery, graphql } from "gatsby"
 
 import Header from "./header"
 import Footer from "./footer"
+
 import "../scss/layout.scss"
 
 const Layout = ({ 
-  children, heroImage, heroImageCaption, heroTitle, heroCaption
+  children, heroImage, heroImageCaption
 }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
@@ -31,8 +32,6 @@ const Layout = ({
       <Header
         heroImage={heroImage}
         heroImageCaption={heroImageCaption}
-        heroTitle={heroTitle}
-        heroCaption={heroCaption}
       />
 
         <main>{children}</main>
