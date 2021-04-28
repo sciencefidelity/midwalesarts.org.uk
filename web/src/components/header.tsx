@@ -7,7 +7,7 @@ import ColorLogo from "../components/logos/colorLogo"
 import "../scss/header.scss"
 
 const Header = ({ 
-  heroImage, heroImageCaption, heroTitle, heroCaption 
+  heroImage, heroImageCaption
 }) => (
   <>
     <header>
