@@ -42,10 +42,10 @@ const FrontPageSection = ({
             </div>
           </div>
         </div>
-        <div className="sectionCta">
-          <div className="ctaHr"></div>
+        <div className="sectionCtaContainer">
+          <div className="sectionCtaHr"></div>
           <Link to="/">
-            <h2 className="cta">{cta}</h2>
+            <h2 className="sectionCta"><span>{cta}</span></h2>
           </Link>
         </div>
       </>

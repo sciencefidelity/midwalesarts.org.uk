@@ -27,8 +27,8 @@ const Intro = () => {
     <>
       <div className="introText">
         {data.sanityFrontPage.body._rawEn && <PortableText blocks={data.sanityFrontPage.body._rawEn} />}
-        <a href="#"><h2 className="cta">{data.sanityFrontPage.cta.en}</h2></a>
-        <div className="ctaHr"></div>
+        <a href="#"><h2 className="introCta"><span>{data.sanityFrontPage.cta.en}</span></h2></a>
+        <div className="introCtaHr"></div>
       </div>
     </>
   )
