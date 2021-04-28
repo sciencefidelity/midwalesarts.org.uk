@@ -24,7 +24,7 @@ const ArtistPage = ({ pageContext }) => (
                     image={artworks.node.mainImage.asset.gatsbyImageData}
                     alt=""
                   />
-                  <div className="artistName">{artworks.node.title.en}</div>
+                  <div className="gridCaption">{artworks.node.title.en}</div>
                 </div>
               </>
             ))}

@@ -10,10 +10,6 @@
   }
 }
 
-* + * {
-  margin-top: 1rem;
-}
-
 #query-on-demand-indicator-element {
   margin: 0;
 }
@@ -149,12 +145,10 @@ a {
   max-width: 88%;
   margin: auto;
   z-index: 5;
-  div {
-    margin: 0 0 1rem;
-  }
 }
 
-.artistName {
+.gridCaption {
   font-size: 1.8rem;
+  margin: 0.6em 0 0.6em;
 }
 
