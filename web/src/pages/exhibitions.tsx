@@ -1,5 +1,5 @@
 import * as React from "react"
-import { StaticQuery, graphql } from "gatsby"
+import { StaticQuery, graphql, Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 
 import "../scss/artists.scss"
@@ -13,7 +13,7 @@ const Exhibitions = () => (
       render={data => (
         <Layout
           heroImage={data.sanityExhibition.mainImage.asset.gatsbyImageData}
-          heroImageCaption="Diane Rose, A Swoop of Swallows, 2020"
+          heroImageCaption="&nbsp;"
           heroTitle="Exhibitions"
           heroCaption="Gallery, Barn, House"
         >
@@ -21,14 +21,19 @@ const Exhibitions = () => (
             <div className="imageGrid">
               {data.allSanityExhibition.edges.map(exhibitions => (
                 <>
-                  <div>
-                    <GatsbyImage 
-                      image={exhibitions.node.mainImage.asset.gatsbyImageData}
-                      alt=""
-                    />
-                    <div className="artistName">{exhibitions.node.title.en}</div>
-                    <div className="artistName">{exhibitions.node.dateStart} to {exhibitions.node.dateEnd}</div>
-                  </div>
+                  <Link 
+                    to={`/exhibition/${exhibitions.node.slug.en.current}/`}
+                    style={{margin: 0}}
+                  >
+                    <div>
+                      <GatsbyImage 
+                        image={exhibitions.node.mainImage.asset.gatsbyImageData}
+                        alt=""
+                      />
+                      <div className="gridCaption">{exhibitions.node.title.en}</div>
+                      <div className="gridCaption">{exhibitions.node.dateStart} to {exhibitions.node.dateEnd}</div>
+                    </div>
+                  </Link>
                 </>
               ))}
             </div>
@@ -66,7 +71,7 @@ const query = graphql `
         }
       }
     }
-    sanityExhibition {
+    sanityExhibition(title: {en: {eq: "Stop! Act!"}}) {
       mainImage {
         asset {
           gatsbyImageData(width: 1440, formats: WEBP, placeholder: BLURRED)

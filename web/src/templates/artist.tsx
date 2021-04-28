@@ -19,7 +19,7 @@ const ArtistPage = ({ pageContext }) => (
           <div className="imageGrid">
             {data.allSanityArtwork.edges.map(artworks => (
               <>
-                <div>
+                <div style={{margin: 0}}>
                   <GatsbyImage 
                     image={artworks.node.mainImage.asset.gatsbyImageData}
                     alt=""

@@ -1,5 +1,5 @@
 import * as React from "react"
-import { StaticQuery, graphql } from "gatsby"
+import { StaticQuery, graphql, Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 
 import Layout from "../components/layout"
@@ -11,7 +11,7 @@ const News = () => (
       render={data => (
         <Layout
           heroImage={data.sanityPost.image.asset.gatsbyImageData}
-          heroImageCaption="Day of the Dead Halloween Masks with Megan Elinor"
+          heroImageCaption="&nbsp;"
           heroTitle="Latest news"
           heroCaption="What's happening at MWA"
         >
@@ -19,14 +19,19 @@ const News = () => (
             <div className="imageGrid">
               {data.allSanityPost.edges.map(posts => (
                 <>
-                  <div>
-                    <GatsbyImage 
-                      image={posts.node.image.asset.gatsbyImageData}
-                      alt=""
-                    />
-                    <div className="artistName">{posts.node.title.en}</div>
-                    <div className="artistName">{posts.node.publishedAt}</div>
-                  </div>
+                  <Link
+                    to={`/news/${posts.node.slug.en.current}/`}
+                    style={{margin: 0}}
+                  >
+                    <div>
+                      <GatsbyImage 
+                        image={posts.node.image.asset.gatsbyImageData}
+                        alt=""
+                      />
+                      <div className="gridCaption">{posts.node.title.en}</div>
+                      <div className="gridCaption">{posts.node.publishedAt}</div>
+                    </div>
+                  </Link>
                 </>
               ))}
             </div>

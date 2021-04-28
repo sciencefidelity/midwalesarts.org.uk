@@ -10,6 +10,10 @@
   }
 }
 
+* + * {
+  margin-top: 1rem;
+}
+
 #query-on-demand-indicator-element {
   margin: 0;
 }
@@ -17,10 +21,12 @@
 html {
   font-family: "Sofia Pro", sans-serif;
   font-size: 62.5%;
-  overflow-x:hidden
+  overflow-x: hidden;
+  margin: 0;
 }
 
 body {
+  margin: 0;
   background: c.$bg;
   color: c.$text;
   overflow-x: hidden;

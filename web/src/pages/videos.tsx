@@ -1,5 +1,5 @@
 import * as React from "react"
-import { StaticQuery, graphql } from "gatsby"
+import { StaticQuery, graphql, Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 
 import Layout from "../components/layout"
@@ -19,13 +19,18 @@ const Videos = () => (
             <div className="imageGrid">
               {data.allSanityVideo.edges.map(videos => (
                 <>
-                  <div>
-                    <GatsbyImage 
-                      image={videos.node.mainImage.asset.gatsbyImageData}
-                      alt=""
-                    />
-                    <div className="artistName">{videos.node.title.en}</div>
-                  </div>
+                  <Link
+                    to={`/video/${videos.node.slug.en.current}/`}
+                    style={{margin: 0}}
+                  >
+                    <div>
+                      <GatsbyImage 
+                        image={videos.node.mainImage.asset.gatsbyImageData}
+                        alt=""
+                      />
+                      <div className="gridCaption">{videos.node.title.en}</div>
+                    </div>
+                  </Link>
                 </>
               ))}
             </div>
@@ -48,6 +53,11 @@ const query = graphql `
           mainImage {
             asset {
               gatsbyImageData(width: 600, height: 600, formats: WEBP, placeholder: BLURRED)
+            }
+          }
+          slug {
+            en {
+              current
             }
           }
         }

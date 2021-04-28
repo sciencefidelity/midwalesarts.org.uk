@@ -21,8 +21,11 @@ const ArtistsPage = () => (
             <div className="imageGrid">
               {data.allSanityArtist.edges.map(artists => (
                 <>
-                  <Link to={`/artist/${artists.node.slug.current}/`}>
-                    <div>
+                  <Link 
+                    to={`/artist/${artists.node.slug.current}/`}
+                    style={{margin: 0}}
+                    >
+                    <div className="">
                       <GatsbyImage 
                         image={artists.node.mainImage.asset.gatsbyImageData}
                         alt=""

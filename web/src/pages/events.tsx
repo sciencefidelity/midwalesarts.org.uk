@@ -11,7 +11,7 @@ const Events = () => (
       render={data => (
         <Layout
           heroImage={data.sanityEvent.mainImage.asset.gatsbyImageData}
-          heroImageCaption="Day of the Dead Halloween Masks with Megan Elinor"
+          heroImageCaption="&nbsp;"
           heroTitle="Events"
           heroCaption="Workshops & performances"
         >
@@ -19,7 +19,10 @@ const Events = () => (
             <div className="imageGrid">
               {data.allSanityEvent.edges.map(events => (
                 <>
-                  <Link to={`/event/${events.node.slug.en.current}/`}>
+                  <Link
+                    to={`/event/${events.node.slug.en.current}/`}
+                    style={{margin: 0}}
+                  >
                     <div>
                       <GatsbyImage 
                         image={events.node.mainImage.asset.gatsbyImageData}
