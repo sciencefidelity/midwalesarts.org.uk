@@ -20,16 +20,9 @@ const Header = ({
         <div className="menuOverlay">
           <Navigation />
         </div>
-        <div className="headerContainer">
-          <div className="titleContainer">
-            <h2>{heroTitle}</h2>
-            <h3>{heroCaption}</h3>
-          </div>
-          <HeaderLogo />
-          <div className="heroCaption">{heroImageCaption}</div>
-        </div>
       </div>
     </header>
+    <div className="heroCaption">{heroImageCaption}</div>
   </>
 )
 

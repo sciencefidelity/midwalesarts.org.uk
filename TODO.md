@@ -1,4 +1,7 @@
-- Create a place in the studio to select hero images.
+  - Create a place in the studio to select hero images.
   - Artists Page
 - Create a place in the studio for the social media links.
 - Add subhedings for pages to studio.
+- Divide exhibitions into past, present and future.
+  - Don't display artworks in future exhibitions.
+- Divide events into past and future.

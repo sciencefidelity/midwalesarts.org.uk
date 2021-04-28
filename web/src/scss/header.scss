@@ -1,12 +1,8 @@
 @use 'foundation/colors' as c;
 
 header {
-  margin-bottom: 10.5rem;
+  margin-bottom: 1.2rem;
   position: relative;
-  h2 {
-    color: c.$bg;
-    font-size: 5em;
-  }
 }
 
 .hero {
@@ -25,37 +21,12 @@ header {
 
 .menuOverlay {
   position: absolute;
-  right: 0;
+  left: 0;
   top: 0;
   height: 100%;
   width: 9.6rem;
   margin-top: 0;
-  background: c.$menu;
-  z-index: 2;
-}
-
-.headerContainer {
-  position: relative;
-  max-width: 85rem;
-  margin: auto;
-}
-
-.titleContainer {
-  position: relative;
-  display: inline-block;
-  background: c.$primary;
-  padding: 2.5rem 3.7rem 3.5rem;
-  top: -10.5rem;
-  left: 0;
-  box-shadow: c.$shadow;
-  z-index: 3;
-}
-
-.headerLogo {
-  position: absolute;
-  width: 45rem;
-  bottom: -19%;
-  left: -14%;
+  background: rgba(c.$lightgrey, 0.87);
   z-index: 2;
 }
 
@@ -69,13 +40,13 @@ header {
 .hamburger {
   width: 5rem;
   height: 0.6rem;
-  background: c.$footer;
+  background: c.$lightheading;
   transition: transform 0.5s;
   &::before,
   &::after {
     content: "";
     display: block;
-    background: c.$footer;
+    background: c.$lightheading;
     width: 5rem;
     height: 0.6rem;
   }
@@ -106,10 +77,9 @@ header {
 }
 
 .languageSwitcher {
-  color: c.$footer;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: c.$lightheading;
   font-size: 3.6rem;
-  font-weight: 700;
+  font-weight: 900;
   letter-spacing: 0.1rem;
   margin: 1.2rem 2.5rem 13.6rem;
   cursor: pointer;
@@ -144,12 +114,12 @@ header {
     li {
       padding: 0.35rem 0;
       a {
-        color: c.$footer;
-        border-bottom: 0.3rem solid rgba(c.$footer, 0);
+        color: c.$lightheading;
+        border-bottom: 0.3rem solid rgba(c.$lightheading, 0);
         transition: border-bottom 0.5s ease-in-out;
       }
       a:hover {
-        border-bottom: 0.3rem solid rgba(c.$footer, 1);
+        border-bottom: 0.3rem solid rgba(c.$lightheading, 1);
         transition: border-bottom 0.5s ease-in-out;
       }
     }
@@ -162,9 +132,9 @@ header {
 }
 
 .heroCaption {
-  position: absolute;
-  font-size: 1.4rem;
-  right: -2rem;
-  bottom: 12.4rem;
+  font-size: 1.6rem;
   z-index: 5;
+  width: 89%;
+  margin: auto;
+  text-align: right;
 }

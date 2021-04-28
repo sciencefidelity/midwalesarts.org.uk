@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Halis";
-  src: url(../fonts/halisr-black-subset.woff2) format("woff2");
+  src: url(../fonts/halisr-black-mwa.woff2) format("woff2");
   font-weight: 800;
   font-size: normal;
   font-display: swap;
@@ -8,32 +8,49 @@
 
 @font-face {
   font-family: "Halis";
-  src: url(../fonts/halisr-book-subset.woff2) format("woff2");
+  src: url(../fonts/halisr-book-mwa.woff2) format("woff2");
   font-weight: 500;
   font-size: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Pitch Sans";
-  src: url(../fonts/pitchsans-semibolditalic.woff2) format("woff2");
-  font-weight: 600;
+  font-family: "Brandon Grotesque";
+  src: url(../fonts/brandongrotesque-black-lat.woff2) format("woff2");
+  font-weight: 900;
   font-size: italic;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Sofia Pro";
-  src: url(../fonts/sofiaproregular-subset.woff2) format("woff2");
+  font-family: "Brandon Grotesque";
+  src: url(../fonts/brandongrotesque-bold-lat.woff2) format("woff2");
+  font-weight: 700;
+  font-size: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Brandon Grotesque";
+  src: url(../fonts/brandongrotesque-medium-lat.woff2) format("woff2");
+  font-weight: 500;
+  font-size: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Brandon Grotesque";
+  src: url(../fonts/brandongrotesque-regular-lat.woff2) format("woff2");
   font-weight: 400;
   font-size: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Sofia Pro";
-  src: url(../fonts/sofiaprobold-subset.woff2) format("woff2");
-  font-weight: 700;
+  font-family: "Brandon Grotesque";
+  src: url(../fonts/brandongrotesque-regularitalic-lat.woff2) format("woff2");
+  font-weight: 400;
   font-size: normal;
+  font-style: italic;
   font-display: swap;
 }
