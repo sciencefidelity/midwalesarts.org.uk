@@ -63,6 +63,11 @@ const query = graphql `
               gatsbyImageData(width: 400, height: 400, formats: WEBP, placeholder: BLURRED)
             }
           }
+          disciplines {
+            title {
+              en
+            }
+          }
         }
       }
     }

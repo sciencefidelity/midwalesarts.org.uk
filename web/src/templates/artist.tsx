@@ -1,8 +1,14 @@
 import * as React from "react"
+import clientConfig from '../../client-config'
 import { graphql } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
+import BasePortableText from '@sanity/block-content-to-react'
 
 import Layout from "../components/layout"
+
+const PortableText = ({blocks}) => (
+  <BasePortableText blocks={blocks} {...clientConfig.sanity} />
+)
 
 export const query = graphql `
   query singleArtistQuery($name: String!) {
@@ -59,8 +65,8 @@ const ArtistPage = props => {
     >
       <section>
         <div className="container">
-          <h1>Artist</h1>
-          <p>{artist.title}</p>
+          <h1>{artist.title}</h1>
+          {artist.body._rawEn && <PortableText blocks={artist.body._rawEn} />}
         </div>
         <div className="imageGrid">
           {artwork.edges.map(artworks => (

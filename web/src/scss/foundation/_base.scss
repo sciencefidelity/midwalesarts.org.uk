@@ -85,6 +85,14 @@ a {
   color: c.$text;
 }
 
+blockquote {
+  font-size: 2.4em;
+  font-style: italic;
+  padding: 1em 3em;
+  line-height: 1.3;
+  border-left: 0.2rem solid c.$darkheading;
+}
+
 .caption {
   font-size: 1.6rem;
   text-align: right;
