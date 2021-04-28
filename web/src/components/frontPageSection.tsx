@@ -1,4 +1,5 @@
 import * as React from "react"
+import { Link } from "gatsby"
 import clientConfig from '../../client-config'
 import { GatsbyImage } from "gatsby-plugin-image"
 import BasePortableText from '@sanity/block-content-to-react'
@@ -42,10 +43,10 @@ const FrontPageSection = ({
           </div>
         </div>
         <div className="sectionCta">
-          <div className="ctaHrRight"></div>
-          <a href="#">
-            <h2 className="ctaRight">{cta}</h2>
-          </a>
+          <div className="ctaHr"></div>
+          <Link to="/">
+            <h2 className="cta">{cta}</h2>
+          </Link>
         </div>
       </>
     </div>

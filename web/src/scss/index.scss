@@ -8,15 +8,6 @@
   line-height: 0.96;
 }
 
-.introHr {
-  position: absolute;
-  top: 7.5rem;
-  left: -4rem;
-  height: 0.45rem;
-  width: 100rem;
-  background: c.$primary;
-}
-
 .introText {
   position: relative;
   padding-top: 6.9rem;
@@ -24,10 +15,10 @@
 
 .sideImageContainer {
   position: absolute;
-  bottom: 4.55rem;
+  bottom: 4.8rem;
   left: -16rem;
-  font-size: 1.4rem;
-  line-height: 1;
+  font-size: 1.6rem;
+  line-height: 0.8;
   text-align: right;
 }
 
@@ -53,13 +44,12 @@
 
 .sectionHeroCaption {
   position: absolute;
-  top: 7rem;
-  right: 10rem;
+  top: 8.6rem;
+  right: 4rem;
 }
 
 .sectionContent {
   display: flex;
-  // gap: 6rem;
   width: 97rem;
   margin: auto;
   z-index: 4;
@@ -71,8 +61,9 @@
 
 .sectionInset {
   margin-top: 5rem;
-  height: 46.5rem;
+  // height: 46.5rem;
   width: 34rem;
+  height: 51rem;
 }
 
 .sectionTitleContainer {
@@ -80,12 +71,15 @@
   right: -30rem;
   display: inline-block;
   background: c.$lightgrey;
-  padding: 2.5rem 3.7rem 3.5rem;
-  margin: 3.8rem 0 6.2rem;
+  padding: 1.3rem 30.7rem 1.7rem 3.7rem;
+  margin: 4rem 0 6.6rem;
   text-align: right;
   h2 {
     color: c.$lightheading;
     font-size: 5rem;
+  }
+  h3 {
+    color: c.$lightheading;
   }
 }
 
@@ -93,11 +87,3 @@
   position: relative;
 }
 
-.ctaHrRight {
-  position: absolute;
-  bottom: 1.8rem;
-  left: -30rem;
-  height: 0.45rem;
-  width: 74rem;
-  background: c.$primary;
-}
