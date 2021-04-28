@@ -3,6 +3,8 @@ import clientConfig from '../../client-config'
 import { useStaticQuery, graphql } from 'gatsby'
 import BasePortableText from '@sanity/block-content-to-react'
 
+import DoubleRight from "./logos/doubleRight"
+
 const Intro = () => {
   const data = useStaticQuery(graphql`
     query introQuery {
@@ -10,6 +12,10 @@ const Intro = () => {
         body {
           _rawEn(resolveReferences: {maxDepth: 10})
         }
+        cta {
+          en
+        }
+        ctaLink
       }
     }
   `)
@@ -21,7 +27,7 @@ const Intro = () => {
     <>
       <div className="introText">
         {data.sanityFrontPage.body._rawEn && <PortableText blocks={data.sanityFrontPage.body._rawEn} />}
-        <a href="#"><h2 className="cta">Get involved</h2></a>
+        <a href="#"><h2 className="cta">{data.sanityFrontPage.cta.en}</h2></a>
         <div className="ctaHr"></div>
       </div>
     </>

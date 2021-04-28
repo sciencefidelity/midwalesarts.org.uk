@@ -24,8 +24,8 @@
 
 .sideImageContainer {
   position: absolute;
-  bottom: 0;
-  left: -19rem;
+  bottom: 4.55rem;
+  left: -16rem;
   font-size: 1.4rem;
   line-height: 1;
   text-align: right;
@@ -38,7 +38,7 @@
 
 .sectionContainer {
   position: relative;
-  padding-top: 11rem;
+  padding-top: 12.5rem;
   margin: auto;
   width: 108rem;
 }
@@ -70,23 +70,21 @@
 }
 
 .sectionInset {
-  border: 0.4rem solid c.$bg;
-  margin-top: -7.5rem;
-  box-shadow: c.$shadow;
+  margin-top: 5rem;
   height: 46.5rem;
-  width: 31rem;
+  width: 34rem;
 }
 
 .sectionTitleContainer {
   position: relative;
-  right: -15rem;
+  right: -30rem;
   display: inline-block;
-  background: c.$primary;
+  background: c.$lightgrey;
   padding: 2.5rem 3.7rem 3.5rem;
-  margin: -9.5rem 0 6.2rem;
-  box-shadow: c.$shadow;
+  margin: 3.8rem 0 6.2rem;
+  text-align: right;
   h2 {
-    color: c.$bg;
+    color: c.$lightheading;
     font-size: 5rem;
   }
 }
