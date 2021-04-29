@@ -12,10 +12,12 @@ const Events = () => (
         <Layout
           heroImage={data.sanityEvent.mainImage.asset.gatsbyImageData}
           heroImageCaption="&nbsp;"
-          heroTitle="Events"
-          heroCaption="Workshops & performances"
         >
           <section>
+            <div className="container">
+              <h1>Events</h1>
+              <p>Workshops & performances</p>
+            </div>
             <div className="imageGrid">
               {data.allSanityEvent.edges.map(events => (
                 <>

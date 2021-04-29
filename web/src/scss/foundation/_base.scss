@@ -86,11 +86,12 @@ a {
 }
 
 blockquote {
-  font-size: 2.4em;
+  font-size: 2.1em;
   font-style: italic;
-  padding: 1em 3em;
+  margin: 1em 1.5em;
+  padding: 0 1.5em;
   line-height: 1.3;
-  border-left: 0.2rem solid c.$darkheading;
+  border-left: 0.4rem solid rgba(c.$lightheading, 0.5);
 }
 
 .caption {

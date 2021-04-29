@@ -1,7 +1,13 @@
-import * as React from "react"
-import { graphql } from "gatsby"
+import * as React from 'react'
+import clientConfig from '../../client-config'
+import { graphql } from 'gatsby'
+import BasePortableText from '@sanity/block-content-to-react'
 
-import Layout from "../components/layout"
+import Layout from '../components/layout'
+
+const PortableText = ({blocks}) => (
+  <BasePortableText blocks={blocks} {...clientConfig.sanity} />
+)
 
 export const query = graphql `
   query SingleEventQuery($slug: String!) {
@@ -10,7 +16,7 @@ export const query = graphql `
         _rawEn(resolveReferences: {maxDepth: 10})
       }
       briteLink
-      date(formatString: "DDMMYYYY")
+      date(formatString: "dddd, MMMM Do YYYY")
       id
       title {
         en
@@ -31,11 +37,14 @@ const EventPage = props => {
     <Layout
       heroImage={event.mainImage.asset.gatsbyImageData}
       heroImageCaption="&nbsp;"
-      heroTitle="Event"
-      heroCaption={event.title.en}
     >
       <section>
-        
+        <div className="container">
+          <h1>{event.title.en}</h1>
+          <h3>{event.date}</h3>
+          <p><a href="{event.britelink}" target="_blank">Book tickets</a></p>
+          {event.body._rawEn && <PortableText blocks={event.body._rawEn} />}
+        </div>
       </section>
     </Layout>
   )

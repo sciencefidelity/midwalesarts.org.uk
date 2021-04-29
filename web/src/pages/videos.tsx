@@ -10,12 +10,14 @@ const Videos = () => (
       query={query}
       render={data => (
         <Layout
-          heroImage={data.sanityVideo.mainImage.asset.gatsbyImageData}
-          heroImageCaption="Day of the Dead Halloween Masks with Megan Elinor"
-          heroTitle="Videos"
-          heroCaption="Watch & Learn"
+          heroImage={data.allSanityVideo.edges[0].node.mainImage.asset.gatsbyImageData}
+          heroImageCaption="&nbsp;"
         >
           <section>
+            <div className="container">
+              <h1>Videos</h1>
+              <p>Watch & Learn</p>
+            </div>
             <div className="imageGrid">
               {data.allSanityVideo.edges.map(videos => (
                 <>
@@ -44,6 +46,11 @@ const Videos = () => (
 const query = graphql `
   query videosQuery {
     allSanityVideo(sort: {fields: publishDate, order: DESC}) {
+      nodes {
+        title {
+          en
+        }
+      }
       edges {
         node {
           id
@@ -52,7 +59,7 @@ const query = graphql `
           }
           mainImage {
             asset {
-              gatsbyImageData(width: 600, height: 600, formats: WEBP, placeholder: BLURRED)
+              gatsbyImageData(width: 1440, height: 1440, formats: WEBP, placeholder: BLURRED)
             }
           }
           slug {
