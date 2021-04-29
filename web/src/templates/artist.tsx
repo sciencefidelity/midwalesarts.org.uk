@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 import { GatsbyImage } from 'gatsby-plugin-image'
 
 import Layout from '../components/layout'
@@ -76,6 +76,7 @@ const ArtistPage = props => {
             </>
           ))}
         </div>
+        <div><p className="backLink"><Link to="/artists/">Back to Artists</Link></p></div>
       </section>
     </Layout>
   )

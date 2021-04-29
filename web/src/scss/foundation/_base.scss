@@ -97,6 +97,7 @@ blockquote {
 .caption {
   font-size: 1.6rem;
   text-align: right;
+  color: c.$smalltext;
 }
 
 .container {
@@ -123,9 +124,14 @@ blockquote {
 
 .gridCaption {
   font-size: 1.8rem;
-  margin: 0.6em 0 0.6em;
+  color: c.$smalltext;
   text-align: right;
   // text-transform: uppercase;
+  margin: 0.6em 0 0.6em;
 }
 
+.backLink {
+  text-align: center;
+  margin-top: 6rem;
+}
 
