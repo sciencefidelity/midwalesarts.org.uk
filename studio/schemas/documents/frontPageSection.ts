@@ -38,7 +38,7 @@ export default {
     {
       name: 'ctaLink',
       title: 'Link',
-      type: 'url',
+      type: 'string',
     },
     {
       name: 'mainImage',
