@@ -144,12 +144,17 @@ header {
       padding: 0.35rem 0;
       a {
         color: c.$lightheading;
-        border-bottom: 0.13em solid rgba(c.$lightheading, 0);
-        transition: border-bottom 0.5s ease-in-out;
+        border-bottom-color: rgba(c.$lightheading, 0);
+        border-bottom-style: solid;
+        border-bottom-width: 0.3rem;
+        transition: border-bottom-color 0.5s ease-in-out;
       }
-      a:hover {
-        border-bottom: 0.13em solid rgba(c.$lightheading, 1);
-        transition: border-bottom 0.5s ease-in-out;
+      a:hover,
+      a:active {
+        border-bottom-color: rgba(c.$lightheading, 1);
+        border-bottom-style: solid;
+        border-bottom-width: 0.3rem;
+        transition: border-bottom-color 0.5s ease-in-out;
       }
     }
   }
