@@ -2,20 +2,9 @@ import * as React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import getYouTubeID from "get-youtube-id"
 
-const VideoEmbed = () => {
-  const data = useStaticQuery(graphql`
-    query videoQuery {
-      sanityVideo(title: {en: {eq: "Six of the Best"}}) {
-        id
-        title {
-          en
-        }
-        videoLink
-      }
-    }
-  `)
+const VideoEmbed = ({ videoId }) => {
     
-  const id = getYouTubeID(data.sanityVideo.videoLink)
+  const id = getYouTubeID(videoId)
   const url = `https://www.youtube-nocookie.com/embed/${id}?modestbranding=1`
 
   if(!id) {
@@ -24,7 +13,6 @@ const VideoEmbed = () => {
   return (
     <section>
       <div>
-        <h1>{data.sanityVideo.title.en}</h1>
         <iframe 
           width="560"
           height="315"

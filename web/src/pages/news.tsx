@@ -12,10 +12,12 @@ const News = () => (
         <Layout
           heroImage={data.sanityPost.image.asset.gatsbyImageData}
           heroImageCaption="&nbsp;"
-          heroTitle="Latest news"
-          heroCaption="What's happening at MWA"
         >
           <section>
+            <div className="container">
+              <h1>Latest news</h1>
+              <p>What's happening at MWA</p>
+            </div>
             <div className="imageGrid">
               {data.allSanityPost.edges.map(posts => (
                 <>

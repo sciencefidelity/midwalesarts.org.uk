@@ -1,7 +1,13 @@
-import * as React from "react"
-import { graphql } from "gatsby"
+import * as React from 'react'
+import clientConfig from '../../client-config'
+import { graphql } from 'gatsby'
+import BasePortableText from '@sanity/block-content-to-react'
 
-import Layout from "../components/layout"
+import Layout from '../components/layout'
+
+const PortableText = ({blocks}) => (
+  <BasePortableText blocks={blocks} {...clientConfig.sanity} />
+)
 
 export const query = graphql `
   query SinglePostQuery($slug: String!) {
@@ -15,7 +21,7 @@ export const query = graphql `
           gatsbyImageData(width: 1440, formats: WEBP, placeholder: BLURRED)
         }
       }
-      publishedAt
+      publishedAt(formatString: "dddd, MMMM Do YYYY")
       title {
         en
       }
@@ -30,11 +36,13 @@ const PostPage = props => {
     <Layout
       heroImage={post.image.asset.gatsbyImageData}
       heroImageCaption="&nbsp;"
-      heroTitle="News"
-      heroCaption={post.title.en}
     >
       <section>
-        
+        <div className="container">
+          <h1>{post.title.en}</h1>
+          <h3>{post.publishedAt}</h3>
+          {post.body._rawEn && <PortableText blocks={post.body._rawEn} />}
+        </div>
       </section>
     </Layout>
   )
