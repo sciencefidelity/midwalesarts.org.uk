@@ -1,12 +1,8 @@
 import * as React from "react"
 import { Link } from "gatsby"
-import clientConfig from '../../client-config'
 import { GatsbyImage } from "gatsby-plugin-image"
-import BasePortableText from '@sanity/block-content-to-react'
 
-const PortableText = ({blocks}) => (
-  <BasePortableText blocks={blocks} {...clientConfig.sanity} />
-)
+import PortableText from './portableText'
 
 const FrontPageSection = ({ 
   title, caption, heading, body, cta, ctaLink, 

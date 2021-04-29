@@ -1,14 +1,9 @@
 import * as React from 'react'
-import clientConfig from '../../client-config'
 import { graphql } from 'gatsby'
-import BasePortableText from '@sanity/block-content-to-react'
 
 import Layout from '../components/layout'
+import PortableText from '../components/portableText'
 import VideoEmbed from '../components/videoEmbed'
-
-const PortableText = ({blocks}) => (
-  <BasePortableText blocks={blocks} {...clientConfig.sanity} />
-)
 
 export const query = graphql `
   query SingleVideoQuery($slug: String!) {

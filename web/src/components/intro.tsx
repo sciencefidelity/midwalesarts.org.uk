@@ -1,9 +1,7 @@
-import * as React from "react"
-import clientConfig from '../../client-config'
+import * as React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
-import BasePortableText from '@sanity/block-content-to-react'
 
-import DoubleRight from "./logos/doubleRight"
+import PortableText from './portableText'
 
 const Intro = () => {
   const data = useStaticQuery(graphql`
@@ -20,9 +18,6 @@ const Intro = () => {
     }
   `)
   
-  const PortableText = ({blocks}) => (
-    <BasePortableText blocks={blocks} {...clientConfig.sanity} />
-  )
   return (
     <>
       <div className="introText">
