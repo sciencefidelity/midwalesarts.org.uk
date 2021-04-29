@@ -22,7 +22,7 @@ const Intro = () => {
     <>
       <div className="introText">
         {data.sanityFrontPage.body._rawEn && <PortableText blocks={data.sanityFrontPage.body._rawEn} />}
-        <Link to={`/${data.sanityFrontPage.ctaLink}/`}><h2 className="introCta"><span>{data.sanityFrontPage.cta.en}</span></h2></Link>
+        <Link to={`/${data.sanityFrontPage.ctaLink}/`}><h2 className="introCta"><span>{data.sanityFrontPage.cta.en}&nbsp;</span></h2></Link>
         <div className="introCtaHr"></div>
       </div>
     </>

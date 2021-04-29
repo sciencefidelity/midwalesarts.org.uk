@@ -28,9 +28,8 @@ header {
   right: 1rem;
   top: 0.4rem;
   z-index: 3;
-  // background: rgba(c.$lightgrey, 0.8);
-  background: radial-gradient(circle at center, rgba(c.$lightgrey, 0.8) 30%, transparent 70%);
-  // padding: 0.9rem 0.7rem 0.5rem 0.7rem;
+  background: rgba(c.$grey-000, 0.8);
+  background: radial-gradient(circle at center, rgba(c.$grey-000, 0.8) 30%, transparent 70%);
   padding: 3rem 2.6rem 2.6rem 2.8rem;
   border-radius: 50%;
 }
@@ -42,12 +41,12 @@ header {
   height: 100%;
   width: 19.2rem;
   margin-top: 0;
-  background: rgba(c.$lightgrey, 0.87);
+  background: rgba(c.$grey-000, 0.8);
   background: 
     linear-gradient(90deg, 
-      rgba(c.$lightgrey,0.87) 0%,
-      rgba(c.$lightgrey,0.87) 50%,
-      rgba(c.$lightgrey,0) 100%);
+      rgba(c.$grey-000,0.8) 0%,
+      rgba(c.$grey-000,0.8) 50%,
+      rgba(c.$grey-000,0) 100%);
   z-index: 2;
 }
 
@@ -63,15 +62,17 @@ header {
   z-index: 1;
   width: 5rem;
   height: 0.6rem;
-  background: c.$lightheading;
+  border-radius: 0.2rem;
+  background: c.$grey-600;
   transition: transform 0.5s;
   &::before,
   &::after {
     content: "";
     display: block;
-    background: c.$lightheading;
+    background: c.$grey-600;
     width: 5rem;
     height: 0.6rem;
+    border-radius: 0.2rem;
   }
   &::before {
     transform: translateY(1.45rem);
@@ -100,8 +101,8 @@ header {
 }
 
 .languageSwitcher {
-  color: c.$lightheading;
-  font-size: 3.6rem;
+  color: c.$grey-600;
+  font-size: 3.7rem;
   font-weight: 900;
   letter-spacing: 0.1em;
   margin: 1.2rem 2.4rem 13.6rem;
@@ -143,15 +144,15 @@ header {
     li {
       padding: 0.35rem 0;
       a {
-        color: c.$lightheading;
-        border-bottom-color: rgba(c.$lightheading, 0);
+        color: c.$grey-600;
+        border-bottom-color: rgba(c.$grey-600, 0);
         border-bottom-style: solid;
         border-bottom-width: 0.3rem;
         transition: border-bottom-color 0.5s ease-in-out;
       }
       a:hover,
       a:active {
-        border-bottom-color: rgba(c.$lightheading, 1);
+        border-bottom-color: rgba(c.$grey-600, 1);
         border-bottom-style: solid;
         border-bottom-width: 0.3rem;
         transition: border-bottom-color 0.5s ease-in-out;

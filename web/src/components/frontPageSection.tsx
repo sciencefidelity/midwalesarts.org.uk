@@ -41,7 +41,7 @@ const FrontPageSection = ({
         <div className="sectionCtaContainer">
           <div className="sectionCtaHr"></div>
           <Link to={`/${ctaLink}/`}>
-            <h2 className="sectionCta"><span>{cta}</span></h2>
+            <h2 className="sectionCta"><span>{cta}&nbsp;</span></h2>
           </Link>
         </div>
       </>

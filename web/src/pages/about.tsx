@@ -16,10 +16,13 @@ const AboutPage = () => (
           heroImageCaption="&nbsp;"
         >
           <section>
-            <div className="container">
-              <h1>{data.sanityPage.title.en}</h1>
-              <p>Welcome to MWA</p>
-              {data.sanityPage.body._rawEn && <PortableText blocks={data.sanityPage.body._rawEn} />}
+            <div className="sidebarContainer">
+              <div className="portableContainer">
+                <h1>{data.sanityPage.title.en}</h1>
+                <p className="subTitle">Welcome to MWA</p>
+                {data.sanityPage.body._rawEn && <PortableText blocks={data.sanityPage.body._rawEn} />}
+              </div>
+              <div className="sidebar"></div>
             </div>
           </section>
         </Layout>

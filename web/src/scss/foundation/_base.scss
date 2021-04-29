@@ -20,7 +20,6 @@
 
 html {
   font-family: "Brandon Grotesque", sans-serif;
-  color: c.$paragraph;
   font-size: 62.5%;
   overflow-x: hidden;
   margin: 0;
@@ -28,8 +27,8 @@ html {
 
 body {
   margin: 0;
-  background: c.$bg;
-  color: c.$text;
+  background: c.$grey-000;
+  color: c.$grey-500;
   overflow-x: hidden;
   // -webkit-font-smoothing: antialiased;
   // -moz-osx-font-smoothing: grayscale;
@@ -45,7 +44,7 @@ h1 {
   font-size: 5em;
   font-weight: 800;
   text-transform: uppercase;
-  color: c.$darkheading;
+  color: c.$grey-700;
   margin: 0;
   line-height: 1;
 }
@@ -62,7 +61,7 @@ h2 {
 h3 {
   font-size: 3.1em;
   font-weight: 300;
-  color: c.$text;
+  color: c.$smalltext;
   margin: 0;
   line-height: 1;
 }
@@ -70,7 +69,7 @@ h3 {
 h4 {
   font-size: 4em;
   font-weight: 700;
-  color: c.$text;
+  color: c.$smalltext;
   margin: 0 0 2.2rem;
   line-height: 1;
 }
@@ -92,6 +91,15 @@ blockquote {
   padding: 0 1.5em;
   line-height: 1.3;
   border-left: 0.4rem solid rgba(c.$lightheading, 0.5);
+}
+
+.portableContainer {
+  width: 88%;
+  margin: auto;
+}
+
+.subTitle {
+  margin-bottom: 6rem;
 }
 
 .caption {

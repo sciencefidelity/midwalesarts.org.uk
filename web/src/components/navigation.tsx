@@ -30,7 +30,7 @@ const Navigation = () => {
         <div className="hamburgerContainer" onClick={toggleClass}>
           <div className={isActive ? "hamburger active" : "hamburger"} ></div>
         </div>
-        <div className="languageSwitcher">CY</div>
+        <div className="languageSwitcher">Cy</div>
         <div className="social">
           <a href="#">
             <img
