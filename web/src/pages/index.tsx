@@ -43,7 +43,7 @@ const IndexPage = () => (
               heading={section.node.heading.en}
               body={section.node.body._rawEn}
               cta={section.node.cta.en}
-              ctaLink={section.node.ctaLink.en}
+              ctaLink={section.node.ctaLink}
               mainImage={section.node.mainImage.asset.gatsbyImageData}
               mainImageCaption={section.node.mainImage.caption}
               subImage={section.node.subImage.asset.gatsbyImageData}
