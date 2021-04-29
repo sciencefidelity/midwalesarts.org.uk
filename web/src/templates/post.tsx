@@ -1,13 +1,8 @@
 import * as React from 'react'
-import clientConfig from '../../client-config'
 import { graphql } from 'gatsby'
-import BasePortableText from '@sanity/block-content-to-react'
 
 import Layout from '../components/layout'
-
-const PortableText = ({blocks}) => (
-  <BasePortableText blocks={blocks} {...clientConfig.sanity} />
-)
+import PortableText from '../components/portableText'
 
 export const query = graphql `
   query SinglePostQuery($slug: String!) {
