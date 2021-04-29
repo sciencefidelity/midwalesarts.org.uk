@@ -18,6 +18,10 @@ const Exhibitions = () => (
           heroCaption="Gallery, Barn, House"
         >
           <section>
+            <div className="container">
+              <h1>Exhibitions</h1>
+              <p>Gallery, Barn, House</p>
+            </div>
             <div className="imageGrid">
               {data.allSanityExhibition.edges.map(exhibitions => (
                 <>

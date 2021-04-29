@@ -1,8 +1,14 @@
-import * as React from "react"
-import { graphql } from "gatsby"
-import { GatsbyImage } from "gatsby-plugin-image"
+import * as React from 'react'
+import clientConfig from '../../client-config'
+import { graphql } from 'gatsby'
+import { GatsbyImage } from 'gatsby-plugin-image'
+import BasePortableText from '@sanity/block-content-to-react'
 
-import Layout from "../components/layout"
+import Layout from '../components/layout'
+
+const PortableText = ({blocks}) => (
+  <BasePortableText blocks={blocks} {...clientConfig.sanity} />
+)
 
 export const query = graphql `
   query singleExhibitionQuery($title: String!) {
@@ -34,8 +40,8 @@ export const query = graphql `
       body {
         _rawEn(resolveReferences: {maxDepth: 10})
       }
-      dateEnd
-      dateStart
+      dateStart(formatString: "Do MMMM")
+      dateEnd(formatString: "Do MMMM YYYY")
       id
       title {
         en
@@ -57,10 +63,13 @@ const ExhibitionPage = props => {
     <Layout
       heroImage={exhibition.mainImage.asset.gatsbyImageData}
       heroImageCaption="&nbsp;"
-      heroTitle="Exhibition"
-      heroCaption={exhibition.title.en}
     >
       <section>
+        <div className="container">
+          <h1>{exhibition.title.en}</h1>
+          <p>{exhibition.dateStart} to {exhibition.dateEnd}</p>
+          {exhibition.body._rawEn && <PortableText blocks={exhibition.body._rawEn} />}
+        </div>
         <div className="imageGrid">
           {artwork.edges.map(artworks => (
             <>
