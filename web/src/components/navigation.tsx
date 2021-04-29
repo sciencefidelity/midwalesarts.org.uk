@@ -1,5 +1,5 @@
-import React, { useState } from "react"
-import { Link } from "gatsby"
+import React, { useState } from 'react'
+import { Link } from 'gatsby'
 
 const Navigation = () => {
   const [isActive, setActive] = useState(false)

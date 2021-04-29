@@ -1,14 +1,14 @@
-import * as React from "react"
-import { StaticQuery, graphql } from "gatsby"
-import { GatsbyImage } from "gatsby-plugin-image"
+import * as React from 'react'
+import { StaticQuery, graphql } from 'gatsby'
+import { GatsbyImage } from 'gatsby-plugin-image'
 
-import "../scss/index.scss"
+import '../scss/index.scss'
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-import Brand from "../components/brand.en"
-import Intro from "../components/intro"
-import FrontPageSection from "../components/frontPageSection"
+import Layout from '../components/layout'
+import SEO from '../components/seo'
+import Brand from '../components/brand.en'
+import Intro from '../components/intro'
+import FrontPageSection from '../components/frontPageSection'
 
 const IndexPage = () => (
   <>

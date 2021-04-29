@@ -1,10 +1,10 @@
-import * as React from "react"
-import { StaticQuery, graphql, Link } from "gatsby"
-import { GatsbyImage } from "gatsby-plugin-image"
+import * as React from 'react'
+import { StaticQuery, graphql, Link } from 'gatsby'
+import { GatsbyImage } from 'gatsby-plugin-image'
 
-import "../scss/artists.scss"
+import '../scss/artists.scss'
 
-import Layout from "../components/layout"
+import Layout from '../components/layout'
 
 const Exhibitions = () => (
   <>
@@ -14,8 +14,6 @@ const Exhibitions = () => (
         <Layout
           heroImage={data.sanityExhibition.mainImage.asset.gatsbyImageData}
           heroImageCaption="&nbsp;"
-          heroTitle="Exhibitions"
-          heroCaption="Gallery, Barn, House"
         >
           <section>
             <div className="container">

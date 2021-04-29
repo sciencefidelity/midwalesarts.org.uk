@@ -1,16 +1,10 @@
-import * as React from "react"
-import clientConfig from '../../client-config'
-import { StaticQuery, graphql, Link } from "gatsby"
-import { GatsbyImage } from "gatsby-plugin-image"
-import BasePortableText from '@sanity/block-content-to-react'
+import * as React from 'react'
+import { StaticQuery, graphql } from 'gatsby'
 
-import "../scss/artists.scss"
+import '../scss/artists.scss'
 
-import Layout from "../components/layout"
-
-const PortableText = ({blocks}) => (
-  <BasePortableText blocks={blocks} {...clientConfig.sanity} />
-)
+import Layout from '../components/layout'
+import PortableText from '../components/portableText'
 
 const VisitPage = () => (
   <>
@@ -20,11 +14,11 @@ const VisitPage = () => (
         <Layout
           heroImage={data.sanityPage.mainImage.asset.gatsbyImageData}
           heroImageCaption="&nbsp;"
-          heroTitle={data.sanityPage.title.en}
-          heroCaption="Come to MWA"
         >
           <section>
             <div className="container">
+              <h1>{data.sanityPage.title.en}</h1>
+              <p>Come to MWA</p>
               {data.sanityPage.body._rawEn && <PortableText blocks={data.sanityPage.body._rawEn} />}
             </div>
           </section>

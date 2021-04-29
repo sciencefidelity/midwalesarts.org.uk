@@ -1,10 +1,10 @@
-import * as React from "react"
-import { StaticQuery, graphql, Link } from "gatsby"
-import { GatsbyImage } from "gatsby-plugin-image"
+import * as React from 'react'
+import { StaticQuery, graphql, Link } from 'gatsby'
+import { GatsbyImage } from 'gatsby-plugin-image'
 
-import "../scss/artists.scss"
+import '../scss/artists.scss'
 
-import Layout from "../components/layout"
+import Layout from '../components/layout'
 
 const ArtistsPage = () => (
   <>

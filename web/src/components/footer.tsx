@@ -1,7 +1,7 @@
-import * as React from "react"
-import PropTypes from "prop-types"
+import * as React from 'react'
+import PropTypes from 'prop-types'
 
-import "../scss/footer.scss"
+import '../scss/footer.scss'
 
 const Footer = () => (
   <footer>

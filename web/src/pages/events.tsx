@@ -1,8 +1,8 @@
-import * as React from "react"
-import { StaticQuery, graphql, Link } from "gatsby"
-import { GatsbyImage } from "gatsby-plugin-image"
+import * as React from 'react'
+import { StaticQuery, graphql, Link } from 'gatsby'
+import { GatsbyImage } from 'gatsby-plugin-image'
 
-import Layout from "../components/layout"
+import Layout from '../components/layout'
 
 const Events = () => (
   <>

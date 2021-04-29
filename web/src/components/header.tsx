@@ -1,10 +1,10 @@
-import * as React from "react"
-import { GatsbyImage } from "gatsby-plugin-image"
+import * as React from 'react'
+import { GatsbyImage } from 'gatsby-plugin-image'
 
-import Navigation from "./navigation"
-import ColorLogo from "../components/logos/colorLogo"
+import Navigation from './navigation'
+import ColorLogo from '../components/logos/colorLogo'
 
-import "../scss/header.scss"
+import '../scss/header.scss'
 
 const Header = ({ 
   heroImage, heroImageCaption
