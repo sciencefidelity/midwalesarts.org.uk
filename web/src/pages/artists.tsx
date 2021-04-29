@@ -27,7 +27,7 @@ const ArtistsPage = () => (
                     to={`/artist/${artists.node.slug.current}/`}
                     style={{margin: 0}}
                   >
-                    <div className="">
+                    <div>
                       <GatsbyImage 
                         image={artists.node.mainImage.asset.gatsbyImageData}
                         alt=""

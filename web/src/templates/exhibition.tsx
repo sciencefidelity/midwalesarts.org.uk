@@ -73,7 +73,8 @@ const ExhibitionPage = props => {
                   image={artworks.node.mainImage.asset.gatsbyImageData}
                   alt=""
                 />
-                <div className="gridCaption">{artworks.node.title.en}</div>
+                <div className="gridCaption">{artworks.node.artist}</div>
+                <div className="gridCaption"><em>{artworks.node.title.en}</em></div>
               </div>
             </>
           ))}
