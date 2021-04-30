@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 
 import Layout from '../components/layout'
 import PortableText from '../components/portableText'
@@ -41,6 +41,7 @@ const VideoPage = props => {
             <p className="subTitle">{video.title.en}.</p>
             <VideoEmbed videoId = {video.videoLink}/>
             {video.body._rawEn && <PortableText blocks={video.body._rawEn} />}
+            <div><p className="backLink"><Link to="/videos/">Back to Videos</Link></p></div>
           </div>
           <aside className="sidebar"></aside>
         </div>

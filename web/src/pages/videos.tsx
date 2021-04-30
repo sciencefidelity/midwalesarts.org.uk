@@ -31,6 +31,7 @@ const Videos = () => (
                       <GatsbyImage 
                         image={videos.node.mainImage.asset.gatsbyImageData}
                         alt=""
+                        className="gridImage"
                       />
                       <div className="gridCaption">{videos.node.title.en}</div>
                     </div>
@@ -61,7 +62,7 @@ const query = graphql `
           }
           mainImage {
             asset {
-              gatsbyImageData(width: 1440, height: 1440, formats: WEBP, placeholder: BLURRED)
+              gatsbyImageData(width: 1440, formats: WEBP, placeholder: BLURRED)
             }
           }
           slug {

@@ -31,6 +31,7 @@ const Events = () => (
                       <GatsbyImage 
                         image={events.node.mainImage.asset.gatsbyImageData}
                         alt=""
+                        className="gridImage"
                       />
                       <div className="gridCaption">{events.node.title.en}</div>
                       <div className="gridCaption">{events.node.date}</div>
@@ -62,7 +63,7 @@ const query = graphql `
           id
           mainImage {
             asset {
-              gatsbyImageData(width: 1440, height: 1440, formats: WEBP, placeholder: BLURRED)
+              gatsbyImageData(width: 1440, formats: WEBP, placeholder: BLURRED)
             }
           }
           slug {

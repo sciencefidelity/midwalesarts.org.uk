@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 import { GatsbyImage } from 'gatsby-plugin-image'
 
 import Layout from '../components/layout'
@@ -44,7 +44,7 @@ export const query = graphql `
       }
       mainImage {
         asset {
-          gatsbyImageData(width: 1440, formats: WEBP, placeholder: BLURRED)
+          gatsbyImageData(width: 1440, formats: WEBP, placeholder: DOMINANT_COLOR)
         }
       }
     }
@@ -82,6 +82,7 @@ const ExhibitionPage = props => {
             </>
           ))}
         </div>
+        <div><p className="backLink"><Link to="/exhibitions/">Back to Exhibitions</Link></p></div>
       </section>
     </Layout>
   )
