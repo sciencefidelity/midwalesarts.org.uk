@@ -5,9 +5,8 @@ import { GatsbyImage } from 'gatsby-plugin-image'
 import '../scss/artists.scss'
 
 import Layout from '../components/layout'
-import PastExhibitions from '../components/pastExhibitions'
 
-const Exhibitions = ({ data, pageContext }) => {
+const Exhibitions = ({ data }) => {
   return (
     <Layout
       heroImage={data.allSanityExhibition.edges[0].node.mainImage.asset.gatsbyImageData}
