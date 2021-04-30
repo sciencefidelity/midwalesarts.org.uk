@@ -35,7 +35,7 @@
   position: relative;
   padding-top: 12.5rem;
   margin: auto;
-  width: 108rem;
+  max-width: 108rem;
 }
 
 .sectionHero {
@@ -54,13 +54,15 @@
 
 .sectionContent {
   display: flex;
-  width: 97rem;
-  margin: auto;
+  margin: 0 0 0 5.5rem;
   z-index: 4;
 }
 
 .sectionText {
-  margin-left: 6rem;
+  margin: 0 0 3rem 6rem;
+  @media (max-width: 1080px) {
+    margin: 0 5.6rem 6rem 6rem;
+  }
 }
 
 .sectionInset {
@@ -70,13 +72,14 @@
 }
 
 .sectionTitleContainer {
-  position: relative;
-  right: -30rem;
-  display: inline-block;
-  background: c.$grey-100;
-  padding: 1.3rem 30.7rem 1.7rem 3.7rem;
-  margin: 4rem 0 6.6rem;
+  display: block;
+  margin: 4rem auto 6.6rem;
   text-align: right;
+  div {
+    display: inline-block;
+    background: c.$grey-100;
+    padding: 1.3rem 3.7rem 1.7rem 3.7rem;
+  }
   h2 {
     color: c.$grey-650;
     font-size: 5rem;
@@ -84,10 +87,6 @@
   h3 {
     color: c.$grey-500;
   }
-}
-
-.sectionCta {
-  position: relative;
 }
 
 .introduction {
@@ -98,9 +97,6 @@
 }
 
 %cta {
-  position: relative;
-  display: block;
-  padding-right: 0.55em;
   color: c.$grey-400;
   text-transform: capitalize;
   line-height: 1.1;
@@ -114,11 +110,12 @@
     position: absolute;
     transition: transform 0.25s;
   }
-  &:hover {
+  &:hover,
+  &:active {
     color: c.$grey-500;
     transition: color 0.25s;
     &::after {
-      transform: translateX(0.12em);
+      transform: translateX(0.7rem);
       transition: transform 0.25s;
     }
   }
@@ -154,11 +151,14 @@
 
 .sectionCtaHr {
   @extend %ctaHr;
-  left: -20rem;
-  width: 100rem;
+  width: 75%;
+  margin: auto;
   
 }
 
 .sectionCtaContainer {
-  margin-right: 7rem;
+  margin-right: 3.4rem;
+  @media (max-width: 1080px) {
+    margin-right: 9rem;
+  }
 }

@@ -1,52 +1,44 @@
 const path = require(`path`)
 
-exports.createPages = ({ actions: { createPage }}) => {
-  createPage({
-    path: '/artists/',
-    component: require.resolve('./src/pages/artists.tsx')
-  })
-  createPage({
-    path: '/about/',
-    component: require.resolve('./src/pages/about.tsx')
-  })
-  createPage({
-    path: '/events/',
-    component: require.resolve('./src/pages/events.tsx')
-  })
-  createPage({
-    path: '/exhibitions/',
-    component: require.resolve('./src/pages/exhibitions.tsx')
-  })
-  createPage({
-    path: '/news/',
-    component: require.resolve('./src/pages/news.tsx')
-  })
-  createPage({
-    path: '/support/',
-    component: require.resolve('./src/pages/support.tsx')
-  })
-  createPage({
-    path: '/videos/',
-    component: require.resolve('./src/pages/videos.tsx')
-  })
-  createPage({
-    path: '/visit/',
-    component: require.resolve('./src/pages/visit.tsx')
-  })
-  createPage({
-    path: '/workshops/',
-    component: require.resolve('./src/pages/workshops.tsx')
-  })
+function getCurrentDate() {
+  const d = new Date();
+  let month = (d.getMonth() + 1).toString();
+  if (month.length < 2) {
+    month = `0${month}`;
+  }
+  let day = d.getDate().toString();
+  if (day.length < 2) {
+    day = `0${day}`;
+  }
+  return `${d.getFullYear()}-${month}-${day}`;
 }
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
   
-  const artistTemplate = path.resolve(`src/templates/artist.tsx`)
-  const eventTemplate = path.resolve(`src/templates/event.tsx`)
-  const exhibitionTemplate = path.resolve(`src/templates/exhibition.tsx`)
-  const postTemplate = path.resolve(`src/templates/post.tsx`)
-  const videoTemplate = path.resolve(`src/templates/video.tsx`)
+  const eventsPage = require.resolve(`./src/pages/events.tsx`)
+  const exhibitionsPage = require.resolve(`./src/templates/exhibitions.tsx`)
+  const artistTemplate = path.resolve(`./src/templates/artist.tsx`)
+  const eventTemplate = path.resolve(`./src/templates/event.tsx`)
+  const exhibitionTemplate = path.resolve(`./src/templates/exhibition.tsx`)
+  const postTemplate = path.resolve(`./src/templates/post.tsx`)
+  const videoTemplate = path.resolve(`./src/templates/video.tsx`)
+  
+  // Create static pages
+  createPage({
+    path: `/events/`,
+    component: eventsPage,
+    context: {
+      currentDate: getCurrentDate(),
+    },
+  })
+  createPage({
+    path: `/exhibitions/`,
+    component: exhibitionsPage,
+    context: {
+      currentDate: getCurrentDate(),
+    },
+  })
   
   return graphql(`
     query LoadPagesQuery {
@@ -116,7 +108,7 @@ exports.createPages = ({ graphql, actions }) => {
     // Create artist pages.
     result.data.allSanityArtist.edges.forEach(edge => {
       createPage({
-        path: `/artists/${edge.node.slug.current}`,
+        path: `/artists/${edge.node.slug.current}/`,
         component: artistTemplate,
         context: {
           name: `${edge.node.title}`,
@@ -127,7 +119,7 @@ exports.createPages = ({ graphql, actions }) => {
     // Create event pages.
     result.data.allSanityEvent.edges.forEach(edge => {
       createPage({
-        path: `/events/${edge.node.slug.en.current}`,
+        path: `/events/${edge.node.slug.en.current}/`,
         component: eventTemplate,
         context: {
           slug: `${edge.node.slug.en.current}`,
@@ -138,7 +130,7 @@ exports.createPages = ({ graphql, actions }) => {
     // Create exhibition pages.
     result.data.allSanityExhibition.edges.forEach(edge => {
       createPage({
-        path: `/exhibitions/${edge.node.slug.en.current}`,
+        path: `/exhibitions/${edge.node.slug.en.current}/`,
         component: exhibitionTemplate,
         context: {
           title: `${edge.node.title.en}`,
@@ -149,7 +141,7 @@ exports.createPages = ({ graphql, actions }) => {
     // Create post pages.
     result.data.allSanityPost.edges.forEach(edge => {
       createPage({
-        path: `/news/${edge.node.slug.en.current}`,
+        path: `/news/${edge.node.slug.en.current}/`,
         component: postTemplate,
         context: {
           slug: `${edge.node.slug.en.current}`,
@@ -160,7 +152,7 @@ exports.createPages = ({ graphql, actions }) => {
     // Create video pages.
     result.data.allSanityVideo.edges.forEach(edge => {
       createPage({
-        path: `/videos/${edge.node.slug.en.current}`,
+        path: `/videos/${edge.node.slug.en.current}/`,
         component: videoTemplate,
         context: {
           slug: `${edge.node.slug.en.current}`,

@@ -24,12 +24,14 @@ const FrontPageSection = ({
               alt="an image"
               className="sectionInset"
             />
-            <div className="caption">{subImageCaption}</div>
+            <div className="caption">&nbsp;{subImageCaption}</div>
           </div>
           <div>
             <div className="sectionTitleContainer">
-              <h2>{title}</h2>
-              <h3>{caption}</h3>
+              <div>
+                <h2>{title}</h2>
+                <h3>{caption}</h3>
+              </div>
             </div>
             <div className="sectionText">
               <h4>{heading}</h4>
