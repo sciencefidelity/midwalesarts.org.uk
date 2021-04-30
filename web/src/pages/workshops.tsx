@@ -16,10 +16,13 @@ const WorkshopsPage = () => (
           heroImageCaption="&nbsp;"
         >
           <section>
-            <div className="container">
-              <h1>{data.sanityPage.title.en}</h1>
-              <p>Lets make together</p>
-              {data.sanityPage.body._rawEn && <PortableText blocks={data.sanityPage.body._rawEn} />}
+            <div className="sidebarContainer">
+              <div className="portableContainer">
+                <h1>{data.sanityPage.title.en}</h1>
+                <p className="subTitle">A space to make art together.</p>
+                {data.sanityPage.body._rawEn && <PortableText blocks={data.sanityPage.body._rawEn} />}
+              </div>
+              <aside className="sidebar"></aside>
             </div>
           </section>
         </Layout>

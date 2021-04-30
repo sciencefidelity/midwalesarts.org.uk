@@ -14,9 +14,11 @@ const News = () => (
           heroImageCaption="&nbsp;"
         >
           <section>
-            <div className="container">
-              <h1>Latest news</h1>
-              <p>What's happening at MWA</p>
+            <div className="sidebarContainer">
+              <div className="portableContainer">
+                <h1>Latest News</h1>
+                <p className="subTitle">What's happening at Mid Wales Arts.</p>
+              </div>
             </div>
             <div className="imageGrid">
               {data.allSanityPost.edges.map(posts => (

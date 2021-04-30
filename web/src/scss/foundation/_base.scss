@@ -153,7 +153,6 @@ blockquote {
 }
 
 .imageGrid {
-  padding-top: 7.5rem;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 3rem;
@@ -166,7 +165,6 @@ blockquote {
   font-size: 1.8rem;
   color: c.$grey-700;
   text-align: right;
-  // text-transform: uppercase;
   margin: 0.6em 0 0.6em;
 }
 

@@ -19,10 +19,10 @@ const AboutPage = () => (
             <div className="sidebarContainer">
               <div className="portableContainer">
                 <h1>{data.sanityPage.title.en}</h1>
-                <p className="subTitle">Welcome to MWA</p>
+                <p className="subTitle">Welcome to Mid Wales Arts.</p>
                 {data.sanityPage.body._rawEn && <PortableText blocks={data.sanityPage.body._rawEn} />}
               </div>
-              <div className="sidebar"></div>
+              <aside className="sidebar"></aside>
             </div>
           </section>
         </Layout>

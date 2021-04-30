@@ -16,9 +16,11 @@ const Exhibitions = () => (
           heroImageCaption="&nbsp;"
         >
           <section>
-            <div className="container">
-              <h1>Exhibitions</h1>
-              <p>Gallery, Barn, House</p>
+            <div className="sidebarContainer">
+              <div className="portableContainer">
+                <h1>Exhibitions</h1>
+                <p className="subTitle">Art in our galleries and garden.</p>
+              </div>
             </div>
             <div className="imageGrid">
               {data.allSanityExhibition.edges.map(exhibitions => (

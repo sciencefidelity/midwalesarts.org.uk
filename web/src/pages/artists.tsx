@@ -19,9 +19,8 @@ const ArtistsPage = () => (
             <div className="sidebarContainer">
               <div className="portableContainer">
                 <h1>Artists</h1>
-                <p>Works Available</p>
+                <p className="subTitle">Works available to see and buy.</p>
               </div>
-              <div></div>
             </div>
             <div className="imageGrid">
               {data.allSanityArtist.edges.map(artists => (

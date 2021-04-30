@@ -14,9 +14,11 @@ const Videos = () => (
           heroImageCaption="&nbsp;"
         >
           <section>
-            <div className="container">
-              <h1>Videos</h1>
-              <p>Watch & Learn</p>
+            <div className="sidebarContainer">
+              <div className="portableContainer">
+                <h1>Videos</h1>
+                <p className="subTitle">Watch & learn with our artists.</p>
+              </div>
             </div>
             <div className="imageGrid">
               {data.allSanityVideo.edges.map(videos => (

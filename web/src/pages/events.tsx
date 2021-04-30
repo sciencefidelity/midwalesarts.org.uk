@@ -14,9 +14,11 @@ const Events = () => (
           heroImageCaption="&nbsp;"
         >
           <section>
-            <div className="container">
-              <h1>Events</h1>
-              <p>Workshops & performances</p>
+            <div className="sidebarContainer">
+              <div className="portableContainer">
+                <h1>Events</h1>
+                <p className="subTitle">Special events, workshops & performances.</p>
+              </div>
             </div>
             <div className="imageGrid">
               {data.allSanityEvent.edges.map(events => (
