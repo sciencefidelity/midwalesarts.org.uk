@@ -19,66 +19,52 @@ const Exhibitions = ({ data }) => {
             <p className="subTitle">Art in our galleries and garden.</p>
           </div>
         </div>
-        <div className="sidebarContainer">
-          <div className="portableContainer">
-            <p>Current Exhibition</p>
-          </div>
-        </div>
-        <div className="imageGrid">
+        <div className="exhibitionGrid">
           {data.currentExhibitions.edges.map(exhibitions => (
-            <>
+            <div>
+              <p>Current Exhibition</p>
               <Link 
                 to={`/exhibitions/${exhibitions.node.slug.en.current}/`}
                 style={{margin: 0}}
               >
-                <div>
-                  <GatsbyImage 
-                    image={exhibitions.node.mainImage.asset.gatsbyImageData}
-                    alt=""
-                    className="gridImage"
-                  />
-                  <div className="gridCaption">{exhibitions.node.title.en}</div>
-                  <div className="gridCaption">
-                    {exhibitions.node.dateStart} to {exhibitions.node.dateEnd}
-                  </div>
+                <GatsbyImage 
+                  image={exhibitions.node.mainImage.asset.gatsbyImageData}
+                  alt=""
+                  className="gridImage"
+                />
+                <div className="gridCaption">{exhibitions.node.title.en}</div>
+                <div className="gridCaption">
+                  {exhibitions.node.dateStart} to {exhibitions.node.dateEnd}
                 </div>
               </Link>
-            </>
+            </div>
           ))}
-        </div>
-        <div className="sidebarContainer">
-          <div className="portableContainer">
-            <p>Next Exhibition</p>
-          </div>
-        </div>
-        <div className="imageGrid">
           {data.futureExhibitions.edges.map(exhibitions => (
-            <>
+            <div style={{margin: 0}}>
+              <p>Next Exhibition</p>
               <Link 
                 to={`/exhibitions/${exhibitions.node.slug.en.current}/`}
                 style={{margin: 0}}
               >
-                <div>
-                  <GatsbyImage 
-                    image={exhibitions.node.mainImage.asset.gatsbyImageData}
-                    alt=""
-                    className="gridImage"
-                  />
-                  <div className="gridCaption">{exhibitions.node.title.en}</div>
-                  <div className="gridCaption">
-                    {exhibitions.node.dateStart} to {exhibitions.node.dateEnd}
-                  </div>
+                <GatsbyImage 
+                  image={exhibitions.node.mainImage.asset.gatsbyImageData}
+                  alt=""
+                  className="gridImage"
+                />
+                <div className="gridCaption">{exhibitions.node.title.en}</div>
+                <div className="gridCaption">
+                  {exhibitions.node.dateStart} to {exhibitions.node.dateEnd}
                 </div>
               </Link>
-            </>
+            </div>
           ))}
         </div>
-        <div className="sidebarContainer">
+        <div className="sidebarContainer" style={{marginTop: `6rem`}}>
           <div className="portableContainer">
             <p>Past Exhibitions</p>
           </div>
         </div>
-        <div className="imageGrid">
+        <div className="exhibitionGrid">
           {data.pastExhibitions.edges.map(exhibitions => (
             <>
               <Link 

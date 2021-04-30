@@ -164,6 +164,16 @@ blockquote {
   margin: auto;
   z-index: 5;
 }
+
+.exhibitionGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  width: 81.25%;
+  margin: auto;
+  z-index: 5;
+}
+
 .gridImage {
   aspect-ratio: 1/1;
 }
