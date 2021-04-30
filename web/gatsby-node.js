@@ -116,7 +116,7 @@ exports.createPages = ({ graphql, actions }) => {
     // Create artist pages.
     result.data.allSanityArtist.edges.forEach(edge => {
       createPage({
-        path: `/artist/${edge.node.slug.current}`,
+        path: `/artists/${edge.node.slug.current}`,
         component: artistTemplate,
         context: {
           name: `${edge.node.title}`,
@@ -127,7 +127,7 @@ exports.createPages = ({ graphql, actions }) => {
     // Create event pages.
     result.data.allSanityEvent.edges.forEach(edge => {
       createPage({
-        path: `/event/${edge.node.slug.en.current}`,
+        path: `/events/${edge.node.slug.en.current}`,
         component: eventTemplate,
         context: {
           slug: `${edge.node.slug.en.current}`,
@@ -138,7 +138,7 @@ exports.createPages = ({ graphql, actions }) => {
     // Create exhibition pages.
     result.data.allSanityExhibition.edges.forEach(edge => {
       createPage({
-        path: `/exhibition/${edge.node.slug.en.current}`,
+        path: `/exhibitions/${edge.node.slug.en.current}`,
         component: exhibitionTemplate,
         context: {
           title: `${edge.node.title.en}`,
@@ -160,7 +160,7 @@ exports.createPages = ({ graphql, actions }) => {
     // Create video pages.
     result.data.allSanityVideo.edges.forEach(edge => {
       createPage({
-        path: `/video/${edge.node.slug.en.current}`,
+        path: `/videos/${edge.node.slug.en.current}`,
         component: videoTemplate,
         context: {
           slug: `${edge.node.slug.en.current}`,
