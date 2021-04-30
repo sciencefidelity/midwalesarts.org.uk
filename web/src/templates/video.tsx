@@ -35,13 +35,14 @@ const VideoPage = props => {
       heroImageCaption="&nbsp;"
     >
       <section>
-        <div className="container">
-          <h1>{video.title.en}</h1>
-          <h3>{video.publishDate}</h3>
-          {video.body._rawEn && <PortableText blocks={video.body._rawEn} />}
-          <VideoEmbed 
-            videoId = {video.videoLink}
-          />
+        <div className="sidebarContainer">
+          <div className="portableContainer">
+            <h1>Video</h1>
+            <p className="subTitle">{video.title.en}.</p>
+            <VideoEmbed videoId = {video.videoLink}/>
+            {video.body._rawEn && <PortableText blocks={video.body._rawEn} />}
+          </div>
+          <aside className="sidebar"></aside>
         </div>
       </section>
     </Layout>

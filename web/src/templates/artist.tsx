@@ -59,9 +59,12 @@ const ArtistPage = props => {
       heroImageCaption="&nbsp;"
     >
       <section>
-        <div className="container">
-          <h1>{artist.title}</h1>
-          {artist.body._rawEn && <PortableText blocks={artist.body._rawEn} />}
+        <div className="sidebarContainer">
+          <div className="portableContainer artistBio">
+            <h1>Artist</h1>
+            <p className="subTitle">{artist.title}</p>
+            {artist.body._rawEn && <PortableText blocks={artist.body._rawEn} />}
+          </div>
         </div>
         <div className="imageGrid">
           {artwork.edges.map(artworks => (

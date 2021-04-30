@@ -11,7 +11,7 @@ const VideoEmbed = ({ videoId }) => {
   }
   return (
     <section>
-      <div>
+      <div className="embedContainer">
         <iframe 
           width="560"
           height="315"
