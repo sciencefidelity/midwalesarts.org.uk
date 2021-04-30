@@ -3,9 +3,10 @@
 
 .brand {
   font-family: "Halis";
-  font-size: 8rem;
+  font-size: 6rem;
   font-weight: 500;
   line-height: 0.96;
+  color: c.$grey-700;
 }
 
 .introText {
@@ -69,16 +70,16 @@
   position: relative;
   right: -30rem;
   display: inline-block;
-  background: c.$lightgrey;
+  background: c.$grey-100;
   padding: 1.3rem 30.7rem 1.7rem 3.7rem;
   margin: 4rem 0 6.6rem;
   text-align: right;
   h2 {
-    color: c.$lightheading;
+    color: c.$grey-650;
     font-size: 5rem;
   }
   h3 {
-    color: c.$lightheading;
+    color: c.$grey-500;
   }
 }
 
@@ -97,13 +98,15 @@
   position: relative;
   display: block;
   padding-right: 0.55em;
+  color: c.$grey-400;
+  text-transform: capitalize;
   line-height: 1.1;
   span {
-    background: c.$bg;
+    background: c.$grey-000;
     padding: 0 0 0 2rem;
   }
   &::after {
-    content: url("data:image/svg+xml,%3Csvg height='3.5em' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3Cpath d='M224 273L88 409c-9 9-24 9-34 0l-22-23c-10-9-10-24 0-34l96-96-96-96c-10-10-10-25 0-34l22-23c10-9 25-9 34 0l136 136c10 9 10 25 0 34zm192-34L280 103c-9-9-24-9-34 0l-22 23c-10 9-10 24 0 33l96 97-96 96c-10 10-10 25 0 34l22 23c10 9 25 9 34 0l136-136c10-9 10-25 0-34z' fill='%233C474E'/%3E%3C/svg%3E");
+    content: url("data:image/svg+xml,%3Csvg height='3.5em' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3Cpath d='M224 273L88 409c-9 9-24 9-34 0l-22-23c-10-9-10-24 0-34l96-96-96-96c-10-10-10-25 0-34l22-23c10-9 25-9 34 0l136 136c10 9 10 25 0 34zm192-34L280 103c-9-9-24-9-34 0l-22 23c-10 9-10 24 0 33l96 97-96 96c-10 10-10 25 0 34l22 23c10 9 25 9 34 0l136-136c10-9 10-25 0-34z' fill='%23999999'/%3E%3C/svg%3E");
     position: absolute;
     transition: transform 0.25s;
   }
@@ -128,27 +131,24 @@
 }
 
 %ctaHr {
-  
+  position: absolute;
+  bottom: 1.2rem;
+  height: 0.14rem;
+  background: c.$grey-300;
+  z-index: -1;
 }
 
 .introCtaHr {
-  position: absolute;
-  bottom: 1.2rem;
+  @extend %ctaHr;
   left: -13rem;
-  height: 0.14rem;
   width: 55rem;
-  background: c.$midgrey;
-  z-index: -1;
 }
 
 .sectionCtaHr {
-  position: absolute;
-  bottom: 1.2rem;
+  @extend %ctaHr;
   left: -20rem;
-  height: 0.14rem;
   width: 100rem;
-  background: c.$midgrey;
-  z-index: -1;
+  
 }
 
 .sectionCtaContainer {

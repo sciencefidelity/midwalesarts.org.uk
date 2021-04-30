@@ -16,9 +16,12 @@ const ArtistsPage = () => (
           heroImageCaption="Diane Rose, A Swoop of Swallows, 2020"
         >
           <section>
-            <div className="container">
-              <h1>Artists</h1>
-              <p>Works Available</p>
+            <div className="sidebarContainer">
+              <div className="portableContainer">
+                <h1>Artists</h1>
+                <p>Works Available</p>
+              </div>
+              <div></div>
             </div>
             <div className="imageGrid">
               {data.allSanityArtist.edges.map(artists => (

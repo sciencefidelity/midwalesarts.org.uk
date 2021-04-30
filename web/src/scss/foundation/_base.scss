@@ -28,7 +28,7 @@ html {
 body {
   margin: 0;
   background: c.$grey-000;
-  color: c.$grey-500;
+  color: c.$grey-550;
   overflow-x: hidden;
   // -webkit-font-smoothing: antialiased;
   // -moz-osx-font-smoothing: grayscale;
@@ -80,9 +80,29 @@ p {
   margin-bottom: 1em;
 }
 
+b,
+strong {
+  color: c.$grey-600;
+}
+
 a {
   text-decoration: none;
-  color: c.$text;
+}
+
+p a {
+  font-weight: 500;
+  color: c.$grey-600;
+  background: c.$grey-050;
+  transition: 
+    color 0.5s ease-in-out,
+    background 0.5s ease-in-out;
+  &:hover {
+    color: c.$grey-700;
+    background: c.$grey-100;
+    transition: 
+      color 0.5s ease-in-out,
+      background 0.5s ease-in-out;
+  }
 }
 
 blockquote {
@@ -100,22 +120,25 @@ blockquote {
 }
 
 .sidebar {
-  background: c.$grey-100;
+  background: rgba(c.$grey-050, 0.8);
+  margin-top: -8rem;
+  margin-bottom: -25rem;
 }
 
 .portableContainer {
-  width: 88%;
+  width: 75%;
   margin: auto;
 }
 
 .subTitle {
+  font-size: 3rem;
   margin-bottom: 6rem;
 }
 
 .caption {
   font-size: 1.6rem;
   text-align: right;
-  color: c.$smalltext;
+  color: c.$grey-650;
 }
 
 .container {
@@ -134,8 +157,7 @@ blockquote {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 3rem;
-  width: 108rem;
-  max-width: 88%;
+  width: 81.25%;
   margin: auto;
   z-index: 5;
 }
