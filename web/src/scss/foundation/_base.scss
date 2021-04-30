@@ -14,6 +14,10 @@
   margin-top: 1rem;
 }
 
+::selection {
+  background: c.$grey-100;
+}
+
 #query-on-demand-indicator-element {
   margin: 0;
 }

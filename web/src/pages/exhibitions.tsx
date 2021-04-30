@@ -26,7 +26,7 @@ const Exhibitions = () => (
               {data.allSanityExhibition.edges.map(exhibitions => (
                 <>
                   <Link 
-                    to={`/exhibition/${exhibitions.node.slug.en.current}/`}
+                    to={`/exhibitions/${exhibitions.node.slug.en.current}/`}
                     style={{margin: 0}}
                   >
                     <div>

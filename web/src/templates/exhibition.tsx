@@ -9,6 +9,7 @@ export const query = graphql `
   query singleExhibitionQuery($title: String!) {
     allSanityArtwork(
       filter: {exhibition: {elemMatch: {title: {en: {eq: $title}}}}}
+      sort: {fields: artist, order: ASC}
     ) {
       edges {
         node {
@@ -60,10 +61,12 @@ const ExhibitionPage = props => {
       heroImageCaption="&nbsp;"
     >
       <section>
-        <div className="container">
-          <h1>{exhibition.title.en}</h1>
-          <p>{exhibition.dateStart} to {exhibition.dateEnd}</p>
-          {exhibition.body._rawEn && <PortableText blocks={exhibition.body._rawEn} />}
+        <div className="sidebarContainer">
+          <div className="portableContainer artistBio">
+            <h1>{exhibition.title.en}</h1>
+            <p className="subTitle">{exhibition.dateStart} to {exhibition.dateEnd}</p>
+            {exhibition.body._rawEn && <PortableText blocks={exhibition.body._rawEn} />}
+          </div>
         </div>
         <div className="imageGrid">
           {artwork.edges.map(artworks => (

@@ -26,7 +26,7 @@ const ArtistsPage = () => (
               {data.allSanityArtist.edges.map(artists => (
                 <>
                   <Link 
-                    to={`/artist/${artists.node.slug.current}/`}
+                    to={`/artists/${artists.node.slug.current}/`}
                     style={{margin: 0}}
                   >
                     <div>

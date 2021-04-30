@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 
 import Layout from '../components/layout'
 import PortableText from '../components/portableText'
@@ -34,11 +34,16 @@ const EventPage = props => {
       heroImageCaption="&nbsp;"
     >
       <section>
-        <div className="container">
-          <h1>{event.title.en}</h1>
-          <h3>{event.date}</h3>
-          <p><a href="{event.britelink}" target="_blank">Book tickets</a></p>
-          {event.body._rawEn && <PortableText blocks={event.body._rawEn} />}
+        <div className="sidebarContainer">
+          <div className="portableContainer">
+            <h1>{event.title.en}</h1>
+            <p className="SubTitle">{event.date}</p>
+            <p><a href={`${event.briteLink}`} target="_blank">Book tickets</a></p>
+            {event.body._rawEn && <PortableText blocks={event.body._rawEn} />}
+            <p><a href="{event.britelink}" target="_blank">Book tickets</a></p>
+            <div><p className="backLink"><Link to="/events/">Back to Events</Link></p></div>
+          </div>
+          <aside className="sidebar"></aside>
         </div>
       </section>
     </Layout>

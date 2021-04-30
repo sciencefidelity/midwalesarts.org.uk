@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 
 import Layout from '../components/layout'
 import PortableText from '../components/portableText'
@@ -33,10 +33,15 @@ const PostPage = props => {
       heroImageCaption="&nbsp;"
     >
       <section>
-        <div className="container">
-          <h1>{post.title.en}</h1>
-          <h3>{post.publishedAt}</h3>
-          {post.body._rawEn && <PortableText blocks={post.body._rawEn} />}
+        <div className="sidebarContainer">
+          <div className="portableContainer artistBio">
+            <h1>News</h1>
+            <p className="subTitle">{post.title.en}.</p>
+            {post.body._rawEn && <PortableText blocks={post.body._rawEn} />}
+            <p>{post.publishedAt}</p>
+            <div><p className="backLink"><Link to="/news/">Back to News</Link></p></div>
+          </div>
+          <aside className="sidebar"></aside>
         </div>
       </section>
     </Layout>

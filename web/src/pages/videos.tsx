@@ -24,7 +24,7 @@ const Videos = () => (
               {data.allSanityVideo.edges.map(videos => (
                 <>
                   <Link
-                    to={`/video/${videos.node.slug.en.current}/`}
+                    to={`/videos/${videos.node.slug.en.current}/`}
                     style={{margin: 0}}
                   >
                     <div>
@@ -69,13 +69,6 @@ const query = graphql `
               current
             }
           }
-        }
-      }
-    }
-    sanityVideo {
-      mainImage {
-        asset {
-          gatsbyImageData(width: 1440, formats: WEBP, placeholder: BLURRED)
         }
       }
     }
