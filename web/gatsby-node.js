@@ -16,7 +16,7 @@ function getCurrentDate() {
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
   
-  const eventsPage = require.resolve(`./src/pages/events.tsx`)
+  const eventsPage = require.resolve(`./src/templates/events.tsx`)
   const exhibitionsPage = require.resolve(`./src/templates/exhibitions.tsx`)
   const artistTemplate = path.resolve(`./src/templates/artist.tsx`)
   const eventTemplate = path.resolve(`./src/templates/event.tsx`)
