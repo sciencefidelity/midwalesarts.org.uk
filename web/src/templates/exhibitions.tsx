@@ -1,10 +1,11 @@
 import * as React from 'react'
-import { StaticQuery, graphql, Link } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 import { GatsbyImage } from 'gatsby-plugin-image'
 
 import '../scss/artists.scss'
 
 import Layout from '../components/layout'
+import PastExhibitions from '../components/pastExhibitions'
 
 const Exhibitions = ({ data, pageContext }) => {
   return (
@@ -17,7 +18,6 @@ const Exhibitions = ({ data, pageContext }) => {
           <div className="portableContainer">
             <h1>Exhibitions</h1>
             <p className="subTitle">Art in our galleries and garden.</p>
-            <p>{pageContext.currentDate}</p>
             <p>Current Exhibition</p>
           </div>
         </div>
