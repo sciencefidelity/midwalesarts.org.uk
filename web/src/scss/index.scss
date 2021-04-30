@@ -6,7 +6,10 @@
   font-size: 6rem;
   font-weight: 500;
   line-height: 0.96;
-  color: c.$grey-700;
+  color: c.$grey-650;
+  &:first-child{
+    padding-top: 3rem;
+  }
 }
 
 .introText {
@@ -101,6 +104,7 @@
   color: c.$grey-400;
   text-transform: capitalize;
   line-height: 1.1;
+  transition: color 0.25s;
   span {
     background: c.$grey-000;
     padding: 0 0 0 2rem;
@@ -110,9 +114,13 @@
     position: absolute;
     transition: transform 0.25s;
   }
-  &:hover::after {
-    transform: translateX(0.12em);
-    transition: transform 0.25s;
+  &:hover {
+    color: c.$grey-500;
+    transition: color 0.25s;
+    &::after {
+      transform: translateX(0.12em);
+      transition: transform 0.25s;
+    }
   }
 }
 
