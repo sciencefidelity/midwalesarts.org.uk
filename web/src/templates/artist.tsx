@@ -49,8 +49,7 @@ export const query = graphql `
   }
 `
 
-const ArtistPage = props => {
-  const { data } = props
+const ArtistPage = ({ data }) => {
   const artist = data && data.sanityArtist
   const artwork = data && data.allSanityArtwork;
   return (
