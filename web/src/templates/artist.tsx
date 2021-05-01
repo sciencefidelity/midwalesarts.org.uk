@@ -51,7 +51,7 @@ export const query = graphql `
 
 const ArtistPage = ({ data }) => {
   const artist = data && data.sanityArtist
-  const artwork = data && data.allSanityArtwork;
+  const artwork = data && data.allSanityArtwork
   return (
     <Layout
       heroImage={artist.mainImage.asset.gatsbyImageData}

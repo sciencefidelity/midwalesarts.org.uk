@@ -2,7 +2,7 @@ import * as React from 'react'
 import { graphql } from 'gatsby'
 import { GatsbyImage } from 'gatsby-plugin-image'
 
-import '../scss/artists.scss'
+import '../scss/visit.scss'
 
 import Layout from '../components/layout'
 import PortableText from '../components/portableText'
@@ -52,24 +52,28 @@ const VisitPage = ({ data }) => {
       heroImageCaption="&nbsp;"
     >
       <section>
-        <div className="sidebarContainer">
-          <div className="portableContainer">
-            <h1>{data.sanityPage.title.en}</h1>
-            <p className="subTitle">What's on offer at Mid Wales Arts.</p>
-            <div className="imageGrid">
-              {spaces.edges.map(space => (
-                <div style={{margin: 0}}>
-                  <GatsbyImage 
-                    image={space.node.mainImage.asset.gatsbyImageData}
-                    alt=""
-                  />
-                  <div className="gridCaption">{space.node.title.en}</div>
-                </div>
-              ))}
-            </div>
-            {data.sanityPage.body._rawEn && <PortableText blocks={data.sanityPage.body._rawEn} />}
+        <div className="visitContainer">
+          <h1>{data.sanityPage.title.en}</h1>
+          <p className="subTitle">What's on offer at Mid Wales Arts.</p>
+          <div className="spacesGrid">
+            {spaces.edges.map(space => (
+              <div style={{margin: 0}}>
+                <GatsbyImage 
+                  image={space.node.mainImage.asset.gatsbyImageData}
+                  alt=""
+                />
+                <p className="spacesGridTitle">{space.node.title.en}</p>
+              </div>
+            ))}
           </div>
-          <aside className="sidebar"></aside>
+          <div className="spacesTextGrid">
+            {spaces.edges.map(space => (
+              <div style={{margin: 0}}>
+                <h4 className="spacesGridTitle">{space.node.title.en}</h4>
+                {space.node.body._rawEn && <PortableText blocks={space.node.body._rawEn} />}
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </Layout>
