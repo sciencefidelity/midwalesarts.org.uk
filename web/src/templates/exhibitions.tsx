@@ -9,7 +9,7 @@ import Layout from '../components/layout'
 const Exhibitions = ({ data }) => {
   return (
     <Layout
-      heroImage={data.currentExhibitions.edges[0].node.mainImage.asset.gatsbyImageData}
+      heroImage={data.currentExhibitionsHero.edges[0].node.mainImage.asset.gatsbyImageData}
       heroImageCaption="&nbsp;"
     >
       <section>
@@ -108,7 +108,7 @@ export const query = graphql `
           }
           mainImage {
             asset {
-              gatsbyImageData(width: 1440, height: 1440, formats: WEBP, placeholder: BLURRED)
+              gatsbyImageData(width: 570, height: 570, formats: WEBP, placeholder: BLURRED)
             }
           }
           dateStart(formatString: "Do MMMM")
@@ -116,6 +116,19 @@ export const query = graphql `
           id
           body {
             _rawEn
+          }
+        }
+      }
+    }
+    currentExhibitionsHero: allSanityExhibition(
+      filter: {dateEnd: {gt: $currentDate}, dateStart: {lt: $currentDate}}
+      sort: {fields: dateStart, order: DESC}) {
+      edges {
+        node {
+          mainImage {
+            asset {
+              gatsbyImageData(width: 1440, formats: WEBP, placeholder: BLURRED)
+            }
           }
         }
       }
