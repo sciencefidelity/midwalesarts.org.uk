@@ -10,7 +10,7 @@ const Videos = () => (
       query={query}
       render={data => (
         <Layout
-          heroImage={data.allSanityVideo.edges[0].node.mainImage.asset.gatsbyImageData}
+          heroImage={data.videosHero.edges[0].node.mainImage.asset.gatsbyImageData}
           heroImageCaption="&nbsp;"
         >
           <section>
@@ -21,7 +21,7 @@ const Videos = () => (
               </div>
             </div>
             <div className="imageGrid">
-              {data.allSanityVideo.edges.map(videos => (
+              {data.videosMain.edges.map(videos => (
                 <>
                   <Link
                     to={`/videos/${videos.node.slug.en.current}/`}
@@ -48,12 +48,7 @@ const Videos = () => (
 
 const query = graphql `
   query videosQuery {
-    allSanityVideo(sort: {fields: publishDate, order: DESC}) {
-      nodes {
-        title {
-          en
-        }
-      }
+    videosMain: allSanityVideo(sort: {fields: publishDate, order: DESC}) {
       edges {
         node {
           id
@@ -62,12 +57,23 @@ const query = graphql `
           }
           mainImage {
             asset {
-              gatsbyImageData(width: 1440, formats: WEBP, placeholder: BLURRED)
+              gatsbyImageData(width: 400, height: 400, formats: WEBP, placeholder: BLURRED)
             }
           }
           slug {
             en {
               current
+            }
+          }
+        }
+      }
+    }
+    videosHero: allSanityVideo(sort: {fields: publishDate, order: DESC}) {
+      edges {
+        node {
+          mainImage {
+            asset {
+              gatsbyImageData(width: 1440, formats: WEBP, placeholder: BLURRED)
             }
           }
         }
