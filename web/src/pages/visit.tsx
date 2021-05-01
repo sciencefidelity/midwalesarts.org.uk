@@ -6,6 +6,7 @@ import '../scss/visit.scss'
 
 import Layout from '../components/layout'
 import PortableText from '../components/portableText'
+import GoogleMap from '../components/googleMap'
 
 export const query = graphql `
   query VisitPageQuery {
@@ -76,6 +77,7 @@ const VisitPage = ({ data }) => {
           </div>
         </div>
       </section>
+      <GoogleMap />
     </Layout>
   )
 }
