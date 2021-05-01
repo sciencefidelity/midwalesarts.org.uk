@@ -109,6 +109,16 @@ p a {
   }
 }
 
+a img {
+  transition: opacity 0.3s ease-in-out;
+}
+
+a img:hover,
+a img:active {
+  opacity: 88% !important;
+  transition: opacity 0.3s ease-in-out;
+}
+
 blockquote {
   font-size: 2.1em;
   font-style: italic;

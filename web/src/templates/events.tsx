@@ -10,7 +10,7 @@ const Events = () => (
       query={query}
       render={data => (
         <Layout
-          heroImage={data.allSanityEvent.edges[0].node.mainImage.asset.gatsbyImageData}
+          heroImage={data.eventsHero.edges[0].node.mainImage.asset.gatsbyImageData}
           heroImageCaption="&nbsp;"
         >
           <section>
@@ -21,7 +21,7 @@ const Events = () => (
               </div>
             </div>
             <div className="imageGrid">
-              {data.allSanityEvent.edges.map(events => (
+              {data.eventsMain.edges.map(events => (
                 <>
                   <Link
                     to={`/events/${events.node.slug.en.current}/`}
@@ -49,7 +49,7 @@ const Events = () => (
 
 const query = graphql `
   query eventsQuery {
-    allSanityEvent(sort: {fields: date, order: DESC}) {
+    eventsMain: allSanityEvent(sort: {fields: date, order: DESC}) {
       edges {
         node {
           title {
@@ -63,12 +63,23 @@ const query = graphql `
           id
           mainImage {
             asset {
-              gatsbyImageData(width: 1440, formats: WEBP, placeholder: BLURRED)
+              gatsbyImageData(width: 400, height: 400, formats: WEBP, placeholder: BLURRED)
             }
           }
           slug {
             en {
               current
+            }
+          }
+        }
+      }
+    }
+    eventsHero: allSanityEvent(sort: {fields: date, order: DESC}) {
+      edges {
+        node {
+          mainImage {
+            asset {
+              gatsbyImageData(width: 1440, formats: WEBP, placeholder: BLURRED)
             }
           }
         }
