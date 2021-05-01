@@ -6,6 +6,7 @@ import '../scss/index.scss'
 
 import Layout from '../components/layout'
 import SEO from '../components/seo'
+import ColorLogo from '../components/logos/colorLogo'
 import Brand from '../components/brand.en'
 import Intro from '../components/intro'
 import FrontPageSection from '../components/frontPageSection'
@@ -23,19 +24,25 @@ const IndexPage = () => (
           <section>
             <div className="container">
               <div className="introduction">
-                <Brand />
-                  <div className="sideImageContainer">
-                    <GatsbyImage 
-                      image={data.sanityFrontPage.subImage.asset.gatsbyImageData}
-                      alt="an image"
-                      className="sideImage"
-                    />
-                    <div>{data.sanityFrontPage.subImage.caption}</div>
-                  </div>
-                  <Intro />
+                <div className="introBranding">
+                  <ColorLogo
+                    logoClass = "introLogo"
+                    containerClass = "introLogoContainer"
+                  />
+                  <Brand />
                 </div>
+                <div className="sideImageContainer">
+                  <GatsbyImage 
+                    image={data.sanityFrontPage.subImage.asset.gatsbyImageData}
+                    alt="an image"
+                    className="sideImage"
+                  />
+                  <div>{data.sanityFrontPage.subImage.caption}</div>
+                </div>
+                <Intro />
               </div>
-            </section>
+            </div>
+          </section>
           {data.allSanityFrontPageSection.edges.map(section =>
             <FrontPageSection 
               title={section.node.title.en}

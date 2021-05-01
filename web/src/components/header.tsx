@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { Link } from 'gatsby'
 import { GatsbyImage } from 'gatsby-plugin-image'
 
 import Navigation from './navigation'
@@ -11,7 +12,12 @@ const Header = ({
 }) => (
   <>
     <header>
-      <ColorLogo />
+      <Link to="/">
+        <ColorLogo 
+          logoClass = "colorLogo"
+          containerClass = "logoContainer"
+        />
+      </Link>
       <div className="hero">
         <GatsbyImage 
           image={heroImage}
