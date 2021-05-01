@@ -10,7 +10,7 @@ const News = () => (
       query={query}
       render={data => (
         <Layout
-          heroImage={data.allSanityPost.edges[0].node.image.asset.gatsbyImageData}
+          heroImage={data.newsHero.edges[0].node.image.asset.gatsbyImageData}
           heroImageCaption="&nbsp;"
         >
           <section>
@@ -21,7 +21,7 @@ const News = () => (
               </div>
             </div>
             <div className="imageGrid">
-              {data.allSanityPost.edges.map(posts => (
+              {data.newsMain.edges.map(posts => (
                 <>
                   <Link
                     to={`/news/${posts.node.slug.en.current}/`}
@@ -49,7 +49,7 @@ const News = () => (
 
 const query = graphql `
   query newsQuery {
-    allSanityPost(sort: {fields: publishedAt, order: DESC}) {
+    newsMain: allSanityPost(sort: {fields: publishedAt, order: DESC}) {
       edges {
         node {
           body {
@@ -63,7 +63,7 @@ const query = graphql `
           }
           image {
             asset {
-              gatsbyImageData(width: 1440, formats: WEBP, placeholder: BLURRED)
+              gatsbyImageData(width: 400, height: 400, formats: WEBP, placeholder: BLURRED)
             }
           }
           publishedAt(formatString: "dddd, MMMM Do YYYY")
@@ -74,6 +74,17 @@ const query = graphql `
           }
           title {
             en
+          }
+        }
+      }
+    }
+    newsHero: allSanityPost(sort: {fields: publishedAt, order: DESC}) {
+      edges {
+        node {
+          image {
+            asset {
+              gatsbyImageData(width: 1440, formats: WEBP, placeholder: BLURRED)
+            }
           }
         }
       }
