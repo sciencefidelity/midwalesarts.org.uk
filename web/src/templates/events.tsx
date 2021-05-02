@@ -5,46 +5,41 @@ import { GatsbyImage } from 'gatsby-plugin-image'
 import Layout from '../components/layout'
 
 const Events = () => (
-  <>
-    <StaticQuery
-      query={query}
-      render={data => (
-        <Layout
-          heroImage={data.eventsHero.edges[0].node.mainImage.asset.gatsbyImageData}
-          heroImageCaption="&nbsp;"
-        >
-          <section>
-            <div className="sidebarContainer">
-              <div className="portableContainer">
-                <h1>Events</h1>
-                <p className="subTitle">Special events, workshops & performances.</p>
+  <StaticQuery
+    query={query}
+    render={data => (
+      <Layout
+        heroImage={data.eventsHero.edges[0].node.mainImage.asset.gatsbyImageData}
+        heroImageCaption="&nbsp;"
+      >
+        <section>
+          <div className="sidebarContainer">
+            <div className="portableContainer">
+              <h1>Events</h1>
+              <p className="subTitle">Special events, workshops & performances.</p>
+            </div>
+          </div>
+          <div className="imageGrid">
+            {data.eventsMain.edges.map((events: any) => (
+              <div key={events.node.id} style={{margin: 0}}>
+                <Link
+                  to={`/events/${events.node.slug.en.current}/`}
+                >
+                  <GatsbyImage 
+                    image={events.node.mainImage.asset.gatsbyImageData}
+                    alt=""
+                    className="gridImage"
+                  />
+                  <div className="gridCaption">{events.node.title.en}</div>
+                  <div className="gridCaption">{events.node.date}</div>
+                </Link>
               </div>
-            </div>
-            <div className="imageGrid">
-              {data.eventsMain.edges.map(events => (
-                <>
-                  <Link
-                    to={`/events/${events.node.slug.en.current}/`}
-                    style={{margin: 0}}
-                  >
-                    <div>
-                      <GatsbyImage 
-                        image={events.node.mainImage.asset.gatsbyImageData}
-                        alt=""
-                        className="gridImage"
-                      />
-                      <div className="gridCaption">{events.node.title.en}</div>
-                      <div className="gridCaption">{events.node.date}</div>
-                    </div>
-                  </Link>
-                </>
-              ))}
-            </div>
-          </section>
-        </Layout>
-      )}
-    />
-  </>
+            ))}
+          </div>
+        </section>
+      </Layout>
+    )}
+  />
 )
 
 const query = graphql `
