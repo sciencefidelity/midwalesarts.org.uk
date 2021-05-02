@@ -54,13 +54,13 @@ export const query = graphql `
   }
 `
 
-const ArtistPage = ({ data }) => {
-  const [isBio, setBio] = useState(true)
-  const [isImage, setImage] = useState(false)
+const Artist = ({ data }) => {
+  const [bio, setBio] = useState(true)
+  const [image, setImage] = useState(false)
 
   const toggleTabs = () => {
-    setBio(!isBio)
-    setImage(!isImage)
+    setBio(!bio)
+    setImage(!image)
   }
   
   const artist = data.sanityArtist
@@ -79,14 +79,14 @@ const ArtistPage = ({ data }) => {
               <li onClick={toggleTabs}>Works</li>
               <li onClick={toggleTabs}>Biography</li>
             </ul>
-            <div className={isBio ? "hidden artistBio" : "artistBio"} >
+            <div className={bio ? "hidden artistBio" : "artistBio"} >
               {artist.body._rawEn && <PortableText blocks={artist.body._rawEn} />}
             </div>
           </div>
         </div>
-        <div className={isImage ? "hidden artistImageGrid" : "artistImageGrid"}>
-          {artwork.edges.map(artworks => (
-            <div style={{margin: 0}}>
+        <div className={image ? "hidden artistImageGrid" : "artistImageGrid"}>
+          {artwork.edges.map((artworks: any) => (
+            <div style={{margin: 0}} key={artworks.node.id}>
               <GatsbyImage 
                 image={artworks.node.mainImage.asset.gatsbyImageData}
                 alt=""
@@ -101,4 +101,4 @@ const ArtistPage = ({ data }) => {
   )
 }
 
-export default ArtistPage
+export default Artist

@@ -7,44 +7,42 @@ import '../scss/artists.scss'
 import Layout from '../components/layout'
 
 const ArtistsPage = () => (
-  <>
-    <StaticQuery
-      query={query}
-      render={data => (
-        <Layout
-          heroImage={data.sanityArtist.mainImage.asset.gatsbyImageData}
-          heroImageCaption="Diane Rose, A Swoop of Swallows, 2020"
-        >
-          <section>
-            <div className="sidebarContainer">
-              <div className="portableContainer">
-                <h1>Artists</h1>
-                <p className="subTitle">Works available to see and buy.</p>
+  <StaticQuery
+    query={query}
+    render={data => (
+      <Layout
+        heroImage={data.sanityArtist.mainImage.asset.gatsbyImageData}
+        heroImageCaption="Diane Rose, A Swoop of Swallows, 2020"
+      >
+        <section>
+          <div className="sidebarContainer">
+            <div className="portableContainer">
+              <h1>Artists</h1>
+              <p className="subTitle">Works available to see and buy.</p>
+            </div>
+          </div>
+          <div className="imageGrid">
+            {data.allSanityArtist.edges.map((artists: any) => (
+              <div key={artists.node.id}>
+                <Link 
+                  to={`/artists/${artists.node.slug.current}/`}
+                  style={{margin: 0}}
+                >
+                  <div>
+                    <GatsbyImage 
+                      image={artists.node.mainImage.asset.gatsbyImageData}
+                      alt=""
+                    />
+                    <div className="gridCaption">{artists.node.title}</div>
+                  </div>
+                </Link>
               </div>
-            </div>
-            <div className="imageGrid">
-              {data.allSanityArtist.edges.map(artists => (
-                <>
-                  <Link 
-                    to={`/artists/${artists.node.slug.current}/`}
-                    style={{margin: 0}}
-                  >
-                    <div>
-                      <GatsbyImage 
-                        image={artists.node.mainImage.asset.gatsbyImageData}
-                        alt=""
-                      />
-                      <div className="gridCaption">{artists.node.title}</div>
-                    </div>
-                  </Link>
-                </>
-              ))}
-            </div>
-          </section>
-        </Layout>
-      )}
-    />
-  </>
+            ))}
+          </div>
+        </section>
+      </Layout>
+    )}
+  />
 )
 
 const query = graphql `
