@@ -4,6 +4,7 @@ import { graphql, Link } from 'gatsby'
 import Layout from '../components/layout'
 import PortableText from '../components/portableText'
 import VideoEmbed from '../components/videoEmbed'
+import Sidebar from '../components/sidebar'
 
 export const query = graphql `
   query SingleVideoQuery($slug: String!) {
@@ -43,7 +44,7 @@ const VideoPage = props => {
             {video.body._rawEn && <PortableText blocks={video.body._rawEn} />}
             <div><p className="backLink"><Link to="/videos/">Back to Videos</Link></p></div>
           </div>
-          <aside className="sidebar"></aside>
+          <Sidebar />
         </div>
       </section>
     </Layout>

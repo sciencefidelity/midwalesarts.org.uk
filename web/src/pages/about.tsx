@@ -1,10 +1,9 @@
 import * as React from 'react'
 import { StaticQuery, graphql } from 'gatsby'
 
-import '../scss/artists.scss'
-
 import Layout from '../components/layout'
 import PortableText from '../components/portableText'
+import Sidebar from '../components/sidebar'
 
 const AboutPage = () => (
   <>
@@ -22,7 +21,7 @@ const AboutPage = () => (
                 <p className="subTitle">Welcome to Mid Wales Arts.</p>
                 {data.sanityPage.body._rawEn && <PortableText blocks={data.sanityPage.body._rawEn} />}
               </div>
-              <aside className="sidebar"></aside>
+              <Sidebar />
             </div>
           </section>
         </Layout>

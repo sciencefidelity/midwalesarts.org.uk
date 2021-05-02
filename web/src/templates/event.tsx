@@ -3,6 +3,7 @@ import { graphql, Link } from 'gatsby'
 
 import Layout from '../components/layout'
 import PortableText from '../components/portableText'
+import Sidebar from '../components/sidebar'
 
 export const query = graphql `
   query SingleEventQuery($slug: String!) {
@@ -25,8 +26,7 @@ export const query = graphql `
   }
 `
 
-const EventPage = props => {
-  const { data } = props
+const EventPage = ({ data }) => {
   const event = data && data.sanityEvent
   return (
     <Layout
@@ -43,7 +43,7 @@ const EventPage = props => {
             <p><a href="{event.britelink}" target="_blank">Book tickets</a></p>
             <div><p className="backLink"><Link to="/events/">Back to Events</Link></p></div>
           </div>
-          <aside className="sidebar"></aside>
+          <Sidebar />
         </div>
       </section>
     </Layout>

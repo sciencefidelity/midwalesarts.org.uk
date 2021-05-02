@@ -5,6 +5,7 @@ import '../scss/artists.scss'
 
 import Layout from '../components/layout'
 import PortableText from '../components/portableText'
+import Sidebar from '../components/sidebar'
 
 const WorkshopsPage = () => (
   <>
@@ -22,7 +23,7 @@ const WorkshopsPage = () => (
                 <p className="subTitle">A space to make art together.</p>
                 {data.sanityPage.body._rawEn && <PortableText blocks={data.sanityPage.body._rawEn} />}
               </div>
-              <aside className="sidebar"></aside>
+              <Sidebar />
             </div>
           </section>
         </Layout>

@@ -63,12 +63,11 @@ const Visit = ({ data }) => {
           <p className="subTitle">What's on offer at Mid Wales Arts.</p>
           <div className="spacesGrid">
             {spaces.edges.map((space: any) => (
-              <div key={space.node.id}>
+              <div key={space.node.id} style={{margin: 0}}>
                 <Link 
                   to={`#${space.node.slug.en.current}`}
-                  style={{margin: 0}}
                 >
-                  <div style={{margin: 0}}>
+                  <div>
                     <GatsbyImage 
                       image={space.node.mainImage.asset.gatsbyImageData}
                       alt=""

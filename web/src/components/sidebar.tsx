@@ -33,6 +33,14 @@ const Sidebar = () => (
               </Link>
             ))}
           </ul>
+          <h3>Weekly Clubs</h3>
+          <ul className="sidebarMenu">
+            <Link to="/workshops/"><li>Wednesdays: Home Ed Group</li></Link>
+            <Link to="/workshops/"><li>Wednesdays: Ceramics Club</li></Link>
+            <Link to="/workshops/"><li>Thursdays: Adult Pottery</li></Link>
+            <Link to="/workshops/"><li>Thursdays: After School Club</li></Link>
+            <Link to="/workshops/"><li>Saturdays: Family Workshop</li></Link>
+          </ul>
         </div>
       </aside>
     )}
