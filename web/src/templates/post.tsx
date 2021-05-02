@@ -25,7 +25,7 @@ export const query = graphql `
   }
 `
 
-const PostPage = ({ data }) => {
+const Post = ({ data }) => {
   const post = data && data.sanityPost
   return (
     <Layout
@@ -48,4 +48,4 @@ const PostPage = ({ data }) => {
   )
 }
 
-export default PostPage
+export default Post
