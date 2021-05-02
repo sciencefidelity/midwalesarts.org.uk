@@ -148,7 +148,7 @@ blockquote {
 
 .subTitle {
   font-size: 3rem;
-  margin-bottom: 8rem;
+  // margin-bottom: 8rem;
 }
 
 .caption {
@@ -173,7 +173,7 @@ blockquote {
   grid-template-columns: 1fr 1fr 1fr;
   gap: 3rem;
   width: 81.25%;
-  margin: auto;
+  margin: 6rem auto 0;
   z-index: 5;
 }
 
@@ -200,10 +200,6 @@ blockquote {
 .backLink {
   text-align: center;
   margin-top: 6rem;
-}
-
-.artistBio {
-  padding-bottom: 6rem;
 }
 
 .embedContainer {
