@@ -4,46 +4,43 @@ import { GatsbyImage } from 'gatsby-plugin-image'
 
 import PortableText from './portableText'
 
-const FrontPageSection = ({ 
-  title, caption, heading, body, cta, ctaLink, 
-  mainImage, mainImageCaption, subImage, subImageCaption 
-}) => (
+const FrontPageSection = (props: any) => (
   <section>
     <div className="sectionContainer">
       <>
         <GatsbyImage 
-          image={mainImage}
+          image={props.mainImage}
           alt="an image"
           className="sectionHero"
         />
-        <div className="sectionHeroCaption caption">{mainImageCaption}</div>
+        <div className="sectionHeroCaption caption">{props.mainImageCaption}</div>
         <div className="sectionContent">
           <div>
             <GatsbyImage 
-              image={subImage}
+              image={props.subImage}
               alt="an image"
               className="sectionInset"
             />
-            <div className="caption">&nbsp;{subImageCaption}</div>
+            <div className="caption">&nbsp;{props.subImageCaption}</div>
           </div>
           <div>
             <div className="sectionTitleContainer">
               <div>
-                <h2>{title}</h2>
-                <h3>{caption}</h3>
+                <h2>{props.title}</h2>
+                <h3>{props.caption}</h3>
               </div>
             </div>
             <div className="sectionText">
-              <h4>{heading}</h4>
-              {body && 
-                <PortableText blocks={body} />}
+              <h4>{props.heading}</h4>
+              {props.body && 
+                <PortableText blocks={props.body} />}
             </div>
           </div>
         </div>
         <div className="sectionCtaContainer">
           <div className="sectionCtaHr"></div>
-          <Link to={`/${ctaLink}/`}>
-            <h2 className="sectionCta"><span>{cta}&nbsp;</span></h2>
+          <Link to={`/${props.ctaLink}/`}>
+            <h2 className="sectionCta"><span>{props.cta}&nbsp;</span></h2>
           </Link>
         </div>
       </>

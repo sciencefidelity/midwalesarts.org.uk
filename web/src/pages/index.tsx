@@ -43,7 +43,7 @@ const IndexPage = () => (
               </div>
             </div>
           </section>
-          {data.allSanityFrontPageSection.edges.map(section =>
+          {data.allSanityFrontPageSection.edges.map((section: any) =>
             <FrontPageSection 
               title={section.node.title.en}
               caption={section.node.caption.en}
@@ -55,6 +55,7 @@ const IndexPage = () => (
               mainImageCaption={section.node.mainImage.caption}
               subImage={section.node.subImage.asset.gatsbyImageData}
               subImageCaption={section.node.subImage.caption}
+              key={section.node.id}
             />
           )}
         </Layout>
