@@ -21,12 +21,12 @@ const News = () => (
               </div>
             </div>
             <div className="imageGrid">
-              {data.newsMain.edges.map(posts => (
+              {data.newsMain.edges.map((posts: any) => (
+                <div key={posts.node.id} style={{margin: 0}}>
                 <Link
                   to={`/news/${posts.node.slug.en.current}/`}
-                  style={{margin: 0}}
+                  
                 >
-                  <div key={posts.node.id}>
                     <GatsbyImage 
                       image={posts.node.image.asset.gatsbyImageData}
                       alt=""
@@ -34,8 +34,8 @@ const News = () => (
                     />
                     <div className="gridCaption">{posts.node.title.en}</div>
                     <div className="gridCaption">{posts.node.publishedAt}</div>
-                  </div>
-                </Link>
+                  </Link>
+                </div>
               ))}
             </div>
           </section>

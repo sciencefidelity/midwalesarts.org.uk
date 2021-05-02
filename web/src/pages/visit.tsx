@@ -8,7 +8,7 @@ import Layout from '../components/layout'
 import PortableText from '../components/portableText'
 import GoogleMap from '../components/googleMap'
 
-export const query = graphql `
+export const query = graphql`
   query VisitPageQuery {
     sanityPage(title: {en: {eq: "Visit us"}}) {
       title {
@@ -50,7 +50,7 @@ export const query = graphql `
   }
 `
 
-const VisitPage = ({ data }) => {
+const Visit = ({ data }) => {
   const spaces = data && data.allSanitySpace
   return (
     <Layout
@@ -62,26 +62,29 @@ const VisitPage = ({ data }) => {
           <h1>{data.sanityPage.title.en}</h1>
           <p className="subTitle">What's on offer at Mid Wales Arts.</p>
           <div className="spacesGrid">
-            {spaces.edges.map(space => (
-              <Link 
-                to={`#${space.node.slug.en.current}`}
-                style={{margin: 0}}
-              >
-              <div style={{margin: 0}}>
-                <GatsbyImage 
-                  image={space.node.mainImage.asset.gatsbyImageData}
-                  alt=""
-                />
-                <div className="gridCaption">{space.node.title.en}</div>
+            {spaces.edges.map((space: any) => (
+              <div key={space.node.id}>
+                <Link 
+                  to={`#${space.node.slug.en.current}`}
+                  style={{margin: 0}}
+                >
+                  <div style={{margin: 0}}>
+                    <GatsbyImage 
+                      image={space.node.mainImage.asset.gatsbyImageData}
+                      alt=""
+                    />
+                    <div className="gridCaption">{space.node.title.en}</div>
+                  </div>
+                </Link>
               </div>
-              </Link>
             ))}
           </div>
           <div className="spacesTextGrid">
-            {spaces.edges.map(space => (
+            {spaces.edges.map((space: any) => (
               <div
                 id={space.node.slug.en.current}
                 style={{margin: 0}}
+                key={space.node.id}
               >
                 <h4 className="spacesGridTitle">{space.node.title.en}</h4>
                 {space.node.body._rawEn && <PortableText blocks={space.node.body._rawEn} />}
@@ -95,4 +98,4 @@ const VisitPage = ({ data }) => {
   )
 }
 
-export default VisitPage
+export default Visit

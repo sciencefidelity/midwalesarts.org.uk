@@ -69,17 +69,15 @@ const ExhibitionPage = props => {
           </div>
         </div>
         <div className="imageGrid">
-          {artwork.edges.map(artworks => (
-            <>
-              <div style={{margin: 0}}>
-                <GatsbyImage 
-                  image={artworks.node.mainImage.asset.gatsbyImageData}
-                  alt=""
-                />
-                <div className="gridCaption">{artworks.node.artist}</div>
-                <div className="gridCaption"><em>{artworks.node.title.en}</em></div>
-              </div>
-            </>
+          {artwork.edges.map((artworks: any) => (
+            <div style={{margin: 0}} key={artworks.node.id}>
+              <GatsbyImage 
+                image={artworks.node.mainImage.asset.gatsbyImageData}
+                alt=""
+              />
+              <div className="gridCaption">{artworks.node.artist}</div>
+              <div className="gridCaption"><em>{artworks.node.title.en}</em></div>
+            </div>
           ))}
         </div>
         <div><p className="backLink"><Link to="/exhibitions/">Back to Exhibitions</Link></p></div>

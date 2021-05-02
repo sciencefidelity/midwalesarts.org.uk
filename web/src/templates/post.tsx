@@ -25,8 +25,7 @@ export const query = graphql `
   }
 `
 
-const PostPage = props => {
-  const { data } = props
+const PostPage = ({ data }) => {
   const post = data && data.sanityPost
   return (
     <Layout
