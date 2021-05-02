@@ -24,7 +24,7 @@ export const query = graphql `
         }
       }
     }
-    allSanitySpace {
+    allSanitySpace(sort: {order: DESC, fields: _updatedAt}) {
       edges {
         node {
           body {
@@ -72,7 +72,7 @@ const VisitPage = ({ data }) => {
                   image={space.node.mainImage.asset.gatsbyImageData}
                   alt=""
                 />
-                <p className="spacesGridTitle">{space.node.title.en}</p>
+                <div className="gridCaption">{space.node.title.en}</div>
               </div>
               </Link>
             ))}
