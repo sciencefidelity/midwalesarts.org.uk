@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 import { GatsbyImage } from 'gatsby-plugin-image'
 
 import '../scss/visit.scss'
@@ -39,6 +39,11 @@ export const query = graphql `
           title {
             en
           }
+          slug {
+            en {
+              current
+            }
+          }
         }
       }
     }
@@ -58,6 +63,10 @@ const VisitPage = ({ data }) => {
           <p className="subTitle">What's on offer at Mid Wales Arts.</p>
           <div className="spacesGrid">
             {spaces.edges.map(space => (
+              <Link 
+                to={`#${space.node.slug.en.current}`}
+                style={{margin: 0}}
+              >
               <div style={{margin: 0}}>
                 <GatsbyImage 
                   image={space.node.mainImage.asset.gatsbyImageData}
@@ -65,11 +74,15 @@ const VisitPage = ({ data }) => {
                 />
                 <p className="spacesGridTitle">{space.node.title.en}</p>
               </div>
+              </Link>
             ))}
           </div>
           <div className="spacesTextGrid">
             {spaces.edges.map(space => (
-              <div style={{margin: 0}}>
+              <div
+                id={space.node.slug.en.current}
+                style={{margin: 0}}
+              >
                 <h4 className="spacesGridTitle">{space.node.title.en}</h4>
                 {space.node.body._rawEn && <PortableText blocks={space.node.body._rawEn} />}
               </div>
