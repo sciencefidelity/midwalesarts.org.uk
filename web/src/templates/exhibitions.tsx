@@ -20,8 +20,8 @@ const Exhibitions = ({ data }) => {
           </div>
         </div>
         <div className="exhibitionGrid">
-          {data.currentExhibitions.edges.map(exhibitions => (
-            <div>
+          {data.currentExhibitions.edges.map((exhibitions: any) => (
+            <div key={exhibitions.node.id}>
               <p>Current Exhibition</p>
               <Link 
                 to={`/exhibitions/${exhibitions.node.slug.en.current}/`}
@@ -39,8 +39,8 @@ const Exhibitions = ({ data }) => {
               </Link>
             </div>
           ))}
-          {data.futureExhibitions.edges.map(exhibitions => (
-            <div style={{margin: 0}}>
+          {data.futureExhibitions.edges.map((exhibitions: any) => (
+            <div style={{margin: 0}} key={exhibitions.node.id}>
               <p>Next Exhibition</p>
               <Link 
                 to={`/exhibitions/${exhibitions.node.slug.en.current}/`}
@@ -65,11 +65,10 @@ const Exhibitions = ({ data }) => {
           </div>
         </div>
         <div className="exhibitionGrid">
-          {data.pastExhibitions.edges.map(exhibitions => (
-            <>
+          {data.pastExhibitions.edges.map((exhibitions: any) => (
+            <div key={exhibitions.node.id} style={{margin: 0}}>
               <Link 
                 to={`/exhibitions/${exhibitions.node.slug.en.current}/`}
-                style={{margin: 0}}
               >
                 <div>
                   <GatsbyImage 
@@ -83,7 +82,7 @@ const Exhibitions = ({ data }) => {
                   </div>
                 </div>
               </Link>
-            </>
+            </div>
           ))}
         </div>
       </section>
