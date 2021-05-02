@@ -3,6 +3,7 @@ import { graphql, Link } from 'gatsby'
 
 import Layout from '../components/layout'
 import PortableText from '../components/portableText'
+import Sidebar from '../components/sidebar'
 
 export const query = graphql `
   query SinglePostQuery($slug: String!) {
@@ -34,14 +35,14 @@ const PostPage = props => {
     >
       <section>
         <div className="sidebarContainer">
-          <div className="portableContainer artistBio">
+          <div className="portableContainer">
             <h1>News</h1>
             <p className="subTitle">{post.title.en}.</p>
             {post.body._rawEn && <PortableText blocks={post.body._rawEn} />}
             <p>{post.publishedAt}</p>
             <div><p className="backLink"><Link to="/news/">Back to News</Link></p></div>
           </div>
-          <aside className="sidebar"></aside>
+          <Sidebar />
         </div>
       </section>
     </Layout>
