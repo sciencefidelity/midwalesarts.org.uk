@@ -187,7 +187,7 @@ blockquote {
 }
 
 .gridImage {
-  aspect-ratio: 1/1;
+  aspect-ratio: 1 / 1;
 }
 
 .gridCaption {
@@ -221,14 +221,34 @@ blockquote {
 }
 
 .sidebarContent {
-  padding: 5rem;
+  padding: 10rem 5rem;
+  h3 {
+    font-weight: 500;
+    line-height: 1.8;
+    color: c.$grey-700;
+  }
+  a {
+    text-decoration: underline;
+    text-decoration-thickness: 0.1em;
+    text-decoration-color: rgba(c.$grey-050, 0.8);
+    transition: text-decoration-color 0.3s ease-in-out;
+  }
+  a:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 0.1em;
+    text-decoration-color: c.$grey-500;
+    transition: text-decoration-color 0.3s ease-in-out;
+  }
 }
 
 .sidebarMenu {
   font-size: 2.2rem;
-  line-height: 1.5;
+  line-height: 1.3;
   padding: 0;
   list-style: none;
-   
+  margin-bottom: 5rem;
+  li {
+    margin-bottom: 0.7em;
+  }
 }
 
