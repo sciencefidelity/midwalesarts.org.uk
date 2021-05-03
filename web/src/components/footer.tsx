@@ -18,6 +18,7 @@ const Footer = () => {
           <Logos />
           <FooterLinks />
         </div>
+        <p className="smallCopy">&copy; Mid Wales Arts 2021</p>
       </div>
     </footer>
   )

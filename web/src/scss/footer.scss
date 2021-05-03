@@ -14,6 +14,10 @@ footer {
     font-size: 2.2rem;
     line-height: 1.4;
     padding-bottom: 1.3rem;
+    @include b.mq(md) {
+      font-size: 2rem;
+      padding-bottom: 0.6rem;
+    }
   }
   a:hover {
     background: transparent;
@@ -22,20 +26,41 @@ footer {
 
 .footerContainer {
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: auto auto;
   width: 88%;
   max-width: 108rem;
   margin: auto;
   padding: 5rem 0 1.3rem;
+  @include b.mq(lg) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .copy {
   font-size: 2rem;
+  @include b.mq(lg) {
+    display: none;
+  }
+}
+.smallCopy {
+  font-size: 2rem;
+  display: none;
+  @include b.mq(lg) {
+    display: block;
+    padding-top: 2rem;
+    font-size: 1.8rem;
+  }
 }
 
 .footerRight {
   display: grid;
   justify-content: right;
+  @include b.mq(lg) {
+    gap: 2rem;
+  }
+  @include b.mq(sm) {
+    justify-content: center;
+  }
 }
 
 .signup {
@@ -46,6 +71,9 @@ footer {
   display: block;
   margin-top: -0.8rem;
   text-align: right;
+  @include b.mq(md) {
+    text-align: left;
+  }
 }
 
 .signupInput {
@@ -57,6 +85,15 @@ footer {
   font-size: 2.2rem;
   border: 0.14em solid c.$grey-400;
   margin-top: -1rem;
+  @include b.mq(md) {
+    font-size: 2rem;
+    width: calc(100% - 6rem);
+  }
+  @include b.mq(sm) {
+    height: 5rem;
+    padding: 0.85em 1em;
+    width: calc(100% - 5rem);
+  }
 }
 
 .signupSubmit {
@@ -67,6 +104,14 @@ footer {
   width: 6rem;
   padding: 1.2rem;
   transform: translateY(2.3rem);
+  @include b.mq(md) {
+    transform: translateY(2.35rem);
+  }
+  @include b.mq(sm) {
+    height: 5rem;
+    width: 5rem;
+    transform: translateY(1.85rem);
+  }
 }
 
 .signupHeading {
@@ -75,18 +120,48 @@ footer {
   font-size: 2.2rem;
   margin-bottom: -4rem;
   text-align: right;
+  @include b.mq(md) {
+    font-size: 2rem;
+    text-align: right;
+  }
 }
 
 .funderLogos {
-  display: grid;
-  grid-template-columns: auto auto auto;
-  gap: 0rem;
+  display: flex;
   align-self: center;
-  text-align: right;
+  justify-content: right;
+  @include b.mq(md) {
+    justify-content: left;
+  }
+  @include b.mq(sm) {
+    flex-direction: column;
+  }
+}
+
+.logosRight {
+  display: flex;
+  @include b.mq(sm) {
+    margin-top: 2rem;
+  }
 }
 
 .funderLogo {
   height: 6rem;
+  width: auto;
+  padding-left: 3rem;
+  @include b.mq(md) {
+    height: 5.2rem;
+  }
+}
+
+.first {
+  padding-left: 0;
+}
+
+.second {
+  @include b.mq(sm) {
+    padding-left: 0;
+  }
 }
 
 .acw, .wg, .gtg {
@@ -96,6 +171,9 @@ footer {
 .linksMenuContainer {
   align-self: end;
   padding-bottom: 3.5rem;
+  @include b.mq(md) {
+    display: none;
+  }
 }
 
 .linksMenu {
@@ -104,9 +182,13 @@ footer {
   text-transform: uppercase;
   display: flex;
   flex-direction: row;
+  padding: 0;
   li {
     margin-top: 0;
     padding-left: 3rem;
+    &:first-child{
+      padding: 0;
+    }
     a {
       text-decoration: underline;
       text-decoration-thickness: 0.1em;
