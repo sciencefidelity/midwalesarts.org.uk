@@ -58,7 +58,6 @@ h1 {
 h2 {
   font-size: 5.4em;
   font-weight: 800;
-  text-transform: uppercase;
   color: c.$grey-600;
   margin: 0;
   line-height: 1.3;
@@ -157,7 +156,7 @@ blockquote {
 .sidebar {
   background: rgba(c.$grey-050, 0.8);
   margin-top: -8rem;
-  margin-bottom: -25rem;
+  margin-bottom: -23rem;
   @include b.mq(lg) {
     display: none;
   }
@@ -262,7 +261,7 @@ blockquote {
 }
 
 .sidebarContent {
-  padding: 10rem 5rem;
+  padding: 6rem 5rem;
   h3 {
     font-weight: 500;
     line-height: 1.8;

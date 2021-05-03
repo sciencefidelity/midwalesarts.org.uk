@@ -218,8 +218,10 @@ header {
   margin: auto;
   text-align: right;
   margin-bottom: 5rem;
+  @include b.mq(md) {
+    margin-bottom: 1rem;
+  }
   @include b.mq(sm) {
     font-size: 1.2rem;
-    margin-bottom: 1rem;
   }
 }

@@ -6,7 +6,7 @@
   display: grid;
   gap: 2.2rem;
   grid-template-columns: auto auto;
-  @include b.mq(sm) {
+  @include b.mq(lg) {
     width: 100vw;
     padding: 0 6% 0 6%;
   }
@@ -21,9 +21,11 @@
 
 .introLogoContainer {
   padding-top: 3.4rem;
+  @include b.mq(lg) {
+    justify-self: right;
+  }
   @include b.mq(sm) {
     padding-top: 2.7rem;
-    justify-self: right;
   }
 }
 
@@ -44,6 +46,16 @@
 .introText {
   position: relative;
   padding-top: 8.6rem;
+  @include b.mq(lg) {
+    max-width: 70rem;
+    width: 88%;
+    margin: 0 auto 0;
+    padding-top: 0;
+  }
+  @include b.mq(md) {
+    margin: -4rem 6% 0 6%;
+    padding-top: 0;
+  }
   @include b.mq(sm) {
     margin: -4rem 6% 0 6%;
     padding-top: 0;
@@ -57,9 +69,15 @@
   font-size: 1.6rem;
   line-height: 0.8;
   text-align: right;
+  @include b.mq(lg) {
+    position: relative;
+    margin: 6rem auto 0 6%;
+  }
+  @include b.mq(md) {
+    margin: 4rem auto 0;
+  }
   @include b.mq(sm) {
     font-size: 1.2rem;
-    position: relative;
   }
 }
 
@@ -115,7 +133,7 @@
   display: flex;
   margin: 0 0 0 5.5rem;
   z-index: 4;
-  @include b.mq(sm) {
+  @include b.mq(md) {
     margin: 0;
   }
 }
@@ -125,6 +143,10 @@
   @media (max-width: 1080px) {
     margin: 0 5.6rem 6rem 6rem;
   }
+  @include b.mq(md) {
+    margin: 0 auto 8rem;
+    width: 88%;
+  }
   @include b.mq(sm) {
     margin: 0 auto;
     width: 88%;
@@ -132,7 +154,7 @@
 }
 
 .sectionInsetImage {
-  @include b.mq(lg) {
+  @include b.mq(md) {
     display: none;
   }
 }
@@ -141,6 +163,10 @@
   margin-top: 5rem;
   width: 34rem;
   height: 51rem;
+  @include b.mq(lg) {
+    width: 22.5rem;
+    height: 38.25rem;
+  }
 }
 
 .sectionTitleContainer {
@@ -163,6 +189,7 @@
   h2 {
     color: c.$grey-650;
     font-size: 5rem;
+    text-transform: uppercase;
     @include b.mq(sm) {
       font-size: 4em;
       line-height: 1.1;
@@ -178,6 +205,16 @@
   grid-template-columns: 1fr 2fr;
   gap: 9.4rem;
   padding-bottom: 6rem;
+  @include b.mq(lg) {
+    grid-template-columns: 1fr;
+    padding-bottom: 0rem;
+    margin-bottom: -6rem;
+  }
+  @include b.mq(md) {
+    grid-template-columns: 1fr;
+    padding-bottom: 0rem;
+    margin-bottom: -6rem;
+  }
   @include b.mq(sm) {
     grid-template-columns: 1fr;
     padding-bottom: 0rem;
@@ -186,21 +223,29 @@
 }
 
 %cta {
+  position: relative;
   color: c.$grey-400;
-  text-transform: capitalize;
   line-height: 1.1;
   transition: color 0.25s;
   span {
     background: c.$grey-000;
     padding: 0 0 0 2rem;
+    @include b.mq(md) {
+      font-size: 5rem;
+    }
     @include b.mq(sm) {
       background: transparent;
+      margin-right: auto;
     }
   }
   &::after {
     content: url("data:image/svg+xml,%3Csvg height='3.5em' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3Cpath d='M224 273L88 409c-9 9-24 9-34 0l-22-23c-10-9-10-24 0-34l96-96-96-96c-10-10-10-25 0-34l22-23c10-9 25-9 34 0l136 136c10 9 10 25 0 34zm192-34L280 103c-9-9-24-9-34 0l-22 23c-10 9-10 24 0 33l96 97-96 96c-10 10-10 25 0 34l22 23c10 9 25 9 34 0l136-136c10-9 10-25 0-34z' fill='%23999999'/%3E%3C/svg%3E");
     position: absolute;
     transition: transform 0.25s;
+    @include b.mq(md) {
+      content: url("data:image/svg+xml,%3Csvg height='3em' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3Cpath d='M224 273L88 409c-9 9-24 9-34 0l-22-23c-10-9-10-24 0-34l96-96-96-96c-10-10-10-25 0-34l22-23c10-9 25-9 34 0l136 136c10 9 10 25 0 34zm192-34L280 103c-9-9-24-9-34 0l-22 23c-10 9-10 24 0 33l96 97-96 96c-10 10-10 25 0 34l22 23c10 9 25 9 34 0l136-136c10-9 10-25 0-34z' fill='%23999999'/%3E%3C/svg%3E");
+      top: 0.6rem
+    }
     @include b.mq(sm) {
       content: url("data:image/svg+xml,%3Csvg height='2em' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3Cpath d='M224 273L88 409c-9 9-24 9-34 0l-22-23c-10-9-10-24 0-34l96-96-96-96c-10-10-10-25 0-34l22-23c10-9 25-9 34 0l136 136c10 9 10 25 0 34zm192-34L280 103c-9-9-24-9-34 0l-22 23c-10 9-10 24 0 33l96 97-96 96c-10 10-10 25 0 34l22 23c10 9 25 9 34 0l136-136c10-9 10-25 0-34z' fill='%23999999'/%3E%3C/svg%3E");
     }
@@ -222,9 +267,16 @@
   margin-left: auto;
   text-align: right;
   padding-right: 5.4rem;
+  @include b.mq(lg) {
+    margin-top: 7rem;
+  }
+  @include b.mq(md) {
+    margin-top: 7rem;
+  }
   @include b.mq(sm) {
     margin-top: 5rem;
-    padding-right: calc(6% + 0.2em);
+    padding-right: 0;
+    margin-right: 6%;
   }
 }
 
@@ -234,12 +286,14 @@
   margin-left: auto;
   text-align: right;
   padding-right: 2rem;
+  @include b.mq(md) {
+    padding-right: 0rem;
+  }
   @include b.mq(sm) {
     background: transparent;
-    text-align: left;
     margin-top: 2rem;
-    padding-right: 0rem;
-    margin-left: 0;
+    padding-right: 2rem;
+    margin-right: 6%;
   }
 }
 
