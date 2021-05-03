@@ -37,7 +37,6 @@ const Layout = ({
         <main>{children}</main>
       
       <Footer />
-
     </>
   )
 }

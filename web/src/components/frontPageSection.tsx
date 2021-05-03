@@ -15,7 +15,7 @@ const FrontPageSection = (props: any) => (
         />
         <div className="sectionHeroCaption caption">{props.mainImageCaption}</div>
         <div className="sectionContent">
-          <div>
+          <div className="sectionInsetImage">
             <GatsbyImage 
               image={props.subImage}
               alt="an image"

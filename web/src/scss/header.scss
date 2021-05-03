@@ -1,4 +1,6 @@
+
 @use 'foundation/colors' as c;
+@use "foundation/breakpoints" as b;
 
 header {
   margin-bottom: 1.2rem;
@@ -10,6 +12,9 @@ header {
   margin-bottom: 9.3rem;
   position: relative;
   margin: auto;
+  @include b.mq(sm) {
+    height: 35rem;
+  }
 }
 
 .heroImage {
@@ -22,6 +27,9 @@ header {
 
 .colorLogo {
   width: 12rem;
+  @include b.mq(sm) {
+    width: 8rem;
+  }
 }
 
 .logoContainer {
@@ -33,6 +41,9 @@ header {
   background: radial-gradient(circle at center, rgba(c.$grey-000, 0.8) 30%, transparent 50%);
   padding: 3rem 2.6rem 2.6rem 2.8rem;
   border-radius: 50%;
+  @include b.mq(sm) {
+    padding: 2rem 1.6rem 1.6rem 1.8rem;
+  }
 }
 
 .menuOverlay {
@@ -49,6 +60,9 @@ header {
       rgba(c.$grey-000,0.8) 50%,
       rgba(c.$grey-000,0) 100%);
   z-index: 2;
+  @include b.mq(sm) {
+    height: 35rem;
+  }
 }
 
 .hamburgerContainer {
@@ -121,6 +135,9 @@ header {
   &:hover {
     color: c.$grey-650;
   }
+  @include b.mq(sm) {
+    margin: 1.2rem 2.4rem 4rem;
+  }
 }
 
 .social {
@@ -152,8 +169,19 @@ header {
     letter-spacing: 0.05em;
     list-style: none;
     padding: 0 4rem;
+    @include b.mq(sm) {
+      right: calc(50% - 21rem);
+      top: calc(50% - 3rem);
+      font-size: 1.8rem;
+      line-height: 1;
+    }
     li {
       padding: 0.35rem 0;
+      &:first-child {
+        @include b.mq(sm) {
+          display: none;
+        }
+      }
       a {
         color: c.$grey-600;
         border-bottom-color: rgba(c.$grey-500, 0);
@@ -170,6 +198,12 @@ header {
       }
     }
   }
+  @include b.mq(sm) {
+    width: calc(104vh * 2);
+    height: calc(104vh * 2);
+    right: calc(4.8rem - 104vh + 9.6rem);
+    top: calc(4.8rem - 104vh);
+  }
 }
 
 .isActive {
@@ -184,4 +218,8 @@ header {
   margin: auto;
   text-align: right;
   margin-bottom: 5rem;
+  @include b.mq(sm) {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
 }

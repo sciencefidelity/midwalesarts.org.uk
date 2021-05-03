@@ -1,8 +1,12 @@
 
 @use 'foundation/colors' as c;
+@use "foundation/breakpoints" as b;
 
 footer {
   height: 30rem;
   background: c.$grey-050;
   margin-top: 23rem;
+  @include b.mq(sm) {
+    margin-top: 12rem;
+  }
 }

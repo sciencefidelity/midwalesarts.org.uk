@@ -31,6 +31,7 @@ const IndexPage = () => (
                   />
                   <Brand />
                 </div>
+                <Intro />
                 <div className="sideImageContainer">
                   <GatsbyImage 
                     image={data.sanityFrontPage.subImage.asset.gatsbyImageData}
@@ -39,7 +40,6 @@ const IndexPage = () => (
                   />
                   <div>{data.sanityFrontPage.subImage.caption}</div>
                 </div>
-                <Intro />
               </div>
             </div>
           </section>
