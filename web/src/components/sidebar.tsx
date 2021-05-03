@@ -1,8 +1,6 @@
 import * as React from 'react'
 import { StaticQuery, graphql, Link } from 'gatsby'
 
-import SidebarMenu from './sidebarMenu'
-
 const Sidebar = () => (
   <StaticQuery
     query={query}
@@ -20,7 +18,7 @@ const Sidebar = () => (
           <h3>Upcoming Events</h3>
           <ul className="sidebarMenu">
             {data.allSanityEvent.edges.map((link: any) => (
-              <Link to={`/news/${link.node.slug.en.current}/`} key={link.node.id}>
+              <Link to={`/events/${link.node.slug.en.current}/`} key={link.node.id}>
                 <li>{link.node.title.en}</li>
               </Link>
             ))}
@@ -28,7 +26,7 @@ const Sidebar = () => (
           <h3>Exhibitions</h3>
           <ul className="sidebarMenu">
             {data.allSanityExhibition.edges.map((link: any) => (
-              <Link to={`/news/${link.node.slug.en.current}/`} key={link.node.id}>
+              <Link to={`/exhibitions/${link.node.slug.en.current}/`} key={link.node.id}>
                 <li>{link.node.title.en}</li>
               </Link>
             ))}

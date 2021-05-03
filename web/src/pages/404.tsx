@@ -1,13 +1,37 @@
-import * as React from "react"
+import * as React from 'react'
+import { graphql } from 'gatsby'
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Layout from '../components/layout'
+import SEO from '../components/seo'
 
-const NotFoundPage = () => (
-  <Layout>
+export const query = graphql `
+  query spacesQuery {
+    sanityPage(title: {en: {eq: "About"}}) {
+      mainImage {
+        asset {
+          id
+          gatsbyImageData(width: 1440, placeholder: BLURRED, formats: WEBP)
+        }
+      }
+    }
+  }
+`
+
+const NotFoundPage = ({ data }) => (
+  <Layout
+    heroImage={data.sanityPage.mainImage.asset.gatsbyImageData}
+    heroImageCaption="&nbsp;"
+  >
     <SEO title="404: Not found" />
-    <h1>404: Not Found</h1>
-    <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
+      <div
+        className="container"
+        style={{
+          textAlign: `center`
+        }}
+      >
+        <h1>404: Not Found</h1>
+        <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
+      </div>
   </Layout>
 )
 
