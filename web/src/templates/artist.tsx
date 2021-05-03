@@ -4,6 +4,7 @@ import { GatsbyImage } from 'gatsby-plugin-image'
 
 import Layout from '../components/layout'
 import PortableText from '../components/portableText'
+import Modal from '../components/modal'
 
 import '../scss/artist.scss'
 
@@ -71,6 +72,7 @@ const Artist = ({ data }) => {
       heroImageCaption="&nbsp;"
     >
       <section>
+        <Modal />
         <div className="sidebarContainer">
           <div className="portableContainer">
             <h1>Artist</h1>

@@ -3,9 +3,11 @@
 @use "foundation/breakpoints" as b;
 
 footer {
+  position: relative;
   height: 30rem;
-  background: rgba(c.$grey-050, 0.8);
+  background: c.$grey-050;
   margin-top: 23rem;
+  z-index: 1;
   @include b.mq(sm) {
     margin-top: 12rem;
   }
