@@ -4,11 +4,120 @@
 
 footer {
   position: relative;
-  height: 30rem;
   background: c.$grey-050;
   margin-top: 23rem;
   z-index: 1;
   @include b.mq(sm) {
     margin-top: 12rem;
+  }
+  p {
+    font-size: 2.2rem;
+    line-height: 1.4;
+    padding-bottom: 1.3rem;
+  }
+  a:hover {
+    background: transparent;
+  }
+}
+
+.footerContainer {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  width: 88%;
+  max-width: 108rem;
+  margin: auto;
+  padding: 5rem 0 1.3rem;
+}
+
+.copy {
+  font-size: 2rem;
+}
+
+.footerRight {
+  display: grid;
+  justify-content: right;
+}
+
+.signup {
+  margin-top: -0.7rem;
+}
+
+.signupForm {
+  display: block;
+  margin-top: -0.8rem;
+  text-align: right;
+}
+
+.signupInput {
+  background: white;
+  border: 0;
+  width: 48rem;
+  height: 6rem;
+  padding: 0.85em 1.5em;
+  font-size: 2.2rem;
+  border: 0.14em solid c.$grey-400;
+  margin-top: -1rem;
+}
+
+.signupSubmit {
+  background: c.$grey-400;
+  cursor: pointer;
+  border: 0;
+  height: 6rem;
+  width: 6rem;
+  padding: 1.2rem;
+  transform: translateY(2.3rem);
+}
+
+.signupHeading {
+  display: inline-block;
+  width: 100%;
+  font-size: 2.2rem;
+  margin-bottom: -4rem;
+  text-align: right;
+}
+
+.funderLogos {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 0rem;
+  align-self: center;
+  text-align: right;
+}
+
+.funderLogo {
+  height: 6rem;
+}
+
+.acw, .wg, .gtg {
+  margin-top: 0;
+}
+
+.linksMenuContainer {
+  align-self: end;
+  padding-bottom: 3.5rem;
+}
+
+.linksMenu {
+  list-style: none;
+  font-size: 2rem;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: row;
+  li {
+    margin-top: 0;
+    padding-left: 3rem;
+    a {
+      text-decoration: underline;
+      text-decoration-thickness: 0.1em;
+      text-decoration-color: rgba(c.$grey-050, 0.8);
+      transition: text-decoration-color 0.3s ease-in-out;
+    }
+    a:hover {
+      text-decoration: underline;
+      text-decoration-thickness: 0.1em;
+      text-decoration-color: c.$grey-500;
+      transition: text-decoration-color 0.3s ease-in-out;
+    }
   }
 }
