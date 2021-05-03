@@ -1,15 +1,19 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
+import { GatsbyImage } from 'gatsby-plugin-image'
 
 import '../scss/footer.scss'
 
-const Modal = () => (
+const Modal = ( props: any ) => (
   <aside>
     <div className="modalContainer">
       <div className="modalImageContiner">
-        <img src="https://source.unsplash.com/random" />
-        <p className="modalCaption">Stefan Knapp, Section of Abstract Enamel, 1960</p>
-        <p className="modalCaption">Enamel on Steel, not for sale</p>
+        <GatsbyImage 
+          image={props.image}
+          alt=""
+        />
+        <p className="modalCaption"><em>{props.title}</em>, {props.name}, {props.date}</p>
+        <p className="modalCaption">{props.medium}, {props.dimensions}, £{props.price}</p>
       </div>
       <img
         alt=""

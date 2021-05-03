@@ -10,7 +10,7 @@ import '../scss/artist.scss'
 
 export const query = graphql `
   query singleArtistQuery($name: String!) {
-    allSanityArtwork(
+    artworkList: allSanityArtwork(
       sort: {fields: date, order: DESC}
       filter: {artist: { eq: $name }}
     ) {
@@ -31,6 +31,20 @@ export const query = graphql `
           price
           title {
             en
+          }
+        }
+      }
+    }
+    artworkModal: allSanityArtwork(
+      sort: {fields: date, order: DESC}
+      filter: {artist: { eq: $name }}
+    ) {
+      edges {
+        node {
+          mainImage {
+            asset {
+              gatsbyImageData(width: 1280, formats: WEBP, placeholder: BLURRED)
+            }
           }
         }
       }
@@ -65,14 +79,24 @@ const Artist = ({ data }) => {
   }
   
   const artist = data.sanityArtist
-  const artwork = data.allSanityArtwork
+  const artwork = data.artworkList
+  const modalImage = data.artworkModal
+  
   return (
     <Layout
       heroImage={artist.mainImage.asset.gatsbyImageData}
       heroImageCaption="&nbsp;"
     >
       <section>
-        <Modal />
+        <Modal 
+          image={modalImage.edges[0].node.mainImage.asset.gatsbyImageData}
+          name={artwork.edges[0].node.artist}
+          title={artwork.edges[0].node.title.en}
+          date={artwork.edges[0].node.date}
+          medium={artwork.edges[0].node.medium.en}
+          dimensions={artwork.edges[0].node.dimensions}
+          price={artwork.edges[0].node.price}
+        />
         <div className="sidebarContainer">
           <div className="portableContainer">
             <h1>Artist</h1>

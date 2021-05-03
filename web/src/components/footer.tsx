@@ -3,13 +3,13 @@ import PropTypes from 'prop-types'
 
 import '../scss/footer.scss'
 
-const Footer = () => (
-  <footer>
-    <div>
+const Footer = () => {
+  return (
+    <footer>
       
-    </div>
-  </footer>
-)
+    </footer>
+  )
+}
 
 Footer.propTypes = {
   siteTitle: PropTypes.string,
