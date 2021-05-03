@@ -44,15 +44,14 @@ export const query = graphql `
       }
       mainImage {
         asset {
-          gatsbyImageData(width: 1440, formats: WEBP, placeholder: DOMINANT_COLOR)
+          gatsbyImageData(width: 1440, formats: WEBP, placeholder: BLURRED)
         }
       }
     }
   }
 `
 
-const ExhibitionPage = props => {
-  const { data } = props
+const ExhibitionPage = ({ data }) => {
   const artwork = data && data.allSanityArtwork
   const exhibition = data && data.sanityExhibition
   return (
