@@ -10,7 +10,7 @@ const News = () => (
     render={data => (
       <Layout
         heroImage={data.newsHero.edges[0].node.image.asset.gatsbyImageData}
-        heroImageCaption="&nbsp;"
+        heroImageCaption={data.newsMain.edges[0].node.title.en}
       >
         <section>
           <div className="sidebarContainer">

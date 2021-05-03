@@ -10,7 +10,7 @@ const FrontPageSection = (props: any) => (
       <>
         <GatsbyImage 
           image={props.mainImage}
-          alt="an image"
+          alt={props.mainImageCaption}
           className="sectionHero"
         />
         <div className="sectionHeroCaption caption">{props.mainImageCaption}</div>
@@ -18,7 +18,7 @@ const FrontPageSection = (props: any) => (
           <div className="sectionInsetImage">
             <GatsbyImage 
               image={props.subImage}
-              alt="an image"
+              alt={props.subImageCaption}
               className="sectionInset"
             />
             <div className="caption">&nbsp;{props.subImageCaption}</div>

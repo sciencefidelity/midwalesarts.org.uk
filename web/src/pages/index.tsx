@@ -35,7 +35,7 @@ const IndexPage = () => (
                 <div className="sideImageContainer">
                   <GatsbyImage 
                     image={data.sanityFrontPage.subImage.asset.gatsbyImageData}
-                    alt="an image"
+                    alt={data.sanityFrontPage.subImage.caption}
                     className="sideImage"
                   />
                   <div>{data.sanityFrontPage.subImage.caption}</div>

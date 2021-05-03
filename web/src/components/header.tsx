@@ -21,7 +21,7 @@ const Header = ({
       <div className="hero">
         <GatsbyImage 
           image={heroImage}
-          alt="an image"
+          alt={heroImageCaption}
           className="heroImage"
         />
         <div className="menuOverlay">
