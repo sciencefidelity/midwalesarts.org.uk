@@ -11,7 +11,7 @@ const Videos = () => (
       render={data => (
         <Layout
           heroImage={data.videosHero.edges[0].node.mainImage.asset.gatsbyImageData}
-          heroImageCaption="&nbsp;"
+          heroImageCaption={`${data.videosMain.edges[0].node.title.en}`}
         >
           <section>
             <div className="sidebarContainer">

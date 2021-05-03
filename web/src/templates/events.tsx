@@ -10,7 +10,7 @@ const Events = () => (
     render={data => (
       <Layout
         heroImage={data.eventsHero.edges[0].node.mainImage.asset.gatsbyImageData}
-        heroImageCaption="&nbsp;"
+        heroImageCaption={`${data.eventsMain.edges[0].node.title.en}, ${data.eventsMain.edges[0].node.date}`}
       >
         <section>
           <div className="sidebarContainer">
