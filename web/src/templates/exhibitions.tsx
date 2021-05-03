@@ -22,7 +22,7 @@ const Exhibitions = ({ data }) => {
         <div className="exhibitionGrid">
           {data.currentExhibitions.edges.map((exhibitions: any) => (
             <div key={exhibitions.node.id}>
-              <p>Current Exhibition</p>
+              <p>Current exhibition</p>
               <Link 
                 to={`/exhibitions/${exhibitions.node.slug.en.current}/`}
                 style={{margin: 0}}
@@ -41,7 +41,7 @@ const Exhibitions = ({ data }) => {
           ))}
           {data.futureExhibitions.edges.map((exhibitions: any) => (
             <div style={{margin: 0}} key={exhibitions.node.id}>
-              <p>Next Exhibition</p>
+              <p>Next exhibition</p>
               <Link 
                 to={`/exhibitions/${exhibitions.node.slug.en.current}/`}
                 style={{margin: 0}}
@@ -61,7 +61,7 @@ const Exhibitions = ({ data }) => {
         </div>
         <div className="sidebarContainer" style={{marginTop: `6rem`}}>
           <div className="portableContainer">
-            <p>Past Exhibitions</p>
+            <p>Past exhibitions</p>
           </div>
         </div>
         <div className="exhibitionGrid">
