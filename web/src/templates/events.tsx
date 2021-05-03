@@ -58,7 +58,7 @@ const query = graphql `
           id
           mainImage {
             asset {
-              gatsbyImageData(width: 400, height: 400, formats: WEBP, placeholder: BLURRED)
+              gatsbyImageData(width: 468, height: 468, formats: WEBP, placeholder: BLURRED)
             }
           }
           slug {

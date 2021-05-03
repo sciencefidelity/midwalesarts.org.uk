@@ -59,7 +59,7 @@ const query = graphql `
           }
           image {
             asset {
-              gatsbyImageData(width: 400, height: 400, formats: WEBP, placeholder: BLURRED)
+              gatsbyImageData(width: 468, height: 468, formats: WEBP, placeholder: BLURRED)
             }
           }
           publishedAt(formatString: "dddd, MMMM Do YYYY")

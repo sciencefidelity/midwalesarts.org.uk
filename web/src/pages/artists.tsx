@@ -23,20 +23,19 @@ const ArtistsPage = () => (
           </div>
           <div className="imageGrid">
             {data.allSanityArtist.edges.map((artists: any) => (
-              <div key={artists.node.id}>
-                <Link 
-                  to={`/artists/${artists.node.slug.current}/`}
-                  style={{margin: 0}}
-                >
-                  <div>
-                    <GatsbyImage 
-                      image={artists.node.mainImage.asset.gatsbyImageData}
-                      alt=""
-                    />
-                    <div className="gridCaption">{artists.node.title}</div>
-                  </div>
-                </Link>
-              </div>
+              <Link 
+                to={`/artists/${artists.node.slug.current}/`}
+                style={{margin: 0}}
+                key={artists.node.id}
+              >
+                <div>
+                  <GatsbyImage 
+                    image={artists.node.mainImage.asset.gatsbyImageData}
+                    alt=""
+                  />
+                  <div className="gridCaption">{artists.node.title}</div>
+                </div>
+              </Link>
             ))}
           </div>
         </section>
@@ -60,7 +59,7 @@ const query = graphql `
           }
           mainImage {
             asset {
-              gatsbyImageData(width: 400, height: 400, formats: WEBP, placeholder: BLURRED)
+              gatsbyImageData(width: 468, height: 468, formats: WEBP, placeholder: BLURRED)
             }
           }
           disciplines {

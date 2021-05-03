@@ -107,7 +107,7 @@ export const query = graphql `
           }
           mainImage {
             asset {
-              gatsbyImageData(width: 570, height: 570, formats: WEBP, placeholder: BLURRED)
+              gatsbyImageData(width: 624, height: 624, formats: WEBP, placeholder: BLURRED)
             }
           }
           dateStart(formatString: "Do MMMM")

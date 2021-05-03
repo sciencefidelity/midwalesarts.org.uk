@@ -33,7 +33,7 @@ export const query = graphql`
           id
           mainImage {
             asset {
-              gatsbyImageData(width: 400, height: 400, formats: WEBP, placeholder: BLURRED)
+              gatsbyImageData(width: 468, height: 468, formats: WEBP, placeholder: BLURRED)
             }
           }
           title {
@@ -70,7 +70,7 @@ const Visit = ({ data }) => {
                   <div>
                     <GatsbyImage 
                       image={space.node.mainImage.asset.gatsbyImageData}
-                      alt=""
+                      alt={space.node.title.en}
                     />
                     <div className="gridCaption">{space.node.title.en}</div>
                   </div>
@@ -84,6 +84,7 @@ const Visit = ({ data }) => {
                 id={space.node.slug.en.current}
                 style={{margin: 0}}
                 key={space.node.id}
+                className="spacesText"
               >
                 <h4 className="spacesGridTitle">{space.node.title.en}</h4>
                 {space.node.body._rawEn && <PortableText blocks={space.node.body._rawEn} />}

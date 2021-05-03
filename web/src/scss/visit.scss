@@ -1,5 +1,6 @@
 
 @use 'foundation/colors' as c;
+@use "foundation/breakpoints" as b;
 
 .visitContainer {
   width: 81.25%;
@@ -10,8 +11,14 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 3rem;
-  margin-bottom: 10rem;
+  margin: 9rem auto 10rem;
   text-align: right;
+  @include b.mq(lg) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @include b.mq(sm) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .spacesTextGrid {
@@ -21,6 +28,15 @@
   margin-bottom: 10rem;
   h4 {
     padding-top: 5rem;
+  }
+  @include b.mq(xl) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.spacesText {
+  @include b.mq(xl) {
+    max-width: 730px;
   }
 }
 

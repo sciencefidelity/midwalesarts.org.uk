@@ -27,8 +27,7 @@ export const query = graphql `
   }
 `
 
-const VideoPage = props => {
-  const { data } = props
+const VideoPage = ({ data }) => {
   const video = data && data.sanityVideo
   return (
     <Layout

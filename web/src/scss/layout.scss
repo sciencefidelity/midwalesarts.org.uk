@@ -1,4 +1,5 @@
 
-@use 'foundation/normalize';
-@use 'foundation/typography';
-@use 'foundation/base';
+@use './foundation/typography';
+@use './foundation/normalize';
+@use './foundation/base';
+@use './foundation/breakpoints';

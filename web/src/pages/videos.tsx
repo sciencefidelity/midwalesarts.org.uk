@@ -22,10 +22,9 @@ const Videos = () => (
             </div>
             <div className="imageGrid">
               {data.videosMain.edges.map((videos: any) => (
-                <div key={videos.node.id}>
+                <div key={videos.node.id} style={{margin: 0}}>
                   <Link
                     to={`/videos/${videos.node.slug.en.current}/`}
-                    style={{margin: 0}}
                   >
                     <GatsbyImage 
                       image={videos.node.mainImage.asset.gatsbyImageData}
@@ -55,7 +54,7 @@ const query = graphql `
           }
           mainImage {
             asset {
-              gatsbyImageData(width: 400, height: 400, formats: WEBP, placeholder: BLURRED)
+              gatsbyImageData(width: 468, height: 468, formats: WEBP, placeholder: BLURRED)
             }
           }
           slug {
