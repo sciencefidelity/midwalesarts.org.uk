@@ -140,6 +140,7 @@ footer {
 
 .logosRight {
   display: flex;
+  justify-content: right;
   @include b.mq(sm) {
     margin-top: 2rem;
   }
