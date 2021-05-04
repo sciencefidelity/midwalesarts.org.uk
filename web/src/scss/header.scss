@@ -27,6 +27,12 @@ header {
 
 .colorLogo {
   width: 12rem;
+  transition: opacity 0.3s ease;
+  &:hover,
+  &:active {
+    opacity: 0.92;
+    transition: opacity 0.3s ease;
+  }
   @include b.mq(sm) {
     width: 8rem;
   }
@@ -145,6 +151,12 @@ header {
   width: 3.8rem;
   position: relative;
   z-index: 1;
+  transition: opacity 0.3s ease;
+  &:hover,
+  &:active {
+    opacity: 0.92;
+    transition: opacity 0.3s ease;
+  }
 }
 
 .headerMenu {
