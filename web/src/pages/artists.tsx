@@ -12,7 +12,7 @@ const ArtistsPage = () => (
     render={data => (
       <Layout
         heroImage={data.sanityArtist.mainImage.asset.gatsbyImageData}
-        heroImageCaption="Diane Rose, A Swoop of Swallows, 2020"
+        heroImageCaption={data.sanityArtist.mainImage.caption}
       >
         <section>
           <div className="sidebarContainer">
@@ -72,6 +72,7 @@ const query = graphql `
     }
     sanityArtist(title: {eq: "Diane Rose"}) {
       mainImage {
+        caption
         asset {
           gatsbyImageData(width: 1440, formats: WEBP, placeholder: BLURRED)
         }

@@ -60,6 +60,7 @@ export const query = graphql `
       }
       id
       mainImage {
+        caption
         asset {
           gatsbyImageData(width: 1440, formats: WEBP, placeholder: BLURRED)
         }
@@ -85,7 +86,7 @@ const Artist = ({ data }) => {
   return (
     <Layout
       heroImage={artist.mainImage.asset.gatsbyImageData}
-      heroImageCaption="&nbsp;"
+      heroImageCaption={artist.mainImage.caption}
     >
       <section>
         <Modal 
