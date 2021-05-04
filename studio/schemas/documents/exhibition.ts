@@ -21,7 +21,7 @@ export default {
       title: 'End date',
       type: 'date',
       options: {
-        dateFormat: 'dddd, MMMM Do YYYY,',
+        dateFormat: 'dddd, MMMM Do YYYY',
       }
     },
     {
