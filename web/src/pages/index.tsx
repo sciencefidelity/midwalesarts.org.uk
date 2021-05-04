@@ -70,7 +70,7 @@ const query = graphql`
       mainImage {
         caption
         asset {
-          gatsbyImageData(height: 450, formats: AUTO, placeholder: BLURRED)
+          gatsbyImageData(width: 1440, formats: AUTO, placeholder: BLURRED, layout: FULL_WIDTH)
         }
       }
       subImage {

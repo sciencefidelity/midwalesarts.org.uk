@@ -42,7 +42,7 @@ const query = graphql `
       }
       mainImage {
         asset {
-          gatsbyImageData(width: 1440, placeholder: BLURRED, formats: WEBP)
+          gatsbyImageData(width: 1440, placeholder: BLURRED, formats: WEBP, layout: FULL_WIDTH)
         }
       }
     }

@@ -15,7 +15,7 @@ export const query = graphql `
       id
       mainImage {
         asset {
-          gatsbyImageData(width: 1440, formats: WEBP, placeholder: BLURRED)
+          gatsbyImageData(width: 1440, formats: WEBP, placeholder: BLURRED, layout: FULL_WIDTH)
         }
       }
       publishDate(formatString: "dddd, MMMM Do YYYY")

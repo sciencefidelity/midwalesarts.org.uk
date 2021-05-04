@@ -19,7 +19,7 @@ export const query = graphql `
       }
       mainImage {
         asset {
-          gatsbyImageData(width: 1440, formats: WEBP, placeholder: BLURRED)
+          gatsbyImageData(width: 1440, formats: WEBP, placeholder: BLURRED, layout: FULL_WIDTH)
         }
       }
     }
