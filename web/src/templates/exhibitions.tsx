@@ -10,7 +10,7 @@ const Exhibitions = ({ data }) => {
   return (
     <Layout
       heroImage={data.currentExhibitionsHero.edges[0].node.mainImage.asset.gatsbyImageData}
-      heroImageCaption="&nbsp;"
+      heroImageCaption={data.currentExhibitionsHero.edges[0].node.mainImage.caption}
     >
       <section>
         <div className="sidebarContainer">
@@ -125,6 +125,7 @@ export const query = graphql `
       edges {
         node {
           mainImage {
+            caption
             asset {
               gatsbyImageData(width: 1440, formats: WEBP, placeholder: BLURRED)
             }

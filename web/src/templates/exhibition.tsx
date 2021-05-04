@@ -43,6 +43,7 @@ export const query = graphql `
         en
       }
       mainImage {
+        caption
         asset {
           gatsbyImageData(width: 1440, formats: WEBP, placeholder: BLURRED)
         }
@@ -57,7 +58,7 @@ const ExhibitionPage = ({ data }) => {
   return (
     <Layout
       heroImage={exhibition.mainImage.asset.gatsbyImageData}
-      heroImageCaption="&nbsp;"
+      heroImageCaption={exhibition.mainImage.caption}
     >
       <section>
         <div className="sidebarContainer">
