@@ -28,7 +28,7 @@ const News = () => (
               >
                   <GatsbyImage 
                     image={posts.node.image.asset.gatsbyImageData}
-                    alt=""
+                    alt={posts.node.title.en}
                     className="gridImage"
                   />
                   <div className="gridCaption">{posts.node.title.en}</div>

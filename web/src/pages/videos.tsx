@@ -28,7 +28,7 @@ const Videos = () => (
                   >
                     <GatsbyImage 
                       image={videos.node.mainImage.asset.gatsbyImageData}
-                      alt=""
+                      alt={videos.node.title.en}
                       className="gridImage"
                     />
                     <div className="gridCaption">{videos.node.title.en}</div>

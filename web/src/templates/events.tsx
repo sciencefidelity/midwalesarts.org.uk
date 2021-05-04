@@ -27,7 +27,7 @@ const Events = () => (
                 >
                   <GatsbyImage 
                     image={events.node.mainImage.asset.gatsbyImageData}
-                    alt=""
+                    alt={events.node.title.en}
                     className="gridImage"
                   />
                   <div className="gridCaption">{events.node.title.en}</div>

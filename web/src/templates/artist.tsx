@@ -116,7 +116,8 @@ const Artist = ({ data }) => {
             <div style={{margin: 0}} key={artworks.node.id}>
               <GatsbyImage 
                 image={artworks.node.mainImage.asset.gatsbyImageData}
-                alt=""
+                alt={`${artworks.node.artist}, ${artworks.node.title.en}, ${artworks.node.date}`}
+                className="gridImage"
               />
               <div className="gridCaption">{artworks.node.title.en} ({artworks.node.date})</div>
             </div>

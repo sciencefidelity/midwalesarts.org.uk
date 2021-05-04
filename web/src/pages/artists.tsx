@@ -31,7 +31,8 @@ const ArtistsPage = () => (
                 <div>
                   <GatsbyImage 
                     image={artists.node.mainImage.asset.gatsbyImageData}
-                    alt=""
+                    alt={artists.node.mainImage.caption}
+                    className="gridImage"
                   />
                   <div className="gridCaption">{artists.node.title}</div>
                 </div>
@@ -58,6 +59,7 @@ const query = graphql `
             _rawEn(resolveReferences: {maxDepth: 10})
           }
           mainImage {
+            caption
             asset {
               gatsbyImageData(width: 468, height: 468, formats: WEBP, placeholder: BLURRED)
             }

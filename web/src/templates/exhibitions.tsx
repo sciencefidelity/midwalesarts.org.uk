@@ -29,7 +29,7 @@ const Exhibitions = ({ data }) => {
               >
                 <GatsbyImage 
                   image={exhibitions.node.mainImage.asset.gatsbyImageData}
-                  alt=""
+                  alt={exhibitions.node.mainImage.caption}
                   className="gridImage"
                 />
                 <div className="gridCaption">{exhibitions.node.title.en}</div>
@@ -48,7 +48,7 @@ const Exhibitions = ({ data }) => {
               >
                 <GatsbyImage 
                   image={exhibitions.node.mainImage.asset.gatsbyImageData}
-                  alt=""
+                  alt={exhibitions.node.mainImage.caption}
                   className="gridImage"
                 />
                 <div className="gridCaption">{exhibitions.node.title.en}</div>
@@ -73,7 +73,7 @@ const Exhibitions = ({ data }) => {
                 <div>
                   <GatsbyImage 
                     image={exhibitions.node.mainImage.asset.gatsbyImageData}
-                    alt=""
+                    alt={exhibitions.node.mainImage.caption}
                     className="gridImage"
                   />
                   <div className="gridCaption">{exhibitions.node.title.en}</div>
@@ -106,6 +106,7 @@ export const query = graphql `
             }
           }
           mainImage {
+            caption
             asset {
               gatsbyImageData(width: 624, height: 624, formats: WEBP, placeholder: BLURRED)
             }
@@ -147,6 +148,7 @@ export const query = graphql `
             }
           }
           mainImage {
+            caption
             asset {
               gatsbyImageData(width: 1440, height: 1440, formats: WEBP, placeholder: BLURRED)
             }
@@ -174,6 +176,7 @@ export const query = graphql `
             }
           }
           mainImage {
+            caption
             asset {
               gatsbyImageData(width: 1440, height: 1440, formats: WEBP, placeholder: BLURRED)
             }

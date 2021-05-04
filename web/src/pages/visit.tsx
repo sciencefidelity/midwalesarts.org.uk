@@ -63,19 +63,20 @@ const Visit = ({ data }) => {
           <p className="subTitle">What's on offer at Mid Wales Arts.</p>
           <div className="spacesGrid">
             {spaces.edges.map((space: any) => (
-              <div key={space.node.id} style={{margin: 0}}>
-                <Link 
-                  to={`#${space.node.slug.en.current}`}
-                >
-                  <div>
-                    <GatsbyImage 
-                      image={space.node.mainImage.asset.gatsbyImageData}
-                      alt={space.node.title.en}
-                    />
-                    <div className="gridCaption">{space.node.title.en}</div>
-                  </div>
-                </Link>
-              </div>
+              <Link 
+                to={`#${space.node.slug.en.current}`}
+                key={space.node.id}
+                style={{margin: 0}}
+              >
+                <div>
+                  <GatsbyImage 
+                    image={space.node.mainImage.asset.gatsbyImageData}
+                    alt={space.node.title.en}
+                    className="gridImage"
+                  />
+                  <div className="gridCaption">{space.node.title.en}</div>
+                </div>
+              </Link>
             ))}
           </div>
           <div className="spacesTextGrid">

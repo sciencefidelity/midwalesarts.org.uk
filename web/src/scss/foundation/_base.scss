@@ -221,6 +221,13 @@ blockquote {
 
 .gridImage {
   aspect-ratio: 1 / 1;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+  &:hover,
+  &:active {
+    opacity: 0.87;
+    transition: opacity 0.3s ease;
+  }
 }
 
 .gridCaption {
