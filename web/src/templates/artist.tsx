@@ -64,8 +64,7 @@ const Artist = ({ data }) => {
   const [bio, setBio] = useState(true)
   const [gallery, setGallery] = useState(false)
   const [modal, setModal] = useState(true)
-  {/* const [index, setIndex] = useState(0) */}
-  const [imageToShow, setImageToShow] = useState(0);
+  const [imageToShow, setImageToShow] = useState(0)
 
   const toggleBio = () => {
     setBio(false)
@@ -86,9 +85,6 @@ const Artist = ({ data }) => {
   const artist = data.sanityArtist
   const artwork = data.artworkList
   const modalImage = artwork.edges[imageToShow].node
-  {/* const artworkCount = artwork.edges.length */}
-  
-  console.log(modalImage)
   
   return (
     <Layout

@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { useState } from 'react'
 import { graphql, Link } from 'gatsby'
 import { GatsbyImage } from 'gatsby-plugin-image'
 
@@ -24,7 +24,7 @@ export const query = graphql `
           }
           artworkModalImage: mainImage {
             asset {
-              gatsbyImageData(width: 468, height: 468, formats: WEBP, placeholder: BLURRED)
+              gatsbyImageData(height: 670, formats: WEBP, placeholder: BLURRED)
             }
           }
           medium {
@@ -58,8 +58,22 @@ export const query = graphql `
 `
 
 const ExhibitionPage = ({ data }) => {
+  
+  const [modal, setModal] = useState(true)
+  const [imageToShow, setImageToShow] = useState(0)
+  
+  const openModal = (index: number) => {
+    setModal(false)
+    setImageToShow(index)
+  }
+  const closeModal = () => {
+    setModal(true)
+  }
+  
   const artwork = data && data.allSanityArtwork
   const exhibition = data && data.sanityExhibition
+  const modalImage = artwork.edges[imageToShow].node
+  
   return (
     <Layout
       heroImage={exhibition.mainImage.asset.gatsbyImageData}
@@ -74,8 +88,8 @@ const ExhibitionPage = ({ data }) => {
           </div>
         </div>
         <div className="imageGrid">
-          {artwork.edges.map((artworks: any) => (
-            <div style={{margin: 0}} key={artworks.node.id}>
+          {artwork.edges.map((artworks: any, index: number) => (
+            <div style={{margin: 0}} key={artworks.node.id} onClick={() => openModal(index)}>
               <GatsbyImage 
                 image={artworks.node.artworkGridImage.asset.gatsbyImageData}
                 alt={`${artworks.node.artist}, ${artworks.node.title.en}, ${artworks.node.date}`}
@@ -87,6 +101,20 @@ const ExhibitionPage = ({ data }) => {
           ))}
         </div>
         <div><p className="backLink"><Link to="/exhibitions/">Back to Exhibitions</Link></p></div>
+        <div className={modal ? "modalContainer hideModal" : "modalContainer"} onClick={closeModal}>
+          <div className="modalImageContiner">
+            <GatsbyImage 
+              image={modalImage.artworkModalImage.asset.gatsbyImageData}
+              alt=""
+            />
+            <p className="modalCaption">
+              <em>{modalImage.title.en}</em>, {modalImage.artist}, {modalImage.date}
+            </p>
+            <p className="modalCaption">
+              {modalImage.medium.en}, {modalImage.dimensions}, £{modalImage.price}
+            </p>
+          </div>
+        </div>
       </section>
     </Layout>
   )
