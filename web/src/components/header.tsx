@@ -2,8 +2,8 @@ import * as React from 'react'
 import { Link } from 'gatsby'
 import { GatsbyImage } from 'gatsby-plugin-image'
 
-import Navigation from './navigation'
 import ColorLogo from '../components/logos/colorLogo'
+import Navigation from './navigation'
 
 import '../scss/header.scss'
 
@@ -25,11 +25,9 @@ const Header = ({
           alt={heroImageCaption}
           className="heroImage"
         />
-        <div className="menuOverlay">
-          <Navigation />
-        </div>
       </div>
     </header>
+    <Navigation />
     <div className="heroCaption">{heroImageCaption}</div>
   </>
 )

@@ -36,18 +36,17 @@ body {
   background: c.$grey-000;
   color: c.$grey-550;
   overflow-x: hidden;
-  // -webkit-font-smoothing: antialiased;
-  // -moz-osx-font-smoothing: grayscale;
 }
 
 main {
+  position: relative;
   min-height: 350px;
+  z-index: 3;
 }
 
-main,
 footer {
   position: relative;
-  z-index: 5;
+  z-index: 1;
 }
 
 h1 {
@@ -57,6 +56,9 @@ h1 {
   color: c.$grey-700;
   margin: 0;
   line-height: 1;
+  @include b.mq(sm) {
+    font-size: 4.2em;
+  }
 }
 
 h2 {
@@ -166,6 +168,9 @@ blockquote {
 
 .subTitle {
   font-size: 3rem;
+  @include b.mq(sm) {
+    font-size: 2.6em;
+  }
 }
 
 .caption {
@@ -388,6 +393,8 @@ blockquote {
   cursor: pointer;
 }
 
+// ********** scroll up **********
+
 .scrollupContainer {
   width: 5rem;
   height: 5rem;
@@ -395,7 +402,7 @@ blockquote {
   position: fixed;
   bottom: 3rem;
   right: 3rem;
-  z-index: 5;
+  z-index: 6;
   padding: 1.6rem 0.8rem;
   border-radius: 3px;
   box-shadow: 2px 2px 0 rgba(black, 0.1);

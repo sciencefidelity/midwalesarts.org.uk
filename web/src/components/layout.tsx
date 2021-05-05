@@ -35,10 +35,12 @@ const Layout = ({
         heroImageCaption={heroImageCaption}
       />
 
-        <main>{children}</main>
+        <main>
+          {children}
+          <Scrollup />
+        </main>
       
       <Footer />
-      <Scrollup />
     </>
   )
 }

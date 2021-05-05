@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { Link } from 'gatsby'
 
+import '../scss/navigation.scss'
+
 const Navigation = () => {
   const [isActive, setActive] = useState(false)
 
@@ -9,7 +11,7 @@ const Navigation = () => {
   }
 
   return (
-    <>
+    <div className="menuOverlay">
       <div 
         className={isActive ? "headerMenu isActive" : "headerMenu"} 
       >
@@ -77,7 +79,7 @@ const Navigation = () => {
           </a>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 
