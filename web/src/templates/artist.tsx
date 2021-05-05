@@ -121,7 +121,7 @@ const Artist = ({ data }) => {
           <div className="modalImageContiner">
             <GatsbyImage 
               image={modalImage.artworkModalImage.asset.gatsbyImageData}
-              alt=""
+              alt={`${modalImage.artist}, ${modalImage.title.en}, ${modalImage.date}`}
             />
             <p className="modalCaption">
               <em>{modalImage.title.en}</em>, {modalImage.artist}
