@@ -26,7 +26,7 @@ export const query = graphql `
           }
           artworkModalImage: mainImage {
             asset {
-              gatsbyImageData(height: 700, formats: WEBP, placeholder: BLURRED)
+              gatsbyImageData(height: 670, formats: WEBP, placeholder: BLURRED)
             }
           }
           medium {
@@ -62,21 +62,33 @@ export const query = graphql `
 
 const Artist = ({ data }) => {
   const [bio, setBio] = useState(true)
-  const [image, setImage] = useState(false)
+  const [gallery, setGallery] = useState(false)
   const [modal, setModal] = useState(true)
-  const [index, setIndex] = useState(3)
+  {/* const [index, setIndex] = useState(0) */}
+  const [imageToShow, setImageToShow] = useState(0);
 
-  const toggleTabs = () => {
-    setBio(!bio)
-    setImage(!image)
+  const toggleBio = () => {
+    setBio(false)
+    setGallery(true)
   }
-  const toggleModal = () => {
-    setModal(!modal)
+  const toggleGallery = () => {
+    setBio(true)
+    setGallery(false)
+  }
+  const openModal = (index: number) => {
+    setModal(false)
+    setImageToShow(index)
+  }
+  const closeModal = () => {
+    setModal(true)
   }
   
   const artist = data.sanityArtist
   const artwork = data.artworkList
-  const modalImage = artwork.edges[index].node
+  const modalImage = artwork.edges[imageToShow].node
+  {/* const artworkCount = artwork.edges.length */}
+  
+  console.log(modalImage)
   
   return (
     <Layout
@@ -89,17 +101,17 @@ const Artist = ({ data }) => {
             <h1>Artist</h1>
             <p className="subTitle">{artist.title}</p>
             <ul className="artistMenu">
-              <li onClick={toggleTabs}>Works</li>
-              <li onClick={toggleTabs}>Biography</li>
+              <li onClick={toggleGallery} className={bio ? "selected" : ""}>Works</li>
+              <li onClick={toggleBio} className={bio ? "" : "selected"}>Biography</li>
             </ul>
             <div className={bio ? "hidden artistBio" : "artistBio"} >
               {artist.body._rawEn && <PortableText blocks={artist.body._rawEn} />}
             </div>
           </div>
         </div>
-        <div className={image ? "hidden artistImageGrid" : "artistImageGrid"}>
+        <div className={gallery ? "hidden artistImageGrid" : "artistImageGrid"}>
           {artwork.edges.map((artworks: any, index: number) => (
-            <div style={{margin: 0}} key={artworks.node.id} onClick={toggleModal}>
+            <div style={{margin: 0}} key={artworks.node.id} onClick={() => openModal(index)}>
               <GatsbyImage 
                 image={artworks.node.artworkGridImage.asset.gatsbyImageData}
                 alt={`${artworks.node.artist}, ${artworks.node.title.en}, ${artworks.node.date}`}
@@ -109,7 +121,7 @@ const Artist = ({ data }) => {
             </div>
           ))}
         </div>
-        <div className={modal ? "modalContainer hideModal" : "modalContainer"} onClick={toggleModal}>
+        <div className={modal ? "modalContainer hideModal" : "modalContainer"} onClick={closeModal}>
           <div className="modalImageContiner">
             <GatsbyImage 
               image={modalImage.artworkModalImage.asset.gatsbyImageData}

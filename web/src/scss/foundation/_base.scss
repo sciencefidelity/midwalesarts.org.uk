@@ -316,7 +316,7 @@ blockquote {
   background: rgba(black, 0.7);
   z-index: 100;
   overflow: auto;
-  display: grid;
+  display: flex;
   font-size: 1rem;
 }
 
@@ -328,15 +328,18 @@ blockquote {
   background: white;
   padding: 2rem;
   margin: auto;
-  
+  display: inline-block;
   img {
-    width: min(90vw, 90vh);
+    max-height: 80vh;
   }
 }
 
 .modalCaption {
   font-size: 2rem;
   margin-bottom: 0;
+  @include b.mq(sm) {
+    font-size: 1.6rem;
+  }
 }
 
 .modalClose {
