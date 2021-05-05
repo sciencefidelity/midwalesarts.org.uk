@@ -393,6 +393,26 @@ blockquote {
   cursor: pointer;
 }
 
+.btnNext,
+.btnPrev {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 0;
+  background: 0;
+  font-size: 5rem;
+  cursor: pointer;
+  color: c.$grey-550;
+}
+
+.btnNext {
+  right: 1em;
+}
+
+.btnPrev {
+  left: 1em;
+}
+
 // ********** scroll up **********
 
 .scrollupContainer {

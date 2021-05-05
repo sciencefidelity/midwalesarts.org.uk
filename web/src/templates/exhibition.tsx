@@ -58,10 +58,15 @@ export const query = graphql `
 `
 
 const ExhibitionPage = ({ data }) => {
+  
   const [info, setInfo] = useState(true)
   const [gallery, setGallery] = useState(false)
   const [modal, setModal] = useState(true)
   const [imageToShow, setImageToShow] = useState(0)
+  
+  const artwork = data && data.allSanityArtwork
+  const exhibition = data && data.sanityExhibition
+  const modalImage = artwork.edges[imageToShow].node
   
   const toggleInfo = () => {
     setInfo(false)
@@ -74,14 +79,11 @@ const ExhibitionPage = ({ data }) => {
   const openModal = (index: number) => {
     setModal(false)
     setImageToShow(index)
+    console.log(index)
   }
   const closeModal = () => {
     setModal(true)
   }
-  
-  const artwork = data && data.allSanityArtwork
-  const exhibition = data && data.sanityExhibition
-  const modalImage = artwork.edges[imageToShow].node
   
   return (
     <Layout
@@ -117,6 +119,8 @@ const ExhibitionPage = ({ data }) => {
         </div>
         <div><p className="backLink"><Link to="/exhibitions/">Back to Exhibitions</Link></p></div>
         <div className={modal ? "modalContainer hideModal" : "modalContainer"} onClick={closeModal}>
+          <button className="btnPrev">&lt;</button>
+          <button className="btnNext">&gt;</button>
           <div className="modalImageContiner">
             <GatsbyImage 
               image={modalImage.artworkModalImage.asset.gatsbyImageData}
