@@ -4,7 +4,6 @@ import { GatsbyImage } from 'gatsby-plugin-image'
 
 import Layout from '../components/layout'
 import PortableText from '../components/portableText'
-import Modal from '../components/modal'
 
 import '../scss/artist.scss'
 
@@ -20,9 +19,14 @@ export const query = graphql `
           artist
           date
           dimensions
-          mainImage {
+          artworkGridImage: mainImage {
             asset {
               gatsbyImageData(width: 468, height: 468, formats: WEBP, placeholder: BLURRED)
+            }
+          }
+          artworkModalImage: mainImage {
+            asset {
+              gatsbyImageData(height: 700, formats: WEBP, placeholder: BLURRED)
             }
           }
           medium {
@@ -31,20 +35,6 @@ export const query = graphql `
           price
           title {
             en
-          }
-        }
-      }
-    }
-    artworkModal: allSanityArtwork(
-      sort: {fields: date, order: DESC}
-      filter: {artist: { eq: $name }}
-    ) {
-      edges {
-        node {
-          mainImage {
-            asset {
-              gatsbyImageData(width: 1280, formats: WEBP, placeholder: BLURRED)
-            }
           }
         }
       }
@@ -73,15 +63,20 @@ export const query = graphql `
 const Artist = ({ data }) => {
   const [bio, setBio] = useState(true)
   const [image, setImage] = useState(false)
+  const [modal, setModal] = useState(true)
+  const [index, setIndex] = useState(3)
 
   const toggleTabs = () => {
     setBio(!bio)
     setImage(!image)
   }
+  const toggleModal = () => {
+    setModal(!modal)
+  }
   
   const artist = data.sanityArtist
   const artwork = data.artworkList
-  const modalImage = data.artworkModal
+  const modalImage = artwork.edges[index].node
   
   return (
     <Layout
@@ -89,15 +84,6 @@ const Artist = ({ data }) => {
       heroImageCaption={artist.mainImage.caption}
     >
       <section>
-        <Modal 
-          image={modalImage.edges[0].node.mainImage.asset.gatsbyImageData}
-          name={artwork.edges[0].node.artist}
-          title={artwork.edges[0].node.title.en}
-          date={artwork.edges[0].node.date}
-          medium={artwork.edges[0].node.medium.en}
-          dimensions={artwork.edges[0].node.dimensions}
-          price={artwork.edges[0].node.price}
-        />
         <div className="sidebarContainer">
           <div className="portableContainer">
             <h1>Artist</h1>
@@ -112,16 +98,30 @@ const Artist = ({ data }) => {
           </div>
         </div>
         <div className={image ? "hidden artistImageGrid" : "artistImageGrid"}>
-          {artwork.edges.map((artworks: any) => (
-            <div style={{margin: 0}} key={artworks.node.id}>
+          {artwork.edges.map((artworks: any, index: number) => (
+            <div style={{margin: 0}} key={artworks.node.id} onClick={toggleModal}>
               <GatsbyImage 
-                image={artworks.node.mainImage.asset.gatsbyImageData}
+                image={artworks.node.artworkGridImage.asset.gatsbyImageData}
                 alt={`${artworks.node.artist}, ${artworks.node.title.en}, ${artworks.node.date}`}
                 className="gridImage"
               />
               <div className="gridCaption">{artworks.node.title.en} ({artworks.node.date})</div>
             </div>
           ))}
+        </div>
+        <div className={modal ? "modalContainer hideModal" : "modalContainer"} onClick={toggleModal}>
+          <div className="modalImageContiner">
+            <GatsbyImage 
+              image={modalImage.artworkModalImage.asset.gatsbyImageData}
+              alt=""
+            />
+            <p className="modalCaption">
+              <em>{modalImage.title.en}</em>, {modalImage.artist}, {modalImage.date}
+            </p>
+            <p className="modalCaption">
+              {modalImage.medium.en}, {modalImage.dimensions}, £{modalImage.price}
+            </p>
+          </div>
         </div>
         <div><p className="backLink"><Link to="/artists/">Back to Artists</Link></p></div>
       </section>

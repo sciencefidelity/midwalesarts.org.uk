@@ -17,7 +17,12 @@ export const query = graphql `
           artist
           date
           dimensions
-          mainImage {
+          artworkGridImage: mainImage {
+            asset {
+              gatsbyImageData(width: 468, height: 468, formats: WEBP, placeholder: BLURRED)
+            }
+          }
+          artworkModalImage: mainImage {
             asset {
               gatsbyImageData(width: 468, height: 468, formats: WEBP, placeholder: BLURRED)
             }
@@ -72,7 +77,7 @@ const ExhibitionPage = ({ data }) => {
           {artwork.edges.map((artworks: any) => (
             <div style={{margin: 0}} key={artworks.node.id}>
               <GatsbyImage 
-                image={artworks.node.mainImage.asset.gatsbyImageData}
+                image={artworks.node.artworkGridImage.asset.gatsbyImageData}
                 alt={`${artworks.node.artist}, ${artworks.node.title.en}, ${artworks.node.date}`}
                 className="gridImage"
               />

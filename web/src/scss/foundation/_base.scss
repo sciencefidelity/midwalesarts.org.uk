@@ -308,6 +308,9 @@ blockquote {
   position: fixed;
   top: 0;
   left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
   width: 100vw;
   height: 100vh;
   background: rgba(black, 0.7);
@@ -315,6 +318,9 @@ blockquote {
   overflow: auto;
   display: grid;
   font-size: 1rem;
+}
+
+.hideModal {
   display: none;
 }
 
@@ -324,7 +330,7 @@ blockquote {
   margin: auto;
   
   img {
-    width: min(90vw, 70vh);
+    width: min(90vw, 90vh);
   }
 }
 
@@ -348,7 +354,7 @@ blockquote {
   position: fixed;
   bottom: 3rem;
   right: 3rem;
-  z-index: 90;
+  z-index: 5;
   padding: 1.6rem 0.8rem;
   border-radius: 3px;
   box-shadow: 2px 2px 0 rgba(black, 0.1);
