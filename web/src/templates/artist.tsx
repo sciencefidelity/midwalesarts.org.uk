@@ -124,10 +124,10 @@ const Artist = ({ data }) => {
               alt=""
             />
             <p className="modalCaption">
-              <em>{modalImage.title.en}</em>, {modalImage.artist}, {modalImage.date}
+              <em>{modalImage.title.en}</em>, {modalImage.artist}
             </p>
             <p className="modalCaption">
-              {modalImage.medium.en}, {modalImage.dimensions}, £{modalImage.price}
+              {modalImage.medium.en}, {modalImage.price}
             </p>
           </div>
         </div>
