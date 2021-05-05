@@ -189,7 +189,8 @@ blockquote {
 }
 
 .imageGrid,
-.artistImageGrid {
+.artistImageGrid,
+.eventsImageGrid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 3rem;
@@ -205,6 +206,10 @@ blockquote {
 
 .imageGrid {
   margin: 6rem auto 0;
+}
+
+.eventsImageGrid {
+  margin: 0 auto 0;
 }
 
 .exhibitionGrid {
