@@ -13,6 +13,7 @@ const Header = ({
   <>
     <header>
       <Link to="/">
+        <span className="screenReaderText">Home</span>
         <ColorLogo 
           logoClass = "colorLogo"
           containerClass = "logoContainer"
