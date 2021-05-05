@@ -5,8 +5,6 @@ import { GatsbyImage } from 'gatsby-plugin-image'
 import Layout from '../components/layout'
 import PortableText from '../components/portableText'
 
-import '../scss/artist.scss'
-
 export const query = graphql `
   query singleArtistQuery($name: String!) {
     artworkList: allSanityArtwork(
@@ -96,16 +94,16 @@ const Artist = ({ data }) => {
           <div className="portableContainer">
             <h1>Artist</h1>
             <p className="subTitle">{artist.title}</p>
-            <ul className="artistMenu">
+            <ul className="galleryMenu">
               <li onClick={toggleGallery} className={bio ? "selected" : ""}>Works</li>
               <li onClick={toggleBio} className={bio ? "" : "selected"}>Biography</li>
             </ul>
-            <div className={bio ? "hidden artistBio" : "artistBio"} >
+            <div className={bio ? "hidden galleryInfo" : "galleryInfo"} >
               {artist.body._rawEn && <PortableText blocks={artist.body._rawEn} />}
             </div>
           </div>
         </div>
-        <div className={gallery ? "hidden artistImageGrid" : "artistImageGrid"}>
+        <div className={gallery ? "hidden galleryImageGrid" : "galleryImageGrid"}>
           {artwork.edges.map((artworks: any, index: number) => (
             <div style={{margin: 0}} key={artworks.node.id} onClick={() => openModal(index)}>
               <GatsbyImage 

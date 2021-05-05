@@ -58,10 +58,19 @@ export const query = graphql `
 `
 
 const ExhibitionPage = ({ data }) => {
-  
+  const [info, setInfo] = useState(true)
+  const [gallery, setGallery] = useState(false)
   const [modal, setModal] = useState(true)
   const [imageToShow, setImageToShow] = useState(0)
   
+  const toggleInfo = () => {
+    setInfo(false)
+    setGallery(true)
+  }
+  const toggleGallery = () => {
+    setInfo(true)
+    setGallery(false)
+  }
   const openModal = (index: number) => {
     setModal(false)
     setImageToShow(index)
@@ -81,13 +90,19 @@ const ExhibitionPage = ({ data }) => {
     >
       <section>
         <div className="sidebarContainer">
-          <div className="portableContainer artistBio">
+          <div className="portableContainer">
             <h1>{exhibition.title.en}</h1>
             <p className="subTitle">{exhibition.dateStart} to {exhibition.dateEnd}</p>
-            {exhibition.body._rawEn && <PortableText blocks={exhibition.body._rawEn} />}
+            <ul className="galleryMenu">
+              <li onClick={toggleInfo} className={info ? "" : "selected"}>Overview</li>
+              <li onClick={toggleGallery} className={info ? "selected" : ""}>Works</li>
+            </ul>
+            <div className={info ? "hidden galleryInfo" : "galleryInfo"} >
+              {exhibition.body._rawEn && <PortableText blocks={exhibition.body._rawEn} />}
+            </div>
           </div>
         </div>
-        <div className="imageGrid">
+        <div className={gallery ? "hidden galleryImageGrid" : "galleryImageGrid"}>
           {artwork.edges.map((artworks: any, index: number) => (
             <div style={{margin: 0}} key={artworks.node.id} onClick={() => openModal(index)}>
               <GatsbyImage 

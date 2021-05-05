@@ -189,7 +189,7 @@ blockquote {
 }
 
 .imageGrid,
-.artistImageGrid,
+.galleryImageGrid,
 .eventsImageGrid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -304,6 +304,43 @@ blockquote {
   }
 }
 
+// **** artist page and exhibition page ****
+
+.galleryMenu {
+  font-size: 2.2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  li {
+    list-style: none;
+    cursor: pointer;
+    margin: 0;
+    padding: 0 5rem 0 0;
+  }
+}
+
+.galleryMenu li.selected {
+  text-decoration: underline;
+  text-decoration-thickness: 0.1em;
+  cursor: default;
+}
+
+.galleryImageGrid {
+  margin: 5rem auto 0;
+}
+
+.galleryInfo {
+  padding-bottom: 6rem;
+  margin: 5rem auto 0;
+}
+
+.hidden {
+  display: none;
+}
+
+// ***** modal lightbox on gallery pages *****
+
 .modalContainer {
   position: fixed;
   top: 0;
@@ -337,6 +374,7 @@ blockquote {
 .modalCaption {
   font-size: 1.8rem;
   margin-bottom: 0;
+  text-align: right;
   @include b.mq(sm) {
     font-size: 1.6rem;
   }
@@ -378,10 +416,9 @@ blockquote {
   }
 }
 
-/* Accessibility
---------------------------------------------- */
+// ********** accessibility **********
 
-/* Text meant only for screen readers. */
+// text meant only for screen readers
 .screenReaderText {
   border: 0;
   clip: rect(1px, 1px, 1px, 1px);
