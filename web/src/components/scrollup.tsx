@@ -4,6 +4,7 @@ import { Link } from 'gatsby'
 const Scrollup = () => {
   return (
     <Link to="#">
+      <span className="screenReaderText">Back to top</span>
       <div className="scrollupContainer">
         <img
           alt=""
