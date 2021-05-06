@@ -6,12 +6,15 @@ import '../scss/navigation.scss'
 const Navigation = () => {
   const [isActive, setActive] = useState(false)
 
-  const toggleClass = () => {
-    setActive(!isActive)
+  const menuOpen = () => {
+    setActive(true)
+  }
+  const menuClose = () => {
+    setActive(false)
   }
 
   return (
-    <div className="menuOverlay">
+    <div className="menuOverlay" onClick={isActive ? menuClose : null}>
       <div 
         className={isActive ? "headerMenu isActive" : "headerMenu"} 
       >
@@ -29,7 +32,7 @@ const Navigation = () => {
         </ul>
       </div>
       <div className="nav">
-        <div className="hamburgerContainer" onClick={toggleClass}>
+        <div className="hamburgerContainer" onClick={isActive ? menuClose : menuOpen}>
           <span className="screenReaderText">Main Menu</span>
           <div className={isActive ? "hamburger active" : "hamburger"} ></div>
         </div>
