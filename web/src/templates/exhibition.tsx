@@ -58,7 +58,7 @@ export const query = graphql `
 `
 
 const ExhibitionPage = ({ data }) => {
-  
+
   const [info, setInfo] = useState(true)
   const [gallery, setGallery] = useState(false)
   const [modal, setModal] = useState(true)
@@ -67,7 +67,7 @@ const ExhibitionPage = ({ data }) => {
   const artwork = data && data.allSanityArtwork
   const exhibition = data && data.sanityExhibition
   const modalImage = artwork.edges[imageToShow].node
-  
+
   const toggleInfo = () => {
     setInfo(false)
     setGallery(true)
@@ -79,7 +79,6 @@ const ExhibitionPage = ({ data }) => {
   const openModal = (index: number) => {
     setModal(false)
     setImageToShow(index)
-    console.log(index)
   }
   const closeModal = () => {
     setModal(true)
@@ -113,7 +112,7 @@ const ExhibitionPage = ({ data }) => {
                 className="gridImage"
               />
               <div className="gridCaption">{artworks.node.artist}</div>
-              <div className="gridCaption"><em>{artworks.node.title.en}</em></div>
+              <div className="gridCaption"><em>{artworks.node.title.en}</em> {index}</div>
             </div>
           ))}
         </div>
