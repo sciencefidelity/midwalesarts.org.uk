@@ -47,7 +47,7 @@ const Sidebar = () => (
 
 const query = graphql `
   query sidebarQuery {
-    allSanityPost(limit: 6, sort: {fields: publishedAt, order: DESC}) {
+    allSanityPost(limit: 4, sort: {fields: publishedAt, order: DESC}) {
       edges {
         node {
           slug {
