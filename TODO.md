@@ -16,7 +16,6 @@
 - change image position with studio hotspot
 - try adding images to portable text
 - back and forward links on post page
-- back and forward links on modal
 - view image in slide open grid
 - social share buttons
 - zoom image in modal
