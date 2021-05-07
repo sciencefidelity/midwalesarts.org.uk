@@ -4,6 +4,7 @@ import { GatsbyImage } from 'gatsby-plugin-image'
 
 import Layout from '../components/layout'
 import PortableText from '../components/portableText'
+import Modal from '../components/modal'
 
 export const query = graphql `
   query singleArtistQuery($name: String!) {
@@ -68,16 +69,39 @@ const Artist = ({ data }) => {
     setBio(false)
     setGallery(true)
   }
+  
   const toggleGallery = () => {
     setBio(true)
     setGallery(false)
   }
+  
   const openModal = (index: number) => {
     setModal(false)
     setImageToShow(index)
   }
+  
   const closeModal = () => {
     setModal(true)
+  }
+  
+  let currentIndex = imageToShow
+  
+  function prevIndex() {
+    currentIndex = currentIndex - 1
+    if (currentIndex < 0) {
+      setModal(true)
+      return
+    }
+    setImageToShow(currentIndex)
+  }
+  
+  function nextIndex() {
+    currentIndex = currentIndex + 1
+    if (currentIndex > artwork.edges.length) {
+      setModal(true)
+      return
+    }
+    setImageToShow(currentIndex)
   }
   
   const artist = data.sanityArtist
@@ -115,21 +139,14 @@ const Artist = ({ data }) => {
             </div>
           ))}
         </div>
-        <div className={modal ? "modalContainer hideModal" : "modalContainer"} onClick={closeModal}>
-          <div className="modalImageContiner">
-            <GatsbyImage 
-              image={modalImage.artworkModalImage.asset.gatsbyImageData}
-              alt={`${modalImage.artist}, ${modalImage.title.en}, ${modalImage.date}`}
-            />
-            <p className="modalCaption">
-              <em>{modalImage.title.en}</em>, {modalImage.artist}
-            </p>
-            <p className="modalCaption">
-              {modalImage.medium.en}, {modalImage.price}
-            </p>
-          </div>
-        </div>
         <div><p className="backLink"><Link to="/artists/">Back to Artists</Link></p></div>
+        <Modal 
+          modal={modal}
+          modalImage={modalImage}
+          closeModal={closeModal}
+          prevIndex={prevIndex}
+          nextIndex={nextIndex}
+        />
       </section>
     </Layout>
   )
