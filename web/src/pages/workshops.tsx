@@ -1,8 +1,6 @@
 import * as React from 'react'
 import { StaticQuery, graphql } from 'gatsby'
 
-import '../scss/artists.scss'
-
 import Layout from '../components/layout'
 import PortableText from '../components/portableText'
 import Sidebar from '../components/sidebar'
