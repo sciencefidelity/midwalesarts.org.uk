@@ -399,13 +399,14 @@ blockquote {
   height: 100vh;
 }
 
-// .modalClose {
-//   width: 4rem;
-//   position: absolute;
-//   right: 5rem;
-//   top: 2rem;
-//   cursor: pointer;
-// }
+.modalClose {
+  width: 4rem;
+  position: absolute;
+  right: 5rem;
+  top: 2rem;
+  cursor: pointer;
+  z-index: 9;
+}
 
 .btnNext,
 .btnPrev {
@@ -423,6 +424,9 @@ blockquote {
   &:hover {
     opacity: 1;
     transition: opacity 0.3s ease;
+  }
+  @include b.mq(sm) {
+    display: none;
   }
 }
 
