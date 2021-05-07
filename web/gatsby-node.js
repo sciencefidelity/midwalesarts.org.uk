@@ -77,7 +77,7 @@ exports.createPages = ({ graphql, actions }) => {
           }
         }
       }
-      allSanityPost {
+      allSanityPost(sort: {order: ASC, fields: publishedAt}) {
         edges {
           node {
             slug {
@@ -139,12 +139,15 @@ exports.createPages = ({ graphql, actions }) => {
     })
     
     // Create post pages.
-    result.data.allSanityPost.edges.forEach(edge => {
+    const posts = result.data.allSanityPost.edges
+    posts.forEach(({ node }, index) => {
       createPage({
-        path: `/news/${edge.node.slug.en.current}/`,
+        path: `/news/${node.slug.en.current}/`,
         component: postTemplate,
         context: {
-          slug: `${edge.node.slug.en.current}`,
+          slug: `${node.slug.en.current}`,
+          prev: index === 0 ? null : posts[index - 1].node,
+          next: index === posts.length - 1 ? null : posts[index + 1].node
         },
       })
     })

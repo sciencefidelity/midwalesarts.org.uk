@@ -25,8 +25,17 @@ export const query = graphql `
   }
 `
 
-const Post = ({ data }) => {
+const Post = ({ data, pageContext }) => {
   const post = data && data.sanityPost
+  
+  const prev = pageContext.prev ? {
+    url: `/news/${pageContext.prev.slug.en.current}`,
+  } : null
+  
+  const next = pageContext.next ? {
+    url: `/news/${pageContext.next.slug.en.current}`,
+  } : null
+  
   return (
     <Layout
       heroImage={post.image.asset.gatsbyImageData}
@@ -39,7 +48,17 @@ const Post = ({ data }) => {
             <p className="subTitle">{post.title.en}.</p>
             {post.body._rawEn && <PortableText blocks={post.body._rawEn} />}
             <p>{post.publishedAt}</p>
-            <div><p className="backLink"><Link to="/news/">Back to News</Link></p></div>
+            <div className="postNavigation">
+              {prev ? 
+                (<p className="prevLink"><Link to={prev.url}>&lt; Previous post</Link></p>) : 
+                (<p>&nbsp;</p>)
+              }
+              <p className="backLink"><Link to="/news/">Back to News</Link></p>
+              {next ? 
+                (<p className="nextLink"><Link to={next.url}>Next post &gt;</Link></p>) : 
+                (<p>&nbsp;</p>)
+              }
+            </div>
           </div>
           <Sidebar />
         </div>

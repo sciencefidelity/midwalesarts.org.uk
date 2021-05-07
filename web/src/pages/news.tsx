@@ -20,19 +20,19 @@ const News = () => (
             </div>
           </div>
           <div className="imageGrid">
-            {data.newsMain.edges.map((posts: any) => (
+            {data.newsMain.edges.map((posts: any, index: number) => (
               <div key={posts.node.id} style={{margin: 0}}>
-              <Link
-                to={`/news/${posts.node.slug.en.current}/`}
-                
-              >
+                <Link
+                  to={`/news/${posts.node.slug.en.current}/`}
+                >
                   <GatsbyImage 
                     image={posts.node.image.asset.gatsbyImageData}
                     alt={posts.node.title.en}
                     className="gridImage"
                   />
-                  <div className="gridCaption">{posts.node.title.en}</div>
+                  <div className="gridCaption">{posts.node.title.en} {index}</div>
                   <div className="gridCaption">{posts.node.publishedAt}</div>
+                  <div className="gridCaption">{posts.node.slug.en.current}</div>
                 </Link>
               </div>
             ))}

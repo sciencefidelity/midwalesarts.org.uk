@@ -259,9 +259,26 @@ blockquote {
   margin: 0.6em 0 0.6em;
 }
 
+.postNavigation {
+  display: flex;
+  margin-top: 6rem;
+  align-items: end;
+  & > p {
+    margin: 0;
+    width: 100%;
+  }
+  a,
+  a:hover {
+    background: transparent;
+  }
+}
+
 .backLink {
   text-align: center;
-  margin-top: 6rem;
+}
+
+.nextLink {
+  text-align: right;
 }
 
 .embedContainer {
