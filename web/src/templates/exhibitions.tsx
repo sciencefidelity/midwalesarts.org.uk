@@ -2,15 +2,18 @@ import * as React from 'react'
 import { graphql, Link } from 'gatsby'
 import { GatsbyImage } from 'gatsby-plugin-image'
 
-import '../scss/artists.scss'
-
 import Layout from '../components/layout'
+import ExhibitionPrieview from '../components/exhibitionPreview'
 
 const Exhibitions = ({ data }) => {
+  
+  const currentExhibition = data.currentExhibitions.edges[0].node
+  const nextExhibition = data.futureExhibitions.edges[0].node
+  
   return (
     <Layout
-      heroImage={data.currentExhibitionsHero.edges[0].node.mainImage.asset.gatsbyImageData}
-      heroImageCaption={data.currentExhibitionsHero.edges[0].node.mainImage.caption}
+      heroImage={currentExhibition.heroImage.asset.gatsbyImageData}
+      heroImageCaption={currentExhibition.mainImage.caption}
     >
       <section>
         <div className="sidebarContainer">
@@ -19,45 +22,15 @@ const Exhibitions = ({ data }) => {
             <p className="subTitle">Art in our galleries and garden.</p>
           </div>
         </div>
-        <div className="exhibitionGrid">
-          {data.currentExhibitions.edges.map((exhibitions: any) => (
-            <div key={exhibitions.node.id}>
-              <p>Current exhibition</p>
-              <Link 
-                to={`/exhibitions/${exhibitions.node.slug.en.current}/`}
-                style={{margin: 0}}
-              >
-                <GatsbyImage 
-                  image={exhibitions.node.mainImage.asset.gatsbyImageData}
-                  alt={exhibitions.node.mainImage.caption}
-                  className="gridImage"
-                />
-                <div className="gridCaption">{exhibitions.node.title.en}</div>
-                <div className="gridCaption">
-                  {exhibitions.node.dateStart} to {exhibitions.node.dateEnd}
-                </div>
-              </Link>
-            </div>
-          ))}
-          {data.futureExhibitions.edges.map((exhibitions: any) => (
-            <div style={{margin: 0}} key={exhibitions.node.id}>
-              <p>Next exhibition</p>
-              <Link 
-                to={`/exhibitions/${exhibitions.node.slug.en.current}/`}
-                style={{margin: 0}}
-              >
-                <GatsbyImage 
-                  image={exhibitions.node.mainImage.asset.gatsbyImageData}
-                  alt={exhibitions.node.mainImage.caption}
-                  className="gridImage"
-                />
-                <div className="gridCaption">{exhibitions.node.title.en}</div>
-                <div className="gridCaption">
-                  {exhibitions.node.dateStart} to {exhibitions.node.dateEnd}
-                </div>
-              </Link>
-            </div>
-          ))}
+        <div className="exhibitionPreviewGrid">
+          <ExhibitionPrieview
+            heading="Current exhibition"
+            exhibition={currentExhibition}
+          />
+          <ExhibitionPrieview
+            heading="Next exhibition"
+            exhibition={nextExhibition}
+          />
         </div>
         <div className="sidebarContainer" style={{marginTop: `6rem`}}>
           <div className="portableContainer">
@@ -111,25 +84,17 @@ export const query = graphql `
               gatsbyImageData(width: 624, height: 624, formats: WEBP, placeholder: BLURRED)
             }
           }
+          heroImage: mainImage {
+            caption
+            asset {
+              gatsbyImageData(width: 1440, formats: WEBP, placeholder: BLURRED)
+            }
+          }
           dateStart(formatString: "Do MMMM")
           dateEnd(formatString: "Do MMMM YYYY")
           id
           body {
             _rawEn
-          }
-        }
-      }
-    }
-    currentExhibitionsHero: allSanityExhibition(
-      filter: {dateEnd: {gt: $currentDate}, dateStart: {lt: $currentDate}}
-      sort: {fields: dateStart, order: DESC}) {
-      edges {
-        node {
-          mainImage {
-            caption
-            asset {
-              gatsbyImageData(width: 1440, formats: WEBP, placeholder: BLURRED, layout: FULL_WIDTH)
-            }
           }
         }
       }
@@ -150,7 +115,7 @@ export const query = graphql `
           mainImage {
             caption
             asset {
-              gatsbyImageData(width: 1440, height: 1440, formats: WEBP, placeholder: BLURRED)
+              gatsbyImageData(width: 624, height: 624, formats: WEBP, placeholder: BLURRED)
             }
           }
           dateStart(formatString: "Do MMMM")
@@ -178,7 +143,7 @@ export const query = graphql `
           mainImage {
             caption
             asset {
-              gatsbyImageData(width: 1440, height: 1440, formats: WEBP, placeholder: BLURRED)
+              gatsbyImageData(width: 624, height: 624, formats: WEBP, placeholder: BLURRED)
             }
           }
           dateStart(formatString: "Do MMMM")

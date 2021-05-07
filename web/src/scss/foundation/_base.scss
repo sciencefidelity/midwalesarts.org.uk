@@ -217,6 +217,18 @@ blockquote {
   margin: 0 auto 0;
 }
 
+.exhibitionPreviewGrid {
+  width: 81.25%;
+  display: flex;
+  margin: auto;
+  gap: 3rem;
+}
+
+.exhibitionPreview {
+  margin: 0;
+  width: 100%;
+}
+
 .exhibitionGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
