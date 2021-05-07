@@ -1,8 +1,6 @@
 import * as React from 'react'
 import { GatsbyImage } from 'gatsby-plugin-image'
 
-import '../scss/footer.scss'
-
 const Modal = ( props: any ) => {
   
   return (

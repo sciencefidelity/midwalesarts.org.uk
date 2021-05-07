@@ -136,7 +136,7 @@ const ExhibitionPage = ({ data }) => {
                 className="gridImage"
               />
               <div className="gridCaption">{artworks.node.artist}</div>
-              <div className="gridCaption"><em>{artworks.node.title.en}</em> {index}</div>
+              <div className="gridCaption"><em>{artworks.node.title.en}</em></div>
             </div>
           ))}
         </div>
