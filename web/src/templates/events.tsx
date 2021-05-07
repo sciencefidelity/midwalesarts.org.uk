@@ -1,13 +1,14 @@
 import * as React from 'react'
-import { graphql, Link } from 'gatsby'
-import { GatsbyImage } from 'gatsby-plugin-image'
+import { graphql } from 'gatsby'
 
 import Layout from '../components/layout'
+import EventPreview from '../components/eventPreview'
 
 const Events = ({ data }) => {
+  
   return(
     <Layout
-      heroImage={data.eventsHero.edges[0].node.mainImage.asset.gatsbyImageData}
+      heroImage={data.eventsMain.edges[0].node.heroImage.asset.gatsbyImageData}
       heroImageCaption={`${data.eventsMain.edges[0].node.title.en}, ${data.eventsMain.edges[0].node.date}`}
     >
       <section>
@@ -17,50 +18,16 @@ const Events = ({ data }) => {
             <p className="sidebarContainer">Special events, workshops & performances.</p>
           </div>
         </div>
-        <div className="sidebarContainer" style={{marginTop: `2rem`}}>
-          <div className="portableContainer">
-            <p>Upcoming events</p>
-          </div>
-        </div>
-        <div className="eventsImageGrid">
-          {data.eventsMain.edges.map((events: any) => (
-            <div key={events.node.id} style={{margin: 0}}>
-              <Link
-                to={`/events/${events.node.slug.en.current}/`}
-              >
-                <GatsbyImage 
-                  image={events.node.mainImage.asset.gatsbyImageData}
-                  alt={events.node.title.en}
-                  className="gridImage"
-                />
-                <div className="gridCaption">{events.node.title.en}</div>
-                <div className="gridCaption">{events.node.date}</div>
-              </Link>
-            </div>
-          ))}
-        </div>
-        <div className="sidebarContainer" style={{marginTop: `6rem`}}>
-          <div className="portableContainer">
-            <p>Past events</p>
-          </div>
-        </div>
-        <div className="eventsImageGrid">
-          {data.pastEvents.edges.map((events: any) => (
-            <div key={events.node.id} style={{margin: 0}}>
-              <Link
-                to={`/events/${events.node.slug.en.current}/`}
-              >
-                <GatsbyImage 
-                  image={events.node.mainImage.asset.gatsbyImageData}
-                  alt={events.node.title.en}
-                  className="gridImage"
-                />
-                <div className="gridCaption">{events.node.title.en}</div>
-                <div className="gridCaption">{events.node.date}</div>
-              </Link>
-            </div>
-          ))}
-        </div>
+        <EventPreview
+          heading="Upcoming events"
+          eventData={data.eventsMain.edges}
+          marginTop={{marginTop: `2rem`}}
+        />
+        <EventPreview
+          heading="Past events"
+          eventData={data.pastEvents.edges}
+          marginTop={{marginTop: `6rem`}}
+        />
       </section>
     </Layout>
   )
@@ -82,9 +49,14 @@ export const query = graphql `
           briteLink
           date(formatString: "dddd, MMMM Do YYYY")
           id
-          mainImage {
+          mainImage: mainImage {
             asset {
               gatsbyImageData(width: 468, height: 468, formats: WEBP, placeholder: BLURRED)
+            }
+          }
+          heroImage: mainImage {
+            asset {
+              gatsbyImageData(width: 1440, formats: WEBP, placeholder: BLURRED, layout: FULL_WIDTH)
             }
           }
           slug {
@@ -117,19 +89,6 @@ export const query = graphql `
           slug {
             en {
               current
-            }
-          }
-        }
-      }
-    }
-    eventsHero: allSanityEvent(
-      filter: {date: {gte: $currentDate}}
-      sort: {fields: date, order: ASC}) {
-      edges {
-        node {
-          mainImage {
-            asset {
-              gatsbyImageData(width: 1440, formats: WEBP, placeholder: BLURRED, layout: FULL_WIDTH)
             }
           }
         }
