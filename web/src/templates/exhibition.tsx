@@ -72,16 +72,39 @@ const ExhibitionPage = ({ data }) => {
     setInfo(false)
     setGallery(true)
   }
+  
   const toggleGallery = () => {
     setInfo(true)
     setGallery(false)
   }
+  
   const openModal = (index: number) => {
     setModal(false)
     setImageToShow(index)
   }
+  
   const closeModal = () => {
     setModal(true)
+  }
+  
+  let currentIndex = imageToShow
+  
+  function prevIndex() {
+    currentIndex = currentIndex - 1
+    if (currentIndex < 0) {
+      setModal(true)
+      return
+    }
+    setImageToShow(currentIndex)
+  }
+  
+  function nextIndex() {
+    currentIndex = currentIndex + 1
+    if (currentIndex > artwork.edges.length) {
+      setModal(true)
+      return
+    }
+    setImageToShow(currentIndex)
   }
   
   return (
@@ -117,21 +140,22 @@ const ExhibitionPage = ({ data }) => {
           ))}
         </div>
         <div><p className="backLink"><Link to="/exhibitions/">Back to Exhibitions</Link></p></div>
-        <div className={modal ? "modalContainer hideModal" : "modalContainer"} onClick={closeModal}>
-          <div className="btnPrev">
+        <div className={modal ? "modalContainer hideModal" : "modalContainer"}>
+          <div className="btnPrev" onClick={prevIndex}>
             <img
               alt="Previous image"
               src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 512'%3E%3Cpath d='M238.475 475.535l7.071-7.07c4.686-4.686 4.686-12.284 0-16.971L50.053 256 245.546 60.506c4.686-4.686 4.686-12.284 0-16.971l-7.071-7.07c-4.686-4.686-12.284-4.686-16.97 0L10.454 247.515c-4.686 4.686-4.686 12.284 0 16.971l211.051 211.05c4.686 4.686 12.284 4.686 16.97-.001z' fill='%234C4C4C'/%3E%3C/svg%3E"
               loading="lazy"
             />
           </div>
-          <div className="btnNext">
+          <div className="btnNext" onClick={nextIndex}>
             <img
               alt="Next image"
               src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 512' %3E%3Cpath d='M17.525 36.465l-7.071 7.07c-4.686 4.686-4.686 12.284 0 16.971L205.947 256 10.454 451.494c-4.686 4.686-4.686 12.284 0 16.971l7.071 7.07c4.686 4.686 12.284 4.686 16.97 0l211.051-211.05c4.686-4.686 4.686-12.284 0-16.971L34.495 36.465c-4.686-4.687-12.284-4.687-16.97 0z' fill='%234C4C4C'/%3E%3C/svg%3E"
               loading="lazy"
             />
           </div>
+          <div className="handleClose" onClick={closeModal}></div>
           <div className="modalImageContiner">
             <GatsbyImage 
               image={modalImage.artworkModalImage.asset.gatsbyImageData}

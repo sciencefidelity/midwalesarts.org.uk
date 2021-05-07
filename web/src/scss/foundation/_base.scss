@@ -356,7 +356,7 @@ blockquote {
   width: 100vw;
   height: 100vh;
   background: rgba(white, 0.75);
-  z-index: 100;
+  z-index: 7;
   overflow: auto;
   display: flex;
   font-size: 1rem;
@@ -371,6 +371,7 @@ blockquote {
   padding: 2rem;
   margin: auto;
   display: inline-block;
+  z-index: 7;
   img {
     max-height: 80vh;
   }
@@ -380,18 +381,31 @@ blockquote {
   font-size: 1.8rem;
   margin-bottom: 0;
   text-align: right;
+  z-index: 7;
   @include b.mq(sm) {
     font-size: 1.6rem;
   }
 }
 
-.modalClose {
-  width: 4rem;
+.handleClose {
   position: absolute;
-  right: 5rem;
-  top: 2rem;
-  cursor: pointer;
+  z-index: 8;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
 }
+
+// .modalClose {
+//   width: 4rem;
+//   position: absolute;
+//   right: 5rem;
+//   top: 2rem;
+//   cursor: pointer;
+// }
 
 .btnNext,
 .btnPrev {
@@ -405,6 +419,7 @@ blockquote {
   width: 2.5rem;
   opacity: 0.7;
   transition: opacity 0.3s ease;
+  z-index: 9;
   &:hover {
     opacity: 1;
     transition: opacity 0.3s ease;
