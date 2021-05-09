@@ -38,9 +38,9 @@ const EventPage = ({ data }) => {
           <div className="portableContainer">
             <h1>{event.title.en}</h1>
             <p className="SubTitle">{event.date}</p>
-            <p><a href={`${event.briteLink}`} target="_blank">Book tickets</a></p>
+            {event.briteLink && <p><a href={`${event.briteLink}`} target="_blank">Book tickets</a></p>}
             {event.body._rawEn && <PortableText blocks={event.body._rawEn} />}
-            <p><a href="{event.britelink}" target="_blank">Book tickets</a></p>
+            {event.briteLink && <p><a href={`${event.briteLink}`} target="_blank">Book tickets</a></p>}
             <div><p className="backLink"><Link to="/events/">Back to Events</Link></p></div>
           </div>
           <Sidebar />
