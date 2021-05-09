@@ -1,7 +1,8 @@
-- Create a place in the studio to select hero images (artists page).
-- Create a place in the studio for the social media links.
-- Add subhedings for pages to studio.
-- Don't display artworks in future exhibitions.
+- create a place in the studio to select hero images (artists page)
+- create a place in the studio for the social media links
+- add subhedings for pages to studio
+- add descriptions to help content editors in studio
+- don't display artworks in future exhibitions
 - underline active item in main menu
 - get welsh working
 - add artworks to exhibitions
@@ -10,7 +11,7 @@
 - add image as placeholder for youtube videos
 - add a way to add video as artwork in studio
 - add page for cafe menu
-- Link to booking.com open in new window (all links added in studio)
+- Make all links added in studio target: blank
 - add hover behaviour to header links
 - change sidebar content on different pages
 - change image position with studio hotspot
@@ -19,3 +20,4 @@
 - social share buttons
 - zoom image in modal
 - SEO for every page
+- Add next prev links to Event, Video and Artist pages
