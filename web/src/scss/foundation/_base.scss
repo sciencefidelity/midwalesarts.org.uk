@@ -225,12 +225,19 @@ blockquote {
   width: 81.25%;
   display: flex;
   margin: auto;
-  gap: 3rem;
+  // gap: 3rem;
+  @include b.mq(md) {
+    flex-direction: column;
+  }
 }
 
 .exhibitionPreview {
-  margin: 0;
   width: 100%;
+  margin-top: 0;
+  margin-right: 3rem;
+  &:last-child {
+    margin-right: 0;
+  }
 }
 
 .exhibitionGrid {
