@@ -23,10 +23,15 @@
   margin: 0;
 }
 
+html,
+body {
+  overflow-x: hidden;
+  position: relative;
+}
+
 html {
   font-family: "Brandon Grotesque", sans-serif;
   font-size: 62.5%;
-  overflow-x: hidden;
   scroll-behavior: smooth;
   margin: 0;
 }
@@ -35,7 +40,6 @@ body {
   margin: 0;
   background: c.$grey-000;
   color: c.$grey-550;
-  overflow-x: hidden;
 }
 
 main {
@@ -120,13 +124,13 @@ p a {
   font-weight: 500;
   color: c.$grey-600;
   background: c.$grey-050;
-  transition: 
+  transition:
     color 0.5s ease-in-out,
     background 0.5s ease-in-out;
   &:hover {
     color: c.$grey-700;
     background: c.$grey-100;
-    transition: 
+    transition:
       color 0.5s ease-in-out,
       background 0.5s ease-in-out;
   }
