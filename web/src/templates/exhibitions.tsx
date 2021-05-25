@@ -6,10 +6,10 @@ import Layout from '../components/layout'
 import ExhibitionPrieview from '../components/exhibitionPreview'
 
 const Exhibitions = ({ data }) => {
-  
+
   const currentExhibition = data.currentExhibitions.edges[0].node
   const nextExhibition = data.futureExhibitions.edges[0].node
-  
+
   return (
     <Layout
       heroImage={currentExhibition.heroImage.asset.gatsbyImageData}
@@ -40,11 +40,11 @@ const Exhibitions = ({ data }) => {
         <div className="exhibitionGrid">
           {data.pastExhibitions.edges.map((exhibitions: any) => (
             <div key={exhibitions.node.id} style={{margin: 0}}>
-              <Link 
+              <Link
                 to={`/exhibitions/${exhibitions.node.slug.en.current}/`}
               >
                 <div>
-                  <GatsbyImage 
+                  <GatsbyImage
                     image={exhibitions.node.mainImage.asset.gatsbyImageData}
                     alt={exhibitions.node.mainImage.caption}
                     className="gridImage"

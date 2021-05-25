@@ -6,11 +6,11 @@ const ExhibitionPrieview = ({ exhibition, heading }) => {
   return (
     <div className="exhibitionPreview">
       <p>{heading}</p>
-      <Link 
+      <Link
         to={`/exhibitions/${exhibition.slug.en.current}/`}
         style={{margin: 0}}
       >
-        <GatsbyImage 
+        <GatsbyImage
           image={exhibition.mainImage.asset.gatsbyImageData}
           alt={exhibition.mainImage.caption}
           className="gridImage"
