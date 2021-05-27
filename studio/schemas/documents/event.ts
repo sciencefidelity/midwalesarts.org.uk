@@ -22,7 +22,7 @@ export default {
         timeFormat: 'h:mm a',
         timeStep: 15,
         calendarTodayLabel: 'Today'
-      }
+      },
     },
     {
       name: 'briteLink',
