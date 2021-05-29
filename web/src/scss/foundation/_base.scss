@@ -232,7 +232,7 @@ blockquote {
 }
 
 .exhibitionPreview {
-  width: 100%;
+  width: 50%;
   margin-top: 0;
   margin-right: 3rem;
   &:last-child {
@@ -242,12 +242,15 @@ blockquote {
 
 .exhibitionGrid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 3rem;
   width: 81.25%;
   margin: auto;
   z-index: 5;
-  @include b.mq(md) {
+  @include b.mq(lg) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @include b.mq(sm) {
     grid-template-columns: 1fr;
   }
 }
