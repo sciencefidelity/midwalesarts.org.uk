@@ -27,10 +27,10 @@ const Exhibitions = ({ data }) => {
             heading="Current exhibition"
             exhibition={currentExhibition}
           />
-          {/* <ExhibitionPrieview
+          {nextExhibition && (<ExhibitionPrieview
             heading="Next exhibition"
             exhibition={nextExhibition}
-          /> */}
+          />)}
         </div>
         <div className="sidebarContainer" style={{marginTop: `6rem`}}>
           <div className="portableContainer">
