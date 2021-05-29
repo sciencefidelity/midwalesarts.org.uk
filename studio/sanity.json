@@ -3,10 +3,6 @@
   "project": {
     "name": "Mid Wales Arts"
   },
-  "api": {
-    "projectId": "e5f80r5a",
-    "dataset": "production"
-  },
   "plugins": [
     "@sanity/base",
     "@sanity/components",
