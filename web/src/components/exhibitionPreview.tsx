@@ -17,7 +17,7 @@ const ExhibitionPrieview = ({ exhibition, heading }) => {
         />
         <div className="gridCaption">{exhibition.title.en}</div>
         <div className="gridCaption">
-          {exhibition.dateStart} to {exhibition.dateEnd}
+          {exhibition && (<span>{exhibition.dateStart} to {exhibition.dateEnd}</span>)}
         </div>
       </Link>
     </div>

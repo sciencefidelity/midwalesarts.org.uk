@@ -7,8 +7,8 @@ import ExhibitionPrieview from '../components/exhibitionPreview'
 
 const Exhibitions = ({ data }) => {
 
-  const currentExhibition = data.currentExhibitions.edges[0].node
-  const nextExhibition = data.futureExhibitions.edges[0].node
+  const currentExhibition = data.currentExhibitions.edges[0]?.node
+  const nextExhibition = data.futureExhibitions.edges[0]?.node
 
   return (
     <Layout
@@ -27,10 +27,7 @@ const Exhibitions = ({ data }) => {
             heading="Current exhibition"
             exhibition={currentExhibition}
           />
-          <ExhibitionPrieview
-            heading="Next exhibition"
-            exhibition={nextExhibition}
-          />
+
         </div>
         <div className="sidebarContainer" style={{marginTop: `6rem`}}>
           <div className="portableContainer">
