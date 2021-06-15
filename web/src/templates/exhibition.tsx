@@ -64,7 +64,7 @@ const ExhibitionPage = ({ data }) => {
   const [gallery, setGallery] = useState(false)
   const [modal, setModal] = useState(true)
   const [imageToShow, setImageToShow] = useState(0)
-  
+
   const artwork = data && data.allSanityArtwork
   const exhibition = data && data.sanityExhibition
   const modalImage = artwork.edges[imageToShow].node
@@ -73,23 +73,23 @@ const ExhibitionPage = ({ data }) => {
     setInfo(false)
     setGallery(true)
   }
-  
+
   const toggleGallery = () => {
     setInfo(true)
     setGallery(false)
   }
-  
+
   const openModal = (index: number) => {
     setModal(false)
     setImageToShow(index)
   }
-  
+
   const closeModal = () => {
     setModal(true)
   }
-  
+
   let currentIndex = imageToShow
-  
+
   function prevIndex() {
     currentIndex = currentIndex - 1
     if (currentIndex < 0) {
@@ -98,16 +98,16 @@ const ExhibitionPage = ({ data }) => {
     }
     setImageToShow(currentIndex)
   }
-  
+
   function nextIndex() {
     currentIndex = currentIndex + 1
-    if (currentIndex > artwork.edges.length) {
+    if (currentIndex >= artwork.edges.length) {
       setModal(true)
       return
     }
     setImageToShow(currentIndex)
   }
-  
+
   return (
     <Layout
       heroImage={exhibition.mainImage.asset.gatsbyImageData}
@@ -130,7 +130,7 @@ const ExhibitionPage = ({ data }) => {
         <div className={gallery ? "hidden galleryImageGrid" : "galleryImageGrid"}>
           {artwork.edges.map((artworks: any, index: number) => (
             <div style={{margin: 0}} key={artworks.node.id} onClick={() => openModal(index)}>
-              <GatsbyImage 
+              <GatsbyImage
                 image={artworks.node.artworkGridImage.asset.gatsbyImageData}
                 alt={`${artworks.node.artist}, ${artworks.node.title.en}, ${artworks.node.date}`}
                 className="gridImage"
@@ -141,7 +141,7 @@ const ExhibitionPage = ({ data }) => {
           ))}
         </div>
         <div><p className="backLink"><Link to="/exhibitions/">Back to Exhibitions</Link></p></div>
-        <Modal 
+        <Modal
           modal={modal}
           modalImage={modalImage}
           closeModal={closeModal}
