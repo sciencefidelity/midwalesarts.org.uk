@@ -5,7 +5,7 @@ import Layout from '../components/layout'
 import EventPreview from '../components/eventPreview'
 
 const Events = ({ data }) => {
-  console.log(data.pastEvents.edges[0])
+
   return(
     <Layout
       heroImage={
