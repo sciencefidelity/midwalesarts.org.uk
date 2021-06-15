@@ -5,6 +5,7 @@
 * {
   margin: 0;
   box-sizing: border-box;
+  text-underline-offset: 0.15em;
   &::before,
   &::after {
     box-sizing: border-box;
