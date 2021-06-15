@@ -26,15 +26,18 @@ const Events = ({ data }) => {
             <p className="sidebarContainer">Special events, workshops & performances.</p>
           </div>
         </div>
-        {(() => {
-          if (data.eventsMain.edges !== undefined) {
-            <EventPreview
-              heading="Upcoming events"
-              eventData={data.eventsMain.edges}
-              marginTop={{marginTop: `2rem`}}
-            />
-          }
-        })()}
+        {data.eventsMain.edges[0] !== undefined ?
+          <EventPreview
+            heading="Upcoming events"
+            eventData={data.eventsMain.edges}
+            marginTop={{marginTop: `2rem`}}
+          /> :
+          <div className="sidebarContainer" style={{marginTop: `5rem`}}>
+            <div className="portableContainer">
+              <p>No upcoming events.</p>
+            </div>
+          </div>
+        }
         <EventPreview
           heading="Past events"
           eventData={data.pastEvents.edges}
