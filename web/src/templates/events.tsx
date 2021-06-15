@@ -5,11 +5,19 @@ import Layout from '../components/layout'
 import EventPreview from '../components/eventPreview'
 
 const Events = ({ data }) => {
-  
+  console.log(data.pastEvents.edges[0])
   return(
     <Layout
-      heroImage={data.eventsMain.edges[0].node.heroImage.asset.gatsbyImageData}
-      heroImageCaption={`${data.eventsMain.edges[0].node.title.en}, ${data.eventsMain.edges[0].node.date}`}
+      heroImage={
+        data.eventsMain.edges[0] !== undefined ?
+        data.eventsMain.edges[0].node.heroImage.asset.gatsbyImageData :
+        data.pastEvents.edges[0].node.heroImage.asset.gatsbyImageData
+      }
+      heroImageCaption={
+        data.eventsMain.edges[0] !== undefined ?
+        `${data.eventsMain.edges[0].node.title.en}, ${data.eventsMain.edges[0].node.date}` :
+        `${data.pastEvents.edges[0].node.title.en}, ${data.pastEvents.edges[0].node.date}`
+      }
     >
       <section>
         <div className="sidebarContainer">
@@ -18,11 +26,15 @@ const Events = ({ data }) => {
             <p className="sidebarContainer">Special events, workshops & performances.</p>
           </div>
         </div>
-        <EventPreview
-          heading="Upcoming events"
-          eventData={data.eventsMain.edges}
-          marginTop={{marginTop: `2rem`}}
-        />
+        {(() => {
+          if (data.eventsMain.edges !== undefined) {
+            <EventPreview
+              heading="Upcoming events"
+              eventData={data.eventsMain.edges}
+              marginTop={{marginTop: `2rem`}}
+            />
+          }
+        })()}
         <EventPreview
           heading="Past events"
           eventData={data.pastEvents.edges}
@@ -81,9 +93,14 @@ export const query = graphql `
           briteLink
           date(formatString: "dddd, MMMM Do YYYY")
           id
-          mainImage {
+          mainImage: mainImage {
             asset {
               gatsbyImageData(width: 468, height: 468, formats: WEBP, placeholder: BLURRED)
+            }
+          }
+          heroImage: mainImage {
+            asset {
+              gatsbyImageData(width: 1440, formats: WEBP, placeholder: BLURRED, layout: FULL_WIDTH)
             }
           }
           slug {
