@@ -1,0 +1,8 @@
+studio
+README.md
+TODO.md
+CHANGELOG.md
+.gitignore
+.prettierignore
+.prettierrc
+tsconfig.json
