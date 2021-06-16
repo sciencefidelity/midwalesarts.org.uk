@@ -11,6 +11,7 @@ export default {
     {
       name: 'slug',
       title: 'Slug',
+      description: 'Click Generate.',
       type: 'localeSlug',
     },
     {
@@ -27,6 +28,7 @@ export default {
     {
       name: 'briteLink',
       title: 'Eventbrite link',
+      description: 'Leave blank if the event is not on Eventbrite.',
       type: 'url',
     },
     {
@@ -37,6 +39,7 @@ export default {
     {
       name: 'mainImage',
       title: 'Main image',
+      description: 'Images should be jpeg of 1440px along the longest edge, 500-600k is best.',
       type: 'image',
       options: {
         hotspot: true,
