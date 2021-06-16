@@ -25,14 +25,13 @@ const News = () => (
                 <Link
                   to={`/news/${posts.node.slug.en.current}/`}
                 >
-                  <GatsbyImage 
+                  <GatsbyImage
                     image={posts.node.image.asset.gatsbyImageData}
                     alt={posts.node.title.en}
                     className="gridImage"
                   />
-                  <div className="gridCaption">{posts.node.title.en} {index}</div>
+                  <div className="gridCaption">{posts.node.title.en}</div>
                   <div className="gridCaption">{posts.node.publishedAt}</div>
-                  <div className="gridCaption">{posts.node.slug.en.current}</div>
                 </Link>
               </div>
             ))}
