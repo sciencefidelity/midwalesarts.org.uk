@@ -1,5 +1,5 @@
 {
-  "name": "midwalesarts",
+  "name": "mwa-web",
   "private": true,
   "description": "Arts center in Mid Wales",
   "version": "0.1.0",
@@ -36,7 +36,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "build": "gatsby build",
-    "develop": "gatsby develop",
+    "dev": "gatsby develop -H 0.0.0.0",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "start": "npm run develop",
     "serve": "gatsby serve",

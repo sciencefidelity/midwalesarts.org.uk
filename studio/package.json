@@ -1,5 +1,5 @@
 {
-  "name": "midwalesarts",
+  "name": "mwa-studio",
   "private": true,
   "version": "1.0.0",
   "description": "",
@@ -7,7 +7,7 @@
   "author": "Matt Cook <sciencefidelity@hotmail.com>",
   "license": "UNLICENSED",
   "scripts": {
-    "start": "sanity start",
+    "dev": "sanity start",
     "build": "sanity build"
   },
   "keywords": [
