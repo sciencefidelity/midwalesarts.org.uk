@@ -13,16 +13,6 @@ export default {
       type: 'localeString',
     },
     {
-      name: 'imageTitle',
-      title: 'Headline',
-      type: 'localeString',
-    },
-    {
-      name: 'imageCaption',
-      title: 'Subheading',
-      type: 'localeString',
-    },
-    {
       name: 'body',
       title: 'Introduction',
       type: 'localeRichText',
@@ -30,7 +20,9 @@ export default {
     {
       name: 'cta',
       title: 'Call to Action',
+      description: 'A call to action for the internal link (20 characters max).',
       type: 'localeString',
+      validation: (Rule:any) => Rule.max(20).warning(`Maximum 20 characters.`),
     },
     {
       name: 'ctaLink',
@@ -40,6 +32,7 @@ export default {
     {
       name: 'mainImage',
       title: 'Main image',
+      description: 'Images should be jpeg of 1440px along the longest edge, 500-600k is best.',
       type: 'captionImage',
       options: {
         hotspot: true,
@@ -48,6 +41,7 @@ export default {
     {
       name: 'subImage',
       title: 'Inset image',
+      description: 'Images should be jpeg of 1440px along the longest edge, 500-600k is best.',
       type: 'captionImage',
       options: {
         hotspot: true,
