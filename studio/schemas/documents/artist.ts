@@ -1,10 +1,10 @@
-import { FaMagic } from 'react-icons/fa'
+import { FaUserAstronaut } from 'react-icons/fa'
 
 export default {
   name: 'artist',
   title: 'Artist',
   type: 'document',
-  icon: FaMagic,
+  icon: FaUserAstronaut,
   fields: [
     {
       name: 'title',
