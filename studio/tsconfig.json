@@ -1,6 +1,27 @@
 {
-  // Note: This config is only used to help editors like VS Code understand/resolve
-  // parts, the actual transpilation is done by babel. Any compiler configuration in
-  // here will be ignored.
-  "include": ["./node_modules/@sanity/base/types/**/*.ts", "./**/*.ts", "./**/*.tsx"]
+  "include": ["./node_modules/@sanity/base/types/**/*.ts", "./**/*.ts", "./**/*.tsx", "./types"],
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "esnext",
+    "moduleResolution": "node",
+    "jsx": "preserve",
+    "baseUrl": "./",
+    "lib": [
+      "es5", "es6", "dom", "es2017", "dom.iterable"
+    ],
+    "strict": true,
+    "skipLibCheck": true,
+    "types": [],
+    "typeRoots": [ "./types", "./node_modules/@types"],
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "importsNotUsedAsValues": "error"
+  },
+  "exclude": [
+    "node_modules",
+    "./node_modules",
+    "./node_modules/*",
+    "./node_modules/@types/node/index.d.ts",
+  ]
 }
