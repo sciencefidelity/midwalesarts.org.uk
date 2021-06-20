@@ -1,15 +1,21 @@
 import S from '@sanity/desk-tool/structure-builder'
 
+const hiddenDocTypes = listItem => ![
+  'frontPage'
+].includes(listItem.getId())
+
 export default () =>
   S.list()
-    .title('Base')
+    .title('Content')
     .items([
       S.listItem()
         .title('Front Page')
         .child(
           S.document()
+            .id('frontPage')
             .schemaType('frontPage')
-            .documentId('frontPage')
+            .documentId('frontPage-single')
         ),
-      ...S.documentTypeListItems().filter(listItem => !['frontPage'].includes(listItem.getId()))
+      ...S.documentTypeListItems()
+        .filter(hiddenDocTypes)
     ])
