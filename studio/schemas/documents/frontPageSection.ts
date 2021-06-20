@@ -1,9 +1,12 @@
+import { FaNewspaper } from 'react-icons/fa'
+
 export default {
   name: 'frontPageSection',
   title: 'Front Page Section',
   type: 'document',
+  icon: FaNewspaper,
   localize: true,
-  fields: [    
+  fields: [
     {
       name: 'order',
       title: 'Order',

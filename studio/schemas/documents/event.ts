@@ -1,7 +1,10 @@
+import { FaCalendarAlt } from 'react-icons/fa'
+
 export default {
   name: 'event',
   title: 'Event',
   type: 'document',
+  icon: FaCalendarAlt,
   fields: [
     {
       name: 'title',

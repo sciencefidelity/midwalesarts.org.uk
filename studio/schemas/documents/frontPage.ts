@@ -1,8 +1,11 @@
+import { RiHomeSmileLine } from 'react-icons/ri'
+
 export default {
   name: 'frontPage',
   type: 'document',
   title: 'Front Page',
-  // __experimental_actions: [/*'create',*/ 'update', /*'delete',*/ 'publish'],
+  __experimental_actions: [/*'create',*/ 'update', /*'delete',*/ 'publish'],
+  icon: RiHomeSmileLine,
   fields: [
     {
       name: 'title',

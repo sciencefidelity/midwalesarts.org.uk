@@ -1,7 +1,10 @@
+import { FaMagic } from 'react-icons/fa'
+
 export default {
   name: 'artist',
   title: 'Artist',
   type: 'document',
+  icon: FaMagic,
   fields: [
     {
       name: 'title',

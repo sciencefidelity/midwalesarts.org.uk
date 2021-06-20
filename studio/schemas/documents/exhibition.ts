@@ -1,7 +1,10 @@
+import { FaLandmark } from 'react-icons/fa'
+
 export default {
   name: 'exhibition',
   title: 'Exhibition',
   type: 'document',
+  icon: FaLandmark,
   fields: [
     {
       name: 'title',

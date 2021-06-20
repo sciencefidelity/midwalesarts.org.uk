@@ -1,7 +1,10 @@
+import { FaYoutube } from 'react-icons/fa'
+
 export default {
   name: 'video',
   title: 'Video',
   type: 'document',
+  icon: FaYoutube,
   fields: [
     {
       name: 'title',

@@ -1,7 +1,10 @@
+import { FaPencilAlt } from 'react-icons/fa'
+
 export default {
   name: 'post',
   title: 'Post',
   type: 'document',
+  icon: FaPencilAlt,
   fields: [
     {
       name: 'title',

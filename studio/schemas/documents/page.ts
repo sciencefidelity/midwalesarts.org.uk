@@ -1,7 +1,10 @@
+import { FaStickyNote } from 'react-icons/fa'
+
 export default {
   name: 'page',
   title: 'Information Page',
   type: 'document',
+  icon: FaStickyNote,
   fields: [
     {
       name: 'title',

@@ -1,7 +1,10 @@
+import { FaPalette } from 'react-icons/fa'
+
 export default {
   name: 'artwork',
   title: 'Artwork',
   type: 'document',
+  icon: FaPalette,
   fields: [
     {
       name: 'title',
