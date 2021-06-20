@@ -2,7 +2,7 @@ import { FaNewspaper } from 'react-icons/fa'
 
 export default {
   name: 'frontPageSection',
-  title: 'Front Page Section',
+  title: 'Headline',
   type: 'document',
   icon: FaNewspaper,
   localize: true,

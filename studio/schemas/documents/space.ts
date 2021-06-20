@@ -2,7 +2,7 @@ import { FaSpa } from 'react-icons/fa'
 
 export default {
   name: 'space',
-  title: 'Our Spaces',
+  title: 'Space',
   type: 'document',
   icon: FaSpa,
   fields: [
