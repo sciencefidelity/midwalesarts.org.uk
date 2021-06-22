@@ -21,12 +21,13 @@ const Videos = () => (
               </div>
             </div>
             <div className="imageGrid">
-              {data.videosMain.edges.map((videos: any) => (
-                <div key={videos.node.id} style={{margin: 0}}>
+            {!!data.videosMain.edges &&
+              data.videosMain.edges.map((videos: any) => (
+                !!videos && <div key={videos.node.id} style={{margin: 0}}>
                   <Link
                     to={`/videos/${videos.node.slug.en.current}/`}
                   >
-                    <GatsbyImage 
+                    <GatsbyImage
                       image={videos.node.mainImage.asset.gatsbyImageData}
                       alt={videos.node.title.en}
                       className="gridImage"
