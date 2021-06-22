@@ -69,23 +69,23 @@ const Artist = ({ data }) => {
     setBio(false)
     setGallery(true)
   }
-  
+
   const toggleGallery = () => {
     setBio(true)
     setGallery(false)
   }
-  
+
   const openModal = (index: number) => {
     setModal(false)
     setImageToShow(index)
   }
-  
+
   const closeModal = () => {
     setModal(true)
   }
-  
+
   let currentIndex = imageToShow
-  
+
   function prevIndex() {
     currentIndex = currentIndex - 1
     if (currentIndex < 0) {
@@ -94,7 +94,7 @@ const Artist = ({ data }) => {
     }
     setImageToShow(currentIndex)
   }
-  
+
   function nextIndex() {
     currentIndex = currentIndex + 1
     if (currentIndex > artwork.edges.length) {
@@ -103,11 +103,11 @@ const Artist = ({ data }) => {
     }
     setImageToShow(currentIndex)
   }
-  
+
   const artist = data.sanityArtist
   const artwork = data.artworkList
   const modalImage = artwork.edges[imageToShow].node
-  
+
   return (
     <Layout
       heroImage={artist.mainImage.asset.gatsbyImageData}
@@ -128,9 +128,10 @@ const Artist = ({ data }) => {
           </div>
         </div>
         <div className={gallery ? "hidden galleryImageGrid" : "galleryImageGrid"}>
-          {artwork.edges.map((artworks: any, index: number) => (
-            <div style={{margin: 0}} key={artworks.node.id} onClick={() => openModal(index)}>
-              <GatsbyImage 
+          {!!artwork.edges &&
+            artwork.edges.map((artworks: any, index: number) => (
+            !!artworks && <div style={{margin: 0}} key={artworks.node.id} onClick={() => openModal(index)}>
+              <GatsbyImage
                 image={artworks.node.artworkGridImage.asset.gatsbyImageData}
                 alt={`${artworks.node.artist}, ${artworks.node.title.en}, ${artworks.node.date}`}
                 className="gridImage"
@@ -140,13 +141,13 @@ const Artist = ({ data }) => {
           ))}
         </div>
         <div><p className="backLink"><Link to="/artists/">Back to Artists</Link></p></div>
-        <Modal 
+        {!!modalImage && (<Modal
           modal={modal}
           modalImage={modalImage}
           closeModal={closeModal}
           prevIndex={prevIndex}
           nextIndex={nextIndex}
-        />
+        />)}
       </section>
     </Layout>
   )
