@@ -8,7 +8,8 @@
   "license": "UNLICENSED",
   "scripts": {
     "dev": "sanity start",
-    "build": "sanity build"
+    "build": "sanity build",
+    "deploy": "sanity deploy && sanity graphql deploy"
   },
   "keywords": [
     "sanity"
@@ -20,7 +21,7 @@
     "@sanity/dashboard": "^2.10.5",
     "@sanity/default-layout": "^2.12.0",
     "@sanity/default-login": "^2.11.1",
-    "@sanity/desk-tool": "^2.12.0",
+    "@sanity/desk-tool": "^2.12.1",
     "@sanity/vision": "^2.11.2",
     "prop-types": "^15.7",
     "react": "^17.0",

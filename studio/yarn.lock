@@ -1315,10 +1315,10 @@
     prop-types "^15.6.0"
     rxjs "^6.5.3"
 
-"@sanity/desk-tool@^2.12.0":
-  version "2.12.0"
-  resolved "https://registry.npmjs.org/@sanity/desk-tool/-/desk-tool-2.12.0.tgz#68360ae742a6bd09ddedb0b4a4d4b37a6ae7e656"
-  integrity sha512-/gfDI1+eNLAvux1Gu6FgMbE7CURBRKW5xwQDt/jLKEdSmxx6OsSO+2Bera35ISKhnnfv0dPl05zLm3WuVaoz3w==
+"@sanity/desk-tool@^2.12.1":
+  version "2.12.1"
+  resolved "https://registry.npmjs.org/@sanity/desk-tool/-/desk-tool-2.12.1.tgz#806cb74fd7d753322ffa83a1303a0f6b46cd7195"
+  integrity sha512-aTWc78M88We6IiWjST71SPiV4HM7Ny1g3sbXwZ3qN70dOStaHk21xwJgDvFCYwmVPjwZUrmZVmRkumcVu3SX4Q==
   dependencies:
     "@popperjs/core" "^2.5.4"
     "@reach/auto-id" "^0.13.2"
@@ -1327,7 +1327,7 @@
     "@sanity/data-aspects" "2.2.6"
     "@sanity/diff" "2.7.4"
     "@sanity/field" "2.12.0"
-    "@sanity/form-builder" "2.12.0"
+    "@sanity/form-builder" "2.12.1"
     "@sanity/generate-help-url" "2.2.6"
     "@sanity/icons" "^1.1.2"
     "@sanity/mutator" "2.10.2"
@@ -1402,10 +1402,10 @@
     sanity-diff-patch "^1.0.9"
     styled-components "^5.2.1"
 
-"@sanity/form-builder@2.12.0":
-  version "2.12.0"
-  resolved "https://registry.npmjs.org/@sanity/form-builder/-/form-builder-2.12.0.tgz#6003edabc647676af0fde327fd686f76a9e1be4a"
-  integrity sha512-BKUvH/flp55gdhdvRp46gZqJnqrMOkYuWtPg0stTD5m+9HTTFSljV2dcgi/tr93IQjYzgenkiqjJhm0aFxP8OQ==
+"@sanity/form-builder@2.12.1":
+  version "2.12.1"
+  resolved "https://registry.npmjs.org/@sanity/form-builder/-/form-builder-2.12.1.tgz#9bcab56e8fb5e8f37b2a17fadf2c3b035d27e39b"
+  integrity sha512-fbDBuoWpCJj2s4fkYtbZznYnHrH/jc++7zXFEUxeBKEpXZYs68GlF+FyWbtXAXQKJVZES6uyllDv4PqbOZX/iw==
   dependencies:
     "@reach/auto-id" "^0.13.2"
     "@sanity/base" "2.12.0"
@@ -3863,9 +3863,9 @@ ee-first@1.1.1:
   integrity sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=
 
 electron-to-chromium@^1.3.30, electron-to-chromium@^1.3.723:
-  version "1.3.753"
-  resolved "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.3.753.tgz#e5aa72c2a3a97c8187131fe307f0f18d1277b6e5"
-  integrity sha512-LBJJ4qnuveWMqnwP0fP+bSl+QIxeToqBH8Bb0qVkz6YnfOZQpOW/FlkxuPn0u/zh+py6Y7x6L4qsl5aBjE9Djw==
+  version "1.3.754"
+  resolved "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.3.754.tgz#afbe69177ad7aae968c3bbeba129dc70dcc37cf4"
+  integrity sha512-Q50dJbfYYRtwK3G9mFP/EsJVzlgcYwKxFjbXmvVa1lDAbdviPcT9QOpFoufDApub4j0hBfDRL6v3lWNLEdEDXQ==
 
 element-resize-detector@^1.1.14:
   version "1.2.2"
@@ -7992,7 +7992,7 @@ react-icon-base@^2.1.2:
 
 react-icons@^4.2.0:
   version "4.2.0"
-  resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-4.2.0.tgz#6dda80c8a8f338ff96a1851424d63083282630d0"
+  resolved "https://registry.npmjs.org/react-icons/-/react-icons-4.2.0.tgz#6dda80c8a8f338ff96a1851424d63083282630d0"
   integrity sha512-rmzEDFt+AVXRzD7zDE21gcxyBizD/3NqjbX6cmViAgdqfJ2UiLer8927/QhhrXQV7dEj/1EGuOTPp7JnLYVJKQ==
 
 react-is@^16.7.0, react-is@^16.8.1:
