@@ -65,9 +65,9 @@ const ExhibitionPage = ({ data }) => {
   const [modal, setModal] = useState(true)
   const [imageToShow, setImageToShow] = useState(0)
 
-  const artwork = !!data && data.allSanityArtwork
-  const exhibition = !!data && data.sanityExhibition
-  const modalImage = !!data.artwork && artwork.edges[imageToShow].node
+  const artwork = data.allSanityArtwork
+  const exhibition = data.sanityExhibition
+  const modalImage = artwork.edges[imageToShow].node
 
   const toggleInfo = () => {
     setInfo(false)
@@ -129,8 +129,8 @@ const ExhibitionPage = ({ data }) => {
         </div>
         <div className={gallery ? "hidden galleryImageGrid" : "galleryImageGrid"}>
           {!!artwork.edges &&
-            artwork.edges.map((artworks: any, index: number) =>
-            !!artwork && <div style={{margin: 0}} key={artworks.node.id} onClick={() => openModal(index)}>
+            artwork.edges.map((artworks: any, index: number) => (
+            !!artworks && <div style={{margin: 0}} key={artworks.node.id} onClick={() => openModal(index)}>
               <GatsbyImage
                 image={artworks.node.artworkGridImage.asset.gatsbyImageData}
                 alt={`${artworks.node.artist}, ${artworks.node.title.en}, ${artworks.node.date}`}
@@ -139,7 +139,7 @@ const ExhibitionPage = ({ data }) => {
               <div className="gridCaption">{artworks.node.artist}</div>
               <div className="gridCaption"><em>{artworks.node.title.en}</em></div>
             </div>
-          )}
+          ))}
         </div>
         <div><p className="backLink"><Link to="/exhibitions/">Back to Exhibitions</Link></p></div>
         {!!modalImage && (<Modal

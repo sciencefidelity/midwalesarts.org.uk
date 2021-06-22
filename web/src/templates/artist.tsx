@@ -97,7 +97,7 @@ const Artist = ({ data }) => {
 
   function nextIndex() {
     currentIndex = currentIndex + 1
-    if (currentIndex > artwork.edges.length) {
+    if (currentIndex > artwork.edges.length - 1) {
       setModal(true)
       return
     }
