@@ -7,8 +7,8 @@ import ExhibitionPrieview from '../components/exhibitionPreview'
 
 const Exhibitions = ({ data }) => {
 
-  const currentExhibition = data.currentExhibitions.edges[0]?.node
-  const nextExhibition = data.futureExhibitions.edges[0]?.node
+  const currentExhibition = data.currentExhibitions.edges[0].node
+  const nextExhibition = data.futureExhibitions.edges[0].node
 
   return (
     <Layout
@@ -38,8 +38,9 @@ const Exhibitions = ({ data }) => {
           </div>
         </div>
         <div className="exhibitionGrid">
-          {data.pastExhibitions.edges.map((exhibitions: any) => (
-            <div key={exhibitions.node.id} style={{margin: 0}}>
+          {!! data.pastExhibitions.edges &&
+            data.pastExhibitions.edges.map((exhibitions: any) =>
+            (!!exhibitions && <div key={exhibitions.node.id} style={{margin: 0}}>
               <Link
                 to={`/exhibitions/${exhibitions.node.slug.en.current}/`}
               >
