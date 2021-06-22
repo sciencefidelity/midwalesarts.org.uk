@@ -20,8 +20,9 @@ const News = () => (
             </div>
           </div>
           <div className="imageGrid">
-            {data.newsMain.edges.map((posts: any, index: number) => (
-              <div key={posts.node.id} style={{margin: 0}}>
+          {!!data.newsMain.edges &&
+            data.newsMain.edges.map((posts: any, index: number) => (
+              !!posts && <div key={posts.node.id} style={{margin: 0}}>
                 <Link
                   to={`/news/${posts.node.slug.en.current}/`}
                 >
