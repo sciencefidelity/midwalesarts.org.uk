@@ -23,11 +23,11 @@ const Exhibitions = ({ data }) => {
           </div>
         </div>
         <div className="exhibitionPreviewGrid">
-          <ExhibitionPrieview
+          {!!currentExhibition && (<ExhibitionPrieview
             heading="Current exhibition"
             exhibition={currentExhibition}
-          />
-          {nextExhibition && (<ExhibitionPrieview
+          />)}
+          {!!nextExhibition && (<ExhibitionPrieview
             heading="Next exhibition"
             exhibition={nextExhibition}
           />)}
