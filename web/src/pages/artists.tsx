@@ -20,14 +20,15 @@ const ArtistsPage = () => (
             </div>
           </div>
           <div className="imageGrid">
-            {data.allSanityArtist.edges.map((artists: any) => (
-              <Link 
+          {!!data.allSanityArtist.edges &&
+            data.allSanityArtist.edges.map((artists: any) => (
+              !!artists && <Link
                 to={`/artists/${artists.node.slug.current}/`}
                 style={{margin: 0}}
                 key={artists.node.id}
               >
                 <div>
-                  <GatsbyImage 
+                  <GatsbyImage
                     image={artists.node.mainImage.asset.gatsbyImageData}
                     alt={artists.node.mainImage.caption}
                     className="gridImage"

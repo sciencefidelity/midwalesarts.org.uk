@@ -33,7 +33,7 @@ const IndexPage = () => (
                 </div>
                 <Intro />
                 <div className="sideImageContainer">
-                  <GatsbyImage 
+                  <GatsbyImage
                     image={data.sanityFrontPage.subImage.asset.gatsbyImageData}
                     alt={data.sanityFrontPage.subImage.caption}
                     className="sideImage"
@@ -43,8 +43,9 @@ const IndexPage = () => (
               </div>
             </div>
           </section>
-          {data.allSanityFrontPageSection.edges.map((section: any) =>
-            <FrontPageSection 
+          {!!data.allSanityFrontPageSection.edges &&
+            data.allSanityFrontPageSection.edges.map((section: any) =>
+            !!section && <FrontPageSection
               title={section.node.title.en}
               caption={section.node.caption.en}
               heading={section.node.heading.en}
