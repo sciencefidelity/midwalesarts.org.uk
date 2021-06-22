@@ -22,7 +22,6 @@ export default {
       title: 'Call to Action',
       description: 'A call to action for the internal link (20 characters max).',
       type: 'localeString',
-      validation: (Rule:any) => Rule.max(20).warning(`Maximum 20 characters.`),
     },
     {
       name: 'ctaLink',
