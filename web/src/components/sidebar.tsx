@@ -63,7 +63,7 @@ const query = graphql `
       }
     }
     allSanityEvent(
-      filter: {date: {gte: "2021-05-02"}}
+      filter: {date: {gte: "2021-06-22"}}
       sort: {fields: date, order: ASC}
     ) {
       edges {
@@ -81,7 +81,7 @@ const query = graphql `
       }
     }
     allSanityExhibition(
-      filter: {dateEnd: {gt: "2021-05-02"}}
+      filter: {dateEnd: {gt: "2021-06-22"}}
       sort: {order: ASC, fields: dateStart}
     ) {
       edges {
