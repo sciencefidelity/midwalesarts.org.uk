@@ -9,24 +9,27 @@ const Sidebar = () => (
         <div className="sidebarContent">
           <h3>Latest News</h3>
           <ul className="sidebarMenu">
-            {data.allSanityPost.edges.map((link: any) => (
-              <Link to={`/news/${link.node.slug.en.current}/`} key={link.node.id}>
+            {!!data.allSanityPost.edges &&
+              data.allSanityPost.edges.map((link: any) => (
+              !!link && <Link to={`/news/${link.node.slug.en.current}/`} key={link.node.id}>
                 <li>{link.node.title.en}</li>
               </Link>
             ))}
           </ul>
           <h3>Upcoming Events</h3>
           <ul className="sidebarMenu">
-            {data.allSanityEvent.edges.map((link: any) => (
-              <Link to={`/events/${link.node.slug.en.current}/`} key={link.node.id}>
+            {!!data.allSanityEvent.edges &&
+              data.allSanityEvent.edges.map((link: any) => (
+              !!link && <Link to={`/events/${link.node.slug.en.current}/`} key={link.node.id}>
                 <li>{link.node.title.en}</li>
               </Link>
             ))}
           </ul>
           <h3>Exhibitions</h3>
           <ul className="sidebarMenu">
-            {data.allSanityExhibition.edges.map((link: any) => (
-              <Link to={`/exhibitions/${link.node.slug.en.current}/`} key={link.node.id}>
+            {!!data.allSanityExhibition.edges &&
+              data.allSanityExhibition.edges.map((link: any) => (
+              !!link &&<Link to={`/exhibitions/${link.node.slug.en.current}/`} key={link.node.id}>
                 <li>{link.node.title.en}</li>
               </Link>
             ))}
@@ -63,7 +66,7 @@ const query = graphql `
       }
     }
     allSanityEvent(
-      filter: {date: {gte: "2021-06-22"}}
+      filter: {date: {gte: "21-06-22"}}
       sort: {fields: date, order: ASC}
     ) {
       edges {
@@ -81,7 +84,7 @@ const query = graphql `
       }
     }
     allSanityExhibition(
-      filter: {dateEnd: {gt: "2021-06-22"}}
+      filter: {dateEnd: {gt: "21-06-22"}}
       sort: {order: ASC, fields: dateStart}
     ) {
       edges {
