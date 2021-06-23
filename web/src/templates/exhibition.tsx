@@ -67,7 +67,7 @@ const ExhibitionPage = ({ data }) => {
 
   const artwork = data.allSanityArtwork
   const exhibition = data.sanityExhibition
-  const modalImage = artwork.edges[imageToShow].node
+  const modalImage = artwork.edges[0] !== undefined ? artwork.edges[imageToShow].node : ''
 
   const toggleInfo = () => {
     setInfo(false)
@@ -128,27 +128,31 @@ const ExhibitionPage = ({ data }) => {
           </div>
         </div>
         <div className={gallery ? "hidden galleryImageGrid" : "galleryImageGrid"}>
-          {!!artwork.edges &&
+          {artwork.edges[0] !== undefined ?
             artwork.edges.map((artworks: any, index: number) => (
-            !!artworks && <div style={{margin: 0}} key={artworks.node.id} onClick={() => openModal(index)}>
-              <GatsbyImage
-                image={artworks.node.artworkGridImage.asset.gatsbyImageData}
-                alt={`${artworks.node.artist}, ${artworks.node.title.en}, ${artworks.node.date}`}
-                className="gridImage"
-              />
-              <div className="gridCaption">{artworks.node.artist}</div>
-              <div className="gridCaption"><em>{artworks.node.title.en}</em></div>
-            </div>
-          ))}
+              <div style={{margin: 0}} key={artworks.node.id} onClick={() => openModal(index)}>
+                <GatsbyImage
+                  image={artworks.node.artworkGridImage.asset.gatsbyImageData}
+                  alt={`${artworks.node.artist}, ${artworks.node.title.en}, ${artworks.node.date}`}
+                  className="gridImage"
+                />
+                <div className="gridCaption">{artworks.node.artist}</div>
+                <div className="gridCaption"><em>{artworks.node.title.en}</em></div>
+              </div>
+            )) :
+            <p>No artworks to show</p>
+          }
         </div>
         <div><p className="backLink"><Link to="/exhibitions/">Back to Exhibitions</Link></p></div>
-        {!!modalImage && (<Modal
-          modal={modal}
-          modalImage={modalImage}
-          closeModal={closeModal}
-          prevIndex={prevIndex}
-          nextIndex={nextIndex}
-        />)}
+        {artwork.edges[0] !== undefined ?
+          <Modal
+            modal={modal}
+            modalImage={modalImage}
+            closeModal={closeModal}
+            prevIndex={prevIndex}
+            nextIndex={nextIndex}
+          /> : <></>
+        }
       </section>
     </Layout>
   )
