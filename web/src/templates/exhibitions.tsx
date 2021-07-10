@@ -7,9 +7,6 @@ import ExhibitionPrieview from '../components/exhibitionPreview'
 
 const Exhibitions = ({ data }) => {
 
-  // const currentExhibition = data.currentExhibitions.edges[0].node
-  // const nextExhibition = data.futureExhibitions.edges[0].node
-
   return (
     <Layout
       heroImage={data.currentExhibitions.edges[0].node.heroImage.asset.gatsbyImageData}
