@@ -7,15 +7,15 @@ const ExhibitionPrieview = ({ exhibition, heading }) => {
     <div className="exhibitionPreview">
       <p>{heading}</p>
       <Link
-        to={`/exhibitions/${exhibition.slug.en.current}/`}
+        to={`/exhibitions/${!!exhibition && exhibition.slug.en.current}/`}
         style={{margin: 0}}
       >
         <GatsbyImage
-          image={exhibition.mainImage.asset.gatsbyImageData}
-          alt={exhibition.mainImage.caption}
+          image={!!exhibition && exhibition.mainImage.asset.gatsbyImageData}
+          alt={!!exhibition && exhibition.mainImage.caption}
           className="gridImage"
         />
-        <div className="gridCaption">{exhibition.title.en}</div>
+        <div className="gridCaption">{!!exhibition && exhibition.title.en}</div>
         <div className="gridCaption">
           {exhibition && (<span>{exhibition.dateStart} to {exhibition.dateEnd}</span>)}
         </div>

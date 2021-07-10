@@ -7,13 +7,13 @@ import ExhibitionPrieview from '../components/exhibitionPreview'
 
 const Exhibitions = ({ data }) => {
 
-  const currentExhibition = data.currentExhibitions.edges[0].node
-  const nextExhibition = data.futureExhibitions.edges[0].node
+  // const currentExhibition = data.currentExhibitions.edges[0].node
+  // const nextExhibition = data.futureExhibitions.edges[0].node
 
   return (
     <Layout
-      heroImage={currentExhibition.heroImage.asset.gatsbyImageData}
-      heroImageCaption={currentExhibition.mainImage.caption}
+      heroImage={data.currentExhibitions.edges[0].node.heroImage.asset.gatsbyImageData}
+      heroImageCaption={data.currentExhibitions.edges[0].node.mainImage.caption}
     >
       <section>
         <div className="sidebarContainer">
@@ -23,14 +23,18 @@ const Exhibitions = ({ data }) => {
           </div>
         </div>
         <div className="exhibitionPreviewGrid">
-          {!!currentExhibition && (<ExhibitionPrieview
-            heading="Current exhibition"
-            exhibition={currentExhibition}
-          />)}
-          {!!nextExhibition && (<ExhibitionPrieview
-            heading="Next exhibition"
-            exhibition={nextExhibition}
-          />)}
+          {!!data.currentExhibitions.edges &&
+            <ExhibitionPrieview
+              heading="Current exhibition"
+              exhibition={data.currentExhibitions.edges[0].node}
+            />
+          }
+          {!!data.futureExhibitions.edges[0] &&
+            <ExhibitionPrieview
+              heading="Next exhibition"
+              exhibition={!!data.futureExhibitions.edges[0] && data.futureExhibitions.edges[0].node}
+            />
+          }
         </div>
         <div className="sidebarContainer" style={{marginTop: `6rem`}}>
           <div className="portableContainer">
@@ -68,7 +72,7 @@ export const query = graphql `
   query exhibitionQuery($currentDate: Date!) {
     currentExhibitions: allSanityExhibition(
       filter: {dateEnd: {gt: $currentDate}, dateStart: {lt: $currentDate}}
-      sort: {fields: dateStart, order: DESC}) {
+      sort: {fields: dateStart, order: ASC}) {
       edges {
         node {
           title {
