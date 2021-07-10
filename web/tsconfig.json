@@ -11,10 +11,11 @@
     "types": [],
     "paths": {
       "~/*": ["./src/*"],
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "*": ["./types/*"]
     },
   },
-  "include": ["src/*"],
+  "include": ["src/*", "types/*"],
   "exclude": [
     "node_modules",
     "./node_modules",
