@@ -49,7 +49,7 @@ const Exhibitions = ({ data }) => {
           </div>
         </div>
         <div className="exhibitionGrid">
-          {!! data.pastExhibitions.edges &&
+          {!!data.pastExhibitions &&
             data.pastExhibitions.edges.map((exhibitions: any) =>
             (!!exhibitions && <div key={exhibitions.node.id} style={{margin: 0}}>
               <Link

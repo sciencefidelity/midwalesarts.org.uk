@@ -34,7 +34,7 @@ const Events = ({ data }) => {
           /> :
           <div className="sidebarContainer" style={{marginTop: `5rem`}}>
             <div className="portableContainer">
-              <p>No upcoming events.</p>
+              <p>More events coming soon.</p>
             </div>
           </div>
         }
