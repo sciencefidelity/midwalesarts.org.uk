@@ -23,11 +23,21 @@ const Exhibitions = ({ data }) => {
           </div>
         </div>
         <div className="exhibitionPreviewGrid">
-          {!!data.currentExhibitions.edges &&
+          {!!data.currentExhibitions && data.currentExhibitions.edges.length === 1 ?
             <ExhibitionPrieview
               heading="Current exhibition"
               exhibition={data.currentExhibitions.edges[0].node}
-            />
+            /> :
+            <>
+              <ExhibitionPrieview
+                heading="Current exhibitions"
+                exhibition={data.currentExhibitions.edges[0].node}
+              />
+              <ExhibitionPrieview
+                heading="&nbsp;"
+                exhibition={data.currentExhibitions.edges[1].node}
+              />
+            </>
           }
           {!!data.futureExhibitions.edges[0] &&
             <ExhibitionPrieview
