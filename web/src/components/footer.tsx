@@ -1,5 +1,4 @@
-import * as React from "react"
-import PropTypes from "prop-types"
+import React, { FC } from "react"
 
 import "../scss/footer.scss"
 
@@ -8,7 +7,9 @@ import Signup from "./signup"
 import Logos from "./logos/logos"
 import FooterLinks from "./footerLinks"
 
-const Footer = () => {
+const Footer: FC = () => {
+  const currentYear = new Date().getFullYear()
+
   return (
     <footer>
       <div className="footerContainer">
@@ -18,18 +19,10 @@ const Footer = () => {
           <Logos />
           <FooterLinks />
         </div>
-        <p className="smallCopy">&copy; Mid Wales Arts 2021</p>
+        <p className="smallCopy">&copy; Mid Wales Arts {currentYear}</p>
       </div>
     </footer>
   )
-}
-
-Footer.propTypes = {
-  siteTitle: PropTypes.string,
-}
-
-Footer.defaultProps = {
-  siteTitle: ``,
 }
 
 export default Footer
