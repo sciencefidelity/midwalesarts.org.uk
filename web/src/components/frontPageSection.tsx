@@ -1,10 +1,25 @@
-import * as React from "react"
+import React, { FC } from "react"
 import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
+import PropTypes from "prop-types"
 
 import PortableText from "./portableText"
 
-const FrontPageSection = (props: any) => (
+interface Props {
+  title: string
+  caption: string
+  heading: string
+  body: any
+  cta: string
+  ctaLink: string
+  mainImage: any
+  mainImageCaption: string
+  subImage: any
+  subImageCaption: string
+  key: string
+}
+
+const FrontPageSection: FC<Props> = (props: any) => (
   <section>
     <div className="sectionContainer">
       <>
@@ -50,5 +65,11 @@ const FrontPageSection = (props: any) => (
     </div>
   </section>
 )
+
+FrontPageSection.propTypes = {
+  title: PropTypes.string.isRequired,
+  caption: PropTypes.string.isRequired,
+  heading: PropTypes.string.isRequired,
+}
 
 export default FrontPageSection

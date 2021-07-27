@@ -7,9 +7,9 @@ import Signup from "./signup"
 import Logos from "./logos/logos"
 import FooterLinks from "./footerLinks"
 
-const Footer: FC = () => {
-  const currentYear = new Date().getFullYear()
+const currentYear = new Date().getFullYear()
 
+const Footer: FC = () => {
   return (
     <footer>
       <div className="footerContainer">

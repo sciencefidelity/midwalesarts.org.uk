@@ -1,8 +1,14 @@
-import React from "react"
+import React, { FC } from "react"
 import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
+import PropTypes from "prop-types"
 
-const ExhibitionPrieview = ({ exhibition, heading }) => {
+interface Props {
+  exhibition: any
+  heading: string
+}
+
+const ExhibitionPrieview: FC<Props> = ({ exhibition, heading }) => {
   return (
     <div className="exhibitionPreview">
       <p>{heading}</p>
@@ -26,6 +32,11 @@ const ExhibitionPrieview = ({ exhibition, heading }) => {
       </Link>
     </div>
   )
+}
+
+ExhibitionPrieview.propTypes = {
+  exhibition: PropTypes.any.isRequired,
+  heading: PropTypes.string.isRequired,
 }
 
 export default ExhibitionPrieview

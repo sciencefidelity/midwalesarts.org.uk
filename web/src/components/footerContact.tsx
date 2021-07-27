@@ -1,8 +1,8 @@
-import * as React from "react"
+import React, { FC } from "react"
 
 const year = new Date().getFullYear()
 
-const FooterContact = () => {
+const FooterContact: FC = () => {
   return (
     <div>
       <p>

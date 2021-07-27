@@ -1,8 +1,15 @@
-import React from "react"
+import React, { FC } from "react"
 import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
+import PropTypes from "prop-types"
 
-const EventPreview = ({ heading, eventData, marginTop }) => {
+interface Props {
+  heading: string
+  eventData: object[]
+  marginTop: object
+}
+
+const EventPreview: FC<Props> = ({ heading, eventData, marginTop }) => {
   return (
     <>
       <div className="sidebarContainer" style={marginTop}>
@@ -28,5 +35,13 @@ const EventPreview = ({ heading, eventData, marginTop }) => {
     </>
   )
 }
+
+EventPreview.propTypes = {
+  heading: PropTypes.string.isRequired,
+  eventData: PropTypes.any.isRequired,
+  marginTop: PropTypes.object.isRequired
+}
+
+EventPreview.defaultProps = {}
 
 export default EventPreview
