@@ -5,4 +5,5 @@ CHANGELOG.md
 .gitignore
 .prettierignore
 .prettierrc
+.eslintignore
 tsconfig.json
