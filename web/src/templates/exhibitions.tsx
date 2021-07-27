@@ -1,23 +1,23 @@
-import * as React from 'react'
-import { graphql, Link } from 'gatsby'
-import { GatsbyImage } from 'gatsby-plugin-image'
+import * as React from "react"
+import { graphql, Link } from "gatsby"
+import { GatsbyImage } from "gatsby-plugin-image"
 
-import Layout from '../components/layout'
-import ExhibitionPrieview from '../components/exhibitionPreview'
+import Layout from "../components/layout"
+import ExhibitionPrieview from "../components/exhibitionPreview"
 
 const Exhibitions = ({ data }) => {
-
   return (
     <Layout
       heroImage={
-        data.currentExhibitions.edges[0] !== undefined ?
-        data.currentExhibitions.edges[0].node.heroImage.asset.gatsbyImageData :
-        data.futureExhibitions.edges[0].node.heroImage.asset.gatsbyImageData
+        data.currentExhibitions.edges[0] !== undefined
+          ? data.currentExhibitions.edges[0].node.heroImage.asset
+              .gatsbyImageData
+          : data.futureExhibitions.edges[0].node.heroImage.asset.gatsbyImageData
       }
       heroImageCaption={
-        data.currentExhibitions.edges[0] !== undefined ?
-        data.currentExhibitions.edges[0].node.mainImage.caption :
-        data.futureExhibitions.edges[0].node.mainImage.caption
+        data.currentExhibitions.edges[0] !== undefined
+          ? data.currentExhibitions.edges[0].node.mainImage.caption
+          : data.futureExhibitions.edges[0].node.mainImage.caption
       }
     >
       <section>
@@ -28,13 +28,15 @@ const Exhibitions = ({ data }) => {
           </div>
         </div>
         <div className="exhibitionPreviewGrid">
-          {!!data.currentExhibitions.edges[0] &&
+          {!!data.currentExhibitions.edges[0] && (
             <>
-              {!!data.currentExhibitions && data.currentExhibitions.edges.length === 1 ?
+              {!!data.currentExhibitions &&
+              data.currentExhibitions.edges.length === 1 ? (
                 <ExhibitionPrieview
                   heading="Current exhibition"
                   exhibition={data.currentExhibitions.edges[0].node}
-                /> :
+                />
+              ) : (
                 <>
                   <ExhibitionPrieview
                     heading="Current exhibitions"
@@ -45,53 +47,65 @@ const Exhibitions = ({ data }) => {
                     exhibition={data.currentExhibitions.edges[1].node}
                   />
                 </>
-              }
+              )}
             </>
-          }
-          {!!data.futureExhibitions.edges[0] &&
+          )}
+          {!!data.futureExhibitions.edges[0] && (
             <ExhibitionPrieview
               heading="Next exhibition"
-              exhibition={!!data.futureExhibitions.edges[0] && data.futureExhibitions.edges[0].node}
+              exhibition={
+                !!data.futureExhibitions.edges[0] &&
+                data.futureExhibitions.edges[0].node
+              }
             />
-          }
+          )}
         </div>
-        <div className="sidebarContainer" style={{marginTop: `6rem`}}>
+        <div className="sidebarContainer" style={{ marginTop: `6rem` }}>
           <div className="portableContainer">
             <p>Past exhibitions</p>
           </div>
         </div>
         <div className="exhibitionGrid">
           {!!data.pastExhibitions &&
-            data.pastExhibitions.edges.map((exhibitions: any) =>
-            (!!exhibitions && <div key={exhibitions.node.id} style={{margin: 0}}>
-              <Link
-                to={`/exhibitions/${exhibitions.node.slug.en.current}/`}
-              >
-                <div>
-                  <GatsbyImage
-                    image={exhibitions.node.mainImage.asset.gatsbyImageData}
-                    alt={exhibitions.node.mainImage.caption}
-                    className="gridImage"
-                  />
-                  <div className="gridCaption">{exhibitions.node.title.en}</div>
-                  <div className="gridCaption">
-                    {exhibitions.node.dateStart} to {exhibitions.node.dateEnd}
+            data.pastExhibitions.edges.map(
+              (exhibitions: any) =>
+                !!exhibitions && (
+                  <div key={exhibitions.node.id} style={{ margin: 0 }}>
+                    <Link
+                      to={`/exhibitions/${exhibitions.node.slug.en.current}/`}
+                    >
+                      <div>
+                        <GatsbyImage
+                          image={
+                            exhibitions.node.mainImage.asset.gatsbyImageData
+                          }
+                          alt={exhibitions.node.mainImage.caption}
+                          className="gridImage"
+                        />
+                        <div className="gridCaption">
+                          {exhibitions.node.title.en}
+                        </div>
+                        <div className="gridCaption">
+                          {exhibitions.node.dateStart} to{" "}
+                          {exhibitions.node.dateEnd}
+                        </div>
+                      </div>
+                    </Link>
                   </div>
-                </div>
-              </Link>
-            </div>
-          ))}
+                )
+            )}
         </div>
       </section>
     </Layout>
   )
 }
 
-export const query = graphql `
+export const query = graphql`
   query exhibitionQuery($currentDate: Date!) {
     currentExhibitions: allSanityExhibition(
-      filter: {dateEnd: {gt: $currentDate}, dateStart: {lt: $currentDate}}
-      sort: {fields: dateStart, order: ASC}) {
+      filter: { dateEnd: { gt: $currentDate }, dateStart: { lt: $currentDate } }
+      sort: { fields: dateStart, order: ASC }
+    ) {
       edges {
         node {
           title {
@@ -105,7 +119,12 @@ export const query = graphql `
           mainImage {
             caption
             asset {
-              gatsbyImageData(width: 624, height: 624, formats: WEBP, placeholder: BLURRED)
+              gatsbyImageData(
+                width: 624
+                height: 624
+                formats: WEBP
+                placeholder: BLURRED
+              )
             }
           }
           heroImage: mainImage {
@@ -124,8 +143,9 @@ export const query = graphql `
       }
     }
     futureExhibitions: allSanityExhibition(
-      filter: {dateStart: {gt: $currentDate}}
-      sort: {fields: dateStart, order: DESC}) {
+      filter: { dateStart: { gt: $currentDate } }
+      sort: { fields: dateStart, order: DESC }
+    ) {
       edges {
         node {
           title {
@@ -139,7 +159,12 @@ export const query = graphql `
           mainImage {
             caption
             asset {
-              gatsbyImageData(width: 624, height: 624, formats: WEBP, placeholder: BLURRED)
+              gatsbyImageData(
+                width: 624
+                height: 624
+                formats: WEBP
+                placeholder: BLURRED
+              )
             }
           }
           heroImage: mainImage {
@@ -158,8 +183,9 @@ export const query = graphql `
       }
     }
     pastExhibitions: allSanityExhibition(
-      filter: {dateEnd: {lt: $currentDate}}
-      sort: {fields: dateStart, order: DESC}) {
+      filter: { dateEnd: { lt: $currentDate } }
+      sort: { fields: dateStart, order: DESC }
+    ) {
       edges {
         node {
           title {
@@ -173,7 +199,12 @@ export const query = graphql `
           mainImage {
             caption
             asset {
-              gatsbyImageData(width: 624, height: 624, formats: WEBP, placeholder: BLURRED)
+              gatsbyImageData(
+                width: 624
+                height: 624
+                formats: WEBP
+                placeholder: BLURRED
+              )
             }
           }
           dateStart(formatString: "Do MMMM")

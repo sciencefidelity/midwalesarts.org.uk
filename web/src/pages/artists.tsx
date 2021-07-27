@@ -1,8 +1,8 @@
-import * as React from 'react'
-import { StaticQuery, graphql, Link } from 'gatsby'
-import { GatsbyImage } from 'gatsby-plugin-image'
+import * as React from "react"
+import { StaticQuery, graphql, Link } from "gatsby"
+import { GatsbyImage } from "gatsby-plugin-image"
 
-import Layout from '../components/layout'
+import Layout from "../components/layout"
 
 const ArtistsPage = () => (
   <StaticQuery
@@ -20,23 +20,26 @@ const ArtistsPage = () => (
             </div>
           </div>
           <div className="imageGrid">
-          {!!data.allSanityArtist.edges &&
-            data.allSanityArtist.edges.map((artists: any) => (
-              !!artists && <Link
-                to={`/artists/${artists.node.slug.current}/`}
-                style={{margin: 0}}
-                key={artists.node.id}
-              >
-                <div>
-                  <GatsbyImage
-                    image={artists.node.mainImage.asset.gatsbyImageData}
-                    alt={artists.node.mainImage.caption}
-                    className="gridImage"
-                  />
-                  <div className="gridCaption">{artists.node.title}</div>
-                </div>
-              </Link>
-            ))}
+            {!!data.allSanityArtist.edges &&
+              data.allSanityArtist.edges.map(
+                (artists: any) =>
+                  !!artists && (
+                    <Link
+                      to={`/artists/${artists.node.slug.current}/`}
+                      style={{ margin: 0 }}
+                      key={artists.node.id}
+                    >
+                      <div>
+                        <GatsbyImage
+                          image={artists.node.mainImage.asset.gatsbyImageData}
+                          alt={artists.node.mainImage.caption}
+                          className="gridImage"
+                        />
+                        <div className="gridCaption">{artists.node.title}</div>
+                      </div>
+                    </Link>
+                  )
+              )}
           </div>
         </section>
       </Layout>
@@ -44,9 +47,9 @@ const ArtistsPage = () => (
   />
 )
 
-const query = graphql `
+const query = graphql`
   query ArtistsQuery {
-    allSanityArtist(sort: {fields: title, order: ASC}) {
+    allSanityArtist(sort: { fields: title, order: ASC }) {
       edges {
         node {
           id
@@ -55,12 +58,17 @@ const query = graphql `
             current
           }
           body {
-            _rawEn(resolveReferences: {maxDepth: 10})
+            _rawEn(resolveReferences: { maxDepth: 10 })
           }
           mainImage {
             caption
             asset {
-              gatsbyImageData(width: 468, height: 468, formats: WEBP, placeholder: BLURRED)
+              gatsbyImageData(
+                width: 468
+                height: 468
+                formats: WEBP
+                placeholder: BLURRED
+              )
             }
           }
           disciplines {
@@ -71,11 +79,16 @@ const query = graphql `
         }
       }
     }
-    sanityArtist(title: {eq: "Diane Rose"}) {
+    sanityArtist(title: { eq: "Diane Rose" }) {
       mainImage {
         caption
         asset {
-          gatsbyImageData(width: 1440, formats: WEBP, placeholder: BLURRED, layout: FULL_WIDTH)
+          gatsbyImageData(
+            width: 1440
+            formats: WEBP
+            placeholder: BLURRED
+            layout: FULL_WIDTH
+          )
         }
       }
     }

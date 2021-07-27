@@ -1,21 +1,26 @@
-import * as React from 'react'
-import { graphql, Link } from 'gatsby'
+import * as React from "react"
+import { graphql, Link } from "gatsby"
 
-import Layout from '../components/layout'
-import PortableText from '../components/portableText'
-import VideoEmbed from '../components/videoEmbed'
-import Sidebar from '../components/sidebar'
+import Layout from "../components/layout"
+import PortableText from "../components/portableText"
+import VideoEmbed from "../components/videoEmbed"
+import Sidebar from "../components/sidebar"
 
-export const query = graphql `
+export const query = graphql`
   query SingleVideoQuery($slug: String!) {
-    sanityVideo(slug: {en: {current: { eq: $slug } }}) {
+    sanityVideo(slug: { en: { current: { eq: $slug } } }) {
       body {
-        _rawEn(resolveReferences: {maxDepth: 10})
+        _rawEn(resolveReferences: { maxDepth: 10 })
       }
       id
       mainImage {
         asset {
-          gatsbyImageData(width: 1440, formats: WEBP, placeholder: BLURRED, layout: FULL_WIDTH)
+          gatsbyImageData(
+            width: 1440
+            formats: WEBP
+            placeholder: BLURRED
+            layout: FULL_WIDTH
+          )
         }
       }
       publishDate(formatString: "dddd, MMMM Do YYYY")
@@ -39,9 +44,13 @@ const VideoPage = ({ data }) => {
           <div className="portableContainer">
             <h1>Video</h1>
             <p className="subTitle">{video.title.en}.</p>
-            <VideoEmbed videoId = {video.videoLink}/>
+            <VideoEmbed videoId={video.videoLink} />
             {video.body._rawEn && <PortableText blocks={video.body._rawEn} />}
-            <div><p className="backLink"><Link to="/videos/">Back to Videos</Link></p></div>
+            <div>
+              <p className="backLink">
+                <Link to="/videos/">Back to Videos</Link>
+              </p>
+            </div>
           </div>
           <Sidebar />
         </div>

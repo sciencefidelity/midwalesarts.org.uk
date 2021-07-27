@@ -1,6 +1,6 @@
-import React from 'react'
-import { Link } from 'gatsby'
-import { GatsbyImage } from 'gatsby-plugin-image'
+import React from "react"
+import { Link } from "gatsby"
+import { GatsbyImage } from "gatsby-plugin-image"
 
 const EventPreview = ({ heading, eventData, marginTop }) => {
   return (
@@ -12,11 +12,9 @@ const EventPreview = ({ heading, eventData, marginTop }) => {
       </div>
       <div className="eventsImageGrid">
         {eventData.map((events: any) => (
-          <div key={events.node.id} style={{margin: 0}}>
-            <Link
-              to={`/events/${events.node.slug.en.current}/`}
-            >
-              <GatsbyImage 
+          <div key={events.node.id} style={{ margin: 0 }}>
+            <Link to={`/events/${events.node.slug.en.current}/`}>
+              <GatsbyImage
                 image={events.node.mainImage.asset.gatsbyImageData}
                 alt={events.node.title.en}
                 className="gridImage"

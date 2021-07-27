@@ -1,8 +1,8 @@
-import * as React from 'react'
-import { StaticQuery, graphql, Link } from 'gatsby'
-import { GatsbyImage } from 'gatsby-plugin-image'
+import * as React from "react"
+import { StaticQuery, graphql, Link } from "gatsby"
+import { GatsbyImage } from "gatsby-plugin-image"
 
-import Layout from '../components/layout'
+import Layout from "../components/layout"
 
 const News = () => (
   <StaticQuery
@@ -20,22 +20,25 @@ const News = () => (
             </div>
           </div>
           <div className="imageGrid">
-          {!!data.newsMain.edges &&
-            data.newsMain.edges.map((posts: any, index: number) => (
-              !!posts && <div key={posts.node.id} style={{margin: 0}}>
-                <Link
-                  to={`/news/${posts.node.slug.en.current}/`}
-                >
-                  <GatsbyImage
-                    image={posts.node.image.asset.gatsbyImageData}
-                    alt={posts.node.title.en}
-                    className="gridImage"
-                  />
-                  <div className="gridCaption">{posts.node.title.en}</div>
-                  <div className="gridCaption">{posts.node.publishedAt}</div>
-                </Link>
-              </div>
-            ))}
+            {!!data.newsMain.edges &&
+              data.newsMain.edges.map(
+                (posts: any, index: number) =>
+                  !!posts && (
+                    <div key={posts.node.id} style={{ margin: 0 }}>
+                      <Link to={`/news/${posts.node.slug.en.current}/`}>
+                        <GatsbyImage
+                          image={posts.node.image.asset.gatsbyImageData}
+                          alt={posts.node.title.en}
+                          className="gridImage"
+                        />
+                        <div className="gridCaption">{posts.node.title.en}</div>
+                        <div className="gridCaption">
+                          {posts.node.publishedAt}
+                        </div>
+                      </Link>
+                    </div>
+                  )
+              )}
           </div>
         </section>
       </Layout>
@@ -43,13 +46,13 @@ const News = () => (
   />
 )
 
-const query = graphql `
+const query = graphql`
   query newsQuery {
-    newsMain: allSanityPost(sort: {fields: publishedAt, order: DESC}) {
+    newsMain: allSanityPost(sort: { fields: publishedAt, order: DESC }) {
       edges {
         node {
           body {
-            _rawEn(resolveReferences: {maxDepth: 10})
+            _rawEn(resolveReferences: { maxDepth: 10 })
           }
           id
           categories {
@@ -59,7 +62,12 @@ const query = graphql `
           }
           image {
             asset {
-              gatsbyImageData(width: 468, height: 468, formats: WEBP, placeholder: BLURRED)
+              gatsbyImageData(
+                width: 468
+                height: 468
+                formats: WEBP
+                placeholder: BLURRED
+              )
             }
           }
           publishedAt(formatString: "dddd, MMMM Do YYYY")
@@ -74,12 +82,17 @@ const query = graphql `
         }
       }
     }
-    newsHero: allSanityPost(sort: {fields: publishedAt, order: DESC}) {
+    newsHero: allSanityPost(sort: { fields: publishedAt, order: DESC }) {
       edges {
         node {
           image {
             asset {
-              gatsbyImageData(width: 1440, formats: WEBP, placeholder: BLURRED, layout: FULL_WIDTH)
+              gatsbyImageData(
+                width: 1440
+                formats: WEBP
+                placeholder: BLURRED
+                layout: FULL_WIDTH
+              )
             }
           }
         }

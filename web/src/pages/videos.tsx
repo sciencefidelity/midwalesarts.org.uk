@@ -1,8 +1,8 @@
-import * as React from 'react'
-import { StaticQuery, graphql, Link } from 'gatsby'
-import { GatsbyImage } from 'gatsby-plugin-image'
+import * as React from "react"
+import { StaticQuery, graphql, Link } from "gatsby"
+import { GatsbyImage } from "gatsby-plugin-image"
 
-import Layout from '../components/layout'
+import Layout from "../components/layout"
 
 const Videos = () => (
   <>
@@ -10,7 +10,9 @@ const Videos = () => (
       query={query}
       render={data => (
         <Layout
-          heroImage={data.videosHero.edges[0].node.mainImage.asset.gatsbyImageData}
+          heroImage={
+            data.videosHero.edges[0].node.mainImage.asset.gatsbyImageData
+          }
           heroImageCaption={`${data.videosMain.edges[0].node.title.en}`}
         >
           <section>
@@ -21,21 +23,24 @@ const Videos = () => (
               </div>
             </div>
             <div className="imageGrid">
-            {!!data.videosMain.edges &&
-              data.videosMain.edges.map((videos: any) => (
-                !!videos && <div key={videos.node.id} style={{margin: 0}}>
-                  <Link
-                    to={`/videos/${videos.node.slug.en.current}/`}
-                  >
-                    <GatsbyImage
-                      image={videos.node.mainImage.asset.gatsbyImageData}
-                      alt={videos.node.title.en}
-                      className="gridImage"
-                    />
-                    <div className="gridCaption">{videos.node.title.en}</div>
-                  </Link>
-                </div>
-              ))}
+              {!!data.videosMain.edges &&
+                data.videosMain.edges.map(
+                  (videos: any) =>
+                    !!videos && (
+                      <div key={videos.node.id} style={{ margin: 0 }}>
+                        <Link to={`/videos/${videos.node.slug.en.current}/`}>
+                          <GatsbyImage
+                            image={videos.node.mainImage.asset.gatsbyImageData}
+                            alt={videos.node.title.en}
+                            className="gridImage"
+                          />
+                          <div className="gridCaption">
+                            {videos.node.title.en}
+                          </div>
+                        </Link>
+                      </div>
+                    )
+                )}
             </div>
           </section>
         </Layout>
@@ -44,9 +49,9 @@ const Videos = () => (
   </>
 )
 
-const query = graphql `
+const query = graphql`
   query videosQuery {
-    videosMain: allSanityVideo(sort: {fields: publishDate, order: DESC}) {
+    videosMain: allSanityVideo(sort: { fields: publishDate, order: DESC }) {
       edges {
         node {
           id
@@ -55,7 +60,12 @@ const query = graphql `
           }
           mainImage {
             asset {
-              gatsbyImageData(width: 468, height: 468, formats: WEBP, placeholder: BLURRED)
+              gatsbyImageData(
+                width: 468
+                height: 468
+                formats: WEBP
+                placeholder: BLURRED
+              )
             }
           }
           slug {
@@ -66,12 +76,17 @@ const query = graphql `
         }
       }
     }
-    videosHero: allSanityVideo(sort: {fields: publishDate, order: DESC}) {
+    videosHero: allSanityVideo(sort: { fields: publishDate, order: DESC }) {
       edges {
         node {
           mainImage {
             asset {
-              gatsbyImageData(width: 1440, formats: WEBP, placeholder: BLURRED, layout: FULL_WIDTH)
+              gatsbyImageData(
+                width: 1440
+                formats: WEBP
+                placeholder: BLURRED
+                layout: FULL_WIDTH
+              )
             }
           }
         }

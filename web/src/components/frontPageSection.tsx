@@ -1,22 +1,24 @@
-import * as React from 'react'
-import { Link } from 'gatsby'
-import { GatsbyImage } from 'gatsby-plugin-image'
+import * as React from "react"
+import { Link } from "gatsby"
+import { GatsbyImage } from "gatsby-plugin-image"
 
-import PortableText from './portableText'
+import PortableText from "./portableText"
 
 const FrontPageSection = (props: any) => (
   <section>
     <div className="sectionContainer">
       <>
-        <GatsbyImage 
+        <GatsbyImage
           image={props.mainImage}
           alt={props.mainImageCaption}
           className="sectionHero"
         />
-        <div className="sectionHeroCaption caption">{props.mainImageCaption}</div>
+        <div className="sectionHeroCaption caption">
+          {props.mainImageCaption}
+        </div>
         <div className="sectionContent">
           <div className="sectionInsetImage">
-            <GatsbyImage 
+            <GatsbyImage
               image={props.subImage}
               alt={props.subImageCaption}
               className="sectionInset"
@@ -32,15 +34,16 @@ const FrontPageSection = (props: any) => (
             </div>
             <div className="sectionText">
               <h4>{props.heading}</h4>
-              {props.body && 
-                <PortableText blocks={props.body} />}
+              {props.body && <PortableText blocks={props.body} />}
             </div>
           </div>
         </div>
         <div className="sectionCtaContainer">
           <div className="sectionCtaHr"></div>
           <Link to={`/${props.ctaLink}/`}>
-            <h2 className="sectionCta"><span>{props.cta}&nbsp;</span></h2>
+            <h2 className="sectionCta">
+              <span>{props.cta}&nbsp;</span>
+            </h2>
           </Link>
         </div>
       </>

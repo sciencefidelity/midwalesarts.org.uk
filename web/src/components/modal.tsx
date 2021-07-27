@@ -1,10 +1,11 @@
-import * as React from 'react'
-import { GatsbyImage } from 'gatsby-plugin-image'
+import * as React from "react"
+import { GatsbyImage } from "gatsby-plugin-image"
 
-const Modal = ( props: any ) => {
-  
+const Modal = (props: any) => {
   return (
-    <div className={props.modal ? "modalContainer hideModal" : "modalContainer"}>
+    <div
+      className={props.modal ? "modalContainer hideModal" : "modalContainer"}
+    >
       <div className="btnPrev" onClick={props.prevIndex}>
         <img
           alt="Previous image"
@@ -26,7 +27,7 @@ const Modal = ( props: any ) => {
         />
       </div>
       <div className="modalImageContiner">
-        <GatsbyImage 
+        <GatsbyImage
           image={props.modalImage.artworkModalImage.asset.gatsbyImageData}
           alt={`${props.modalImage.artist}, ${props.modalImage.title.en}, ${props.modalImage.date}`}
         />

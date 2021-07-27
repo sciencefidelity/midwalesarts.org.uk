@@ -1,6 +1,6 @@
-import React from 'react'
-import { Link } from 'gatsby'
-import { GatsbyImage } from 'gatsby-plugin-image'
+import React from "react"
+import { Link } from "gatsby"
+import { GatsbyImage } from "gatsby-plugin-image"
 
 const ExhibitionPrieview = ({ exhibition, heading }) => {
   return (
@@ -8,7 +8,7 @@ const ExhibitionPrieview = ({ exhibition, heading }) => {
       <p>{heading}</p>
       <Link
         to={`/exhibitions/${!!exhibition && exhibition.slug.en.current}/`}
-        style={{margin: 0}}
+        style={{ margin: 0 }}
       >
         <GatsbyImage
           image={!!exhibition && exhibition.mainImage.asset.gatsbyImageData}
@@ -17,7 +17,11 @@ const ExhibitionPrieview = ({ exhibition, heading }) => {
         />
         <div className="gridCaption">{!!exhibition && exhibition.title.en}</div>
         <div className="gridCaption">
-          {exhibition && (<span>{exhibition.dateStart} to {exhibition.dateEnd}</span>)}
+          {exhibition && (
+            <span>
+              {exhibition.dateStart} to {exhibition.dateEnd}
+            </span>
+          )}
         </div>
       </Link>
     </div>

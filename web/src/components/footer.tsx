@@ -1,12 +1,12 @@
-import * as React from 'react'
-import PropTypes from 'prop-types'
+import * as React from "react"
+import PropTypes from "prop-types"
 
-import '../scss/footer.scss'
+import "../scss/footer.scss"
 
-import FooterContact from './footerContact'
-import Signup from './signup'
-import Logos from './logos/logos'
-import FooterLinks from './footerLinks'
+import FooterContact from "./footerContact"
+import Signup from "./signup"
+import Logos from "./logos/logos"
+import FooterLinks from "./footerLinks"
 
 const Footer = () => {
   return (

@@ -1,18 +1,17 @@
-import * as React from 'react'
-import getYouTubeID from 'get-youtube-id'
+import * as React from "react"
+import getYouTubeID from "get-youtube-id"
 
 const VideoEmbed = ({ videoId }) => {
-    
   const id = getYouTubeID(videoId)
   const url = `https://www.youtube-nocookie.com/embed/${id}?modestbranding=1`
 
-  if(!id) {
+  if (!id) {
     return <div>YouTube video missing</div>
   }
   return (
     <section>
       <div className="embedContainer">
-        <iframe 
+        <iframe
           width="560"
           height="315"
           src={url}
@@ -21,8 +20,7 @@ const VideoEmbed = ({ videoId }) => {
           frameBorder="0"
           allowFullScreen
           loading="lazy"
-        >
-        </iframe>
+        ></iframe>
       </div>
     </section>
   )

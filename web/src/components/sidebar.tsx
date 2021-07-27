@@ -1,5 +1,5 @@
-import * as React from 'react'
-import { StaticQuery, graphql, Link } from 'gatsby'
+import * as React from "react"
+import { StaticQuery, graphql, Link } from "gatsby"
 
 const Sidebar = () => (
   <StaticQuery
@@ -10,37 +10,65 @@ const Sidebar = () => (
           <h3>Latest News</h3>
           <ul className="sidebarMenu">
             {!!data.allSanityPost.edges &&
-              data.allSanityPost.edges.map((link: any) => (
-              !!link && <Link to={`/news/${link.node.slug.en.current}/`} key={link.node.id}>
-                <li>{link.node.title.en}</li>
-              </Link>
-            ))}
+              data.allSanityPost.edges.map(
+                (link: any) =>
+                  !!link && (
+                    <Link
+                      to={`/news/${link.node.slug.en.current}/`}
+                      key={link.node.id}
+                    >
+                      <li>{link.node.title.en}</li>
+                    </Link>
+                  )
+              )}
           </ul>
           <h3>Upcoming Events</h3>
           <ul className="sidebarMenu">
             {!!data.allSanityEvent.edges &&
-              data.allSanityEvent.edges.map((link: any) => (
-              !!link && <Link to={`/events/${link.node.slug.en.current}/`} key={link.node.id}>
-                <li>{link.node.title.en}</li>
-              </Link>
-            ))}
+              data.allSanityEvent.edges.map(
+                (link: any) =>
+                  !!link && (
+                    <Link
+                      to={`/events/${link.node.slug.en.current}/`}
+                      key={link.node.id}
+                    >
+                      <li>{link.node.title.en}</li>
+                    </Link>
+                  )
+              )}
           </ul>
           <h3>Exhibitions</h3>
           <ul className="sidebarMenu">
             {!!data.allSanityExhibition.edges &&
-              data.allSanityExhibition.edges.map((link: any) => (
-              !!link &&<Link to={`/exhibitions/${link.node.slug.en.current}/`} key={link.node.id}>
-                <li>{link.node.title.en}</li>
-              </Link>
-            ))}
+              data.allSanityExhibition.edges.map(
+                (link: any) =>
+                  !!link && (
+                    <Link
+                      to={`/exhibitions/${link.node.slug.en.current}/`}
+                      key={link.node.id}
+                    >
+                      <li>{link.node.title.en}</li>
+                    </Link>
+                  )
+              )}
           </ul>
           <h3>Weekly Clubs</h3>
           <ul className="sidebarMenu">
-            <Link to="/workshops/"><li>Wednesdays: Home Ed Group</li></Link>
-            <Link to="/workshops/"><li>Wednesdays: Ceramics Club</li></Link>
-            <Link to="/workshops/"><li>Thursdays: Adult Pottery</li></Link>
-            <Link to="/workshops/"><li>Thursdays: After School Club</li></Link>
-            <Link to="/workshops/"><li>Saturdays: Family Workshop</li></Link>
+            <Link to="/workshops/">
+              <li>Wednesdays: Home Ed Group</li>
+            </Link>
+            <Link to="/workshops/">
+              <li>Wednesdays: Ceramics Club</li>
+            </Link>
+            <Link to="/workshops/">
+              <li>Thursdays: Adult Pottery</li>
+            </Link>
+            <Link to="/workshops/">
+              <li>Thursdays: After School Club</li>
+            </Link>
+            <Link to="/workshops/">
+              <li>Saturdays: Family Workshop</li>
+            </Link>
           </ul>
         </div>
       </aside>
@@ -48,9 +76,9 @@ const Sidebar = () => (
   />
 )
 
-const query = graphql `
+const query = graphql`
   query sidebarQuery {
-    allSanityPost(limit: 4, sort: {fields: publishedAt, order: DESC}) {
+    allSanityPost(limit: 4, sort: { fields: publishedAt, order: DESC }) {
       edges {
         node {
           slug {
@@ -66,8 +94,8 @@ const query = graphql `
       }
     }
     allSanityEvent(
-      filter: {date: {gte: "21-06-22"}}
-      sort: {fields: date, order: ASC}
+      filter: { date: { gte: "21-06-22" } }
+      sort: { fields: date, order: ASC }
     ) {
       edges {
         node {
@@ -84,8 +112,8 @@ const query = graphql `
       }
     }
     allSanityExhibition(
-      filter: {dateEnd: {gt: "21-06-22"}}
-      sort: {order: ASC, fields: dateStart}
+      filter: { dateEnd: { gt: "21-06-22" } }
+      sort: { order: ASC, fields: dateStart }
     ) {
       edges {
         node {

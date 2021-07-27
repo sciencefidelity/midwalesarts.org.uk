@@ -1,26 +1,21 @@
-import * as React from 'react'
-import { Link } from 'gatsby'
-import { GatsbyImage } from 'gatsby-plugin-image'
+import * as React from "react"
+import { Link } from "gatsby"
+import { GatsbyImage } from "gatsby-plugin-image"
 
-import ColorLogo from '../components/logos/colorLogo'
-import Navigation from './navigation'
+import ColorLogo from "../components/logos/colorLogo"
+import Navigation from "./navigation"
 
-import '../scss/header.scss'
+import "../scss/header.scss"
 
-const Header = ({ 
-  heroImage, heroImageCaption
-}) => (
+const Header = ({ heroImage, heroImageCaption }) => (
   <>
     <header>
       <Link to="/">
         <span className="screenReaderText">Home</span>
-        <ColorLogo 
-          logoClass = "colorLogo"
-          containerClass = "logoContainer"
-        />
+        <ColorLogo logoClass="colorLogo" containerClass="logoContainer" />
       </Link>
       <div className="hero">
-        <GatsbyImage 
+        <GatsbyImage
           image={heroImage}
           alt={heroImageCaption}
           className="heroImage"

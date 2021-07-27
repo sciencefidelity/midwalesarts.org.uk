@@ -1,15 +1,15 @@
-import * as React from 'react'
-import { graphql, Link } from 'gatsby'
+import * as React from "react"
+import { graphql, Link } from "gatsby"
 
-import Layout from '../components/layout'
-import PortableText from '../components/portableText'
-import Sidebar from '../components/sidebar'
+import Layout from "../components/layout"
+import PortableText from "../components/portableText"
+import Sidebar from "../components/sidebar"
 
-export const query = graphql `
+export const query = graphql`
   query SingleEventQuery($slug: String!) {
-    sanityEvent(slug: {en: {current: { eq: $slug }}}) {
+    sanityEvent(slug: { en: { current: { eq: $slug } } }) {
       body {
-        _rawEn(resolveReferences: {maxDepth: 10})
+        _rawEn(resolveReferences: { maxDepth: 10 })
       }
       briteLink
       date(formatString: "dddd, MMMM Do YYYY")
@@ -19,7 +19,12 @@ export const query = graphql `
       }
       mainImage {
         asset {
-          gatsbyImageData(width: 1440, formats: WEBP, placeholder: BLURRED, layout: FULL_WIDTH)
+          gatsbyImageData(
+            width: 1440
+            formats: WEBP
+            placeholder: BLURRED
+            layout: FULL_WIDTH
+          )
         }
       }
     }
@@ -38,10 +43,26 @@ const EventPage = ({ data }) => {
           <div className="portableContainer">
             <h1>{event.title.en}</h1>
             <p className="SubTitle">{event.date}</p>
-            {event.briteLink && <p><a href={`${event.briteLink}`} target="_blank">Book tickets</a></p>}
+            {event.briteLink && (
+              <p>
+                <a href={`${event.briteLink}`} target="_blank">
+                  Book tickets
+                </a>
+              </p>
+            )}
             {event.body._rawEn && <PortableText blocks={event.body._rawEn} />}
-            {event.briteLink && <p><a href={`${event.briteLink}`} target="_blank">Book tickets</a></p>}
-            <div><p className="backLink"><Link to="/events/">Back to Events</Link></p></div>
+            {event.briteLink && (
+              <p>
+                <a href={`${event.briteLink}`} target="_blank">
+                  Book tickets
+                </a>
+              </p>
+            )}
+            <div>
+              <p className="backLink">
+                <Link to="/events/">Back to Events</Link>
+              </p>
+            </div>
           </div>
           <Sidebar />
         </div>

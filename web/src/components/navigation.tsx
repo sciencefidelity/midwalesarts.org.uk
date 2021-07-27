@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
-import { Link } from 'gatsby'
+import React, { useState } from "react"
+import { Link } from "gatsby"
 
-import '../scss/navigation.scss'
+import "../scss/navigation.scss"
 
 const Navigation = () => {
   const [isActive, setActive] = useState(false)
@@ -15,30 +15,52 @@ const Navigation = () => {
 
   return (
     <div className="menuOverlay" onClick={isActive ? menuClose : null}>
-      <div 
-        className={isActive ? "headerMenu isActive" : "headerMenu"} 
-      >
+      <div className={isActive ? "headerMenu isActive" : "headerMenu"}>
         <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/about/">About us</Link></li>
-          <li><Link to="/artists/">Artists</Link></li>
-          <li><Link to="/events/">Events</Link></li>
-          <li><Link to="/exhibitions/">Exhibitions</Link></li>
-          <li><Link to="/news/">News</Link></li>
-          <li><Link to="/support/">Support us</Link></li>
-          <li><Link to="/videos/">Videos</Link></li>
-          <li><Link to="/visit/">Visit us</Link></li>
-          <li><Link to="/workshops/">Workshops</Link></li>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/about/">About us</Link>
+          </li>
+          <li>
+            <Link to="/artists/">Artists</Link>
+          </li>
+          <li>
+            <Link to="/events/">Events</Link>
+          </li>
+          <li>
+            <Link to="/exhibitions/">Exhibitions</Link>
+          </li>
+          <li>
+            <Link to="/news/">News</Link>
+          </li>
+          <li>
+            <Link to="/support/">Support us</Link>
+          </li>
+          <li>
+            <Link to="/videos/">Videos</Link>
+          </li>
+          <li>
+            <Link to="/visit/">Visit us</Link>
+          </li>
+          <li>
+            <Link to="/workshops/">Workshops</Link>
+          </li>
         </ul>
       </div>
       <div className="nav">
-        <div className="hamburgerContainer" onClick={isActive ? menuClose : menuOpen}>
+        <div
+          className="hamburgerContainer"
+          onClick={isActive ? menuClose : menuOpen}
+        >
           <span className="screenReaderText">Main Menu</span>
-          <div className={isActive ? "hamburger active" : "hamburger"} ></div>
+          <div className={isActive ? "hamburger active" : "hamburger"}></div>
         </div>
         <div className="languageSwitcher">
           <span className="screenReaderText">Switch language to Welsh</span>
-          Cy</div>
+          Cy
+        </div>
         <div className="social">
           <a
             href="http://en-gb.facebook.com/MidWalesArtsCentre"
@@ -59,7 +81,9 @@ const Navigation = () => {
             target="_blank"
             rel="noopener"
           >
-            <span className="screenReaderText">Mid Wales Arts on Instagram</span>
+            <span className="screenReaderText">
+              Mid Wales Arts on Instagram
+            </span>
             <img
               alt=""
               src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3Cpath d='M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z' fill='%23666666'/%3E%3C/svg%3E"
@@ -68,7 +92,7 @@ const Navigation = () => {
           </a>
         </div>
         <div className="social">
-          <a 
+          <a
             href="https://www.twitter.com/midwalesarts"
             target="_blank"
             rel="noopener"
