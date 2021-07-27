@@ -6,6 +6,8 @@
   "author": "Matt Cook <sciencefidelity@hotmail.com>",
   "dependencies": {
     "@sanity/block-content-to-react": "^3.0.0",
+    "@types/google-map-react": "^2.1.2",
+    "@types/react-helmet": "^6.1.2",
     "dotenv": "^10.0.0",
     "gatsby": "^3.10.2",
     "gatsby-plugin-gatsby-cloud": "^2.10.0",
