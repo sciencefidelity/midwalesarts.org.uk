@@ -64,8 +64,8 @@ const Navigation = () => {
         <div className="social">
           <a
             href="http://en-gb.facebook.com/MidWalesArtsCentre"
-            target="_blank"
-            rel="noopener"
+            target="blank"
+            rel="noreferrer"
           >
             <span className="screenReaderText">Mid Wales Arts on Facebook</span>
             <img
@@ -78,8 +78,8 @@ const Navigation = () => {
         <div className="social">
           <a
             href="https://www.instagram.com/midwalesartscentre"
-            target="_blank"
-            rel="noopener"
+            target="blank"
+            rel="noreferrer"
           >
             <span className="screenReaderText">
               Mid Wales Arts on Instagram
@@ -94,8 +94,8 @@ const Navigation = () => {
         <div className="social">
           <a
             href="https://www.twitter.com/midwalesarts"
-            target="_blank"
-            rel="noopener"
+            target="blank"
+            rel="noreferrer"
           >
             <span className="screenReaderText">Mid Wales Arts on Twitter</span>
             <img
