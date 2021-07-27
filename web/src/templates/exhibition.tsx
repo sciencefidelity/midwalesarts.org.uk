@@ -60,8 +60,8 @@ export const query = graphql `
 
 const ExhibitionPage = ({ data }) => {
 
-  const [info, setInfo] = useState(true)
-  const [gallery, setGallery] = useState(false)
+  const [info, setInfo] = useState(data.allSanityArtwork.edges.length > 0)
+  const [gallery, setGallery] = useState(data.allSanityArtwork.edges.length <= 0)
   const [modal, setModal] = useState(true)
   const [imageToShow, setImageToShow] = useState(0)
 
