@@ -9,8 +9,16 @@ const Exhibitions = ({ data }) => {
 
   return (
     <Layout
-      heroImage={data.currentExhibitions.edges[0].node.heroImage.asset.gatsbyImageData}
-      heroImageCaption={data.currentExhibitions.edges[0].node.mainImage.caption}
+      heroImage={
+        data.currentExhibitions.edges[0] !== undefined ?
+        data.currentExhibitions.edges[0].node.heroImage.asset.gatsbyImageData :
+        data.futureExhibitions.edges[0].node.heroImage.asset.gatsbyImageData
+      }
+      heroImageCaption={
+        data.currentExhibitions.edges[0] !== undefined ?
+        data.currentExhibitions.edges[0].node.mainImage.caption :
+        data.futureExhibitions.edges[0].node.mainImage.caption
+      }
     >
       <section>
         <div className="sidebarContainer">
@@ -20,20 +28,24 @@ const Exhibitions = ({ data }) => {
           </div>
         </div>
         <div className="exhibitionPreviewGrid">
-          {!!data.currentExhibitions && data.currentExhibitions.edges.length === 1 ?
-            <ExhibitionPrieview
-              heading="Current exhibition"
-              exhibition={data.currentExhibitions.edges[0].node}
-            /> :
+          {!!data.currentExhibitions.edges[0] &&
             <>
-              <ExhibitionPrieview
-                heading="Current exhibitions"
-                exhibition={data.currentExhibitions.edges[0].node}
-              />
-              <ExhibitionPrieview
-                heading="&nbsp;"
-                exhibition={data.currentExhibitions.edges[1].node}
-              />
+              {!!data.currentExhibitions && data.currentExhibitions.edges.length === 1 ?
+                <ExhibitionPrieview
+                  heading="Current exhibition"
+                  exhibition={data.currentExhibitions.edges[0].node}
+                /> :
+                <>
+                  <ExhibitionPrieview
+                    heading="Current exhibitions"
+                    exhibition={data.currentExhibitions.edges[0].node}
+                  />
+                  <ExhibitionPrieview
+                    heading="&nbsp;"
+                    exhibition={data.currentExhibitions.edges[1].node}
+                  />
+                </>
+              }
             </>
           }
           {!!data.futureExhibitions.edges[0] &&
@@ -128,6 +140,12 @@ export const query = graphql `
             caption
             asset {
               gatsbyImageData(width: 624, height: 624, formats: WEBP, placeholder: BLURRED)
+            }
+          }
+          heroImage: mainImage {
+            caption
+            asset {
+              gatsbyImageData(width: 1440, formats: WEBP, placeholder: BLURRED)
             }
           }
           dateStart(formatString: "Do MMMM")
