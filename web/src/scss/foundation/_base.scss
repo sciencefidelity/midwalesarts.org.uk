@@ -239,6 +239,9 @@ blockquote {
   &:last-child {
     margin-right: 0;
   }
+  @include b.mq(md) {
+    width: 100%;
+  }
 }
 
 .exhibitionGrid {
