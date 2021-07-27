@@ -1,5 +1,45 @@
 const path = require(`path`)
 
+// TODO: temporary workaround for https://github.com/gatsbyjs/gatsby/issues/31878
+exports.onCreateWebpackConfig = ({
+  actions,
+  plugins,
+  stage,
+  getConfig
+}) => {
+  // override config only during production JS & CSS build
+  if (stage === 'build-javascript') {
+    // get current webpack config
+    const config = getConfig()
+
+    const options = {
+      minimizerOptions: {
+        preset: [
+          `default`,
+          {
+            svgo: {
+              full: true,
+              plugins: [],
+            },
+          },
+        ],
+      }
+    }
+    // find CSS minimizer
+    const minifyCssIndex = config.optimization.minimizer.findIndex(
+      minimizer => minimizer.constructor.name ===
+        'CssMinimizerPlugin'
+    )
+    // if found, overwrite existing CSS minimizer with the new one
+    if (minifyCssIndex > -1) {
+      config.optimization.minimizer[minifyCssIndex] =
+        plugins.minifyCss(options)
+    }
+    // replace webpack config with the modified object
+    actions.replaceWebpackConfig(config)
+  }
+}
+
 function getCurrentDate() {
   const d = new Date()
   let month = (d.getMonth() + 1).toString()
