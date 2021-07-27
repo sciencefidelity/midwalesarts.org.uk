@@ -7,6 +7,7 @@ module.exports = {
     title: `Mid Wales Arts | Gallery, Sculpture Trail, Cafe & Accommodation`,
     description: `Not-for-profit organisation working with artists and the local community to develop access to the arts across Mid Wales.`,
     author: `@sciencefidelity`,
+    siteUrl: `https://midwalesarts.org.uk`
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

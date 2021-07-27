@@ -15,7 +15,7 @@ function getCurrentDate() {
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
-  
+
   const eventsPage = require.resolve(`./src/templates/events.tsx`)
   const exhibitionsPage = require.resolve(`./src/templates/exhibitions.tsx`)
   const artistTemplate = path.resolve(`./src/templates/artist.tsx`)
@@ -23,7 +23,7 @@ exports.createPages = ({ graphql, actions }) => {
   const exhibitionTemplate = path.resolve(`./src/templates/exhibition.tsx`)
   const postTemplate = path.resolve(`./src/templates/post.tsx`)
   const videoTemplate = path.resolve(`./src/templates/video.tsx`)
-  
+
   // Create static pages
   createPage({
     path: `/events/`,
@@ -39,7 +39,7 @@ exports.createPages = ({ graphql, actions }) => {
       currentDate: getCurrentDate(),
     },
   })
-  
+
   return graphql(`
     query LoadPagesQuery {
       allSanityArtist {
@@ -104,7 +104,7 @@ exports.createPages = ({ graphql, actions }) => {
     if (result.errors) {
       throw result.errors
     }
-    
+
     // Create artist pages.
     result.data.allSanityArtist.edges.forEach(edge => {
       createPage({
@@ -115,7 +115,7 @@ exports.createPages = ({ graphql, actions }) => {
         },
       })
     })
-    
+
     // Create event pages.
     result.data.allSanityEvent.edges.forEach(edge => {
       createPage({
@@ -126,7 +126,7 @@ exports.createPages = ({ graphql, actions }) => {
         },
       })
     })
-    
+
     // Create exhibition pages.
     result.data.allSanityExhibition.edges.forEach(edge => {
       createPage({
@@ -137,7 +137,7 @@ exports.createPages = ({ graphql, actions }) => {
         },
       })
     })
-    
+
     // Create post pages.
     const posts = result.data.allSanityPost.edges
     posts.forEach(({ node }, index) => {
@@ -151,7 +151,7 @@ exports.createPages = ({ graphql, actions }) => {
         },
       })
     })
-    
+
     // Create video pages.
     result.data.allSanityVideo.edges.forEach(edge => {
       createPage({
