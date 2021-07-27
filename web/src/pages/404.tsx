@@ -5,7 +5,7 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 
 export const query = graphql`
-  query spacesQuery {
+  query FourOhFourQuery {
     sanityPage(title: { en: { eq: "About" } }) {
       mainImage {
         asset {

@@ -50,7 +50,7 @@ const Videos = () => (
 )
 
 const query = graphql`
-  query videosQuery {
+  query VideosQuery {
     videosMain: allSanityVideo(sort: { fields: publishDate, order: DESC }) {
       edges {
         node {

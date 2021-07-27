@@ -101,7 +101,7 @@ const Exhibitions = ({ data }) => {
 }
 
 export const query = graphql`
-  query exhibitionQuery($currentDate: Date!) {
+  query ExhibitionQuery($currentDate: Date!) {
     currentExhibitions: allSanityExhibition(
       filter: { dateEnd: { gt: $currentDate }, dateStart: { lt: $currentDate } }
       sort: { fields: dateStart, order: ASC }

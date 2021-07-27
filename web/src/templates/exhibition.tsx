@@ -7,7 +7,7 @@ import PortableText from "../components/portableText"
 import Modal from "../components/modal"
 
 export const query = graphql`
-  query singleExhibitionQuery($title: String!) {
+  query SingleExhibitionQuery($title: String!) {
     allSanityArtwork(
       filter: { exhibition: { elemMatch: { title: { en: { eq: $title } } } } }
       sort: { fields: artist, order: ASC }

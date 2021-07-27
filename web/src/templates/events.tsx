@@ -51,7 +51,7 @@ const Events = ({ data }) => {
 }
 
 export const query = graphql`
-  query eventsQuery($currentDate: Date!) {
+  query EventsQuery($currentDate: Date!) {
     eventsMain: allSanityEvent(
       filter: { date: { gte: $currentDate } }
       sort: { fields: date, order: ASC }

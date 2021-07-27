@@ -47,7 +47,7 @@ const News = () => (
 )
 
 const query = graphql`
-  query newsQuery {
+  query NewsQuery {
     newsMain: allSanityPost(sort: { fields: publishedAt, order: DESC }) {
       edges {
         node {

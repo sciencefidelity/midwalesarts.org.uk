@@ -5,7 +5,7 @@ import PortableText from "./portableText"
 
 const Intro = () => {
   const data = useStaticQuery(graphql`
-    query introQuery {
+    query IntroQuery {
       sanityFrontPage {
         body {
           _rawEn(resolveReferences: { maxDepth: 10 })
