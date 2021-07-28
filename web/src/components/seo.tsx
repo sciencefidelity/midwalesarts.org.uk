@@ -1,19 +1,32 @@
 /**
- * SEO component that queries for data with
- *  Gatsby's useStaticQuery React hook
- *
- * See: https://www.gatsbyjs.com/docs/use-static-query/
+ * https://www.gatsbyjs.com/tutorial/seo-and-social-sharing-cards-tutorial/
  */
 
-import React from "react"
+import React, { FC } from "react"
 import PropTypes from "prop-types"
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
 import { SeoQuery } from "../../graphqlTypes"
 
-function SEO({ description, lang, meta, title }) {
-  const site: SeoQuery = useStaticQuery(
+interface Props {
+  description: string
+  lang: string
+  meta?: any
+  image: any
+  title: string
+  pathname: string
+}
+
+const SEO: FC<Props> = ({
+  description,
+  lang,
+  meta,
+  image: metaImage,
+  title,
+  pathname,
+}) => {
+  const { site } = useStaticQuery<SeoQuery>(
     graphql`
       query SEO {
         site {
@@ -21,14 +34,21 @@ function SEO({ description, lang, meta, title }) {
             title
             description
             author
+            keywords
+            siteUrl
           }
         }
       }
     `
   )
 
-  const metaDescription = description || site.site.siteMetadata.description
-  const defaultTitle = site.site.siteMetadata?.title
+  const metaDescription: string = description || site.siteMetadata.description
+  const defaultTitle = site.siteMetadata?.title
+  const image =
+    metaImage && metaImage.src
+      ? `${site.siteMetadata.siteUrl}${metaImage.src}`
+      : null
+  const canonical = pathname ? `${site.siteMetadata.siteUrl}${pathname}` : null
 
   return (
     <Helmet
@@ -37,10 +57,24 @@ function SEO({ description, lang, meta, title }) {
       }}
       title={title}
       titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : null}
+      link={
+        canonical
+          ? [
+              {
+                rel: "canonical",
+                href: canonical,
+              },
+            ]
+          : []
+      }
       meta={[
         {
           name: `description`,
           content: metaDescription,
+        },
+        {
+          name: "keywords",
+          content: site.siteMetadata.keywords.join(","),
         },
         {
           property: `og:title`,
@@ -60,7 +94,7 @@ function SEO({ description, lang, meta, title }) {
         },
         {
           name: `twitter:creator`,
-          content: site.site.siteMetadata?.author || ``,
+          content: site.siteMetadata?.author || ``,
         },
         {
           name: `twitter:title`,
@@ -70,7 +104,35 @@ function SEO({ description, lang, meta, title }) {
           name: `twitter:description`,
           content: metaDescription,
         },
-      ].concat(meta)}
+      ]
+        .concat(
+          metaImage
+            ? [
+                {
+                  property: "og:image",
+                  content: image,
+                },
+                {
+                  property: "og:image:width",
+                  content: metaImage.width,
+                },
+                {
+                  property: "og:image:height",
+                  content: metaImage.height,
+                },
+                {
+                  name: "twitter:card",
+                  content: "summary_large_image",
+                },
+              ]
+            : [
+                {
+                  name: "twitter:card",
+                  content: "summary",
+                },
+              ]
+        )
+        .concat(meta)}
     />
   )
 }
@@ -86,6 +148,12 @@ SEO.propTypes = {
   lang: PropTypes.string,
   meta: PropTypes.arrayOf(PropTypes.object),
   title: PropTypes.string.isRequired,
+  image: PropTypes.shape({
+    src: PropTypes.string.isRequired,
+    height: PropTypes.number.isRequired,
+    width: PropTypes.number.isRequired,
+  }),
+  pathname: PropTypes.string,
 }
 
 export default SEO
