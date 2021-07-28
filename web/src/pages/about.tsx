@@ -33,7 +33,7 @@ const AboutPage = () => (
 )
 
 const query = graphql`
-  query AboutPageQuery {
+  query About {
     sanityPage(title: { en: { eq: "About" } }) {
       title {
         en

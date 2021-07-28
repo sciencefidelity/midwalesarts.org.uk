@@ -9,7 +9,7 @@ import PortableText from "../components/portableText"
 import GoogleMap from "../components/googleMap"
 
 export const query = graphql`
-  query VisitPageQuery {
+  query Visit {
     sanityPage(title: { en: { eq: "Visit us" } }) {
       title {
         en

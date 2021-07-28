@@ -69,7 +69,7 @@ const IndexPage = () => (
 )
 
 const query = graphql`
-  query ImageQuery {
+  query Index {
     sanityFrontPage {
       mainImage {
         caption

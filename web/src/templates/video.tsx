@@ -7,7 +7,7 @@ import VideoEmbed from "../components/videoEmbed"
 import Sidebar from "../components/sidebar"
 
 export const query = graphql`
-  query SingleVideoQuery($slug: String!) {
+  query SingleVideo($slug: String!) {
     sanityVideo(slug: { en: { current: { eq: $slug } } }) {
       body {
         _rawEn(resolveReferences: { maxDepth: 10 })

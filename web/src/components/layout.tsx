@@ -17,7 +17,7 @@ import "../scss/layout.scss"
 
 const Layout = ({ children, heroImage, heroImageCaption }) => {
   const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
+    query SiteTitle {
       site {
         siteMetadata {
           title

@@ -1,7 +1,8 @@
-import * as React from "react"
 import { StaticQuery, graphql, Link } from "gatsby"
 
-const Sidebar = () => (
+import { SidebarQuery } from '../../graphql-types'
+
+const Sidebar: React.FC = () => (
   <StaticQuery
     query={query}
     render={data => (
@@ -77,7 +78,7 @@ const Sidebar = () => (
 )
 
 const query = graphql`
-  query SidebarQuery {
+  query Sidebar {
     allSanityPost(limit: 4, sort: { fields: publishedAt, order: DESC }) {
       edges {
         node {

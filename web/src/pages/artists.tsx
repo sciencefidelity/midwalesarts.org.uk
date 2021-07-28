@@ -48,7 +48,7 @@ const ArtistsPage = () => (
 )
 
 const query = graphql`
-  query ArtistsQuery {
+  query Artists {
     allSanityArtist(sort: { fields: title, order: ASC }) {
       edges {
         node {

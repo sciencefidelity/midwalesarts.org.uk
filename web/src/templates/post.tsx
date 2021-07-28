@@ -6,7 +6,7 @@ import PortableText from "../components/portableText"
 import Sidebar from "../components/sidebar"
 
 export const query = graphql`
-  query SinglePostQuery($slug: String!) {
+  query SinglePost($slug: String!) {
     sanityPost(slug: { en: { current: { eq: $slug } } }) {
       body {
         _rawEn(resolveReferences: { maxDepth: 10 })

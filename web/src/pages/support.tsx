@@ -33,7 +33,7 @@ const SupportPage = () => (
 )
 
 const query = graphql`
-  query SupportPageQuery {
+  query Support {
     sanityPage(title: { en: { eq: "Support us" } }) {
       title {
         en
