@@ -5,14 +5,11 @@
   "version": "0.1.0",
   "author": "Matt Cook <sciencefidelity@hotmail.com>",
   "dependencies": {
-    "@graphql-codegen/introspection": "^1.18.2",
-    "@graphql-codegen/typescript": "^1.23.0",
-    "@graphql-codegen/typescript-operations": "^1.18.4",
-    "@graphql-codegen/typescript-react-apollo": "^2.3.1",
     "@sanity/block-content-to-react": "^3.0.0",
     "dotenv": "^10.0.0",
     "gatsby": "^3.10.2",
     "gatsby-plugin-gatsby-cloud": "^2.10.0",
+    "gatsby-plugin-graphql-codegen": "^3.0.0",
     "gatsby-plugin-image": "^1.10.1",
     "gatsby-plugin-manifest": "^3.10.0",
     "gatsby-plugin-offline": "^4.10.0",
@@ -49,8 +46,6 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "lint": "eslint . --ext .ts,.tsx,.js",
-    "ggl-types": "graphql-codegen --config codegen.yml",
-    "ggl-types:watch": "graphql-codegen --config codegen.yml -w",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   }
 }
