@@ -1,8 +1,6 @@
-import React, { FC } from "react"
+import React, { FC, ReactNode } from "react"
 import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
 
-import { SiteTitleQuery } from "../../graphqlTypes"
 import Header from "./header"
 import Footer from "./footer"
 import Scrollup from "./scrollup"
@@ -10,22 +8,12 @@ import Scrollup from "./scrollup"
 import "../scss/layout.scss"
 
 interface Props {
-  children: any
-  heroImage: any
-  heroImageCaption: any
+  children: ReactNode
+  heroImage: string
+  heroImageCaption: string
 }
 
 const Layout: FC<Props> = ({ children, heroImage, heroImageCaption }) => {
-  const data: SiteTitleQuery = useStaticQuery(graphql`
-    query SiteTitle {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `)
-
   return (
     <>
       <Header heroImage={heroImage} heroImageCaption={heroImageCaption} />
@@ -42,6 +30,8 @@ const Layout: FC<Props> = ({ children, heroImage, heroImageCaption }) => {
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
+  heroImage: PropTypes.string.isRequired,
+  heroImageCaption: PropTypes.string.isRequired,
 }
 
 export default Layout
