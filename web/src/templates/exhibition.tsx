@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import { graphql, Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 
+import { SingleExhibitionQuery } from "../../graphqlTypes"
 import Layout from "../components/layout"
 import PortableText from "../components/portableText"
 import Modal from "../components/modal"
@@ -68,7 +69,7 @@ export const query = graphql`
   }
 `
 
-const ExhibitionPage = ({ data }) => {
+const ExhibitionPage = (data: SingleExhibitionQuery) => {
   const [info, setInfo] = useState(data.allSanityArtwork.edges.length > 0)
   const [gallery, setGallery] = useState(
     data.allSanityArtwork.edges.length <= 0
@@ -151,7 +152,7 @@ const ExhibitionPage = ({ data }) => {
           className={gallery ? "hidden galleryImageGrid" : "galleryImageGrid"}
         >
           {artwork.edges[0] !== undefined ? (
-            artwork.edges.map((artworks: any, index: number) => (
+            artwork.edges.map((artworks, index: number) => (
               <div
                 style={{ margin: 0 }}
                 key={artworks.node.id}

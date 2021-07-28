@@ -1,9 +1,10 @@
-import * as React from "react"
+import React, { FC } from "react"
 import { StaticQuery, graphql } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 
 import "../scss/index.scss"
 
+import { IndexQuery } from "../../graphqlTypes"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import ColorLogo from "../components/logos/colorLogo"
@@ -11,9 +12,9 @@ import Brand from "../components/brand.en"
 import Intro from "../components/intro"
 import FrontPageSection from "../components/frontPageSection"
 
-const IndexPage = () => (
+const IndexPage: FC = () => (
   <>
-    <StaticQuery
+    <StaticQuery<IndexQuery>
       query={query}
       render={data => (
         <Layout

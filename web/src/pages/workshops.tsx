@@ -1,13 +1,14 @@
-import * as React from "react"
+import React, { FC } from "react"
 import { StaticQuery, graphql } from "gatsby"
 
+import { WorkshopsQuery } from "../../graphqlTypes"
 import Layout from "../components/layout"
 import PortableText from "../components/portableText"
 import Sidebar from "../components/sidebar"
 
-const WorkshopsPage = () => (
+const WorkshopsPage: FC = () => (
   <>
-    <StaticQuery
+    <StaticQuery<WorkshopsQuery>
       query={query}
       render={data => (
         <Layout

@@ -1,12 +1,12 @@
-import * as React from "react"
+import React from "react"
 import { graphql, Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 
-import "../scss/visit.scss"
-
+import { VisitQuery } from "../../graphqlTypes"
 import Layout from "../components/layout"
 import PortableText from "../components/portableText"
 import GoogleMap from "../components/googleMap"
+import "../scss/visit.scss"
 
 export const query = graphql`
   query Visit {
@@ -60,7 +60,7 @@ export const query = graphql`
   }
 `
 
-const Visit = ({ data }) => {
+const Visit = ( data: VisitQuery ) => {
   const spaces = data && data.allSanitySpace
   return (
     <Layout
@@ -72,7 +72,7 @@ const Visit = ({ data }) => {
           <h1>{data.sanityPage.title.en}</h1>
           <p className="subTitle">What's on offer at Mid Wales Arts.</p>
           <div className="spacesGrid">
-            {spaces.edges.map((space: any) => (
+            {spaces.edges.map((space) => (
               <Link
                 to={`#${space.node.slug.en.current}`}
                 key={space.node.id}
@@ -90,7 +90,7 @@ const Visit = ({ data }) => {
             ))}
           </div>
           <div className="spacesTextGrid">
-            {spaces.edges.map((space: any) => (
+            {spaces.edges.map((space) => (
               <div
                 id={space.node.slug.en.current}
                 style={{ margin: 0 }}

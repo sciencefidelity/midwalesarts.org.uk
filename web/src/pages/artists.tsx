@@ -1,11 +1,12 @@
-import * as React from "react"
+import React, { FC } from "react"
 import { StaticQuery, graphql, Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 
+import { ArtistsQuery } from "../../graphqlTypes"
 import Layout from "../components/layout"
 
-const ArtistsPage = () => (
-  <StaticQuery
+const ArtistsPage: FC = () => (
+  <StaticQuery<ArtistsQuery>
     query={query}
     render={data => (
       <Layout
@@ -22,7 +23,7 @@ const ArtistsPage = () => (
           <div className="imageGrid">
             {!!data.allSanityArtist.edges &&
               data.allSanityArtist.edges.map(
-                (artists: any) =>
+                (artists) =>
                   !!artists && (
                     <Link
                       to={`/artists/${artists.node.slug.current}/`}

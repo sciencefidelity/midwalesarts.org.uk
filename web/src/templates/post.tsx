@@ -1,6 +1,7 @@
-import * as React from "react"
+import React from "react"
 import { graphql, Link } from "gatsby"
 
+import { SinglePostQuery, SitePageContext } from "../../graphqlTypes"
 import Layout from "../components/layout"
 import PortableText from "../components/portableText"
 import Sidebar from "../components/sidebar"
@@ -30,7 +31,7 @@ export const query = graphql`
   }
 `
 
-const Post = ({ data, pageContext }) => {
+const Post = (data: SinglePostQuery, pageContext: SitePageContext) => {
   const post = data && data.sanityPost
 
   const prev = pageContext.prev

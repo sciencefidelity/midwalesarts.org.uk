@@ -1,7 +1,9 @@
-import React, { useState } from "react"
+import React from "react"
+import { useState } from "react"
 import { graphql, Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 
+import { SingleArtistQuery } from "../../graphqlTypes"
 import Layout from "../components/layout"
 import PortableText from "../components/portableText"
 import Modal from "../components/modal"
@@ -69,7 +71,7 @@ export const query = graphql`
   }
 `
 
-const Artist = ({ data }) => {
+const Artist = (data: SingleArtistQuery) => {
   const [bio, setBio] = useState(true)
   const [gallery, setGallery] = useState(false)
   const [modal, setModal] = useState(true)
@@ -148,7 +150,7 @@ const Artist = ({ data }) => {
         >
           {!!artwork.edges &&
             artwork.edges.map(
-              (artworks: any, index: number) =>
+              (artworks, index: number) =>
                 !!artworks && (
                   <div
                     style={{ margin: 0 }}

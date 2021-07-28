@@ -1,9 +1,10 @@
+import React, { FC } from "react"
 import { StaticQuery, graphql, Link } from "gatsby"
 
-import { SidebarQuery } from '../../graphql-types'
+import { SidebarQuery } from "../../graphqlTypes"
 
-const Sidebar: React.FC = () => (
-  <StaticQuery
+const Sidebar: FC = () => (
+  <StaticQuery<SidebarQuery>
     query={query}
     render={data => (
       <aside className="sidebar">
@@ -12,7 +13,7 @@ const Sidebar: React.FC = () => (
           <ul className="sidebarMenu">
             {!!data.allSanityPost.edges &&
               data.allSanityPost.edges.map(
-                (link: any) =>
+                link =>
                   !!link && (
                     <Link
                       to={`/news/${link.node.slug.en.current}/`}
@@ -27,7 +28,7 @@ const Sidebar: React.FC = () => (
           <ul className="sidebarMenu">
             {!!data.allSanityEvent.edges &&
               data.allSanityEvent.edges.map(
-                (link: any) =>
+                link =>
                   !!link && (
                     <Link
                       to={`/events/${link.node.slug.en.current}/`}
@@ -42,7 +43,7 @@ const Sidebar: React.FC = () => (
           <ul className="sidebarMenu">
             {!!data.allSanityExhibition.edges &&
               data.allSanityExhibition.edges.map(
-                (link: any) =>
+                link =>
                   !!link && (
                     <Link
                       to={`/exhibitions/${link.node.slug.en.current}/`}

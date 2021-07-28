@@ -1,10 +1,11 @@
-import * as React from "react"
+import React, { FC } from "react"
 import { useStaticQuery, graphql, Link } from "gatsby"
 
+import { IntroQuery } from "../../graphqlTypes"
 import PortableText from "./portableText"
 
-const Intro = () => {
-  const data = useStaticQuery(graphql`
+const Intro: FC = () => {
+  const data: IntroQuery = useStaticQuery(graphql`
     query Intro {
       sanityFrontPage {
         body {

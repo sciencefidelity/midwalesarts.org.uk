@@ -1,11 +1,12 @@
-import * as React from "react"
+import React from "react"
 import { graphql, Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 
+import { ExhibitionQuery } from "../../graphqlTypes"
 import Layout from "../components/layout"
 import ExhibitionPrieview from "../components/exhibitionPreview"
 
-const Exhibitions = ({ data }) => {
+const Exhibitions = (data: ExhibitionQuery) => {
   return (
     <Layout
       heroImage={
@@ -68,7 +69,7 @@ const Exhibitions = ({ data }) => {
         <div className="exhibitionGrid">
           {!!data.pastExhibitions &&
             data.pastExhibitions.edges.map(
-              (exhibitions: any) =>
+              exhibitions =>
                 !!exhibitions && (
                   <div key={exhibitions.node.id} style={{ margin: 0 }}>
                     <Link

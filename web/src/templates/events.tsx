@@ -1,10 +1,11 @@
-import * as React from "react"
+import React from "react"
 import { graphql } from "gatsby"
 
+import { EventsQuery } from "../../graphqlTypes"
 import Layout from "../components/layout"
 import EventPreview from "../components/eventPreview"
 
-const Events = ({ data }) => {
+const Events = (data: EventsQuery) => {
   return (
     <Layout
       heroImage={

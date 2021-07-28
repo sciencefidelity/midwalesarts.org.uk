@@ -1,11 +1,12 @@
-import * as React from "react"
+import React, { FC } from "react"
 import { StaticQuery, graphql, Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 
+import { NewsQuery } from "../../graphqlTypes"
 import Layout from "../components/layout"
 
-const News = () => (
-  <StaticQuery
+const News: FC = () => (
+  <StaticQuery<NewsQuery>
     query={query}
     render={data => (
       <Layout
@@ -22,7 +23,7 @@ const News = () => (
           <div className="imageGrid">
             {!!data.newsMain.edges &&
               data.newsMain.edges.map(
-                (posts: any) =>
+                (posts) =>
                   !!posts && (
                     <div key={posts.node.id} style={{ margin: 0 }}>
                       <Link to={`/news/${posts.node.slug.en.current}/`}>

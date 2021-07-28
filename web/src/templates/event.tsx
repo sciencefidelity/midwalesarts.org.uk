@@ -1,6 +1,7 @@
-import * as React from "react"
+import React from "react"
 import { graphql, Link } from "gatsby"
 
+import { SingleEventQuery } from "../../graphqlTypes"
 import Layout from "../components/layout"
 import PortableText from "../components/portableText"
 import Sidebar from "../components/sidebar"
@@ -31,7 +32,7 @@ export const query = graphql`
   }
 `
 
-const EventPage = ({ data }) => {
+const EventPage = (data: SingleEventQuery) => {
   const event = data && data.sanityEvent
   return (
     <Layout
@@ -45,7 +46,7 @@ const EventPage = ({ data }) => {
             <p className="SubTitle">{event.date}</p>
             {event.briteLink && (
               <p>
-                <a href={`${event.briteLink}`} target="_blank">
+                <a href={`${event.briteLink}`} target="blank" rel="noreferrer">
                   Book tickets
                 </a>
               </p>
@@ -53,7 +54,7 @@ const EventPage = ({ data }) => {
             {event.body._rawEn && <PortableText blocks={event.body._rawEn} />}
             {event.briteLink && (
               <p>
-                <a href={`${event.briteLink}`} target="_blank">
+                <a href={`${event.briteLink}`} target="blank" rel="noreferrer">
                   Book tickets
                 </a>
               </p>

@@ -1,6 +1,7 @@
-import * as React from "react"
+import React from "react"
 import { graphql, Link } from "gatsby"
 
+import { SingleVideoQuery } from "../../graphqlTypes"
 import Layout from "../components/layout"
 import PortableText from "../components/portableText"
 import VideoEmbed from "../components/videoEmbed"
@@ -32,7 +33,7 @@ export const query = graphql`
   }
 `
 
-const VideoPage = ({ data }) => {
+const VideoPage = (data: SingleVideoQuery) => {
   const video = data && data.sanityVideo
   return (
     <Layout
