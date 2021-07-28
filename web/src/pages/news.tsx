@@ -4,6 +4,7 @@ import { GatsbyImage } from "gatsby-plugin-image"
 
 import { NewsQuery } from "../../graphqlTypes"
 import Layout from "../components/layout"
+import SEO from "../components/seo"
 
 const News: FC = () => (
   <StaticQuery<NewsQuery>
@@ -13,6 +14,7 @@ const News: FC = () => (
         heroImage={data.newsHero.edges[0].node.image.asset.gatsbyImageData}
         heroImageCaption={data.newsMain.edges[0].node.title.en}
       >
+        <SEO title="Latest news" />
         <section>
           <div className="sidebarContainer">
             <div className="portableContainer">

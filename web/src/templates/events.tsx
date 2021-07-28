@@ -3,6 +3,7 @@ import { graphql } from "gatsby"
 
 import { EventsQuery } from "../../graphqlTypes"
 import Layout from "../components/layout"
+import SEO from "../components/seo"
 import EventPreview from "../components/eventPreview"
 
 interface Props {
@@ -23,6 +24,7 @@ const Events: FC<Props> = ({ data }) => {
           : `${data.pastEvents.edges[0].node.title.en}, ${data.pastEvents.edges[0].node.date}`
       }
     >
+      <SEO title="Events" />
       <section>
         <div className="sidebarContainer">
           <div className="portableContainer">

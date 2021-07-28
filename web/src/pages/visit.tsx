@@ -4,6 +4,7 @@ import { GatsbyImage } from "gatsby-plugin-image"
 
 import { VisitQuery } from "../../graphqlTypes"
 import Layout from "../components/layout"
+import SEO from "../components/seo"
 import PortableText from "../components/portableText"
 import GoogleMap from "../components/googleMap"
 import "../scss/visit.scss"
@@ -19,6 +20,7 @@ const Visit: FC<Props> = ({ data }) => {
       heroImage={data.sanityPage.mainImage.asset.gatsbyImageData}
       heroImageCaption="&nbsp;"
     >
+      <SEO title="Visit us" />
       <section>
         <div className="visitContainer">
           <h1>{data.sanityPage.title.en}</h1>

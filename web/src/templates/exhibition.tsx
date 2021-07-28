@@ -4,6 +4,7 @@ import { GatsbyImage } from "gatsby-plugin-image"
 
 import { SingleExhibitionQuery } from "../../graphqlTypes"
 import Layout from "../components/layout"
+import SEO from "../components/seo"
 import PortableText from "../components/portableText"
 import Modal from "../components/modal"
 
@@ -68,6 +69,7 @@ const ExhibitionPage: FC<Props> = ({ data }) => {
       heroImage={exhibition.mainImage.asset.gatsbyImageData}
       heroImageCaption={exhibition.mainImage.caption}
     >
+      <SEO title={exhibition.title.en} />
       <section>
         <div className="sidebarContainer">
           <div className="portableContainer">

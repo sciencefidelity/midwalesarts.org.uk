@@ -1,11 +1,4 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.com/docs/use-static-query/
- */
-
-import React from "react"
+import React, { FC } from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 
@@ -16,7 +9,13 @@ import Scrollup from "./scrollup"
 
 import "../scss/layout.scss"
 
-const Layout = ({ children, heroImage, heroImageCaption }) => {
+interface Props {
+  children: any
+  heroImage: any
+  heroImageCaption: any
+}
+
+const Layout: FC<Props> = ({ children, heroImage, heroImageCaption }) => {
   const data: SiteTitleQuery = useStaticQuery(graphql`
     query SiteTitle {
       site {

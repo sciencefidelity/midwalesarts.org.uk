@@ -10,12 +10,12 @@ import { useStaticQuery, graphql } from "gatsby"
 import { SeoQuery } from "../../graphqlTypes"
 
 interface Props {
-  description: string
-  lang: string
-  meta?: any
-  image: any
   title: string
-  pathname: string
+  description?: string
+  lang?: string
+  meta?: any
+  image?: any
+  pathname?: string
 }
 
 const SEO: FC<Props> = ({

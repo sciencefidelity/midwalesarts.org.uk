@@ -5,6 +5,7 @@ import { GatsbyImage } from "gatsby-plugin-image"
 
 import { SingleArtistQuery } from "../../graphqlTypes"
 import Layout from "../components/layout"
+import SEO from "../components/seo"
 import PortableText from "../components/portableText"
 import Modal from "../components/modal"
 
@@ -66,6 +67,7 @@ const Artist: FC<Props> = ({ data }) => {
       heroImage={artist.mainImage.asset.gatsbyImageData}
       heroImageCaption={artist.mainImage.caption}
     >
+      <SEO title={artist.title} />
       <section>
         <div className="sidebarContainer">
           <div className="portableContainer">

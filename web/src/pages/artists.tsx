@@ -4,6 +4,7 @@ import { GatsbyImage } from "gatsby-plugin-image"
 
 import { ArtistsQuery } from "../../graphqlTypes"
 import Layout from "../components/layout"
+import SEO from "../components/seo"
 
 const ArtistsPage: FC = () => (
   <StaticQuery<ArtistsQuery>
@@ -13,6 +14,7 @@ const ArtistsPage: FC = () => (
         heroImage={data.sanityArtist.mainImage.asset.gatsbyImageData}
         heroImageCaption={data.sanityArtist.mainImage.caption}
       >
+        <SEO title="Artists" />
         <section>
           <div className="sidebarContainer">
             <div className="portableContainer">

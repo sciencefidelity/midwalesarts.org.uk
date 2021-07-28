@@ -3,6 +3,7 @@ import { graphql, Link } from "gatsby"
 
 import { SinglePostQuery, SitePageContext } from "../../graphqlTypes"
 import Layout from "../components/layout"
+import SEO from "../components/seo"
 import PortableText from "../components/portableText"
 import Sidebar from "../components/sidebar"
 
@@ -31,6 +32,7 @@ const Post: FC<Props> = ({ data, pageContext }) => {
       heroImage={post.image.asset.gatsbyImageData}
       heroImageCaption="&nbsp;"
     >
+      <SEO title={post.title.en} />
       <section>
         <div className="sidebarContainer">
           <div className="portableContainer">

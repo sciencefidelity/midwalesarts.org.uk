@@ -3,6 +3,7 @@ import { graphql, Link } from "gatsby"
 
 import { SingleEventQuery } from "../../graphqlTypes"
 import Layout from "../components/layout"
+import SEO from "../components/seo"
 import PortableText from "../components/portableText"
 import Sidebar from "../components/sidebar"
 
@@ -17,6 +18,7 @@ const EventPage: FC<Props> = ({ data }) => {
       heroImage={event.mainImage.asset.gatsbyImageData}
       heroImageCaption="&nbsp;"
     >
+      <SEO title={event.title.en} />
       <section>
         <div className="sidebarContainer">
           <div className="portableContainer">

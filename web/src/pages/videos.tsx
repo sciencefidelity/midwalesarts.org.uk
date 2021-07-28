@@ -4,6 +4,7 @@ import { GatsbyImage } from "gatsby-plugin-image"
 
 import { VideosQuery } from "../../graphqlTypes"
 import Layout from "../components/layout"
+import SEO from "../components/seo"
 
 const Videos: FC = () => {
   return (
@@ -17,6 +18,7 @@ const Videos: FC = () => {
             }
             heroImageCaption={`${data.videosMain.edges[0].node.title.en}`}
           >
+            <SEO title="Videos" />
             <section>
               <div className="sidebarContainer">
                 <div className="portableContainer">

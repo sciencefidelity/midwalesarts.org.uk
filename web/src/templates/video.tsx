@@ -3,6 +3,7 @@ import { graphql, Link } from "gatsby"
 
 import { SingleVideoQuery } from "../../graphqlTypes"
 import Layout from "../components/layout"
+import SEO from "../components/seo"
 import PortableText from "../components/portableText"
 import VideoEmbed from "../components/videoEmbed"
 import Sidebar from "../components/sidebar"
@@ -18,6 +19,7 @@ const VideoPage: FC<Props> = ({ data }) => {
       heroImage={video.mainImage.asset.gatsbyImageData}
       heroImageCaption="&nbsp;"
     >
+      <SEO title={video.title.en} />
       <section>
         <div className="sidebarContainer">
           <div className="portableContainer">

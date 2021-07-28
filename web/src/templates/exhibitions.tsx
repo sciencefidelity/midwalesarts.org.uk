@@ -4,6 +4,7 @@ import { GatsbyImage } from "gatsby-plugin-image"
 
 import { ExhibitionsQuery } from "../../graphqlTypes"
 import Layout from "../components/layout"
+import SEO from "../components/seo"
 import ExhibitionPrieview from "../components/exhibitionPreview"
 
 interface Props {
@@ -25,6 +26,7 @@ const Exhibitions: FC<Props> = ({ data }) => {
           : data.futureExhibitions.edges[0].node.mainImage.caption
       }
     >
+      <SEO title="Exhibitions" />
       <section>
         <div className="sidebarContainer">
           <div className="portableContainer">

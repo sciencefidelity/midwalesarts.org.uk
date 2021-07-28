@@ -3,6 +3,7 @@ import { StaticQuery, graphql } from "gatsby"
 
 import { WorkshopsQuery } from "../../graphqlTypes"
 import Layout from "../components/layout"
+import SEO from "../components/seo"
 import PortableText from "../components/portableText"
 import Sidebar from "../components/sidebar"
 
@@ -15,6 +16,7 @@ const WorkshopsPage: FC = () => (
           heroImage={data.sanityPage.mainImage.asset.gatsbyImageData}
           heroImageCaption="&nbsp;"
         >
+          <SEO title="Workshops" />
           <section>
             <div className="sidebarContainer">
               <div className="portableContainer">

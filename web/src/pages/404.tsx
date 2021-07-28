@@ -15,7 +15,7 @@ const FourOhFour: FC<Props> = ({ data }) => {
       heroImage={data.sanityPage.mainImage.asset.gatsbyImageData}
       heroImageCaption="&nbsp;"
     >
-      <SEO title="404: Not found" />
+      <SEO title="Not found" />
       <div
         className="container"
         style={{
