@@ -1,4 +1,4 @@
-import React from "react"
+import React, { FC } from "react"
 import { graphql, Link } from "gatsby"
 
 import { SingleEventQuery } from "../../graphqlTypes"
@@ -6,33 +6,11 @@ import Layout from "../components/layout"
 import PortableText from "../components/portableText"
 import Sidebar from "../components/sidebar"
 
-export const query = graphql`
-  query SingleEvent($slug: String!) {
-    sanityEvent(slug: { en: { current: { eq: $slug } } }) {
-      body {
-        _rawEn(resolveReferences: { maxDepth: 10 })
-      }
-      briteLink
-      date(formatString: "dddd, MMMM Do YYYY")
-      id
-      title {
-        en
-      }
-      mainImage {
-        asset {
-          gatsbyImageData(
-            width: 1440
-            formats: WEBP
-            placeholder: BLURRED
-            layout: FULL_WIDTH
-          )
-        }
-      }
-    }
-  }
-`
+interface Props {
+  readonly data: SingleEventQuery
+}
 
-const EventPage = (data: SingleEventQuery) => {
+const EventPage: FC<Props> = ({ data }) => {
   const event = data && data.sanityEvent
   return (
     <Layout
@@ -71,5 +49,31 @@ const EventPage = (data: SingleEventQuery) => {
     </Layout>
   )
 }
+
+export const query = graphql`
+  query SingleEvent($slug: String!) {
+    sanityEvent(slug: { en: { current: { eq: $slug } } }) {
+      body {
+        _rawEn(resolveReferences: { maxDepth: 10 })
+      }
+      briteLink
+      date(formatString: "dddd, MMMM Do YYYY")
+      id
+      title {
+        en
+      }
+      mainImage {
+        asset {
+          gatsbyImageData(
+            width: 1440
+            formats: WEBP
+            placeholder: BLURRED
+            layout: FULL_WIDTH
+          )
+        }
+      }
+    }
+  }
+`
 
 export default EventPage

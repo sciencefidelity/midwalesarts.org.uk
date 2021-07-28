@@ -1,12 +1,16 @@
-import React from "react"
+import React, { FC } from "react"
 import { graphql, Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 
-import { ExhibitionQuery } from "../../graphqlTypes"
+import { ExhibitionsQuery } from "../../graphqlTypes"
 import Layout from "../components/layout"
 import ExhibitionPrieview from "../components/exhibitionPreview"
 
-const Exhibitions = (data: ExhibitionQuery) => {
+interface Props {
+  readonly data: ExhibitionsQuery
+}
+
+const Exhibitions: FC<Props> = ({ data }) => {
   return (
     <Layout
       heroImage={
@@ -102,7 +106,7 @@ const Exhibitions = (data: ExhibitionQuery) => {
 }
 
 export const query = graphql`
-  query Exhibition($currentDate: Date!) {
+  query Exhibitions($currentDate: Date!) {
     currentExhibitions: allSanityExhibition(
       filter: { dateEnd: { gt: $currentDate }, dateStart: { lt: $currentDate } }
       sort: { fields: dateStart, order: ASC }

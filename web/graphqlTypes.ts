@@ -8933,12 +8933,12 @@ export type SingleExhibitionQuery = { allSanityArtwork: { edges: Array<{ node: (
     )> }
   )> };
 
-export type ExhibitionQueryVariables = Exact<{
+export type ExhibitionsQueryVariables = Exact<{
   currentDate: Scalars['Date'];
 }>;
 
 
-export type ExhibitionQuery = { currentExhibitions: { edges: Array<{ node: (
+export type ExhibitionsQuery = { currentExhibitions: { edges: Array<{ node: (
         Pick<SanityExhibition, 'dateStart' | 'dateEnd' | 'id'>
         & { title?: Maybe<Pick<SanityLocaleString, 'en'>>, slug?: Maybe<{ en?: Maybe<Pick<SanitySlug, 'current'>> }>, mainImage?: Maybe<(
           Pick<SanityCaptionImage, 'caption'>

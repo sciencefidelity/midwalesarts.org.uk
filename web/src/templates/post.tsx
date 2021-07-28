@@ -1,4 +1,4 @@
-import React from "react"
+import React, { FC } from "react"
 import { graphql, Link } from "gatsby"
 
 import { SinglePostQuery, SitePageContext } from "../../graphqlTypes"
@@ -6,32 +6,12 @@ import Layout from "../components/layout"
 import PortableText from "../components/portableText"
 import Sidebar from "../components/sidebar"
 
-export const query = graphql`
-  query SinglePost($slug: String!) {
-    sanityPost(slug: { en: { current: { eq: $slug } } }) {
-      body {
-        _rawEn(resolveReferences: { maxDepth: 10 })
-      }
-      id
-      image {
-        asset {
-          gatsbyImageData(
-            width: 1440
-            formats: WEBP
-            placeholder: BLURRED
-            layout: FULL_WIDTH
-          )
-        }
-      }
-      publishedAt(formatString: "dddd, MMMM Do YYYY")
-      title {
-        en
-      }
-    }
-  }
-`
+interface Props {
+  readonly data: SinglePostQuery
+  readonly pageContext: SitePageContext
+}
 
-const Post = (data: SinglePostQuery, pageContext: SitePageContext) => {
+const Post: FC<Props> = ({ data, pageContext }) => {
   const post = data && data.sanityPost
 
   const prev = pageContext.prev
@@ -84,5 +64,30 @@ const Post = (data: SinglePostQuery, pageContext: SitePageContext) => {
     </Layout>
   )
 }
+
+export const query = graphql`
+  query SinglePost($slug: String!) {
+    sanityPost(slug: { en: { current: { eq: $slug } } }) {
+      body {
+        _rawEn(resolveReferences: { maxDepth: 10 })
+      }
+      id
+      image {
+        asset {
+          gatsbyImageData(
+            width: 1440
+            formats: WEBP
+            placeholder: BLURRED
+            layout: FULL_WIDTH
+          )
+        }
+      }
+      publishedAt(formatString: "dddd, MMMM Do YYYY")
+      title {
+        en
+      }
+    }
+  }
+`
 
 export default Post

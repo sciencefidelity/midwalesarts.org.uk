@@ -1,29 +1,15 @@
-import React from "react"
+import React, { FC } from "react"
 import { graphql } from "gatsby"
 
 import { FourOhFourQuery } from "../../graphqlTypes"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-export const query = graphql`
-  query FourOhFour {
-    sanityPage(title: { en: { eq: "About" } }) {
-      mainImage {
-        asset {
-          id
-          gatsbyImageData(
-            width: 1440
-            placeholder: BLURRED
-            formats: WEBP
-            layout: FULL_WIDTH
-          )
-        }
-      }
-    }
-  }
-`
+interface Props {
+  readonly data: FourOhFourQuery
+}
 
-const NotFoundPage = (data: FourOhFourQuery) => {
+const FourOhFour: FC<Props> = ({ data }) => {
   return (
     <Layout
       heroImage={data.sanityPage.mainImage.asset.gatsbyImageData}
@@ -43,4 +29,22 @@ const NotFoundPage = (data: FourOhFourQuery) => {
   )
 }
 
-export default NotFoundPage
+export const query = graphql`
+  query FourOhFour {
+    sanityPage(title: { en: { eq: "About" } }) {
+      mainImage {
+        asset {
+          id
+          gatsbyImageData(
+            width: 1440
+            placeholder: BLURRED
+            formats: WEBP
+            layout: FULL_WIDTH
+          )
+        }
+      }
+    }
+  }
+`
+
+export default FourOhFour

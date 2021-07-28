@@ -1,11 +1,15 @@
-import React from "react"
+import React, { FC } from "react"
 import { graphql } from "gatsby"
 
 import { EventsQuery } from "../../graphqlTypes"
 import Layout from "../components/layout"
 import EventPreview from "../components/eventPreview"
 
-const Events = (data: EventsQuery) => {
+interface Props {
+  readonly data: EventsQuery
+}
+
+const Events: FC<Props> = ({ data }) => {
   return (
     <Layout
       heroImage={

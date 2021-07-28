@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { FC, useState } from "react"
 import { graphql, Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 
@@ -7,69 +7,11 @@ import Layout from "../components/layout"
 import PortableText from "../components/portableText"
 import Modal from "../components/modal"
 
-export const query = graphql`
-  query SingleExhibition($title: String!) {
-    allSanityArtwork(
-      filter: { exhibition: { elemMatch: { title: { en: { eq: $title } } } } }
-      sort: { fields: artist, order: ASC }
-    ) {
-      edges {
-        node {
-          id
-          artist
-          date
-          dimensions
-          artworkGridImage: mainImage {
-            asset {
-              gatsbyImageData(
-                width: 468
-                height: 468
-                formats: WEBP
-                placeholder: BLURRED
-              )
-            }
-          }
-          artworkModalImage: mainImage {
-            asset {
-              gatsbyImageData(height: 670, formats: WEBP, placeholder: BLURRED)
-            }
-          }
-          medium {
-            en
-          }
-          price
-          title {
-            en
-          }
-        }
-      }
-    }
-    sanityExhibition(title: { en: { eq: $title } }) {
-      body {
-        _rawEn(resolveReferences: { maxDepth: 10 })
-      }
-      dateStart(formatString: "Do MMMM")
-      dateEnd(formatString: "Do MMMM YYYY")
-      id
-      title {
-        en
-      }
-      mainImage {
-        caption
-        asset {
-          gatsbyImageData(
-            width: 1440
-            formats: WEBP
-            placeholder: BLURRED
-            layout: FULL_WIDTH
-          )
-        }
-      }
-    }
-  }
-`
+interface Props {
+  readonly data: SingleExhibitionQuery
+}
 
-const ExhibitionPage = (data: SingleExhibitionQuery) => {
+const ExhibitionPage: FC<Props> = ({ data }) => {
   const [info, setInfo] = useState(data.allSanityArtwork.edges.length > 0)
   const [gallery, setGallery] = useState(
     data.allSanityArtwork.edges.length <= 0
@@ -193,5 +135,67 @@ const ExhibitionPage = (data: SingleExhibitionQuery) => {
     </Layout>
   )
 }
+
+export const query = graphql`
+  query SingleExhibition($title: String!) {
+    allSanityArtwork(
+      filter: { exhibition: { elemMatch: { title: { en: { eq: $title } } } } }
+      sort: { fields: artist, order: ASC }
+    ) {
+      edges {
+        node {
+          id
+          artist
+          date
+          dimensions
+          artworkGridImage: mainImage {
+            asset {
+              gatsbyImageData(
+                width: 468
+                height: 468
+                formats: WEBP
+                placeholder: BLURRED
+              )
+            }
+          }
+          artworkModalImage: mainImage {
+            asset {
+              gatsbyImageData(height: 670, formats: WEBP, placeholder: BLURRED)
+            }
+          }
+          medium {
+            en
+          }
+          price
+          title {
+            en
+          }
+        }
+      }
+    }
+    sanityExhibition(title: { en: { eq: $title } }) {
+      body {
+        _rawEn(resolveReferences: { maxDepth: 10 })
+      }
+      dateStart(formatString: "Do MMMM")
+      dateEnd(formatString: "Do MMMM YYYY")
+      id
+      title {
+        en
+      }
+      mainImage {
+        caption
+        asset {
+          gatsbyImageData(
+            width: 1440
+            formats: WEBP
+            placeholder: BLURRED
+            layout: FULL_WIDTH
+          )
+        }
+      }
+    }
+  }
+`
 
 export default ExhibitionPage

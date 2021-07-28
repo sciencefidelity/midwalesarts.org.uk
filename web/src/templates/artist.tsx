@@ -1,4 +1,4 @@
-import React from "react"
+import React, { FC } from "react"
 import { useState } from "react"
 import { graphql, Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
@@ -8,70 +8,11 @@ import Layout from "../components/layout"
 import PortableText from "../components/portableText"
 import Modal from "../components/modal"
 
-export const query = graphql`
-  query SingleArtist($name: String!) {
-    artworkList: allSanityArtwork(
-      sort: { fields: date, order: DESC }
-      filter: { artist: { eq: $name } }
-    ) {
-      edges {
-        node {
-          id
-          artist
-          date
-          dimensions
-          artworkGridImage: mainImage {
-            asset {
-              gatsbyImageData(
-                width: 468
-                height: 468
-                formats: WEBP
-                placeholder: BLURRED
-              )
-            }
-          }
-          artworkModalImage: mainImage {
-            asset {
-              gatsbyImageData(height: 670, formats: WEBP, placeholder: BLURRED)
-            }
-          }
-          medium {
-            en
-          }
-          price
-          title {
-            en
-          }
-        }
-      }
-    }
-    sanityArtist(title: { eq: $name }) {
-      body {
-        _rawEn(resolveReferences: { maxDepth: 10 })
-      }
-      disciplines {
-        title {
-          en
-        }
-      }
-      id
-      mainImage {
-        caption
-        asset {
-          gatsbyImageData(
-            width: 1440
-            formats: WEBP
-            placeholder: BLURRED
-            layout: FULL_WIDTH
-          )
-        }
-      }
-      title
-    }
-  }
-`
+interface Props {
+  readonly data: SingleArtistQuery
+}
 
-const Artist = (data: SingleArtistQuery) => {
+const Artist: FC<Props> = ({ data }) => {
   const [bio, setBio] = useState(true)
   const [gallery, setGallery] = useState(false)
   const [modal, setModal] = useState(true)
@@ -150,7 +91,7 @@ const Artist = (data: SingleArtistQuery) => {
         >
           {!!artwork.edges &&
             artwork.edges.map(
-              (artworks, index: number) =>
+              (artworks: any, index: number) =>
                 !!artworks && (
                   <div
                     style={{ margin: 0 }}
@@ -189,5 +130,68 @@ const Artist = (data: SingleArtistQuery) => {
     </Layout>
   )
 }
+
+export const query = graphql`
+  query SingleArtist($name: String!) {
+    artworkList: allSanityArtwork(
+      sort: { fields: date, order: DESC }
+      filter: { artist: { eq: $name } }
+    ) {
+      edges {
+        node {
+          id
+          artist
+          date
+          dimensions
+          artworkGridImage: mainImage {
+            asset {
+              gatsbyImageData(
+                width: 468
+                height: 468
+                formats: WEBP
+                placeholder: BLURRED
+              )
+            }
+          }
+          artworkModalImage: mainImage {
+            asset {
+              gatsbyImageData(height: 670, formats: WEBP, placeholder: BLURRED)
+            }
+          }
+          medium {
+            en
+          }
+          price
+          title {
+            en
+          }
+        }
+      }
+    }
+    sanityArtist(title: { eq: $name }) {
+      body {
+        _rawEn(resolveReferences: { maxDepth: 10 })
+      }
+      disciplines {
+        title {
+          en
+        }
+      }
+      id
+      mainImage {
+        caption
+        asset {
+          gatsbyImageData(
+            width: 1440
+            formats: WEBP
+            placeholder: BLURRED
+            layout: FULL_WIDTH
+          )
+        }
+      }
+      title
+    }
+  }
+`
 
 export default Artist

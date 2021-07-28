@@ -23,7 +23,7 @@ const ArtistsPage: FC = () => (
           <div className="imageGrid">
             {!!data.allSanityArtist.edges &&
               data.allSanityArtist.edges.map(
-                (artists) =>
+                artists =>
                   !!artists && (
                     <Link
                       to={`/artists/${artists.node.slug.current}/`}

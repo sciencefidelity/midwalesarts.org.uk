@@ -5,7 +5,7 @@ import PropTypes from "prop-types"
 
 interface Props {
   heading: string
-  eventData: object[]
+  eventData: any
   marginTop: object
 }
 
