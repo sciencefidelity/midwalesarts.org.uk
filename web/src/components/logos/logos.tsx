@@ -1,9 +1,9 @@
-import * as React from 'react'
+import React, { FC } from 'react'
 
-const Signup = () => {
+const Signup: FC = () => {
   return (
     <div className="funderLogos">
-      <a href="https://arts.wales" target="_blank" rel="noopener">
+      <a href="https://arts.wales" target="blank" rel="noreferrer">
         <span className="screenReaderText">Arts Council of Wales</span>
         <div className="acw">
           <img
@@ -15,7 +15,7 @@ const Signup = () => {
         </div>
       </a>
       <div className="logosRight" style={{margin: 0}}>
-        <a href="https://gov.wales" target="_blank" rel="noopener">
+        <a href="https://gov.wales" target="blank" rel="noreferrer">
           <span className="screenReaderText">Welsh Government</span>
           <div className="wg">
             <img
@@ -26,7 +26,7 @@ const Signup = () => {
             />
           </div>
         </a>
-        <a href="https://goodtogo.visitbritain.com/" target="_blank" rel="noopener" style={{margin: 0}}>
+        <a href="https://goodtogo.visitbritain.com/" target="blank" rel="noreferrer" style={{margin: 0}}>
           <span className="screenReaderText">Good To Go</span>
           <div className="gtg">
             <img
