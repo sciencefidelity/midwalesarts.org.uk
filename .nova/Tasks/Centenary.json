@@ -1,0 +1,17 @@
+{
+  "actions" : {
+    "build" : {
+      "enabled" : true,
+      "script" : "#!\/bin\/sh\ncd centenary\ngatsby build"
+    },
+    "clean" : {
+      "enabled" : true,
+      "script" : "#!\/bin\/sh\ncd centenary\ngatsby clean"
+    },
+    "run" : {
+      "enabled" : true,
+      "script" : "#!\/bin\/sh\ncd centenary\ngatsby develop -H 0.0.0.0"
+    }
+  },
+  "identifier" : "3B32070D-9412-4E3F-A996-E53A3FA21158"
+}

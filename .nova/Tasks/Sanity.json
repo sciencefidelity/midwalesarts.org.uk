@@ -1,0 +1,14 @@
+{
+  "actions" : {
+    "build" : {
+      "enabled" : true,
+      "script" : "#!\/bin\/sh\ncd studio\nsanity deploy && sanity graphql deploy"
+    },
+    "run" : {
+      "enabled" : true,
+      "script" : "#!\/bin\/sh\ncd studio\nsanity start"
+    }
+  },
+  "identifier" : "73883D2B-1863-4A0C-A163-5ABE749DC1AF",
+  "openLogOnRun" : "start"
+}
