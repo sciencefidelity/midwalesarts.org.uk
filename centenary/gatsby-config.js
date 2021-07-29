@@ -1,13 +1,21 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
-    siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
+    title: `Centenary: Stefan Knapp`,
+    description: `A Mid Wales Arts exhibition.`,
+    author: `Matt Cook <matt@sciencefidelity.co.uk>`,
+    keywords: [`stefan knapp`, `artist`, `sculptor`, `painter`, `enamelist`, `exhibition`, `polish`, `british`, `mid wales arts`],
+    siteUrl: `https://centenary.midwalesarts.org.uk`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
+    `gatsby-plugin-sass`,
+    {
+      resolve: `gatsby-plugin-graphql-codegen`,
+      options: {
+        fileName: `./generated/graphqlTypes.ts`,
+      }
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
