@@ -28,7 +28,7 @@ const SEO: FC<Props> = ({
 }) => {
   const { site } = useStaticQuery<SeoQuery>(
     graphql`
-      query SEO {
+      query Seo {
         site {
           siteMetadata {
             title
@@ -137,13 +137,13 @@ const SEO: FC<Props> = ({
   )
 }
 
-SEO.defaultProps = {
+Seo.defaultProps = {
   lang: `en`,
   meta: [],
   description: ``,
 }
 
-SEO.propTypes = {
+Seo.propTypes = {
   description: PropTypes.string,
   lang: PropTypes.string,
   meta: PropTypes.arrayOf(PropTypes.object),
@@ -156,4 +156,4 @@ SEO.propTypes = {
   pathname: PropTypes.string,
 }
 
-export default SEO
+export default Seo
