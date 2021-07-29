@@ -43,7 +43,6 @@ const IndexPage: FC = () => (
                 </div>
               </div>
             </div>
-            <div>{data.allSanityFrontPageSection.edges[0].node.body._rawEn}</div>
           </section>
           {!!data.allSanityFrontPageSection.edges &&
             data.allSanityFrontPageSection.edges.map(
