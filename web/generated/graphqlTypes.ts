@@ -8767,11 +8767,6 @@ export type IntroQuery = { sanityFrontPage?: Maybe<(
     & { body?: Maybe<Pick<SanityLocaleRichText, '_rawEn'>>, cta?: Maybe<Pick<SanityLocaleString, 'en'>> }
   )> };
 
-export type SiteTitleQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type SiteTitleQuery = { site?: Maybe<{ siteMetadata?: Maybe<Pick<SiteSiteMetadata, 'title'>> }> };
-
 export type SeoQueryVariables = Exact<{ [key: string]: never; }>;
 
 

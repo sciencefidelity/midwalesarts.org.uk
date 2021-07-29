@@ -1,7 +1,7 @@
 import React, { FC } from "react"
 import { StaticQuery, graphql } from "gatsby"
 
-import { SupportQuery } from "../../graphqlTypes"
+import { SupportQuery } from "../../generated/graphqlTypes"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import PortableText from "../components/portableText"

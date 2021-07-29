@@ -1,7 +1,7 @@
 import React, { FC } from "react"
 import { StaticQuery, graphql, Link } from "gatsby"
 
-import { SidebarQuery } from "../../graphqlTypes"
+import { SidebarQuery } from "../../generated/graphqlTypes"
 
 const Sidebar: FC = () => (
   <StaticQuery<SidebarQuery>

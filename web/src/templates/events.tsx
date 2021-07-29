@@ -1,7 +1,7 @@
 import React, { FC } from "react"
 import { graphql } from "gatsby"
 
-import { EventsQuery } from "../../graphqlTypes"
+import { EventsQuery } from "../../generated/graphqlTypes"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import EventPreview from "../components/eventPreview"

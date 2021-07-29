@@ -1,6 +1,6 @@
 import React, { FC } from "react"
 import { Link } from "gatsby"
-import { GatsbyImage } from "gatsby-plugin-image"
+import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image"
 import PropTypes from "prop-types"
 
 import PortableText from "./portableText"
@@ -12,9 +12,9 @@ interface Props {
   body: any
   cta: string
   ctaLink: string
-  mainImage: any
+  mainImage: IGatsbyImageData
   mainImageCaption: string
-  subImage: any
+  subImage: IGatsbyImageData
   subImageCaption: string
   key: string
 }

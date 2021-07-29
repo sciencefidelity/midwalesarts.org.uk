@@ -2,7 +2,7 @@ import React, { FC } from "react"
 import { StaticQuery, graphql, Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 
-import { ArtistsQuery } from "../../graphqlTypes"
+import { ArtistsQuery } from "../../generated/graphqlTypes"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 

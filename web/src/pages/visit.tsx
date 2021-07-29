@@ -2,7 +2,7 @@ import React, { FC } from "react"
 import { graphql, Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 
-import { VisitQuery } from "../../graphqlTypes"
+import { VisitQuery } from "../../generated/graphqlTypes"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import PortableText from "../components/portableText"

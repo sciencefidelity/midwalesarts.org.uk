@@ -1,7 +1,7 @@
 import React, { FC } from "react"
 import { graphql } from "gatsby"
 
-import { FourOhFourQuery } from "../../graphqlTypes"
+import { FourOhFourQuery } from "../../generated/graphqlTypes"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 

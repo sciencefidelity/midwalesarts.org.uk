@@ -4,7 +4,7 @@ import { GatsbyImage } from "gatsby-plugin-image"
 
 import "../scss/index.scss"
 
-import { IndexQuery } from "../../graphqlTypes"
+import { IndexQuery } from "../../generated/graphqlTypes"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import ColorLogo from "../components/logos/colorLogo"
@@ -43,10 +43,11 @@ const IndexPage: FC = () => (
                 </div>
               </div>
             </div>
+            <div>{data.allSanityFrontPageSection.edges[0].node.body._rawEn}</div>
           </section>
           {!!data.allSanityFrontPageSection.edges &&
             data.allSanityFrontPageSection.edges.map(
-              (section: any) =>
+              (section) =>
                 !!section && (
                   <FrontPageSection
                     title={section.node.title.en}

@@ -1,7 +1,7 @@
 import React, { FC } from "react"
 import { graphql, Link } from "gatsby"
 
-import { SinglePostQuery, SitePageContext } from "../../graphqlTypes"
+import { SinglePostQuery, SitePageContext } from "../../generated/graphqlTypes"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import PortableText from "../components/portableText"

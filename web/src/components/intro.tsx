@@ -1,7 +1,7 @@
 import React, { FC } from "react"
 import { useStaticQuery, graphql, Link } from "gatsby"
 
-import { IntroQuery } from "../../graphqlTypes"
+import { IntroQuery } from "../../generated/graphqlTypes"
 import PortableText from "./portableText"
 
 const Intro: FC = () => {

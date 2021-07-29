@@ -3,7 +3,7 @@ import { useState } from "react"
 import { graphql, Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 
-import { SingleArtistQuery } from "../../graphqlTypes"
+import { SingleArtistQuery } from "../../generated/graphqlTypes"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import PortableText from "../components/portableText"
