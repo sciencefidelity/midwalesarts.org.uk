@@ -1,8 +1,5 @@
 /**
- * SEO component that queries for data with
- *  Gatsby's useStaticQuery React hook
- *
- * See: https://www.gatsbyjs.com/docs/use-static-query/
+ * https://www.gatsbyjs.com/tutorial/seo-and-social-sharing-cards-tutorial/
  */
 
 import * as React from "react"
@@ -10,7 +7,16 @@ import PropTypes from "prop-types"
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
-function Seo({ description, lang, meta, title }) {
+import { SeoQuery } from "../../generated/graphqlTypes"
+
+interface Props {
+  title: string
+  description?: string
+  lang?: string
+  meta?: any
+}
+
+const Seo: React.FC<Props> = ({ title, description, lang, meta })=> {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -19,6 +25,8 @@ function Seo({ description, lang, meta, title }) {
             title
             description
             author
+            keywords
+            siteUrl
           }
         }
       }
@@ -80,10 +88,10 @@ Seo.defaultProps = {
 }
 
 Seo.propTypes = {
+  title: PropTypes.string.isRequired,
   description: PropTypes.string,
   lang: PropTypes.string,
   meta: PropTypes.arrayOf(PropTypes.object),
-  title: PropTypes.string.isRequired,
 }
 
 export default Seo
