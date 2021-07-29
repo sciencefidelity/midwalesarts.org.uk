@@ -49,10 +49,10 @@ export default createSchema({
       space,
       post,
       video,
-      
+
       // taxonomy
       category,
       discipline,
-      
+
     ])
 })

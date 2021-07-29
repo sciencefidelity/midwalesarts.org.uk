@@ -1,9 +1,9 @@
 export default {
   widgets: [
     {
-      name: 'vercel',
+      name: "vercel",
       layout: {
-        width: 'full',
+        width: "full",
       },
     },
   ],

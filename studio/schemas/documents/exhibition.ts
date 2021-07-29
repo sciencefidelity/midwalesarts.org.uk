@@ -1,46 +1,46 @@
-import { FaLandmark } from 'react-icons/fa'
+import { FaLandmark } from "react-icons/fa"
 
 export default {
-  name: 'exhibition',
-  title: 'Exhibition',
-  type: 'document',
+  name: "exhibition",
+  title: "Exhibition",
+  type: "document",
   icon: FaLandmark,
   fields: [
     {
-      name: 'title',
-      title: 'Title',
-      type: 'localeString',
+      name: "title",
+      title: "Title",
+      type: "localeString",
     },
     {
-      name: 'dateStart',
-      title: 'Start date',
-      type: 'date',
+      name: "dateStart",
+      title: "Start date",
+      type: "date",
       options: {
-        dateFormat: 'dddd, MMMM Do YYYY',
-      }
+        dateFormat: "dddd, MMMM Do YYYY",
+      },
     },
     {
-      name: 'dateEnd',
-      title: 'End date',
-      type: 'date',
+      name: "dateEnd",
+      title: "End date",
+      type: "date",
       options: {
-        dateFormat: 'dddd, MMMM Do YYYY',
-      }
+        dateFormat: "dddd, MMMM Do YYYY",
+      },
     },
     {
-      name: 'body',
-      title: 'Body',
-      type: 'localeRichText',
+      name: "body",
+      title: "Body",
+      type: "localeRichText",
     },
     {
-      name: 'slug',
-      title: 'Slug',
-      type: 'localeSlug',
+      name: "slug",
+      title: "Slug",
+      type: "localeSlug",
     },
     {
-      name: 'mainImage',
-      title: 'Main image',
-      type: 'captionImage',
+      name: "mainImage",
+      title: "Main image",
+      type: "captionImage",
       options: {
         hotspot: true,
       },
@@ -49,8 +49,8 @@ export default {
 
   preview: {
     select: {
-      title: 'title.en',
-      media: 'mainImage',
+      title: "title.en",
+      media: "mainImage",
     },
   },
 }

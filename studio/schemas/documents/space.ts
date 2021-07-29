@@ -1,30 +1,30 @@
-import { FaSpa } from 'react-icons/fa'
+import { FaSpa } from "react-icons/fa"
 
 export default {
-  name: 'space',
-  title: 'Space',
-  type: 'document',
+  name: "space",
+  title: "Space",
+  type: "document",
   icon: FaSpa,
   fields: [
     {
-      name: 'title',
-      title: 'Title',
-      type: 'localeString',
+      name: "title",
+      title: "Title",
+      type: "localeString",
     },
     {
-      name: 'body',
-      title: 'Body',
-      type: 'localeRichText',
+      name: "body",
+      title: "Body",
+      type: "localeRichText",
     },
     {
-      name: 'slug',
-      title: 'Slug',
-      type: 'localeSlug',
+      name: "slug",
+      title: "Slug",
+      type: "localeSlug",
     },
     {
-      name: 'mainImage',
-      title: 'Main image',
-      type: 'image',
+      name: "mainImage",
+      title: "Main image",
+      type: "image",
       options: {
         hotspot: true,
       },
@@ -33,8 +33,8 @@ export default {
 
   preview: {
     select: {
-      title: 'title.en',
-      media: 'mainImage',
+      title: "title.en",
+      media: "mainImage",
     },
   },
 }

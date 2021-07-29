@@ -1,49 +1,50 @@
-import { FaCalendarAlt } from 'react-icons/fa'
+import { FaCalendarAlt } from "react-icons/fa"
 
 export default {
-  name: 'event',
-  title: 'Event',
-  type: 'document',
+  name: "event",
+  title: "Event",
+  type: "document",
   icon: FaCalendarAlt,
   fields: [
     {
-      name: 'title',
-      title: 'Title',
-      type: 'localeString',
+      name: "title",
+      title: "Title",
+      type: "localeString",
     },
     {
-      name: 'slug',
-      title: 'Slug',
-      description: 'Click Generate.',
-      type: 'localeSlug',
+      name: "slug",
+      title: "Slug",
+      description: "Click Generate.",
+      type: "localeSlug",
     },
     {
-      name: 'date',
-      title: 'Date and time',
-      type: 'datetime',
+      name: "date",
+      title: "Date and time",
+      type: "datetime",
       options: {
-        dateFormat: 'dddd, MMMM Do YYYY,',
-        timeFormat: 'h:mm a',
+        dateFormat: "dddd, MMMM Do YYYY,",
+        timeFormat: "h:mm a",
         timeStep: 15,
-        calendarTodayLabel: 'Today'
+        calendarTodayLabel: "Today",
       },
     },
     {
-      name: 'briteLink',
-      title: 'Eventbrite link',
-      description: 'Leave blank if the event is not on Eventbrite.',
-      type: 'url',
+      name: "briteLink",
+      title: "Eventbrite link",
+      description: "Leave blank if the event is not on Eventbrite.",
+      type: "url",
     },
     {
-      name: 'body',
-      title: 'Body',
-      type: 'localeRichText',
+      name: "body",
+      title: "Body",
+      type: "localeRichText",
     },
     {
-      name: 'mainImage',
-      title: 'Main image',
-      description: 'Images should be jpeg of 1440px along the longest edge, 500-600k is best.',
-      type: 'image',
+      name: "mainImage",
+      title: "Main image",
+      description:
+        "Images should be jpeg of 1440px along the longest edge, 500-600k is best.",
+      type: "image",
       options: {
         hotspot: true,
       },
@@ -52,8 +53,8 @@ export default {
 
   preview: {
     select: {
-      title: 'title.en',
-      media: 'mainImage',
+      title: "title.en",
+      media: "mainImage",
     },
   },
 }
