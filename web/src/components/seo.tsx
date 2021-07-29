@@ -18,7 +18,7 @@ interface Props {
   pathname?: string
 }
 
-const SEO: FC<Props> = ({
+const Seo: FC<Props> = ({
   title,
   description,
   lang,
