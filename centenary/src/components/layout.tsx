@@ -5,7 +5,7 @@ import { useStaticQuery, graphql } from "gatsby"
 import { SiteTitleQuery } from "../../generated/graphqlTypes"
 import Header from "./header"
 import Footer from "./footer"
-import "./scss/layout.scss"
+import "../scss/layout.scss"
 
 interface Props {
   children: React.ReactNode
