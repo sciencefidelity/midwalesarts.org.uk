@@ -19,11 +19,11 @@ interface Props {
 }
 
 const SEO: FC<Props> = ({
+  title,
   description,
   lang,
   meta,
   image: metaImage,
-  title,
   pathname,
 }) => {
   const { site } = useStaticQuery<SeoQuery>(
