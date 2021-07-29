@@ -6,15 +6,17 @@ interface Props {
   siteTitle: string
 }
 
-const Header: React.FC<Props> = ({ siteTitle }) => (
-  <header>
-    <div>
-      <h1 style={{ margin: 0 }}>
-        <Link to="/">{siteTitle}</Link>
-      </h1>
-    </div>
-  </header>
-)
+const Header: React.FC<Props> = ({ siteTitle }) => {
+  return (
+    <header>
+      <div>
+        <h1>
+          <Link to="/">{siteTitle}</Link>
+        </h1>
+      </div>
+    </header>
+  )
+}
 
 Header.propTypes = {
   siteTitle: PropTypes.string,
