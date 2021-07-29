@@ -1,5 +1,4 @@
 {
-  "apexskier.eslint.config.eslintPath" : "web\/node_modules\/eslint\/bin\/eslint.js",
   "apexskier.typescript.config.isEnabledForJavascript" : "Disable",
   "apexskier.typescript.config.userPreferences.quotePreference" : "double",
   "workspace.art_style" : 1,
