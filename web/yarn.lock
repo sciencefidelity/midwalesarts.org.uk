@@ -1774,16 +1774,6 @@
   resolved "https://registry.yarnpkg.com/@rexxars/eventsource-polyfill/-/eventsource-polyfill-1.0.0.tgz#ab46f2f44da23aedd6f51f13d92a194a5367525b"
   integrity sha512-YnrybIoM9WFqmeK1D8p/gutqjJnmXCVFWAU3ucka9M7Dzpen3f2Dy4KsC6k1wDHrCtHQuUHHwZovh3i5UPDaZw==
 
-"@sanity/block-content-to-hyperscript@^2.0.10":
-  version "2.0.10"
-  resolved "https://registry.yarnpkg.com/@sanity/block-content-to-hyperscript/-/block-content-to-hyperscript-2.0.10.tgz#9cf805c5d2341d043bcab8b3740c9b3466b5ae6b"
-  integrity sha512-xT3iEmZkK0fvO5PDFpn9GMWGfvOopvbrRCBU48XxpFoTxRrfsHhxbRy8J0eND1HGXHUENkIKv5jbohtGd1MiVg==
-  dependencies:
-    "@sanity/generate-help-url" "^0.140.0"
-    "@sanity/image-url" "^0.140.15"
-    hyperscript "^2.0.2"
-    object-assign "^4.1.1"
-
 "@sanity/block-content-to-hyperscript@^3.0.0":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@sanity/block-content-to-hyperscript/-/block-content-to-hyperscript-3.0.0.tgz#a8437b608daac9b7cc4124c490d345fa84d4a267"
@@ -1793,14 +1783,6 @@
     "@sanity/image-url" "^0.140.15"
     hyperscript "^2.0.2"
     object-assign "^4.1.1"
-
-"@sanity/block-content-to-react@^2.0.0":
-  version "2.0.7"
-  resolved "https://registry.yarnpkg.com/@sanity/block-content-to-react/-/block-content-to-react-2.0.7.tgz#6e257b5ab59ebe406005032eea586391d963eb93"
-  integrity sha512-oSriTf/3Ihnxp6AjEGiVjNPA2Iq/IFaWg4Frn5msGq5GT8N1kwLwxduig1OSn87UA15LNwiai9LAJwBR2k9lIg==
-  dependencies:
-    "@sanity/block-content-to-hyperscript" "^2.0.10"
-    prop-types "^15.6.2"
 
 "@sanity/block-content-to-react@^3.0.0":
   version "3.0.0"
@@ -11037,13 +11019,6 @@ react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
-
-react-portable-text@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/react-portable-text/-/react-portable-text-0.3.0.tgz#045ee4a2cde5195fcd1e6f977bcce01414ad20bd"
-  integrity sha512-PNNm48A6wrkfZOLRmLT8GIa6w/sBGQCxGMZ8uzfCrx2ajeZKOcX8Mk0DyeFKqbrCmVu62KiKQMo6gnF+scpv5Q==
-  dependencies:
-    "@sanity/block-content-to-react" "^2.0.0"
 
 react-refresh@^0.9.0:
   version "0.9.0"
