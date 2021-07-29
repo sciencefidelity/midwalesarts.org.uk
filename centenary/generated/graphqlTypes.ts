@@ -2849,7 +2849,7 @@ export type SiteTitleQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type SiteTitleQuery = { site?: Maybe<{ siteMetadata?: Maybe<Pick<SiteSiteMetadata, 'title'>> }> };
 
-export type Unnamed_1_QueryVariables = Exact<{ [key: string]: never; }>;
+export type SeoQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type Unnamed_1_Query = { site?: Maybe<{ siteMetadata?: Maybe<Pick<SiteSiteMetadata, 'title' | 'description' | 'author' | 'keywords' | 'siteUrl'>> }> };
+export type SeoQuery = { site?: Maybe<{ siteMetadata?: Maybe<Pick<SiteSiteMetadata, 'title' | 'description' | 'author' | 'keywords' | 'siteUrl'>> }> };
