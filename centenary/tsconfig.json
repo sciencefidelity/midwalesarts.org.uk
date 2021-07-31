@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "module": "es2020",
+    "lib": ["es2020"],
+    "target": "es2019",
+    "baseUrl": ".",
+    "allowJs": true,
+    "checkJs": false,
+    "jsx": "react",
+    "allowSyntheticDefaultImports": true,
+    "types": ["react-helmet"],
+    "typeRoots": ["./types", "./node_modules/@types"],
+    "paths": {
+      "~/*": ["./src/*"],
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["src/*", "src/**/*", "types/**/*"],
+  "exclude": ["node_modules", "./node_modules", "./node_modules/*"]
+}
