@@ -5,7 +5,7 @@ import { MDXRenderer } from "gatsby-plugin-mdx"
 import "../scss/quote.scss"
 
 interface Props {
-  quote: any
+  quote: string
 }
 
 const FullQuote: React.FC<Props> = ({ quote }) => {
@@ -17,7 +17,7 @@ const FullQuote: React.FC<Props> = ({ quote }) => {
 }
 
 FullQuote.propTypes = {
-  quote: PropTypes.any.isRequired,
+  quote: PropTypes.string.isRequired,
 }
 
 export default FullQuote

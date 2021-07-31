@@ -7,6 +7,7 @@
   text-underline-offset: 0.15em;
   &::before,
   &::after {
+    margin: 0;
     box-sizing: border-box;
   }
 }
@@ -31,5 +32,18 @@ html {
 body {
   margin: 0;
   background: c.$grey-000;
-  color: c.$grey-550;
+  color: c.$grey-950;
+}
+
+p {
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+blockquote {
+  p {
+    font-size: 5rem;
+    font-weight: 600;
+  }
 }

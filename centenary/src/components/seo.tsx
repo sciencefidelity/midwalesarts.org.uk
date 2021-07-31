@@ -56,7 +56,7 @@ const Seo: React.FC<Props> = ({
         lang,
       }}
       title={title}
-      titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : null}
+      titleTemplate={defaultTitle}
       link={
         canonical
           ? [

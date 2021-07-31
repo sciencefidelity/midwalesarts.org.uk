@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
-    title: `Centenary: Stefan Knapp`,
-    description: `A Mid Wales Arts exhibition.`,
+    title: `Knapp Centenary`,
+    description: `Centenary: Stefan Knapp. A Mid Wales Arts exhibition.`,
     author: `Matt Cook <matt@sciencefidelity.co.uk>`,
     keywords: [
       `stefan knapp`,
