@@ -10,6 +10,7 @@ module.exports = {
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
     `gatsby-plugin-sass`,
+    `gatsby-transformer-remark`,
     {
       resolve: `gatsby-plugin-graphql-codegen`,
       options: {
@@ -34,7 +35,7 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/mwa-icon.png`,
+        icon: `src/icons/mwa-icon.png`,
       },
     },
     `gatsby-plugin-gatsby-cloud`,
