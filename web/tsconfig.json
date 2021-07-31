@@ -6,20 +6,25 @@
     "target": "es2019",
     "baseUrl": ".",
     "allowJs": true,
-    "checkJs": true,
+    "checkJs": false,
     "jsx": "react",
-    "types": [],
+    "allowSyntheticDefaultImports": true,
+    "types": [
+      "google-map-react",
+      "node",
+      "react-helmet",
+      "sanity__block-content-to-react"
+    ],
+    "typeRoots": ["./types", "./node_modules/@types"],
     "paths": {
       "~/*": ["./src/*"],
-      "@/*": ["./src/*"],
-      "*": ["./types/*"]
-    },
+      "@/*": ["./src/*"]
+    }
   },
-  "include": ["src/*", "types/*"],
+  "include": ["src/*", "src/**/*", "types/**/*"],
   "exclude": [
     "node_modules",
     "./node_modules",
-    "./node_modules/*",
-    "./node_modules/@types/node/index.d.ts",
+    "./node_modules/*"
   ]
 }
