@@ -1,3 +1,6 @@
+@use "foundation/colors" as c;
+@use "foundation/breakpoints" as b;
+
 .header {
   height: 100vh;
   display: grid;
@@ -9,8 +12,8 @@
 }
 
 .right-column {
-  background: black;
-  color: white;
+  background: c.$grey-950;
+  color: c.$grey-000;
   text-align: center;
   a {
     text-decoration: none;

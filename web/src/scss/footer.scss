@@ -1,5 +1,4 @@
-
-@use 'foundation/colors' as c;
+@use "foundation/colors" as c;
 @use "foundation/breakpoints" as b;
 
 footer {
@@ -43,7 +42,6 @@ footer {
   display: grid;
   grid-template-columns: auto auto;
   width: 81.25%;
-  // max-width: 108rem;
   margin: auto;
   padding: 5rem 0 1.3rem;
   @include b.mq(lg) {
@@ -182,7 +180,9 @@ footer {
   }
 }
 
-.acw, .wg, .gtg {
+.acw,
+.wg,
+.gtg {
   margin-top: 0;
 }
 
@@ -204,7 +204,7 @@ footer {
   li {
     margin-top: 0;
     padding-left: 3rem;
-    &:first-child{
+    &:first-child {
       padding: 0;
     }
     a {

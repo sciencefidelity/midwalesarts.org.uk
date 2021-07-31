@@ -1,0 +1,35 @@
+@use "colors" as c;
+@use "breakpoints" as b;
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+  text-underline-offset: 0.15em;
+  &::before,
+  &::after {
+    box-sizing: border-box;
+  }
+}
+
+::selection {
+  background: c.$grey-100;
+}
+
+html,
+body {
+  overflow-x: hidden;
+  position: relative;
+}
+
+html {
+  font-family: "GT Eesti Display", sans-serif;
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+  margin: 0;
+}
+
+body {
+  margin: 0;
+  background: c.$grey-000;
+  color: c.$grey-550;
+}
