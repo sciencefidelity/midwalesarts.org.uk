@@ -5,6 +5,7 @@ import { IndexQuery } from "../../generated/graphqlTypes"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import FullImage from "../components/fullImage"
+import FullQuote from "../components/fullQuote"
 
 interface Props {
   readonly data: IndexQuery
@@ -14,6 +15,7 @@ const IndexPage: React.FC<Props> = ({ data }) => {
   return (
     <Layout>
       <Seo title="Home" />
+      <FullQuote quote={data.mdx.body} />
       <FullImage
         image={data.imageSharp.gatsbyImageData}
         alt="Stefan Knapp with organic sculptures"
@@ -32,6 +34,10 @@ export const query = graphql`
         placeholder: DOMINANT_COLOR
       )
       id
+    }
+    mdx(id: {eq: "b0cee314-3cbb-5641-9cab-c55de5e51bd2"}) {
+      id
+      body
     }
   }
 `

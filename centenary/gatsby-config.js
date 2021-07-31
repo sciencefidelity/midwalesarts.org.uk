@@ -3,25 +3,47 @@ module.exports = {
     title: `Centenary: Stefan Knapp`,
     description: `A Mid Wales Arts exhibition.`,
     author: `Matt Cook <matt@sciencefidelity.co.uk>`,
-    keywords: [`stefan knapp`, `artist`, `sculptor`, `painter`, `enamelist`, `exhibition`, `polish`, `british`, `mid wales arts`],
+    keywords: [
+      `stefan knapp`,
+      `artist`,
+      `sculptor`,
+      `painter`,
+      `enamelist`,
+      `exhibition`,
+      `polish`,
+      `british`,
+      `mid wales arts`,
+    ],
     siteUrl: `https://centenary.midwalesarts.org.uk`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
     `gatsby-plugin-sass`,
-    `gatsby-transformer-remark`,
+    {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        extensions: [`.md`, `.mdx`],
+      },
+    },
     {
       resolve: `gatsby-plugin-graphql-codegen`,
       options: {
         fileName: `./generated/graphqlTypes.ts`,
-      }
+      },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
         path: `${__dirname}/src/images`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `markdown`,
+        path: `${__dirname}/src/markdown`,
       },
     },
     `gatsby-transformer-sharp`,

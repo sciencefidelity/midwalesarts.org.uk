@@ -2,7 +2,7 @@ import * as React from "react"
 import PropTypes from "prop-types"
 import { GatsbyImage } from "gatsby-plugin-image"
 
-import "../scss/fullImage.scss"
+import "../scss/image.scss"
 
 interface Props {
   image: any

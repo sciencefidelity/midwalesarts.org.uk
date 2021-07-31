@@ -1,0 +1,19 @@
+@use "foundation/colors" as c;
+
+.quote {
+  &__full {
+    width: 100vw;
+    padding: 10rem 6rem 20rem 6rem;
+    font-size: 5rem;
+    font-weight: 600;
+    line-height: 1.2;
+    color: c.$grey-950;
+    blockquote {
+      padding-bottom: 0.6em;
+    }
+    cite {
+      font-weight: 300;
+      font-style: normal;
+    }
+  }
+}
