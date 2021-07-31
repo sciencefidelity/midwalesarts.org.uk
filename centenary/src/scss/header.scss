@@ -1,0 +1,19 @@
+.header {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.left-column {
+  background: white;
+}
+
+.right-column {
+  background: black;
+  color: white;
+  text-align: center;
+  a {
+    text-decoration: none;
+    color: white;
+  }
+}
