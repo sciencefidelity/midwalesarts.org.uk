@@ -1,5 +1,4 @@
 import * as React from "react"
-import PropTypes from "prop-types"
 
 const Footer: React.FC = () => {
   return (
@@ -13,14 +12,6 @@ const Footer: React.FC = () => {
       </div>
     </footer>
   )
-}
-
-Footer.propTypes = {
-  siteTitle: PropTypes.string,
-}
-
-Footer.defaultProps = {
-  siteTitle: `Centenery`,
 }
 
 export default Footer

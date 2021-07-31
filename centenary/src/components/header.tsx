@@ -1,18 +1,23 @@
 import * as React from "react"
 import PropTypes from "prop-types"
-import { Link } from "gatsby"
+
+import "../scss/header.scss"
 
 interface Props {
-  siteTitle: string
+  siteTitle?: string
 }
 
 const Header: React.FC<Props> = ({ siteTitle }) => {
   return (
-    <header>
-      <div>
-        <h1>
-          <Link to="/">{siteTitle}</Link>
-        </h1>
+    <header className="header">
+      <div className="left-column"></div>
+      <div className="right-column">
+        <h4>1 April to 31 September 2021</h4>
+        <h1>{siteTitle}</h1>
+        <h2>Stefan Knapp</h2>
+        <a href="https://midwalesarts.org.uk" target="_blank" rel="noreferrer">
+          <h3>Mid Wales Arts</h3>
+        </a>
       </div>
     </header>
   )

@@ -24,10 +24,10 @@ const Layout: React.FC<Props> = ({ children }) => {
 
   return (
     <>
-      <Header siteTitle={data.site.siteMetadata?.title || `Centenery`} />
+      <Header />
       <div>
         <main>{children}</main>
-        <Footer siteTitle={data.site.siteMetadata?.title || `Centenery`} />
+        <Footer />
       </div>
     </>
   )
