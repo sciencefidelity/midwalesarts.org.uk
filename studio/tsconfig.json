@@ -1,18 +1,21 @@
 {
-  "include": ["./node_modules/@sanity/base/types/**/*.ts", "./**/*.ts", "./**/*.tsx", "./types"],
+  "include": [
+    "./node_modules/@sanity/base/types/**/*.ts",
+    "./**/*.ts",
+    "./**/*.tsx",
+    "./types"
+  ],
   "compilerOptions": {
     "module": "esnext",
     "target": "esnext",
     "moduleResolution": "node",
     "jsx": "preserve",
     "baseUrl": "./",
-    "lib": [
-      "es5", "es6", "dom", "es2017", "dom.iterable"
-    ],
+    "lib": ["es5", "es6", "dom", "es2017", "dom.iterable"],
     "strict": true,
     "skipLibCheck": true,
     "types": [],
-    "typeRoots": [ "./types", "./node_modules/@types"],
+    "typeRoots": ["./types", "./node_modules/@types"],
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
@@ -22,6 +25,6 @@
     "node_modules",
     "./node_modules",
     "./node_modules/*",
-    "./node_modules/@types/node/index.d.ts",
+    "./node_modules/@types/node/index.d.ts"
   ]
 }
