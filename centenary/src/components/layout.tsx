@@ -25,10 +25,8 @@ const Layout: React.FC<Props> = ({ children }) => {
   return (
     <>
       <Header />
-      <div>
-        <main>{children}</main>
-        <Footer />
-      </div>
+      <main>{children}</main>
+      <Footer />
     </>
   )
 }
