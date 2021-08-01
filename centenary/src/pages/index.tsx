@@ -36,9 +36,10 @@ const IndexPage: React.FC<Props> = ({ data }) => {
           flow={{ flexFlow: `row` }}
         />
       )}
+      {data && <FullQuote quote={data.allMdx.edges[2].node.body} />}
       {data && (
         <SplitText
-          text={data.allMdx.edges[1].node.body}
+          text={data.allMdx.edges[3].node.body}
           image={data.allImageSharp.edges[3].node.gatsbyImageData}
           alt="Distorted (1947)"
           flow={{ flexFlow: `row-reverse` }}
@@ -46,6 +47,13 @@ const IndexPage: React.FC<Props> = ({ data }) => {
         />
       )}
       {data && <Title title="Early Phase" date="(1947 - 1953)" />}
+      {data && (
+        <FullImage
+          image={data.allImageSharp.edges[4].node.gatsbyImageData}
+          alt="Burial (1946)"
+          fit="contain"
+        />
+      )}
     </Layout>
   )
 }
