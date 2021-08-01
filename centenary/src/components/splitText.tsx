@@ -9,15 +9,18 @@ interface Props {
   text: string
   image: any
   alt: string
+  flow: object
+  fit?: any
 }
 
-const TextRight: React.FC<Props> = ({ text, image, alt }) => {
+const SplitText: React.FC<Props> = ({ text, image, alt, flow, fit }) => {
   return (
-    <article className="text__right">
+    <article className="text__right" style={flow}>
       <div className="text__right--col-l">
         <GatsbyImage
           image={image}
           alt={alt}
+          objectFit={fit}
           objectPosition={"50% 50%"}
           className="text__image"
         />
@@ -29,10 +32,16 @@ const TextRight: React.FC<Props> = ({ text, image, alt }) => {
   )
 }
 
-TextRight.propTypes = {
+SplitText.propTypes = {
   text: PropTypes.string.isRequired,
   image: PropTypes.any.isRequired,
   alt: PropTypes.string.isRequired,
+  flow: PropTypes.object.isRequired,
+  fit: PropTypes.any,
 }
 
-export default TextRight
+SplitText.defaultProps = {
+  fit: `cover`,
+}
+
+export default SplitText

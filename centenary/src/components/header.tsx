@@ -1,22 +1,25 @@
 import * as React from "react"
 import PropTypes from "prop-types"
-import { StaticImage } from "gatsby-plugin-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 
 import "../scss/header.scss"
 
 interface Props {
   siteTitle?: string
+  image: any
+  alt: string
+  fit?: any
 }
 
-const Header: React.FC<Props> = ({ siteTitle }) => {
+const Header: React.FC<Props> = ({ siteTitle, image, alt, fit }) => {
   return (
     <header className="header">
       <div className="header__col header__col--l">
-        <StaticImage
-          src="../images/stefan_4.jpg"
+        <GatsbyImage
+          image={image}
+          alt={alt}
+          objectFit={fit}
           objectPosition={"50% 50%"}
-          formats={["AUTO", "WEBP", "AVIF"]}
-          alt="Stefan Knapp"
           className="header__image"
         />
       </div>
@@ -34,10 +37,13 @@ const Header: React.FC<Props> = ({ siteTitle }) => {
 
 Header.propTypes = {
   siteTitle: PropTypes.string,
+  image: PropTypes.any.isRequired,
+  alt: PropTypes.string.isRequired,
 }
 
 Header.defaultProps = {
   siteTitle: `Centenery`,
+  fit: `cover`,
 }
 
 export default Header

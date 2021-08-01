@@ -4,16 +4,19 @@
 .text{
   &__left,
   &__right {
-    height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    overflow: hidden;
+    // height: 100vh;
+    display: flex;
+    // overflow: hidden;
     p {
-      font-size: 2.5rem;
+      font-size: 3rem;
       padding: 4rem;
     }
   }
   &__right {
+    &--col-l,
+    &--col-r {
+      width: 50%;
+    }
     &--col-r {
       color: c.$grey-000;
       background: c.$grey-950;

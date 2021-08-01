@@ -1,30 +1,21 @@
 import * as React from "react"
 import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
 
-import { SiteTitleQuery } from "../../generated/graphqlTypes"
 import Header from "./header"
 import Footer from "./footer"
 import "../scss/layout.scss"
 
 interface Props {
   children: React.ReactNode
+  image: any
+  alt: string
+  fit?: any
 }
 
-const Layout: React.FC<Props> = ({ children }) => {
-  const data = useStaticQuery<SiteTitleQuery>(graphql`
-    query SiteTitle {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `)
-
+const Layout: React.FC<Props> = ({ children, image, alt }) => {
   return (
     <>
-      <Header />
+      <Header image={image} alt={alt} />
       <main>{children}</main>
       <Footer />
     </>
@@ -33,6 +24,9 @@ const Layout: React.FC<Props> = ({ children }) => {
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
+  image: PropTypes.any.isRequired,
+  alt: PropTypes.string.isRequired,
+  fit: PropTypes.any
 }
 
 export default Layout
