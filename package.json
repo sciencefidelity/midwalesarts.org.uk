@@ -1,23 +1,21 @@
 {
   "name": "midwalesarts.org.uk",
   "version": "1.0.0",
-  "description": "Website of Mid Wales Arts",
+  "description": "Mid Wales Arts",
   "author": "sciencefidelity <32623301+sciencefidelity@users.noreply.github.com>",
   "license": "UNLICENCED",
   "private": true,
   "scripts": {
-    "build": "lerna run build --parallel",
-    "dev": "lerna run dev --parallel",
-    "format": "lerna run format",
+    "build": "pnpm run build --parallel",
+    "dev": "pnpm run dev --parallel",
+    "format": "pnpm run format",
     "build-studio": "(cd studio && npm run build)",
-    "build-web": "lerna bootstrap && (cd studio && SANITY_AUTH_TOKEN=$SANITY_DEPLOY_STUDIO_TOKEN npm run graphql-deploy) && (cd web && npm run build)",
-    "graphql-deploy": "lerna run graphql-deploy",
-    "lint": "lerna run lint",
-    "postinstall": "lerna bootstrap",
+    "build-web": "(cd studio && SANITY_AUTH_TOKEN=$SANITY_DEPLOY_STUDIO_TOKEN npm run graphql-deploy) && (cd web && npm run build)",
+    "graphql-deploy": "pnpm run graphql-deploy",
+    "lint": "pnpm run lint",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
-    "eslint": "^7.31.0",
-    "lerna": "^4.0.0"
+    "eslint": "^7.31.0"
   }
 }
