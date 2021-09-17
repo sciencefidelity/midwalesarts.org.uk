@@ -1,6 +1,0 @@
-.cache/
-package-lock.json
-public/
-.nova/
-node_modules/
-yarn.lock
