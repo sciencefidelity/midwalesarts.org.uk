@@ -6,7 +6,7 @@
     },
     "run" : {
       "enabled" : true,
-      "script" : "#!\/bin\/sh\ncd studio\nsanity start"
+      "script" : "#!\/bin\/sh\ncd studio\nsanity start --host=0.0.0.0"
     }
   },
   "identifier" : "73883D2B-1863-4A0C-A163-5ABE749DC1AF",
