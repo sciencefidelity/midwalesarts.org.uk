@@ -1,5 +1,4 @@
-import React, { FC } from "react"
-import { useState } from "react"
+import React, { FC, useState } from "react"
 import { graphql, Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 
