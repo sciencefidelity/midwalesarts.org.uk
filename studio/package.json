@@ -1,19 +1,23 @@
 {
   "name": "mwa-studio",
+  "description": "Arts center in Mid Wales",
   "private": true,
   "version": "1.0.0",
-  "description": "",
-  "main": "package.json",
-  "author": "Matt Cook <sciencefidelity@hotmail.com>",
   "license": "UNLICENSED",
+  "author": "Matt Cook <matt@sciencefidelity.co.uk>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sciencefidelity/midwalesarts.org.uk/web"
+  },
+  "homepage": "https://midwalesarts.org.uk",
+  "keywords": [
+    "sanity"
+  ],
   "scripts": {
     "dev": "sanity start",
     "build": "sanity build",
     "deploy": "sanity deploy && sanity graphql deploy --playground"
   },
-  "keywords": [
-    "sanity"
-  ],
   "dependencies": {
     "@sanity/base": "^2.21.4",
     "@sanity/components": "^2.14.0",
