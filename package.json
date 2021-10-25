@@ -26,5 +26,8 @@
   },
   "devDependencies": {
     "eslint": "^7.31.0"
+  },
+  "dependencies": {
+    "gatsby-plugin-gatsby-cloud": "^4.1.0-next.0"
   }
 }
