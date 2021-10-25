@@ -27,7 +27,7 @@
     "@sanity/block-content-to-react": "^3.0.0",
     "dotenv": "^10.0.0",
     "gatsby": "^4.0.1",
-    "gatsby-plugin-gatsby-cloud": "^2.10.0",
+    "gatsby-plugin-gatsby-cloud": "^4.1.0-next.0",
     "gatsby-plugin-graphql-codegen": "^3.0.0",
     "gatsby-plugin-image": "^1.10.1",
     "gatsby-plugin-manifest": "^4.0.0",
