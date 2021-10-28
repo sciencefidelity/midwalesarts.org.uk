@@ -86,7 +86,7 @@ const ExhibitionPage: FC<Props> = ({ data }) => {
               </li>
             </ul>
             <div className={info ? "hidden galleryInfo" : "galleryInfo"}>
-              {exhibition.body._rawEn && (
+              {exhibition.body && (
                 <PortableText blocks={exhibition.body._rawEn} />
               )}
             </div>
