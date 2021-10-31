@@ -26,6 +26,7 @@ export default {
       name: "publishedAt",
       title: "Published on",
       type: "datetime",
+      initialValue: new Date().toISOString(),
       options: {
         dateFormat: "dddd, MMMM Do YYYY,",
         timeFormat: "h:mm a",
