@@ -117,14 +117,14 @@ footer {
   height: 6rem;
   width: 6rem;
   padding: 1.2rem;
-  transform: translateY(3.25rem);
+  transform: translateY(2.25rem);
   @include b.mq(md) {
-    transform: translateY(3.35rem);
+    transform: translateY(2.35rem);
   }
   @include b.mq(sm) {
     height: 5rem;
     width: 5rem;
-    transform: translateY(2.85rem);
+    transform: translateY(1.85rem);
   }
 }
 
