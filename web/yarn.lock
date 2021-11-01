@@ -5924,16 +5924,16 @@ gatsby-page-utils@^2.0.0:
     lodash "^4.17.21"
     micromatch "^4.0.4"
 
-gatsby-plugin-gatsby-cloud@^4.1.0-next.0:
-  version "4.1.0-next.0"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-gatsby-cloud/-/gatsby-plugin-gatsby-cloud-4.1.0-next.0.tgz#0225e707859a211fd1cc8fa3fe65031681acf69e"
-  integrity sha512-i+1hy5qe8PiZsYeR9D2zeyHJAJHXYuHPQyh/Ua96OedLbOV5Etf3X02ApkZgSaiBLltR36mv0nka4sVZwQ8Dew==
+gatsby-plugin-gatsby-cloud@^4.1.0-next.2:
+  version "4.1.0-next.2"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-gatsby-cloud/-/gatsby-plugin-gatsby-cloud-4.1.0-next.2.tgz#58f0ac326e1368b761407ffb4bb8577351f0129a"
+  integrity sha512-yowKXpRojsU1QcRaI1swoINHD/ZxXHcctiMZx1CW/LKiYTV8olu38BxzOM+wCymuDSvLuS7D2U0XyOqTQwAwVQ==
   dependencies:
     "@babel/runtime" "^7.15.4"
     date-fns "^2.23.0"
     fs-extra "^10.0.0"
     gatsby-core-utils "^3.1.0-next.0"
-    gatsby-telemetry "^3.1.0-next.0"
+    gatsby-telemetry "^3.1.0-next.1"
     kebab-hash "^0.1.2"
     lodash "^4.17.21"
     webpack-assets-manifest "^5.0.6"
@@ -6237,10 +6237,10 @@ gatsby-telemetry@^3.0.0:
     lodash "^4.17.21"
     node-fetch "^2.6.1"
 
-gatsby-telemetry@^3.1.0-next.0:
-  version "3.1.0-next.0"
-  resolved "https://registry.yarnpkg.com/gatsby-telemetry/-/gatsby-telemetry-3.1.0-next.0.tgz#decb66bf17aed30fc0b645083131a8be5a4293de"
-  integrity sha512-iU5tqlDXwoVj6NqUpUDna1o7VHo5bD1AULnOgelONkj3X0UX0WtJX4F7xgps58RSNd+lrZdtwO1I//Ahf7BN5g==
+gatsby-telemetry@^3.1.0-next.1:
+  version "3.1.0-next.1"
+  resolved "https://registry.yarnpkg.com/gatsby-telemetry/-/gatsby-telemetry-3.1.0-next.1.tgz#277a7b6fbd2ba0bab788455f40a96c4b2bd9313b"
+  integrity sha512-+TYx5rYiyfEPd3NECHFJErsDlmArYEOl/jZB5CqgqD9JdN8vWtKf1PTvDvVJbYf9OUu784RJtKX4Z2e7xmQuSw==
   dependencies:
     "@babel/code-frame" "^7.14.0"
     "@babel/runtime" "^7.15.4"
@@ -6254,7 +6254,7 @@ gatsby-telemetry@^3.1.0-next.0:
     git-up "^4.0.5"
     is-docker "^2.2.1"
     lodash "^4.17.21"
-    node-fetch "^2.6.1"
+    node-fetch "^2.6.5"
 
 gatsby-transformer-sharp@^3.10.0:
   version "3.14.0"
