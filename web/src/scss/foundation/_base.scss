@@ -165,6 +165,21 @@ blockquote {
   }
 }
 
+[type=checkbox] {
+  width: auto;
+}
+
+.formNames {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  &:nth-child(2) div {
+    margin-top: 0;
+  }
+  &:nth-child(3) div {
+    margin-top: 0;
+  }
+}
+
 .sidebar {
   background: rgba(c.$grey-050, 0.8);
   margin-top: -8rem;

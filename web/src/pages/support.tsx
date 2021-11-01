@@ -26,12 +26,6 @@ const SupportPage: FC = () => (
                 {data.sanityPage.body._rawEn && (
                   <PortableText blocks={data.sanityPage.body._rawEn} />
                 )}
-                <form>
-                  <input type="title" name="title" placeholder="Title" />
-                  <input type="firstName" name="firstName" placeholder="First Name" />
-                  <input type="surname" name="surname" placeholder="Surname" /><br />
-                  <input type="partner" name="name" placeholder="Joint friend’s name (if applicable)" />
-                </form>
               </div>
               <Sidebar />
             </div>
