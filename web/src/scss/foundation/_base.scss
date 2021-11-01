@@ -111,6 +111,17 @@ p {
   }
 }
 
+ul {
+  padding: 0 0 2rem 3rem;
+}
+
+li {
+  font-size: 2.4rem;
+  @include b.mq(sm) {
+    font-size: 2rem;
+  }
+}
+
 b,
 strong {
   color: c.$grey-600;
