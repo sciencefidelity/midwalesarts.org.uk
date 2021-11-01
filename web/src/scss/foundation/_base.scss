@@ -211,7 +211,7 @@ blockquote {
 
 .imageGrid,
 .galleryImageGrid,
-.eventsImageGrid {
+.pastEventsImageGrid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 3rem;
@@ -222,6 +222,21 @@ blockquote {
   }
   @include b.mq(sm) {
     grid-template-columns: 1fr;
+  }
+}
+
+.eventsImageGrid {
+  display: grid;
+  gap: 3rem;
+  grid-template-columns: repeat(calc(33.33% - 3rem));
+  grid-auto-flow: column;
+  grid-auto-columns: calc(33.33% - 3rem);
+  overflow-x: scroll;
+  z-index: 5;
+  width: 81.25%;
+  scrollbar-color: transparent;
+  &::-webkit-scrollbar {
+    display: none;
   }
 }
 

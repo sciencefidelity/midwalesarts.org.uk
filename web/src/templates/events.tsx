@@ -39,6 +39,7 @@ const Events: FC<Props> = ({ data }) => {
             heading="Upcoming events"
             eventData={data.eventsMain.edges}
             marginTop={{ marginTop: `2rem` }}
+            grid="eventsImageGrid"
           />
         ) : (
           <div className="sidebarContainer" style={{ marginTop: `5rem` }}>
@@ -48,9 +49,16 @@ const Events: FC<Props> = ({ data }) => {
           </div>
         )}
         <EventPreview
+          heading="Regular events"
+          eventData={data.eventsMain.edges}
+          marginTop={{ marginTop: `6rem` }}
+          grid="eventsImageGrid"
+        />
+        <EventPreview
           heading="Past events"
           eventData={data.pastEvents.edges}
           marginTop={{ marginTop: `6rem` }}
+          grid="pastEventsImageGrid"
         />
       </section>
     </Layout>

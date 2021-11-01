@@ -7,9 +7,10 @@ interface Props {
   heading: string
   eventData: any
   marginTop: object
+  grid?: string
 }
 
-const EventPreview: FC<Props> = ({ heading, eventData, marginTop }) => {
+const EventPreview: FC<Props> = ({ heading, eventData, marginTop, grid }) => {
   return (
     <>
       <div className="sidebarContainer" style={marginTop}>
@@ -17,7 +18,7 @@ const EventPreview: FC<Props> = ({ heading, eventData, marginTop }) => {
           <p>{heading}</p>
         </div>
       </div>
-      <div className="eventsImageGrid">
+      <div className={grid}>
         {eventData.map((events: any) => (
           <div key={events.node.id} style={{ margin: 0 }}>
             <Link to={`/events/${events.node.slug.en.current}/`}>
@@ -39,7 +40,8 @@ const EventPreview: FC<Props> = ({ heading, eventData, marginTop }) => {
 EventPreview.propTypes = {
   heading: PropTypes.string.isRequired,
   eventData: PropTypes.any.isRequired,
-  marginTop: PropTypes.object.isRequired
+  marginTop: PropTypes.object.isRequired,
+  grid: PropTypes.string.isRequired
 }
 
 EventPreview.defaultProps = {}
