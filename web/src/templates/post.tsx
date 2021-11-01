@@ -39,7 +39,7 @@ const Post: FC<Props> = ({ data, pageContext }) => {
             <h1>News</h1>
             <p className="subTitle">{post.title.en}.</p>
             {post.body._rawEn && <PortableText blocks={post.body._rawEn} />}
-            <p>{post.publishedAt}</p>
+            <p>Published on {post.publishedAt}</p>
             <div className="postNavigation">
               {prev ? (
                 <p className="prevLink">

@@ -36,7 +36,7 @@ const News: FC = () => (
                         />
                         <div className="gridCaption">{posts.node.title.en}</div>
                         <div className="gridCaption">
-                          {posts.node.publishedAt}
+                          Published on {posts.node.publishedAt}
                         </div>
                       </Link>
                     </div>
