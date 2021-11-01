@@ -862,6 +862,7 @@ export type SanityEvent = SanityDocument & Node & {
   title?: Maybe<SanityLocaleString>;
   slug?: Maybe<SanityLocaleSlug>;
   date?: Maybe<Scalars['Date']>;
+  recurring?: Maybe<Scalars['Boolean']>;
   briteLink?: Maybe<Scalars['String']>;
   body?: Maybe<SanityLocaleRichText>;
   mainImage?: Maybe<SanityImage>;
@@ -1433,6 +1434,7 @@ export type SanityImageAsset = SanityDocument & Node & {
   mimeType?: Maybe<Scalars['String']>;
   size?: Maybe<Scalars['Float']>;
   assetId?: Maybe<Scalars['String']>;
+  uploadId?: Maybe<Scalars['String']>;
   path?: Maybe<Scalars['String']>;
   url?: Maybe<Scalars['String']>;
   metadata?: Maybe<SanityImageMetadata>;
@@ -1534,6 +1536,7 @@ export type SanityImageMetadata = {
   dimensions?: Maybe<SanityImageDimensions>;
   palette?: Maybe<SanityImagePalette>;
   lqip?: Maybe<Scalars['String']>;
+  blurHash?: Maybe<Scalars['String']>;
   hasAlpha?: Maybe<Scalars['Boolean']>;
   isOpaque?: Maybe<Scalars['Boolean']>;
   _rawLocation?: Maybe<Scalars['JSON']>;
@@ -2163,6 +2166,7 @@ export type QuerySanityEventArgs = {
   title?: Maybe<SanityLocaleStringFilterInput>;
   slug?: Maybe<SanityLocaleSlugFilterInput>;
   date?: Maybe<DateQueryOperatorInput>;
+  recurring?: Maybe<BooleanQueryOperatorInput>;
   briteLink?: Maybe<StringQueryOperatorInput>;
   body?: Maybe<SanityLocaleRichTextFilterInput>;
   mainImage?: Maybe<SanityImageFilterInput>;
@@ -2404,6 +2408,7 @@ export type QuerySanityImageAssetArgs = {
   mimeType?: Maybe<StringQueryOperatorInput>;
   size?: Maybe<FloatQueryOperatorInput>;
   assetId?: Maybe<StringQueryOperatorInput>;
+  uploadId?: Maybe<StringQueryOperatorInput>;
   path?: Maybe<StringQueryOperatorInput>;
   url?: Maybe<StringQueryOperatorInput>;
   metadata?: Maybe<SanityImageMetadataFilterInput>;
@@ -4639,6 +4644,7 @@ export type SanityImageAssetFilterInput = {
   mimeType?: Maybe<StringQueryOperatorInput>;
   size?: Maybe<FloatQueryOperatorInput>;
   assetId?: Maybe<StringQueryOperatorInput>;
+  uploadId?: Maybe<StringQueryOperatorInput>;
   path?: Maybe<StringQueryOperatorInput>;
   url?: Maybe<StringQueryOperatorInput>;
   metadata?: Maybe<SanityImageMetadataFilterInput>;
@@ -4659,6 +4665,7 @@ export type SanityImageMetadataFilterInput = {
   dimensions?: Maybe<SanityImageDimensionsFilterInput>;
   palette?: Maybe<SanityImagePaletteFilterInput>;
   lqip?: Maybe<StringQueryOperatorInput>;
+  blurHash?: Maybe<StringQueryOperatorInput>;
   hasAlpha?: Maybe<BooleanQueryOperatorInput>;
   isOpaque?: Maybe<BooleanQueryOperatorInput>;
   _rawLocation?: Maybe<JsonQueryOperatorInput>;
@@ -4886,11 +4893,13 @@ export type SanityArtistFieldsEnum =
   | 'mainImage___asset___mimeType'
   | 'mainImage___asset___size'
   | 'mainImage___asset___assetId'
+  | 'mainImage___asset___uploadId'
   | 'mainImage___asset___path'
   | 'mainImage___asset___url'
   | 'mainImage___asset___metadata____key'
   | 'mainImage___asset___metadata____type'
   | 'mainImage___asset___metadata___lqip'
+  | 'mainImage___asset___metadata___blurHash'
   | 'mainImage___asset___metadata___hasAlpha'
   | 'mainImage___asset___metadata___isOpaque'
   | 'mainImage___asset___metadata____rawLocation'
@@ -5265,6 +5274,7 @@ export type SanityArtworkFieldsEnum =
   | 'exhibition___mainImage___asset___mimeType'
   | 'exhibition___mainImage___asset___size'
   | 'exhibition___mainImage___asset___assetId'
+  | 'exhibition___mainImage___asset___uploadId'
   | 'exhibition___mainImage___asset___path'
   | 'exhibition___mainImage___asset___url'
   | 'exhibition___mainImage___asset____rawMetadata'
@@ -5349,11 +5359,13 @@ export type SanityArtworkFieldsEnum =
   | 'mainImage___asset___mimeType'
   | 'mainImage___asset___size'
   | 'mainImage___asset___assetId'
+  | 'mainImage___asset___uploadId'
   | 'mainImage___asset___path'
   | 'mainImage___asset___url'
   | 'mainImage___asset___metadata____key'
   | 'mainImage___asset___metadata____type'
   | 'mainImage___asset___metadata___lqip'
+  | 'mainImage___asset___metadata___blurHash'
   | 'mainImage___asset___metadata___hasAlpha'
   | 'mainImage___asset___metadata___isOpaque'
   | 'mainImage___asset___metadata____rawLocation'
@@ -6021,6 +6033,7 @@ export type SanityEventFieldsEnum =
   | 'slug____rawEn'
   | 'slug____rawCy'
   | 'date'
+  | 'recurring'
   | 'briteLink'
   | 'body____key'
   | 'body____type'
@@ -6066,11 +6079,13 @@ export type SanityEventFieldsEnum =
   | 'mainImage___asset___mimeType'
   | 'mainImage___asset___size'
   | 'mainImage___asset___assetId'
+  | 'mainImage___asset___uploadId'
   | 'mainImage___asset___path'
   | 'mainImage___asset___url'
   | 'mainImage___asset___metadata____key'
   | 'mainImage___asset___metadata____type'
   | 'mainImage___asset___metadata___lqip'
+  | 'mainImage___asset___metadata___blurHash'
   | 'mainImage___asset___metadata___hasAlpha'
   | 'mainImage___asset___metadata___isOpaque'
   | 'mainImage___asset___metadata____rawLocation'
@@ -6255,6 +6270,7 @@ export type SanityEventFilterInput = {
   title?: Maybe<SanityLocaleStringFilterInput>;
   slug?: Maybe<SanityLocaleSlugFilterInput>;
   date?: Maybe<DateQueryOperatorInput>;
+  recurring?: Maybe<BooleanQueryOperatorInput>;
   briteLink?: Maybe<StringQueryOperatorInput>;
   body?: Maybe<SanityLocaleRichTextFilterInput>;
   mainImage?: Maybe<SanityImageFilterInput>;
@@ -6385,11 +6401,13 @@ export type SanityExhibitionFieldsEnum =
   | 'mainImage___asset___mimeType'
   | 'mainImage___asset___size'
   | 'mainImage___asset___assetId'
+  | 'mainImage___asset___uploadId'
   | 'mainImage___asset___path'
   | 'mainImage___asset___url'
   | 'mainImage___asset___metadata____key'
   | 'mainImage___asset___metadata____type'
   | 'mainImage___asset___metadata___lqip'
+  | 'mainImage___asset___metadata___blurHash'
   | 'mainImage___asset___metadata___hasAlpha'
   | 'mainImage___asset___metadata___isOpaque'
   | 'mainImage___asset___metadata____rawLocation'
@@ -6676,11 +6694,13 @@ export type SanityFrontPageFieldsEnum =
   | 'mainImage___asset___mimeType'
   | 'mainImage___asset___size'
   | 'mainImage___asset___assetId'
+  | 'mainImage___asset___uploadId'
   | 'mainImage___asset___path'
   | 'mainImage___asset___url'
   | 'mainImage___asset___metadata____key'
   | 'mainImage___asset___metadata____type'
   | 'mainImage___asset___metadata___lqip'
+  | 'mainImage___asset___metadata___blurHash'
   | 'mainImage___asset___metadata___hasAlpha'
   | 'mainImage___asset___metadata___isOpaque'
   | 'mainImage___asset___metadata____rawLocation'
@@ -6743,11 +6763,13 @@ export type SanityFrontPageFieldsEnum =
   | 'subImage___asset___mimeType'
   | 'subImage___asset___size'
   | 'subImage___asset___assetId'
+  | 'subImage___asset___uploadId'
   | 'subImage___asset___path'
   | 'subImage___asset___url'
   | 'subImage___asset___metadata____key'
   | 'subImage___asset___metadata____type'
   | 'subImage___asset___metadata___lqip'
+  | 'subImage___asset___metadata___blurHash'
   | 'subImage___asset___metadata___hasAlpha'
   | 'subImage___asset___metadata___isOpaque'
   | 'subImage___asset___metadata____rawLocation'
@@ -7068,11 +7090,13 @@ export type SanityFrontPageSectionFieldsEnum =
   | 'mainImage___asset___mimeType'
   | 'mainImage___asset___size'
   | 'mainImage___asset___assetId'
+  | 'mainImage___asset___uploadId'
   | 'mainImage___asset___path'
   | 'mainImage___asset___url'
   | 'mainImage___asset___metadata____key'
   | 'mainImage___asset___metadata____type'
   | 'mainImage___asset___metadata___lqip'
+  | 'mainImage___asset___metadata___blurHash'
   | 'mainImage___asset___metadata___hasAlpha'
   | 'mainImage___asset___metadata___isOpaque'
   | 'mainImage___asset___metadata____rawLocation'
@@ -7135,11 +7159,13 @@ export type SanityFrontPageSectionFieldsEnum =
   | 'subImage___asset___mimeType'
   | 'subImage___asset___size'
   | 'subImage___asset___assetId'
+  | 'subImage___asset___uploadId'
   | 'subImage___asset___path'
   | 'subImage___asset___url'
   | 'subImage___asset___metadata____key'
   | 'subImage___asset___metadata____type'
   | 'subImage___asset___metadata___lqip'
+  | 'subImage___asset___metadata___blurHash'
   | 'subImage___asset___metadata___hasAlpha'
   | 'subImage___asset___metadata___isOpaque'
   | 'subImage___asset___metadata____rawLocation'
@@ -7463,11 +7489,13 @@ export type SanityPageFieldsEnum =
   | 'mainImage___asset___mimeType'
   | 'mainImage___asset___size'
   | 'mainImage___asset___assetId'
+  | 'mainImage___asset___uploadId'
   | 'mainImage___asset___path'
   | 'mainImage___asset___url'
   | 'mainImage___asset___metadata____key'
   | 'mainImage___asset___metadata____type'
   | 'mainImage___asset___metadata___lqip'
+  | 'mainImage___asset___metadata___blurHash'
   | 'mainImage___asset___metadata___hasAlpha'
   | 'mainImage___asset___metadata___isOpaque'
   | 'mainImage___asset___metadata____rawLocation'
@@ -7835,11 +7863,13 @@ export type SanityPostFieldsEnum =
   | 'image___asset___mimeType'
   | 'image___asset___size'
   | 'image___asset___assetId'
+  | 'image___asset___uploadId'
   | 'image___asset___path'
   | 'image___asset___url'
   | 'image___asset___metadata____key'
   | 'image___asset___metadata____type'
   | 'image___asset___metadata___lqip'
+  | 'image___asset___metadata___blurHash'
   | 'image___asset___metadata___hasAlpha'
   | 'image___asset___metadata___isOpaque'
   | 'image___asset___metadata____rawLocation'
@@ -8336,6 +8366,7 @@ export type SanityImageAssetFieldsEnum =
   | 'mimeType'
   | 'size'
   | 'assetId'
+  | 'uploadId'
   | 'path'
   | 'url'
   | 'metadata____key'
@@ -8402,6 +8433,7 @@ export type SanityImageAssetFieldsEnum =
   | 'metadata___palette____rawLightMuted'
   | 'metadata___palette____rawMuted'
   | 'metadata___lqip'
+  | 'metadata___blurHash'
   | 'metadata___hasAlpha'
   | 'metadata___isOpaque'
   | 'metadata____rawLocation'
@@ -8658,11 +8690,13 @@ export type SanitySpaceFieldsEnum =
   | 'mainImage___asset___mimeType'
   | 'mainImage___asset___size'
   | 'mainImage___asset___assetId'
+  | 'mainImage___asset___uploadId'
   | 'mainImage___asset___path'
   | 'mainImage___asset___url'
   | 'mainImage___asset___metadata____key'
   | 'mainImage___asset___metadata____type'
   | 'mainImage___asset___metadata___lqip'
+  | 'mainImage___asset___metadata___blurHash'
   | 'mainImage___asset___metadata___hasAlpha'
   | 'mainImage___asset___metadata___isOpaque'
   | 'mainImage___asset___metadata____rawLocation'
@@ -8975,11 +9009,13 @@ export type SanityVideoFieldsEnum =
   | 'mainImage___asset___mimeType'
   | 'mainImage___asset___size'
   | 'mainImage___asset___assetId'
+  | 'mainImage___asset___uploadId'
   | 'mainImage___asset___path'
   | 'mainImage___asset___url'
   | 'mainImage___asset___metadata____key'
   | 'mainImage___asset___metadata____type'
   | 'mainImage___asset___metadata___lqip'
+  | 'mainImage___asset___metadata___blurHash'
   | 'mainImage___asset___metadata___hasAlpha'
   | 'mainImage___asset___metadata___isOpaque'
   | 'mainImage___asset___metadata____rawLocation'
@@ -9330,7 +9366,10 @@ export type EventsQueryVariables = Exact<{
 }>;
 
 
-export type EventsQuery = { eventsMain: { edges: Array<{ node: (
+export type EventsQuery = { mainEvents: { edges: Array<{ node: (
+        Pick<SanityEvent, 'briteLink' | 'date' | 'id'>
+        & { title?: Maybe<Pick<SanityLocaleString, 'en'>>, body?: Maybe<Pick<SanityLocaleRichText, '_rawEn'>>, mainImage?: Maybe<{ asset?: Maybe<Pick<SanityImageAsset, 'gatsbyImageData'>> }>, heroImage?: Maybe<{ asset?: Maybe<Pick<SanityImageAsset, 'gatsbyImageData'>> }>, slug?: Maybe<{ en?: Maybe<Pick<SanitySlug, 'current'>> }> }
+      ) }> }, recurringEvents: { edges: Array<{ node: (
         Pick<SanityEvent, 'briteLink' | 'date' | 'id'>
         & { title?: Maybe<Pick<SanityLocaleString, 'en'>>, body?: Maybe<Pick<SanityLocaleRichText, '_rawEn'>>, mainImage?: Maybe<{ asset?: Maybe<Pick<SanityImageAsset, 'gatsbyImageData'>> }>, heroImage?: Maybe<{ asset?: Maybe<Pick<SanityImageAsset, 'gatsbyImageData'>> }>, slug?: Maybe<{ en?: Maybe<Pick<SanitySlug, 'current'>> }> }
       ) }> }, pastEvents: { edges: Array<{ node: (

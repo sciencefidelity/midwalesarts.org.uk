@@ -14,13 +14,13 @@ const Events: FC<Props> = ({ data }) => {
   return (
     <Layout
       heroImage={
-        data.eventsMain.edges[0] !== undefined
-          ? data.eventsMain.edges[0].node.heroImage.asset.gatsbyImageData
+        data.mainEvents.edges[0] !== undefined
+          ? data.mainEvents.edges[0].node.heroImage.asset.gatsbyImageData
           : data.pastEvents.edges[0].node.heroImage.asset.gatsbyImageData
       }
       heroImageCaption={
-        data.eventsMain.edges[0] !== undefined
-          ? `${data.eventsMain.edges[0].node.title.en}, ${data.eventsMain.edges[0].node.date}`
+        data.mainEvents.edges[0] !== undefined
+          ? `${data.mainEvents.edges[0].node.title.en}, ${data.mainEvents.edges[0].node.date}`
           : `${data.pastEvents.edges[0].node.title.en}, ${data.pastEvents.edges[0].node.date}`
       }
     >
@@ -34,10 +34,10 @@ const Events: FC<Props> = ({ data }) => {
             </p>
           </div>
         </div>
-        {data.eventsMain.edges[0] !== undefined ? (
+        {data.mainEvents.edges[0] !== undefined ? (
           <EventPreview
             heading="Upcoming events"
-            eventData={data.eventsMain.edges}
+            eventData={data.mainEvents.edges}
             marginTop={{ marginTop: `2rem` }}
             grid="eventsImageGrid"
           />
@@ -48,18 +48,22 @@ const Events: FC<Props> = ({ data }) => {
             </div>
           </div>
         )}
-        <EventPreview
-          heading="Regular events"
-          eventData={data.eventsMain.edges}
-          marginTop={{ marginTop: `6rem` }}
-          grid="eventsImageGrid"
-        />
-        <EventPreview
-          heading="Past events"
-          eventData={data.pastEvents.edges}
-          marginTop={{ marginTop: `6rem` }}
-          grid="pastEventsImageGrid"
-        />
+        {data.recurringEvents && (
+          <EventPreview
+            heading="Regular events"
+            eventData={data.recurringEvents.edges}
+            marginTop={{ marginTop: `6rem` }}
+            grid="eventsImageGrid"
+          />
+        )}
+        {data.pastEvents && (
+          <EventPreview
+            heading="Past events"
+            eventData={data.pastEvents.edges}
+            marginTop={{ marginTop: `6rem` }}
+            grid="pastEventsImageGrid"
+          />
+        )}
       </section>
     </Layout>
   )
@@ -67,8 +71,51 @@ const Events: FC<Props> = ({ data }) => {
 
 export const query = graphql`
   query Events($currentDate: Date!) {
-    eventsMain: allSanityEvent(
-      filter: { date: { gte: $currentDate } }
+    mainEvents: allSanityEvent(
+      filter: { date: { gte: $currentDate }, recurring: { ne: true } }
+      sort: { fields: date, order: ASC }
+    ) {
+      edges {
+        node {
+          title {
+            en
+          }
+          body {
+            _rawEn(resolveReferences: { maxDepth: 10 })
+          }
+          briteLink
+          date(formatString: "dddd, MMMM Do YYYY")
+          id
+          mainImage: mainImage {
+            asset {
+              gatsbyImageData(
+                width: 468
+                height: 468
+                formats: WEBP
+                placeholder: BLURRED
+              )
+            }
+          }
+          heroImage: mainImage {
+            asset {
+              gatsbyImageData(
+                width: 1440
+                formats: WEBP
+                placeholder: BLURRED
+                layout: FULL_WIDTH
+              )
+            }
+          }
+          slug {
+            en {
+              current
+            }
+          }
+        }
+      }
+    }
+    recurringEvents: allSanityEvent(
+      filter: { date: { gte: $currentDate }, recurring: {eq: true} }
       sort: { fields: date, order: ASC }
     ) {
       edges {
@@ -111,7 +158,7 @@ export const query = graphql`
       }
     }
     pastEvents: allSanityEvent(
-      filter: { date: { lt: $currentDate } }
+      filter: { date: { lt: $currentDate }, recurring: {ne: true} }
       sort: { fields: date, order: DESC }
     ) {
       edges {
