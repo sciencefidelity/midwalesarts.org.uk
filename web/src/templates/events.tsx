@@ -39,7 +39,7 @@ const Events: FC<Props> = ({ data }) => {
             heading="Upcoming events"
             eventData={data.mainEvents.edges}
             marginTop={{ marginTop: `2rem` }}
-            grid="eventsImageGrid"
+            grid="pastEventsImageGrid"
           />
         ) : (
           <div className="sidebarContainer" style={{ marginTop: `5rem` }}>
@@ -53,7 +53,7 @@ const Events: FC<Props> = ({ data }) => {
             heading="Regular events"
             eventData={data.recurringEvents.edges}
             marginTop={{ marginTop: `6rem` }}
-            grid="eventsImageGrid"
+            grid="pastEventsImageGrid"
           />
         )}
         {data.pastEvents && (
