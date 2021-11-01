@@ -19,6 +19,7 @@
     "deploy": "sanity deploy && sanity graphql deploy --playground"
   },
   "dependencies": {
+    "@babel/core": "^7.0.0-0",
     "@sanity/base": "^2.12.2",
     "@sanity/components": "^2.2.6",
     "@sanity/core": "^2.12.2",
@@ -27,11 +28,17 @@
     "@sanity/default-login": "^2.11.1",
     "@sanity/desk-tool": "^2.12.2",
     "@sanity/vision": "^2.11.2",
+    "global": "^4.4.0",
     "prop-types": "^15.7",
     "react": "^17.0",
     "react-dom": "^17.0",
     "react-icons": "^4.2.0",
-    "sanity-plugin-dashboard-widget-vercel": "^1.1.0"
+    "sanity-plugin-dashboard-widget-vercel": "^1.1.0",
+    "styled-components": "^5.2.0",
+    "webpack": "^5.61.0"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "resolutions": {
+    "@babel/types": "7.15.x"
+  }
 }
