@@ -29,6 +29,11 @@ export default {
       },
     },
     {
+      name: "recurring",
+      title: "Recurring event",
+      type: "boolean",
+    },
+    {
       name: "briteLink",
       title: "Eventbrite link",
       description: "Leave blank if the event is not on Eventbrite.",
