@@ -110,7 +110,7 @@ const Exhibitions: FC<Props> = ({ data }) => {
 export const query = graphql`
   query Exhibitions($currentDate: Date!) {
     currentExhibitions: allSanityExhibition(
-      filter: { dateEnd: { gt: $currentDate }, dateStart: { lt: $currentDate } }
+      filter: { dateEnd: { gte: $currentDate }, dateStart: { lte: $currentDate } }
       sort: { fields: dateStart, order: ASC }
     ) {
       edges {
