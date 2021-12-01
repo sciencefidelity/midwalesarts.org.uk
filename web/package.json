@@ -36,7 +36,7 @@
     "gatsby-plugin-sass": "^5.0.0",
     "gatsby-plugin-sharp": "^3.10.2",
     "gatsby-source-filesystem": "^3.10.0",
-    "gatsby-source-sanity": "^7.0.7",
+    "gatsby-source-sanity": "^7.3.0",
     "gatsby-transformer-sharp": "^3.10.0",
     "get-youtube-id": "^1.0.1",
     "google-map-react": "^2.1.10",
