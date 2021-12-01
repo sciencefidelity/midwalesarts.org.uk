@@ -48,7 +48,7 @@
   },
   "devDependencies": {
     "@types/google-map-react": "^2.1.2",
-    "@types/node": "^16.11.6",
+    "@types/node": "^16.11.11",
     "@types/react-helmet": "^6.1.2",
     "eslint-config-react-app": "^6.0.0",
     "prettier": "^2.3.2",
