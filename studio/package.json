@@ -28,7 +28,7 @@
     "@sanity/default-login": "^2.22.3",
     "@sanity/desk-tool": "^2.22.3",
     "@sanity/vision": "^2.22.3",
-    "prop-types": "^15.7",
+    "prop-types": "^15.8",
     "react": "^17.0",
     "react-dom": "^17.0",
     "react-icons": "^4.2.0",
