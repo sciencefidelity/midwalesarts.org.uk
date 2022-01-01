@@ -19,7 +19,7 @@
     "deploy": "sanity deploy && sanity graphql deploy --playground"
   },
   "dependencies": {
-    "@babel/core": "^7.0.0-0",
+    "@babel/core": "^7.16.7",
     "@sanity/base": "^2.22.3",
     "@sanity/components": "^2.14.0",
     "@sanity/core": "^2.22.3",
