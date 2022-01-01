@@ -5369,10 +5369,10 @@ dataloader@2.0.0:
   resolved "https://registry.yarnpkg.com/dataloader/-/dataloader-2.0.0.tgz#41eaf123db115987e21ca93c005cd7753c55fe6f"
   integrity sha512-YzhyDAwA4TaQIhM5go+vCLmU0UikghC/t9DTQYZR2M/UvZ1MdOhPezSDZcjj9uqQJOMqjLcpWtyW2iNINdlatQ==
 
-date-fns@^2.25.0:
-  version "2.25.0"
-  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.25.0.tgz#8c5c8f1d958be3809a9a03f4b742eba894fc5680"
-  integrity sha512-ovYRFnTrbGPD4nqaEqescPEv1mNwvt+UTqI3Ay9SzNtey9NZnYu6E2qCcBBgJ6/2VF1zGGygpyTDITqpQQ5e+w==
+date-fns@^2.25.0, date-fns@^2.27.0:
+  version "2.28.0"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.28.0.tgz#9570d656f5fc13143e50c975a3b6bbeb46cd08b2"
+  integrity sha512-8d35hViGYx/QH0icHYCeLmsLmMUheMmTyV9Fcm6gvNwdw31yXXH+O85sOBJ+OLnLQMKZowvpKb6FgMIQjcpvQw==
 
 debug@2, debug@2.6.9, debug@^2.2.0, debug@^2.3.3, debug@^2.6.0, debug@^2.6.8, debug@^2.6.9:
   version "2.6.9"
@@ -6904,16 +6904,16 @@ gatsby-page-utils@^2.4.0:
     lodash "^4.17.21"
     micromatch "^4.0.4"
 
-gatsby-plugin-gatsby-cloud@^4.2.0:
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-gatsby-cloud/-/gatsby-plugin-gatsby-cloud-4.2.0.tgz#7c41809960ef01886da399bf0b81a5745e2b3a5b"
-  integrity sha512-fsPZzYkVcRwm1EeIg/ejzm6ldl68y9YNiD+LZ4pUStcCDYHv1+/Vzzs9GDqQuBY5cyk5eNBvAyOl3i1QNzcmAQ==
+gatsby-plugin-gatsby-cloud@^4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-gatsby-cloud/-/gatsby-plugin-gatsby-cloud-4.4.0.tgz#a71076f01a71086e5b03a1ed7464127d7aadb330"
+  integrity sha512-Fsm+eZUK5teP+6WWaBCjv/3PozZkUkyamhbul3ez+IId5R/hU0XF0hNcyxfuB62o8JMd6G78ZQXBh98KzqM+qQ==
   dependencies:
     "@babel/runtime" "^7.15.4"
-    date-fns "^2.25.0"
+    date-fns "^2.27.0"
     fs-extra "^10.0.0"
-    gatsby-core-utils "^3.2.0"
-    gatsby-telemetry "^3.2.0"
+    gatsby-core-utils "^3.4.0"
+    gatsby-telemetry "^3.4.0"
     kebab-hash "^0.1.2"
     lodash "^4.17.21"
     webpack-assets-manifest "^5.0.6"
@@ -7200,7 +7200,7 @@ gatsby-telemetry@^2.14.0:
     node-fetch "^2.6.1"
     uuid "3.4.0"
 
-gatsby-telemetry@^3.2.0, gatsby-telemetry@^3.4.0:
+gatsby-telemetry@^3.4.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/gatsby-telemetry/-/gatsby-telemetry-3.4.0.tgz#cdb72354a8d4a79a7be8c112d039b44bff3d9a87"
   integrity sha512-c5N7x4GkOyg5WUQN0DPeCHkjPvZ3c1yVs43dDPN5MZAqYiyTqzBJ9BXCMb7dBtFDVQB25b+Z96FUTQXfitrWww==
