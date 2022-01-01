@@ -1165,10 +1165,28 @@
     make-error "^1.3.0"
     object-assign "^4.1.1"
 
+"@sanity/client@2.23.2":
+  version "2.23.2"
+  resolved "https://registry.yarnpkg.com/@sanity/client/-/client-2.23.2.tgz#4d5490c8c401ae81941103ba79938f4cde83d4df"
+  integrity sha512-t0IbBYTLAWs5U3bi0pCcIcaQay6IakS+EVSoX6/zcGoEEgxj1KdLWx7ozXMPj9O/IGztRRifyNEWLkclazmqyQ==
+  dependencies:
+    "@sanity/eventsource" "2.23.0"
+    "@sanity/generate-help-url" "2.18.0"
+    "@sanity/observable" "2.0.9"
+    deep-assign "^2.0.0"
+    get-it "^5.2.1"
+    make-error "^1.3.0"
+    object-assign "^4.1.1"
+
 "@sanity/color@^2.1.5":
   version "2.1.5"
   resolved "https://registry.npmjs.org/@sanity/color/-/color-2.1.5.tgz#63579cf729a42cc004fa850b46b674510a700bda"
   integrity sha512-miq04+tp9I0/k8TooM/iB1ifpjVaWke9Pg+GD4SbrZ+YQkqaMqQFvzu4JjPr55lMkBrzOjE4JHrwBO/bzgottw==
+
+"@sanity/color@^2.1.6":
+  version "2.1.6"
+  resolved "https://registry.yarnpkg.com/@sanity/color/-/color-2.1.6.tgz#0dbd7d9b343a4a93ed54bcf3ae42d735112aaf30"
+  integrity sha512-iXCGgMkfY111RISOHnpwp6OmQz+N+UVOJ1YMhIGoesQdjm31ybeTkLP5yy1kkI8ffbxZkmmfbl9rjfR0OiwC8g==
 
 "@sanity/components@^2.14.0":
   version "2.14.0"
@@ -1246,15 +1264,15 @@
     postcss-value-parser "^3.3.0"
     source-list-map "^2.0.0"
 
-"@sanity/dashboard@^2.22.3":
-  version "2.22.3"
-  resolved "https://registry.npmjs.org/@sanity/dashboard/-/dashboard-2.22.3.tgz#21d1532ad9c1fa2e0b79f46aaf7e23683f2146a1"
-  integrity sha512-LJQx4IgMC0TaE+Fj1wRVbxHXjMwKcm7EStbCpSbqgoXsyKUdb7YLpByDFdKYw4De4cGKwr7NiwLMTshtfC4+eQ==
+"@sanity/dashboard@^2.23.2":
+  version "2.23.2"
+  resolved "https://registry.yarnpkg.com/@sanity/dashboard/-/dashboard-2.23.2.tgz#685bb58082a4a532d3c7e52c619b7c41c60df3b2"
+  integrity sha512-ceqW3IQa9776JPmhNr7U9A3I8/YjiGkWu0/kow0L/uMKrHHD4TJIcxS8AiTz2Gg70V+p5EOXfJ8SeWU9AYXFEg==
   dependencies:
     "@sanity/icons" "^1.2.1"
     "@sanity/image-url" "^1.0.1"
-    "@sanity/types" "2.22.3"
-    "@sanity/ui" "^0.36.15"
+    "@sanity/types" "2.23.2"
+    "@sanity/ui" "^0.36.17"
     lodash "^4.17.15"
     rxjs "^6.5.3"
 
@@ -1336,6 +1354,14 @@
   version "2.14.0"
   resolved "https://registry.npmjs.org/@sanity/eventsource/-/eventsource-2.14.0.tgz#977a79ae1d454f5e2b6239f308f14ec6d8ffaadf"
   integrity sha512-U1FgPUwB9//bGT5OO1VgtamSCM2Z3vpWP3mCgN8vPmEUJ0cofAWO+turDbOILahuicH8u7Xnmd+GSB33p4Mg9A==
+  dependencies:
+    "@rexxars/eventsource-polyfill" "^1.0.0"
+    eventsource "^1.0.6"
+
+"@sanity/eventsource@2.23.0":
+  version "2.23.0"
+  resolved "https://registry.yarnpkg.com/@sanity/eventsource/-/eventsource-2.23.0.tgz#5c8b5dcc7aa440588c96f3e86ac97b5fe76360da"
+  integrity sha512-MpQoV8FqnwnfBPQ29qcI1WA6MPZI1Z8rACFky5yU/8hol/Vv9g38PJbvHsGXsDkDartRXN5Wx5OjFk2imG4QPQ==
   dependencies:
     "@rexxars/eventsource-polyfill" "^1.0.0"
     eventsource "^1.0.6"
@@ -1426,10 +1452,10 @@
   resolved "https://registry.npmjs.org/@sanity/icons/-/icons-1.0.5.tgz#e00fb474f48e57b90bd169e668c37422d6dae3b0"
   integrity sha512-Z6Q1H3TP0p7Bg/eVdTqx8Zz8SwUjwVS14kQPq/4yhXXWJZY0FHAmMuP2X54GqkzL6lEDjenwlV//vJ6b4RZtpQ==
 
-"@sanity/icons@^1.2.1":
-  version "1.2.1"
-  resolved "https://registry.npmjs.org/@sanity/icons/-/icons-1.2.1.tgz#0dcef7d0c0ea965acffbccb825d9da6ccaa53330"
-  integrity sha512-dDXvyRIppU6OD8dNPBdd8LVBaIw5n5TrVOZ6AvT5pCoDswXlFQinoea5Fe4Huk26C+IZfe8d++P4tctnQPG8Vw==
+"@sanity/icons@^1.2.1", "@sanity/icons@^1.2.2":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@sanity/icons/-/icons-1.2.2.tgz#6fe5cb74cf75757aee864ea13c2740329046b615"
+  integrity sha512-lhA6f/K5r8ajL8PrrCftJe6ry/6VGSD1JZSwZiEodVZgkuZOZLs1mU8E0LXUXEyj8QRlvKpifv2xRbY7rWimQg==
 
 "@sanity/image-url@^1.0.1":
   version "1.0.1"
@@ -1659,17 +1685,28 @@
     react "17.0.1"
     rxjs "^6.5.3"
 
-"@sanity/ui@>=0.33.6", "@sanity/ui@^0.36.15":
-  version "0.36.15"
-  resolved "https://registry.npmjs.org/@sanity/ui/-/ui-0.36.15.tgz#fd378890983b7f1332a389d4eb954993c1c146b7"
-  integrity sha512-4IuyCpfJycfVB2PtWyUbD1bWvrTadH1fko3mmhbttggVXOSeclh0DIUP1595ckgZhjYVrM7QqxUn0wdSfRBnjQ==
+"@sanity/types@2.23.2":
+  version "2.23.2"
+  resolved "https://registry.yarnpkg.com/@sanity/types/-/types-2.23.2.tgz#51a96a6ab2bcdd20ce06a54fecac389e31b710d6"
+  integrity sha512-LRRgsNbt+GZCuOHjtDc6ejN4QeXggskcYFRDFIVxjpLtcE//GXPhsj+qYDj6ddNonkLx8ZN/bMe+D7biuhedeg==
+  dependencies:
+    "@sanity/client" "2.23.2"
+    "@sanity/color" "^2.1.5"
+    "@types/react" "^17.0.0"
+    react "17.0.1"
+    rxjs "^6.5.3"
+
+"@sanity/ui@>=0.33.6", "@sanity/ui@^0.36.15", "@sanity/ui@^0.36.17":
+  version "0.36.17"
+  resolved "https://registry.yarnpkg.com/@sanity/ui/-/ui-0.36.17.tgz#2c7674e0d28da0bc2daa605c6dc2b194e5eb23d5"
+  integrity sha512-5U2NPxjCsxmzv3p58wMczfwIaJVa3UCjNGs7CCK2RoLo0G0nyT+swMBLRmXiDA3WnCt/o5oaYYqesfL8Rgkchg==
   dependencies:
     "@juggle/resize-observer" "^3.3.1"
     "@popperjs/core" "^2.10.2"
     "@reach/auto-id" "^0.16.0"
-    "@sanity/color" "^2.1.5"
-    "@sanity/icons" "^1.2.1"
-    framer-motion "^5.0.0"
+    "@sanity/color" "^2.1.6"
+    "@sanity/icons" "^1.2.2"
+    framer-motion "5.3.3"
     lodash "^4.17.21"
     popper-max-size-modifier "^0.2.0"
     react-is "^17.0.2"
@@ -4658,7 +4695,7 @@ fragment-cache@^0.2.1:
   dependencies:
     map-cache "^0.2.2"
 
-framer-motion@^5.0.0:
+framer-motion@5.3.3:
   version "5.3.3"
   resolved "https://registry.npmjs.org/framer-motion/-/framer-motion-5.3.3.tgz#366fa11512de4e79e061eb09a68278dad92b4419"
   integrity sha512-s4mz0E4/TPTKXqKnpb578S0Jp/0JhAyvDpULFe95kHnWs1lOCKf2+EEl6yAX+1wfPLUYokZzudiK9jam0ZAVdQ==
@@ -4786,6 +4823,30 @@ get-it@^5.0.3:
     follow-redirects "^1.2.4"
     form-urlencoded "^2.0.7"
     in-publish "^2.0.0"
+    into-stream "^3.1.0"
+    is-plain-object "^2.0.4"
+    is-retry-allowed "^1.1.0"
+    is-stream "^1.1.0"
+    nano-pubsub "^1.0.2"
+    object-assign "^4.1.1"
+    parse-headers "^2.0.1"
+    progress-stream "^2.0.0"
+    same-origin "^0.1.1"
+    simple-concat "^1.0.0"
+    tunnel-agent "^0.6.0"
+    url-parse "^1.1.9"
+
+get-it@^5.2.1:
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/get-it/-/get-it-5.2.1.tgz#89cd98d73afd787aa4f2c89409f5893d17991e0c"
+  integrity sha512-KDR5lTKmxKd/XyP3egZ8ieIdKLxKrQPKUFxk86MSoytGjxX4STigaFuwtFGmGx/lBPc1YSpi9wyuQJ5uP8WcRA==
+  dependencies:
+    "@sanity/timed-out" "^4.0.2"
+    create-error-class "^3.0.2"
+    debug "^2.6.8"
+    decompress-response "^3.3.0"
+    follow-redirects "^1.2.4"
+    form-urlencoded "^2.0.7"
     into-stream "^3.1.0"
     is-plain-object "^2.0.4"
     is-retry-allowed "^1.1.0"
