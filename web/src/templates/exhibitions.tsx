@@ -16,14 +16,17 @@ const Exhibitions: FC<Props> = ({ data }) => {
     <Layout
       heroImage={
         data.currentExhibitions.edges[0] !== undefined
-          ? data.currentExhibitions.edges[0].node.heroImage.asset
-              .gatsbyImageData
-          : data.futureExhibitions.edges[0].node.heroImage.asset.gatsbyImageData
+          ? data.currentExhibitions.edges[0].node.heroImage.asset.gatsbyImageData
+          : data.futureExhibitions.edges[0] !== undefined
+          ? data.futureExhibitions.edges[0].node.heroImage.asset.gatsbyImageData
+          : data.pastExhibitions.edges[0].node.heroImage.asset.gatsbyImageData
       }
       heroImageCaption={
         data.currentExhibitions.edges[0] !== undefined
           ? data.currentExhibitions.edges[0].node.mainImage.caption
-          : data.futureExhibitions.edges[0].node.mainImage.caption
+          : data.futureExhibitions.edges[0] !== undefined
+          ? data.futureExhibitions.edges[0].node.mainImage.caption
+          : data.pastExhibitions.edges[0].node.mainImage.caption
       }
     >
       <SEO title="Exhibitions" />
@@ -212,6 +215,12 @@ export const query = graphql`
                 formats: WEBP
                 placeholder: BLURRED
               )
+            }
+          }
+          heroImage: mainImage {
+            caption
+            asset {
+              gatsbyImageData(width: 1440, formats: WEBP, placeholder: BLURRED)
             }
           }
           dateStart(formatString: "Do MMMM")
