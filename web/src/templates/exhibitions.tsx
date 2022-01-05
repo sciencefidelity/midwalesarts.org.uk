@@ -16,7 +16,8 @@ const Exhibitions: FC<Props> = ({ data }) => {
     <Layout
       heroImage={
         data.currentExhibitions.edges[0] !== undefined
-          ? data.currentExhibitions.edges[0].node.heroImage.asset.gatsbyImageData
+          ? data.currentExhibitions.edges[0].node.heroImage.asset
+              .gatsbyImageData
           : data.futureExhibitions.edges[0] !== undefined
           ? data.futureExhibitions.edges[0].node.heroImage.asset.gatsbyImageData
           : data.pastExhibitions.edges[0].node.heroImage.asset.gatsbyImageData
@@ -113,7 +114,10 @@ const Exhibitions: FC<Props> = ({ data }) => {
 export const query = graphql`
   query Exhibitions($currentDate: Date!) {
     currentExhibitions: allSanityExhibition(
-      filter: { dateEnd: { gte: $currentDate }, dateStart: { lte: $currentDate } }
+      filter: {
+        dateEnd: { gte: $currentDate }
+        dateStart: { lte: $currentDate }
+      }
       sort: { fields: dateStart, order: ASC }
     ) {
       edges {
