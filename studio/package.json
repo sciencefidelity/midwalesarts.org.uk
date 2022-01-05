@@ -1,0 +1,43 @@
+{
+  "name": "mwa-studio",
+  "description": "Arts center in Mid Wales",
+  "private": true,
+  "version": "1.0.0",
+  "license": "UNLICENSED",
+  "author": "Matt Cook <matt@sciencefidelity.co.uk>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sciencefidelity/midwalesarts.org.uk/web"
+  },
+  "homepage": "https://midwalesarts.org.uk",
+  "keywords": [
+    "sanity"
+  ],
+  "scripts": {
+    "dev": "sanity start",
+    "build": "sanity build",
+    "deploy": "sanity deploy && sanity graphql deploy --playground"
+  },
+  "dependencies": {
+    "@babel/core": "^7.0.0-0",
+    "@sanity/base": "^2.23.3",
+    "@sanity/components": "^2.14.0",
+    "@sanity/core": "^2.23.2",
+    "@sanity/dashboard": "^2.23.3",
+    "@sanity/default-layout": "^2.23.3",
+    "@sanity/default-login": "^2.23.2",
+    "@sanity/desk-tool": "^2.23.3",
+    "@sanity/vision": "^2.23.3",
+    "prop-types": "^15.8",
+    "react": "^17.0",
+    "react-dom": "^17.0",
+    "react-icons": "^4.2.0",
+    "sanity-plugin-dashboard-widget-vercel": "^1.1.0",
+    "styled-components": "^5.2.0",
+    "webpack": "^5.65.0"
+  },
+  "devDependencies": {},
+  "resolutions": {
+    "@babel/types": "7.15.x"
+  }
+}
