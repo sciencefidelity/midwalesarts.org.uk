@@ -8,7 +8,7 @@ const FooterContact: FC = () => {
       <p>
         Opening Times
         <br />
-        Thursday - Sunday 11-4
+        Closed until 27 March 2022
       </p>
       <p>
         Mid Wales Arts
