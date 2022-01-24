@@ -1,9 +1,13 @@
 import { GetStaticProps, GetStaticPaths } from "next"
 import Head from "next/head"
 import Layout from "@/components/layout"
-import { getAllPostIds, getPostData } from "@/lib/posts"
+import { createClient } from "next-sanity"
+import { config } from "@/lib/config"
+import type { Post } from "@/generated/schema"
+// import { getAllPostIds, getPostData } from "@/lib/posts"
 import Date from "@/components/date"
 import utilStyles from "@/styles/utils.module.scss"
+import { postQuery } from "@/lib/queries"
 
 const Post = ({
   postData,
@@ -31,19 +35,22 @@ const Post = ({
 }
 export default Post
 
-export const getStaticPaths: GetStaticPaths = ({ locales }) => {
+const client = createClient({
+  ...config
+})
+
+{/* export const getStaticPaths: GetStaticPaths = () => {
   const paths = getAllPostIds()
   return {
     paths,
     fallback: false
   }
-}
+} */}
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const postData = await getPostData(params.id as string)
+  const post = await client.fetch(postQuery)
+  const { title, publishedAt, author, categories, body }: Post = post
   return {
-    props: {
-      postData
-    }
+    props: { title, publishedAt, author, categories, body }
   }
 }

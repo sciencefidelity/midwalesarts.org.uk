@@ -36,7 +36,10 @@
     "styled-components": "^5.2.0",
     "webpack": "^5.65.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "prettier": "^2.5.1",
+    "sanity-codegen": "^0.9.8"
+  },
   "resolutions": {
     "@babel/types": "7.15.x"
   }
