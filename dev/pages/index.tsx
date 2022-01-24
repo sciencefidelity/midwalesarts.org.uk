@@ -6,20 +6,15 @@
 import { GetStaticProps } from "next"
 import Head from "next/head"
 import Link from "next/link"
+import { createClient } from "next-sanity"
+import { config } from "@/lib/config"
+import { postQuery } from "@/lib/queries"
+import type { Post } from "@/generated/schema"
 import Date from "@/components/date"
 import Layout, { siteTitle } from "@/components/layout"
-import { getSortedPostsData } from "@/lib/posts"
 import utilStyles from "@/styles/utils.module.scss"
 
-const Home = ({
-  allPostsData
-}: {
-  allPostsData: {
-    date: string
-    title: string
-    id: string
-  }[]
-}) => {
+const Home = (postData: Post) => {
   return (
     <Layout home>
       <Head>
@@ -31,17 +26,15 @@ const Home = ({
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
         <ul className={utilStyles.list}>
-          {allPostsData.map(({ id, date, title }) => (
-            <li className={utilStyles.listItem} key={id}>
-              <Link href={`/posts/${id}`}>
-                <a>{title}</a>
+            <li className={utilStyles.listItem} key={postData.slug.en.current}>
+              <Link href={`/posts/${postData.slug.en.current}`}>
+                <a>{postData.title.en}</a>
               </Link>
               <br />
               <small className={utilStyles.lightText}>
-                <Date dateString={date} />
+                <Date dateString={postData.publishedAt} />
               </small>
             </li>
-          ))}
         </ul>
       </section>
     </Layout>
@@ -49,11 +42,14 @@ const Home = ({
 }
 export default Home
 
+const client = createClient({
+  ...config
+})
+
 export const getStaticProps: GetStaticProps = async () => {
-  const allPostsData = getSortedPostsData()
+  const post = await client.fetch(postQuery)
+  const postData: Post = post
   return {
-    props: {
-      allPostsData
-    }
+    props: postData
   }
 }
