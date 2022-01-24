@@ -1,0 +1,13 @@
+package.json
+package-lock.json
+yarn.lock
+build
+out
+.next
+node_modules
+.nova
+*.scss
+*.css
+*.css.map
+coverage
+*.log
