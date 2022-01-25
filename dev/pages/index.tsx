@@ -1,20 +1,16 @@
-/**
- * Home: The Landing page of the web app
- * @return {JSX.Element} The JSX Code for the Home Page
- */
-
 import { GetStaticProps } from "next"
 import Head from "next/head"
 import Link from "next/link"
+import { useRouter } from "next/router"
 import sanityClient from "../sanityClient"
 import { postQuery } from "../lib/queries"
-// import Date from "@/components/date"
+import { dateOptions } from "@/lib/utils"
 import type { Post } from "@/generated/schema"
 import Layout, { siteTitle } from "@/components/layout"
 import utilStyles from "@/styles/utils.module.scss"
 
 const Home = ({ posts }) => {
-  console.log(posts)
+  const { locale } = useRouter()
   return (
     <Layout home>
       <Head>
@@ -28,12 +24,18 @@ const Home = ({ posts }) => {
         <ul className={utilStyles.list}>
           {posts.map((post: Post) =>
             <li className={utilStyles.listItem} key={post._id}>
-              <Link href={`/blog/${post.slug.en.current}`}>
-                <a>{post.title.en}</a>
+              <Link href={`/blog/${locale === "en-GB" ?
+                post.slug.en.current :
+                post.slug.cy.current
+              }`}>
+                <a>{locale === "en-GB" ? post.title.en : post.title.cy}</a>
               </Link>
               <br />
               <small className={utilStyles.lightText}>
-                {post.publishedAt}
+                {locale === "en-GB" ?
+                  new Date(post.publishedAt).toLocaleDateString("en-GB", dateOptions) :
+                  new Date(post.publishedAt).toLocaleDateString("cy", dateOptions)
+                }
               </small>
             </li>
           )}
