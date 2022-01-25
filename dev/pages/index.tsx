@@ -14,7 +14,7 @@ import Date from "@/components/date"
 import Layout, { siteTitle } from "@/components/layout"
 import utilStyles from "@/styles/utils.module.scss"
 
-const Home = (postData: Post) => {
+const Home = (posts: Post[]) => {
   return (
     <Layout home>
       <Head>
@@ -26,15 +26,17 @@ const Home = (postData: Post) => {
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
         <ul className={utilStyles.list}>
-            <li className={utilStyles.listItem} key={postData.slug.en.current}>
-              <Link href={`/posts/${postData.slug.en.current}`}>
-                <a>{postData.title.en}</a>
+          {posts.map((post: Post) =>
+            <li className={utilStyles.listItem} key={post._id}>
+              <Link href="">
+                <a>{post.title.en}</a>
               </Link>
               <br />
               <small className={utilStyles.lightText}>
-                <Date dateString={postData.publishedAt} />
+                <Date dateString={post.publishedAt} />
               </small>
             </li>
+          )}
         </ul>
       </section>
     </Layout>
@@ -47,9 +49,10 @@ const client = createClient({
 })
 
 export const getStaticProps: GetStaticProps = async () => {
-  const post = await client.fetch(postQuery)
-  const postData: Post = post
+  const posts: Post[] = await client.fetch(postQuery)
   return {
-    props: postData
+    props: {
+      posts
+    }
   }
 }
