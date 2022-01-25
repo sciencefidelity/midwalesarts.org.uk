@@ -6,14 +6,15 @@
 import { GetStaticProps } from "next"
 import Head from "next/head"
 import Link from "next/link"
-import groq from "groq"
 import sanityClient from "../sanityClient"
-import Date from "@/components/date"
+import { postQuery } from "../lib/queries"
+// import Date from "@/components/date"
 import type { Post } from "@/generated/schema"
 import Layout, { siteTitle } from "@/components/layout"
 import utilStyles from "@/styles/utils.module.scss"
 
-const Home = (posts: Post[]) => {
+const Home = ({ posts }) => {
+  console.log(posts)
   return (
     <Layout home>
       <Head>
@@ -32,7 +33,7 @@ const Home = (posts: Post[]) => {
               </Link>
               <br />
               <small className={utilStyles.lightText}>
-                <Date dateString={post.publishedAt} />
+                {post.publishedAt}
               </small>
             </li>
           )}
@@ -44,13 +45,8 @@ const Home = (posts: Post[]) => {
 export default Home
 
 export const getStaticProps: GetStaticProps = async () => {
-  const query = groq`
-    *[_type == "post"] | order(publishedAt desc)[]
-  `
-  const posts: Post[] = await sanityClient.fetch(query)
+  const posts: Post[] = await sanityClient.fetch(postQuery)
   return {
-    props: {
-      posts
-    }
+    props: { posts }
   }
 }
