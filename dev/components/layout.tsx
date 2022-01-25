@@ -16,7 +16,7 @@ const Layout = ({
   home?: boolean
 }) => {
   const router = useRouter()
-  const { pathname, asPath, query } = router
+  const { pathname, asPath, query, locale } = router
 
   return (
     <div className={styles.container}>
@@ -37,17 +37,14 @@ const Layout = ({
       </Head>
       <header className={styles.header}>
         <p>
-          <span className="link" onClick={() => {
-            router.push({ pathname, query }, asPath, { locale: "en-GB" })
-          }}>
-            English
-          </span>
-          {" "}|{" "}
-          <span className="link" onClick={() => {
-            router.push({ pathname, query }, asPath, { locale: "cy" })
-          }}>
-            Cymreag
-          </span>
+          {locale === "en-GB" ?
+            <span className="link" onClick={() => {
+              router.push({ pathname, query }, asPath, { locale: "cy" })
+            }}>Cymreag</span> :
+            <span className="link" onClick={() => {
+              router.push({ pathname, query }, asPath, { locale: "en-GB" })
+            }}>English</span>
+          }
         </p>
         {home ? (
           <>
