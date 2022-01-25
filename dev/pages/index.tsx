@@ -6,11 +6,10 @@
 import { GetStaticProps } from "next"
 import Head from "next/head"
 import Link from "next/link"
-import { createClient } from "next-sanity"
-import { config } from "@/lib/config"
-import { postQuery } from "@/lib/queries"
-import type { Post } from "@/generated/schema"
+import groq from "groq"
+import sanityClient from "../sanityClient"
 import Date from "@/components/date"
+import type { Post } from "@/generated/schema"
 import Layout, { siteTitle } from "@/components/layout"
 import utilStyles from "@/styles/utils.module.scss"
 
@@ -28,7 +27,7 @@ const Home = (posts: Post[]) => {
         <ul className={utilStyles.list}>
           {posts.map((post: Post) =>
             <li className={utilStyles.listItem} key={post._id}>
-              <Link href="">
+              <Link href={`/blog/${post.slug.en.current}`}>
                 <a>{post.title.en}</a>
               </Link>
               <br />
@@ -44,12 +43,11 @@ const Home = (posts: Post[]) => {
 }
 export default Home
 
-const client = createClient({
-  ...config
-})
-
 export const getStaticProps: GetStaticProps = async () => {
-  const posts: Post[] = await client.fetch(postQuery)
+  const query = groq`
+    *[_type == "post"] | order(publishedAt desc)[]
+  `
+  const posts: Post[] = await sanityClient.fetch(query)
   return {
     props: {
       posts
