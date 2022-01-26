@@ -2,10 +2,10 @@ import { GetStaticProps } from "next"
 import Head from "next/head"
 import Link from "next/link"
 import { useRouter } from "next/router"
-import sanityClient from "../sanityClient"
+import sanityClient from "@/lib/sanityClient"
+import type { Post } from "@/generated/schema"
 import { postQuery } from "../lib/queries"
 import { dateOptions } from "@/lib/utils"
-import type { Post } from "@/generated/schema"
 import Layout, { siteTitle } from "@/components/layout"
 import utilStyles from "@/styles/utils.module.scss"
 
@@ -24,18 +24,15 @@ const Home = ({ posts }) => {
         <ul className={utilStyles.list}>
           {posts.map((post: Post) =>
             <li className={utilStyles.listItem} key={post._id}>
-              <Link href={`/blog/${locale === "en-GB" ?
+              <Link href={`/blog/${locale === "en" ?
                 post.slug.en.current :
                 post.slug.cy.current
               }`}>
-                <a>{locale === "en-GB" ? post.title.en : post.title.cy}</a>
+                <a>{locale === "en" ? post.title.en : post.title.cy}</a>
               </Link>
               <br />
               <small className={utilStyles.lightText}>
-                {locale === "en-GB" ?
-                  new Date(post.publishedAt).toLocaleDateString("en-GB", dateOptions) :
-                  new Date(post.publishedAt).toLocaleDateString("cy", dateOptions)
-                }
+                {new Date(post.publishedAt).toLocaleDateString(locale, dateOptions)}
               </small>
             </li>
           )}

@@ -37,12 +37,12 @@ const Layout = ({
       </Head>
       <header className={styles.header}>
         <p>
-          {locale === "en-GB" ?
+          {locale === "en" ?
             <span className="link" onClick={() => {
               router.push({ pathname, query }, asPath, { locale: "cy" })
             }}>Cymreag</span> :
             <span className="link" onClick={() => {
-              router.push({ pathname, query }, asPath, { locale: "en-GB" })
+              router.push({ pathname, query }, asPath, { locale: "en" })
             }}>English</span>
           }
         </p>
