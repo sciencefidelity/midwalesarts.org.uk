@@ -3,25 +3,11 @@ import {useRouter} from "next/router"
 import Head from "next/head"
 import groq from "groq"
 import sanityClient from "@/lib/sanityClient"
-import type { Post, SanityReference, SanityImageAsset, SanityImageCrop, SanityImageHotspot } from "@/generated/schema"
+import type { Post } from "@/generated/schema"
 import BlockContent from "@sanity/block-content-to-react"
-import imageUrlBuilder from "@sanity/image-url"
-import { dateOptions } from "@/lib/utils"
+import { dateOptions, urlFor } from "@/lib/utils"
 import Layout from "@/components/layout"
 import utilStyles from "@/styles/utils.module.scss"
-
-interface Image {
-  _type: "image";
-  asset: SanityReference<SanityImageAsset>;
-  crop?: SanityImageCrop;
-  hotspot?: SanityImageHotspot;
-}
-
-const builder = imageUrlBuilder(sanityClient)
-
-function urlFor(source: Image) {
-  return builder.image(source)
-}
 
 const postQuery = groq`
   *[_type == "post" && slug.en.current == $slug][0] {
@@ -51,6 +37,8 @@ const Post = ({ post }) => {
             src={urlFor(image)
               .width(1440)
               .height(600)
+              .auto("format")
+              .quality(75)
               .url()}
           />
         </div>
