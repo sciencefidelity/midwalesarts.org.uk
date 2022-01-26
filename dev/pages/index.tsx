@@ -3,6 +3,7 @@ import Image from "next/image"
 import Head from "next/head"
 import { useRouter } from "next/router"
 import sanityClient from "@/lib/sanityClient"
+import { urlFor } from "@/lib/utils"
 import type { FrontPage } from "@/generated/schema"
 import { frontPageQuery } from "../lib/queries"
 import Layout from "@/components/layout"
@@ -15,10 +16,10 @@ import Intro from "../components/intro"
 
 const Home = ({ data }) => {
   const { locale } = useRouter()
+  console.log(data)
   return (
     <Layout
-      heroImage={data.mainImage.asset.gatsbyImageData}
-      heroImageCaption={data.mainImage.caption}
+      heroImage={data.heroImage}
     >
       <Head>
         <title></title>
@@ -40,11 +41,17 @@ const Home = ({ data }) => {
             />
             <div className="sideImageContainer">
               <Image
-                src={data.subImage}
-                alt={data.subImage.caption.en}
-                className="sideImage"
+                src={urlFor(data.subImage)
+                  .width(812)
+                  .height(634)
+                  .auto("format")
+                  .quality(75)
+                  .url()}
+                alt={data.subImage.caption}
+                width={812}
+                height={634}
               />
-              <div>{data.subImage.caption.en}</div>
+              <div>{data.subImage.caption}</div>
             </div>
           </div>
         </div>

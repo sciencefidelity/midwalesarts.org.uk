@@ -1,14 +1,23 @@
 import Link from "next/link"
 import Image from "next/image"
+import { urlFor } from "@/lib/utils"
+import {
+  SanityReference,
+  SanityImageAsset,
+  SanityImageCrop,
+  SanityImageHotspot
+} from "@/generated/schema"
 import ColorLogo from "@/components/colorLogo"
 import Navigation from "@/components/navigation"
 // import "../scss/header.scss"
 
-const Header = ({ heroImage, heroImageCaption }: {
-  heroImage: any
-  heroImageCaption: {
-    en: string
-    cy: string
+const Header = ({ heroImage }: {
+  heroImage: {
+    _type: "Image"
+    asset: SanityReference<SanityImageAsset>
+    crop?: SanityImageCrop
+    hotspot?: SanityImageHotspot
+    caption: string
   }
 }) => {
   return (
@@ -22,14 +31,20 @@ const Header = ({ heroImage, heroImageCaption }: {
         </Link>
         <div className="hero">
           <Image
-            src={heroImage}
-            alt={heroImageCaption.en}
-            className="heroImage"
+            src={urlFor(heroImage)
+              .width(1440)
+              .height(900)
+              .auto("format")
+              .quality(75)
+              .url()}
+            alt={heroImage.caption}
+            width={1440}
+            height={900}
           />
         </div>
       </header>
       <Navigation />
-      <div className="heroCaption">{heroImageCaption}</div>
+      <div className="heroCaption">{heroImage.caption}</div>
     </>
   )
 }

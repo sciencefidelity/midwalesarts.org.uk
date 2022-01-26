@@ -1,7 +1,10 @@
 import groq from "groq"
 
 export const frontPageQuery = groq`*[_type == "frontPage"][0]{
-  mainImage,
+  body,
+  cta,
+  ctaLink,
+  "heroImage": mainImage,
   "heroColor": mainImage.asset->metadata.palette.dominant.background,
   subImage,
   "subColor": subImage.asset->metadata.palette.dominant.background,
