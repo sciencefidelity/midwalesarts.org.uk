@@ -320,6 +320,13 @@ export interface FrontPage extends SanityDocument {
    * Images should be jpeg of 1440px along the longest edge, 500-600k is best.
    */
   subImage?: CaptionImage;
+
+  /**
+   * Feature Sections — `array`
+   *
+   * Maximum three items
+   */
+  featured?: Array<SanityKeyedReference<FrontPageSection>>;
 }
 
 /**
@@ -329,13 +336,6 @@ export interface FrontPage extends SanityDocument {
  */
 export interface FrontPageSection extends SanityDocument {
   _type: "frontPageSection";
-
-  /**
-   * Order — `number`
-   *
-   * The order that items appear on the front page (1 is first)
-   */
-  order?: number;
 
   /**
    * Headline — `localeString`
@@ -392,6 +392,29 @@ export interface FrontPageSection extends SanityDocument {
    * Images should be jpeg of 1440px along the longest edge, 500-600k is best.
    */
   subImage?: CaptionImage;
+}
+
+/**
+ * Menu
+ *
+ *
+ */
+export interface Menu extends SanityDocument {
+  _type: "menu";
+
+  /**
+   * Title — `string`
+   *
+   *
+   */
+  title?: string;
+
+  /**
+   * Manu Items — `array`
+   *
+   *
+   */
+  items?: Array<SanityKeyedReference<Page>>;
 }
 
 /**
@@ -706,6 +729,7 @@ export type Documents =
   | Exhibition
   | FrontPage
   | FrontPageSection
+  | Menu
   | Page
   | Space
   | Post
