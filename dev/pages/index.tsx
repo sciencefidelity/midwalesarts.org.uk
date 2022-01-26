@@ -24,11 +24,8 @@ const Home = ({ posts }) => {
         <ul className={utilStyles.list}>
           {posts.map((post: Post) =>
             <li className={utilStyles.listItem} key={post._id}>
-              <Link href={`/blog/${locale === "en" ?
-                post.slug.en.current :
-                post.slug.cy.current
-              }`}>
-                <a>{locale === "en" ? post.title.en : post.title.cy}</a>
+              <Link href={`/blog/${post.slug.en.current}`}>
+                <a>{locale === "cy" && post.title.cy ? post.title.cy : post.title.en}</a>
               </Link>
               <br />
               <small className={utilStyles.lightText}>
