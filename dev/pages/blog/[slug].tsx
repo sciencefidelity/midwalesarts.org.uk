@@ -4,6 +4,7 @@ import Head from "next/head"
 import groq from "groq"
 import sanityClient from "@/lib/sanityClient"
 import type { Post } from "@/generated/schema"
+import BlockContent from "@sanity/block-content-to-react"
 import { dateOptions } from "@/lib/utils"
 import Layout from "@/components/layout"
 import utilStyles from "@/styles/utils.module.scss"
@@ -19,6 +20,7 @@ const postQuery = groq`
 const Post = ({ post }) => {
   const { locale } = useRouter()
   const {
+    body = [],
     publishedAt = "Missing date",
     title = "Missing title"
   } = post
@@ -31,6 +33,11 @@ const Post = ({ post }) => {
         <h1 className={utilStyles.headingXl}>
           {locale === "en" ? title.en : title.cy}
         </h1>
+        <BlockContent
+          blocks={body}
+          // imageOptions={{ w: 320, h: 240, fit: 'max' }}
+          {...sanityClient.config()}
+        />
         <div className={utilStyles.lightText}>
           {new Date(publishedAt).toLocaleDateString(locale, dateOptions)}
         </div>
