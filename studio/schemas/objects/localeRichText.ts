@@ -5,22 +5,20 @@ export default {
   fieldsets: [
     {
       title: "Translations",
-      name: "translations",
-      options: { collapsible: true },
-    },
+      name: "translations"
+    }
   ],
 
   fields: [
     {
       title: "English",
       name: "en",
-      type: "blockContent",
+      type: "blockContent"
     },
     {
       title: "Welsh",
       name: "cy",
       type: "blockContent",
-      fieldset: "translations",
-    },
-  ],
+    }
+  ]
 }

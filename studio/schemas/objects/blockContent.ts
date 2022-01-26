@@ -12,13 +12,13 @@ export default {
         { title: "H2", value: "h2" },
         { title: "H3", value: "h3" },
         { title: "H4", value: "h4" },
-        { title: "Quote", value: "blockquote" },
+        { title: "Quote", value: "blockquote" }
       ],
       lists: [{ title: "Bullet", value: "bullet" }],
       marks: {
         decorators: [
           { title: "Strong", value: "strong" },
-          { title: "Emphasis", value: "em" },
+          { title: "Emphasis", value: "em" }
         ],
         annotations: [
           {
@@ -29,16 +29,16 @@ export default {
               {
                 title: "URL",
                 name: "href",
-                type: "url",
-              },
-            ],
-          },
-        ],
-      },
+                type: "url"
+              }
+            ]
+          }
+        ]
+      }
     },
     {
       type: "image",
-      options: { hotspot: true },
-    },
-  ],
+      options: { hotspot: true }
+    }
+  ]
 }

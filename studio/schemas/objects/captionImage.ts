@@ -10,14 +10,14 @@ export default {
       type: "string",
       title: "Caption",
       options: {
-        isHighlighted: true,
-      },
+        isHighlighted: true
+      }
     },
     {
       name: "Caption",
       type: "string",
-      title: "Attribution",
-    },
+      title: "Attribution"
+    }
   ],
-  liveEdit: false,
+  liveEdit: false
 }

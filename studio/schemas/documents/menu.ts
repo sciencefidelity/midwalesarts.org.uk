@@ -1,7 +1,10 @@
+import { FaList } from "react-icons/fa"
+
 export default {
   name: 'menu',
   title: 'Menu',
   type: 'document',
+  icon: FaList,
   __experimental_actions: [/*'create',*/ "update", /*'delete',*/ "publish"],
   fields: [
     {

@@ -7,9 +7,8 @@ export default {
   fieldsets: [
     {
       title: "Translations",
-      name: "translations",
-      options: { collapsible: true },
-    },
+      name: "translations"
+    }
   ],
 
   fields: [
@@ -18,17 +17,16 @@ export default {
       name: "en",
       type: "slug",
       options: {
-        source: `title.${supportedLanguages[0].name}`,
-      },
+        source: `title.${supportedLanguages[0].name}`
+      }
     },
     {
       title: "Welsh",
       name: "cy",
       type: "slug",
-      fieldset: "translations",
       options: {
-        source: `title.${supportedLanguages[1].name}`,
-      },
-    },
-  ],
+        source: `title.${supportedLanguages[1].name}`
+      }
+    }
+  ]
 }
