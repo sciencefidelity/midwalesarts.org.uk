@@ -1,0 +1,52 @@
+<html>
+
+<body onload="Test()">
+  <script>
+    function Test() {
+      var img = new Image;
+      img.src = createPixelGIF("#473e2d"); // generate a red pixel data URI
+      img.height = 100;
+      img.width = 100; // optional: add dimensions
+      document.body.appendChild(img); // add to the page
+    }
+
+    // ROUTINES =============
+
+    var createPixelGIF = (function() {
+
+      var keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+
+      return function createPixelGIF(hexColor) {
+        return "data:image/gif;base64,R0lGODlhAQABAPAA" + encodeHex(hexColor) + "/yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==";
+      }
+
+      function encodeHex(hexColor) {
+        var rgb;
+        if (typeof hexColor == 'string') {
+          var s = hexColor.substring(1, 7);
+          if (s.length < 6) s = s[0] + s[0] + s[1] + s[1] + s[2] + s[2];
+          rgb = [parseInt(s[0] + s[1], 16), parseInt(s[2] + s[3], 16), parseInt(s[4] + s[5], 16)];
+        } else
+          rgb = [(hexColor & (0xFF << 16)) >> 16, (hexColor & (0xFF << 8)) >> 8, hexColor & 0xFF];
+
+        return encodeRGB(rgb[0], rgb[1], rgb[2]);
+      }
+
+      function encodeRGB(r, g, b) {
+        return encode_triplet(0, r, g) + encode_triplet(b, 255, 255);
+      }
+
+      function encode_triplet(e1, e2, e3) {
+        enc1 = e1 >> 2;
+        enc2 = ((e1 & 3) << 4) | (e2 >> 4);
+        enc3 = ((e2 & 15) << 2) | (e3 >> 6);
+        enc4 = e3 & 63;
+        return keyStr.charAt(enc1) + keyStr.charAt(enc2) + keyStr.charAt(enc3) + keyStr.charAt(enc4);
+      }
+
+    })();
+  </script>
+  <img width="100" height="100" alt="" aria-hidden="true" src="data:image/gif;base64,R0lGODlhAQABAPAAAEc+Lf///yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==">
+</body>
+
+</html>

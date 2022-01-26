@@ -6,27 +6,33 @@ import groq from "groq"
 import sanityClient from "@/lib/sanityClient"
 import type { Post } from "@/generated/schema"
 import BlockContent from "@sanity/block-content-to-react"
-import { dateOptions, urlFor } from "@/lib/utils"
+import { dateOptions, hexDataURL, urlFor } from "@/lib/utils"
 import Layout from "@/components/layout"
 import utilStyles from "@/styles/utils.module.scss"
 
 const postQuery = groq`
   *[_type == "post" && slug.en.current == $slug][0] {
     body,
+    "dominantColor": image.asset->metadata.palette.dominant.background,
     image,
     publishedAt,
     title
   }
 `
 
+interface PlaceholderImage extends Post {
+  readonly dominantColor: string
+}
+
 const Post = ({ post }) => {
   const { locale } = useRouter()
   const {
     body,
+    dominantColor,
     image,
     publishedAt,
     title
-  } = post as Post
+  } = post as PlaceholderImage
   return (
     <Layout>
       <Head>
@@ -45,6 +51,8 @@ const Post = ({ post }) => {
             width={612}
             height={255}
             priority
+            placeholder="blur"
+            blurDataURL={hexDataURL(dominantColor)}
           />
         </div>
         <h1 className={utilStyles.headingXl}>
