@@ -1,39 +1,53 @@
 import { GetStaticProps } from "next"
+import Image from "next/image"
 import Head from "next/head"
-import Link from "next/link"
 import { useRouter } from "next/router"
 import sanityClient from "@/lib/sanityClient"
-import type { Post } from "@/generated/schema"
-import { postQuery } from "../lib/queries"
-import { dateOptions } from "@/lib/utils"
-import Layout, { siteTitle } from "@/components/layout"
-import utilStyles from "@/styles/utils.module.scss"
+import type { FrontPage } from "@/generated/schema"
+import { frontPageQuery } from "../lib/queries"
+import Layout from "@/components/layout"
+import ColorLogo from "@/components/colorLogo"
+import BrandEn from "../components/brand.en"
+import BrandCy from "../components/brand.cy"
+import Intro from "../components/intro"
 
-const Home = ({ posts }) => {
+// import utilStyles from "@/styles/utils.module.scss"
+
+const Home = ({ data }) => {
   const { locale } = useRouter()
   return (
-    <Layout home>
+    <Layout
+      heroImage={data.mainImage.asset.gatsbyImageData}
+      heroImageCaption={data.mainImage.caption}
+    >
       <Head>
-        <title>{siteTitle}</title>
+        <title></title>
       </Head>
-      <section className={utilStyles.headingMd}>
-        <p>Hi, I&apos;m Matt.</p>
-      </section>
-      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Blog</h2>
-        <ul className={utilStyles.list}>
-          {posts.map((post: Post) =>
-            <li className={utilStyles.listItem} key={post._id}>
-              <Link href={`/blog/${post.slug.en.current}`}>
-                <a>{locale === "cy" && post.title.cy ? post.title.cy : post.title.en}</a>
-              </Link>
-              <br />
-              <small className={utilStyles.lightText}>
-                {new Date(post.publishedAt).toLocaleDateString(locale, dateOptions)}
-              </small>
-            </li>
-          )}
-        </ul>
+      <section>
+        <div className="container">
+          <div className="introduction">
+            <div className="introBranding">
+              <ColorLogo
+                logoClass="introLogo"
+                containerClass="introLogoContainer"
+              />
+              {locale === "cy" ? <BrandCy /> : <BrandEn />}
+            </div>
+            <Intro
+              body={data.body}
+              cta={data.cta}
+              ctaLink={data.ctaLink}
+            />
+            <div className="sideImageContainer">
+              <Image
+                src={data.subImage}
+                alt={data.subImage.caption.en}
+                className="sideImage"
+              />
+              <div>{data.subImage.caption.en}</div>
+            </div>
+          </div>
+        </div>
       </section>
     </Layout>
   )
@@ -41,8 +55,8 @@ const Home = ({ posts }) => {
 export default Home
 
 export const getStaticProps: GetStaticProps = async () => {
-  const posts: Post[] = await sanityClient.fetch(postQuery)
+  const data: FrontPage = await sanityClient.fetch(frontPageQuery)
   return {
-    props: { posts }
+    props: { data }
   }
 }

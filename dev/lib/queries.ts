@@ -1,10 +1,30 @@
 import groq from "groq"
 
-export const postQuery = groq`
-  *[_type == "post"] | order(publishedAt desc){
-    title,
-    slug,
+export const frontPageQuery = groq`*[_type == "frontPage"][0]{
+  mainImage,
+  "heroColor": mainImage.asset->metadata.palette.dominant.background,
+  subImage,
+  "subColor": subImage.asset->metadata.palette.dominant.background,
+  featured[0..3]->{
     _id,
-    publishedAt
+    title,
+    caption,
+    heading,
+    body,
+    cta,
+    ctaLink,
+    mainImage,
+    "sectionHeroColor": mainImage.asset->metadata.palette.dominant.background,
+    subImage,
+    "sectionSubColor": subImage.asset->metadata.palette.dominant.background
   }
-`
+}`
+
+// export const postQuery = groq`
+//   *[_type == "post"] | order(publishedAt desc){
+//     title,
+//     slug,
+//     _id,
+//     publishedAt
+//   }
+// `
