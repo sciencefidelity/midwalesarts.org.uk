@@ -8,12 +8,6 @@ export default {
   localize: true,
   fields: [
     {
-      name: "order",
-      title: "Order",
-      description: "The order that items appear on the front page (1 is first)",
-      type: "number",
-    },
-    {
       name: "title",
       title: "Headline",
       type: "localeString",

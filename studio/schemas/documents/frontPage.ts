@@ -46,14 +46,23 @@ export default {
         "Images should be jpeg of 1440px along the longest edge, 500-600k is best.",
       type: "captionImage",
       options: {
-        hotspot: true,
-      },
+        hotspot: true
+      }
     },
+    {
+      name: 'featured',
+      title: 'Feature Sections',
+      type: 'array',
+      of: [{ type: 'reference', to: {type: 'frontPageSection' }}],
+      sortable: true,
+      description: 'Maximum three items',
+      validation: (Rule: any) => Rule.max(4)
+    }
   ],
   preview: {
     select: {
       title: "title.en",
-      media: "mainImage",
-    },
-  },
+      media: "mainImage"
+    }
+  }
 }
