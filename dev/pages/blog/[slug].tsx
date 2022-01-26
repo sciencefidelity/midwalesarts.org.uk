@@ -1,6 +1,7 @@
 import { GetStaticProps, GetStaticPaths } from "next"
-import {useRouter} from "next/router"
 import Head from "next/head"
+import Image from "next/image"
+import {useRouter} from "next/router"
 import groq from "groq"
 import sanityClient from "@/lib/sanityClient"
 import type { Post } from "@/generated/schema"
@@ -33,13 +34,17 @@ const Post = ({ post }) => {
       </Head>
       <article>
         <div>
-          <img
+          <Image
             src={urlFor(image)
-              .width(1440)
-              .height(600)
+              .width(612)
+              .height(255)
               .auto("format")
               .quality(75)
               .url()}
+            alt="Picture"
+            width={612}
+            height={255}
+            priority
           />
         </div>
         <h1 className={utilStyles.headingXl}>
@@ -50,7 +55,6 @@ const Post = ({ post }) => {
         </div>
         <BlockContent
           blocks={locale === "cy" && body.cy ? body.cy : body.en}
-          // imageOptions={{ w: 320, h: 240, fit: 'max' }}
           {...sanityClient.config()}
         />
       </article>
