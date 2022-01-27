@@ -5,17 +5,33 @@ export default {
   title: "Event",
   type: "document",
   icon: FaCalendarAlt,
+  groups: [
+    {
+      name: 'info',
+      title: 'Info'
+    },
+    {
+      name: 'content',
+      title: 'Content'
+    },
+    {
+      name: 'seo',
+      title: 'SEO'
+    }
+  ],
   fields: [
     {
       name: "title",
       title: "Title",
       type: "localeString",
+      group: "content"
     },
     {
       name: "slug",
       title: "Slug",
       description: "Click Generate.",
       type: "localeSlug",
+      group: "content"
     },
     {
       name: "date",
@@ -27,22 +43,26 @@ export default {
         timeStep: 15,
         calendarTodayLabel: "Today",
       },
+      group: "content"
     },
     {
       name: "recurring",
       title: "Recurring event",
       type: "boolean",
+      group: "content"
     },
     {
       name: "briteLink",
       title: "Eventbrite link",
       description: "Leave blank if the event is not on Eventbrite.",
       type: "url",
+      group: "content"
     },
     {
       name: "body",
       title: "Body",
       type: "localeRichText",
+      group: "content"
     },
     {
       name: "mainImage",
@@ -53,7 +73,29 @@ export default {
       options: {
         hotspot: true,
       },
+      group: "content"
     },
+    {
+      name: 'seoTitle',
+      title: 'SEO title',
+      type: 'localeString',
+      description: 'Displayed on Facebook and Twitter shares (max 60 characters).',
+      group: 'seo'
+    },
+    {
+      name: 'seoDescription',
+      title: 'SEO description',
+      type: 'localeString',
+      description: 'Displayed on Facebook and Twitter shares (max 65 characters).',
+      group: 'seo'
+    },
+    {
+      name: 'seoImage',
+      title: 'SEO Image',
+      type: 'image',
+      description: 'Ideal size 1200 x 630px (if not added main image will be used).',
+      group: 'seo'
+    }
   ],
 
   preview: {
