@@ -23,7 +23,7 @@ const Navigation = ({ menu }: { menu: Menu }) => {
         <ul>
           {menu.items.map((item: any) => (
             <li key={item._id}>
-              <Link href={item.slug.en.current.replace("index", "/")}>
+              <Link href={`/${item.slug.en.current.replace("index", "")}`}>
                 {locale === "cy" && item.menuTitle.cy ? item.menuTitle.cy : item.menuTitle.en}
               </Link>
             </li>

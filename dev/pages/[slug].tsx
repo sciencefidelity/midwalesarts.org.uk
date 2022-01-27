@@ -1,18 +1,18 @@
 import { GetStaticProps, GetStaticPaths } from "next"
 import Head from "next/head"
-import groq from "groq"
 import sanityClient from "lib/sanityClient"
-import type { Post } from "generated/schema"
+import type { Page } from "generated/schema"
 import { pagePathQuery, pageQuery } from "lib/queries"
 import Layout from "components/layout"
 import About from "components/about"
+import Artists from "components/artists"
 import Visit from "components/visit"
 // import utilStyles from "styles/utils.module.scss"
 
-const Post = ({ data }) => {
+const Page = ({ data }) => {
   return (
     <Layout
-      heroImage={data.page.heroImage}
+      heroImage={data.page.heroImage || data.heroArtist.mainImage}
       menu={data.menu}
       site={data.site}
       socialLinks={data.socialLinks}
@@ -25,16 +25,19 @@ const Post = ({ data }) => {
         <About page={data.page} />
       }
       {
-        data.page.slug.en.current === "visit-us" &&
+        data.page.template === "visit" &&
         <Visit page={data.page} spaces={data.spaces} />
+      }
+      {
+        data.page.template === "artists" &&
+        <Artists page={data.page} artists={data.artists} />
       }
     </Layout>
   )
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = await sanityClient.fetch(
-    groq`*[_type == "page" && defined(slug) && slug.en.current != "index"][].slug.en.current`)
+  const paths = await sanityClient.fetch(pagePathQuery)
   return {
     paths: paths.map((slug: string[]) => ({ params: { slug } })),
     fallback: true
@@ -51,4 +54,4 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   }
 }
 
-export default Post
+export default Page
