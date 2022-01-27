@@ -31,18 +31,20 @@ export default {
     {
       name: "dateStart",
       title: "Start date",
-      type: "date",
+      type: "datetime",
       options: {
-        dateFormat: "dddd, MMMM Do YYYY"
+        dateFormat: "dddd, MMMM Do YYYY",
+        timeFormat: ""
       },
       group: "content"
     },
     {
       name: "dateEnd",
       title: "End date",
-      type: "date",
+      type: "datetime",
       options: {
-        dateFormat: "dddd, MMMM Do YYYY"
+        dateFormat: "dddd, MMMM Do YYYY",
+        timeFormat: ""
       },
       group: "content"
     },

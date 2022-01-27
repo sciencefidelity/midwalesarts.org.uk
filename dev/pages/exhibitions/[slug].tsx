@@ -1,90 +1,204 @@
+import { useState } from "react"
 import { GetStaticProps, GetStaticPaths } from "next"
 import Head from "next/head"
 import Image from "next/image"
+import Link from "next/link"
 import {useRouter} from "next/router"
-import groq from "groq"
-import sanityClient from "@/lib/sanityClient"
-import type { Post } from "@/generated/schema"
+import sanityClient from "lib/sanityClient"
 import BlockContent from "@sanity/block-content-to-react"
-import { dateOptions, hexDataURL, urlFor } from "@/lib/utils"
-import Layout from "@/components/layout"
-import utilStyles from "@/styles/utils.module.scss"
+import { dateOptionsShort, hexDataURL, urlFor } from "lib/utils"
+// import type { Post } from "generated/schema"
+import { exhibitionPathQuery, exhibitionPageQuery } from "lib/queries"
+import Layout from "components/layout"
+import Modal from "components/modal"
+// import utilStyles from "@/styles/utils.module.scss"
 
-const postQuery = groq`
-  *[_type == "post" && slug.en.current == $slug][0] {
-    body,
-    "dominantColor": image.asset->metadata.palette.dominant.background,
-    image,
-    publishedAt,
-    title
-  }
-`
-
-interface PlaceholderImage extends Post {
-  readonly dominantColor: string
-}
-
-const Post = ({ post }) => {
+const Post = ({ data }) => {
   const { locale } = useRouter()
-  const {
-    body,
-    dominantColor,
-    image,
-    publishedAt,
-    title
-  } = post as PlaceholderImage
+  const exhibition = data.exhibition[0]
+  const artworks = data.exhibition[0].artworks
+  console.log(data)
+  const [info, setInfo] = useState(artworks.length > 0)
+  const [gallery, setGallery] = useState(artworks.length <= 0)
+  const [modal, setModal] = useState(true)
+  const [imageToShow, setImageToShow] = useState(0)
+  const modalImage = artworks[0] !== undefined ? artworks[imageToShow] : ""
+  const toggleInfo = () => {
+    setInfo(false)
+    setGallery(true)
+  }
+  const toggleGallery = () => {
+    setInfo(true)
+    setGallery(false)
+  }
+  const openModal = (index: number) => {
+    setModal(false)
+    setImageToShow(index)
+  }
+  const closeModal = () => {
+    setModal(true)
+  }
+  let currentIndex = imageToShow
+  function prevIndex() {
+    currentIndex = currentIndex - 1
+    if (currentIndex < 0) {
+      setModal(true)
+      return
+    }
+    setImageToShow(currentIndex)
+  }
+  function nextIndex() {
+    currentIndex = currentIndex + 1
+    if (currentIndex >= artworks.length) {
+      setModal(true)
+      return
+    }
+    setImageToShow(currentIndex)
+  }
   return (
-    <Layout>
+    <Layout
+      heroImage={exhibition.mainImage}
+      menu={data.menu}
+      site={data.site}
+      socialLinks={data.socialLinks}
+    >
       <Head>
-        <title>{locale === "cy" && title.cy ? title.cy : title.en}</title>
+        <title>
+          {locale === "cy" && exhibition.title.cy ?
+            exhibition.title.cy :
+            exhibition.title.en
+          }
+        </title>
       </Head>
-      <article>
+      <section>
+        <div className="sidebarContainer">
+          <div className="portableContainer">
+            <h1>
+              {locale === "cy" && exhibition.title.cy ?
+                exhibition.title.cy :
+                exhibition.title.en
+              }
+            </h1>
+            <p className="subTitle">
+              {new Date(exhibition.dateStart)
+                .toLocaleDateString(locale, dateOptionsShort)
+              }
+              {" "}to{" "}
+              {new Date(exhibition.dateEnd)
+                .toLocaleDateString(locale, dateOptionsShort)
+              }
+            </p>
+            <ul className="galleryMenu">
+              <li onClick={toggleInfo} className={info ? "" : "selected"}>
+                {locale === "cy" ? "Trosolwg" : "Overview"}
+              </li>
+              <li onClick={toggleGallery} className={info ? "selected" : ""}>
+                {locale === "cy" ? "Yn gweithio" : "Works"}
+              </li>
+            </ul>
+            <div className={info ? "hidden galleryInfo" : "galleryInfo"}>
+              {exhibition.body.en && (
+                <BlockContent
+                  blocks={
+                    locale === "cy" && exhibition.body.cy ?
+                    exhibition.body.cy :
+                    exhibition.body.en
+                  }
+                  {...sanityClient.config()}
+                />
+              )}
+            </div>
+          </div>
+        </div>
+        <div
+          className={gallery ? "hidden galleryImageGrid" : "galleryImageGrid"}
+        >
+          {artworks[0] !== undefined ? (
+            artworks.map((artwork: any, index: number) => (
+              <div
+                style={{ margin: 0 }}
+                key={artwork._id}
+                onClick={() => openModal(index)}
+              >
+                <Image
+                  src={urlFor(artwork.mainImage)
+                    .width(468)
+                    .height(468)
+                    .auto("format")
+                    .quality(75)
+                    .url()}
+                  alt={`
+                    ${artwork.artist}${", "}
+                    ${locale === "cy" && artwork.title.cy ?
+                      artwork.title.cy :
+                      artwork.title.en
+                    }
+                    ${", "}
+                    ${artwork.date}`
+                  }
+                  width={468}
+                  height={468}
+                />
+                <div className="gridCaption">{artwork.artist}</div>
+                <div className="gridCaption">
+                  <em>
+                    {locale === "cy" && artwork.title.cy ?
+                      artwork.title.cy :
+                      artwork.title.en
+                    }
+                  </em>
+                </div>
+              </div>
+            ))
+          ) : (
+            <p>
+              {locale === "cy" ?
+                "Dim gweithiau celf i'w dangos" :
+                "No artworks to show"
+              }
+            </p>
+          )}
+        </div>
         <div>
-          <Image
-            src={urlFor(image)
-              .width(612)
-              .height(255)
-              .auto("format")
-              .quality(75)
-              .url()}
-            alt="Picture"
-            width={612}
-            height={255}
-            priority
-            placeholder="blur"
-            blurDataURL={hexDataURL(dominantColor)}
+          <p className="backLink">
+            <Link href="/exhibitions">
+              {locale === "cy" ?
+                "Yn ôl i Arddangosfeydd" :
+                "Back to Exhibitions"
+              }
+            </Link>
+          </p>
+        </div>
+        {artworks[0] !== undefined ? (
+          <Modal
+            modal={modal}
+            modalImage={modalImage}
+            closeModal={closeModal}
+            prevIndex={prevIndex}
+            nextIndex={nextIndex}
           />
-        </div>
-        <h1 className={utilStyles.headingXl}>
-          {locale === "cy" && title.cy ? title.cy : title.en}
-        </h1>
-        <div className={utilStyles.lightText}>
-          {new Date(publishedAt).toLocaleDateString(locale, dateOptions)}
-        </div>
-        <BlockContent
-          blocks={locale === "cy" && body.cy ? body.cy : body.en}
-          {...sanityClient.config()}
-        />
-      </article>
+        ) : (
+          <></>
+        )}
+      </section>
     </Layout>
   )
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const query = groq`*[_type == "post" && defined(slug)].slug.en.current`
-  const paths: string[] = await sanityClient.fetch(query)
+  const paths = await sanityClient.fetch(exhibitionPathQuery)
   return {
-    paths: paths.map(slug => ({ params: { slug } })),
+    paths: paths.map((slug: string[]) => ({ params: { slug } })),
     fallback: true
   }
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug = "" } = params
-  const post: Post = await sanityClient.fetch(postQuery, { slug })
+  const data = await sanityClient.fetch(exhibitionPageQuery, { slug })
   return {
     props: {
-      post
+      data
     }
   }
 }

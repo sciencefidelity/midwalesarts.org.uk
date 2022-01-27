@@ -12,6 +12,12 @@ export const dateOptions = {
   day: "numeric"
 } as const
 
+export const dateOptionsShort = {
+  day: "numeric",
+  month: "long",
+  year: "numeric"
+} as const
+
 export const kebabCase = (word: string): string =>
   word
     .toLowerCase()

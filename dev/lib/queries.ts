@@ -103,7 +103,7 @@ export const pageQuery = groq`{
     title,
     slug
   },
-  "pastEvents": *[_type == "event" && recurring != true && dateTime(now()) > dateTime(date)] | order(date desc)[0..2]{
+  "pastEvents": *[_type == "event" && recurring != true && dateTime(now()) > dateTime(date)] | order(date desc)[]{
     _id,
     body,
     briteLink,
@@ -126,6 +126,36 @@ export const pageQuery = groq`{
     body,
     briteLink,
     date,
+    mainImage,
+    slug,
+    title
+  },
+  "currentExhibitions": *[_type == "exhibition" && dateTime(now()) >= dateTime(dateStart) && dateTime(now()) <= dateTime(dateEnd)]
+    | order(dateStart asc){
+    _id,
+    body,
+    dateEnd,
+    dateStart,
+    mainImage,
+    slug,
+    title
+  },
+  "pastExhibitions": *[_type == "exhibition" && dateTime(now()) > dateTime(dateEnd)]
+    | order(dateStart desc){
+    _id,
+    body,
+    dateEnd,
+    dateStart,
+    mainImage,
+    slug,
+    title
+  },
+  "futureExhibitions": *[_type == "exhibition" && dateTime(now()) < dateTime(dateStart)]
+    | order(dateStart desc){
+    _id,
+    body,
+    dateEnd,
+    dateStart,
     mainImage,
     slug,
     title
@@ -184,6 +214,50 @@ export const eventPageQuery = groq`{
     mainImage,
     slug,
     title
+  },
+  "site": *[_type == "site"][0]{
+    openingHeading,
+    openingTimes,
+    addressLine1,
+    addressLine2,
+    telephone,
+    siteName,
+    email,
+    signUp,
+    signUpPlaceholder
+  },
+  "menu": *[_type == "menu"][0]{
+    items[]->{
+      _id,
+      slug,
+      menuTitle
+    }
+  },
+  "socialLinks": *[_type == "site"][0]{
+    socialLinks[]->{
+      _id, link, site
+    }
+  }
+}`
+
+export const exhibitionPageQuery = groq`{
+  "exhibition": *[_type == "exhibition" && slug.en.current == $slug]{
+    body,
+    dateEnd,
+    dateStart,
+    mainImage,
+    slug,
+    title,
+    "artworks": *[_type == "artwork" && references(^._id)] | order(artist asc){
+      _id,
+      artist,
+      date,
+      dimensions,
+      mainImage,
+      medium,
+      price,
+      title
+    }
   },
   "site": *[_type == "site"][0]{
     openingHeading,

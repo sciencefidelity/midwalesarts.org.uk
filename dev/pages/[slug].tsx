@@ -7,10 +7,16 @@ import Layout from "components/layout"
 import About from "components/about"
 import Artists from "components/artists"
 import Events from "components/events"
+import Exhibitions from "components/exhibitions"
 import Visit from "components/visit"
 // import utilStyles from "styles/utils.module.scss"
 
 const Page = ({ data }) => {
+  const exhibitionHero = data.currentExhibitions[0] !== undefined ?
+    data.currentExhibitions[0].mainImage :
+      data.futureExhibitions[0] !== undefined ?
+      data.futureExhibitions[0].mainImage : data.pastExhibitions[0].mainImage
+
   return (
     <Layout
       heroImage={
@@ -18,7 +24,8 @@ const Page = ({ data }) => {
         data.page.template === "visit-us" ? data.page.heroImage :
         data.page.template === "artists" ? data.heroArtist.mainImage :
         data.page.template === "events" ? data.upcomingEvents[0].mainImage :
-        data.upcomingEvents[0].mainImage
+        data.page.template === "exhibitions" ? exhibitionHero :
+        data.page.template === "videos"
       }
       menu={data.menu}
       site={data.site}
@@ -46,6 +53,15 @@ const Page = ({ data }) => {
           upcomingEvents={data.upcomingEvents}
           pastEvents={data.pastEvents}
           recurringEvents={data.recurringEvents}
+        />
+      }
+      {
+        data.page.template === "exhibitions" &&
+        <Exhibitions
+          page={data.page}
+          currentExhibitions={data.currentExhibitions}
+          futureExhibitions={data.futureExhibitions}
+          pastExhibitions={data.pastExhibitions}
         />
       }
     </Layout>
