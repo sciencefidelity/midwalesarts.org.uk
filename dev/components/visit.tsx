@@ -60,7 +60,7 @@ const Visit = ({ page, spaces }: {
                 <h4 className="spacesGridTitle">{locale === "cy" && space.title.cy ? space.title.cy : space.title.en}</h4>
                 {space.body.en && (
                   <BlockContent
-                    blocks={locale === "cy" && page.body.cy ? page.body.cy : page.body.en}
+                    blocks={locale === "cy" && space.body.cy ? space.body.cy : space.body.en}
                     {...sanityClient.config()}
                   />
                 )}

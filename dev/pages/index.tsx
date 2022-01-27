@@ -2,15 +2,16 @@ import { GetStaticProps } from "next"
 import Head from "next/head"
 import Image from "next/image"
 import { useRouter } from "next/router"
-import sanityClient from "@/lib/sanityClient"
-import { urlFor } from "@/lib/utils"
-// import type { FrontPage } from "@/generated/schema"
-import { frontPageQuery } from "../lib/queries"
-import Layout from "@/components/layout"
-import ColorLogo from "@/components/colorLogo"
-import BrandEn from "@/components/brand.en"
-import BrandCy from "@/components/brand.cy"
-import Intro from "@/components/intro"
+import sanityClient from "lib/sanityClient"
+import { urlFor } from "lib/utils"
+// import type { FrontPage } from "generated/schema"
+import { frontPageQuery } from "lib/queries"
+import Layout from "components/layout"
+import ColorLogo from "components/colorLogo"
+import BrandEn from "components/brand.en"
+import BrandCy from "components/brand.cy"
+import Intro from "components/intro"
+import FrontPageFeature from "components/frontPageFeature"
 
 // import utilStyles from "@/styles/utils.module.scss"
 
@@ -58,6 +59,13 @@ const Home = ({ data }) => {
           </div>
         </div>
       </section>
+      {data.frontPage.featured.map(item => (
+        <section key={item._id}>
+          <FrontPageFeature
+            feature={item}
+          />
+        </section>
+      ))}
     </Layout>
   )
 }

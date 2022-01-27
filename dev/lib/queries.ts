@@ -20,7 +20,6 @@ export const frontPageQuery = groq`{
     "heroColor": mainImage.asset->metadata.palette.dominant.background,
     subImage,
     "subColor": subImage.asset->metadata.palette.dominant.background,
-
     featured[0..3]->{
       _id,
       title,
