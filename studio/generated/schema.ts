@@ -218,6 +218,32 @@ export interface Event extends SanityDocument {
     crop?: SanityImageCrop;
     hotspot?: SanityImageHotspot;
   };
+
+  /**
+   * SEO title — `localeString`
+   *
+   * Displayed on Facebook and Twitter shares (max 60 characters).
+   */
+  seoTitle?: LocaleString;
+
+  /**
+   * SEO description — `localeString`
+   *
+   * Displayed on Facebook and Twitter shares (max 65 characters).
+   */
+  seoDescription?: LocaleString;
+
+  /**
+   * SEO Image — `image`
+   *
+   * Ideal size 1200 x 630px (if not added main image will be used).
+   */
+  seoImage?: {
+    _type: "image";
+    asset: SanityReference<SanityImageAsset>;
+    crop?: SanityImageCrop;
+    hotspot?: SanityImageHotspot;
+  };
 }
 
 /**
@@ -234,6 +260,13 @@ export interface Exhibition extends SanityDocument {
    *
    */
   title?: LocaleString;
+
+  /**
+   * Slug — `localeSlug`
+   *
+   *
+   */
+  slug?: LocaleSlug;
 
   /**
    * Start date — `date`
@@ -257,18 +290,37 @@ export interface Exhibition extends SanityDocument {
   body?: LocaleRichText;
 
   /**
-   * Slug — `localeSlug`
-   *
-   *
-   */
-  slug?: LocaleSlug;
-
-  /**
    * Main image — `captionImage`
    *
    *
    */
   mainImage?: CaptionImage;
+
+  /**
+   * SEO title — `localeString`
+   *
+   * Displayed on Facebook and Twitter shares (max 60 characters).
+   */
+  seoTitle?: LocaleString;
+
+  /**
+   * SEO description — `localeString`
+   *
+   * Displayed on Facebook and Twitter shares (max 65 characters).
+   */
+  seoDescription?: LocaleString;
+
+  /**
+   * SEO Image — `image`
+   *
+   * Ideal size 1200 x 630px (if not added main image will be used).
+   */
+  seoImage?: {
+    _type: "image";
+    asset: SanityReference<SanityImageAsset>;
+    crop?: SanityImageCrop;
+    hotspot?: SanityImageHotspot;
+  };
 }
 
 /**
@@ -418,7 +470,7 @@ export interface Menu extends SanityDocument {
 }
 
 /**
- * Information
+ * Page
  *
  *
  */
@@ -433,11 +485,25 @@ export interface Page extends SanityDocument {
   title?: LocaleString;
 
   /**
-   * Body — `localeRichText`
+   * Menu Title — `localeString`
+   *
+   * The title shown in the main navigation
+   */
+  menuTitle?: LocaleString;
+
+  /**
+   * Subtitle — `localeString`
+   *
+   * Not available for 'Page' type
+   */
+  subtitle?: LocaleString;
+
+  /**
+   * Template — `array`
    *
    *
    */
-  body?: LocaleRichText;
+  template?: Array<SanityKeyed<string>>;
 
   /**
    * Slug — `localeSlug`
@@ -447,11 +513,193 @@ export interface Page extends SanityDocument {
   slug?: LocaleSlug;
 
   /**
+   * Body — `localeRichText`
+   *
+   * Only available for 'Page' type
+   */
+  body?: LocaleRichText;
+
+  /**
    * Main image — `captionImage`
+   *
+   * Only available for 'Page' type
+   */
+  mainImage?: CaptionImage;
+
+  /**
+   * SEO title — `localeString`
+   *
+   * Displayed on Facebook and Twitter shares (max 60 characters).
+   */
+  seoTitle?: LocaleString;
+
+  /**
+   * SEO description — `localeString`
+   *
+   * Displayed on Facebook and Twitter shares (max 65 characters).
+   */
+  seoDescription?: LocaleString;
+
+  /**
+   * SEO Image — `image`
+   *
+   * Ideal size 1200 x 630px (if not added main image will be used).
+   */
+  seoImage?: {
+    _type: "image";
+    asset: SanityReference<SanityImageAsset>;
+    crop?: SanityImageCrop;
+    hotspot?: SanityImageHotspot;
+  };
+}
+
+/**
+ * Site
+ *
+ *
+ */
+export interface Site extends SanityDocument {
+  _type: "site";
+
+  /**
+   * Site Name — `localeString`
    *
    *
    */
-  mainImage?: CaptionImage;
+  siteName?: LocaleString;
+
+  /**
+   * Site Description — `localeString`
+   *
+   *
+   */
+  siteDescription?: LocaleString;
+
+  /**
+   * Keywords — `localeString`
+   *
+   * A list of keywords seperated by commas.
+   */
+  keywords?: LocaleString;
+
+  /**
+   * SEO title — `localeString`
+   *
+   * Displayed on Facebook and Twitter shares (max 60 characters).
+   */
+  seoTitle?: LocaleString;
+
+  /**
+   * SEO description — `localeString`
+   *
+   * Displayed on Facebook and Twitter shares (max 65 characters).
+   */
+  seoDescription?: LocaleString;
+
+  /**
+   * Twitter Handle — `string`
+   *
+   *
+   */
+  twitterHandle?: string;
+
+  /**
+   * SEO Image — `image`
+   *
+   * Ideal size 1200 x 630px.
+   */
+  seoImage?: {
+    _type: "image";
+    asset: SanityReference<SanityImageAsset>;
+    crop?: SanityImageCrop;
+    hotspot?: SanityImageHotspot;
+  };
+
+  /**
+   * Opening Heading — `localeString`
+   *
+   * Heading before opening times (ie Opening Times)
+   */
+  openingHeading?: LocaleString;
+
+  /**
+   * Opening Times — `localeString`
+   *
+   * One line only (ie Thursday - Sunday 11-4)
+   */
+  openingTimes?: LocaleString;
+
+  /**
+   * Address Line 1 — `string`
+   *
+   *
+   */
+  addressLine1?: string;
+
+  /**
+   * Address Line 2 — `string`
+   *
+   *
+   */
+  addressLine2?: string;
+
+  /**
+   * Telephone — `string`
+   *
+   *
+   */
+  telephone?: string;
+
+  /**
+   * Email — `string`
+   *
+   *
+   */
+  email?: string;
+
+  /**
+   * Sign Up Title — `localeString`
+   *
+   * One line only (ie Sign up to our mailing list)
+   */
+  signUp?: LocaleString;
+
+  /**
+   * Sign Up Placeholder — `localeString`
+   *
+   * One line only (ie Email address...)
+   */
+  signUpPlaceholder?: LocaleString;
+
+  /**
+   * Social Links — `array`
+   *
+   *
+   */
+  socialLinks?: Array<SanityKeyedReference<Social>>;
+}
+
+/**
+ * Social Links
+ *
+ *
+ */
+export interface Social extends SanityDocument {
+  _type: "social";
+
+  /**
+   * site — `string`
+   *
+   *
+   */
+  site?: string;
+
+  /**
+   * Link — `url`
+   *
+   *
+   */
+  link?: string;
 }
 
 /**
@@ -731,6 +979,8 @@ export type Documents =
   | FrontPageSection
   | Menu
   | Page
+  | Site
+  | Social
   | Space
   | Post
   | Video
