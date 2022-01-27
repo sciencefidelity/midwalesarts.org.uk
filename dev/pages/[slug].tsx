@@ -6,13 +6,20 @@ import { pagePathQuery, pageQuery } from "lib/queries"
 import Layout from "components/layout"
 import About from "components/about"
 import Artists from "components/artists"
+import Events from "components/events"
 import Visit from "components/visit"
 // import utilStyles from "styles/utils.module.scss"
 
 const Page = ({ data }) => {
   return (
     <Layout
-      heroImage={data.page.heroImage || data.heroArtist.mainImage}
+      heroImage={
+        data.page.template === "page" ? data.page.heroImage :
+        data.page.template === "visit-us" ? data.page.heroImage :
+        data.page.template === "artists" ? data.heroArtist.mainImage :
+        data.page.template === "events" ? data.upcomingEvents[0].mainImage :
+        data.upcomingEvents[0].mainImage
+      }
       menu={data.menu}
       site={data.site}
       socialLinks={data.socialLinks}
@@ -25,12 +32,21 @@ const Page = ({ data }) => {
         <About page={data.page} />
       }
       {
-        data.page.template === "visit" &&
+        data.page.template === "visit-us" &&
         <Visit page={data.page} spaces={data.spaces} />
       }
       {
         data.page.template === "artists" &&
         <Artists page={data.page} artists={data.artists} />
+      }
+      {
+        data.page.template === "events" &&
+        <Events
+          page={data.page}
+          upcomingEvents={data.upcomingEvents}
+          pastEvents={data.pastEvents}
+          recurringEvents={data.recurringEvents}
+        />
       }
     </Layout>
   )

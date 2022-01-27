@@ -102,6 +102,33 @@ export const pageQuery = groq`{
     mainImage,
     title,
     slug
+  },
+  "pastEvents": *[_type == "event" && recurring != true && dateTime(now()) > dateTime(date)] | order(date desc)[0..2]{
+    _id,
+    body,
+    briteLink,
+    date,
+    mainImage,
+    slug,
+    title
+  },
+  "recurringEvents": *[_type == "event" && recurring == true][]{
+    _id,
+    body,
+    briteLink,
+    date,
+    mainImage,
+    slug,
+    title
+  },
+  "upcomingEvents": *[_type == "event" && recurring != true && dateTime(now()) < dateTime(date)] | order(date asc)[]{
+    _id,
+    body,
+    briteLink,
+    date,
+    mainImage,
+    slug,
+    title
   }
 }`
 
@@ -149,12 +176,54 @@ export const artistPageQuery = groq`{
   }
 }`
 
+export const eventPageQuery = groq`{
+  "event": *[_type == "event" && slug.en.current == $slug]{
+    body,
+    briteLink,
+    date,
+    mainImage,
+    slug,
+    title
+  },
+  "site": *[_type == "site"][0]{
+    openingHeading,
+    openingTimes,
+    addressLine1,
+    addressLine2,
+    telephone,
+    siteName,
+    email,
+    signUp,
+    signUpPlaceholder
+  },
+  "menu": *[_type == "menu"][0]{
+    items[]->{
+      _id,
+      slug,
+      menuTitle
+    }
+  },
+  "socialLinks": *[_type == "site"][0]{
+    socialLinks[]->{
+      _id, link, site
+    }
+  }
+}`
+
 export const pagePathQuery = groq`
   *[_type == "page" && defined(slug) && slug.en.current != "index"][].slug.en.current
 `
 
 export const artistPathQuery = groq`
   *[_type == "artist" && defined(slug)][].slug.current
+`
+
+export const eventPathQuery = groq`
+  *[_type == "event" && defined(slug)][].slug.en.current
+`
+
+export const exhibitionPathQuery = groq`
+  *[_type == "exhibition" && defined(slug)][].slug.en.current
 `
 
 // export const postQuery = groq`
