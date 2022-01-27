@@ -1,22 +1,34 @@
-// import FooterContact from "./footerContact"
-// import Signup from "./signup"
-// import Logos from "./logos/logos"
-// import FooterLinks from "./footerLinks"
+import { useRouter } from "next/router"
+import { Site, Social } from "@/generated/schema"
+import FooterContact from "@/components/footerContact"
+import Signup from "@/components/signup"
+import Logos from "@/components/logos"
+import FooterLinks from "@/components/footerLinks"
 // import "../scss/footer.scss"
 
 const currentYear = new Date().getFullYear()
 
-const Footer = () => {
+const Footer = ({ site, socialLinks }: {
+  site: Site
+  socialLinks: {
+    socialLinks: Social[]
+  }
+}) => {
+  const { locale } = useRouter()
   return (
     <footer>
       <div className="footerContainer">
-{/*         <FooterContact /> */}
+        <FooterContact site={site} />
         <div className="footerRight">
-{/*           <Signup />
+          <Signup site={site} />
           <Logos />
-          <FooterLinks /> */}
+          <FooterLinks socialLinks={socialLinks} />
         </div>
-        <p className="smallCopy">&copy; Mid Wales Arts {currentYear}</p>
+        <p className="smallCopy">
+          &copy;{" "}
+          {locale === "cy" && site.siteName.cy ? site.siteName.cy : site.siteName.en}
+          {" "}{currentYear}
+        </p>
       </div>
     </footer>
   )

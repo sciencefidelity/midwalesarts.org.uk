@@ -1,5 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
+import { useRouter } from "next/router"
 import { urlFor } from "@/lib/utils"
 import {
   Menu,
@@ -22,12 +23,13 @@ const Header = ({ heroImage, menu }: {
   }
   menu: Menu[]
 }) => {
+  const { locale } = useRouter()
   return (
     <>
       <header>
         <Link href="/">
           <>
-            <span className="screenReaderText">Home</span>
+            <span className="screenReaderText">{locale === "cy" ? "Cartref" : "Home"}</span>
             <ColorLogo logoClass="colorLogo" containerClass="logoContainer" />
           </>
         </Link>

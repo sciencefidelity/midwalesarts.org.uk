@@ -6,7 +6,7 @@ import { capitalize } from "@/lib/utils"
 
 // import "../scss/navigation.scss"
 
-const Navigation = ({ menu }) => {
+const Navigation = ({ menu }: { menu: Menu }) => {
   const router = useRouter()
   const { pathname, asPath, query, locale, locales } = router
   const [isActive, setActive] = useState(false)
@@ -23,8 +23,8 @@ const Navigation = ({ menu }) => {
         <ul>
           {menu.items.map((item: any) => (
             <li key={item._id}>
-              <Link href={item.slug.en.current.replace("index", "")}>
-                {locale === "cy" && item.title.cy ? item.title.cy : item.title.en}
+              <Link href={item.slug.en.current.replace("index", "/")}>
+                {locale === "cy" && item.menuTitle.cy ? item.menuTitle.cy : item.menuTitle.en}
               </Link>
             </li>
           ))}
@@ -63,7 +63,10 @@ const Navigation = ({ menu }) => {
             target="blank"
             rel="noreferrer"
           >
-            <span className="screenReaderText">Mid Wales Arts on Facebook</span>
+            <span className="screenReaderText">
+              {locale === "cy" ? "Celf Canol Cymry ar" : "Mid Wales Arts on"}
+              {" "}Facebook
+            </span>
             <img
               alt="http://en-gb.facebook.com/MidWalesArtsCentre"
               src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3Cpath d='M400 32H48A48 48 0 000 80v352a48 48 0 0048 48h137V328h-63v-72h63v-55c0-62 37-96 94-96 27 0 55 5 55 5v61h-31c-31 0-40 19-40 38v47h69l-11 72h-58v152h137a48 48 0 0048-48V80a48 48 0 00-48-48z' fill='%23666666'/%3E%3C/svg%3E"
@@ -78,7 +81,8 @@ const Navigation = ({ menu }) => {
             rel="noreferrer"
           >
             <span className="screenReaderText">
-              Mid Wales Arts on Instagram
+              {locale === "cy" ? "Celf Canol Cymry ar" : "Mid Wales Arts on"}
+              {" "}Instagram
             </span>
             <img
               alt=""
@@ -93,7 +97,9 @@ const Navigation = ({ menu }) => {
             target="blank"
             rel="noreferrer"
           >
-            <span className="screenReaderText">Mid Wales Arts on Twitter</span>
+            <span className="screenReaderText">
+              {locale === "cy" ? "Celf Canol Cymry ar" : "Mid Wales Arts on"}
+              {" "}Twitter</span>
             <img
               alt=""
               src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3Cpath d='M400 32H48C22 32 0 54 0 80v352c0 27 22 48 48 48h352c27 0 48-21 48-48V80c0-26-21-48-48-48zm-49 159v8c0 87-66 187-186 187-37 0-72-11-101-30a138 138 0 0097-27c-29 0-53-19-61-45 10 1 19 1 30-1-30-6-53-33-53-65v-1c9 5 19 8 30 9a65 65 0 01-30-55c0-12 4-23 9-33 33 40 81 66 136 69a66 66 0 01111-60c15-3 29-9 42-16-5 15-15 28-29 36 13-1 26-5 38-10-9 13-20 25-33 34z' fill='%23666666'/%3E%3C/svg%3E"

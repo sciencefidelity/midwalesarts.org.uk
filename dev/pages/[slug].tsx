@@ -1,90 +1,52 @@
 import { GetStaticProps, GetStaticPaths } from "next"
 import Head from "next/head"
-import Image from "next/image"
-import {useRouter} from "next/router"
 import groq from "groq"
-import sanityClient from "@/lib/sanityClient"
-import type { Post } from "@/generated/schema"
-import BlockContent from "@sanity/block-content-to-react"
-import { dateOptions, hexDataURL, urlFor } from "@/lib/utils"
-import Layout from "@/components/layout"
-import utilStyles from "@/styles/utils.module.scss"
+import sanityClient from "lib/sanityClient"
+import type { Post } from "generated/schema"
+import { pagePathQuery, pageQuery } from "lib/queries"
+import Layout from "components/layout"
+import About from "components/about"
+import Visit from "components/visit"
+// import utilStyles from "styles/utils.module.scss"
 
-const postQuery = groq`
-  *[_type == "post" && slug.en.current == $slug][0] {
-    body,
-    "dominantColor": image.asset->metadata.palette.dominant.background,
-    image,
-    publishedAt,
-    title
-  }
-`
-
-interface PlaceholderImage extends Post {
-  readonly dominantColor: string
-}
-
-const Post = ({ post }) => {
-  const { locale } = useRouter()
-  const {
-    body,
-    dominantColor,
-    image,
-    publishedAt,
-    title
-  } = post as PlaceholderImage
+const Post = ({ data }) => {
   return (
-    <Layout>
+    <Layout
+      heroImage={data.page.heroImage}
+      menu={data.menu}
+      site={data.site}
+      socialLinks={data.socialLinks}
+    >
       <Head>
-        <title>{locale === "cy" && title.cy ? title.cy : title.en}</title>
+        <title></title>
       </Head>
-      <article>
-        <div>
-          <Image
-            src={urlFor(image)
-              .width(612)
-              .height(255)
-              .auto("format")
-              .quality(75)
-              .url()}
-            alt="Picture"
-            width={612}
-            height={255}
-            priority
-            placeholder="blur"
-            blurDataURL={hexDataURL(dominantColor)}
-          />
-        </div>
-        <h1 className={utilStyles.headingXl}>
-          {locale === "cy" && title.cy ? title.cy : title.en}
-        </h1>
-        <div className={utilStyles.lightText}>
-          {new Date(publishedAt).toLocaleDateString(locale, dateOptions)}
-        </div>
-        <BlockContent
-          blocks={locale === "cy" && body.cy ? body.cy : body.en}
-          {...sanityClient.config()}
-        />
-      </article>
+      {
+        data.page.template === "page" &&
+        <About page={data.page} />
+      }
+      {
+        data.page.slug.en.current === "visit-us" &&
+        <Visit page={data.page} spaces={data.spaces} />
+      }
     </Layout>
   )
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const query = groq`*[_type == "post" && defined(slug)].slug.en.current`
-  const paths: string[] = await sanityClient.fetch(query)
+  const paths = await sanityClient.fetch(
+    groq`*[_type == "page" && defined(slug) && slug.en.current != "index"][].slug.en.current`)
   return {
-    paths: paths.map(slug => ({ params: { slug } })),
+    paths: paths.map((slug: string[]) => ({ params: { slug } })),
     fallback: true
   }
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug = "" } = params
-  const post: Post = await sanityClient.fetch(postQuery, { slug })
+  const data = await sanityClient.fetch(pageQuery, { slug })
   return {
     props: {
-      post
+      data
     }
   }
 }
