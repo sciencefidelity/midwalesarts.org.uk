@@ -67,7 +67,7 @@ export const pageQuery = groq`{
     "heroColor": mainImage.asset->metadata.palette.dominant.background,
     "slug": slug{en, cy},
     subtitle,
-    template,
+    template[0],
     "title": title{en, cy}
   },
   "menu": *[_type == "menu"][0]{
