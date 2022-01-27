@@ -21,6 +21,8 @@ import frontPageSection from './documents/frontPageSection'
 import menu from './documents/menu'
 import page from './documents/page'
 import post from './documents/post'
+import site from './documents/site'
+import social from './documents/social'
 import space from './documents/space'
 import video from './documents/video'
 
@@ -48,13 +50,15 @@ export default createSchema({
       frontPageSection,
       menu,
       page,
+      site,
+      social,
       space,
       post,
       video,
 
       // taxonomy
       category,
-      discipline,
+      discipline
 
     ])
 })
