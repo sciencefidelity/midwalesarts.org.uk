@@ -24,6 +24,7 @@ export default {
       name: "title",
       title: "Title",
       type: "localeString",
+      validation: (Rule: any) => Rule.required(),
       group: "info"
     },
     {
@@ -31,6 +32,7 @@ export default {
       title: "Menu Title",
       type: "localeString",
       description: "The title shown in the main navigation",
+      validation: (Rule: any) => Rule.required(),
       group: "info"
     },
     {
@@ -54,7 +56,8 @@ export default {
           { title: 'Artists', value: 'artists' },
           { title: 'Events', value: 'events' },
           { title: 'Exhibitions', value: 'exhibitions' },
-          { title: 'Videos', value: 'videos' }
+          { title: 'Videos', value: 'videos' },
+          { title: 'Visit Us', value: 'visit-us' }
         ]
       },
       initialValue: {
