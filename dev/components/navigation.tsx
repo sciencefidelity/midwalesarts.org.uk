@@ -1,65 +1,61 @@
 import { useState } from "react"
 import Link from "next/link"
+import { useRouter } from "next/router"
+import { Menu } from "@/generated/schema"
+import { capitalize } from "@/lib/utils"
 
 // import "../scss/navigation.scss"
 
-const Navigation = () => {
+const Navigation = ({ menu }) => {
+  const router = useRouter()
+  const { pathname, asPath, query, locale, locales } = router
   const [isActive, setActive] = useState(false)
-
   const menuOpen = () => {
     setActive(true)
   }
   const menuClose = () => {
     setActive(false)
   }
-
   return (
     <div className="menuOverlay" onClick={isActive ? menuClose : null}>
+
       <div className={isActive ? "headerMenu isActive" : "headerMenu"}>
         <ul>
-          <li>
-            <Link href="/">Home</Link>
-          </li>
-          <li>
-            <Link href="/about/">About us</Link>
-          </li>
-          <li>
-            <Link href="/artists/">Artists</Link>
-          </li>
-          <li>
-            <Link href="/events/">Events</Link>
-          </li>
-          <li>
-            <Link href="/exhibitions/">Exhibitions</Link>
-          </li>
-          <li>
-            <Link href="/news/">News</Link>
-          </li>
-          <li>
-            <Link href="/support/">Support us</Link>
-          </li>
-          <li>
-            <Link href="/videos/">Videos</Link>
-          </li>
-          <li>
-            <Link href="/visit/">Visit us</Link>
-          </li>
-          <li>
-            <Link href="/workshops/">Workshops</Link>
-          </li>
+          {menu.items.map((item: any) => (
+            <li key={item._id}>
+              <Link href={item.slug.en.current.replace("index", "")}>
+                {locale === "cy" && item.title.cy ? item.title.cy : item.title.en}
+              </Link>
+            </li>
+          ))}
         </ul>
       </div>
+
       <div className="nav">
         <div
           className="hamburgerContainer"
           onClick={isActive ? menuClose : menuOpen}
         >
-          <span className="screenReaderText">Main Menu</span>
+          <span className="screenReaderText">
+            {locale === "cy" ? "Prif Ddewislen" : "Main Menu"}
+          </span>
           <div className={isActive ? "hamburger active" : "hamburger"}></div>
         </div>
         <div className="languageSwitcher">
-          <span className="screenReaderText">Switch language to Welsh</span>
-          Cy
+          <span className="screenReaderText">
+            {locale === "cy" ?
+              "Switch language to English" :
+              "Newid iaith i'r Gymraeg"
+            }
+          </span>
+          {locale === "cy" ?
+            <span className="link" onClick={() => {
+              router.push({ pathname, query }, asPath, { locale: locales[0] })
+            }}>{capitalize(locales[0])}</span> :
+            <span className="link" onClick={() => {
+              router.push({ pathname, query }, asPath, { locale: locales[1] })
+            }}>{capitalize(locales[1])}</span>
+          }
         </div>
         <div className="social">
           <a
@@ -109,5 +105,4 @@ const Navigation = () => {
     </div>
   )
 }
-
 export default Navigation

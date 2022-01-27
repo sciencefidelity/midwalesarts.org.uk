@@ -16,10 +16,10 @@ import Intro from "../components/intro"
 
 const Home = ({ data }) => {
   const { locale } = useRouter()
-  console.log(data)
   return (
     <Layout
-      heroImage={data.heroImage}
+      heroImage={data.frontPage.heroImage}
+      menu={data.menu}
     >
       <Head>
         <title></title>
@@ -35,23 +35,23 @@ const Home = ({ data }) => {
               {locale === "cy" ? <BrandCy /> : <BrandEn />}
             </div>
             <Intro
-              body={data.body}
-              cta={data.cta}
-              ctaLink={data.ctaLink}
+              body={data.frontPage.body}
+              cta={data.frontPage.cta}
+              ctaLink={data.frontPage.ctaLink}
             />
             <div className="sideImageContainer">
               <Image
-                src={urlFor(data.subImage)
+                src={urlFor(data.frontPage.subImage)
                   .width(812)
                   .height(634)
                   .auto("format")
                   .quality(75)
                   .url()}
-                alt={data.subImage.caption}
+                alt={data.frontPage.subImage.caption}
                 width={812}
                 height={634}
               />
-              <div>{data.subImage.caption}</div>
+              <div>{data.frontPage.subImage.caption}</div>
             </div>
           </div>
         </div>
@@ -59,7 +59,6 @@ const Home = ({ data }) => {
     </Layout>
   )
 }
-export default Home
 
 export const getStaticProps: GetStaticProps = async () => {
   const data: FrontPage = await sanityClient.fetch(frontPageQuery)
@@ -67,3 +66,5 @@ export const getStaticProps: GetStaticProps = async () => {
     props: { data }
   }
 }
+
+export default Home

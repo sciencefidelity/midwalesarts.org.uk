@@ -1,6 +1,7 @@
 import { ReactNode } from "react"
 import Head from "next/head"
 import {
+  Menu,
   SanityReference,
   SanityImageAsset,
   SanityImageCrop,
@@ -12,7 +13,7 @@ import Scrollup from "@/components/scrollup"
 import styles from "@/components/layout.module.scss"
 // import utilStyles from "@/styles/utils.module.scss"
 
-const Layout = ({ children, heroImage }: {
+const Layout = ({ children, heroImage, menu }: {
   children: ReactNode
   heroImage: {
     _type: "Image"
@@ -21,6 +22,7 @@ const Layout = ({ children, heroImage }: {
     hotspot?: SanityImageHotspot
     caption: string
   }
+  menu: Menu[]
 }) => {
   return (
     <div className={styles.container}>
@@ -28,6 +30,7 @@ const Layout = ({ children, heroImage }: {
       </Head>
       <Header
         heroImage={heroImage}
+        menu={menu}
       />
       <main>
         {children}

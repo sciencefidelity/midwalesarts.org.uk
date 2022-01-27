@@ -2,6 +2,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { urlFor } from "@/lib/utils"
 import {
+  Menu,
   SanityReference,
   SanityImageAsset,
   SanityImageCrop,
@@ -11,7 +12,7 @@ import ColorLogo from "@/components/colorLogo"
 import Navigation from "@/components/navigation"
 // import "../scss/header.scss"
 
-const Header = ({ heroImage }: {
+const Header = ({ heroImage, menu }: {
   heroImage: {
     _type: "Image"
     asset: SanityReference<SanityImageAsset>
@@ -19,6 +20,7 @@ const Header = ({ heroImage }: {
     hotspot?: SanityImageHotspot
     caption: string
   }
+  menu: Menu[]
 }) => {
   return (
     <>
@@ -43,7 +45,7 @@ const Header = ({ heroImage }: {
           />
         </div>
       </header>
-      <Navigation />
+      <Navigation menu={menu} />
       <div className="heroCaption">{heroImage.caption}</div>
     </>
   )
