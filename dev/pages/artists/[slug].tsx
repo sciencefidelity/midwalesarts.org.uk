@@ -22,7 +22,7 @@ import Layout from "components/layout"
 import Modal from "components/modal"
 // import utilStyles from "@/styles/utils.module.scss"
 
-const Artist = ({ data }) => {
+const ArtistPage = ({ data }) => {
   const { locale } = useRouter()
   const [bio, setBio] = useState(true)
   const [gallery, setGallery] = useState(false)
@@ -158,7 +158,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await sanityClient.fetch(artistPathQuery)
   return {
     paths: paths.map((slug: string[]) => ({ params: { slug } })),
-    fallback: true
+    fallback: false
   }
 }
 
@@ -172,4 +172,4 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   }
 }
 
-export default Artist
+export default ArtistPage

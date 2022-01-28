@@ -20,7 +20,7 @@ import Layout from "components/layout"
 import Sidebar from "components/sidebar"
 // import utilStyles from "@/styles/utils.module.scss"
 
-const Post = ({ data }) => {
+const PostPage = ({ data }) => {
   const { locale } = useRouter()
   return (
     <Layout
@@ -69,7 +69,7 @@ const Post = ({ data }) => {
               {data ? (
                 <p className="prevLink">
                   <Link href="#">
-                    <a>{locale === "cy" ? "&lt; Post blaenorol" : "&lt; Previous post"}/a>
+                    <a>{locale === "cy" ? "&lt; Post blaenorol" : "&lt; Previous post"}</a>
                   </Link>
                 </p>
               ) : (
@@ -106,7 +106,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await sanityClient.fetch(postPathQuery)
   return {
     paths: paths.map((slug: string[]) => ({ params: { slug } })),
-    fallback: true
+    fallback: false
   }
 }
 
@@ -120,4 +120,4 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   }
 }
 
-export default Post
+export default PostPage

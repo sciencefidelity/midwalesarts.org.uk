@@ -20,7 +20,7 @@ import VideoEmbed from "components/videoEmbed"
 import Sidebar from "components/sidebar"
 // import utilStyles from "styles/utils.module.scss"
 
-const Video = ({ data }) => {
+const VideoPage = ({ data }) => {
   const { locale } = useRouter()
   return (
     <Layout
@@ -85,7 +85,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await sanityClient.fetch(videoPathQuery)
   return {
     paths: paths.map((slug: string[]) => ({ params: { slug } })),
-    fallback: true
+    fallback: false
   }
 }
 
@@ -99,4 +99,4 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   }
 }
 
-export default Video
+export default VideoPage

@@ -22,7 +22,7 @@ import Videos from "components/videos"
 import Visit from "components/visit"
 // import utilStyles from "styles/utils.module.scss"
 
-const Page = ({ data }) => {
+const PagesTemplage = ({ data }) => {
   const exhibitionHero = data.currentExhibitions[0] !== undefined ?
     data.currentExhibitions[0].mainImage :
       data.futureExhibitions[0] !== undefined ?
@@ -103,7 +103,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await sanityClient.fetch(pagePathQuery)
   return {
     paths: paths.map((slug: string[]) => ({ params: { slug } })),
-    fallback: true
+    fallback: false
   }
 }
 
@@ -117,4 +117,4 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   }
 }
 
-export default Page
+export default PagesTemplage

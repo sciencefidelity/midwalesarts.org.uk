@@ -22,7 +22,7 @@ import Layout from "components/layout"
 import Modal from "components/modal"
 // import utilStyles from "@/styles/utils.module.scss"
 
-const Post = ({ data }) => {
+const PostPage = ({ data }) => {
   const { locale } = useRouter()
   const exhibition = data.exhibition
   const artworks = data.exhibition.artworks
@@ -199,7 +199,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await sanityClient.fetch(exhibitionPathQuery)
   return {
     paths: paths.map((slug: string[]) => ({ params: { slug } })),
-    fallback: true
+    fallback: false
   }
 }
 
@@ -213,4 +213,4 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   }
 }
 
-export default Post
+export default PostPage
