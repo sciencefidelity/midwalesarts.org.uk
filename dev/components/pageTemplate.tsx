@@ -1,10 +1,15 @@
 import { useRouter } from "next/router"
-import sanityClient from "@/lib/sanityClient"
+import sanityClient from "lib/sanityClient"
 import BlockContent from "@sanity/block-content-to-react"
-import type { Page } from "@/generated/schema"
-// import Sidebar from "@/components/sidebar"
+import type { Event, Exhibition, Page, Post } from "generated/schema"
+import Sidebar from "components/sidebar"
 
-const AboutPage = ({ page }: { page: Page }) => {
+const PageTemplate = ({ page, exhibitions, events, posts }: {
+  page: Page
+  events: Event[]
+  exhibitions: Exhibition[]
+  posts: Post[]
+}) => {
   const { locale } = useRouter()
   return (
     <section>
@@ -23,9 +28,13 @@ const AboutPage = ({ page }: { page: Page }) => {
             />
           )}
         </div>
-{/*         <Sidebar /> */}
+        <Sidebar
+          events={events}
+          exhibitions={exhibitions}
+          posts={posts}
+        />
       </div>
     </section>
   )
 }
-export default AboutPage
+export default PageTemplate

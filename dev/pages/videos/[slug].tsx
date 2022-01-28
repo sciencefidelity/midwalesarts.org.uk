@@ -1,92 +1,100 @@
+/**
+ * Video component (dynamic).
+ *
+ * @remarks
+ * Generates all pages in the subdirectory `/videos`.
+ *
+ * @param data - all props fetched with `videoPageQuery` in `lib/queries.ts`.
+ * @param slug - all props fetched with `videoPathQuery` in `lib/queries.ts`.
+ */
 import { GetStaticProps, GetStaticPaths } from "next"
 import Head from "next/head"
-import Image from "next/image"
-import {useRouter} from "next/router"
-import groq from "groq"
-import sanityClient from "@/lib/sanityClient"
-import type { Post } from "@/generated/schema"
+import Link from "next/link"
+import { useRouter } from "next/router"
 import BlockContent from "@sanity/block-content-to-react"
-import { dateOptions, hexDataURL, urlFor } from "@/lib/utils"
-import Layout from "@/components/layout"
-import utilStyles from "@/styles/utils.module.scss"
+import sanityClient from "lib/sanityClient"
+// import type { Post } from "generated/schema"
+import { videoPageQuery, videoPathQuery } from "lib/queries"
+import Layout from "components/layout"
+import VideoEmbed from "components/videoEmbed"
+import Sidebar from "components/sidebar"
+// import utilStyles from "styles/utils.module.scss"
 
-const postQuery = groq`
-  *[_type == "post" && slug.en.current == $slug][0] {
-    body,
-    "dominantColor": image.asset->metadata.palette.dominant.background,
-    image,
-    publishedAt,
-    title
-  }
-`
-
-interface PlaceholderImage extends Post {
-  readonly dominantColor: string
-}
-
-const Post = ({ post }) => {
+const Video = ({ data }) => {
   const { locale } = useRouter()
-  const {
-    body,
-    dominantColor,
-    image,
-    publishedAt,
-    title
-  } = post as PlaceholderImage
   return (
-    <Layout>
+    <Layout
+      heroImage={data.video.mainImage}
+      menu={data.menu}
+      site={data.site}
+      socialLinks={data.socialLinks}
+    >
       <Head>
-        <title>{locale === "cy" && title.cy ? title.cy : title.en}</title>
+        <title>
+          {locale == "cy" && data.video.title.cy ?
+            data.video.title.cy :
+            data.video.title.en
+          }
+        </title>
       </Head>
-      <article>
-        <div>
-          <Image
-            src={urlFor(image)
-              .width(612)
-              .height(255)
-              .auto("format")
-              .quality(75)
-              .url()}
-            alt="Picture"
-            width={612}
-            height={255}
-            priority
-            placeholder="blur"
-            blurDataURL={hexDataURL(dominantColor)}
+      <section>
+        <div className="sidebarContainer">
+          <div className="portableContainer">
+            <h1>{locale === "cy" ? "Fideo" : "Video"}</h1>
+            <p className="subTitle">
+              {locale == "cy" && data.video.title.cy ?
+                data.video.title.cy :
+                data.video.title.en
+              }.
+            </p>
+            {data.video.videoLink &&
+              <VideoEmbed videoId={data.video.videoLink} />
+            }
+            {data.video.body.en &&
+              <BlockContent
+                blocks={
+                  locale === "cy" && data.video.body.cy ?
+                  data.video.body.cy :
+                  data.video.body.en
+                }
+                {...sanityClient.config()}
+              />
+            }
+            <div>
+              <p className="backLink">
+                <Link href="/videos">
+                  {locale === "cy" ? "Yn ôl i Fideos" : "Back to Videos"}
+                </Link>
+              </p>
+            </div>
+          </div>
+          <Sidebar
+            events={data.sidebar.events}
+            exhibitions={data.sidebar.exhibitions}
+            posts={data.sidebar.posts}
           />
         </div>
-        <h1 className={utilStyles.headingXl}>
-          {locale === "cy" && title.cy ? title.cy : title.en}
-        </h1>
-        <div className={utilStyles.lightText}>
-          {new Date(publishedAt).toLocaleDateString(locale, dateOptions)}
-        </div>
-        <BlockContent
-          blocks={locale === "cy" && body.cy ? body.cy : body.en}
-          {...sanityClient.config()}
-        />
-      </article>
+      </section>
     </Layout>
   )
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const query = groq`*[_type == "post" && defined(slug)].slug.en.current`
-  const paths: string[] = await sanityClient.fetch(query)
+  const paths = await sanityClient.fetch(videoPathQuery)
   return {
-    paths: paths.map(slug => ({ params: { slug } })),
+    paths: paths.map((slug: string[]) => ({ params: { slug } })),
     fallback: true
   }
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug = "" } = params
-  const post: Post = await sanityClient.fetch(postQuery, { slug })
+  const data = await sanityClient.fetch(videoPageQuery, { slug })
   return {
     props: {
-      post
+      data
     }
   }
 }
 
-export default Post
+export default Video

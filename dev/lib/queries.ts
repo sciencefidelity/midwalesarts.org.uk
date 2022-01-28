@@ -81,6 +81,20 @@ export const pageQuery = groq`{
       _id, link, site
     }
   },
+  "sidebar": {
+    "posts": *[_type == "post"]
+    | order(publishedAt desc)[0..3]{
+      _id, slug, title
+    },
+    "events": *[_type == "event" && recurring != true && dateTime(now()) < dateTime(date)]
+    | order(date asc)[0..3]{
+      _id, slug, title
+    },
+    "exhibitions": *[_type == "exhibition" && dateTime(now()) < dateTime(dateStart)]
+    | order(dateStart asc)[0..3]{
+      _id, dateStart, dateEnd, slug, title
+    }
+  },
   "artists": *[_type == "artist" && !(_id in path("drafts.**"))] | order(title asc)[]{
     _id,
     title,
@@ -179,7 +193,7 @@ export const pageQuery = groq`{
 }`
 
 export const artistPageQuery = groq`{
-  "artist": *[_type == "artist" && slug.current == $slug]{
+  "artist": *[_type == "artist" && slug.current == $slug][0]{
     body,
     disciplines[]->{
       _id,
@@ -223,7 +237,7 @@ export const artistPageQuery = groq`{
 }`
 
 export const eventPageQuery = groq`{
-  "event": *[_type == "event" && slug.en.current == $slug]{
+  "event": *[_type == "event" && slug.en.current == $slug][0]{
     body,
     briteLink,
     date,
@@ -253,11 +267,25 @@ export const eventPageQuery = groq`{
     socialLinks[]->{
       _id, link, site
     }
+  },
+  "sidebar": {
+    "posts": *[_type == "post"]
+    | order(publishedAt desc)[0..3]{
+      _id, slug, title
+    },
+    "events": *[_type == "event" && recurring != true && dateTime(now()) < dateTime(date)]
+    | order(date asc)[0..3]{
+      _id, slug, title
+    },
+    "exhibitions": *[_type == "exhibition" && dateTime(now()) < dateTime(dateStart)]
+    | order(dateStart asc)[0..3]{
+      _id, dateStart, dateEnd, slug, title
+    }
   }
 }`
 
 export const exhibitionPageQuery = groq`{
-  "exhibition": *[_type == "exhibition" && slug.en.current == $slug]{
+  "exhibition": *[_type == "exhibition" && slug.en.current == $slug][0]{
     body,
     dateEnd,
     dateStart,
@@ -301,7 +329,7 @@ export const exhibitionPageQuery = groq`{
 }`
 
 export const postPageQuery = groq`{
-  "posts": *[_type == "post" && slug.en.current == $slug]{
+  "post": *[_type == "post" && slug.en.current == $slug][0]{
     body,
     categories[]->{title},
     image,
@@ -330,14 +358,29 @@ export const postPageQuery = groq`{
     socialLinks[]->{
       _id, link, site
     }
+  },
+  "sidebar": {
+    "posts": *[_type == "post"]
+    | order(publishedAt desc)[0..3]{
+      _id, slug, title
+    },
+    "events": *[_type == "event" && recurring != true && dateTime(now()) < dateTime(date)]
+    | order(date asc)[0..3]{
+      _id, slug, title
+    },
+    "exhibitions": *[_type == "exhibition" && dateTime(now()) < dateTime(dateStart)]
+    | order(dateStart asc)[0..3]{
+      _id, dateStart, dateEnd, slug, title
+    }
   }
 }`
 
 export const videoPageQuery = groq`{
-  "video": *[_type == "video" && slug.en.current == $slug]{
+  "video": *[_type == "video" && slug.en.current == $slug][0]{
     body,
     mainImage,
-    title
+    title,
+    videoLink
   },
   "site": *[_type == "site"][0]{
     openingHeading,
@@ -360,6 +403,20 @@ export const videoPageQuery = groq`{
   "socialLinks": *[_type == "site"][0]{
     socialLinks[]->{
       _id, link, site
+    }
+  },
+  "sidebar": {
+    "posts": *[_type == "post"]
+    | order(publishedAt desc)[0..3]{
+      _id, slug, title
+    },
+    "events": *[_type == "event" && recurring != true && dateTime(now()) < dateTime(date)]
+    | order(date asc)[0..3]{
+      _id, slug, title
+    },
+    "exhibitions": *[_type == "exhibition" && dateTime(now()) < dateTime(dateStart)]
+    | order(dateStart asc)[0..3]{
+      _id, dateStart, dateEnd, slug, title
     }
   }
 }`

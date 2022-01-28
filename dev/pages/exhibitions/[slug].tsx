@@ -1,9 +1,18 @@
+/**
+ * Exhibition component (dynamic).
+ *
+ * @remarks
+ * Generates all pages in the subdirectory `/exhibitions`.
+ *
+ * @param data - all props fetched with `exhibitionPageQuery` in `lib/queries.ts`.
+ * @param slug - all props fetched with `exhibitionPathQuery` in `lib/queries.ts`.
+ */
 import { useState } from "react"
 import { GetStaticProps, GetStaticPaths } from "next"
 import Head from "next/head"
 import Image from "next/image"
 import Link from "next/link"
-import {useRouter} from "next/router"
+import { useRouter } from "next/router"
 import sanityClient from "lib/sanityClient"
 import BlockContent from "@sanity/block-content-to-react"
 import { dateOptionsShort, hexDataURL, urlFor } from "lib/utils"

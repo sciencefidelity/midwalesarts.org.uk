@@ -1,3 +1,12 @@
+/**
+ * Event component (dynamic).
+ *
+ * @remarks
+ * Generates all pages in the subdirectory `/events`.
+ *
+ * @param data - all props fetched with `eventPageQuery` in `lib/queries.ts`.
+ * @param slug - all props fetched with `eventPathQuery` in `lib/queries.ts`.
+ */
 import { GetStaticProps, GetStaticPaths } from "next"
 import Head from "next/head"
 import Link from "next/link"
@@ -8,9 +17,10 @@ import { dateOptions } from "lib/utils"
 // import type { Post } from "generated/schema"
 import { eventPathQuery, eventPageQuery } from "lib/queries"
 import Layout from "components/layout"
+import Sidebar from "components/sidebar"
 // import utilStyles from "@/styles/utils.module.scss"
 
-const Post = ({ data }) => {
+const Event = ({ data }) => {
   const { locale } = useRouter()
   return (
     <Layout
@@ -71,7 +81,11 @@ const Post = ({ data }) => {
               </p>
             </div>
           </div>
-{/*           <Sidebar /> */}
+          <Sidebar
+            events={data.sidebar.events}
+            exhibitions={data.sidebar.exhibitions}
+            posts={data.sidebar.posts}
+          />
         </div>
       </section>
     </Layout>
@@ -96,4 +110,4 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   }
 }
 
-export default Post
+export default Event

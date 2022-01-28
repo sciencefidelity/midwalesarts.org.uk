@@ -1,10 +1,19 @@
+/**
+ * Page component (dynamic).
+ *
+ * @remarks
+ * Generates all top level pages (not inculding index).
+ *
+ * @param data - all props fetched with `pageQuery` in `lib/queries.ts`.
+ * @param slug - all props fetched with `pathQuery` in `lib/queries.ts`.
+ */
 import { GetStaticProps, GetStaticPaths } from "next"
 import Head from "next/head"
 import sanityClient from "lib/sanityClient"
-import type { Page } from "generated/schema"
+// import type { Page } from "generated/schema"
 import { pagePathQuery, pageQuery } from "lib/queries"
 import Layout from "components/layout"
-import About from "components/about"
+import PageTemplate from "components/pageTemplate"
 import Artists from "components/artists"
 import Events from "components/events"
 import Exhibitions from "components/exhibitions"
@@ -39,7 +48,12 @@ const Page = ({ data }) => {
       </Head>
       {
         data.page.template === "page" &&
-        <About page={data.page} />
+        <PageTemplate
+          page={data.page}
+          events={data.sidebar.events}
+          exhibitions={data.sidebar.exhibitions}
+          posts={data.sidebar.posts}
+        />
       }
       {
         data.page.template === "visit-us" &&

@@ -1,3 +1,12 @@
+/**
+ * Artist component (dynamic).
+ *
+ * @remarks
+ * Generates all pages in the subdirectory `/artists`.
+ *
+ * @param data - all props fetched with `artistPageQuery` in `lib/queries.ts`.
+ * @param slug - all props fetched with `artistPathQuery` in `lib/queries.ts`.
+ */
 import { useState } from "react"
 import { GetStaticProps, GetStaticPaths } from "next"
 import Head from "next/head"
