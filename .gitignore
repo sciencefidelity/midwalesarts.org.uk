@@ -5,6 +5,7 @@ node_modules
 !.env.template
 .cache
 web/public
+beta/public
 dist
 .DS_Store
 *.bak
