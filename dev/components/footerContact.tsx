@@ -15,12 +15,12 @@ const FooterContact = ({ site }: { site: Site }) => {
       <p>
         {locale === "cy" && site.siteName.cy ? site.siteName.cy : site.siteName.en}
         <br />
-        {locale === "cy" && site.addressLine1.cy ? site.addressLine1.cy : site.addressLine1.en}
+        {site.addressLine1}
         <br />
-        {locale === "cy" && site.addressLine2.cy ? site.addressLine2.cy : site.addressLine2.en}
+        {site.addressLine2}
       </p>
       <p>
-        {site.telephone.en}
+        {site.telephone}
         <br />
         <a href={`mailto:${site.email}`}>{site.email}</a>
       </p>

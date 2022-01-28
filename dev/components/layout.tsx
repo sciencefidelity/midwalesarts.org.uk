@@ -18,11 +18,11 @@ import styles from "@/components/layout.module.scss"
 const Layout = ({ children, heroImage, menu, site, socialLinks }: {
   children: ReactNode
   heroImage?: {
-    _type: "Image"
+    _type: "image"
     asset: SanityReference<SanityImageAsset>
     crop?: SanityImageCrop
     hotspot?: SanityImageHotspot
-    caption: string
+    caption?: string
   }
   menu?: Menu[]
   site?: Site

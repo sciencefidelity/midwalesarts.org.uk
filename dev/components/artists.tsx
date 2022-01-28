@@ -24,7 +24,7 @@ const ArtistsPage = ({ page, artists }: {
       <div className="imageGrid">
         {!!artists &&
           artists.map(
-            artist =>
+            (artist: any) =>
               !!artist && (
                 <div key={artist._id}>
                   <Link

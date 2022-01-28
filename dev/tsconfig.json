@@ -15,7 +15,7 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "typeRoots": ["node_modules/@types", "types"],
-    "types": ["@sanity/block-content-to-react", "node", "react"],
+    "types": ["node", "react"],
     "baseUrl": ".",
     "paths": {
       "@/components/*": ["components/*"],

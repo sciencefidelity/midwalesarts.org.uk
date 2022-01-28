@@ -60,13 +60,13 @@ const Artist = ({ data }) => {
     }
     setImageToShow(currentIndex)
   }
-  const artist = data.artist[0]
-  const artworks = data.artist[0].artworks
+  const artist = data.artist
+  const artworks = data.artist.artworks
   const modalImage = artworks[imageToShow]
 
   return (
     <Layout
-      heroImage={data.artist[0].mainImage}
+      heroImage={data.artist.mainImage}
       menu={data.menu}
       site={data.site}
       socialLinks={data.socialLinks}

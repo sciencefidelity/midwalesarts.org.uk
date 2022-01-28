@@ -24,7 +24,7 @@ const News = ({ page, posts }: {
       <div className="imageGrid">
         {!!posts &&
           posts.map(
-            (post: any) =>
+            post =>
               !!post && (
                 <div key={post._id} style={{ margin: 0 }}>
                   <Link href={`/news/${post.slug.en.current}`}>

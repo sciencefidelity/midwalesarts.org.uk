@@ -899,7 +899,7 @@ export type BlockContent = Array<
 >;
 
 export type CaptionImage = {
-  _type: "captionImage";
+  _type: "image";
   asset: SanityReference<SanityImageAsset>;
   crop?: SanityImageCrop;
   hotspot?: SanityImageHotspot;

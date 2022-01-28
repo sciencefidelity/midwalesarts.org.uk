@@ -15,7 +15,7 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 import sanityClient from "lib/sanityClient"
 import BlockContent from "@sanity/block-content-to-react"
-import { dateOptionsShort, hexDataURL, urlFor } from "lib/utils"
+import { dateOptionsShort, urlFor } from "lib/utils"
 // import type { Post } from "generated/schema"
 import { exhibitionPathQuery, exhibitionPageQuery } from "lib/queries"
 import Layout from "components/layout"
@@ -24,9 +24,8 @@ import Modal from "components/modal"
 
 const Post = ({ data }) => {
   const { locale } = useRouter()
-  const exhibition = data.exhibition[0]
-  const artworks = data.exhibition[0].artworks
-  console.log(data)
+  const exhibition = data.exhibition
+  const artworks = data.exhibition.artworks
   const [info, setInfo] = useState(artworks.length > 0)
   const [gallery, setGallery] = useState(artworks.length <= 0)
   const [modal, setModal] = useState(true)

@@ -14,26 +14,48 @@ import { useRouter } from "next/router"
 import BlockContent from "@sanity/block-content-to-react"
 import sanityClient from "lib/sanityClient"
 import { dateOptions } from "lib/utils"
-// import type { Post } from "generated/schema"
+import type { Event, Site, Menu, Social, Post, Exhibition } from "generated/schema"
 import { eventPathQuery, eventPageQuery } from "lib/queries"
 import Layout from "components/layout"
 import Sidebar from "components/sidebar"
 // import utilStyles from "@/styles/utils.module.scss"
 
-const Event = ({ data }) => {
+interface Data {
+  event: Event
+  site: Site
+  menu: Menu[]
+  socialLinks: {
+    socialLinks: Social[]
+  }
+  sidebar: {
+    posts: Post[]
+    events: Event[]
+    exhibitions: Exhibition[]
+  }
+}
+
+const Event = ({ data }: {data: Data}) => {
+  const {
+    event, site, menu, socialLinks, sidebar
+  } = data
   const { locale } = useRouter()
   return (
     <Layout
-      heroImage={data.event.mainImage}
-      menu={data.menu}
-      site={data.site}
-      socialLinks={data.socialLinks}
+      heroImage={event && event.mainImage}
+      menu={menu}
+      site={site}
+      socialLinks={socialLinks}
     >
       <Head>
         <title>
-          {locale == "cy" && data.event.title.cy ?
-            data.event.title.cy :
-            data.event.title.en
+          {locale == "cy" && event.title.cy ?
+            event.title.cy :
+            event.title.en
+          }
+          {" | "}
+          {locale == "cy" && site.siteName.cy ?
+            site.siteName.cy :
+            site.siteName.en
           }
         </title>
       </Head>
@@ -41,34 +63,34 @@ const Event = ({ data }) => {
         <div className="sidebarContainer">
           <div className="portableContainer">
             <h1>
-              {locale == "cy" && data.event.title.cy ?
-                data.event.title.cy :
-                data.event.title.en
+              {locale == "cy" && event.title.cy ?
+                event.title.cy :
+                event.title.en
               }
             </h1>
             <p className="SubTitle">
-              {new Date(data.event.date).toLocaleDateString(locale, dateOptions)}
+              {new Date(event.date).toLocaleDateString(locale, dateOptions)}
             </p>
-            {data.event.briteLink && (
+            {event.briteLink && (
               <p>
-                <a href={`${data.event.briteLink}`} target="blank" rel="noreferrer">
+                <a href={`${event.briteLink}`} target="blank" rel="noreferrer">
                   {locale === "cy" ? "Archebwch docynnau" : "Book tickets"}
                 </a>
               </p>
             )}
-            {data.event.body.en &&
+            {event.body &&
               <BlockContent
                 blocks={
-                  locale === "cy" && data.event.body.cy ?
-                  data.event.body.cy :
-                  data.event.body.en
+                  locale === "cy" && event.body.cy ?
+                  event.body.cy :
+                  event.body.en
                 }
                 {...sanityClient.config()}
               />
             }
-            {data.event.briteLink && (
+            {event.briteLink && (
               <p>
-                <a href={`${data.event.briteLink}`} target="blank" rel="noreferrer">
+                <a href={`${event.briteLink}`} target="blank" rel="noreferrer">
                   {locale === "cy" ? "Archebwch docynnau" : "Book tickets"}
                 </a>
               </p>
@@ -82,9 +104,9 @@ const Event = ({ data }) => {
             </div>
           </div>
           <Sidebar
-            events={data.sidebar.events}
-            exhibitions={data.sidebar.exhibitions}
-            posts={data.sidebar.posts}
+            events={sidebar.events}
+            exhibitions={sidebar.exhibitions}
+            posts={sidebar.posts}
           />
         </div>
       </section>
@@ -101,8 +123,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const { slug = "" } = params
-  const data = await sanityClient.fetch(eventPageQuery, { slug })
+  // const { slug } = params
+  const data = await sanityClient.fetch(eventPageQuery, { slug: params.slug })
   return {
     props: {
       data

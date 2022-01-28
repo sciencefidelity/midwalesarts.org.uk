@@ -15,13 +15,13 @@ import Navigation from "@/components/navigation"
 
 const Header = ({ heroImage, menu }: {
   heroImage: {
-    _type: "Image"
+    _type: "image"
     asset: SanityReference<SanityImageAsset>
     crop?: SanityImageCrop
     hotspot?: SanityImageHotspot
-    caption: string
+    caption?: string
   }
-  menu: Menu[]
+  menu: any
 }) => {
   const { locale } = useRouter()
   return (

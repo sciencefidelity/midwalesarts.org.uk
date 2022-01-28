@@ -1,7 +1,8 @@
 import groq from "groq"
+// const QUERY_OMIT_DRAFTS = "!(_id in path('drafts.**'))"
 
 export const frontPageQuery = groq`{
-  "site": *[_type == "site"][0]{
+  "site": *[_type == "site" && !(_id in path('drafts.**'))][0]{
     openingHeading,
     openingTimes,
     addressLine1,
@@ -12,7 +13,7 @@ export const frontPageQuery = groq`{
     signUp,
     signUpPlaceholder
   },
-  "frontPage": *[_type == "frontPage"][0]{
+  "frontPage": *[_type == "frontPage" && !(_id in path('drafts.**'))][0]{
     body,
     cta,
     ctaLink,
@@ -34,14 +35,14 @@ export const frontPageQuery = groq`{
       "sectionSubColor": subImage.asset->metadata.palette.dominant.background
     }
   },
-  "menu": *[_type == "menu"][0]{
+  "menu": *[_type == "menu" && !(_id in path('drafts.**'))][0]{
     items[]->{
       _id,
       slug,
       menuTitle
     }
   },
-  "socialLinks": *[_type == "site"][0]{
+  "socialLinks": *[_type == "site" && !(_id in path('drafts.**'))][0]{
     socialLinks[]->{
       _id, link, site
     }
@@ -49,7 +50,7 @@ export const frontPageQuery = groq`{
 }`
 
 export const pageQuery = groq`{
-  "site": *[_type == "site"][0]{
+  "site": *[_type == "site" && !(_id in path('drafts.**'))][0]{
     openingHeading,
     openingTimes,
     addressLine1,
@@ -60,7 +61,7 @@ export const pageQuery = groq`{
     signUp,
     signUpPlaceholder
   },
-  "page": *[_type == "page" && slug.en.current == $slug][0]{
+  "page": *[_type == "page" && slug.en.current == $slug && !(_id in path('drafts.**'))][0]{
     "body": body{en, cy},
     "heroImage": mainImage,
     "heroColor": mainImage.asset->metadata.palette.dominant.background,
@@ -69,33 +70,33 @@ export const pageQuery = groq`{
     template[0],
     "title": title{en, cy}
   },
-  "menu": *[_type == "menu"][0]{
+  "menu": *[_type == "menu" && !(_id in path('drafts.**'))][0]{
     items[]->{
       _id,
       slug,
       menuTitle
     }
   },
-  "socialLinks": *[_type == "site"][0]{
+  "socialLinks": *[_type == "site" && !(_id in path('drafts.**'))][0]{
     socialLinks[]->{
       _id, link, site
     }
   },
   "sidebar": {
-    "posts": *[_type == "post"]
+    "posts": *[_type == "post" && !(_id in path('drafts.**'))]
     | order(publishedAt desc)[0..3]{
       _id, slug, title
     },
-    "events": *[_type == "event" && recurring != true && dateTime(now()) < dateTime(date)]
+    "events": *[_type == "event" && recurring != true && dateTime(now()) < dateTime(date) && !(_id in path('drafts.**'))]
     | order(date asc)[0..3]{
       _id, slug, title
     },
-    "exhibitions": *[_type == "exhibition" && dateTime(now()) < dateTime(dateStart)]
+    "exhibitions": *[_type == "exhibition" && dateTime(now()) < dateTime(dateStart) && !(_id in path('drafts.**'))]
     | order(dateStart asc)[0..3]{
       _id, dateStart, dateEnd, slug, title
     }
   },
-  "artists": *[_type == "artist" && !(_id in path("drafts.**"))] | order(title asc)[]{
+  "artists": *[_type == "artist" && !(_id in path("drafts.**")) && !(_id in path('drafts.**'))] | order(title asc)[]{
     _id,
     title,
     slug,
@@ -106,18 +107,18 @@ export const pageQuery = groq`{
       title
     }
   },
-  "heroArtist": *[_type == "artist" && !(_id in path("drafts.**"))]{
+  "heroArtist": *[_type == "artist" && !(_id in path("drafts.**")) && !(_id in path('drafts.**'))]{
     ...,
     "random": (dateTime(now()) - dateTime(_createdAt)) % 199
   } | order(random desc)[0],
-  "spaces": *[_type == "space"]{
+  "spaces": *[_type == "space" && !(_id in path('drafts.**'))]{
     _id,
     body,
     mainImage,
     title,
     slug
   },
-  "pastEvents": *[_type == "event" && recurring != true && dateTime(now()) > dateTime(date)] | order(date desc)[]{
+  "pastEvents": *[_type == "event" && recurring != true && dateTime(now()) > dateTime(date) && !(_id in path('drafts.**'))] | order(date desc)[]{
     _id,
     body,
     briteLink,
@@ -126,7 +127,7 @@ export const pageQuery = groq`{
     slug,
     title
   },
-  "recurringEvents": *[_type == "event" && recurring == true][]{
+  "recurringEvents": *[_type == "event" && recurring == true && !(_id in path('drafts.**'))][]{
     _id,
     body,
     briteLink,
@@ -135,7 +136,7 @@ export const pageQuery = groq`{
     slug,
     title
   },
-  "upcomingEvents": *[_type == "event" && recurring != true && dateTime(now()) < dateTime(date)] | order(date asc)[]{
+  "upcomingEvents": *[_type == "event" && recurring != true && dateTime(now()) < dateTime(date) && !(_id in path('drafts.**'))] | order(date asc)[]{
     _id,
     body,
     briteLink,
@@ -144,7 +145,7 @@ export const pageQuery = groq`{
     slug,
     title
   },
-  "currentExhibitions": *[_type == "exhibition" && dateTime(now()) >= dateTime(dateStart) && dateTime(now()) <= dateTime(dateEnd)]
+  "currentExhibitions": *[_type == "exhibition" && dateTime(now()) >= dateTime(dateStart) && dateTime(now()) <= dateTime(dateEnd) && !(_id in path('drafts.**'))]
     | order(dateStart asc){
     _id,
     body,
@@ -154,7 +155,7 @@ export const pageQuery = groq`{
     slug,
     title
   },
-  "pastExhibitions": *[_type == "exhibition" && dateTime(now()) > dateTime(dateEnd)]
+  "pastExhibitions": *[_type == "exhibition" && dateTime(now()) > dateTime(dateEnd) && !(_id in path('drafts.**'))]
     | order(dateStart desc){
     _id,
     body,
@@ -164,7 +165,7 @@ export const pageQuery = groq`{
     slug,
     title
   },
-  "futureExhibitions": *[_type == "exhibition" && dateTime(now()) < dateTime(dateStart)]
+  "futureExhibitions": *[_type == "exhibition" && dateTime(now()) < dateTime(dateStart) && !(_id in path('drafts.**'))]
     | order(dateStart desc){
     _id,
     body,
@@ -174,7 +175,7 @@ export const pageQuery = groq`{
     slug,
     title
   },
-  "posts": *[_type == "post"] | order(publishedAt desc){
+  "posts": *[_type == "post" && !(_id in path('drafts.**'))] | order(publishedAt desc){
     _id,
     body,
     categories[]->{title},
@@ -183,7 +184,7 @@ export const pageQuery = groq`{
     slug,
     title
   },
-  "videos": *[_type == "video"] | order(publishDate desc){
+  "videos": *[_type == "video" && !(_id in path('drafts.**'))] | order(publishDate desc){
     _id,
     mainImage,
     publishDate,
@@ -193,7 +194,7 @@ export const pageQuery = groq`{
 }`
 
 export const artistPageQuery = groq`{
-  "artist": *[_type == "artist" && slug.current == $slug][0]{
+  "artist": *[_type == "artist" && slug.current == $slug && !(_id in path('drafts.**'))][0]{
     body,
     disciplines[]->{
       _id,
@@ -201,7 +202,7 @@ export const artistPageQuery = groq`{
     },
     mainImage,
     title,
-    "artworks": *[_type == "artwork" && artist == ^.title]{
+    "artworks": *[_type == "artwork" && artist == ^.title && !(_id in path('drafts.**'))]{
       artist,
       date,
       dimensions,
@@ -211,7 +212,7 @@ export const artistPageQuery = groq`{
       title
     }
   },
-  "site": *[_type == "site"][0]{
+  "site": *[_type == "site" && !(_id in path('drafts.**'))][0]{
     openingHeading,
     openingTimes,
     addressLine1,
@@ -222,14 +223,14 @@ export const artistPageQuery = groq`{
     signUp,
     signUpPlaceholder
   },
-  "menu": *[_type == "menu"][0]{
+  "menu": *[_type == "menu" && !(_id in path('drafts.**'))][0]{
     items[]->{
       _id,
       slug,
       menuTitle
     }
   },
-  "socialLinks": *[_type == "site"][0]{
+  "socialLinks": *[_type == "site" && !(_id in path('drafts.**'))][0]{
     socialLinks[]->{
       _id, link, site
     }
@@ -237,7 +238,7 @@ export const artistPageQuery = groq`{
 }`
 
 export const eventPageQuery = groq`{
-  "event": *[_type == "event" && slug.en.current == $slug][0]{
+  "event": *[_type == "event" && slug.en.current == $slug && !(_id in path('drafts.**'))][0]{
     body,
     briteLink,
     date,
@@ -245,7 +246,7 @@ export const eventPageQuery = groq`{
     slug,
     title
   },
-  "site": *[_type == "site"][0]{
+  "site": *[_type == "site" && !(_id in path('drafts.**'))][0]{
     openingHeading,
     openingTimes,
     addressLine1,
@@ -256,28 +257,28 @@ export const eventPageQuery = groq`{
     signUp,
     signUpPlaceholder
   },
-  "menu": *[_type == "menu"][0]{
+  "menu": *[_type == "menu" && !(_id in path('drafts.**'))][0]{
     items[]->{
       _id,
       slug,
       menuTitle
     }
   },
-  "socialLinks": *[_type == "site"][0]{
+  "socialLinks": *[_type == "site" && !(_id in path('drafts.**'))][0]{
     socialLinks[]->{
       _id, link, site
     }
   },
   "sidebar": {
-    "posts": *[_type == "post"]
+    "posts": *[_type == "post" && !(_id in path('drafts.**'))]
     | order(publishedAt desc)[0..3]{
       _id, slug, title
     },
-    "events": *[_type == "event" && recurring != true && dateTime(now()) < dateTime(date)]
+    "events": *[_type == "event" && recurring != true && dateTime(now()) < dateTime(date) && !(_id in path('drafts.**'))]
     | order(date asc)[0..3]{
       _id, slug, title
     },
-    "exhibitions": *[_type == "exhibition" && dateTime(now()) < dateTime(dateStart)]
+    "exhibitions": *[_type == "exhibition" && dateTime(now()) < dateTime(dateStart) && !(_id in path('drafts.**'))]
     | order(dateStart asc)[0..3]{
       _id, dateStart, dateEnd, slug, title
     }
@@ -285,14 +286,14 @@ export const eventPageQuery = groq`{
 }`
 
 export const exhibitionPageQuery = groq`{
-  "exhibition": *[_type == "exhibition" && slug.en.current == $slug][0]{
+  "exhibition": *[_type == "exhibition" && slug.en.current == $slug && !(_id in path('drafts.**'))][0]{
     body,
     dateEnd,
     dateStart,
     mainImage,
     slug,
     title,
-    "artworks": *[_type == "artwork" && references(^._id)] | order(artist asc){
+    "artworks": *[_type == "artwork" && references(^._id) && !(_id in path('drafts.**'))] | order(artist asc){
       _id,
       artist,
       date,
@@ -303,7 +304,7 @@ export const exhibitionPageQuery = groq`{
       title
     }
   },
-  "site": *[_type == "site"][0]{
+  "site": *[_type == "site" && !(_id in path('drafts.**'))][0]{
     openingHeading,
     openingTimes,
     addressLine1,
@@ -314,14 +315,14 @@ export const exhibitionPageQuery = groq`{
     signUp,
     signUpPlaceholder
   },
-  "menu": *[_type == "menu"][0]{
+  "menu": *[_type == "menu" && !(_id in path('drafts.**'))][0]{
     items[]->{
       _id,
       slug,
       menuTitle
     }
   },
-  "socialLinks": *[_type == "site"][0]{
+  "socialLinks": *[_type == "site" && !(_id in path('drafts.**'))][0]{
     socialLinks[]->{
       _id, link, site
     }
@@ -329,14 +330,14 @@ export const exhibitionPageQuery = groq`{
 }`
 
 export const postPageQuery = groq`{
-  "post": *[_type == "post" && slug.en.current == $slug][0]{
+  "post": *[_type == "post" && slug.en.current == $slug && !(_id in path('drafts.**'))][0]{
     body,
     categories[]->{title},
     image,
     publishedAt,
     title
   },
-  "site": *[_type == "site"][0]{
+  "site": *[_type == "site" && !(_id in path('drafts.**'))][0]{
     openingHeading,
     openingTimes,
     addressLine1,
@@ -347,28 +348,28 @@ export const postPageQuery = groq`{
     signUp,
     signUpPlaceholder
   },
-  "menu": *[_type == "menu"][0]{
+  "menu": *[_type == "menu" && !(_id in path('drafts.**'))][0]{
     items[]->{
       _id,
       slug,
       menuTitle
     }
   },
-  "socialLinks": *[_type == "site"][0]{
+  "socialLinks": *[_type == "site" && !(_id in path('drafts.**'))][0]{
     socialLinks[]->{
       _id, link, site
     }
   },
   "sidebar": {
-    "posts": *[_type == "post"]
+    "posts": *[_type == "post" && !(_id in path('drafts.**'))]
     | order(publishedAt desc)[0..3]{
       _id, slug, title
     },
-    "events": *[_type == "event" && recurring != true && dateTime(now()) < dateTime(date)]
+    "events": *[_type == "event" && recurring != true && dateTime(now()) < dateTime(date) && !(_id in path('drafts.**'))]
     | order(date asc)[0..3]{
       _id, slug, title
     },
-    "exhibitions": *[_type == "exhibition" && dateTime(now()) < dateTime(dateStart)]
+    "exhibitions": *[_type == "exhibition" && dateTime(now()) < dateTime(dateStart) && !(_id in path('drafts.**'))]
     | order(dateStart asc)[0..3]{
       _id, dateStart, dateEnd, slug, title
     }
@@ -376,13 +377,13 @@ export const postPageQuery = groq`{
 }`
 
 export const videoPageQuery = groq`{
-  "video": *[_type == "video" && slug.en.current == $slug][0]{
+  "video": *[_type == "video" && slug.en.current == $slug && !(_id in path('drafts.**'))][0]{
     body,
     mainImage,
     title,
     videoLink
   },
-  "site": *[_type == "site"][0]{
+  "site": *[_type == "site" && !(_id in path('drafts.**'))][0]{
     openingHeading,
     openingTimes,
     addressLine1,
@@ -393,54 +394,83 @@ export const videoPageQuery = groq`{
     signUp,
     signUpPlaceholder
   },
-  "menu": *[_type == "menu"][0]{
+  "menu": *[_type == "menu" && !(_id in path('drafts.**'))][0]{
     items[]->{
       _id,
       slug,
       menuTitle
     }
   },
-  "socialLinks": *[_type == "site"][0]{
+  "socialLinks": *[_type == "site" && !(_id in path('drafts.**'))][0]{
     socialLinks[]->{
       _id, link, site
     }
   },
   "sidebar": {
-    "posts": *[_type == "post"]
+    "posts": *[_type == "post" && !(_id in path('drafts.**'))]
     | order(publishedAt desc)[0..3]{
       _id, slug, title
     },
-    "events": *[_type == "event" && recurring != true && dateTime(now()) < dateTime(date)]
+    "events": *[_type == "event" && recurring != true && dateTime(now()) < dateTime(date) && !(_id in path('drafts.**'))]
     | order(date asc)[0..3]{
       _id, slug, title
     },
-    "exhibitions": *[_type == "exhibition" && dateTime(now()) < dateTime(dateStart)]
+    "exhibitions": *[_type == "exhibition" && dateTime(now()) < dateTime(dateStart) && !(_id in path('drafts.**'))]
     | order(dateStart asc)[0..3]{
       _id, dateStart, dateEnd, slug, title
     }
   }
 }`
 
+export const notFoundQuery = groq`{
+  "notFound": *[_type == "page" && slug.en.current == "about"  && !(_id in path('drafts.**'))]{
+    mainImage
+  },
+  "site": *[_type == "site" && !(_id in path('drafts.**'))][0]{
+    openingHeading,
+    openingTimes,
+    addressLine1,
+    addressLine2,
+    telephone,
+    siteName,
+    email,
+    signUp,
+    signUpPlaceholder
+  },
+  "menu": *[_type == "menu" && !(_id in path('drafts.**'))][0]{
+    items[]->{
+      _id,
+      slug,
+      menuTitle
+    }
+  },
+  "socialLinks": *[_type == "site" && !(_id in path('drafts.**'))][0]{
+    socialLinks[]->{
+      _id, link, site
+    }
+  }
+}`
+
 export const pagePathQuery = groq`
-  *[_type == "page" && defined(slug) && slug.en.current != "index"][].slug.en.current
+  *[_type == "page" && defined(slug) && slug.en.current != "index" && !(_id in path('drafts.**'))][].slug.en.current
 `
 
 export const artistPathQuery = groq`
-  *[_type == "artist" && defined(slug)][].slug.current
+  *[_type == "artist" && defined(slug) && !(_id in path('drafts.**'))][].slug.current
 `
 
 export const eventPathQuery = groq`
-  *[_type == "event" && defined(slug)][].slug.en.current
+  *[_type == "event" && !(_id in path('drafts.**')) && defined(slug)].slug.en.current
 `
 
 export const exhibitionPathQuery = groq`
-  *[_type == "exhibition" && defined(slug)][].slug.en.current
+  *[_type == "exhibition" && defined(slug) && !(_id in path('drafts.**'))][].slug.en.current
 `
 
 export const postPathQuery = groq`
-  *[_type == "post" && defined(slug)][].slug.en.current
+  *[_type == "post" && defined(slug) && !(_id in path('drafts.**'))][].slug.en.current
 `
 
 export const videoPathQuery = groq`
-  *[_type == "video" && defined(slug)][].slug.en.current
+  *[_type == "video" && defined(slug) && !(_id in path('drafts.**'))][].slug.en.current
 `

@@ -1,4 +1,4 @@
-const LocationPin = () => {
+const LocationPin = ({ lat, lng, text }) => {
   return (
     <div className="pin">
       <img
