@@ -31,7 +31,7 @@ const FourOhFour: FC<Props> = ({ data }) => {
 
 export const query = graphql`
   query FourOhFour {
-    sanityPage(title: { en: { eq: "About" } }) {
+    sanityPage(title: { en: { eq: "About Us" } }) {
       mainImage {
         asset {
           id
