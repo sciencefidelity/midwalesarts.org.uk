@@ -44,14 +44,15 @@ const Home = ({ data }) => {
             <div className="sideImageContainer">
               <Image
                 src={urlFor(data.frontPage.subImage)
-                  .width(812)
-                  .height(634)
+                  .width(406)
+                  .height(300)
                   .auto("format")
                   .quality(75)
                   .url()}
                 alt={data.frontPage.subImage.caption}
-                width={812}
-                height={634}
+                width={406}
+                height={300}
+                className={"sideImage"}
               />
               <div>{data.frontPage.subImage.caption}</div>
             </div>

@@ -35,14 +35,16 @@ const Header = ({ heroImage, menu }: {
         <div className="hero">
           <Image
             src={urlFor(heroImage)
-              .width(1440)
-              .height(670)
               .auto("format")
+              .width(1600)
+              .height(334)
               .quality(75)
               .url()}
             alt={heroImage.caption}
-            width={1440}
-            height={670}
+            width={1600}
+            height={334}
+            layout="fill"
+            objectFit="cover"
           />
         </div>
       </header>
