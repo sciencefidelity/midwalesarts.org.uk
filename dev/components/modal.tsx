@@ -3,9 +3,7 @@ import { urlFor } from "lib/utils"
 
 const Modal = ({ modal, modalImage, closeModal, prevIndex, nextIndex }) => {
   return (
-    <div
-      className={modal ? "modalContainer hideModal" : "modalContainer"}
-    >
+    <div className={modal ? "modalContainer hideModal" : "modalContainer"}>
       <div className="btnPrev" onClick={prevIndex}>
         <img
           alt="Previous"
@@ -43,10 +41,10 @@ const Modal = ({ modal, modalImage, closeModal, prevIndex, nextIndex }) => {
           height={468}
         />
         <p className="modalCaption">
-          <em>{modalImage.title.en}</em>,{" "}{modalImage.artist}
+          <em>{modalImage.title.en}</em>, {modalImage.artist}
         </p>
         <p className="modalCaption">
-          {modalImage.medium.en},{" "}{modalImage.price}
+          {modalImage.medium.en}, {modalImage.price}
         </p>
       </div>
     </div>

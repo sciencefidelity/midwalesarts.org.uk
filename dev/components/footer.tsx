@@ -7,7 +7,10 @@ import FooterLinks from "components/footerLinks"
 
 const currentYear = new Date().getFullYear()
 
-const Footer = ({ site, socialLinks }: {
+const Footer = ({
+  site,
+  socialLinks
+}: {
   site: Site
   socialLinks: {
     socialLinks: Social[]
@@ -25,8 +28,10 @@ const Footer = ({ site, socialLinks }: {
         </div>
         <p className="smallCopy">
           &copy;{" "}
-          {locale === "cy" && site.siteName.cy ? site.siteName.cy : site.siteName.en}
-          {" "}{currentYear}
+          {locale === "cy" && site.siteName.cy
+            ? site.siteName.cy
+            : site.siteName.en}{" "}
+          {currentYear}
         </p>
       </div>
     </footer>

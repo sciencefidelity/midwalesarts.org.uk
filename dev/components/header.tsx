@@ -12,7 +12,10 @@ import {
 import ColorLogo from "components/colorLogo"
 import Navigation from "components/navigation"
 
-const Header = ({ heroImage, menu }: {
+const Header = ({
+  heroImage,
+  menu
+}: {
   heroImage: {
     _type: "image"
     asset: SanityReference<SanityImageAsset>
@@ -28,7 +31,9 @@ const Header = ({ heroImage, menu }: {
       <header>
         <Link href="/">
           <a>
-            <span className="screenReaderText">{locale === "cy" ? "Cartref" : "Home"}</span>
+            <span className="screenReaderText">
+              {locale === "cy" ? "Cartref" : "Home"}
+            </span>
             <ColorLogo logoClass="colorLogo" containerClass="logoContainer" />
           </a>
         </Link>
@@ -41,8 +46,6 @@ const Header = ({ heroImage, menu }: {
               .quality(75)
               .url()}
             alt={heroImage.caption}
-            width={1600}
-            height={334}
             layout="fill"
             objectFit="cover"
           />

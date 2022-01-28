@@ -1,7 +1,11 @@
 import Link from "next/link"
 import type { Event, Exhibition, Post } from "generated/schema"
 
-const Sidebar = ({ events, exhibitions, posts }: {
+const Sidebar = ({
+  events,
+  exhibitions,
+  posts
+}: {
   events: Event[]
   exhibitions: Exhibition[]
   posts: Post[]
@@ -15,10 +19,10 @@ const Sidebar = ({ events, exhibitions, posts }: {
             post =>
               !!post && (
                 <div key={post._id}>
-                  <Link
-                    href={`/news/${post.slug.en.current}/`}
-                  >
-                    <a><li>{post.title.en}</li></a>
+                  <Link href={`/news/${post.slug.en.current}/`}>
+                    <a>
+                      <li>{post.title.en}</li>
+                    </a>
                   </Link>
                 </div>
               )
@@ -31,10 +35,10 @@ const Sidebar = ({ events, exhibitions, posts }: {
             event =>
               !!event && (
                 <div key={event._id}>
-                  <Link
-                    href={`/events/${event.slug.en.current}/`}
-                  >
-                    <a><li>{event.title.en}</li></a>
+                  <Link href={`/events/${event.slug.en.current}/`}>
+                    <a>
+                      <li>{event.title.en}</li>
+                    </a>
                   </Link>
                 </div>
               )
@@ -47,10 +51,10 @@ const Sidebar = ({ events, exhibitions, posts }: {
             exhibition =>
               !!exhibition && (
                 <div key={exhibition._id}>
-                  <Link
-                    href={`/exhibitions/${exhibition.slug.en.current}/`}
-                  >
-                    <a><li>{exhibition.title.en}</li></a>
+                  <Link href={`/exhibitions/${exhibition.slug.en.current}/`}>
+                    <a>
+                      <li>{exhibition.title.en}</li>
+                    </a>
                   </Link>
                 </div>
               )
@@ -59,19 +63,29 @@ const Sidebar = ({ events, exhibitions, posts }: {
       <h3>Weekly Clubs</h3>
       <ul className="sidebarMenu">
         <Link href="/workshop">
-          <a><li>Wednesdays: Home Ed Group</li></a>
+          <a>
+            <li>Wednesdays: Home Ed Group</li>
+          </a>
         </Link>
         <Link href="/workshops">
-          <a><li>Wednesdays: Ceramics Club</li></a>
+          <a>
+            <li>Wednesdays: Ceramics Club</li>
+          </a>
         </Link>
         <Link href="/workshops">
-          <a><li>Thursdays: Adult Pottery</li></a>
+          <a>
+            <li>Thursdays: Adult Pottery</li>
+          </a>
         </Link>
         <Link href="/workshops">
-          <a><li>Thursdays: After School Club</li></a>
+          <a>
+            <li>Thursdays: After School Club</li>
+          </a>
         </Link>
         <Link href="/workshops">
-          <a><li>Saturdays: Family Workshop</li></a>
+          <a>
+            <li>Saturdays: Family Workshop</li>
+          </a>
         </Link>
       </ul>
     </div>

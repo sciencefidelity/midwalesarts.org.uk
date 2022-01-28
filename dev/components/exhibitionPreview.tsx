@@ -4,7 +4,10 @@ import { useRouter } from "next/router"
 import type { Exhibition } from "generated/schema"
 import { dateOptionsShort, urlFor } from "@/lib/utils"
 
-const ExhibitionPrieview = ({ exhibition, heading }: {
+const ExhibitionPrieview = ({
+  exhibition,
+  heading
+}: {
   exhibition: Exhibition
   heading: string
 }) => {
@@ -21,19 +24,32 @@ const ExhibitionPrieview = ({ exhibition, heading }: {
               .auto("format")
               .quality(75)
               .url()}
-            alt={locale === "cy" && exhibition.title.cy ? exhibition.title.cy : exhibition.title.en}
+            alt={
+              locale === "cy" && exhibition.title.cy
+                ? exhibition.title.cy
+                : exhibition.title.en
+            }
             width={468}
             height={468}
           />
-          <div className="gridCaption">{!!exhibition &&
-            (locale === "cy" && exhibition.title.cy ? exhibition.title.cy : exhibition.title.en)
-          }</div>
+          <div className="gridCaption">
+            {!!exhibition &&
+              (locale === "cy" && exhibition.title.cy
+                ? exhibition.title.cy
+                : exhibition.title.en)}
+          </div>
           <div className="gridCaption">
             {exhibition && (
               <span>
-                {new Date(exhibition.dateStart).toLocaleDateString(locale, dateOptionsShort)}
-                {" "}to{" "}
-                {new Date(exhibition.dateEnd).toLocaleDateString(locale, dateOptionsShort)}
+                {new Date(exhibition.dateStart).toLocaleDateString(
+                  locale,
+                  dateOptionsShort
+                )}{" "}
+                to{" "}
+                {new Date(exhibition.dateEnd).toLocaleDateString(
+                  locale,
+                  dateOptionsShort
+                )}
               </span>
             )}
           </div>

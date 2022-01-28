@@ -24,12 +24,18 @@ const EventPreview = ({ heading, eventData, marginTop, grid }) => {
                     .auto("format")
                     .quality(75)
                     .url()}
-                  alt={locale === "cy" && event.title.cy ? event.title.cy : event.title.en}
+                  alt={
+                    locale === "cy" && event.title.cy
+                      ? event.title.cy
+                      : event.title.en
+                  }
                   width={468}
                   height={468}
                 />
                 <div className="gridCaption">
-                  {locale === "cy" && event.title.cy ? event.title.cy : event.title.en}
+                  {locale === "cy" && event.title.cy
+                    ? event.title.cy
+                    : event.title.en}
                 </div>
                 <div className="gridCaption">
                   {new Date(event.date).toLocaleDateString(locale, dateOptions)}

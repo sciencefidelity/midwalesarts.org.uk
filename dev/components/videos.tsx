@@ -4,10 +4,7 @@ import { useRouter } from "next/router"
 import { urlFor } from "@/lib/utils"
 import type { Page, Video } from "@/generated/schema"
 
-const Videos = ({ page, videos }: {
-  page: Page
-  videos: Video[]
-}) => {
+const Videos = ({ page, videos }: { page: Page; videos: Video[] }) => {
   const { locale } = useRouter()
   return (
     <section>
@@ -17,7 +14,9 @@ const Videos = ({ page, videos }: {
             {locale === "cy" && page.title.cy ? page.title.cy : page.title.en}
           </h1>
           <p className="subTitle">
-            {locale === "cy" && page.subtitle.cy ? page.subtitle.cy : page.subtitle.en}
+            {locale === "cy" && page.subtitle.cy
+              ? page.subtitle.cy
+              : page.subtitle.en}
           </p>
         </div>
       </div>
@@ -41,7 +40,9 @@ const Videos = ({ page, videos }: {
                         height={468}
                       />
                       <div className="gridCaption">
-                        {locale === "cy" && video.title.cy ? video.title.cy : video.title.en}
+                        {locale === "cy" && video.title.cy
+                          ? video.title.cy
+                          : video.title.en}
                       </div>
                     </a>
                   </Link>

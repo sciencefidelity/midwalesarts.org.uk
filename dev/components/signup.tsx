@@ -21,7 +21,11 @@ const Signup = ({ site }: { site: Site }) => {
           <input
             type="text"
             name="email"
-            placeholder={locale === "cy" && site.signUpPlaceholder.cy ? site.signUpPlaceholder.cy : site.signUpPlaceholder.en}
+            placeholder={
+              locale === "cy" && site.signUpPlaceholder.cy
+                ? site.signUpPlaceholder.cy
+                : site.signUpPlaceholder.en
+            }
             className="signupInput"
           />
           <input

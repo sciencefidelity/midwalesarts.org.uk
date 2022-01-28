@@ -19,7 +19,7 @@ const Intro = ({ body, cta, ctaLink }) => {
       <Link href={`/${ctaLink}/`}>
         <a>
           <h2 className="introCta">
-            <span>{locale === "cy" && cta.cy ? cta.cy : cta.en}{" "}</span>
+            <span>{locale === "cy" && cta.cy ? cta.cy : cta.en} </span>
           </h2>
         </a>
       </Link>

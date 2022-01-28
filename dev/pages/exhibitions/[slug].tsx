@@ -72,29 +72,29 @@ const PostPage = ({ data }) => {
     >
       <Head>
         <title>
-          {locale === "cy" && exhibition.title.cy ?
-            exhibition.title.cy :
-            exhibition.title.en
-          }
+          {locale === "cy" && exhibition.title.cy
+            ? exhibition.title.cy
+            : exhibition.title.en}
         </title>
       </Head>
       <section>
         <div className="sidebarContainer">
           <div className="portableContainer">
             <h1>
-              {locale === "cy" && exhibition.title.cy ?
-                exhibition.title.cy :
-                exhibition.title.en
-              }
+              {locale === "cy" && exhibition.title.cy
+                ? exhibition.title.cy
+                : exhibition.title.en}
             </h1>
             <p className="subTitle">
-              {new Date(exhibition.dateStart)
-                .toLocaleDateString(locale, dateOptionsShort)
-              }
-              {" "}to{" "}
-              {new Date(exhibition.dateEnd)
-                .toLocaleDateString(locale, dateOptionsShort)
-              }
+              {new Date(exhibition.dateStart).toLocaleDateString(
+                locale,
+                dateOptionsShort
+              )}{" "}
+              to{" "}
+              {new Date(exhibition.dateEnd).toLocaleDateString(
+                locale,
+                dateOptionsShort
+              )}
             </p>
             <ul className="galleryMenu">
               <li onClick={toggleInfo} className={info ? "" : "selected"}>
@@ -108,9 +108,9 @@ const PostPage = ({ data }) => {
               {exhibition.body.en && (
                 <BlockContent
                   blocks={
-                    locale === "cy" && exhibition.body.cy ?
-                    exhibition.body.cy :
-                    exhibition.body.en
+                    locale === "cy" && exhibition.body.cy
+                      ? exhibition.body.cy
+                      : exhibition.body.en
                   }
                   {...sanityClient.config()}
                 />
@@ -137,33 +137,31 @@ const PostPage = ({ data }) => {
                     .url()}
                   alt={`
                     ${artwork.artist}${", "}
-                    ${locale === "cy" && artwork.title.cy ?
-                      artwork.title.cy :
-                      artwork.title.en
+                    ${
+                      locale === "cy" && artwork.title.cy
+                        ? artwork.title.cy
+                        : artwork.title.en
                     }
                     ${", "}
-                    ${artwork.date}`
-                  }
+                    ${artwork.date}`}
                   width={468}
                   height={468}
                 />
                 <div className="gridCaption">{artwork.artist}</div>
                 <div className="gridCaption">
                   <em>
-                    {locale === "cy" && artwork.title.cy ?
-                      artwork.title.cy :
-                      artwork.title.en
-                    }
+                    {locale === "cy" && artwork.title.cy
+                      ? artwork.title.cy
+                      : artwork.title.en}
                   </em>
                 </div>
               </div>
             ))
           ) : (
             <p>
-              {locale === "cy" ?
-                "Dim gweithiau celf i'w dangos" :
-                "No artworks to show"
-              }
+              {locale === "cy"
+                ? "Dim gweithiau celf i'w dangos"
+                : "No artworks to show"}
             </p>
           )}
         </div>
@@ -171,10 +169,9 @@ const PostPage = ({ data }) => {
           <p className="backLink">
             <Link href="/exhibitions">
               <a>
-                {locale === "cy" ?
-                  "Yn ôl i Arddangosfeydd" :
-                  "Back to Exhibitions"
-                }
+                {locale === "cy"
+                  ? "Yn ôl i Arddangosfeydd"
+                  : "Back to Exhibitions"}
               </a>
             </Link>
           </p>

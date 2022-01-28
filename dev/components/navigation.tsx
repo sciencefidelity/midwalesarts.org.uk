@@ -16,14 +16,15 @@ const Navigation = ({ menu }: { menu: Menu }) => {
   }
   return (
     <div className="menuOverlay" onClick={isActive ? menuClose : null}>
-
       <div className={isActive ? "headerMenu isActive" : "headerMenu"}>
         <ul>
           {menu.items.map((item: any) => (
             <li key={item._id}>
               <Link href={`/${item.slug.en.current.replace("index", "")}`}>
                 <a>
-                  {locale === "cy" && item.menuTitle.cy ? item.menuTitle.cy : item.menuTitle.en}
+                  {locale === "cy" && item.menuTitle.cy
+                    ? item.menuTitle.cy
+                    : item.menuTitle.en}
                 </a>
               </Link>
             </li>
@@ -43,19 +44,29 @@ const Navigation = ({ menu }: { menu: Menu }) => {
         </div>
         <div className="languageSwitcher">
           <span className="screenReaderText">
-            {locale === "cy" ?
-              "Switch language to English" :
-              "Newid iaith i'r Gymraeg"
-            }
+            {locale === "cy"
+              ? "Switch language to English"
+              : "Newid iaith i'r Gymraeg"}
           </span>
-          {locale === "cy" ?
-            <span className="link" onClick={() => {
-              router.push({ pathname, query }, asPath, { locale: locales[0] })
-            }}>{capitalize(locales[0])}</span> :
-            <span className="link" onClick={() => {
-              router.push({ pathname, query }, asPath, { locale: locales[1] })
-            }}>{capitalize(locales[1])}</span>
-          }
+          {locale === "cy" ? (
+            <span
+              className="link"
+              onClick={() => {
+                router.push({ pathname, query }, asPath, { locale: locales[0] })
+              }}
+            >
+              {capitalize(locales[0])}
+            </span>
+          ) : (
+            <span
+              className="link"
+              onClick={() => {
+                router.push({ pathname, query }, asPath, { locale: locales[1] })
+              }}
+            >
+              {capitalize(locales[1])}
+            </span>
+          )}
         </div>
         <div className="social">
           <a
@@ -64,8 +75,8 @@ const Navigation = ({ menu }: { menu: Menu }) => {
             rel="noreferrer"
           >
             <span className="screenReaderText">
-              {locale === "cy" ? "Celf Canol Cymry ar" : "Mid Wales Arts on"}
-              {" "}Facebook
+              {locale === "cy" ? "Celf Canol Cymry ar" : "Mid Wales Arts on"}{" "}
+              Facebook
             </span>
             <img
               alt="http://en-gb.facebook.com/MidWalesArtsCentre"
@@ -81,8 +92,8 @@ const Navigation = ({ menu }: { menu: Menu }) => {
             rel="noreferrer"
           >
             <span className="screenReaderText">
-              {locale === "cy" ? "Celf Canol Cymry ar" : "Mid Wales Arts on"}
-              {" "}Instagram
+              {locale === "cy" ? "Celf Canol Cymry ar" : "Mid Wales Arts on"}{" "}
+              Instagram
             </span>
             <img
               alt=""
@@ -98,8 +109,9 @@ const Navigation = ({ menu }: { menu: Menu }) => {
             rel="noreferrer"
           >
             <span className="screenReaderText">
-              {locale === "cy" ? "Celf Canol Cymry ar" : "Mid Wales Arts on"}
-              {" "}Twitter</span>
+              {locale === "cy" ? "Celf Canol Cymry ar" : "Mid Wales Arts on"}{" "}
+              Twitter
+            </span>
             <img
               alt=""
               src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3Cpath d='M400 32H48C22 32 0 54 0 80v352c0 27 22 48 48 48h352c27 0 48-21 48-48V80c0-26-21-48-48-48zm-49 159v8c0 87-66 187-186 187-37 0-72-11-101-30a138 138 0 0097-27c-29 0-53-19-61-45 10 1 19 1 30-1-30-6-53-33-53-65v-1c9 5 19 8 30 9a65 65 0 01-30-55c0-12 4-23 9-33 33 40 81 66 136 69a66 66 0 01111-60c15-3 29-9 42-16-5 15-15 28-29 36 13-1 26-5 38-10-9 13-20 25-33 34z' fill='%23666666'/%3E%3C/svg%3E"

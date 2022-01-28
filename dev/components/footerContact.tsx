@@ -8,12 +8,18 @@ const FooterContact = ({ site }: { site: Site }) => {
   return (
     <div>
       <p>
-        {locale === "cy" && site.openingHeading.cy ? site.openingHeading.cy : site.openingHeading.en}
+        {locale === "cy" && site.openingHeading.cy
+          ? site.openingHeading.cy
+          : site.openingHeading.en}
         <br />
-        {locale === "cy" && site.openingTimes.cy ? site.openingTimes.cy : site.openingTimes.en}
+        {locale === "cy" && site.openingTimes.cy
+          ? site.openingTimes.cy
+          : site.openingTimes.en}
       </p>
       <p>
-        {locale === "cy" && site.siteName.cy ? site.siteName.cy : site.siteName.en}
+        {locale === "cy" && site.siteName.cy
+          ? site.siteName.cy
+          : site.siteName.en}
         <br />
         {site.addressLine1}
         <br />
@@ -26,8 +32,10 @@ const FooterContact = ({ site }: { site: Site }) => {
       </p>
       <p className="copy">
         &copy;{" "}
-        {locale === "cy" && site.siteName.cy ? site.siteName.cy : site.siteName.en}
-        {" "}{year}
+        {locale === "cy" && site.siteName.cy
+          ? site.siteName.cy
+          : site.siteName.en}{" "}
+        {year}
       </p>
     </div>
   )

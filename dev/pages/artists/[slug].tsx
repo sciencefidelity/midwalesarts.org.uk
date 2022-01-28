@@ -90,10 +90,10 @@ const ArtistPage = ({ data }) => {
             <div className={bio ? "hidden galleryInfo" : "galleryInfo"}>
               {artist.body && (
                 <BlockContent
-                  blocks={locale === "cy" &&
-                    artist.body.cy ?
-                    artist.body.cy :
-                    artist.body.en
+                  blocks={
+                    locale === "cy" && artist.body.cy
+                      ? artist.body.cy
+                      : artist.body.en
                   }
                   {...sanityClient.config()}
                 />
@@ -129,7 +129,7 @@ const ArtistPage = ({ data }) => {
                       height={468}
                     />
                     <div className="gridCaption">
-                      {artwork.title.en}{" "}({artwork.date})
+                      {artwork.title.en} ({artwork.date})
                     </div>
                   </div>
                 )
@@ -137,7 +137,9 @@ const ArtistPage = ({ data }) => {
         </div>
         <div>
           <p className="backLink">
-            <Link href="/artists"><a>{"Back to Artists"}</a></Link>
+            <Link href="/artists">
+              <a>{"Back to Artists"}</a>
+            </Link>
           </p>
         </div>
         {!!artist.artworks && (

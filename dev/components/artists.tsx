@@ -4,10 +4,7 @@ import { useRouter } from "next/router"
 import { urlFor } from "@/lib/utils"
 import type { Artist, Page } from "@/generated/schema"
 
-const ArtistsPage = ({ page, artists }: {
-  page: Page
-  artists: Artist[]
-}) => {
+const ArtistsPage = ({ page, artists }: { page: Page; artists: Artist[] }) => {
   const { locale } = useRouter()
   return (
     <section>
@@ -17,7 +14,9 @@ const ArtistsPage = ({ page, artists }: {
             {locale === "cy" && page.title.cy ? page.title.cy : page.title.en}
           </h1>
           <p className="subTitle">
-            {locale === "cy" && page.subtitle.cy ? page.subtitle.cy : page.subtitle.en}
+            {locale === "cy" && page.subtitle.cy
+              ? page.subtitle.cy
+              : page.subtitle.en}
           </p>
         </div>
       </div>
@@ -27,9 +26,7 @@ const ArtistsPage = ({ page, artists }: {
             (artist: any) =>
               !!artist && (
                 <div key={artist._id}>
-                  <Link
-                    href={`/artists/${artist.slug.current}/`}
-                  >
+                  <Link href={`/artists/${artist.slug.current}/`}>
                     <a>
                       <Image
                         src={urlFor(artist.mainImage)

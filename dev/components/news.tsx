@@ -4,10 +4,7 @@ import { useRouter } from "next/router"
 import { urlFor } from "@/lib/utils"
 import type { Page, Post } from "@/generated/schema"
 
-const News = ({ page, posts }: {
-  page: Page
-  posts: Post[]
-}) => {
+const News = ({ page, posts }: { page: Page; posts: Post[] }) => {
   const { locale } = useRouter()
   return (
     <section>
@@ -17,7 +14,9 @@ const News = ({ page, posts }: {
             {locale === "cy" && page.title.cy ? page.title.cy : page.title.en}
           </h1>
           <p className="subTitle">
-            {locale === "cy" && page.subtitle.cy ? page.subtitle.cy : page.subtitle.en}
+            {locale === "cy" && page.subtitle.cy
+              ? page.subtitle.cy
+              : page.subtitle.en}
           </p>
         </div>
       </div>
@@ -41,7 +40,9 @@ const News = ({ page, posts }: {
                         height={468}
                       />
                       <div className="gridCaption">
-                        {locale === "cy" && post.title.cy ? post.title.cy : post.title.en}
+                        {locale === "cy" && post.title.cy
+                          ? post.title.cy
+                          : post.title.en}
                       </div>
                       <div className="gridCaption">
                         {"Published on"} {post.publishedAt}

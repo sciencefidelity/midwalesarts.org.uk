@@ -20,12 +20,16 @@ const Custom404 = ({ data }) => {
       <div
         className="container"
         style={{
-          textAlign: `center`,
+          textAlign: `center`
         }}
       >
         <h1>404: Not Found</h1>
         <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
-        <Link href="/"><a><p>Home</p></a></Link>
+        <Link href="/">
+          <a>
+            <p>Home</p>
+          </a>
+        </Link>
       </div>
     </Layout>
   )

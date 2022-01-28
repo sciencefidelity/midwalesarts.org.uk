@@ -23,21 +23,31 @@ import Visit from "components/visit"
 // import utilStyles from "styles/utils.module.scss"
 
 const PagesTemplage = ({ data }) => {
-  const exhibitionHero = data.currentExhibitions[0] !== undefined ?
-    data.currentExhibitions[0].mainImage :
-      data.futureExhibitions[0] !== undefined ?
-      data.futureExhibitions[0].mainImage : data.pastExhibitions[0].mainImage
+  const exhibitionHero =
+    data.currentExhibitions[0] !== undefined
+      ? data.currentExhibitions[0].mainImage
+      : data.futureExhibitions[0] !== undefined
+      ? data.futureExhibitions[0].mainImage
+      : data.pastExhibitions[0].mainImage
 
   return (
     <Layout
       heroImage={
-        data.page.template === "page" ? data.page.heroImage :
-        data.page.template === "visit-us" ? data.page.heroImage :
-        data.page.template === "artists" ? data.heroArtist.mainImage :
-        data.page.template === "events" ? data.upcomingEvents[0].mainImage :
-        data.page.template === "exhibitions" ? exhibitionHero :
-        data.page.template === "news" ? data.posts[0].image :
-        data.page.template === "videos" ? data.videos[0].mainImage : ""
+        data.page.template === "page"
+          ? data.page.heroImage
+          : data.page.template === "visit-us"
+          ? data.page.heroImage
+          : data.page.template === "artists"
+          ? data.heroArtist.mainImage
+          : data.page.template === "events"
+          ? data.upcomingEvents[0].mainImage
+          : data.page.template === "exhibitions"
+          ? exhibitionHero
+          : data.page.template === "news"
+          ? data.posts[0].image
+          : data.page.template === "videos"
+          ? data.videos[0].mainImage
+          : ""
       }
       menu={data.menu}
       site={data.site}
@@ -46,55 +56,42 @@ const PagesTemplage = ({ data }) => {
       <Head>
         <title></title>
       </Head>
-      {
-        data.page.template === "page" &&
+      {data.page.template === "page" && (
         <PageTemplate
           page={data.page}
           events={data.sidebar.events}
           exhibitions={data.sidebar.exhibitions}
           posts={data.sidebar.posts}
         />
-      }
-      {
-        data.page.template === "visit-us" &&
+      )}
+      {data.page.template === "visit-us" && (
         <Visit page={data.page} spaces={data.spaces} />
-      }
-      {
-        data.page.template === "artists" &&
+      )}
+      {data.page.template === "artists" && (
         <Artists page={data.page} artists={data.artists} />
-      }
-      {
-        data.page.template === "events" &&
+      )}
+      {data.page.template === "events" && (
         <Events
           page={data.page}
           upcomingEvents={data.upcomingEvents}
           pastEvents={data.pastEvents}
           recurringEvents={data.recurringEvents}
         />
-      }
-      {
-        data.page.template === "exhibitions" &&
+      )}
+      {data.page.template === "exhibitions" && (
         <Exhibitions
           page={data.page}
           currentExhibitions={data.currentExhibitions}
           futureExhibitions={data.futureExhibitions}
           pastExhibitions={data.pastExhibitions}
         />
-      }
-      {
-        data.page.template === "news" &&
-        <News
-          page={data.page}
-          posts={data.posts}
-        />
-      }
-      {
-        data.page.template === "videos" &&
-        <Videos
-          page={data.page}
-          videos={data.videos}
-        />
-      }
+      )}
+      {data.page.template === "news" && (
+        <News page={data.page} posts={data.posts} />
+      )}
+      {data.page.template === "videos" && (
+        <Videos page={data.page} videos={data.videos} />
+      )}
     </Layout>
   )
 }

@@ -32,10 +32,9 @@ const VideoPage = ({ data }) => {
     >
       <Head>
         <title>
-          {locale == "cy" && data.video.title.cy ?
-            data.video.title.cy :
-            data.video.title.en
-          }
+          {locale == "cy" && data.video.title.cy
+            ? data.video.title.cy
+            : data.video.title.en}
         </title>
       </Head>
       <section>
@@ -43,30 +42,28 @@ const VideoPage = ({ data }) => {
           <div className="portableContainer">
             <h1>{locale === "cy" ? "Fideo" : "Video"}</h1>
             <p className="subTitle">
-              {locale == "cy" && data.video.title.cy ?
-                data.video.title.cy :
-                data.video.title.en
-              }.
+              {locale == "cy" && data.video.title.cy
+                ? data.video.title.cy
+                : data.video.title.en}
+              .
             </p>
-            {data.video.videoLink &&
+            {data.video.videoLink && (
               <VideoEmbed videoId={data.video.videoLink} />
-            }
-            {data.video.body.en &&
+            )}
+            {data.video.body.en && (
               <BlockContent
                 blocks={
-                  locale === "cy" && data.video.body.cy ?
-                  data.video.body.cy :
-                  data.video.body.en
+                  locale === "cy" && data.video.body.cy
+                    ? data.video.body.cy
+                    : data.video.body.en
                 }
                 {...sanityClient.config()}
               />
-            }
+            )}
             <div>
               <p className="backLink">
                 <Link href="/videos">
-                  <a>
-                    {locale === "cy" ? "Yn ôl i Fideos" : "Back to Videos"}
-                  </a>
+                  <a>{locale === "cy" ? "Yn ôl i Fideos" : "Back to Videos"}</a>
                 </Link>
               </p>
             </div>

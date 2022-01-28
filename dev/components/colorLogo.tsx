@@ -1,4 +1,7 @@
-const ColorLogo = ({ logoClass, containerClass }: {
+const ColorLogo = ({
+  logoClass,
+  containerClass
+}: {
   logoClass: string
   containerClass: string
 }) => {

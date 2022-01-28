@@ -61,9 +61,7 @@ const Home = ({ data }) => {
       </section>
       {data.frontPage.featured.map(item => (
         <section key={item._id}>
-          <FrontPageFeature
-            feature={item}
-          />
+          <FrontPageFeature feature={item} />
         </section>
       ))}
     </Layout>

@@ -11,7 +11,7 @@ module.exports = {
     // Note: subdomains must be included in the domain value to be matched e.g. "fr.example.com".
   },
   images: {
-    domains: ["cdn.sanity.io"],
+    domains: ["cdn.sanity.io"]
   },
   swcMinify: true
 }

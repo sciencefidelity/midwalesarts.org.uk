@@ -8,10 +8,7 @@ import { Page, Space } from "generated/schema"
 import GoogleMap from "components/googleMap"
 // import "../scss/visit.scss"
 
-const Visit = ({ page, spaces }: {
-  page: Page
-  spaces: Space[]
-}) => {
+const Visit = ({ page, spaces }: { page: Page; spaces: Space[] }) => {
   const { locale } = useRouter()
   return (
     <>
@@ -21,7 +18,9 @@ const Visit = ({ page, spaces }: {
             {locale === "cy" && page.title.cy ? page.title.cy : page.title.en}
           </h1>
           <p className="subTitle">
-            {locale === "cy" && page.subtitle.cy ? page.subtitle.cy : page.subtitle.en}
+            {locale === "cy" && page.subtitle.cy
+              ? page.subtitle.cy
+              : page.subtitle.en}
           </p>
           <div className="spacesGrid">
             {spaces.map(space => (
@@ -38,12 +37,18 @@ const Visit = ({ page, spaces }: {
                       .auto("format")
                       .quality(75)
                       .url()}
-                    alt={locale === "cy" && space.title.cy ? space.title.cy : space.title.en}
+                    alt={
+                      locale === "cy" && space.title.cy
+                        ? space.title.cy
+                        : space.title.en
+                    }
                     width={468}
                     height={468}
                   />
                   <div className="gridCaption">
-                    {locale === "cy" && space.title.cy ? space.title.cy : space.title.en}
+                    {locale === "cy" && space.title.cy
+                      ? space.title.cy
+                      : space.title.en}
                   </div>
                 </a>
               </Link>
@@ -57,10 +62,18 @@ const Visit = ({ page, spaces }: {
                 key={space._id}
                 className="spacesText"
               >
-                <h4 className="spacesGridTitle">{locale === "cy" && space.title.cy ? space.title.cy : space.title.en}</h4>
+                <h4 className="spacesGridTitle">
+                  {locale === "cy" && space.title.cy
+                    ? space.title.cy
+                    : space.title.en}
+                </h4>
                 {space.body.en && (
                   <BlockContent
-                    blocks={locale === "cy" && space.body.cy ? space.body.cy : space.body.en}
+                    blocks={
+                      locale === "cy" && space.body.cy
+                        ? space.body.cy
+                        : space.body.en
+                    }
                     {...sanityClient.config()}
                   />
                 )}

@@ -7,7 +7,11 @@ const VideoEmbed = ({ videoId }) => {
   const url = `https://www.youtube-nocookie.com/embed/${id}?modestbranding=1`
 
   if (!id) {
-    return <div>{locale === "cy" ? "Fideo YouTube ar goll" : "YouTube video missing"}</div>
+    return (
+      <div>
+        {locale === "cy" ? "Fideo YouTube ar goll" : "YouTube video missing"}
+      </div>
+    )
   }
   return (
     <section>

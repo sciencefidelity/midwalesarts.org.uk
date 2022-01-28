@@ -14,7 +14,14 @@ import { useRouter } from "next/router"
 import BlockContent from "@sanity/block-content-to-react"
 import sanityClient from "lib/sanityClient"
 import { dateOptions } from "lib/utils"
-import type { Event, Site, Menu, Social, Post, Exhibition } from "generated/schema"
+import type {
+  Event,
+  Site,
+  Menu,
+  Social,
+  Post,
+  Exhibition
+} from "generated/schema"
 import { eventPathQuery, eventPageQuery } from "lib/queries"
 import Layout from "components/layout"
 import Sidebar from "components/sidebar"
@@ -34,10 +41,8 @@ interface Data {
   }
 }
 
-const EventPage = ({ data }: {data: Data}) => {
-  const {
-    event, site, menu, socialLinks, sidebar
-  } = data
+const EventPage = ({ data }: { data: Data }) => {
+  const { event, site, menu, socialLinks, sidebar } = data
   const { locale } = useRouter()
   return (
     <Layout
@@ -48,25 +53,20 @@ const EventPage = ({ data }: {data: Data}) => {
     >
       <Head>
         <title>
-          {locale == "cy" && event.title.cy ?
-            event.title.cy :
-            event.title.en
-          }
+          {locale == "cy" && event.title.cy ? event.title.cy : event.title.en}
           {" | "}
-          {locale == "cy" && site.siteName.cy ?
-            site.siteName.cy :
-            site.siteName.en
-          }
+          {locale == "cy" && site.siteName.cy
+            ? site.siteName.cy
+            : site.siteName.en}
         </title>
       </Head>
       <section>
         <div className="sidebarContainer">
           <div className="portableContainer">
             <h1>
-              {locale == "cy" && event.title.cy ?
-                event.title.cy :
-                event.title.en
-              }
+              {locale == "cy" && event.title.cy
+                ? event.title.cy
+                : event.title.en}
             </h1>
             <p className="SubTitle">
               {new Date(event.date).toLocaleDateString(locale, dateOptions)}
@@ -78,16 +78,16 @@ const EventPage = ({ data }: {data: Data}) => {
                 </a>
               </p>
             )}
-            {event.body &&
+            {event.body && (
               <BlockContent
                 blocks={
-                  locale === "cy" && event.body.cy ?
-                  event.body.cy :
-                  event.body.en
+                  locale === "cy" && event.body.cy
+                    ? event.body.cy
+                    : event.body.en
                 }
                 {...sanityClient.config()}
               />
-            }
+            )}
             {event.briteLink && (
               <p>
                 <a href={`${event.briteLink}`} target="blank" rel="noreferrer">
@@ -98,7 +98,11 @@ const EventPage = ({ data }: {data: Data}) => {
             <div>
               <p className="backLink">
                 <Link href="/events">
-                  <a>{locale === "cy" ? "Yn ôl i Ddigwyddiadau" : "Back to Events"}</a>
+                  <a>
+                    {locale === "cy"
+                      ? "Yn ôl i Ddigwyddiadau"
+                      : "Back to Events"}
+                  </a>
                 </Link>
               </p>
             </div>

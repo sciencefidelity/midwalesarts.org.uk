@@ -16,7 +16,13 @@ import Scrollup from "@/components/scrollup"
 // import styles from "@/components/layout.module.scss"
 // import utilStyles from "@/styles/utils.module.scss"
 
-const Layout = ({ children, heroImage, menu, site, socialLinks }: {
+const Layout = ({
+  children,
+  heroImage,
+  menu,
+  site,
+  socialLinks
+}: {
   children: ReactNode
   heroImage?: {
     _type: "image"
@@ -33,21 +39,14 @@ const Layout = ({ children, heroImage, menu, site, socialLinks }: {
 }) => {
   return (
     <div>
-      <Head>
-      </Head>
-      <Header
-        heroImage={heroImage}
-        menu={menu}
-      />
+      <Head></Head>
+      <Header heroImage={heroImage} menu={menu} />
       <main>
         {children}
         <Scrollup />
       </main>
 
-      <Footer
-        site={site}
-        socialLinks={socialLinks}
-      />
+      <Footer site={site} socialLinks={socialLinks} />
     </div>
   )
 }

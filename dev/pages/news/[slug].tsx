@@ -31,63 +31,71 @@ const PostPage = ({ data }) => {
     >
       <Head>
         <title>
-          {locale == "cy" && data.post.title.cy ?
-            data.post.title.cy :
-            data.post.title.en
-          }
+          {locale == "cy" && data.post.title.cy
+            ? data.post.title.cy
+            : data.post.title.en}
         </title>
       </Head>
       <section>
         <div className="sidebarContainer">
           <div className="portableContainer">
             <h1>{locale === "cy" ? "Newyddion" : "News"}</h1>
-            {data.post.title &&
+            {data.post.title && (
               <p className="subTitle">
-                {locale == "cy" && data.post.title.cy ?
-                  data.post.title.cy :
-                  data.post.title.en
-                }.
+                {locale == "cy" && data.post.title.cy
+                  ? data.post.title.cy
+                  : data.post.title.en}
+                .
               </p>
-            }
-            {data.post.body &&
+            )}
+            {data.post.body && (
               <BlockContent
                 blocks={
-                  locale === "cy" && data.post.body.cy ?
-                  data.post.body.cy :
-                  data.post.body.en
+                  locale === "cy" && data.post.body.cy
+                    ? data.post.body.cy
+                    : data.post.body.en
                 }
                 {...sanityClient.config()}
               />
-            }
+            )}
             <p>
               {locale === "cy" ? "Wedi'i gyhoeddi ar" : "Published on"}{" "}
-              {new Date(data.post.publishedAt)
-                .toLocaleDateString(locale, dateOptions)
-              }
+              {new Date(data.post.publishedAt).toLocaleDateString(
+                locale,
+                dateOptions
+              )}
             </p>
             <div className="postNavigation">
               {data ? (
                 <p className="prevLink">
                   <Link href="#">
-                    <a>{locale === "cy" ? "&lt; Post blaenorol" : "&lt; Previous post"}</a>
+                    <a>
+                      {locale === "cy"
+                        ? "&lt; Post blaenorol"
+                        : "&lt; Previous post"}
+                    </a>
                   </Link>
                 </p>
               ) : (
-                <p>{" "}</p>
+                <p> </p>
               )}
               <p className="backLink">
                 <Link href="/news">
-                  <a>{locale === "cy" ? "Yn ôl i Newyddion" : "Back to News"}</a>
+                  <a>
+                    {locale === "cy" ? "Yn ôl i Newyddion" : "Back to News"}
+                  </a>
                 </Link>
               </p>
               {data ? (
                 <p className="nextLink">
                   <Link href="#">
-                    <a>{locale === "cy" ? "Post nesaf &gt;" : "Next post &gt;"}</a>
+                    <a>
+                      {locale === "cy" ? "Post nesaf &gt;" : "Next post &gt;"}
+                    </a>
                   </Link>
                 </p>
               ) : (
-                <p>{" "}</p>
+                <p> </p>
               )}
             </div>
           </div>

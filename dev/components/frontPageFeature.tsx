@@ -37,21 +37,35 @@ const FrontPageFeature = ({ feature }: { feature: FrontPageSection }) => {
             width={812}
             height={634}
           />
-          <div className="caption">{" "}{feature.subImage.caption}</div>
+          <div className="caption"> {feature.subImage.caption}</div>
         </div>
         <div>
           <div className="sectionTitleContainer">
             <div>
-              <h2>{locale === "cy" && feature.title.cy ? feature.title.cy : feature.title.en}</h2>
-              <h3>{locale === "cy" && feature.caption.cy ? feature.caption.cy : feature.caption.en}</h3>
+              <h2>
+                {locale === "cy" && feature.title.cy
+                  ? feature.title.cy
+                  : feature.title.en}
+              </h2>
+              <h3>
+                {locale === "cy" && feature.caption.cy
+                  ? feature.caption.cy
+                  : feature.caption.en}
+              </h3>
             </div>
           </div>
           <div className="sectionText">
             <h4>{feature.heading.en}</h4>
-            {feature.body.en && <BlockContent
-              blocks={locale === "cy" && feature.body.cy ? feature.body.cy : feature.body.en}
-              {...sanityClient.config()}
-            />}
+            {feature.body.en && (
+              <BlockContent
+                blocks={
+                  locale === "cy" && feature.body.cy
+                    ? feature.body.cy
+                    : feature.body.en
+                }
+                {...sanityClient.config()}
+              />
+            )}
           </div>
         </div>
       </div>
@@ -60,7 +74,12 @@ const FrontPageFeature = ({ feature }: { feature: FrontPageSection }) => {
         <Link href={`/${feature.ctaLink}/`}>
           <a>
             <h2 className="sectionCta">
-              <span>{locale === "cy" && feature.cta.cy ? feature.cta.cy : feature.cta.en}{" "}</span>
+              <span>
+                {locale === "cy" && feature.cta.cy
+                  ? feature.cta.cy
+                  : feature.cta.en}
+                &nbsp;
+              </span>
             </h2>
           </a>
         </Link>

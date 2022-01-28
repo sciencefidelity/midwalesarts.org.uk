@@ -2,7 +2,12 @@ import { useRouter } from "next/router"
 import type { Event, Page } from "generated/schema"
 import EventPreview from "components/eventPreview"
 
-const Events = ({ page, pastEvents, recurringEvents, upcomingEvents }: {
+const Events = ({
+  page,
+  pastEvents,
+  recurringEvents,
+  upcomingEvents
+}: {
   page: Page
   pastEvents: Event[]
   recurringEvents: Event[]
@@ -10,14 +15,16 @@ const Events = ({ page, pastEvents, recurringEvents, upcomingEvents }: {
 }) => {
   const { locale } = useRouter()
   return (
-   <section>
+    <section>
       <div className="sidebarContainer">
         <div className="portableContainer">
           <h1>
             {locale == "cy" && page.title.cy ? page.title.cy : page.title.en}
           </h1>
           <p className="sidebarContainer">
-            {locale == "cy" && page.subtitle.cy ? page.subtitle.cy : page.subtitle.en}
+            {locale == "cy" && page.subtitle.cy
+              ? page.subtitle.cy
+              : page.subtitle.en}
           </p>
         </div>
       </div>
@@ -31,13 +38,19 @@ const Events = ({ page, pastEvents, recurringEvents, upcomingEvents }: {
       ) : (
         <div className="sidebarContainer" style={{ marginTop: `5rem` }}>
           <div className="portableContainer">
-            <p>{locale === "cy" ? "Mwy o ddigwyddiadau yn dod yn fuan." : "More events coming soon."}</p>
+            <p>
+              {locale === "cy"
+                ? "Mwy o ddigwyddiadau yn dod yn fuan."
+                : "More events coming soon."}
+            </p>
           </div>
         </div>
       )}
       {recurringEvents && (
         <EventPreview
-          heading={locale === "cy" ? "Digwyddiadau Rheolaidd" : "Regular Events"}
+          heading={
+            locale === "cy" ? "Digwyddiadau Rheolaidd" : "Regular Events"
+          }
           eventData={recurringEvents}
           marginTop={{ marginTop: `6rem` }}
           grid="pastEventsImageGrid"
@@ -45,7 +58,9 @@ const Events = ({ page, pastEvents, recurringEvents, upcomingEvents }: {
       )}
       {pastEvents && (
         <EventPreview
-          heading={locale === "cy" ? "Digwyddiadau'r Gorffennol" : "Past Events"}
+          heading={
+            locale === "cy" ? "Digwyddiadau'r Gorffennol" : "Past Events"
+          }
           eventData={pastEvents}
           marginTop={{ marginTop: `6rem` }}
           grid="pastEventsImageGrid"
