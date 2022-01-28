@@ -10,33 +10,38 @@ const FrontPageFeature = ({ feature }: { feature: FrontPageSection }) => {
   const { locale } = useRouter()
   return (
     <div className="sectionContainer">
-      <Image
-        src={urlFor(feature.mainImage)
-          .width(812)
-          .height(634)
-          .auto("format")
-          .quality(75)
-          .url()}
-        alt={feature.mainImage.caption}
-        width={812}
-        height={634}
-      />
+      <div className="sectionHero">
+        <Image
+          src={urlFor(feature.mainImage)
+            .width(1080)
+            .height(450)
+            .auto("format")
+            .quality(75)
+            .url()}
+          width={1080}
+          height={450}
+          objectFit="cover"
+          alt={feature.subImage.caption}
+        />
+      </div>
       <div className="sectionHeroCaption caption">
         {feature.mainImage.caption}
       </div>
       <div className="sectionContent">
         <div className="sectionInsetImage">
-          <Image
-            src={urlFor(feature.subImage)
-              .width(812)
-              .height(634)
-              .auto("format")
-              .quality(75)
-              .url()}
-            alt={feature.subImage.caption}
-            width={812}
-            height={634}
-          />
+          <div className="sectionInset">
+            <Image
+              src={urlFor(feature.subImage)
+                .width(1080)
+                .auto("format")
+                .quality(75)
+                .url()}
+              width={340}
+              height={510}
+              objectFit="cover"
+              alt={feature.subImage.caption}
+            />
+          </div>
           <div className="caption"> {feature.subImage.caption}</div>
         </div>
         <div>

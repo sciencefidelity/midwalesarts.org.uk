@@ -11,13 +11,14 @@ import { GetStaticProps, GetStaticPaths } from "next"
 import Head from "next/head"
 import Link from "next/link"
 import { useRouter } from "next/router"
-import BlockContent from "@sanity/block-content-to-react"
+// import BlockContent from "@sanity/block-content-to-react"
 import sanityClient from "lib/sanityClient"
 // import type { Post } from "generated/schema"
 import { dateOptions } from "lib/utils"
 import { postPageQuery, postPathQuery } from "lib/queries"
 import Layout from "components/layout"
 import Sidebar from "components/sidebar"
+import PortableText from "components/portableText"
 // import utilStyles from "@/styles/utils.module.scss"
 
 const PostPage = ({ data }) => {
@@ -49,13 +50,8 @@ const PostPage = ({ data }) => {
               </p>
             )}
             {data.post.body && (
-              <BlockContent
-                blocks={
-                  locale === "cy" && data.post.body.cy
-                    ? data.post.body.cy
-                    : data.post.body.en
-                }
-                {...sanityClient.config()}
+              <PortableText
+                blocks={data.post.body}
               />
             )}
             <p>

@@ -5,7 +5,7 @@ footer {
   position: relative;
   background: rgba(c.$grey-050, 0.8);
   margin-top: 23rem;
-  z-index: 1;
+  z-index: 0;
   @include b.mq(sm) {
     margin-top: 12rem;
   }

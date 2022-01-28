@@ -46,7 +46,7 @@ body {
 main {
   position: relative;
   min-height: 350px;
-  z-index: 3;
+  z-index: 1;
 }
 
 footer {
@@ -561,6 +561,10 @@ blockquote {
     opacity: 1;
     transition: opacity 0.3s;
   }
+}
+
+.scrollup {
+  margin-top: 0;
 }
 
 // ********** accessibility **********
