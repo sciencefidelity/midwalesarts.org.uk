@@ -67,7 +67,7 @@ const Visit: FC<Props> = ({ data }) => {
 
 export const query = graphql`
   query Visit {
-    sanityPage(title: { en: { eq: "Visit us" } }) {
+    sanityPage(title: { en: { eq: "Visit Us" } }) {
       title {
         en
       }

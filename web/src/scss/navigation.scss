@@ -10,8 +10,8 @@
   width: 19.2rem;
   margin-top: 0;
   background: rgba(c.$grey-100, 0.8);
-  background: 
-    linear-gradient(90deg, 
+  background:
+    linear-gradient(90deg,
       rgba(c.$grey-000,0.8) 0%,
       rgba(c.$grey-000,0.8) 50%,
       rgba(c.$grey-000,0) 100%);
@@ -138,7 +138,7 @@
       line-height: 1;
     }
     li {
-      padding: 0.35rem 0;
+      padding: 0.18rem 0;
       &:first-child {
         @include b.mq(sm) {
           display: none;

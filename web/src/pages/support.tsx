@@ -6,7 +6,7 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import PortableText from "../components/portableText"
 import Sidebar from "../components/sidebar"
-import "../scss/support.scss"
+// import "../scss/support.scss"
 
 const SupportPage: FC = () => (
   <>
@@ -38,7 +38,7 @@ const SupportPage: FC = () => (
 
 const query = graphql`
   query Support {
-    sanityPage(title: { en: { eq: "Support us" } }) {
+    sanityPage(title: { en: { eq: "Support Us" } }) {
       title {
         en
       }

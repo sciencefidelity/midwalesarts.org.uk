@@ -37,7 +37,7 @@ const AboutPage: FC = () => (
 
 const query = graphql`
   query About {
-    sanityPage(title: { en: { eq: "About" } }) {
+    sanityPage(title: { en: { eq: "About Us" } }) {
       title {
         en
       }
