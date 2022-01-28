@@ -39,7 +39,9 @@ const Layout = ({
 }) => {
   return (
     <div>
-      <Head></Head>
+      <Head>
+        <title>Mid Wales Arts</title>
+      </Head>
       <Header heroImage={heroImage} menu={menu} />
       <main>
         {children}
