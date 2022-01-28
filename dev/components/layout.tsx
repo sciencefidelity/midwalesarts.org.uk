@@ -41,6 +41,30 @@ const Layout = ({
     <div>
       <Head>
         <title>Mid Wales Arts</title>
+        <link
+          rel="preload"
+          href="/fonts/brandongrotesque-regular-lat.woff2"
+          as="font"
+          crossOrigin=""
+        />
+        <link
+          rel="preload"
+          href="/fonts/brandongrotesque-bold-lat.woff2"
+          as="font"
+          crossOrigin=""
+        />
+        <link
+          rel="preload"
+          href="/fonts/halisr-book-mwa.woff2"
+          as="font"
+          crossOrigin=""
+        />
+        <link
+          rel="preload"
+          href="/fonts/halisr-book-mwa.woff2"
+          as="font"
+          crossOrigin=""
+        />
       </Head>
       <Header heroImage={heroImage} menu={menu} />
       <main>
