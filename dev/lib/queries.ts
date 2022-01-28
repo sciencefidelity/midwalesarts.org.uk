@@ -423,7 +423,7 @@ export const videoPageQuery = groq`{
 }`
 
 export const notFoundQuery = groq`{
-  "notFound": *[_type == "page" && slug.en.current == "about"  && !(_id in path('drafts.**'))]{
+  "notFound": *[_type == "page" && slug.en.current == "about"  && !(_id in path('drafts.**'))][0]{
     mainImage
   },
   "site": *[_type == "site" && !(_id in path('drafts.**'))][0]{

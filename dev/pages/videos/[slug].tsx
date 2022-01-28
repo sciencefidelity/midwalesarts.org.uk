@@ -21,6 +21,7 @@ import Sidebar from "components/sidebar"
 // import utilStyles from "styles/utils.module.scss"
 
 const VideoPage = ({ data }) => {
+  console.log(data)
   const { locale } = useRouter()
   return (
     <Layout

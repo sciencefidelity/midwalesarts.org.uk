@@ -1,5 +1,6 @@
 import { GetStaticProps } from "next"
 import Head from "next/head"
+import Link from "next/link"
 import { notFoundQuery } from "lib/queries"
 import sanityClient from "lib/sanityClient"
 import Layout from "@/components/layout"
@@ -24,6 +25,7 @@ const Custom404 = ({ data }) => {
       >
         <h1>404: Not Found</h1>
         <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
+        <Link href="/"><a><p>Home</p></a></Link>
       </div>
     </Layout>
   )
