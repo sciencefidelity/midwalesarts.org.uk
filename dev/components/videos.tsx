@@ -28,7 +28,7 @@ const Videos = ({ page, videos }: {
               !!videos && (
                 <div key={video._id} style={{ margin: 0 }}>
                   <Link href={`/videos/${video.slug.en.current}/`}>
-                    <div>
+                    <a>
                       <Image
                         src={urlFor(video.mainImage)
                           .width(468)
@@ -43,7 +43,7 @@ const Videos = ({ page, videos }: {
                       <div className="gridCaption">
                         {locale === "cy" && video.title.cy ? video.title.cy : video.title.en}
                       </div>
-                    </div>
+                    </a>
                   </Link>
                 </div>
               )

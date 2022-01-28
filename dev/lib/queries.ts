@@ -460,7 +460,7 @@ export const artistPathQuery = groq`
 `
 
 export const eventPathQuery = groq`
-  *[_type == "event" && !(_id in path('drafts.**')) && defined(slug)].slug.en.current
+  *[_type == "event" && !(_id in path('drafts.**')) && defined(slug)][].slug.en.current
 `
 
 export const exhibitionPathQuery = groq`

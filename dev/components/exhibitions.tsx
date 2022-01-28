@@ -76,7 +76,7 @@ const Exhibitions = ({
                   <Link
                     href={`/exhibitions/${exhibition.slug.en.current}`}
                   >
-                    <div>
+                    <a>
                       <Image
                         src={urlFor(exhibition.mainImage)
                           .width(468)
@@ -96,7 +96,7 @@ const Exhibitions = ({
                         {" "}to{" "}
                         {new Date(exhibition.dateEnd).toLocaleDateString(locale, dateOptionsShort)}
                       </div>
-                    </div>
+                    </a>
                   </Link>
                 </div>
               )

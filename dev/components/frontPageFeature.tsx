@@ -58,9 +58,11 @@ const FrontPageFeature = ({ feature }: { feature: FrontPageSection }) => {
       <div className="sectionCtaContainer">
         <div className="sectionCtaHr"></div>
         <Link href={`/${feature.ctaLink}/`}>
-          <h2 className="sectionCta">
-            <span>{locale === "cy" && feature.cta.cy ? feature.cta.cy : feature.cta.en}{" "}</span>
-          </h2>
+          <a>
+            <h2 className="sectionCta">
+              <span>{locale === "cy" && feature.cta.cy ? feature.cta.cy : feature.cta.en}{" "}</span>
+            </h2>
+          </a>
         </Link>
       </div>
     </div>

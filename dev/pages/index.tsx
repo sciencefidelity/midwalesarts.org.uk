@@ -12,7 +12,6 @@ import BrandEn from "components/brand.en"
 import BrandCy from "components/brand.cy"
 import Intro from "components/intro"
 import FrontPageFeature from "components/frontPageFeature"
-
 // import utilStyles from "@/styles/utils.module.scss"
 
 const Home = ({ data }) => {

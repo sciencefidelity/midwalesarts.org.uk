@@ -63,7 +63,9 @@ const Video = ({ data }) => {
             <div>
               <p className="backLink">
                 <Link href="/videos">
-                  {locale === "cy" ? "Yn ôl i Fideos" : "Back to Videos"}
+                  <a>
+                    {locale === "cy" ? "Yn ôl i Fideos" : "Back to Videos"}
+                  </a>
                 </Link>
               </p>
             </div>

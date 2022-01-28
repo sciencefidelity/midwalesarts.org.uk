@@ -69,7 +69,7 @@ const Post = ({ data }) => {
               {data ? (
                 <p className="prevLink">
                   <Link href="#">
-                    {locale === "cy" ? "&lt; Post blaenorol" : "&lt; Previous post"}
+                    <a>{locale === "cy" ? "&lt; Post blaenorol" : "&lt; Previous post"}/a>
                   </Link>
                 </p>
               ) : (
@@ -77,13 +77,13 @@ const Post = ({ data }) => {
               )}
               <p className="backLink">
                 <Link href="/news">
-                  {locale === "cy" ? "Yn ôl i Newyddion" : "Back to News"}
+                  <a>{locale === "cy" ? "Yn ôl i Newyddion" : "Back to News"}</a>
                 </Link>
               </p>
               {data ? (
                 <p className="nextLink">
                   <Link href="#">
-                    {locale === "cy" ? "Post nesaf &gt;" : "Next post &gt;"}
+                    <a>{locale === "cy" ? "Post nesaf &gt;" : "Next post &gt;"}</a>
                   </Link>
                 </p>
               ) : (

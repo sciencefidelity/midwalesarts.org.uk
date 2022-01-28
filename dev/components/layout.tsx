@@ -12,7 +12,8 @@ import {
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import Scrollup from "@/components/scrollup"
-import styles from "@/components/layout.module.scss"
+// import "styles/layout.scss"
+// import styles from "@/components/layout.module.scss"
 // import utilStyles from "@/styles/utils.module.scss"
 
 const Layout = ({ children, heroImage, menu, site, socialLinks }: {
@@ -31,7 +32,7 @@ const Layout = ({ children, heroImage, menu, site, socialLinks }: {
   }
 }) => {
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
       </Head>
       <Header

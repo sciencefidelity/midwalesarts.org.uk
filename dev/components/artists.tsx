@@ -30,7 +30,7 @@ const ArtistsPage = ({ page, artists }: {
                   <Link
                     href={`/artists/${artist.slug.current}/`}
                   >
-                    <div>
+                    <a>
                       <Image
                         src={urlFor(artist.mainImage)
                           .width(468)
@@ -43,7 +43,7 @@ const ArtistsPage = ({ page, artists }: {
                         height={468}
                       />
                       <div className="gridCaption">{artist.title}</div>
-                    </div>
+                    </a>
                   </Link>
                 </div>
               )

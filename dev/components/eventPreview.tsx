@@ -16,7 +16,7 @@ const EventPreview = ({ heading, eventData, marginTop, grid }) => {
         {eventData.map((event: any) => (
           <div key={event._id} style={{ margin: 0 }}>
             <Link href={`/events/${event.slug.en.current}`}>
-              <div>
+              <a>
                 <Image
                   src={urlFor(event.mainImage)
                     .width(468)
@@ -34,7 +34,7 @@ const EventPreview = ({ heading, eventData, marginTop, grid }) => {
                 <div className="gridCaption">
                   {new Date(event.date).toLocaleDateString(locale, dateOptions)}
                 </div>
-              </div>
+              </a>
             </Link>
           </div>
         ))}

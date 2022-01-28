@@ -98,7 +98,7 @@ const Event = ({ data }: {data: Data}) => {
             <div>
               <p className="backLink">
                 <Link href="/events">
-                  {locale === "cy" ? "Yn ôl i Ddigwyddiadau" : "Back to Events"}
+                  <a>{locale === "cy" ? "Yn ôl i Ddigwyddiadau" : "Back to Events"}</a>
                 </Link>
               </p>
             </div>

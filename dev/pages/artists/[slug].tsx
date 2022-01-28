@@ -137,7 +137,7 @@ const Artist = ({ data }) => {
         </div>
         <div>
           <p className="backLink">
-            <Link href="/artists">{"Back to Artists"}</Link>
+            <Link href="/artists"><a>{"Back to Artists"}</a></Link>
           </p>
         </div>
         {!!artist.artworks && (

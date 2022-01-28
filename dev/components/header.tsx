@@ -8,10 +8,9 @@ import {
   SanityImageAsset,
   SanityImageCrop,
   SanityImageHotspot
-} from "@/generated/schema"
-import ColorLogo from "@/components/colorLogo"
-import Navigation from "@/components/navigation"
-// import "../scss/header.scss"
+} from "generated/schema"
+import ColorLogo from "components/colorLogo"
+import Navigation from "components/navigation"
 
 const Header = ({ heroImage, menu }: {
   heroImage: {
@@ -28,22 +27,22 @@ const Header = ({ heroImage, menu }: {
     <>
       <header>
         <Link href="/">
-          <>
+          <a>
             <span className="screenReaderText">{locale === "cy" ? "Cartref" : "Home"}</span>
             <ColorLogo logoClass="colorLogo" containerClass="logoContainer" />
-          </>
+          </a>
         </Link>
         <div className="hero">
           <Image
             src={urlFor(heroImage)
               .width(1440)
-              .height(900)
+              .height(670)
               .auto("format")
               .quality(75)
               .url()}
             alt={heroImage.caption}
             width={1440}
-            height={900}
+            height={670}
           />
         </div>
       </header>

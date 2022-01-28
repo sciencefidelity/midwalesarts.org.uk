@@ -1,10 +1,8 @@
 import { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/router"
-import { Menu } from "@/generated/schema"
-import { capitalize } from "@/lib/utils"
-
-// import "../scss/navigation.scss"
+import { Menu } from "generated/schema"
+import { capitalize } from "lib/utils"
 
 const Navigation = ({ menu }: { menu: Menu }) => {
   const router = useRouter()
@@ -24,7 +22,9 @@ const Navigation = ({ menu }: { menu: Menu }) => {
           {menu.items.map((item: any) => (
             <li key={item._id}>
               <Link href={`/${item.slug.en.current.replace("index", "")}`}>
-                {locale === "cy" && item.menuTitle.cy ? item.menuTitle.cy : item.menuTitle.en}
+                <a>
+                  {locale === "cy" && item.menuTitle.cy ? item.menuTitle.cy : item.menuTitle.en}
+                </a>
               </Link>
             </li>
           ))}

@@ -170,10 +170,12 @@ const Post = ({ data }) => {
         <div>
           <p className="backLink">
             <Link href="/exhibitions">
-              {locale === "cy" ?
-                "Yn ôl i Arddangosfeydd" :
-                "Back to Exhibitions"
-              }
+              <a>
+                {locale === "cy" ?
+                  "Yn ôl i Arddangosfeydd" :
+                  "Back to Exhibitions"
+                }
+              </a>
             </Link>
           </p>
         </div>

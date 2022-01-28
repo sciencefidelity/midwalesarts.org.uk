@@ -28,7 +28,7 @@ const News = ({ page, posts }: {
               !!post && (
                 <div key={post._id} style={{ margin: 0 }}>
                   <Link href={`/news/${post.slug.en.current}`}>
-                    <div>
+                    <a>
                       <Image
                         src={urlFor(post.image)
                           .width(468)
@@ -46,7 +46,7 @@ const News = ({ page, posts }: {
                       <div className="gridCaption">
                         {"Published on"} {post.publishedAt}
                       </div>
-                    </div>
+                    </a>
                   </Link>
                 </div>
               )

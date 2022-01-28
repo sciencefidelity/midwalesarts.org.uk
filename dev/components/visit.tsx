@@ -30,7 +30,7 @@ const Visit = ({ page, spaces }: {
                 key={space._id}
                 // style={{ margin: 0 }}
               >
-                <div>
+                <a>
                   <Image
                     src={urlFor(space.mainImage)
                       .width(468)
@@ -45,7 +45,7 @@ const Visit = ({ page, spaces }: {
                   <div className="gridCaption">
                     {locale === "cy" && space.title.cy ? space.title.cy : space.title.en}
                   </div>
-                </div>
+                </a>
               </Link>
             ))}
           </div>

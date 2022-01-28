@@ -1,10 +1,9 @@
 import { useRouter } from "next/router"
-import { Site, Social } from "@/generated/schema"
-import FooterContact from "@/components/footerContact"
-import Signup from "@/components/signup"
-import Logos from "@/components/logos"
-import FooterLinks from "@/components/footerLinks"
-// import "../scss/footer.scss"
+import { Site, Social } from "generated/schema"
+import FooterContact from "components/footerContact"
+import Signup from "components/signup"
+import Logos from "components/logos"
+import FooterLinks from "components/footerLinks"
 
 const currentYear = new Date().getFullYear()
 

@@ -13,7 +13,7 @@ const ExhibitionPrieview = ({ exhibition, heading }: {
     <div className="exhibitionPreview">
       <p>{heading}</p>
       <Link href={`/exhibitions/${!!exhibition && exhibition.slug.en.current}`}>
-        <div>
+        <a>
           <Image
             src={urlFor(exhibition.mainImage)
               .width(468)
@@ -37,7 +37,7 @@ const ExhibitionPrieview = ({ exhibition, heading }: {
               </span>
             )}
           </div>
-        </div>
+        </a>
       </Link>
     </div>
   )

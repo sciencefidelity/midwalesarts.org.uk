@@ -1,0 +1,15 @@
+@use "foundation/colors" as c;
+
+input {
+  font-size: 2rem;
+  color: c.$grey-550;
+  padding: 0.3rem 1rem;
+  margin-right: 1rem;
+  margin-bottom: 1.5rem;
+  border: 0.14em solid c.$grey-400;
+  width: calc(33.33% - 1rem);
+}
+
+label {
+  font-size: 2rem;
+}

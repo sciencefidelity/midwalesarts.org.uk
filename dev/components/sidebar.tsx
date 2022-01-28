@@ -18,7 +18,7 @@ const Sidebar = ({ events, exhibitions, posts }: {
                   <Link
                     href={`/news/${post.slug.en.current}/`}
                   >
-                    <li>{post.title.en}</li>
+                    <a><li>{post.title.en}</li></a>
                   </Link>
                 </div>
               )
@@ -34,7 +34,7 @@ const Sidebar = ({ events, exhibitions, posts }: {
                   <Link
                     href={`/events/${event.slug.en.current}/`}
                   >
-                    <li>{event.title.en}</li>
+                    <a><li>{event.title.en}</li></a>
                   </Link>
                 </div>
               )
@@ -50,7 +50,7 @@ const Sidebar = ({ events, exhibitions, posts }: {
                   <Link
                     href={`/exhibitions/${exhibition.slug.en.current}/`}
                   >
-                    <li>{exhibition.title.en}</li>
+                    <a><li>{exhibition.title.en}</li></a>
                   </Link>
                 </div>
               )
@@ -59,19 +59,19 @@ const Sidebar = ({ events, exhibitions, posts }: {
       <h3>Weekly Clubs</h3>
       <ul className="sidebarMenu">
         <Link href="/workshop">
-          <li>Wednesdays: Home Ed Group</li>
+          <a><li>Wednesdays: Home Ed Group</li></a>
         </Link>
         <Link href="/workshops">
-          <li>Wednesdays: Ceramics Club</li>
+          <a><li>Wednesdays: Ceramics Club</li></a>
         </Link>
         <Link href="/workshops">
-          <li>Thursdays: Adult Pottery</li>
+          <a><li>Thursdays: Adult Pottery</li></a>
         </Link>
         <Link href="/workshops">
-          <li>Thursdays: After School Club</li>
+          <a><li>Thursdays: After School Club</li></a>
         </Link>
         <Link href="/workshops">
-          <li>Saturdays: Family Workshop</li>
+          <a><li>Saturdays: Family Workshop</li></a>
         </Link>
       </ul>
     </div>
