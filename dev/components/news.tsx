@@ -2,11 +2,11 @@ import Link from "next/link"
 import Image from "next/image"
 import { useRouter } from "next/router"
 import { urlFor } from "@/lib/utils"
-import type { Artist, Page } from "@/generated/schema"
+import type { Page, Post } from "@/generated/schema"
 
-const ArtistsPage = ({ page, artists }: {
+const News = ({ page, posts }: {
   page: Page
-  artists: Artist[]
+  posts: Post[]
 }) => {
   const { locale } = useRouter()
   return (
@@ -22,27 +22,30 @@ const ArtistsPage = ({ page, artists }: {
         </div>
       </div>
       <div className="imageGrid">
-        {!!artists &&
-          artists.map(
-            artist =>
-              !!artist && (
-                <div key={artist._id}>
-                  <Link
-                    href={`/artists/${artist.slug.current}/`}
-                  >
+        {!!posts &&
+          posts.map(
+            (post: any) =>
+              !!post && (
+                <div key={post._id} style={{ margin: 0 }}>
+                  <Link href={`/news/${post.slug.en.current}`}>
                     <div>
                       <Image
-                        src={urlFor(artist.mainImage)
+                        src={urlFor(post.image)
                           .width(468)
                           .height(468)
                           .auto("format")
                           .quality(75)
                           .url()}
-                        alt={artist.mainImage.caption}
+                        alt={post.title.en}
                         width={468}
                         height={468}
                       />
-                      <div className="gridCaption">{artist.title}</div>
+                      <div className="gridCaption">
+                        {locale === "cy" && post.title.cy ? post.title.cy : post.title.en}
+                      </div>
+                      <div className="gridCaption">
+                        {"Published on"} {post.publishedAt}
+                      </div>
                     </div>
                   </Link>
                 </div>
@@ -52,4 +55,4 @@ const ArtistsPage = ({ page, artists }: {
     </section>
   )
 }
-export default ArtistsPage
+export default News

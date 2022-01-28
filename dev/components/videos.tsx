@@ -2,11 +2,11 @@ import Link from "next/link"
 import Image from "next/image"
 import { useRouter } from "next/router"
 import { urlFor } from "@/lib/utils"
-import type { Artist, Page } from "@/generated/schema"
+import type { Page, Video } from "@/generated/schema"
 
-const ArtistsPage = ({ page, artists }: {
+const Videos = ({ page, videos }: {
   page: Page
-  artists: Artist[]
+  videos: Video[]
 }) => {
   const { locale } = useRouter()
   return (
@@ -22,27 +22,27 @@ const ArtistsPage = ({ page, artists }: {
         </div>
       </div>
       <div className="imageGrid">
-        {!!artists &&
-          artists.map(
-            artist =>
-              !!artist && (
-                <div key={artist._id}>
-                  <Link
-                    href={`/artists/${artist.slug.current}/`}
-                  >
+        {!!videos &&
+          videos.map(
+            (video: any) =>
+              !!videos && (
+                <div key={video._id} style={{ margin: 0 }}>
+                  <Link href={`/videos/${video.slug.en.current}/`}>
                     <div>
                       <Image
-                        src={urlFor(artist.mainImage)
+                        src={urlFor(video.mainImage)
                           .width(468)
                           .height(468)
                           .auto("format")
                           .quality(75)
                           .url()}
-                        alt={artist.mainImage.caption}
+                        alt={video.mainImage.caption}
                         width={468}
                         height={468}
                       />
-                      <div className="gridCaption">{artist.title}</div>
+                      <div className="gridCaption">
+                        {locale === "cy" && video.title.cy ? video.title.cy : video.title.en}
+                      </div>
                     </div>
                   </Link>
                 </div>
@@ -52,4 +52,4 @@ const ArtistsPage = ({ page, artists }: {
     </section>
   )
 }
-export default ArtistsPage
+export default Videos

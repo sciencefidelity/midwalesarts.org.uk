@@ -8,6 +8,8 @@ import About from "components/about"
 import Artists from "components/artists"
 import Events from "components/events"
 import Exhibitions from "components/exhibitions"
+import News from "components/news"
+import Videos from "components/videos"
 import Visit from "components/visit"
 // import utilStyles from "styles/utils.module.scss"
 
@@ -25,7 +27,8 @@ const Page = ({ data }) => {
         data.page.template === "artists" ? data.heroArtist.mainImage :
         data.page.template === "events" ? data.upcomingEvents[0].mainImage :
         data.page.template === "exhibitions" ? exhibitionHero :
-        data.page.template === "videos"
+        data.page.template === "news" ? data.posts[0].image :
+        data.page.template === "videos" ? data.videos[0].mainImage : ""
       }
       menu={data.menu}
       site={data.site}
@@ -62,6 +65,20 @@ const Page = ({ data }) => {
           currentExhibitions={data.currentExhibitions}
           futureExhibitions={data.futureExhibitions}
           pastExhibitions={data.pastExhibitions}
+        />
+      }
+      {
+        data.page.template === "news" &&
+        <News
+          page={data.page}
+          posts={data.posts}
+        />
+      }
+      {
+        data.page.template === "videos" &&
+        <Videos
+          page={data.page}
+          videos={data.videos}
         />
       }
     </Layout>

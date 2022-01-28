@@ -159,6 +159,22 @@ export const pageQuery = groq`{
     mainImage,
     slug,
     title
+  },
+  "posts": *[_type == "post"] | order(publishedAt desc){
+    _id,
+    body,
+    categories[]->{title},
+    image,
+    publishedAt,
+    slug,
+    title
+  },
+  "videos": *[_type == "video"] | order(publishDate desc){
+    _id,
+    mainImage,
+    publishDate,
+    slug,
+    title
   }
 }`
 
@@ -284,6 +300,70 @@ export const exhibitionPageQuery = groq`{
   }
 }`
 
+export const postPageQuery = groq`{
+  "posts": *[_type == "post" && slug.en.current == $slug]{
+    body,
+    categories[]->{title},
+    image,
+    publishedAt,
+    title
+  },
+  "site": *[_type == "site"][0]{
+    openingHeading,
+    openingTimes,
+    addressLine1,
+    addressLine2,
+    telephone,
+    siteName,
+    email,
+    signUp,
+    signUpPlaceholder
+  },
+  "menu": *[_type == "menu"][0]{
+    items[]->{
+      _id,
+      slug,
+      menuTitle
+    }
+  },
+  "socialLinks": *[_type == "site"][0]{
+    socialLinks[]->{
+      _id, link, site
+    }
+  }
+}`
+
+export const videoPageQuery = groq`{
+  "video": *[_type == "video" && slug.en.current == $slug]{
+    body,
+    mainImage,
+    title
+  },
+  "site": *[_type == "site"][0]{
+    openingHeading,
+    openingTimes,
+    addressLine1,
+    addressLine2,
+    telephone,
+    siteName,
+    email,
+    signUp,
+    signUpPlaceholder
+  },
+  "menu": *[_type == "menu"][0]{
+    items[]->{
+      _id,
+      slug,
+      menuTitle
+    }
+  },
+  "socialLinks": *[_type == "site"][0]{
+    socialLinks[]->{
+      _id, link, site
+    }
+  }
+}`
+
 export const pagePathQuery = groq`
   *[_type == "page" && defined(slug) && slug.en.current != "index"][].slug.en.current
 `
@@ -300,11 +380,10 @@ export const exhibitionPathQuery = groq`
   *[_type == "exhibition" && defined(slug)][].slug.en.current
 `
 
-// export const postQuery = groq`
-//   *[_type == "post"] | order(publishedAt desc){
-//     title,
-//     slug,
-//     _id,
-//     publishedAt
-//   }
-// `
+export const postPathQuery = groq`
+  *[_type == "post" && defined(slug)][].slug.en.current
+`
+
+export const videoPathQuery = groq`
+  *[_type == "video" && defined(slug)][].slug.en.current
+`
