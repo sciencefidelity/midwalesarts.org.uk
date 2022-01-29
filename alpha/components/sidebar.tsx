@@ -14,10 +14,10 @@ const Sidebar = ({
     <div className="sidebarContent">
       <h3>Latest News</h3>
       <ul className="sidebarMenu">
-        {!!posts &&
+        {posts &&
           posts.map(
             post =>
-              !!post && (
+              post && (
                 <div key={post._id}>
                   <Link href={`/news/${post.slug.en.current}/`}>
                     <a>
@@ -30,10 +30,10 @@ const Sidebar = ({
       </ul>
       <h3>Upcoming Events</h3>
       <ul className="sidebarMenu">
-        {!!events &&
+        {events &&
           events.map(
             event =>
-              !!event && (
+              event && (
                 <div key={event._id}>
                   <Link href={`/events/${event.slug.en.current}/`}>
                     <a>
@@ -46,10 +46,10 @@ const Sidebar = ({
       </ul>
       <h3>Exhibitions</h3>
       <ul className="sidebarMenu">
-        {!!exhibitions &&
+        {exhibitions &&
           exhibitions.map(
             exhibition =>
-              !!exhibition && (
+              exhibition && (
                 <div key={exhibition._id}>
                   <Link href={`/exhibitions/${exhibition.slug.en.current}/`}>
                     <a>

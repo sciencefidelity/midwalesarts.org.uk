@@ -40,8 +40,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 const ExhibitionPage = ({ data }) => {
+  console.log(data.exhibition)
   const router = useRouter()
-  const { locale } = router
   const [info, setInfo] = useState(data.exhibition.artworks.length > 0)
   const [gallery, setGallery] = useState(data.exhibition.artworks.length <= 0)
   const [modal, setModal] = useState(true)
@@ -57,7 +57,7 @@ const ExhibitionPage = ({ data }) => {
       <DefaultErrorPage statusCode={404} />
     </>
   }
-  const modalImage = data.exhibition.artworks[0] !== undefined ? data.exhibition.artworks[imageToShow] : ""
+  const { locale } = router
   const toggleInfo = () => {
     setInfo(false)
     setGallery(true)
@@ -90,6 +90,7 @@ const ExhibitionPage = ({ data }) => {
     }
     setImageToShow(currentIndex)
   }
+  const modalImage = data.exhibition.artworks[0] !== undefined ? data.exhibition.artworks[imageToShow] : {}
   return (
     <Layout
       heroImage={data.exhibition.mainImage}
@@ -142,9 +143,9 @@ const ExhibitionPage = ({ data }) => {
         <div
           className={gallery ? "hidden galleryImageGrid" : "galleryImageGrid"}
         >
-          {data.exhibition.artworks[0] !== undefined ? (
-            data.exhibition.artworks.map((artwork: Artwork, index: number) => (
-              <div
+          {data.exhibition.artworks ?
+            (data.exhibition.artworks.map((artwork: Artwork, index: number) =>
+              artwork && (<div
                 style={{ margin: 0 }}
                 key={artwork._id}
                 onClick={() => openModal(index)}
@@ -158,13 +159,9 @@ const ExhibitionPage = ({ data }) => {
                     .url()}
                   alt={`
                     ${artwork.artist}${", "}
-                    ${
-              locale === "cy" && artwork.title.cy
-                ? artwork.title.cy
-                : artwork.title.en
-              }
-                    ${", "}
-                    ${artwork.date}`}
+                    ${locale === "cy" && artwork.title.cy ? artwork.title.cy : artwork.title.en}${", "}
+                    ${artwork.date}
+                  `}
                   width={468}
                   height={468}
                 />
@@ -176,15 +173,14 @@ const ExhibitionPage = ({ data }) => {
                       : artwork.title.en}
                   </em>
                 </div>
-              </div>
-            ))
-          ) : (
-            <p>
+              </div>)
+            )) :
+            (<p>
               {locale === "cy"
                 ? "Dim gweithiau celf i'w dangos"
                 : "No artworks to show"}
-            </p>
-          )}
+            </p>)
+          }
         </div>
         <div>
           <p className="backLink">

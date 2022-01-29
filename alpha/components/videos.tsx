@@ -21,10 +21,10 @@ const Videos = ({ page, videos }: { page: Page; videos: Video[] }) => {
         </div>
       </div>
       <div className="imageGrid">
-        {!!videos &&
+        {videos &&
           videos.map(
             (video: Video) =>
-              !!videos && (
+              videos && (
                 <div key={video._id} style={{ margin: 0 }}>
                   <Link href={`/videos/${video.slug.en.current}`}>
                     <a>

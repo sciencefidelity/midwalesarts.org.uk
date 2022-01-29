@@ -35,7 +35,7 @@ const ExhibitionPrieview = ({
             height={468}
           />
           <div className="gridCaption">
-            {!!exhibition &&
+            {exhibition &&
               (locale === "cy" && exhibition.title.cy
                 ? exhibition.title.cy
                 : exhibition.title.en)}

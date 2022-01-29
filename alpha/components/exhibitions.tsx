@@ -32,9 +32,9 @@ const Exhibitions = ({
         </div>
       </div>
       <div className="exhibitionPreviewGrid">
-        {!!currentExhibitions[0] && (
+        {currentExhibitions[0] && (
           <>
-            {!!currentExhibitions && currentExhibitions.length === 1 ? (
+            {currentExhibitions && currentExhibitions.length === 1 ? (
               <ExhibitionPrieview
                 heading={
                   locale === "cy"
@@ -61,10 +61,10 @@ const Exhibitions = ({
             )}
           </>
         )}
-        {!!futureExhibitions[0] && (
+        {futureExhibitions[0] && (
           <ExhibitionPrieview
             heading={locale === "cy" ? "Arddangosfa nesaf" : "Next exhibition"}
-            exhibition={!!futureExhibitions[0] && futureExhibitions[0]}
+            exhibition={futureExhibitions[0] && futureExhibitions[0]}
           />
         )}
       </div>
@@ -78,10 +78,10 @@ const Exhibitions = ({
         </div>
       </div>
       <div className="exhibitionGrid">
-        {!!pastExhibitions &&
+        {pastExhibitions &&
           pastExhibitions.map(
             exhibition =>
-              !!exhibition && (
+              exhibition && (
                 <div key={exhibition._id} style={{ margin: 0 }}>
                   <Link href={`/exhibitions/${exhibition.slug.en.current}`}>
                     <a>

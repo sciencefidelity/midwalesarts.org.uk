@@ -89,7 +89,8 @@ const ArtistPage = ({ data }) => {
     }
     setImageToShow(currentIndex)
   }
-  const modalImage = data.artist.artworks[imageToShow]
+  const modalImage = data.artist.artworks[0] !== undefined ? data.artist.artworks[imageToShow] : {}
+
   return (
     <Layout
       heroImage={data.artist.mainImage}
@@ -128,7 +129,7 @@ const ArtistPage = ({ data }) => {
         <div
           className={gallery ? "hidden galleryImageGrid" : "galleryImageGrid"}
         >
-          {data.artist.artworks &&
+          {data.artist.artwork &&
             data.artist.artworks.map(
               (artwork: Artwork, index: number) =>
                 artwork && (
