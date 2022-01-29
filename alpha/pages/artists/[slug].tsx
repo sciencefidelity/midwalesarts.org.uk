@@ -129,7 +129,7 @@ const ArtistPage = ({ data }) => {
         <div
           className={gallery ? "hidden galleryImageGrid" : "galleryImageGrid"}
         >
-          {data.artist.artwork &&
+          {data.artist.artworks &&
             data.artist.artworks.map(
               (artwork: Artwork, index: number) =>
                 artwork && (
