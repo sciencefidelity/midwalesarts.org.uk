@@ -4,7 +4,6 @@ node_modules
 .env.*
 !.env.template
 .cache
-public
 beta/public
 dist
 .DS_Store
