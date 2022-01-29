@@ -40,10 +40,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 const ExhibitionPage = ({ data }) => {
-  console.log(data.exhibition)
   const router = useRouter()
-  const [info, setInfo] = useState(data.exhibition.artworks.length > 0)
-  const [gallery, setGallery] = useState(data.exhibition.artworks.length <= 0)
+  const [info, setInfo] = useState(true)
+  const [gallery, setGallery] = useState(false)
   const [modal, setModal] = useState(true)
   const [imageToShow, setImageToShow] = useState(0)
   if(router.isFallback) {
@@ -84,7 +83,7 @@ const ExhibitionPage = ({ data }) => {
   }
   function nextIndex() {
     currentIndex = currentIndex + 1
-    if (currentIndex >= data.exhibition.artworks.length) {
+    if (currentIndex > data.exhibition.artworks.length - 1) {
       setModal(true)
       return
     }
