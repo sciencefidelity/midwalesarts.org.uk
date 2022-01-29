@@ -19,19 +19,18 @@ import { urlFor } from "lib/utils"
 import { artistPathQuery, artistPageQuery } from "lib/queries"
 import Layout from "components/layout"
 import Modal from "components/modal"
+// import Error from "pages/404"
 // import type { Post } from "generated/schema"
 // import utilStyles from "@/styles/utils.module.scss"
 
 const ArtistPage = ({ data }) => {
-  const { locale } = useRouter()
+  const router = useRouter()
+  const { locale } = router
   const [bio, setBio] = useState(true)
   const [gallery, setGallery] = useState(false)
   const [modal, setModal] = useState(true)
   const [imageToShow, setImageToShow] = useState(0)
   const slug = data?.artist?.slug
-  if (!slug) {
-    return <ErrorPage statusCode={404} />
-  }
   const toggleBio = () => {
     setBio(false)
     setGallery(true)
@@ -67,7 +66,9 @@ const ArtistPage = ({ data }) => {
   const artist = data.artist
   const artworks = data.artist.artworks
   const modalImage = artworks[imageToShow]
-
+  if (!router.isFallback && !slug) {
+    return <ErrorPage statusCode={404} />
+  }
   return (
     <Layout
       heroImage={data.artist.mainImage}
@@ -131,7 +132,7 @@ const ArtistPage = ({ data }) => {
                       height={468}
                     />
                     <div className="gridCaption">
-                      {artwork.title.en} ({artwork.date})
+                      {artwork.title.en} {artwork.date && `(${artwork.date})`}
                     </div>
                   </div>
                 )

@@ -23,7 +23,8 @@ import Modal from "components/modal"
 // import utilStyles from "@/styles/utils.module.scss"
 
 const PostPage = ({ data }) => {
-  const { locale } = useRouter()
+  const router = useRouter()
+  const { locale } = router
   const exhibition = data.exhibition
   const artworks = data.exhibition.artworks
   const [info, setInfo] = useState(artworks.length > 0)
@@ -64,7 +65,7 @@ const PostPage = ({ data }) => {
     setImageToShow(currentIndex)
   }
   const slug = data?.exhibition?.slug
-  if (!slug) {
+  if (!router.isFallback && !slug) {
     return <ErrorPage statusCode={404} />
   }
   return (

@@ -5,9 +5,8 @@ import sanityClient from "lib/sanityClient"
 import Layout from "@/components/layout"
 // import utilStyles from "@/styles/utils.module.scss"
 
-const Error = ({ data, statusCode }: {
-  data: any
-  statusCode: number
+const Error = ({ data }: {
+  data?: any
 }) => {
   return (
     <Layout
@@ -15,7 +14,7 @@ const Error = ({ data, statusCode }: {
       menu={data.menu}
       site={data.site}
       socialLinks={data.socialLinks}
-      title={statusCode ? `<h1>: ${statusCode} Not Found</h1>` : "An error occurred"}
+      title="404 not found"
     >
       <div
         className="container"
@@ -23,7 +22,7 @@ const Error = ({ data, statusCode }: {
           textAlign: "center"
         }}
       >
-        {statusCode ? `<h1>: ${statusCode} Not Found</h1>` : "An error occurred"}
+        <h1>404 not found</h1>
         <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
         <Link href="/">
           <a>
@@ -33,11 +32,6 @@ const Error = ({ data, statusCode }: {
       </div>
     </Layout>
   )
-}
-
-Error.getInitialProps = ({ res, err }) => {
-  const statusCode = res ? res.statusCode : err ? err.statusCode : 404
-  return { statusCode }
 }
 
 export const getStaticProps: GetStaticProps = async () => {
