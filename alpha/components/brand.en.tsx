@@ -14,8 +14,12 @@ const Brand = () => {
         <span>s</span>
       </h1>
       <h1
-        className="brand bold"
-        style={{ paddingLeft: `0.03em`, paddingTop: `0.1em` }}
+        className="brand"
+        style={{
+          fontWeight: 'bold',
+          paddingLeft: '0.03em',
+          paddingTop: '0.1em'
+        }}
       >
         <span>A</span>
         <span style={{ letterSpacing: `0.026em` }}>r</span>

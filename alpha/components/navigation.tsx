@@ -14,10 +14,12 @@ const Navigation = ({ menu }: { menu: Menu }) => {
   const menuClose = () => {
     setActive(false)
   }
+  let align = { right: 'calc(50% - 27rem)' }
+  if (locale === "cy") align = { right: 'calc(50% - 35.5rem)' }
   return (
     <div className="menuOverlay" onClick={isActive ? menuClose : null}>
       <div className={isActive ? "headerMenu isActive" : "headerMenu"}>
-        <ul>
+        <ul style={align}>
           {menu.items.map((item: any) => (
             <li key={item._id}>
               <Link href={`/${item.slug.en.current.replace("index", "")}`}>

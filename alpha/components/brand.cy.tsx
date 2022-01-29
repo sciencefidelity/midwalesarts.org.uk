@@ -1,7 +1,10 @@
 const Brand = () => {
   return (
     <div>
-      <h1 className="brand bold" style={{ paddingBottom: `0.1em` }}>
+      <h1 className="brand" style={{
+        fontWeight: 'bold',
+        paddingBottom: `0.1em`
+      }}>
         <span style={{ letterSpacing: `0.02em` }}>C</span>
         <span style={{ letterSpacing: `0.3rem` }}>e</span>
         <span>l</span>
