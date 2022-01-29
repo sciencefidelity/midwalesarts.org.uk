@@ -1,4 +1,3 @@
-import React from "react"
 import { useRouter } from "next/router"
 import BlockContent from "@sanity/block-content-to-react"
 import sanityClient from "lib/sanityClient"
