@@ -8,6 +8,7 @@ const siteFields = `
   telephone,
   siteName,
   seoDescription,
+  seoImage,
   email,
   signUp,
   signUpPlaceholder

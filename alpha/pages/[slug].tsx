@@ -16,6 +16,7 @@ import { pagePathQuery, pageQuery } from "lib/queries"
 import Layout from "components/layout"
 import PageTemplate from "components/pageTemplate"
 import Artists from "components/artists"
+import ErrorTemplate from "components/errorTemplate"
 import Events from "components/events"
 import Exhibitions from "components/exhibitions"
 import News from "components/news"
@@ -43,15 +44,19 @@ const PagesTemplage = ({ data }) => {
   const router = useRouter()
   const { locale } = router
   if(router.isFallback) {
-    return <h1>Loading...</h1>
+    return (
+      <ErrorTemplate />
+    )
   }
   if(!data) {
-    return <>
-      <Head>
-        <meta name="robots" content="noindex" />
-      </Head>
-      <DefaultErrorPage statusCode={404} />
-    </>
+    return (
+      <>
+        <Head>
+          <meta name="robots" content="noindex" />
+        </Head>
+        <ErrorTemplate />
+      </>
+    )
   }
   const exhibitionHero =
     data.currentExhibitions[0] !== undefined
