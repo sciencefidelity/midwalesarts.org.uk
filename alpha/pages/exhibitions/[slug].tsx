@@ -9,7 +9,7 @@
  */
 import { useState } from "react"
 import { GetStaticProps, GetStaticPaths } from "next"
-import DefaultErrorPage from "next/error"
+// import DefaultErrorPage from "next/error"
 import Head from "next/head"
 import Image from "next/image"
 import Link from "next/link"
@@ -19,6 +19,7 @@ import BlockContent from "@sanity/block-content-to-react"
 import { dateOptionsShort, urlFor } from "lib/utils"
 import { exhibitionPathQuery, exhibitionPageQuery } from "lib/queries"
 import Layout from "components/layout"
+import ErrorTemplate from "components/errorTemplate"
 import Modal from "components/modal"
 import type { Artwork } from "generated/schema"
 
@@ -46,15 +47,19 @@ const ExhibitionPage = ({ data }) => {
   const [modal, setModal] = useState(true)
   const [imageToShow, setImageToShow] = useState(0)
   if(router.isFallback) {
-    return <h1>Loading...</h1>
+    return (
+      <ErrorTemplate />
+    )
   }
   if(!data) {
-    return <>
-      <Head>
-        <meta name="robots" content="noindex" />
-      </Head>
-      <DefaultErrorPage statusCode={404} />
-    </>
+    return (
+      <>
+        <Head>
+          <meta name="robots" content="noindex" />
+        </Head>
+        <ErrorTemplate />
+      </>
+    )
   }
   const { locale } = router
   const toggleInfo = () => {

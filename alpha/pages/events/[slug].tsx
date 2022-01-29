@@ -8,7 +8,7 @@
  * @param slug - all props fetched with `eventPathQuery` in `lib/queries.ts`.
  */
 import { GetStaticProps, GetStaticPaths } from "next"
-import DefaultErrorPage from "next/error"
+// import DefaultErrorPage from "next/error"
 import Head from "next/head"
 import Link from "next/link"
 import { useRouter } from "next/router"
@@ -17,6 +17,7 @@ import sanityClient from "lib/sanityClient"
 import { dateOptions } from "lib/utils"
 import { eventPathQuery, eventPageQuery } from "lib/queries"
 import Layout from "components/layout"
+import ErrorTemplate from "components/errorTemplate"
 import Sidebar from "components/sidebar"
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
@@ -39,15 +40,19 @@ export const getStaticPaths: GetStaticPaths = async () => {
 const EventPage = ({ data }) => {
   const router = useRouter()
   if(router.isFallback) {
-    return <h1>Loading...</h1>
+    return (
+      <ErrorTemplate />
+    )
   }
   if(!data) {
-    return <>
-      <Head>
-        <meta name="robots" content="noindex" />
-      </Head>
-      <DefaultErrorPage statusCode={404} />
-    </>
+    return (
+      <>
+        <Head>
+          <meta name="robots" content="noindex" />
+        </Head>
+        <ErrorTemplate />
+      </>
+    )
   }
   const { locale } = router
   return (
