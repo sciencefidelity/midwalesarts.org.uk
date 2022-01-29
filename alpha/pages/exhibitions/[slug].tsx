@@ -9,6 +9,7 @@
  */
 import { useState } from "react"
 import { GetStaticProps, GetStaticPaths } from "next"
+import ErrorPage from "next/error"
 import Head from "next/head"
 import Image from "next/image"
 import Link from "next/link"
@@ -16,14 +17,19 @@ import { useRouter } from "next/router"
 import sanityClient from "lib/sanityClient"
 import BlockContent from "@sanity/block-content-to-react"
 import { dateOptionsShort, urlFor } from "lib/utils"
-// import type { Post } from "generated/schema"
 import { exhibitionPathQuery, exhibitionPageQuery } from "lib/queries"
 import Layout from "components/layout"
 import Modal from "components/modal"
+// import type { Post } from "generated/schema"
 // import utilStyles from "@/styles/utils.module.scss"
 
 const PostPage = ({ data }) => {
-  const { locale } = useRouter()
+  const router = useRouter()
+  const { locale } = router
+  const slug = data?.exhibition?.slug
+  if (!slug) {
+    return <ErrorPage statusCode={404} />
+  }
   const exhibition = data.exhibition
   const artworks = data.exhibition.artworks
   const [info, setInfo] = useState(artworks.length > 0)
@@ -196,7 +202,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await sanityClient.fetch(exhibitionPathQuery)
   return {
     paths: paths.map((slug: string[]) => ({ params: { slug } })),
-    fallback: false
+    fallback: true
   }
 }
 

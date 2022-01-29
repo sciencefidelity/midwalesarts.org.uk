@@ -8,9 +8,10 @@
  * @param slug - all props fetched with `pathQuery` in `lib/queries.ts`.
  */
 import { GetStaticProps, GetStaticPaths } from "next"
+import ErrorPage from "next/error"
 import Head from "next/head"
+// import { useRouter } from 'next/router'
 import sanityClient from "lib/sanityClient"
-// import type { Page } from "generated/schema"
 import { pagePathQuery, pageQuery } from "lib/queries"
 import Layout from "components/layout"
 import PageTemplate from "components/pageTemplate"
@@ -20,9 +21,16 @@ import Exhibitions from "components/exhibitions"
 import News from "components/news"
 import Videos from "components/videos"
 import Visit from "components/visit"
+// import type { Page } from "generated/schema"
 // import utilStyles from "styles/utils.module.scss"
 
 const PagesTemplage = ({ data }) => {
+  // const router = useRouter()
+  const slug = data?.page?.slug
+  if (!slug) {
+    return <ErrorPage statusCode={404} />
+  }
+
   const exhibitionHero =
     data.currentExhibitions[0] !== undefined
       ? data.currentExhibitions[0].mainImage
@@ -100,7 +108,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await sanityClient.fetch(pagePathQuery)
   return {
     paths: paths.map((slug: string[]) => ({ params: { slug } })),
-    fallback: false
+    fallback: true
   }
 }
 

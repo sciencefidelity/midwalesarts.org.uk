@@ -8,21 +8,26 @@
  * @param slug - all props fetched with `postPathQuery` in `lib/queries.ts`.
  */
 import { GetStaticProps, GetStaticPaths } from "next"
+import ErrorPage from "next/error"
 import Head from "next/head"
 import Link from "next/link"
 import { useRouter } from "next/router"
-// import BlockContent from "@sanity/block-content-to-react"
 import sanityClient from "lib/sanityClient"
-// import type { Post } from "generated/schema"
 import { dateOptions } from "lib/utils"
 import { postPageQuery, postPathQuery } from "lib/queries"
 import Layout from "components/layout"
 import Sidebar from "components/sidebar"
 import PortableText from "components/portableText"
+// import type { Post } from "generated/schema"
 // import utilStyles from "@/styles/utils.module.scss"
 
 const PostPage = ({ data }) => {
-  const { locale } = useRouter()
+  const router = useRouter()
+  const { locale } = router
+  const slug = data?.post?.slug
+  if (!slug) {
+    return <ErrorPage statusCode={404} />
+  }
   return (
     <Layout
       heroImage={data.post.image}
@@ -110,7 +115,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await sanityClient.fetch(postPathQuery)
   return {
     paths: paths.map((slug: string[]) => ({ params: { slug } })),
-    fallback: false
+    fallback: true
   }
 }
 

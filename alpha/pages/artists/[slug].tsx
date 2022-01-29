@@ -9,6 +9,7 @@
  */
 import { useState } from "react"
 import { GetStaticProps, GetStaticPaths } from "next"
+import ErrorPage from "next/error"
 import Head from "next/head"
 import Image from "next/image"
 import Link from "next/link"
@@ -16,14 +17,19 @@ import { useRouter } from "next/router"
 import sanityClient from "lib/sanityClient"
 import BlockContent from "@sanity/block-content-to-react"
 import { urlFor } from "lib/utils"
-// import type { Post } from "generated/schema"
 import { artistPathQuery, artistPageQuery } from "lib/queries"
 import Layout from "components/layout"
 import Modal from "components/modal"
+// import type { Post } from "generated/schema"
 // import utilStyles from "@/styles/utils.module.scss"
 
 const ArtistPage = ({ data }) => {
-  const { locale } = useRouter()
+  const router = useRouter()
+  const { locale } = router
+  const slug = data?.artist?.slug
+  if (!slug) {
+    return <ErrorPage statusCode={404} />
+  }
   const [bio, setBio] = useState(true)
   const [gallery, setGallery] = useState(false)
   const [modal, setModal] = useState(true)
@@ -160,7 +166,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await sanityClient.fetch(artistPathQuery)
   return {
     paths: paths.map((slug: string[]) => ({ params: { slug } })),
-    fallback: false
+    fallback: true
   }
 }
 

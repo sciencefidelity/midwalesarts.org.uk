@@ -8,89 +8,94 @@
  * @param slug - all props fetched with `eventPathQuery` in `lib/queries.ts`.
  */
 import { GetStaticProps, GetStaticPaths } from "next"
+import ErrorPage from "next/error"
 import Head from "next/head"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import BlockContent from "@sanity/block-content-to-react"
 import sanityClient from "lib/sanityClient"
 import { dateOptions } from "lib/utils"
-import type {
-  Event,
-  Site,
-  Menu,
-  Social,
-  Post,
-  Exhibition
-} from "generated/schema"
 import { eventPathQuery, eventPageQuery } from "lib/queries"
 import Layout from "components/layout"
 import Sidebar from "components/sidebar"
+// import type {
+//   Event,
+//   Site,
+//   Menu,
+//   Social,
+//   Post,
+//   Exhibition
+// } from "generated/schema"
 // import utilStyles from "@/styles/utils.module.scss"
 
-interface Data {
-  event: Event
-  site: Site
-  menu: Menu[]
-  socialLinks: {
-    socialLinks: Social[]
-  }
-  sidebar: {
-    posts: Post[]
-    events: Event[]
-    exhibitions: Exhibition[]
-  }
-}
+// interface Data {
+//   event: Event
+//   site: Site
+//   menu: Menu[]
+//   socialLinks: {
+//     socialLinks: Social[]
+//   }
+//   sidebar: {
+//     posts: Post[]
+//     events: Event[]
+//     exhibitions: Exhibition[]
+//   }
+// }
 
-const EventPage = ({ data }: { data: Data }) => {
-  const { event, site, menu, socialLinks, sidebar } = data
-  const { locale } = useRouter()
+const EventPage = ({ data }) => {
+  const router = useRouter()
+  const { locale } = router
+  const slug = data?.event?.slug
+  if (!slug) {
+    return <ErrorPage statusCode={404} />
+  }
   return (
     <Layout
-      heroImage={event && event.mainImage}
-      menu={menu}
-      site={site}
-      socialLinks={socialLinks}
+      heroImage={data.event && data.event.mainImage}
+      menu={data.menu}
+      site={data.site}
+      socialLinks={data.socialLinks}
     >
       <Head>
         <title>
-          {locale == "cy" && event.title.cy ? event.title.cy : event.title.en}
+          {locale === "cy" && data.event.title.cy ? data.event.title.cy : data.event.title.en}
           {" | "}
-          {locale == "cy" && site.siteName.cy
-            ? site.siteName.cy
-            : site.siteName.en}
+          {locale === "cy" && data.site.siteName.cy
+            ? data.site.siteName.cy
+            : data.site.siteName.en}
         </title>
       </Head>
       <section>
         <div className="sidebarContainer">
           <div className="portableContainer">
             <h1>
-              {locale == "cy" && event.title.cy
-                ? event.title.cy
-                : event.title.en}
+              {locale === "cy" && data.event.title.cy
+                ? data.event.title.cy
+                : data.event.title.en}
             </h1>
             <p className="SubTitle">
-              {new Date(event.date).toLocaleDateString(locale, dateOptions)}
+              {new Date(data.event.date).toLocaleDateString(locale, dateOptions)}
             </p>
-            {event.briteLink && (
+            {data.event.briteLink && (
               <p>
-                <a href={`${event.briteLink}`} target="blank" rel="noreferrer">
+                <a href={`${data.event.briteLink}`} target="blank" rel="noreferrer">
                   {locale === "cy" ? "Archebwch docynnau" : "Book tickets"}
                 </a>
               </p>
             )}
-            {event.body && (
+            {data.event.body && (
               <BlockContent
                 blocks={
-                  locale === "cy" && event.body.cy
-                    ? event.body.cy
-                    : event.body.en
+                  locale === "cy" && data.event.body.cy
+                    ? data.event.body.cy
+                    : data.event.body.en
                 }
                 {...sanityClient.config()}
               />
             )}
-            {event.briteLink && (
+            {data.event.briteLink && (
               <p>
-                <a href={`${event.briteLink}`} target="blank" rel="noreferrer">
+                <a href={`${data.event.briteLink}`} target="blank" rel="noreferrer">
                   {locale === "cy" ? "Archebwch docynnau" : "Book tickets"}
                 </a>
               </p>
@@ -108,9 +113,9 @@ const EventPage = ({ data }: { data: Data }) => {
             </div>
           </div>
           <Sidebar
-            events={sidebar.events}
-            exhibitions={sidebar.exhibitions}
-            posts={sidebar.posts}
+            events={data.sidebar.events}
+            exhibitions={data.sidebar.exhibitions}
+            posts={data.sidebar.posts}
           />
         </div>
       </section>
@@ -122,7 +127,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await sanityClient.fetch(eventPathQuery)
   return {
     paths: paths.map((slug: string[]) => ({ params: { slug } })),
-    fallback: false
+    fallback: true
   }
 }
 

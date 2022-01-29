@@ -8,20 +8,26 @@
  * @param slug - all props fetched with `videoPathQuery` in `lib/queries.ts`.
  */
 import { GetStaticProps, GetStaticPaths } from "next"
+import ErrorPage from "next/error"
 import Head from "next/head"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import BlockContent from "@sanity/block-content-to-react"
 import sanityClient from "lib/sanityClient"
-// import type { Post } from "generated/schema"
 import { videoPageQuery, videoPathQuery } from "lib/queries"
 import Layout from "components/layout"
 import VideoEmbed from "components/videoEmbed"
 import Sidebar from "components/sidebar"
+// import type { Post } from "generated/schema"
 // import utilStyles from "styles/utils.module.scss"
 
 const VideoPage = ({ data }) => {
-  const { locale } = useRouter()
+  const router = useRouter()
+  const { locale } = router
+  const slug = data?.video?.slug
+  if (!slug) {
+    return <ErrorPage statusCode={404} />
+  }
   return (
     <Layout
       heroImage={data.video.mainImage}
@@ -82,7 +88,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await sanityClient.fetch(videoPathQuery)
   return {
     paths: paths.map((slug: string[]) => ({ params: { slug } })),
-    fallback: false
+    fallback: true
   }
 }
 
