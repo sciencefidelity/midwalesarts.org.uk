@@ -1,4 +1,3 @@
-
 @use "colors" as c;
 @use "breakpoints" as b;
 
@@ -466,11 +465,15 @@ blockquote {
   background: white;
   padding: 2rem;
   margin: auto;
-  display: inline-block;
+  display: block;
   z-index: 7;
-  img {
-    max-height: 80vh;
-  }
+}
+
+.modalImageWrapper {
+  width: 59vw;
+  position: relative;
+  margin: 2rem;
+  height: 80vh;
 }
 
 .modalCaption {

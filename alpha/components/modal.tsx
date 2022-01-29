@@ -25,21 +25,22 @@ const Modal = ({ modal, modalImage, closeModal, prevIndex, nextIndex }) => {
         />
       </div>
       <div className="modalImageContiner">
-        <Image
-          src={urlFor(modalImage.mainImage)
-            .width(468)
-            .height(468)
-            .auto("format")
-            .quality(75)
-            .url()}
-          alt={`
-            ${modalImage.artist}${", "}
-            ${modalImage.title.en}${", "}
-            ${modalImage.date}
-          `}
-          width={468}
-          height={468}
-        />
+        <div className="modalImageWrapper">
+          <Image
+            src={urlFor(modalImage.mainImage)
+              .height(670)
+              .auto("format")
+              .quality(75)
+              .url()}
+            alt={`
+              ${modalImage.artist}${", "}
+              ${modalImage.title.en}${", "}
+              ${modalImage.date}
+            `}
+            layout={"fill"}
+            objectFit={"contain"}
+          />
+        </div>
         <p className="modalCaption">
           <em>{modalImage.title.en}</em>, {modalImage.artist}
         </p>
