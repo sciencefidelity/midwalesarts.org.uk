@@ -23,10 +23,10 @@ const ArtistsPage = ({ page, artists }: { page: Page; artists: Artist[] }) => {
       <div className="imageGrid">
         {!!artists &&
           artists.map(
-            (artist: any) =>
+            (artist: Artist) =>
               !!artist && (
                 <div key={artist._id}>
-                  <Link href={`/artists/${artist.slug.current}/`}>
+                  <Link href={`/artists/${artist.slug.current}`}>
                     <a>
                       <Image
                         src={urlFor(artist.mainImage)

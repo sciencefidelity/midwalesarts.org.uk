@@ -24,18 +24,17 @@ import Modal from "components/modal"
 // import utilStyles from "@/styles/utils.module.scss"
 
 const PostPage = ({ data }) => {
-  const router = useRouter()
-  const { locale } = router
-  const slug = data?.exhibition?.slug
-  if (!slug) {
-    return <ErrorPage statusCode={404} />
-  }
+  const { locale } = useRouter()
   const exhibition = data.exhibition
   const artworks = data.exhibition.artworks
+  const slug = data?.exhibition?.slug
   const [info, setInfo] = useState(artworks.length > 0)
   const [gallery, setGallery] = useState(artworks.length <= 0)
   const [modal, setModal] = useState(true)
   const [imageToShow, setImageToShow] = useState(0)
+  if (!slug) {
+    return <ErrorPage statusCode={404} />
+  }
   const modalImage = artworks[0] !== undefined ? artworks[imageToShow] : ""
   const toggleInfo = () => {
     setInfo(false)
@@ -144,10 +143,10 @@ const PostPage = ({ data }) => {
                   alt={`
                     ${artwork.artist}${", "}
                     ${
-                      locale === "cy" && artwork.title.cy
-                        ? artwork.title.cy
-                        : artwork.title.en
-                    }
+              locale === "cy" && artwork.title.cy
+                ? artwork.title.cy
+                : artwork.title.en
+              }
                     ${", "}
                     ${artwork.date}`}
                   width={468}

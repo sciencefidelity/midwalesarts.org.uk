@@ -452,25 +452,25 @@ export const notFoundQuery = groq`{
 }`
 
 export const pagePathQuery = groq`
-  *[_type == "page" && defined(slug) && slug.en.current != "index" && !(_id in path('drafts.**'))].slug.en.current
+  *[_type == "page" && defined(slug) && slug.en.current != "index" && !(_id in path('drafts.**'))][].slug.en.current
 `
 
 export const artistPathQuery = groq`
-  *[_type == "artist" && defined(slug) && !(_id in path('drafts.**'))].slug.current
+  *[_type == "artist" && defined(slug) && !(_id in path('drafts.**'))][].slug.current
 `
 
 export const eventPathQuery = groq`
-  *[_type == "event" && !(_id in path('drafts.**')) && defined(slug)].slug.en.current
+  *[_type == "event" && !(_id in path('drafts.**')) && defined(slug)][].slug.en.current
 `
 
 export const exhibitionPathQuery = groq`
-  *[_type == "exhibition" && defined(slug) && !(_id in path('drafts.**'))].slug.en.current
+  *[_type == "exhibition" && defined(slug) && !(_id in path('drafts.**'))][].slug.en.current
 `
 
 export const postPathQuery = groq`
-  *[_type == "post" && defined(slug) && !(_id in path('drafts.**'))].slug.en.current
+  *[_type == "post" && defined(slug) && !(_id in path('drafts.**'))][].slug.en.current
 `
 
 export const videoPathQuery = groq`
-  *[_type == "video" && defined(slug) && !(_id in path('drafts.**'))].slug.en.current
+  *[_type == "video" && defined(slug) && !(_id in path('drafts.**'))][].slug.en.current
 `

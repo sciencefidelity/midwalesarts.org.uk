@@ -1,10 +1,10 @@
 import { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/router"
-import { Menu } from "generated/schema"
+import { Menu, Page } from "generated/schema"
 import { capitalize } from "lib/utils"
 
-const Navigation = ({ menu }: { menu: Menu }) => {
+const Navigation = ({ menu }: { menu: any }) => {
   const router = useRouter()
   const { pathname, asPath, query, locale, locales } = router
   const [isActive, setActive] = useState(false)
@@ -14,13 +14,13 @@ const Navigation = ({ menu }: { menu: Menu }) => {
   const menuClose = () => {
     setActive(false)
   }
-  let align = { right: 'calc(50% - 27rem)' }
-  if (locale === "cy") align = { right: 'calc(50% - 35.5rem)' }
+  let align = { right: "calc(50% - 27rem)" }
+  if (locale === "cy") align = { right: "calc(50% - 35.5rem)" }
   return (
     <div className="menuOverlay" onClick={isActive ? menuClose : null}>
       <div className={isActive ? "headerMenu isActive" : "headerMenu"}>
         <ul style={align}>
-          {menu.items.map((item: any) => (
+          {menu.items.map((item: Page) => (
             <li key={item._id}>
               <Link href={`/${item.slug.en.current.replace("index", "")}`}>
                 <a>

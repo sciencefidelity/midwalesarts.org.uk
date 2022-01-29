@@ -9,7 +9,7 @@
  */
 import { useState } from "react"
 import { GetStaticProps, GetStaticPaths } from "next"
-import ErrorPage from "next/error"
+// import ErrorPage from "next/error"
 import Head from "next/head"
 import Image from "next/image"
 import Link from "next/link"
@@ -24,16 +24,15 @@ import Modal from "components/modal"
 // import utilStyles from "@/styles/utils.module.scss"
 
 const ArtistPage = ({ data }) => {
-  const router = useRouter()
-  const { locale } = router
-  const slug = data?.artist?.slug
-  if (!slug) {
-    return <ErrorPage statusCode={404} />
-  }
+  const { locale } = useRouter()
   const [bio, setBio] = useState(true)
   const [gallery, setGallery] = useState(false)
   const [modal, setModal] = useState(true)
   const [imageToShow, setImageToShow] = useState(0)
+  // const slug = data?.artist?.slug
+  // if (!slug) {
+  //   return <ErrorPage statusCode={404} />
+  // }
   const toggleBio = () => {
     setBio(false)
     setGallery(true)
@@ -83,7 +82,7 @@ const ArtistPage = ({ data }) => {
       <section>
         <div className="sidebarContainer">
           <div className="portableContainer">
-            <h1>Artist</h1>
+            <h1>{locale === "cy" ? "Artistiaid" : "Artist"}</h1>
             <p className="subTitle">{artist.title}</p>
             <ul className="galleryMenu">
               <li onClick={toggleGallery} className={bio ? "selected" : ""}>

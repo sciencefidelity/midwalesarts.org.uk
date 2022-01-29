@@ -68,7 +68,7 @@ const Exhibitions = ({
           />
         )}
       </div>
-      <div className="sidebarContainer" style={{ marginTop: `6rem` }}>
+      <div className="sidebarContainer" style={{ marginTop: "6rem" }}>
         <div className="portableContainer">
           <p>
             {locale === "cy"

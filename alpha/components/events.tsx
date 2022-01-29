@@ -19,10 +19,10 @@ const Events = ({
       <div className="sidebarContainer">
         <div className="portableContainer">
           <h1>
-            {locale == "cy" && page.title.cy ? page.title.cy : page.title.en}
+            {locale === "cy" && page.title.cy ? page.title.cy : page.title.en}
           </h1>
           <p className="sidebarContainer">
-            {locale == "cy" && page.subtitle.cy
+            {locale === "cy" && page.subtitle.cy
               ? page.subtitle.cy
               : page.subtitle.en}
           </p>
@@ -32,11 +32,11 @@ const Events = ({
         <EventPreview
           heading={locale === "cy" ? "Digwyddiadau i ddod" : "Upcoming Events"}
           eventData={upcomingEvents}
-          marginTop={{ marginTop: `2rem` }}
+          marginTop={{ marginTop: "2rem" }}
           grid="pastEventsImageGrid"
         />
       ) : (
-        <div className="sidebarContainer" style={{ marginTop: `5rem` }}>
+        <div className="sidebarContainer" style={{ marginTop: "5rem" }}>
           <div className="portableContainer">
             <p>
               {locale === "cy"
@@ -52,7 +52,7 @@ const Events = ({
             locale === "cy" ? "Digwyddiadau Rheolaidd" : "Regular Events"
           }
           eventData={recurringEvents}
-          marginTop={{ marginTop: `6rem` }}
+          marginTop={{ marginTop: "6rem" }}
           grid="pastEventsImageGrid"
         />
       )}
@@ -62,7 +62,7 @@ const Events = ({
             locale === "cy" ? "Digwyddiadau'r Gorffennol" : "Past Events"
           }
           eventData={pastEvents}
-          marginTop={{ marginTop: `6rem` }}
+          marginTop={{ marginTop: "6rem" }}
           grid="pastEventsImageGrid"
         />
       )}

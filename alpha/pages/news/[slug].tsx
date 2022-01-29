@@ -8,7 +8,7 @@
  * @param slug - all props fetched with `postPathQuery` in `lib/queries.ts`.
  */
 import { GetStaticProps, GetStaticPaths } from "next"
-import ErrorPage from "next/error"
+// import ErrorPage from "next/error"
 import Head from "next/head"
 import Link from "next/link"
 import { useRouter } from "next/router"
@@ -24,10 +24,10 @@ import PortableText from "components/portableText"
 const PostPage = ({ data }) => {
   const router = useRouter()
   const { locale } = router
-  const slug = data?.post?.slug
-  if (!slug) {
-    return <ErrorPage statusCode={404} />
-  }
+  // const slug = data?.post?.slug
+  // if (!slug) {
+  //   return <ErrorPage statusCode={404} />
+  // }
   return (
     <Layout
       heroImage={data.post.image}
@@ -37,7 +37,7 @@ const PostPage = ({ data }) => {
     >
       <Head>
         <title>
-          {locale == "cy" && data.post.title.cy
+          {locale === "cy" && data.post.title.cy
             ? data.post.title.cy
             : data.post.title.en}
         </title>
@@ -48,7 +48,7 @@ const PostPage = ({ data }) => {
             <h1>{locale === "cy" ? "Newyddion" : "News"}</h1>
             {data.post.title && (
               <p className="subTitle">
-                {locale == "cy" && data.post.title.cy
+                {locale === "cy" && data.post.title.cy
                   ? data.post.title.cy
                   : data.post.title.en}
                 .

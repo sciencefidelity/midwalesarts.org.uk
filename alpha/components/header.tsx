@@ -32,7 +32,7 @@ const Header = ({
         <Link href="/">
           <a>
             <span className="screenReaderText">
-              {locale === "cy" ? "Cartref" : "Home"}
+              {locale === "cy" ? "Hafan" : "Home"}
             </span>
             <ColorLogo logoClass="colorLogo" containerClass="logoContainer" />
           </a>

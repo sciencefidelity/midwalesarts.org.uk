@@ -3,11 +3,10 @@ import { useRouter } from "next/router"
 const Localize = ({ data }: {
   data: any
 }) => {
-  const router = useRouter()
-  const { locale } = router
+  const { locale } = useRouter()
   return (
     <Localize
-      {...locale === "cy" && data.cy
+      {locale === "cy" && data.cy
         ? data.cy
         : data.en}
     />

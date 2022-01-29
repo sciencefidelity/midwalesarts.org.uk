@@ -8,9 +8,9 @@
  * @param slug - all props fetched with `pathQuery` in `lib/queries.ts`.
  */
 import { GetStaticProps, GetStaticPaths } from "next"
-import ErrorPage from "next/error"
+// import ErrorPage from "next/error"
 import Head from "next/head"
-// import { useRouter } from 'next/router'
+import { useRouter } from "next/router"
 import sanityClient from "lib/sanityClient"
 import { pagePathQuery, pageQuery } from "lib/queries"
 import Layout from "components/layout"
@@ -25,18 +25,18 @@ import Visit from "components/visit"
 // import utilStyles from "styles/utils.module.scss"
 
 const PagesTemplage = ({ data }) => {
-  // const router = useRouter()
-  const slug = data?.page?.slug
-  if (!slug) {
-    return <ErrorPage statusCode={404} />
-  }
+  const { locale } = useRouter()
+  // const slug = data?.page?.slug
+  // if (!slug) {
+  //  return <ErrorPage statusCode={404} />
+  // }
 
   const exhibitionHero =
     data.currentExhibitions[0] !== undefined
       ? data.currentExhibitions[0].mainImage
       : data.futureExhibitions[0] !== undefined
-      ? data.futureExhibitions[0].mainImage
-      : data.pastExhibitions[0].mainImage
+        ? data.futureExhibitions[0].mainImage
+        : data.pastExhibitions[0].mainImage
 
   return (
     <Layout
@@ -44,25 +44,30 @@ const PagesTemplage = ({ data }) => {
         data.page.template === "page"
           ? data.page.heroImage
           : data.page.template === "visit-us"
-          ? data.page.heroImage
-          : data.page.template === "artists"
-          ? data.heroArtist.mainImage
-          : data.page.template === "events"
-          ? data.upcomingEvents[0].mainImage
-          : data.page.template === "exhibitions"
-          ? exhibitionHero
-          : data.page.template === "news"
-          ? data.posts[0].image
-          : data.page.template === "videos"
-          ? data.videos[0].mainImage
-          : ""
+            ? data.page.heroImage
+            : data.page.template === "artists"
+              ? data.heroArtist.mainImage
+              : data.page.template === "events"
+                ? data.upcomingEvents[0].mainImage
+                : data.page.template === "exhibitions"
+                  ? exhibitionHero
+                  : data.page.template === "news"
+                    ? data.posts[0].image
+                    : data.page.template === "videos"
+                      ? data.videos[0].mainImage
+                      : ""
       }
       menu={data.menu}
       site={data.site}
       socialLinks={data.socialLinks}
     >
       <Head>
-        <title></title>
+        <title>
+          {locale === "cy" && data.cy
+            ? data.page.title.cy
+            : data.page.title.en
+          }
+        </title>
       </Head>
       {data.page.template === "page" && (
         <PageTemplate

@@ -23,7 +23,8 @@ module.exports = {
     quotes: ["error", "double"],
     semi: ["error", "never"],
     "react/react-in-jsx-scope": "off",
-    "react/jsx-filename-extension": [1, { extensions: [".tsx"] }]
+    "react/jsx-filename-extension": [1, { extensions: [".tsx"] }],
+    "react/prop-types": 0
   },
   settings: {
     react: {

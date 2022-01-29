@@ -15,7 +15,9 @@ const ExhibitionPrieview = ({
   return (
     <div className="exhibitionPreview">
       <p>{heading}</p>
-      <Link href={`/exhibitions/${!!exhibition && exhibition.slug.en.current}`}>
+      <Link
+        href={`/exhibitions/${exhibition.slug.en.current}`}
+      >
         <a>
           <Image
             src={urlFor(exhibition.mainImage)

@@ -23,10 +23,10 @@ const Videos = ({ page, videos }: { page: Page; videos: Video[] }) => {
       <div className="imageGrid">
         {!!videos &&
           videos.map(
-            (video: any) =>
+            (video: Video) =>
               !!videos && (
                 <div key={video._id} style={{ margin: 0 }}>
-                  <Link href={`/videos/${video.slug.en.current}/`}>
+                  <Link href={`/videos/${video.slug.en.current}`}>
                     <a>
                       <Image
                         src={urlFor(video.mainImage)
@@ -35,7 +35,11 @@ const Videos = ({ page, videos }: { page: Page; videos: Video[] }) => {
                           .auto("format")
                           .quality(75)
                           .url()}
-                        alt={video.mainImage.caption}
+                        alt={
+                          locale === "cy" && video.title.cy
+                            ? video.title.cy
+                            : video.title.en
+                        }
                         width={468}
                         height={468}
                       />

@@ -9,7 +9,7 @@
     "lint:format": "prettier --check '**/*.{ts,js,tsx,jsx,json,md,yml}'",
     "lint:styles": "stylelint --ignore-path .eslintignore '**/*.scss'",
     "fix": "concurrently 'yarn:fix:*'",
-    "fix:js": "eslint --fix '**/*.{ts,js}'",
+    "fix:js": "eslint --fix '**/*.{ts,js,tsx,jsx}'",
     "fix:format": "prettier --write '**/*.{ts,js,tsx,jsx,json,md,yml}'",
     "fix:styles": "stylelint --fix --ignore-path .eslintignore '**/*scss'",
     "test": "jest --watchAll"

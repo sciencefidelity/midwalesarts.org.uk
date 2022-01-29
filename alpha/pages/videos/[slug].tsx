@@ -8,7 +8,7 @@
  * @param slug - all props fetched with `videoPathQuery` in `lib/queries.ts`.
  */
 import { GetStaticProps, GetStaticPaths } from "next"
-import ErrorPage from "next/error"
+// import ErrorPage from "next/error"
 import Head from "next/head"
 import Link from "next/link"
 import { useRouter } from "next/router"
@@ -24,10 +24,10 @@ import Sidebar from "components/sidebar"
 const VideoPage = ({ data }) => {
   const router = useRouter()
   const { locale } = router
-  const slug = data?.video?.slug
-  if (!slug) {
-    return <ErrorPage statusCode={404} />
-  }
+  // const slug = data?.video?.slug
+  // if (!slug) {
+  //   return <ErrorPage statusCode={404} />
+  // }
   return (
     <Layout
       heroImage={data.video.mainImage}
@@ -37,7 +37,7 @@ const VideoPage = ({ data }) => {
     >
       <Head>
         <title>
-          {locale == "cy" && data.video.title.cy
+          {locale === "cy" && data.video.title.cy
             ? data.video.title.cy
             : data.video.title.en}
         </title>
@@ -47,7 +47,7 @@ const VideoPage = ({ data }) => {
           <div className="portableContainer">
             <h1>{locale === "cy" ? "Fideo" : "Video"}</h1>
             <p className="subTitle">
-              {locale == "cy" && data.video.title.cy
+              {locale === "cy" && data.video.title.cy
                 ? data.video.title.cy
                 : data.video.title.en}
               .
