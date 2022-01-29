@@ -8,7 +8,8 @@
  * @param slug - all props fetched with `videoPathQuery` in `lib/queries.ts`.
  */
 import { GetStaticProps, GetStaticPaths } from "next"
-import ErrorPage from "next/error"
+import DefaultErrorPage from "next/error"
+import Head from "next/head"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import BlockContent from "@sanity/block-content-to-react"
@@ -20,13 +21,40 @@ import Sidebar from "components/sidebar"
 // import type { Post } from "generated/schema"
 // import utilStyles from "styles/utils.module.scss"
 
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const { slug = "" } = params
+  const data = await sanityClient.fetch(videoPageQuery, { slug })
+  return {
+    props: {
+      data
+    }
+  }
+}
+export const getStaticPaths: GetStaticPaths = async () => {
+  const paths = await sanityClient.fetch(videoPathQuery)
+  return {
+    paths: paths.map((slug: string[]) => ({ params: { slug } })),
+    fallback: true
+  }
+}
+
 const VideoPage = ({ data }) => {
   const router = useRouter()
   const { locale } = router
-  const slug = data?.video?.slug
-  if (!slug) {
-    return <ErrorPage statusCode={404} />
+
+  if(router.isFallback) {
+    return <h1>Loading...</h1>
   }
+
+  if(!data) {
+    return <>
+      <Head>
+        <meta name="robots" content="noindex" />
+      </Head>
+      <DefaultErrorPage statusCode={404} />
+    </>
+  }
+
   return (
     <Layout
       heroImage={data.video.mainImage}
@@ -74,24 +102,6 @@ const VideoPage = ({ data }) => {
       </section>
     </Layout>
   )
-}
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = await sanityClient.fetch(videoPathQuery)
-  return {
-    paths: paths.map((slug: string[]) => ({ params: { slug } })),
-    fallback: true
-  }
-}
-
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const { slug = "" } = params
-  const data = await sanityClient.fetch(videoPageQuery, { slug })
-  return {
-    props: {
-      data
-    }
-  }
 }
 
 export default VideoPage

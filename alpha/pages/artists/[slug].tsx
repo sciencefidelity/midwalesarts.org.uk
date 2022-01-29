@@ -9,7 +9,8 @@
  */
 import { useState } from "react"
 import { GetStaticProps, GetStaticPaths } from "next"
-import ErrorPage from "next/error"
+import DefaultErrorPage from "next/error"
+import Head from "next/head"
 import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/router"
@@ -23,6 +24,23 @@ import Modal from "components/modal"
 // import type { Post } from "generated/schema"
 // import utilStyles from "@/styles/utils.module.scss"
 
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const { slug = "" } = params
+  const data = await sanityClient.fetch(artistPageQuery, { slug })
+  return {
+    props: {
+      data
+    }
+  }
+}
+export const getStaticPaths: GetStaticPaths = async () => {
+  const paths = await sanityClient.fetch(artistPathQuery)
+  return {
+    paths: paths.map((slug: string[]) => ({ params: { slug } })),
+    fallback: true
+  }
+}
+
 const ArtistPage = ({ data }) => {
   const router = useRouter()
   const { locale } = router
@@ -30,7 +48,6 @@ const ArtistPage = ({ data }) => {
   const [gallery, setGallery] = useState(false)
   const [modal, setModal] = useState(true)
   const [imageToShow, setImageToShow] = useState(0)
-  const slug = data?.artist?.slug
   const toggleBio = () => {
     setBio(false)
     setGallery(true)
@@ -66,8 +83,16 @@ const ArtistPage = ({ data }) => {
   const artist = data.artist
   const artworks = data.artist.artworks
   const modalImage = artworks[imageToShow]
-  if (!router.isFallback && !slug) {
-    return <ErrorPage statusCode={404} />
+  if(router.isFallback) {
+    return <h1>Loading...</h1>
+  }
+  if(!data) {
+    return <>
+      <Head>
+        <meta name="robots" content="noindex" />
+      </Head>
+      <DefaultErrorPage statusCode={404} />
+    </>
   }
   return (
     <Layout
@@ -158,23 +183,4 @@ const ArtistPage = ({ data }) => {
     </Layout>
   )
 }
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = await sanityClient.fetch(artistPathQuery)
-  return {
-    paths: paths.map((slug: string[]) => ({ params: { slug } })),
-    fallback: true
-  }
-}
-
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const { slug = "" } = params
-  const data = await sanityClient.fetch(artistPageQuery, { slug })
-  return {
-    props: {
-      data
-    }
-  }
-}
-
 export default ArtistPage

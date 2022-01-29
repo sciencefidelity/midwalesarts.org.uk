@@ -8,7 +8,8 @@
  * @param slug - all props fetched with `eventPathQuery` in `lib/queries.ts`.
  */
 import { GetStaticProps, GetStaticPaths } from "next"
-import ErrorPage from "next/error"
+import DefaultErrorPage from "next/error"
+import Head from "next/head"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import BlockContent from "@sanity/block-content-to-react"
@@ -27,26 +28,36 @@ import Sidebar from "components/sidebar"
 // } from "generated/schema"
 // import utilStyles from "@/styles/utils.module.scss"
 
-// interface Data {
-//   event: Event
-//   site: Site
-//   menu: Menu[]
-//   socialLinks: {
-//     socialLinks: Social[]
-//   }
-//   sidebar: {
-//     posts: Post[]
-//     events: Event[]
-//     exhibitions: Exhibition[]
-//   }
-// }
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const { slug = "" } = params
+  const data = await sanityClient.fetch(eventPageQuery, { slug })
+  return {
+    props: {
+      data
+    }
+  }
+}
+export const getStaticPaths: GetStaticPaths = async () => {
+  const paths = await sanityClient.fetch(eventPathQuery)
+  return {
+    paths: paths.map((slug: string[]) => ({ params: { slug } })),
+    fallback: true
+  }
+}
 
 const EventPage = ({ data }) => {
   const router = useRouter()
   const { locale } = router
-  const slug = data?.event?.slug
-  if (!slug) {
-    return <ErrorPage statusCode={404} />
+  if(router.isFallback) {
+    return <h1>Loading...</h1>
+  }
+  if(!data) {
+    return <>
+      <Head>
+        <meta name="robots" content="noindex" />
+      </Head>
+      <DefaultErrorPage statusCode={404} />
+    </>
   }
   return (
     <Layout
@@ -113,23 +124,4 @@ const EventPage = ({ data }) => {
     </Layout>
   )
 }
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = await sanityClient.fetch(eventPathQuery)
-  return {
-    paths: paths.map((slug: string[]) => ({ params: { slug } })),
-    fallback: true
-  }
-}
-
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const { slug = "" } = params
-  const data = await sanityClient.fetch(eventPageQuery, { slug })
-  return {
-    props: {
-      data
-    }
-  }
-}
-
 export default EventPage

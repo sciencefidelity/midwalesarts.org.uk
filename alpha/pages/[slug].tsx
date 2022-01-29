@@ -8,8 +8,8 @@
  * @param slug - all props fetched with `pathQuery` in `lib/queries.ts`.
  */
 import { GetStaticProps, GetStaticPaths } from "next"
-import ErrorPage from "next/error"
-// import Head from "next/head"
+import DefaultErrorPage from "next/error"
+import Head from "next/head"
 import { useRouter } from "next/router"
 import sanityClient from "lib/sanityClient"
 import { pagePathQuery, pageQuery } from "lib/queries"
@@ -24,11 +24,36 @@ import Visit from "components/visit"
 // import type { Page } from "generated/schema"
 // import utilStyles from "styles/utils.module.scss"
 
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const { slug = "" } = params
+  const data = await sanityClient.fetch(pageQuery, { slug })
+  return {
+    props: {
+      data
+    }
+  }
+}
+export const getStaticPaths: GetStaticPaths = async () => {
+  const paths = await sanityClient.fetch(pagePathQuery)
+  return {
+    paths: paths.map((slug: string[]) => ({ params: { slug } })),
+    fallback: true
+  }
+}
+
 const PagesTemplage = ({ data }) => {
-  const { locale } = useRouter()
-  const slug = data?.page?.slug
-  if (!slug) {
-    return <ErrorPage statusCode={404} />
+  const router = useRouter()
+  const { locale } = router
+  if(router.isFallback) {
+    return <h1>Loading...</h1>
+  }
+  if(!data) {
+    return <>
+      <Head>
+        <meta name="robots" content="noindex" />
+      </Head>
+      <DefaultErrorPage statusCode={404} />
+    </>
   }
   const exhibitionHero =
     data.currentExhibitions[0] !== undefined
@@ -100,23 +125,4 @@ const PagesTemplage = ({ data }) => {
     </Layout>
   )
 }
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = await sanityClient.fetch(pagePathQuery)
-  return {
-    paths: paths.map((slug: string[]) => ({ params: { slug } })),
-    fallback: true
-  }
-}
-
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const { slug = "" } = params
-  const data = await sanityClient.fetch(pageQuery, { slug })
-  return {
-    props: {
-      data
-    }
-  }
-}
-
 export default PagesTemplage
