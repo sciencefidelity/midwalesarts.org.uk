@@ -3,3 +3,4 @@ dist
 .nova
 .next
 coverage
+public

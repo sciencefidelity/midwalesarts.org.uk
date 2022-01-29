@@ -9,7 +9,7 @@
  */
 import { GetStaticProps, GetStaticPaths } from "next"
 // import ErrorPage from "next/error"
-import Head from "next/head"
+// import Head from "next/head"
 import { useRouter } from "next/router"
 import sanityClient from "lib/sanityClient"
 import { pagePathQuery, pageQuery } from "lib/queries"
@@ -60,15 +60,8 @@ const PagesTemplage = ({ data }) => {
       menu={data.menu}
       site={data.site}
       socialLinks={data.socialLinks}
+      title={locale === "cy" && data.page.title.cy ? data.page.title.cy : data.page.title.en}
     >
-      <Head>
-        <title>
-          {locale === "cy" && data.cy
-            ? data.page.title.cy
-            : data.page.title.en
-          }
-        </title>
-      </Head>
       {data.page.template === "page" && (
         <PageTemplate
           page={data.page}

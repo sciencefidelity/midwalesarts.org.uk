@@ -10,7 +10,6 @@
 import { useState } from "react"
 import { GetStaticProps, GetStaticPaths } from "next"
 // import ErrorPage from "next/error"
-import Head from "next/head"
 import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/router"
@@ -75,10 +74,8 @@ const ArtistPage = ({ data }) => {
       menu={data.menu}
       site={data.site}
       socialLinks={data.socialLinks}
+      title={data.artist.title}
     >
-      <Head>
-        <title></title>
-      </Head>
       <section>
         <div className="sidebarContainer">
           <div className="portableContainer">
@@ -86,10 +83,10 @@ const ArtistPage = ({ data }) => {
             <p className="subTitle">{artist.title}</p>
             <ul className="galleryMenu">
               <li onClick={toggleGallery} className={bio ? "selected" : ""}>
-                Works
+                {locale === "cy" ? "Yn gweithio" : "Works"}
               </li>
               <li onClick={toggleBio} className={bio ? "" : "selected"}>
-                Biography
+                {locale === "cy" ? "Bywgraffiad" : "Biography"}
               </li>
             </ul>
             <div className={bio ? "hidden galleryInfo" : "galleryInfo"}>
@@ -143,7 +140,7 @@ const ArtistPage = ({ data }) => {
         <div>
           <p className="backLink">
             <Link href="/artists">
-              <a>{"Back to Artists"}</a>
+              <a>{locale === "cy" ? "Yn ôl i Artistiaid" : "Back to Artists"}</a>
             </Link>
           </p>
         </div>

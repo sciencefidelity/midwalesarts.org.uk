@@ -10,7 +10,6 @@
 import { useState } from "react"
 import { GetStaticProps, GetStaticPaths } from "next"
 import ErrorPage from "next/error"
-import Head from "next/head"
 import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/router"
@@ -74,14 +73,8 @@ const PostPage = ({ data }) => {
       menu={data.menu}
       site={data.site}
       socialLinks={data.socialLinks}
+      title={locale === "cy" && exhibition.title.cy ? exhibition.title.cy : exhibition.title.en}
     >
-      <Head>
-        <title>
-          {locale === "cy" && exhibition.title.cy
-            ? exhibition.title.cy
-            : exhibition.title.en}
-        </title>
-      </Head>
       <section>
         <div className="sidebarContainer">
           <div className="portableContainer">

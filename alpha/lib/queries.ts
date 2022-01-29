@@ -58,6 +58,7 @@ export const pageQuery = groq`{
     addressLine2,
     telephone,
     siteName,
+    seoDescription,
     email,
     signUp,
     signUpPlaceholder
@@ -220,6 +221,7 @@ export const artistPageQuery = groq`{
     addressLine2,
     telephone,
     siteName,
+    seoDescription,
     email,
     signUp,
     signUpPlaceholder
@@ -254,6 +256,7 @@ export const eventPageQuery = groq`{
     addressLine2,
     telephone,
     siteName,
+    seoDescription,
     email,
     signUp,
     signUpPlaceholder
@@ -312,6 +315,7 @@ export const exhibitionPageQuery = groq`{
     addressLine2,
     telephone,
     siteName,
+    seoDescription,
     email,
     signUp,
     signUpPlaceholder
@@ -345,6 +349,7 @@ export const postPageQuery = groq`{
     addressLine2,
     telephone,
     siteName,
+    seoDescription,
     email,
     signUp,
     signUpPlaceholder
@@ -391,6 +396,7 @@ export const videoPageQuery = groq`{
     addressLine2,
     telephone,
     siteName,
+    seoDescription,
     email,
     signUp,
     signUpPlaceholder
@@ -434,6 +440,7 @@ export const notFoundQuery = groq`{
     addressLine2,
     telephone,
     siteName,
+    seoDescription,
     email,
     signUp,
     signUpPlaceholder
