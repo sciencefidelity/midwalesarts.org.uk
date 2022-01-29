@@ -1,5 +1,5 @@
 import { GetStaticProps } from "next"
-import Head from "next/head"
+// import Head from "next/head"
 import Image from "next/image"
 import { useRouter } from "next/router"
 import sanityClient from "lib/sanityClient"
@@ -23,9 +23,6 @@ const Home = ({ data }) => {
       site={data.site}
       socialLinks={data.socialLinks}
     >
-      <Head>
-        <title></title>
-      </Head>
       <section>
         <div className="container">
           <div className="introduction">

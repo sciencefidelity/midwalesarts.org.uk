@@ -40,7 +40,7 @@ const Layout = ({
   return (
     <div>
       <Head>
-        <title>Mid Wales Arts</title>
+        <title>{site.siteName.en}{" | "}{site.seoDescription.en}</title>
         <link
           rel="preload"
           href="/fonts/brandongrotesque-regular-lat.woff2"

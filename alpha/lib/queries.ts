@@ -9,6 +9,7 @@ export const frontPageQuery = groq`{
     addressLine2,
     telephone,
     siteName,
+    seoDescription,
     email,
     signUp,
     signUpPlaceholder
