@@ -1,0 +1,6 @@
+{
+  "index.ignored_file_patterns" : [
+    ".next",
+    "node_modules"
+  ]
+}

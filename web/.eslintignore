@@ -1,6 +1,6 @@
-.cache/
-package-lock.json
-public/
-.nova/
-node_modules/
-yarn.lock
+node_modules
+dist
+.nova
+.next
+coverage
+public

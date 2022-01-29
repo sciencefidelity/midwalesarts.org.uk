@@ -1,7 +1,13 @@
-.cache/
 package.json
 package-lock.json
-public/
-.nova/
-node_modules/
 yarn.lock
+build
+out
+.next
+node_modules
+.nova
+*.scss
+*.css
+*.css.map
+coverage
+*.log
