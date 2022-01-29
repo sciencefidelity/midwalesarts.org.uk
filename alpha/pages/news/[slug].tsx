@@ -8,7 +8,7 @@
  * @param slug - all props fetched with `postPathQuery` in `lib/queries.ts`.
  */
 import { GetStaticProps, GetStaticPaths } from "next"
-// import ErrorPage from "next/error"
+import ErrorPage from "next/error"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import sanityClient from "lib/sanityClient"
@@ -23,10 +23,10 @@ import PortableText from "components/portableText"
 const PostPage = ({ data }) => {
   const router = useRouter()
   const { locale } = router
-  // const slug = data?.post?.slug
-  // if (!slug) {
-  //   return <ErrorPage statusCode={404} />
-  // }
+  const slug = data?.post?.slug
+  if (!slug) {
+    return <ErrorPage statusCode={404} />
+  }
   return (
     <Layout
       heroImage={data.post.image}

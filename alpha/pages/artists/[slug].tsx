@@ -9,7 +9,7 @@
  */
 import { useState } from "react"
 import { GetStaticProps, GetStaticPaths } from "next"
-// import ErrorPage from "next/error"
+import ErrorPage from "next/error"
 import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/router"
@@ -28,10 +28,10 @@ const ArtistPage = ({ data }) => {
   const [gallery, setGallery] = useState(false)
   const [modal, setModal] = useState(true)
   const [imageToShow, setImageToShow] = useState(0)
-  // const slug = data?.artist?.slug
-  // if (!slug) {
-  //   return <ErrorPage statusCode={404} />
-  // }
+  const slug = data?.artist?.slug
+  if (!slug) {
+    return <ErrorPage statusCode={404} />
+  }
   const toggleBio = () => {
     setBio(false)
     setGallery(true)

@@ -1,18 +1,21 @@
 import groq from "groq"
 // const QUERY_OMIT_DRAFTS = "!(_id in path('drafts.**'))"
+const siteFields = `
+  openingHeading,
+  openingTimes,
+  addressLine1,
+  addressLine2,
+  telephone,
+  siteName,
+  seoDescription,
+  email,
+  signUp,
+  signUpPlaceholder
+`
 
 export const frontPageQuery = groq`{
   "site": *[_type == "site" && !(_id in path('drafts.**'))][0]{
-    openingHeading,
-    openingTimes,
-    addressLine1,
-    addressLine2,
-    telephone,
-    siteName,
-    seoDescription,
-    email,
-    signUp,
-    signUpPlaceholder
+    ${siteFields}
   },
   "frontPage": *[_type == "frontPage" && !(_id in path('drafts.**'))][0]{
     body,
@@ -52,16 +55,7 @@ export const frontPageQuery = groq`{
 
 export const pageQuery = groq`{
   "site": *[_type == "site" && !(_id in path('drafts.**'))][0]{
-    openingHeading,
-    openingTimes,
-    addressLine1,
-    addressLine2,
-    telephone,
-    siteName,
-    seoDescription,
-    email,
-    signUp,
-    signUpPlaceholder
+    ${siteFields}
   },
   "page": *[_type == "page" && slug.en.current == $slug && !(_id in path('drafts.**'))][0]{
     "body": body{en, cy},
@@ -215,16 +209,7 @@ export const artistPageQuery = groq`{
     }
   },
   "site": *[_type == "site" && !(_id in path('drafts.**'))][0]{
-    openingHeading,
-    openingTimes,
-    addressLine1,
-    addressLine2,
-    telephone,
-    siteName,
-    seoDescription,
-    email,
-    signUp,
-    signUpPlaceholder
+    ${siteFields}
   },
   "menu": *[_type == "menu" && !(_id in path('drafts.**'))][0]{
     items[]->{
@@ -250,16 +235,7 @@ export const eventPageQuery = groq`{
     title
   },
   "site": *[_type == "site" && !(_id in path('drafts.**'))][0]{
-    openingHeading,
-    openingTimes,
-    addressLine1,
-    addressLine2,
-    telephone,
-    siteName,
-    seoDescription,
-    email,
-    signUp,
-    signUpPlaceholder
+    ${siteFields}
   },
   "menu": *[_type == "menu" && !(_id in path('drafts.**'))][0]{
     items[]->{
@@ -309,16 +285,7 @@ export const exhibitionPageQuery = groq`{
     }
   },
   "site": *[_type == "site" && !(_id in path('drafts.**'))][0]{
-    openingHeading,
-    openingTimes,
-    addressLine1,
-    addressLine2,
-    telephone,
-    siteName,
-    seoDescription,
-    email,
-    signUp,
-    signUpPlaceholder
+    ${siteFields}
   },
   "menu": *[_type == "menu" && !(_id in path('drafts.**'))][0]{
     items[]->{
@@ -343,16 +310,7 @@ export const postPageQuery = groq`{
     title
   },
   "site": *[_type == "site" && !(_id in path('drafts.**'))][0]{
-    openingHeading,
-    openingTimes,
-    addressLine1,
-    addressLine2,
-    telephone,
-    siteName,
-    seoDescription,
-    email,
-    signUp,
-    signUpPlaceholder
+    ${siteFields}
   },
   "menu": *[_type == "menu" && !(_id in path('drafts.**'))][0]{
     items[]->{
@@ -390,16 +348,7 @@ export const videoPageQuery = groq`{
     videoLink
   },
   "site": *[_type == "site" && !(_id in path('drafts.**'))][0]{
-    openingHeading,
-    openingTimes,
-    addressLine1,
-    addressLine2,
-    telephone,
-    siteName,
-    seoDescription,
-    email,
-    signUp,
-    signUpPlaceholder
+    ${siteFields}
   },
   "menu": *[_type == "menu" && !(_id in path('drafts.**'))][0]{
     items[]->{
@@ -434,16 +383,7 @@ export const notFoundQuery = groq`{
     mainImage
   },
   "site": *[_type == "site" && !(_id in path('drafts.**'))][0]{
-    openingHeading,
-    openingTimes,
-    addressLine1,
-    addressLine2,
-    telephone,
-    siteName,
-    seoDescription,
-    email,
-    signUp,
-    signUpPlaceholder
+    ${siteFields}
   },
   "menu": *[_type == "menu" && !(_id in path('drafts.**'))][0]{
     items[]->{
