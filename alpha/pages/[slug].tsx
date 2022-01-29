@@ -21,8 +21,6 @@ import Exhibitions from "components/exhibitions"
 import News from "components/news"
 import Videos from "components/videos"
 import Visit from "components/visit"
-// import type { Page } from "generated/schema"
-// import utilStyles from "styles/utils.module.scss"
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug = "" } = params

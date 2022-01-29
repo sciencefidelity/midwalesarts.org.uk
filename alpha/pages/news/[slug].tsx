@@ -40,7 +40,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 const PostPage = ({ data }) => {
   const router = useRouter()
-  const { locale } = router
   if(router.isFallback) {
     return <h1>Loading...</h1>
   }
@@ -52,6 +51,7 @@ const PostPage = ({ data }) => {
       <DefaultErrorPage statusCode={404} />
     </>
   }
+  const { locale } = router
   return (
     <Layout
       heroImage={data.post.image}

@@ -3,11 +3,17 @@ import Link from "next/link"
 import { notFoundQuery } from "lib/queries"
 import sanityClient from "lib/sanityClient"
 import Layout from "@/components/layout"
-// import utilStyles from "@/styles/utils.module.scss"
 
-const Error = ({ data }: {
-  data?: any
-}) => {
+export const getStaticProps: GetStaticProps = async () => {
+  const data = await sanityClient.fetch(notFoundQuery)
+  return {
+    props: {
+      data
+    }
+  }
+}
+
+const Error = ({ data }) => {
   return (
     <Layout
       heroImage={data.notFound.mainImage}
@@ -33,14 +39,4 @@ const Error = ({ data }: {
     </Layout>
   )
 }
-
-export const getStaticProps: GetStaticProps = async () => {
-  const data = await sanityClient.fetch(notFoundQuery)
-  return {
-    props: {
-      data
-    }
-  }
-}
-
 export default Error

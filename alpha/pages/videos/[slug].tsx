@@ -40,12 +40,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 const VideoPage = ({ data }) => {
   const router = useRouter()
-  const { locale } = router
-
   if(router.isFallback) {
     return <h1>Loading...</h1>
   }
-
   if(!data) {
     return <>
       <Head>
@@ -54,7 +51,7 @@ const VideoPage = ({ data }) => {
       <DefaultErrorPage statusCode={404} />
     </>
   }
-
+  const { locale } = router
   return (
     <Layout
       heroImage={data.video.mainImage}

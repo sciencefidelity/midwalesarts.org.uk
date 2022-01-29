@@ -18,15 +18,6 @@ import { dateOptions } from "lib/utils"
 import { eventPathQuery, eventPageQuery } from "lib/queries"
 import Layout from "components/layout"
 import Sidebar from "components/sidebar"
-// import type {
-//   Event,
-//   Site,
-//   Menu,
-//   Social,
-//   Post,
-//   Exhibition
-// } from "generated/schema"
-// import utilStyles from "@/styles/utils.module.scss"
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug = "" } = params
@@ -47,7 +38,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 const EventPage = ({ data }) => {
   const router = useRouter()
-  const { locale } = router
   if(router.isFallback) {
     return <h1>Loading...</h1>
   }
@@ -59,6 +49,7 @@ const EventPage = ({ data }) => {
       <DefaultErrorPage statusCode={404} />
     </>
   }
+  const { locale } = router
   return (
     <Layout
       heroImage={data.event && data.event.mainImage}

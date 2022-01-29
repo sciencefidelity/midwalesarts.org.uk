@@ -20,9 +20,7 @@ import { urlFor } from "lib/utils"
 import { artistPathQuery, artistPageQuery } from "lib/queries"
 import Layout from "components/layout"
 import Modal from "components/modal"
-// import Error from "pages/404"
-// import type { Post } from "generated/schema"
-// import utilStyles from "@/styles/utils.module.scss"
+import type { Artwork } from "generated/schema"
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug = "" } = params
@@ -43,11 +41,22 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 const ArtistPage = ({ data }) => {
   const router = useRouter()
-  const { locale } = router
   const [bio, setBio] = useState(true)
   const [gallery, setGallery] = useState(false)
   const [modal, setModal] = useState(true)
   const [imageToShow, setImageToShow] = useState(0)
+  if(router.isFallback) {
+    return <h1>Loading...</h1>
+  }
+  if(!data) {
+    return <>
+      <Head>
+        <meta name="robots" content="noindex" />
+      </Head>
+      <DefaultErrorPage statusCode={404} />
+    </>
+  }
+  const { locale } = router
   const toggleBio = () => {
     setBio(false)
     setGallery(true)
@@ -80,20 +89,7 @@ const ArtistPage = ({ data }) => {
     }
     setImageToShow(currentIndex)
   }
-  const artist = data.artist
-  const artworks = data.artist.artworks
-  const modalImage = artworks[imageToShow]
-  if(router.isFallback) {
-    return <h1>Loading...</h1>
-  }
-  if(!data) {
-    return <>
-      <Head>
-        <meta name="robots" content="noindex" />
-      </Head>
-      <DefaultErrorPage statusCode={404} />
-    </>
-  }
+  const modalImage = data.artist.artworks[imageToShow]
   return (
     <Layout
       heroImage={data.artist.mainImage}
@@ -106,7 +102,7 @@ const ArtistPage = ({ data }) => {
         <div className="sidebarContainer">
           <div className="portableContainer">
             <h1>{locale === "cy" ? "Artistiaid" : "Artist"}</h1>
-            <p className="subTitle">{artist.title}</p>
+            <p className="subTitle">{data.artist.title}</p>
             <ul className="galleryMenu">
               <li onClick={toggleGallery} className={bio ? "selected" : ""}>
                 {locale === "cy" ? "Yn gweithio" : "Works"}
@@ -116,12 +112,12 @@ const ArtistPage = ({ data }) => {
               </li>
             </ul>
             <div className={bio ? "hidden galleryInfo" : "galleryInfo"}>
-              {artist.body && (
+              {data.artist.body && (
                 <BlockContent
                   blocks={
-                    locale === "cy" && artist.body.cy
-                      ? artist.body.cy
-                      : artist.body.en
+                    locale === "cy" && data.artist.body.cy
+                      ? data.artist.body.cy
+                      : data.artist.body.en
                   }
                   {...sanityClient.config()}
                 />
@@ -132,10 +128,10 @@ const ArtistPage = ({ data }) => {
         <div
           className={gallery ? "hidden galleryImageGrid" : "galleryImageGrid"}
         >
-          {!!artist.artworks &&
-            artist.artworks.map(
-              (artwork: any, index: number) =>
-                !!artwork && (
+          {data.artist.artworks &&
+            data.artist.artworks.map(
+              (artwork: Artwork, index: number) =>
+                artwork && (
                   <div
                     style={{ margin: 0 }}
                     key={artwork._id}
@@ -170,7 +166,7 @@ const ArtistPage = ({ data }) => {
             </Link>
           </p>
         </div>
-        {!!artist.artworks && (
+        {data.artist.artworks && (
           <Modal
             modal={modal}
             modalImage={modalImage}

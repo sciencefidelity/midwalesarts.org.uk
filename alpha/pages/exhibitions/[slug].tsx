@@ -20,8 +20,7 @@ import { dateOptionsShort, urlFor } from "lib/utils"
 import { exhibitionPathQuery, exhibitionPageQuery } from "lib/queries"
 import Layout from "components/layout"
 import Modal from "components/modal"
-// import type { Post } from "generated/schema"
-// import utilStyles from "@/styles/utils.module.scss"
+import type { Artwork } from "generated/schema"
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug = "" } = params
@@ -40,16 +39,25 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 
-const PostPage = ({ data }) => {
+const ExhibitionPage = ({ data }) => {
   const router = useRouter()
   const { locale } = router
-  const exhibition = data.exhibition
-  const artworks = data.exhibition.artworks
-  const [info, setInfo] = useState(artworks.length > 0)
-  const [gallery, setGallery] = useState(artworks.length <= 0)
+  const [info, setInfo] = useState(data.exhibition.artworks.length > 0)
+  const [gallery, setGallery] = useState(data.exhibition.artworks.length <= 0)
   const [modal, setModal] = useState(true)
   const [imageToShow, setImageToShow] = useState(0)
-  const modalImage = artworks[0] !== undefined ? artworks[imageToShow] : ""
+  if(router.isFallback) {
+    return <h1>Loading...</h1>
+  }
+  if(!data) {
+    return <>
+      <Head>
+        <meta name="robots" content="noindex" />
+      </Head>
+      <DefaultErrorPage statusCode={404} />
+    </>
+  }
+  const modalImage = data.exhibition.artworks[0] !== undefined ? data.exhibition.artworks[imageToShow] : ""
   const toggleInfo = () => {
     setInfo(false)
     setGallery(true)
@@ -76,46 +84,35 @@ const PostPage = ({ data }) => {
   }
   function nextIndex() {
     currentIndex = currentIndex + 1
-    if (currentIndex >= artworks.length) {
+    if (currentIndex >= data.exhibition.artworks.length) {
       setModal(true)
       return
     }
     setImageToShow(currentIndex)
   }
-  if(router.isFallback) {
-    return <h1>Loading...</h1>
-  }
-  if(!data) {
-    return <>
-      <Head>
-        <meta name="robots" content="noindex" />
-      </Head>
-      <DefaultErrorPage statusCode={404} />
-    </>
-  }
   return (
     <Layout
-      heroImage={exhibition.mainImage}
+      heroImage={data.exhibition.mainImage}
       menu={data.menu}
       site={data.site}
       socialLinks={data.socialLinks}
-      title={locale === "cy" && exhibition.title.cy ? exhibition.title.cy : exhibition.title.en}
+      title={locale === "cy" && data.exhibition.title.cy ? data.exhibition.title.cy : data.exhibition.title.en}
     >
       <section>
         <div className="sidebarContainer">
           <div className="portableContainer">
             <h1>
-              {locale === "cy" && exhibition.title.cy
-                ? exhibition.title.cy
-                : exhibition.title.en}
+              {locale === "cy" && data.exhibition.title.cy
+                ? data.exhibition.title.cy
+                : data.exhibition.title.en}
             </h1>
             <p className="subTitle">
-              {new Date(exhibition.dateStart).toLocaleDateString(
+              {new Date(data.exhibition.dateStart).toLocaleDateString(
                 locale,
                 dateOptionsShort
               )}{" "}
               to{" "}
-              {new Date(exhibition.dateEnd).toLocaleDateString(
+              {new Date(data.exhibition.dateEnd).toLocaleDateString(
                 locale,
                 dateOptionsShort
               )}
@@ -129,12 +126,12 @@ const PostPage = ({ data }) => {
               </li>
             </ul>
             <div className={info ? "hidden galleryInfo" : "galleryInfo"}>
-              {exhibition.body.en && (
+              {data.exhibition.body.en && (
                 <BlockContent
                   blocks={
-                    locale === "cy" && exhibition.body.cy
-                      ? exhibition.body.cy
-                      : exhibition.body.en
+                    locale === "cy" && data.exhibition.body.cy
+                      ? data.exhibition.body.cy
+                      : data.exhibition.body.en
                   }
                   {...sanityClient.config()}
                 />
@@ -145,8 +142,8 @@ const PostPage = ({ data }) => {
         <div
           className={gallery ? "hidden galleryImageGrid" : "galleryImageGrid"}
         >
-          {artworks[0] !== undefined ? (
-            artworks.map((artwork: any, index: number) => (
+          {data.exhibition.artworks[0] !== undefined ? (
+            data.exhibition.artworks.map((artwork: Artwork, index: number) => (
               <div
                 style={{ margin: 0 }}
                 key={artwork._id}
@@ -200,7 +197,7 @@ const PostPage = ({ data }) => {
             </Link>
           </p>
         </div>
-        {artworks[0] !== undefined ? (
+        {data.exhibition.artworks[0] !== undefined ? (
           <Modal
             modal={modal}
             modalImage={modalImage}
@@ -215,4 +212,4 @@ const PostPage = ({ data }) => {
     </Layout>
   )
 }
-export default PostPage
+export default ExhibitionPage
