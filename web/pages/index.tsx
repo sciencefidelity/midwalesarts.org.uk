@@ -13,6 +13,9 @@ import FrontPageFeature from "components/frontPageFeature"
 
 const Home = ({ data }) => {
   const { locale } = useRouter()
+  const dynamicGap = {
+    gap: `${locale === "cy" ? "8.2rem" : "9.4rem"}`
+  }
   return (
     <Layout
       heroImage={data.frontPage.heroImage}
@@ -22,7 +25,7 @@ const Home = ({ data }) => {
     >
       <section>
         <div className="container">
-          <div className="introduction">
+          <div style={dynamicGap} className="introduction">
             <div className="introBranding">
               <ColorLogo
                 logoClass="introLogo"
