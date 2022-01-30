@@ -22,6 +22,13 @@ import VideoEmbed from "components/videoEmbed"
 // import type { Post } from "generated/schema"
 // import utilStyles from "styles/utils.module.scss"
 
+export const getStaticPaths: GetStaticPaths = async () => {
+  const paths = await sanityClient.fetch(videoPathQuery)
+  return {
+    paths: paths.map((slug: string[]) => ({ params: { slug } })),
+    fallback: true
+  }
+}
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug = "" } = params
   const data = await sanityClient.fetch(videoPageQuery, { slug })
@@ -29,13 +36,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     props: {
       data
     }
-  }
-}
-export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = await sanityClient.fetch(videoPathQuery)
-  return {
-    paths: paths.map((slug: string[]) => ({ params: { slug } })),
-    fallback: true
   }
 }
 

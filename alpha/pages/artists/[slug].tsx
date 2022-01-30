@@ -23,6 +23,13 @@ import ErrorTemplate from "components/errorTemplate"
 import Modal from "components/modal"
 import type { Artwork } from "generated/schema"
 
+export const getStaticPaths: GetStaticPaths = async () => {
+  const paths = await sanityClient.fetch(artistPathQuery)
+  return {
+    paths: paths.map((slug: string[]) => ({ params: { slug } })),
+    fallback: true
+  }
+}
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug = "" } = params
   const data = await sanityClient.fetch(artistPageQuery, { slug })
@@ -30,13 +37,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     props: {
       data
     }
-  }
-}
-export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = await sanityClient.fetch(artistPathQuery)
-  return {
-    paths: paths.map((slug: string[]) => ({ params: { slug } })),
-    fallback: true
   }
 }
 
