@@ -8,7 +8,7 @@
  * @param slug - all props fetched with `pathQuery` in `lib/queries.ts`.
  */
 import { GetStaticProps, GetStaticPaths } from "next"
-import DefaultErrorPage from "next/error"
+// import DefaultErrorPage from "next/error"
 import Head from "next/head"
 import { useRouter } from "next/router"
 import sanityClient from "lib/sanityClient"
@@ -16,12 +16,20 @@ import { pagePathQuery, pageQuery } from "lib/queries"
 import Layout from "components/layout"
 import PageTemplate from "components/pageTemplate"
 import Artists from "components/artists"
+import ErrorTemplate from "components/errorTemplate"
 import Events from "components/events"
 import Exhibitions from "components/exhibitions"
 import News from "components/news"
 import Videos from "components/videos"
 import Visit from "components/visit"
 
+export const getStaticPaths: GetStaticPaths = async () => {
+  const paths = await sanityClient.fetch(pagePathQuery)
+  return {
+    paths: paths.map((slug: string[]) => ({ params: { slug } })),
+    fallback: true
+  }
+}
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug = "" } = params
   const data = await sanityClient.fetch(pageQuery, { slug })
@@ -31,27 +39,24 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     }
   }
 }
-export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = await sanityClient.fetch(pagePathQuery)
-  return {
-    paths: paths.map((slug: string[]) => ({ params: { slug } })),
-    fallback: true
-  }
-}
 
 const PagesTemplage = ({ data }) => {
   const router = useRouter()
   const { locale } = router
   if(router.isFallback) {
-    return <h1>Loading...</h1>
+    return (
+      <ErrorTemplate />
+    )
   }
   if(!data) {
-    return <>
-      <Head>
-        <meta name="robots" content="noindex" />
-      </Head>
-      <DefaultErrorPage statusCode={404} />
-    </>
+    return (
+      <>
+        <Head>
+          <meta name="robots" content="noindex" />
+        </Head>
+        <ErrorTemplate />
+      </>
+    )
   }
   const exhibitionHero =
     data.currentExhibitions[0] !== undefined

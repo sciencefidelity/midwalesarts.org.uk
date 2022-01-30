@@ -8,7 +8,7 @@
  * @param slug - all props fetched with `videoPathQuery` in `lib/queries.ts`.
  */
 import { GetStaticProps, GetStaticPaths } from "next"
-import DefaultErrorPage from "next/error"
+// import DefaultErrorPage from "next/error"
 import Head from "next/head"
 import Link from "next/link"
 import { useRouter } from "next/router"
@@ -16,11 +16,19 @@ import BlockContent from "@sanity/block-content-to-react"
 import sanityClient from "lib/sanityClient"
 import { videoPageQuery, videoPathQuery } from "lib/queries"
 import Layout from "components/layout"
-import VideoEmbed from "components/videoEmbed"
+import ErrorTemplate from "components/errorTemplate"
 import Sidebar from "components/sidebar"
+import VideoEmbed from "components/videoEmbed"
 // import type { Post } from "generated/schema"
 // import utilStyles from "styles/utils.module.scss"
 
+export const getStaticPaths: GetStaticPaths = async () => {
+  const paths = await sanityClient.fetch(videoPathQuery)
+  return {
+    paths: paths.map((slug: string[]) => ({ params: { slug } })),
+    fallback: true
+  }
+}
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug = "" } = params
   const data = await sanityClient.fetch(videoPageQuery, { slug })
@@ -30,26 +38,23 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     }
   }
 }
-export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = await sanityClient.fetch(videoPathQuery)
-  return {
-    paths: paths.map((slug: string[]) => ({ params: { slug } })),
-    fallback: true
-  }
-}
 
 const VideoPage = ({ data }) => {
   const router = useRouter()
   if(router.isFallback) {
-    return <h1>Loading...</h1>
+    return (
+      <ErrorTemplate />
+    )
   }
   if(!data) {
-    return <>
-      <Head>
-        <meta name="robots" content="noindex" />
-      </Head>
-      <DefaultErrorPage statusCode={404} />
-    </>
+    return (
+      <>
+        <Head>
+          <meta name="robots" content="noindex" />
+        </Head>
+        <ErrorTemplate />
+      </>
+    )
   }
   const { locale } = router
   return (
