@@ -203,7 +203,11 @@ export const artistPageQuery = groq`{
       artist,
       date,
       dimensions,
-      mainImage,
+      mainImage{
+        _type,
+        asset,
+        "aspect": asset->metadata.dimensions.aspectRatio
+      },
       medium,
       price,
       title
@@ -280,6 +284,7 @@ export const exhibitionPageQuery = groq`{
       date,
       dimensions,
       mainImage,
+      "aspectRatio": mainImage.asset->metadata.dimensions.aspectRatio,
       medium,
       price,
       title

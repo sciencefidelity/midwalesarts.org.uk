@@ -2,6 +2,13 @@ import Image from "next/image"
 import { urlFor } from "lib/utils"
 
 const Modal = ({ modal, modalImage, closeModal, prevIndex, nextIndex }) => {
+  const aspect = modalImage.aspectRatio.toString()
+  const ImageAspect = {
+    position: "relative",
+    aspectRatio: aspect,
+    height: `${aspect >= 1 ? "min(81vh, 51vw)" : "unset"}`,
+    width: `${aspect < 1 ? "min(57vh, -4rem + 100vw)" : "unset"}`
+  }
   return (
     <div className={modal ? "modalContainer hideModal" : "modalContainer"}>
       <div className="btnPrev" onClick={prevIndex}>
@@ -25,7 +32,7 @@ const Modal = ({ modal, modalImage, closeModal, prevIndex, nextIndex }) => {
         />
       </div>
       <div className="modalImageContiner">
-        <div className="modalImageWrapper">
+        <div style={ImageAspect}>
           <Image
             src={urlFor(modalImage.mainImage)
               .height(670)

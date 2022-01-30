@@ -95,7 +95,6 @@ const ArtistPage = ({ data }) => {
     setImageToShow(currentIndex)
   }
   const modalImage = data.artist.artworks[0] !== undefined ? data.artist.artworks[imageToShow] : {}
-
   return (
     <Layout
       heroImage={data.artist.mainImage}
