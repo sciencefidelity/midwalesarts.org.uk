@@ -203,7 +203,7 @@
 .introduction {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  gap: 9.4rem;
+  // gap: 9.4rem;
   padding-bottom: 6rem;
   @include b.mq(lg) {
     grid-template-columns: 1fr;

@@ -3,7 +3,7 @@ import { urlFor } from "lib/utils"
 
 const Modal = ({ modal, modalImage, closeModal, prevIndex, nextIndex }) => {
   const aspect = modalImage.aspectRatio.toString()
-  const ImageAspect = {
+  const imageAspect = {
     position: "relative",
     aspectRatio: aspect,
     height: `${aspect >= 1 ? "min(81vh, 51vw)" : "unset"}`,
@@ -32,7 +32,7 @@ const Modal = ({ modal, modalImage, closeModal, prevIndex, nextIndex }) => {
         />
       </div>
       <div className="modalImageContiner">
-        <div style={ImageAspect}>
+        <div style={imageAspect}>
           <Image
             src={urlFor(modalImage.mainImage)
               .height(670)
