@@ -1,31 +1,20 @@
-import Link from "next/link"
-import { useRouter } from "next/router"
-import sanityClient from "@/lib/sanityClient"
-import BlockContent from "@sanity/block-content-to-react"
-
-//import { IntroQuery } from "../../generated/graphqlTypes"
-// import PortableText from "./portableText"
+import Link from "components/link"
+import PortableText from "components/portableText"
+import Localize from "components/localize"
 
 const Intro = ({ body, cta, ctaLink }) => {
-  const { locale } = useRouter()
   return (
     <div className="introText">
       {body && (
-        <BlockContent
-          blocks={locale === "cy" && body.cy ? body.cy : body.en}
-          {...sanityClient.config()}
-        />
+        <PortableText blocks={body} />
       )}
       <Link href={`/${ctaLink}/`}>
-        <a>
-          <h2 className="introCta">
-            <span>{locale === "cy" && cta.cy ? cta.cy : cta.en}&nbsp;</span>
-          </h2>
-        </a>
+        <h2 className="introCta">
+          <span><Localize data={cta} />&nbsp;</span>
+        </h2>
       </Link>
       <div className="introCtaHr"></div>
     </div>
   )
 }
-
 export default Intro

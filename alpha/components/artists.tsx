@@ -1,23 +1,16 @@
-import Link from "next/link"
 import Image from "next/image"
-import { useRouter } from "next/router"
 import { urlFor } from "@/lib/utils"
 import type { Artist, Page } from "@/generated/schema"
+import Localize from "components/localize"
+import Link from "components/link"
 
 const ArtistsPage = ({ page, artists }: { page: Page; artists: Artist[] }) => {
-  const { locale } = useRouter()
   return (
     <section>
       <div className="sidebarContainer">
         <div className="portableContainer">
-          <h1>
-            {locale === "cy" && page.title.cy ? page.title.cy : page.title.en}
-          </h1>
-          <p className="subTitle">
-            {locale === "cy" && page.subtitle.cy
-              ? page.subtitle.cy
-              : page.subtitle.en}
-          </p>
+          <h1><Localize data={page.title} /></h1>
+          <p className="subTitle"><Localize data={page.subtitle} /></p>
         </div>
       </div>
       <div className="imageGrid">
@@ -25,25 +18,23 @@ const ArtistsPage = ({ page, artists }: { page: Page; artists: Artist[] }) => {
           artists.map(
             (artist: Artist) =>
               artist && (
-                <Link href={`/artists/${artist.slug.current}`}>
-                  <a
-                    href="default"
-                    style={{ margin: 0 }}
-                    key={artist._id}
-                  >
-                    <Image
-                      src={urlFor(artist.mainImage)
-                        .width(468)
-                        .height(468)
-                        .auto("format")
-                        .quality(75)
-                        .url()}
-                      alt={artist.mainImage.caption}
-                      width={468}
-                      height={468}
-                    />
-                    <div className="gridCaption">{artist.title}</div>
-                  </a>
+                <Link
+                  href={`/artists/${artist.slug.current}`}
+                  style={{ margin: 0 }}
+                  key={artist._id}
+                >
+                  <Image
+                    src={urlFor(artist.mainImage)
+                      .width(468)
+                      .height(468)
+                      .auto("format")
+                      .quality(75)
+                      .url()}
+                    alt={artist.mainImage.caption}
+                    width={468}
+                    height={468}
+                  />
+                  <div className="gridCaption">{artist.title}</div>
                 </Link>
               )
           )}

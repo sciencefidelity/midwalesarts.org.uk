@@ -1,9 +1,17 @@
-import Link from "next/link"
+import { CSSProperties } from "react"
 import Image from "next/image"
 import { useRouter } from "next/router"
 import { dateOptions, urlFor } from "@/lib/utils"
+import Link from "components/link"
+import Localize from "components/localize"
+import type { Event } from "generated/schema"
 
-const EventPreview = ({ heading, eventData, marginTop, grid }) => {
+const EventPreview = ({ heading, eventData, marginTop, grid }: {
+  heading: string
+  eventData: Event[]
+  marginTop: CSSProperties
+  grid: string
+}) => {
   const { locale } = useRouter()
   return (
     <>
@@ -13,34 +21,30 @@ const EventPreview = ({ heading, eventData, marginTop, grid }) => {
         </div>
       </div>
       <div className={grid}>
-        {eventData.map((event: any) => (
+        {eventData.map((event: Event) => (
           <div key={event._id} style={{ margin: 0 }}>
             <Link href={`/events/${event.slug.en.current}`}>
-              <a>
-                <Image
-                  src={urlFor(event.mainImage)
-                    .width(468)
-                    .height(468)
-                    .auto("format")
-                    .quality(75)
-                    .url()}
-                  alt={
-                    locale === "cy" && event.title.cy
-                      ? event.title.cy
-                      : event.title.en
-                  }
-                  width={468}
-                  height={468}
-                />
-                <div className="gridCaption">
-                  {locale === "cy" && event.title.cy
+              <Image
+                src={urlFor(event.mainImage)
+                  .width(468)
+                  .height(468)
+                  .auto("format")
+                  .quality(75)
+                  .url()}
+                alt={
+                  locale === "cy" && event.title.cy
                     ? event.title.cy
-                    : event.title.en}
-                </div>
-                <div className="gridCaption">
-                  {new Date(event.date).toLocaleDateString(locale, dateOptions)}
-                </div>
-              </a>
+                    : event.title.en
+                }
+                width={468}
+                height={468}
+              />
+              <div className="gridCaption">
+                <Localize data={event.title} />
+              </div>
+              <div className="gridCaption">
+                {new Date(event.date).toLocaleDateString(locale, dateOptions)}
+              </div>
             </Link>
           </div>
         ))}

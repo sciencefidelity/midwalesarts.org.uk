@@ -156,6 +156,10 @@ blockquote {
   border-left: 0.4rem solid rgba(c.$grey-500, 0.5);
 }
 
+.relative {
+  position: relative;
+}
+
 .sidebarContainer {
   display: grid;
   grid-template-columns: 3fr 1fr;

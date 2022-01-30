@@ -13,5 +13,4 @@ const Localize = ({ data }: {
     </>
   )
 }
-
 export default Localize
