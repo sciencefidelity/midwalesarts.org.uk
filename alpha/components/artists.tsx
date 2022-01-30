@@ -25,24 +25,26 @@ const ArtistsPage = ({ page, artists }: { page: Page; artists: Artist[] }) => {
           artists.map(
             (artist: Artist) =>
               artist && (
-                <div key={artist._id}>
-                  <Link href={`/artists/${artist.slug.current}`}>
-                    <a>
-                      <Image
-                        src={urlFor(artist.mainImage)
-                          .width(468)
-                          .height(468)
-                          .auto("format")
-                          .quality(75)
-                          .url()}
-                        alt={artist.mainImage.caption}
-                        width={468}
-                        height={468}
-                      />
-                      <div className="gridCaption">{artist.title}</div>
-                    </a>
-                  </Link>
-                </div>
+                <Link href={`/artists/${artist.slug.current}`}>
+                  <a
+                    href="default"
+                    style={{ margin: 0 }}
+                    key={artist._id}
+                  >
+                    <Image
+                      src={urlFor(artist.mainImage)
+                        .width(468)
+                        .height(468)
+                        .auto("format")
+                        .quality(75)
+                        .url()}
+                      alt={artist.mainImage.caption}
+                      width={468}
+                      height={468}
+                    />
+                    <div className="gridCaption">{artist.title}</div>
+                  </a>
+                </Link>
               )
           )}
       </div>

@@ -27,9 +27,8 @@ const Visit = ({ page, spaces }: { page: Page; spaces: Space[] }) => {
               <Link
                 href={`#${space.slug.en.current}`}
                 key={space._id}
-                // style={{ margin: 0 }}
               >
-                <a>
+                <a href="default" style={{ margin: 0 }}>
                   <Image
                     src={urlFor(space.mainImage)
                       .width(468)
