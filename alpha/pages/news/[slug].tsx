@@ -15,6 +15,7 @@ import { postPageQuery, postPathQuery } from "lib/queries"
 import Layout from "components/layout"
 import ErrorTemplate from "components/errorTemplate"
 import Link from "components/link"
+import Localize from "components/localize"
 import PortableText from "components/portableText"
 import PostDate from "components/postDate"
 import Sidebar from "components/sidebar"
@@ -70,12 +71,7 @@ const PostPage = ({ data }: { data: NewsData }) => {
           <div className="portableContainer">
             <h1>{locale === "cy" ? "Newyddion" : "News"}</h1>
             {post.title && (
-              <p className="subTitle">
-                {locale === "cy" && post.title.cy
-                  ? post.title.cy
-                  : post.title.en}
-                .
-              </p>
+              <p className="subTitle"><Localize data={post.title} />.</p>
             )}
             {post.body && (
               <PortableText blocks={post.body} />

@@ -151,8 +151,12 @@ const ExhibitionPage = ({ data }: { data: ExhibitionData }) => {
                     .quality(75)
                     .url()}
                   alt={`
-                    ${artwork.artist}${", "}
-                    ${locale === "cy" && artwork.title.cy ? artwork.title.cy : artwork.title.en}${", "}
+                    ${artwork.artist}
+                    ${", "}
+                    ${locale === "cy" && artwork.title.cy
+                  ? artwork.title.cy
+                  : artwork.title.en}
+                    ${", "}
                     ${artwork.date}
                   `}
                   width={468}
@@ -178,11 +182,9 @@ const ExhibitionPage = ({ data }: { data: ExhibitionData }) => {
         <div>
           <p className="backLink">
             <Link href="/exhibitions">
-              <a>
-                {locale === "cy"
-                  ? "Yn ôl i Arddangosfeydd"
-                  : "Back to Exhibitions"}
-              </a>
+              {locale === "cy"
+                ? "Yn ôl i Arddangosfeydd"
+                : "Back to Exhibitions"}
             </Link>
           </p>
         </div>

@@ -85,6 +85,10 @@ export interface NewsData extends AllPageData {
   post: Post
 }
 
+export interface VideoData extends AllPageData {
+  video: Video
+}
+
 export interface LayoutProps {
   children: ReactNode
   heroImage?: Image | CaptionImage
