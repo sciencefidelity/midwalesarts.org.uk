@@ -8,20 +8,19 @@
  * @param slug - all props fetched with `videoPathQuery` in `lib/queries.ts`.
  */
 import { GetStaticProps, GetStaticPaths } from "next"
-// import DefaultErrorPage from "next/error"
 import Head from "next/head"
-import Link from "next/link"
 import { useRouter } from "next/router"
 import BlockContent from "@sanity/block-content-to-react"
 import sanityClient from "lib/sanityClient"
 import { videoPageQuery, videoPathQuery } from "lib/queries"
 import Layout from "components/layout"
 import ErrorTemplate from "components/errorTemplate"
+import Link from "components/link"
+import Localize from "components/localize"
 import Sidebar from "components/sidebar"
 import VideoEmbed from "components/videoEmbed"
-// import type { Post } from "generated/schema"
-// import utilStyles from "styles/utils.module.scss"
-
+import { VideoData } from "lib/interfaces"
+// TODO: video, back to videos hard coded
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await sanityClient.fetch(videoPathQuery)
   return {
@@ -39,8 +38,9 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   }
 }
 
-const VideoPage = ({ data }) => {
+const VideoPage = ({ data }: { data: VideoData }) => {
   const router = useRouter()
+  const { video, menu, sidebar, site, socialLinks } = data
   if(router.isFallback) {
     return (
       <ErrorTemplate />
@@ -59,30 +59,30 @@ const VideoPage = ({ data }) => {
   const { locale } = router
   return (
     <Layout
-      heroImage={data.video.mainImage}
-      menu={data.menu}
-      site={data.site}
-      socialLinks={data.socialLinks}
-      title={locale === "cy" && data.video.title.cy ? data.video.title.cy : data.video.title.en}
+      heroImage={video.mainImage}
+      menu={menu}
+      site={site}
+      socialLinks={socialLinks}
+      title={locale === "cy" && video.title.cy
+        ? video.title.cy
+        : video.title.en}
     >
       <section>
         <div className="sidebarContainer">
           <div className="portableContainer">
             <h1>{locale === "cy" ? "Fideo" : "Video"}</h1>
-            <p className="subTitle">
-              {locale === "cy" && data.video.title.cy
-                ? data.video.title.cy
-                : data.video.title.en}.
-            </p>
-            {data.video.videoLink && (
-              <VideoEmbed videoId={data.video.videoLink} />
+            {video.title &&
+              <p className="subTitle"><Localize data={video.title} />.</p>
+            }
+            {video.videoLink && (
+              <VideoEmbed videoId={video.videoLink} />
             )}
-            {data.video.body.en && (
+            {video.body.en && (
               <BlockContent
                 blocks={
-                  locale === "cy" && data.video.body.cy
-                    ? data.video.body.cy
-                    : data.video.body.en
+                  locale === "cy" && video.body.cy
+                    ? video.body.cy
+                    : video.body.en
                 }
                 {...sanityClient.config()}
               />
@@ -90,20 +90,19 @@ const VideoPage = ({ data }) => {
             <div>
               <p className="backLink">
                 <Link href="/videos">
-                  <a>{locale === "cy" ? "Yn ôl i Fideos" : "Back to Videos"}</a>
+                  {locale === "cy" ? "Yn ôl i Fideos" : "Back to Videos"}
                 </Link>
               </p>
             </div>
           </div>
           <Sidebar
-            events={data.sidebar.events}
-            exhibitions={data.sidebar.exhibitions}
-            posts={data.sidebar.posts}
+            events={sidebar.events}
+            exhibitions={sidebar.exhibitions}
+            posts={sidebar.posts}
           />
         </div>
       </section>
     </Layout>
   )
 }
-
 export default VideoPage

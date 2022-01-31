@@ -9,20 +9,21 @@
  */
 import { useState } from "react"
 import { GetStaticProps, GetStaticPaths } from "next"
-// import DefaultErrorPage from "next/error"
 import Head from "next/head"
 import Image from "next/image"
-import Link from "next/link"
 import { useRouter } from "next/router"
 import sanityClient from "lib/sanityClient"
-import BlockContent from "@sanity/block-content-to-react"
-import { dateOptionsShort, urlFor } from "lib/utils"
+import { urlFor } from "lib/utils"
 import { exhibitionPathQuery, exhibitionPageQuery } from "lib/queries"
 import Layout from "components/layout"
 import ErrorTemplate from "components/errorTemplate"
+import ExhibitionDate from "components/exhibitionDate"
+import Link from "components/link"
+import Localize from "components/localize"
 import Modal from "components/modal"
-import type { Artwork } from "generated/schema"
-
+import PortableText from "components/portableText"
+import { ExhibitionData } from "lib/interfaces"
+// TODO: no artworks to show, works, overview hard coded
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await sanityClient.fetch(exhibitionPathQuery)
   return {
@@ -40,8 +41,9 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   }
 }
 
-const ExhibitionPage = ({ data }) => {
+const ExhibitionPage = ({ data }: { data: ExhibitionData }) => {
   const router = useRouter()
+  const { exhibition, menu, site, socialLinks } = data
   const [info, setInfo] = useState(true)
   const [gallery, setGallery] = useState(false)
   const [modal, setModal] = useState(true)
@@ -88,39 +90,34 @@ const ExhibitionPage = ({ data }) => {
   }
   function nextIndex() {
     currentIndex = currentIndex + 1
-    if (currentIndex > data.exhibition.artworks.length - 1) {
+    if (currentIndex > exhibition.artworks.length - 1) {
       setModal(true)
       return
     }
     setImageToShow(currentIndex)
   }
-  const modalImage = data.exhibition.artworks[0] !== undefined ? data.exhibition.artworks[imageToShow] : {}
+  const modalImage = exhibition.artworks[0] !== undefined
+    ? exhibition.artworks[imageToShow]
+    : {}
   return (
     <Layout
-      heroImage={data.exhibition.mainImage}
-      menu={data.menu}
-      site={data.site}
-      socialLinks={data.socialLinks}
-      title={locale === "cy" && data.exhibition.title.cy ? data.exhibition.title.cy : data.exhibition.title.en}
+      heroImage={exhibition.mainImage}
+      menu={menu}
+      site={site}
+      socialLinks={socialLinks}
+      title={locale === "cy" && exhibition.title.cy
+        ? exhibition.title.cy
+        : exhibition.title.en}
     >
       <section>
         <div className="sidebarContainer">
           <div className="portableContainer">
-            <h1>
-              {locale === "cy" && data.exhibition.title.cy
-                ? data.exhibition.title.cy
-                : data.exhibition.title.en}
-            </h1>
+            <h1>{exhibition.title && <Localize data={exhibition.title} />}</h1>
             <p className="subTitle">
-              {new Date(data.exhibition.dateStart).toLocaleDateString(
-                locale,
-                dateOptionsShort
-              )}{" "}
-              to{" "}
-              {new Date(data.exhibition.dateEnd).toLocaleDateString(
-                locale,
-                dateOptionsShort
-              )}
+              <ExhibitionDate
+                dateEnd={exhibition.dateEnd}
+                dateStart={exhibition.dateStart}
+              />
             </p>
             <ul className="galleryMenu">
               <li onClick={toggleInfo} className={info ? "" : "selected"}>
@@ -131,15 +128,8 @@ const ExhibitionPage = ({ data }) => {
               </li>
             </ul>
             <div className={info ? "hidden galleryInfo" : "galleryInfo"}>
-              {data.exhibition.body.en && (
-                <BlockContent
-                  blocks={
-                    locale === "cy" && data.exhibition.body.cy
-                      ? data.exhibition.body.cy
-                      : data.exhibition.body.en
-                  }
-                  {...sanityClient.config()}
-                />
+              {exhibition.body.en && (
+                <PortableText blocks={exhibition.body} />
               )}
             </div>
           </div>
@@ -147,8 +137,8 @@ const ExhibitionPage = ({ data }) => {
         <div
           className={gallery ? "hidden galleryImageGrid" : "galleryImageGrid"}
         >
-          {data.exhibition.artworks ?
-            (data.exhibition.artworks.map((artwork: Artwork, index: number) =>
+          {exhibition.artworks ?
+            (exhibition.artworks.map((artwork, index) =>
               artwork && (<div
                 style={{ margin: 0 }}
                 key={artwork._id}
@@ -162,20 +152,22 @@ const ExhibitionPage = ({ data }) => {
                     .quality(75)
                     .url()}
                   alt={`
-                    ${artwork.artist}${", "}
-                    ${locale === "cy" && artwork.title.cy ? artwork.title.cy : artwork.title.en}${", "}
+                    ${artwork.artist}
+                    ${", "}
+                    ${locale === "cy" && artwork.title.cy
+                  ? artwork.title.cy
+                  : artwork.title.en}
+                    ${", "}
                     ${artwork.date}
                   `}
                   width={468}
                   height={468}
                 />
-                <div className="gridCaption">{artwork.artist}</div>
+                {artwork.artist &&
+                  <div className="gridCaption">{artwork.artist}</div>
+                }
                 <div className="gridCaption">
-                  <em>
-                    {locale === "cy" && artwork.title.cy
-                      ? artwork.title.cy
-                      : artwork.title.en}
-                  </em>
+                  {artwork.title && <em><Localize data={artwork.title} /></em>}
                 </div>
               </div>)
             )) :
@@ -189,15 +181,13 @@ const ExhibitionPage = ({ data }) => {
         <div>
           <p className="backLink">
             <Link href="/exhibitions">
-              <a>
-                {locale === "cy"
-                  ? "Yn ôl i Arddangosfeydd"
-                  : "Back to Exhibitions"}
-              </a>
+              {locale === "cy"
+                ? "Yn ôl i Arddangosfeydd"
+                : "Back to Exhibitions"}
             </Link>
           </p>
         </div>
-        {data.exhibition.artworks[0] !== undefined ? (
+        {exhibition.artworks[0] !== undefined ? (
           <Modal
             modal={modal}
             modalImage={modalImage}

@@ -9,20 +9,20 @@
  */
 import { useState } from "react"
 import { GetStaticProps, GetStaticPaths } from "next"
-// import DefaultErrorPage from "next/error"
 import Head from "next/head"
 import Image from "next/image"
-import Link from "next/link"
 import { useRouter } from "next/router"
 import sanityClient from "lib/sanityClient"
-import BlockContent from "@sanity/block-content-to-react"
 import { urlFor } from "lib/utils"
 import { artistPathQuery, artistPageQuery } from "lib/queries"
 import Layout from "components/layout"
 import ErrorTemplate from "components/errorTemplate"
+import Link from "components/link"
+import Localize from "components/localize"
 import Modal from "components/modal"
-import type { Artwork } from "generated/schema"
-
+import PortableText from "components/portableText"
+import { ArtistData } from "lib/interfaces"
+// TODO: 'Artst', 'Works', 'Biography' and Backlink hardcoded
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await sanityClient.fetch(artistPathQuery)
   return {
@@ -40,8 +40,9 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   }
 }
 
-const ArtistPage = ({ data }) => {
+const ArtistPage = ({ data }: { data: ArtistData }) => {
   const router = useRouter()
+  const { artist, menu, site, socialLinks } = data
   const [bio, setBio] = useState(true)
   const [gallery, setGallery] = useState(false)
   const [modal, setModal] = useState(true)
@@ -88,26 +89,29 @@ const ArtistPage = ({ data }) => {
   }
   function nextIndex() {
     currentIndex = currentIndex + 1
-    if (currentIndex > data.artist.artworks.length - 1) {
+    if (currentIndex > artist.artworks.length - 1) {
       setModal(true)
       return
     }
     setImageToShow(currentIndex)
   }
-  const modalImage = data.artist.artworks[0] !== undefined ? data.artist.artworks[imageToShow] : {}
+  const modalImage = artist.artworks[0] !== undefined
+    ? artist.artworks[imageToShow]
+    : {}
+  console.log(artist.artworks[10])
   return (
     <Layout
-      heroImage={data.artist.mainImage}
-      menu={data.menu}
-      site={data.site}
-      socialLinks={data.socialLinks}
-      title={data.artist.title}
+      heroImage={artist.mainImage}
+      menu={menu}
+      site={site}
+      socialLinks={socialLinks}
+      title={artist.title}
     >
       <section>
         <div className="sidebarContainer">
           <div className="portableContainer">
             <h1>{locale === "cy" ? "Artistiaid" : "Artist"}</h1>
-            <p className="subTitle">{data.artist.title}</p>
+            <p className="subTitle">{artist.title}</p>
             <ul className="galleryMenu">
               <li onClick={toggleGallery} className={bio ? "selected" : ""}>
                 {locale === "cy" ? "Yn gweithio" : "Works"}
@@ -117,61 +121,52 @@ const ArtistPage = ({ data }) => {
               </li>
             </ul>
             <div className={bio ? "hidden galleryInfo" : "galleryInfo"}>
-              {data.artist.body && (
-                <BlockContent
-                  blocks={
-                    locale === "cy" && data.artist.body.cy
-                      ? data.artist.body.cy
-                      : data.artist.body.en
-                  }
-                  {...sanityClient.config()}
-                />
-              )}
+              {artist.body && <PortableText blocks={artist.body} />}
             </div>
           </div>
         </div>
         <div
           className={gallery ? "hidden galleryImageGrid" : "galleryImageGrid"}
         >
-          {data.artist.artworks &&
-            data.artist.artworks.map(
-              (artwork: Artwork, index: number) =>
-                artwork && (
-                  <div
-                    style={{ margin: 0 }}
-                    key={artwork._id}
-                    onClick={() => openModal(index)}
-                  >
-                    <Image
-                      src={urlFor(artwork.mainImage)
-                        .width(468)
-                        .height(468)
-                        .auto("format")
-                        .quality(75)
-                        .url()}
-                      alt={`
-                        ${artwork.artist}${", "}
-                        ${artwork.title.en}${", "}
-                        ${artwork.date}
-                      `}
-                      width={468}
-                      height={468}
-                    />
-                    <div className="gridCaption">
-                      {artwork.title.en} {artwork.date && `(${artwork.date})`}
-                    </div>
-                  </div>
-                )
-            )}
+          {artist.artworks && artist.artworks.map((artwork, index) =>
+            artwork && (
+              <div
+                style={{ margin: 0 }}
+                key={artwork._id}
+                onClick={() => openModal(index)}
+              >
+                <Image
+                  src={urlFor(artwork.mainImage)
+                    .width(468)
+                    .height(468)
+                    .auto("format")
+                    .quality(75)
+                    .url()}
+                  alt={`
+                    ${artwork.artist}${", "}
+                    ${artwork.title.en}${", "}
+                    ${artwork.date}
+                  `}
+                  width={468}
+                  height={468}
+                />
+                <div className="gridCaption">
+                  {artwork.title && <Localize data={artwork.title} />}
+                  {" "}
+                  {artwork.date && `(${artwork.date})`}
+                </div>
+              </div>
+            )
+          )}
         </div>
         <div>
           <p className="backLink">
             <Link href="/artists">
-              <a>{locale === "cy" ? "Yn ôl i Artistiaid" : "Back to Artists"}</a>
+              {locale === "cy" ? "Yn ôl i Artistiaid" : "Back to Artists"}
             </Link>
           </p>
         </div>
-        {data.artist.artworks && (
+        {artist.artworks && (
           <Modal
             modal={modal}
             modalImage={modalImage}

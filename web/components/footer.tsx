@@ -1,22 +1,13 @@
-import { useRouter } from "next/router"
-import { Site, Social } from "generated/schema"
+import { FC } from "react"
 import FooterContact from "components/footerContact"
 import Signup from "components/signup"
-import Logos from "components/logos"
 import FooterLinks from "components/footerLinks"
+import Localize from "components/localize"
+import Logos from "components/logos"
+import { FooterProps } from "lib/interfaces"
 
-const currentYear = new Date().getFullYear()
-
-const Footer = ({
-  site,
-  socialLinks
-}: {
-  site: Site
-  socialLinks: {
-    socialLinks: Social[]
-  }
-}) => {
-  const { locale } = useRouter()
+const Footer: FC<FooterProps> = ({ site, socialLinks}) => {
+  const currentYear = new Date().getFullYear()
   return (
     <footer>
       <div className="footerContainer">
@@ -27,11 +18,7 @@ const Footer = ({
           <FooterLinks socialLinks={socialLinks} />
         </div>
         <p className="smallCopy">
-          &copy;{" "}
-          {locale === "cy" && site.siteName.cy
-            ? site.siteName.cy
-            : site.siteName.en}{" "}
-          {currentYear}
+          &copy;{" "}<Localize data={site.siteName} />{" "}{currentYear}
         </p>
       </div>
     </footer>

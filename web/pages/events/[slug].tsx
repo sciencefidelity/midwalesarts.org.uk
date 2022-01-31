@@ -8,18 +8,19 @@
  * @param slug - all props fetched with `eventPathQuery` in `lib/queries.ts`.
  */
 import { GetStaticProps, GetStaticPaths } from "next"
-// import DefaultErrorPage from "next/error"
 import Head from "next/head"
-import Link from "next/link"
 import { useRouter } from "next/router"
-import BlockContent from "@sanity/block-content-to-react"
 import sanityClient from "lib/sanityClient"
-import { dateOptions } from "lib/utils"
 import { eventPathQuery, eventPageQuery } from "lib/queries"
 import Layout from "components/layout"
 import ErrorTemplate from "components/errorTemplate"
+import Link from "components/link"
+import Localize from "components/localize"
+import PortableText from "components/portableText"
+import PostDate from "components/postDate"
 import Sidebar from "components/sidebar"
-
+import { EventData } from "lib/interfaces"
+// TODO: book tickets, back to events hard coded
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await sanityClient.fetch(eventPathQuery)
   return {
@@ -37,8 +38,9 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   }
 }
 
-const EventPage = ({ data }) => {
+const EventPage = ({ data }: { data: EventData }) => {
   const router = useRouter()
+  const { event, menu, sidebar, site, socialLinks } = data
   if(router.isFallback) {
     return (
       <ErrorTemplate />
@@ -57,63 +59,48 @@ const EventPage = ({ data }) => {
   const { locale } = router
   return (
     <Layout
-      heroImage={data.event && data.event.mainImage}
-      menu={data.menu}
-      site={data.site}
-      socialLinks={data.socialLinks}
-      title={locale === "cy" && data.event.title.cy ? data.event.title.cy : data.event.title.en}
+      heroImage={event && event.mainImage}
+      menu={menu}
+      site={site}
+      socialLinks={socialLinks}
+      title={locale === "cy" && event.title.cy ? event.title.cy : event.title.en}
     >
       <section>
         <div className="sidebarContainer">
           <div className="portableContainer">
             <h1>
-              {locale === "cy" && data.event.title.cy
-                ? data.event.title.cy
-                : data.event.title.en}
+              {event.title && <Localize data={event.title} />}
             </h1>
             <p className="SubTitle">
-              {new Date(data.event.date).toLocaleDateString(locale, dateOptions)}
+              {event.date && <PostDate date={event.date} />}
             </p>
-            {data.event.briteLink && (
-              <p>
-                <a href={`${data.event.briteLink}`} target="blank" rel="noreferrer">
+            <p>
+              {event.briteLink &&
+                <a href={`${event.briteLink}`} target="blank" rel="noreferrer">
                   {locale === "cy" ? "Archebwch docynnau" : "Book tickets"}
                 </a>
-              </p>
-            )}
-            {data.event.body && (
-              <BlockContent
-                blocks={
-                  locale === "cy" && data.event.body.cy
-                    ? data.event.body.cy
-                    : data.event.body.en
-                }
-                {...sanityClient.config()}
-              />
-            )}
-            {data.event.briteLink && (
-              <p>
-                <a href={`${data.event.briteLink}`} target="blank" rel="noreferrer">
+              }
+            </p>
+            {event.body && <PortableText blocks={event.body} />}
+            <p>
+              {event.briteLink &&
+                <a href={`${event.briteLink}`} target="blank" rel="noreferrer">
                   {locale === "cy" ? "Archebwch docynnau" : "Book tickets"}
                 </a>
-              </p>
-            )}
+              }
+            </p>
             <div>
               <p className="backLink">
                 <Link href="/events">
-                  <a>
-                    {locale === "cy"
-                      ? "Yn ôl i Ddigwyddiadau"
-                      : "Back to Events"}
-                  </a>
+                  {locale === "cy" ? "Yn ôl i Ddigwyddiadau" : "Back to Events"}
                 </Link>
               </p>
             </div>
           </div>
           <Sidebar
-            events={data.sidebar.events}
-            exhibitions={data.sidebar.exhibitions}
-            posts={data.sidebar.posts}
+            events={sidebar.events}
+            exhibitions={sidebar.exhibitions}
+            posts={sidebar.posts}
           />
         </div>
       </section>

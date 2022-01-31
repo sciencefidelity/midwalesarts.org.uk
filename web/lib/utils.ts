@@ -5,28 +5,14 @@ import { Image } from "@/lib/interfaces"
 export const capitalize = (word: string): string =>
   word[0].toUpperCase() + word.slice(1, word.length)
 
-export const dateOptions = {
-  weekday: "long",
-  year: "numeric",
-  month: "long",
-  day: "numeric"
-} as const
+export const kebabCase = (word: string) => {
+  // eslint-disable-next-line no-useless-escape
+  return word.toLowerCase().split(" ").join("-").replace(/[^a-z0-9\-]/g, "")
+}
 
-export const dateOptionsShort = {
-  day: "numeric",
-  month: "long",
-  year: "numeric"
-} as const
-
-export const kebabCase = (word: string): string =>
-  word
-    .toLowerCase()
-    .split(" ")
-    .join("-")
-    .replace(/[^a-z0-9\-]/g, "")
-
-export const urlFor = (source: Image) =>
-  imageUrlBuilder(sanityClient).image(source)
+export const urlFor = (source: Image) => {
+  return imageUrlBuilder(sanityClient).image(source)
+}
 
 //https://stackoverflow.com/questions/5845238/javascript-generate-transparent-1x1-pixel-in-dataurl-format/33919020#33919020
 

@@ -1,14 +1,18 @@
+import { CSSProperties, FC } from "react"
 import Image from "next/image"
 import { urlFor } from "lib/utils"
+import Localize from "components/localize"
+import { ModalProps } from "lib/interfaces"
 
-const Modal = ({ modal, modalImage, closeModal, prevIndex, nextIndex }) => {
-  const aspect = modalImage.aspectRatio.toString()
+const Modal: FC<ModalProps> = ({
+  modal, modalImage, closeModal, prevIndex, nextIndex
+}) => {
+  const aspect = modalImage.aspect
   const imageAspect = {
-    position: "relative",
     aspectRatio: aspect,
     height: `${aspect >= 1 ? "min(81vh, 51vw)" : "unset"}`,
     width: `${aspect < 1 ? "min(57vh, -4rem + 100vw)" : "unset"}`
-  }
+  } as CSSProperties
   return (
     <div className={modal ? "modalContainer hideModal" : "modalContainer"}>
       <div className="btnPrev" onClick={prevIndex}>
@@ -32,7 +36,7 @@ const Modal = ({ modal, modalImage, closeModal, prevIndex, nextIndex }) => {
         />
       </div>
       <div className="modalImageContiner">
-        <div style={imageAspect}>
+        <div style={imageAspect} className="relative">
           <Image
             src={urlFor(modalImage.mainImage)
               .height(670)
@@ -49,10 +53,12 @@ const Modal = ({ modal, modalImage, closeModal, prevIndex, nextIndex }) => {
           />
         </div>
         <p className="modalCaption">
-          <em>{modalImage.title.en}</em>, {modalImage.artist}
+          <em>{modalImage.title && <Localize data={modalImage.title} />}</em>,
+          {" "}{modalImage.artist}
         </p>
         <p className="modalCaption">
-          {modalImage.medium.en}, {modalImage.price}
+          {modalImage.medium && <Localize data={modalImage.medium} />},
+          {" "}{modalImage.price}
         </p>
       </div>
     </div>

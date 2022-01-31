@@ -1,41 +1,22 @@
-import Link from "next/link"
+import { FC } from "react"
 import Image from "next/image"
 import { useRouter } from "next/router"
 import { urlFor } from "@/lib/utils"
-import {
-  Menu,
-  SanityReference,
-  SanityImageAsset,
-  SanityImageCrop,
-  SanityImageHotspot
-} from "generated/schema"
 import ColorLogo from "components/colorLogo"
+import Link from "components/link"
 import Navigation from "components/navigation"
-
-const Header = ({
-  heroImage,
-  menu
-}: {
-  heroImage: {
-    _type: "image"
-    asset: SanityReference<SanityImageAsset>
-    crop?: SanityImageCrop
-    hotspot?: SanityImageHotspot
-    caption?: string
-  }
-  menu: any
-}) => {
+import { HeaderProps } from "lib/interfaces"
+// TODO: screen reader text hard coded
+const Header: FC<HeaderProps> = ({ heroImage, menu }) => {
   const { locale } = useRouter()
   return (
     <>
       <header>
         <Link href="/">
-          <a>
-            <span className="screenReaderText">
-              {locale === "cy" ? "Hafan" : "Home"}
-            </span>
-            <ColorLogo logoClass="colorLogo" containerClass="logoContainer" />
-          </a>
+          <span className="screenReaderText">
+            {locale === "cy" ? "Hafan" : "Home"}
+          </span>
+          <ColorLogo logoClass="colorLogo" containerClass="logoContainer" />
         </Link>
         <div className="hero">
           <Image
@@ -56,5 +37,4 @@ const Header = ({
     </>
   )
 }
-
 export default Header

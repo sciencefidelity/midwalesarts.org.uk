@@ -1,4 +1,4 @@
-import Link from "next/link"
+import Link from "components/link"
 
 const Error = () => {
   return (
@@ -18,9 +18,7 @@ const Error = () => {
         <h1>404 not found</h1>
         <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
         <Link href="/">
-          <a href="default">
-            <p>Home</p>
-          </a>
+          <p>Home</p>
         </Link>
       </div>
     </div>

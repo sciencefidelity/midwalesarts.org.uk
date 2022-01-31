@@ -1,31 +1,26 @@
+import { FC } from "react"
 import { useRouter } from "next/router"
-import type { Event, Page } from "generated/schema"
 import EventPreview from "components/eventPreview"
-
-const Events = ({
-  page,
-  pastEvents,
-  recurringEvents,
-  upcomingEvents
-}: {
-  page: Page
-  pastEvents: Event[]
-  recurringEvents: Event[]
-  upcomingEvents: Event[]
+import Localize from "components/localize"
+import { EventsProps } from "lib/interfaces"
+// TODO: move titles and placeholders into studio
+// TODO: handle missing events
+const Events: FC<EventsProps> = ({
+  page, pastEvents, recurringEvents, upcomingEvents
 }) => {
   const { locale } = useRouter()
   return (
     <section>
       <div className="sidebarContainer">
         <div className="portableContainer">
-          <h1>
-            {locale === "cy" && page.title.cy ? page.title.cy : page.title.en}
-          </h1>
-          <p className="sidebarContainer">
-            {locale === "cy" && page.subtitle.cy
-              ? page.subtitle.cy
-              : page.subtitle.en}
-          </p>
+          {page.title &&
+            <h1><Localize data={page.title} /></h1>
+          }
+          {page.subtitle &&
+            <p className="sidebarContainer">
+              <Localize data={page.subtitle} />
+            </p>
+          }
         </div>
       </div>
       {upcomingEvents[0] !== undefined ? (

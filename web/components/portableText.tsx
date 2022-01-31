@@ -9,11 +9,7 @@ const PortableText = ({ blocks }: {
   const { locale } = useRouter()
   return (
     <BlockContent
-      blocks={
-        locale === "cy" && blocks.cy
-          ? blocks.cy
-          : blocks.en
-      }
+      blocks={ locale === "cy" && blocks.cy ? blocks.cy : blocks.en }
       {...sanityClient.config()}
     />
   )

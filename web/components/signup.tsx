@@ -1,12 +1,13 @@
 import { useRouter } from "next/router"
+import Localize from "components/localize"
 import { Site } from "@/generated/schema"
-
+// TODO: alt text not translated
 const Signup = ({ site }: { site: Site }) => {
   const { locale } = useRouter()
   return (
     <div className="signup">
       <div className="signupHeading">
-        {locale === "cy" && site.signUp.cy ? site.signUp.cy : site.signUp.en}
+        {site.signUp && <Localize data={site.signUp} />}
       </div>
       <div className="signupForm">
         <form

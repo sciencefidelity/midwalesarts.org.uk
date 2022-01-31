@@ -6,12 +6,7 @@ const Localize = ({ data }: {
 }) => {
   const { locale } = useRouter()
   return (
-    <>
-      {locale === "cy" && data.cy
-        ? data.cy
-        : data.en}
-    </>
+    <>{locale === "cy" && data.cy ? data.cy : data.en}</>
   )
 }
-
 export default Localize
