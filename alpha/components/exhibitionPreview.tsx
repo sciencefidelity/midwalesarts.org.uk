@@ -1,16 +1,13 @@
+import { FC } from "react"
 import Image from "next/image"
 import Link from "components/link"
 import { useRouter } from "next/router"
-import type { Exhibition } from "generated/schema"
 import { dateOptionsShort, urlFor } from "@/lib/utils"
 import Localize from "components/localize"
+import { ExhibitionPreviewProps } from "lib/interfaces"
 
-const ExhibitionPrieview = ({
-  exhibition,
-  heading
-}: {
-  exhibition: Exhibition
-  heading: string
+const ExhibitionPrieview: FC<ExhibitionPreviewProps> = ({
+  exhibition, heading
 }) => {
   const { locale } = useRouter()
   return (
@@ -39,8 +36,8 @@ const ExhibitionPrieview = ({
             <Localize data={exhibition.title} />
           </div>
         }
-        <div className="gridCaption">
-          {exhibition && (
+        {exhibition && (
+          <div className="gridCaption">
             <span>
               {new Date(exhibition.dateStart).toLocaleDateString(
                 locale,
@@ -52,8 +49,8 @@ const ExhibitionPrieview = ({
                 dateOptionsShort
               )}
             </span>
-          )}
-        </div>
+          </div>
+        )}
       </Link>
     </div>
   )

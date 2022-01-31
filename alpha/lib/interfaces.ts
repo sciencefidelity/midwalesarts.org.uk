@@ -73,9 +73,21 @@ export interface ArtistsProps {
 
 export interface EventsProps {
   page: Page
-  pastEvents: Event[]
-  recurringEvents: Event[]
-  upcomingEvents: Event[]
+  pastEvents?: Event[]
+  recurringEvents?: Event[]
+  upcomingEvents?: Event[]
+}
+
+export interface ExhibitionsProps {
+  page: Page
+  currentExhibitions?: Exhibition[]
+  futureExhibitions?: Exhibition[]
+  pastExhibitions?: Exhibition[]
+}
+
+export interface NewsProps {
+  page: Page
+  posts: Post[]
 }
 
 export interface PageProps {
@@ -90,11 +102,21 @@ export interface VisitProps {
   spaces: Space[]
 }
 
+export interface VideosProps {
+  page: Page
+  videos: Video[]
+}
+
 export interface EventPreviewProps {
   heading: string
   eventData: Event[]
   marginTop: CSSProperties
   grid: string
+}
+
+export interface ExhibitionPreviewProps {
+  heading: string
+  exhibition: Exhibition
 }
 
 export interface SidebarProps {

@@ -14,8 +14,14 @@ const Events: FC<EventsProps> = ({
     <section>
       <div className="sidebarContainer">
         <div className="portableContainer">
-          <h1><Localize data={page.title} /></h1>
-          <p className="sidebarContainer"><Localize data={page.subtitle} /></p>
+          {page.title &&
+            <h1><Localize data={page.title} /></h1>
+          }
+          {page.subtitle &&
+            <p className="sidebarContainer">
+              <Localize data={page.subtitle} />
+            </p>
+          }
         </div>
       </div>
       {upcomingEvents[0] !== undefined ? (
