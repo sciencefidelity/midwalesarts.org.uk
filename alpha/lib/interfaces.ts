@@ -26,7 +26,7 @@ export interface Image {
   hotspot?: SanityImageHotspot
 }
 
-interface AllPageData {
+export interface AllPageData {
   menu: Page[],
   sidebar?: {
     posts: Post[]
