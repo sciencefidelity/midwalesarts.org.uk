@@ -43,7 +43,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
 const ExhibitionPage = ({ data }: { data: ExhibitionData }) => {
   const router = useRouter()
-  const { exhibition, menu, site, socialLinks } = data
   const [info, setInfo] = useState(true)
   const [gallery, setGallery] = useState(false)
   const [modal, setModal] = useState(true)
@@ -64,6 +63,7 @@ const ExhibitionPage = ({ data }: { data: ExhibitionData }) => {
     )
   }
   const { locale } = router
+  const { exhibition, menu, site, socialLinks } = data
   const toggleInfo = () => {
     setInfo(false)
     setGallery(true)

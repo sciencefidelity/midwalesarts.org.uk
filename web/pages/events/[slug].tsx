@@ -40,7 +40,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
 const EventPage = ({ data }: { data: EventData }) => {
   const router = useRouter()
-  const { event, menu, sidebar, site, socialLinks } = data
   if(router.isFallback) {
     return (
       <ErrorTemplate />
@@ -57,6 +56,7 @@ const EventPage = ({ data }: { data: EventData }) => {
     )
   }
   const { locale } = router
+  const { event, menu, sidebar, site, socialLinks } = data
   return (
     <Layout
       heroImage={event && event.mainImage}

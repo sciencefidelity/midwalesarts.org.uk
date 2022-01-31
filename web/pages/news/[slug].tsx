@@ -40,7 +40,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 }
 
 const PostPage = ({ data }: { data: NewsData }) => {
-  const { menu, post, sidebar, site, socialLinks } = data
   const router = useRouter()
   if(router.isFallback) {
     return (
@@ -58,6 +57,7 @@ const PostPage = ({ data }: { data: NewsData }) => {
     )
   }
   const { locale } = router
+  const { menu, post, sidebar, site, socialLinks } = data
   return (
     <Layout
       heroImage={post.image}

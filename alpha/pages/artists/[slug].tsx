@@ -42,7 +42,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
 const ArtistPage = ({ data }: { data: ArtistData }) => {
   const router = useRouter()
-  const { artist, menu, site, socialLinks } = data
   const [bio, setBio] = useState(true)
   const [gallery, setGallery] = useState(false)
   const [modal, setModal] = useState(true)
@@ -63,6 +62,7 @@ const ArtistPage = ({ data }: { data: ArtistData }) => {
     )
   }
   const { locale } = router
+  const { artist, menu, site, socialLinks } = data
   const toggleBio = () => {
     setBio(false)
     setGallery(true)
@@ -98,7 +98,6 @@ const ArtistPage = ({ data }: { data: ArtistData }) => {
   const modalImage = artist.artworks[0] !== undefined
     ? artist.artworks[imageToShow]
     : {}
-  console.log(artist.artworks[10])
   return (
     <Layout
       heroImage={artist.mainImage}

@@ -40,7 +40,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
 const VideoPage = ({ data }: { data: VideoData }) => {
   const router = useRouter()
-  const { video, menu, sidebar, site, socialLinks } = data
   if(router.isFallback) {
     return (
       <ErrorTemplate />
@@ -57,6 +56,7 @@ const VideoPage = ({ data }: { data: VideoData }) => {
     )
   }
   const { locale } = router
+  const { video, menu, sidebar, site, socialLinks } = data
   return (
     <Layout
       heroImage={video.mainImage}
