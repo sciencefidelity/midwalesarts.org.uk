@@ -1,8 +1,8 @@
 import { GetStaticProps } from "next"
-import Link from "next/link"
-import { notFoundQuery } from "lib/queries"
 import sanityClient from "lib/sanityClient"
-import Layout from "@/components/layout"
+import { notFoundQuery } from "lib/queries"
+import Layout from "components/layout"
+import Link from "components/link"
 
 export const getStaticProps: GetStaticProps = async () => {
   const data = await sanityClient.fetch(notFoundQuery)
@@ -31,9 +31,7 @@ const Error = ({ data }) => {
         <h1>404 not found</h1>
         <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
         <Link href="/">
-          <a>
-            <p>Home</p>
-          </a>
+          <p>Home</p>
         </Link>
       </div>
     </Layout>

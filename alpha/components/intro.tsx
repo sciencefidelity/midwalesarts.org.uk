@@ -8,11 +8,11 @@ const Intro = ({ body, cta, ctaLink }) => {
       {body && (
         <PortableText blocks={body} />
       )}
-      <Link href={`/${ctaLink}/`}>
+      {ctaLink && (<Link href={`/${ctaLink}/`}>
         <h2 className="introCta">
-          <span><Localize data={cta} />&nbsp;</span>
+          <span>{cta && <Localize data={cta} />}&nbsp;</span>
         </h2>
-      </Link>
+      </Link>)}
       <div className="introCtaHr"></div>
     </div>
   )

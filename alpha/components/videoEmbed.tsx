@@ -1,6 +1,6 @@
 import { useRouter } from "next/router"
 import getYouTubeID from "get-youtube-id"
-
+// TODO: YouTube video missing hard coded
 const VideoEmbed = ({ videoId }) => {
   const { locale } = useRouter()
   const id = getYouTubeID(videoId)

@@ -6,7 +6,7 @@ import ColorLogo from "components/colorLogo"
 import Link from "components/link"
 import Navigation from "components/navigation"
 import { HeaderProps } from "lib/interfaces"
-
+// TODO: screen reader text hard coded
 const Header: FC<HeaderProps> = ({ heroImage, menu }) => {
   const { locale } = useRouter()
   return (
@@ -37,5 +37,4 @@ const Header: FC<HeaderProps> = ({ heroImage, menu }) => {
     </>
   )
 }
-
 export default Header

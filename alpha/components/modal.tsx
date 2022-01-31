@@ -1,6 +1,7 @@
 import { CSSProperties, FC } from "react"
 import Image from "next/image"
 import { urlFor } from "lib/utils"
+import Localize from "components/localize"
 import { ModalProps } from "lib/interfaces"
 
 const Modal: FC<ModalProps> = ({
@@ -52,10 +53,12 @@ const Modal: FC<ModalProps> = ({
           />
         </div>
         <p className="modalCaption">
-          <em>{modalImage.title.en}</em>, {modalImage.artist}
+          <em>{modalImage.title && <Localize data={modalImage.title} />}</em>,
+          {" "}{modalImage.artist}
         </p>
         <p className="modalCaption">
-          {modalImage.medium.en}, {modalImage.price}
+          {modalImage.medium && <Localize data={modalImage.medium} />},
+          {" "}{modalImage.price}
         </p>
       </div>
     </div>

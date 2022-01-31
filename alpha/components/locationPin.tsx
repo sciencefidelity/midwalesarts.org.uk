@@ -1,4 +1,7 @@
-const LocationPin = ({ lat, lng, text }) => {
+import { FC } from "react"
+import { LocationProps } from "lib/interfaces"
+
+const LocationPin: FC<LocationProps> = ({ _lat, _lng, _text }) => {
   return (
     <div className="pin">
       <img

@@ -14,9 +14,7 @@ const ExhibitionPrieview: FC<ExhibitionPreviewProps> = ({
   return (
     <div className="exhibitionPreview">
       <p>{heading}</p>
-      <Link
-        href={`/exhibitions/${exhibition.slug.en.current}`}
-      >
+      <Link href={`/exhibitions/${exhibition.slug.en.current}`}>
         <Image
           src={urlFor(exhibition.mainImage)
             .width(468)

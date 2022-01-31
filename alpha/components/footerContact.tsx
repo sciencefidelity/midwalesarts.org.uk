@@ -1,41 +1,26 @@
-import { useRouter } from "next/router"
+import Localize from "components/localize"
 import { Site } from "@/generated/schema"
 
 const year = new Date().getFullYear()
 
 const FooterContact = ({ site }: { site: Site }) => {
-  const { locale } = useRouter()
   return (
     <div>
       <p>
-        {locale === "cy" && site.openingHeading.cy
-          ? site.openingHeading.cy
-          : site.openingHeading.en}
-        <br />
-        {locale === "cy" && site.openingTimes.cy
-          ? site.openingTimes.cy
-          : site.openingTimes.en}
+        <Localize data={site.openingHeading} /><br />
+        <Localize data={site.openingTimes} />
       </p>
       <p>
-        {locale === "cy" && site.siteName.cy
-          ? site.siteName.cy
-          : site.siteName.en}
-        <br />
-        {site.addressLine1}
-        <br />
+        <Localize data={site.siteName} /><br />
+        {site.addressLine1}<br />
         {site.addressLine2}
       </p>
       <p>
-        {site.telephone}
-        <br />
+        {site.telephone}<br />
         <a href={`mailto:${site.email}`}>{site.email}</a>
       </p>
       <p className="copy">
-        &copy;{" "}
-        {locale === "cy" && site.siteName.cy
-          ? site.siteName.cy
-          : site.siteName.en}{" "}
-        {year}
+        &copy;{" "}<Localize data={site.siteName} />{year}
       </p>
     </div>
   )

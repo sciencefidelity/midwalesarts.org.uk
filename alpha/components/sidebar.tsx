@@ -1,12 +1,11 @@
-// TODO: Move all text to studio
-// TODO: Create sidebar document in studo to change order
-// TODO: Create workshops document in studio and map through them here
 import { FC } from "react"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import Localize from "components/localize"
 import { SidebarProps } from "lib/interfaces"
-
+// TODO: Move all text to studio
+// TODO: Create sidebar document in studo to change order
+// TODO: Create workshops document in studio and map through them here
 const Sidebar: FC<SidebarProps> = ({ events, exhibitions, posts }) => {
   const { locale } = useRouter()
   return (
@@ -19,7 +18,7 @@ const Sidebar: FC<SidebarProps> = ({ events, exhibitions, posts }) => {
               <Link href={`/news/${post.slug.en.current}/`}>
                 <a href="default" key={post._id}>
                   <li>
-                    <Localize data={post.title} />
+                    {post.title && <Localize data={post.title} />}
                   </li>
                 </a>
               </Link>
@@ -32,7 +31,7 @@ const Sidebar: FC<SidebarProps> = ({ events, exhibitions, posts }) => {
             event && (
               <Link href={`/events/${event.slug.en.current}/`}>
                 <a href="default" key={event._id}>
-                  <li><Localize data={event.title} /></li>
+                  <li>{event.title && <Localize data={event.title} />}</li>
                 </a>
               </Link>
             )
@@ -44,7 +43,9 @@ const Sidebar: FC<SidebarProps> = ({ events, exhibitions, posts }) => {
             exhibition && (
               <Link href={`/exhibitions/${exhibition.slug.en.current}/`}>
                 <a href="default" key={exhibition._id}>
-                  <li><Localize data={exhibition.title} /></li>
+                  <li>
+                    {exhibition.title && <Localize data={exhibition.title} />}
+                  </li>
                 </a>
               </Link>
             )

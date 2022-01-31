@@ -19,6 +19,7 @@ import Layout from "components/layout"
 import ErrorTemplate from "components/errorTemplate"
 import ExhibitionDate from "components/exhibitionDate"
 import Link from "components/link"
+import Localize from "components/localize"
 import Modal from "components/modal"
 import PortableText from "components/portableText"
 import { ExhibitionData } from "lib/interfaces"
@@ -95,23 +96,23 @@ const ExhibitionPage = ({ data }: { data: ExhibitionData }) => {
     }
     setImageToShow(currentIndex)
   }
-  const modalImage = exhibition.artworks[0] !== undefined ? exhibition.artworks[imageToShow] : {}
+  const modalImage = exhibition.artworks[0] !== undefined
+    ? exhibition.artworks[imageToShow]
+    : {}
   return (
     <Layout
       heroImage={exhibition.mainImage}
       menu={menu}
       site={site}
       socialLinks={socialLinks}
-      title={locale === "cy" && exhibition.title.cy ? exhibition.title.cy : exhibition.title.en}
+      title={locale === "cy" && exhibition.title.cy
+        ? exhibition.title.cy
+        : exhibition.title.en}
     >
       <section>
         <div className="sidebarContainer">
           <div className="portableContainer">
-            <h1>
-              {locale === "cy" && exhibition.title.cy
-                ? exhibition.title.cy
-                : exhibition.title.en}
-            </h1>
+            <h1>{exhibition.title && <Localize data={exhibition.title} />}</h1>
             <p className="subTitle">
               <ExhibitionDate
                 dateEnd={exhibition.dateEnd}
@@ -162,13 +163,11 @@ const ExhibitionPage = ({ data }: { data: ExhibitionData }) => {
                   width={468}
                   height={468}
                 />
-                <div className="gridCaption">{artwork.artist}</div>
+                {artwork.artist &&
+                  <div className="gridCaption">{artwork.artist}</div>
+                }
                 <div className="gridCaption">
-                  <em>
-                    {locale === "cy" && artwork.title.cy
-                      ? artwork.title.cy
-                      : artwork.title.en}
-                  </em>
+                  {artwork.title && <em><Localize data={artwork.title} /></em>}
                 </div>
               </div>)
             )) :

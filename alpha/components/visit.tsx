@@ -38,11 +38,9 @@ const Visit: FC<VisitProps> = ({ page, spaces }) => {
                   width={468}
                   height={468}
                 />
-                {space.title.en &&
-                  <div className="gridCaption">
-                    <Localize data={space.title} />
-                  </div>
-                }
+                <div className="gridCaption">
+                  {space.title && <Localize data={space.title} />}
+                </div>
               </Link>
             ))}
           </div>
@@ -55,14 +53,10 @@ const Visit: FC<VisitProps> = ({ page, spaces }) => {
                   key={space._id}
                   className="spacesText"
                 >
-                  {space.title.en &&
-                    <h4 className="spacesGridTitle">
-                      <Localize data={space.title} />
-                    </h4>
-                  }
-                  {space.body.en && (
-                    <PortableText blocks={space.body} />
-                  )}
+                  <h4 className="spacesGridTitle">
+                    {space.title &&<Localize data={space.title} />}
+                  </h4>
+                  {space.body && <PortableText blocks={space.body} />}
                 </div>
               )
             ))}

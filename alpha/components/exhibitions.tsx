@@ -1,4 +1,3 @@
-// TODO: move titles and placeholders into studio
 import { FC } from "react"
 import Image from "next/image"
 import { useRouter } from "next/router"
@@ -8,7 +7,7 @@ import ExhibitionPreview from "components/exhibitionPreview"
 import Link from "components/link"
 import Localize from "components/localize"
 import { ExhibitionsProps } from "lib/interfaces"
-
+// TODO: move titles and placeholders into studio
 const Exhibitions: FC<ExhibitionsProps> = ({
   page, currentExhibitions, futureExhibitions, pastExhibitions
 }) => {
@@ -17,8 +16,12 @@ const Exhibitions: FC<ExhibitionsProps> = ({
     <section>
       <div className="sidebarContainer">
         <div className="portableContainer">
-          <h1><Localize data={page.title} /></h1>
-          <p className="subTitle"><Localize data={page.subtitle} /></p>
+          <h1>
+            {page.title && <Localize data={page.title} />}
+          </h1>
+          <p className="subTitle">
+            {page.subtitle && <Localize data={page.subtitle} />}
+          </p>
         </div>
       </div>
       <div className="exhibitionPreviewGrid">
@@ -28,8 +31,7 @@ const Exhibitions: FC<ExhibitionsProps> = ({
               heading={
                 locale === "cy"
                   ? "Arddangosfa gyfredol"
-                  : "Current exhibition"
-              }
+                  : "Current exhibition"}
               exhibition={currentExhibitions[0]}
             />
             : <>
@@ -37,8 +39,7 @@ const Exhibitions: FC<ExhibitionsProps> = ({
                 heading={
                   locale === "cy"
                     ? "Arddangosfeydd cyfredol"
-                    : "Current exhibitions"
-                }
+                    : "Current exhibitions"}
                 exhibition={currentExhibitions[0]}
               />
               <ExhibitionPreview
@@ -50,7 +51,9 @@ const Exhibitions: FC<ExhibitionsProps> = ({
         }
         {futureExhibitions[0] && (
           <ExhibitionPreview
-            heading={locale === "cy" ? "Arddangosfa nesaf" : "Next exhibition"}
+            heading={locale === "cy"
+              ? "Arddangosfa nesaf"
+              : "Next exhibition"}
             exhibition={futureExhibitions[0]}
           />
         )}

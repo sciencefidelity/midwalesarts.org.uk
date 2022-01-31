@@ -1,5 +1,5 @@
 import { useRouter } from "next/router"
-
+// TODO: can a way be found to manage this in the studio
 const Signup = () => {
   const { locale } = useRouter()
   return (

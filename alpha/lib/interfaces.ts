@@ -160,6 +160,11 @@ export interface NavProps {
   menu: Page[]
 }
 
+export interface FooterProps {
+  site: Site
+  socialLinks: Social[]
+}
+
 export interface SidebarProps {
   events: Event[]
   exhibitions: Exhibition[]
@@ -169,6 +174,12 @@ export interface SidebarProps {
 export interface LogoProps {
   logoClass: string
   containerClass: string
+}
+
+export interface LocationProps {
+  _lat: number
+  _lng: number
+  _text: string
 }
 
 export interface ModalProps {

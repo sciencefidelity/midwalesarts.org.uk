@@ -70,12 +70,10 @@ const PostPage = ({ data }: { data: NewsData }) => {
         <div className="sidebarContainer">
           <div className="portableContainer">
             <h1>{locale === "cy" ? "Newyddion" : "News"}</h1>
-            {post.title && (
+            {post.title &&
               <p className="subTitle"><Localize data={post.title} />.</p>
-            )}
-            {post.body && (
-              <PortableText blocks={post.body} />
-            )}
+            }
+            {post.body && <PortableText blocks={post.body} />}
             <p>
               {locale === "cy" ? "Wedi'i gyhoeddi ar" : "Published on"}{" "}
               {post.publishedAt && <PostDate date={post.publishedAt} />}
@@ -89,7 +87,7 @@ const PostPage = ({ data }: { data: NewsData }) => {
                   </Link>
                 </p>
               ) : (
-                <p></p>
+                <p>{" "}</p>
               )}
               <p className="backLink">
                 <Link href="/news">
@@ -104,7 +102,7 @@ const PostPage = ({ data }: { data: NewsData }) => {
                   </Link>
                 </p>
               ) : (
-                <p> </p>
+                <p>{" "}</p>
               )}
             </div>
           </div>

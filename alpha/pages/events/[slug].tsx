@@ -68,7 +68,9 @@ const EventPage = ({ data }: { data: EventData }) => {
       <section>
         <div className="sidebarContainer">
           <div className="portableContainer">
-            <h1>{event.title && <Localize data={event.title} />}</h1>
+            <h1>
+              {event.title && <Localize data={event.title} />}
+            </h1>
             <p className="SubTitle">
               {event.date && <PostDate date={event.date} />}
             </p>

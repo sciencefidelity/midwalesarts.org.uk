@@ -121,9 +121,7 @@ const ArtistPage = ({ data }: { data: ArtistData }) => {
               </li>
             </ul>
             <div className={bio ? "hidden galleryInfo" : "galleryInfo"}>
-              {artist.body && (
-                <PortableText blocks={artist.body} />
-              )}
+              {artist.body && <PortableText blocks={artist.body} />}
             </div>
           </div>
         </div>
