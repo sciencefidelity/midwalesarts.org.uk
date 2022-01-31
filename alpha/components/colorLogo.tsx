@@ -1,10 +1,7 @@
-const ColorLogo = ({
-  logoClass,
-  containerClass
-}: {
-  logoClass: string
-  containerClass: string
-}) => {
+import { FC } from "react"
+import { LogoProps } from "lib/interfaces"
+
+const ColorLogo: FC<LogoProps> = ({ logoClass, containerClass}) => {
   return (
     <div className={containerClass}>
       <img

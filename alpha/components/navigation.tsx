@@ -1,10 +1,13 @@
+// TODO: Screen reader texts hardcoded
+import { FC } from "react"
 import { useState } from "react"
-import Link from "next/link"
 import { useRouter } from "next/router"
-import { Menu, Page } from "generated/schema"
 import { capitalize } from "lib/utils"
+import Link from "components/link"
+import Localize from "components/localize"
+import { NavProps } from "lib/interfaces"
 
-const Navigation = ({ menu }: { menu: any }) => {
+const Navigation: FC<NavProps> = ({ menu }) => {
   const router = useRouter()
   const { pathname, asPath, query, locale, locales } = router
   const [isActive, setActive] = useState(false)
@@ -20,14 +23,10 @@ const Navigation = ({ menu }: { menu: any }) => {
     <div className="menuOverlay" onClick={isActive ? menuClose : null}>
       <div className={isActive ? "headerMenu isActive" : "headerMenu"}>
         <ul style={align}>
-          {menu.items.map((item: Page) => (
-            <li key={item._id}>
-              <Link href={`/${item.slug.en.current.replace("index", "")}`}>
-                <a>
-                  {locale === "cy" && item.menuTitle.cy
-                    ? item.menuTitle.cy
-                    : item.menuTitle.en}
-                </a>
+          {menu.map(page => (
+            <li key={page._id}>
+              <Link href={`/${page.slug.en.current.replace("index", "")}`}>
+                <Localize data={page.menuTitle} />
               </Link>
             </li>
           ))}
