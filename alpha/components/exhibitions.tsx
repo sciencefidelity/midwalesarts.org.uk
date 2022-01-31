@@ -21,35 +21,36 @@ const Exhibitions: FC<ExhibitionsProps> = ({
         </div>
       </div>
       <div className="exhibitionPreviewGrid">
-        {currentExhibitions[0] && currentExhibitions.length === 1 ? (
-          <ExhibitionPrieview
-            heading={
-              locale === "cy"
-                ? "Arddangosfa gyfredol"
-                : "Current exhibition"
-            }
-            exhibition={currentExhibitions[0]}
-          />
-        ) : (
-          <>
-            <ExhibitionPrieview
+        {currentExhibitions[0] &&
+          (currentExhibitions.length === 1
+            ? <ExhibitionPrieview
               heading={
                 locale === "cy"
-                  ? "Arddangosfeydd cyfredol"
-                  : "Current exhibitions"
+                  ? "Arddangosfa gyfredol"
+                  : "Current exhibition"
               }
               exhibition={currentExhibitions[0]}
             />
-            <ExhibitionPrieview
-              heading={" "}
-              exhibition={currentExhibitions[1]}
-            />
-          </>
-        )}
+            : <>
+              <ExhibitionPrieview
+                heading={
+                  locale === "cy"
+                    ? "Arddangosfeydd cyfredol"
+                    : "Current exhibitions"
+                }
+                exhibition={currentExhibitions[0]}
+              />
+              <ExhibitionPrieview
+                heading={" "}
+                exhibition={currentExhibitions[1]}
+              />
+            </>
+          )
+        }
         {futureExhibitions[0] && (
           <ExhibitionPrieview
             heading={locale === "cy" ? "Arddangosfa nesaf" : "Next exhibition"}
-            exhibition={futureExhibitions[0] && futureExhibitions[0]}
+            exhibition={futureExhibitions[0]}
           />
         )}
       </div>
