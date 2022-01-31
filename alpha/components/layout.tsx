@@ -1,45 +1,18 @@
-import { ReactNode } from "react"
+import { FC } from "react"
 import Head from "next/head"
 import { useRouter } from "next/router"
-import Header from "@/components/header"
-import Footer from "@/components/footer"
-import Scrollup from "@/components/scrollup"
-import {
-  Menu,
-  LocaleString,
-  SanityReference,
-  SanityImageAsset,
-  SanityImageCrop,
-  SanityImageHotspot,
-  Site,
-  Social
-} from "@/generated/schema"
-// import "styles/layout.scss"
-// import styles from "@/components/layout.module.scss"
-// import utilStyles from "@/styles/utils.module.scss"
+import Header from "components/header"
+import Footer from "components/footer"
+import Scrollup from "components/scrollup"
+import { LayoutProps } from "lib/interfaces"
 
-const Layout = ({
+const Layout: FC<LayoutProps> = ({
   children,
   heroImage,
   menu,
   site,
   socialLinks,
   title
-}: {
-  children: ReactNode
-  heroImage?: {
-    _type: "image"
-    asset: SanityReference<SanityImageAsset>
-    crop?: SanityImageCrop
-    hotspot?: SanityImageHotspot
-    caption?: string
-  }
-  menu?: Menu[]
-  site?: Site
-  socialLinks?: {
-    socialLinks: Social[]
-  }
-  title?: string
 }) => {
   const { locale } = useRouter()
   const metaTitle = title === undefined ? `
@@ -59,6 +32,7 @@ const Layout = ({
           name="Description"
           content={locale === "cy" && site.seoDescription.cy ? site.seoDescription.cy : site.seoDescription.en}
         />}
+        <meta name="keywords" content={site.keywords.en} />
         <link
           rel="preload"
           href="/fonts/brandongrotesque-regular-lat.woff2"

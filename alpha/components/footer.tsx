@@ -8,13 +8,10 @@ import FooterLinks from "components/footerLinks"
 const currentYear = new Date().getFullYear()
 
 const Footer = ({
-  site,
-  socialLinks
+  site, socialLinks
 }: {
   site: Site
-  socialLinks: {
-    socialLinks: Social[]
-  }
+  socialLinks: Social[]
 }) => {
   const { locale } = useRouter()
   return (

@@ -1,16 +1,14 @@
-import { Social } from "@/generated/schema"
+import { Social } from "generated/schema"
 
 const FooterLinks = ({
   socialLinks
 }: {
-  socialLinks: {
-    socialLinks: Social[]
-  }
+  socialLinks: Social[]
 }) => {
   return (
     <div className="linksMenuContainer">
       <ul className="linksMenu">
-        {socialLinks.socialLinks.map((link: Social) => (
+        {socialLinks.map((link: Social) => (
           <li key={link._id}>
             <a href={link.link} target="blank" rel="noreferrer">
               {link.site}
@@ -21,5 +19,4 @@ const FooterLinks = ({
     </div>
   )
 }
-
 export default FooterLinks

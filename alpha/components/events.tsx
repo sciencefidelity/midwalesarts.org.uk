@@ -1,6 +1,7 @@
 import { useRouter } from "next/router"
-import type { Event, Page } from "generated/schema"
 import EventPreview from "components/eventPreview"
+import Localize from "components/localize"
+import type { Event, Page } from "generated/schema"
 
 const Events = ({
   page,
@@ -18,14 +19,8 @@ const Events = ({
     <section>
       <div className="sidebarContainer">
         <div className="portableContainer">
-          <h1>
-            {locale === "cy" && page.title.cy ? page.title.cy : page.title.en}
-          </h1>
-          <p className="sidebarContainer">
-            {locale === "cy" && page.subtitle.cy
-              ? page.subtitle.cy
-              : page.subtitle.en}
-          </p>
+          <h1><Localize data={page.title} /></h1>
+          <p className="sidebarContainer"><Localize data={page.subtitle} /></p>
         </div>
       </div>
       {upcomingEvents[0] !== undefined ? (

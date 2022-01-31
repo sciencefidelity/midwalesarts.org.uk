@@ -1,3 +1,4 @@
+import { CSSProperties } from "react"
 import Image from "next/image"
 import { urlFor } from "lib/utils"
 
@@ -7,7 +8,7 @@ const Modal = ({ modal, modalImage, closeModal, prevIndex, nextIndex }) => {
     aspectRatio: aspect,
     height: `${aspect >= 1 ? "min(81vh, 51vw)" : "unset"}`,
     width: `${aspect < 1 ? "min(57vh, -4rem + 100vw)" : "unset"}`
-  }
+  } as CSSProperties
   return (
     <div className={modal ? "modalContainer hideModal" : "modalContainer"}>
       <div className="btnPrev" onClick={prevIndex}>

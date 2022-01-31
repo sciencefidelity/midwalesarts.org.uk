@@ -58,13 +58,18 @@ const PagesTemplage = ({ data }) => {
       </>
     )
   }
-  const exhibitionHero =
-    data.currentExhibitions[0] !== undefined
-      ? data.currentExhibitions[0].mainImage
-      : data.futureExhibitions[0] !== undefined
-        ? data.futureExhibitions[0].mainImage
-        : data.pastExhibitions[0].mainImage
+  // const exhibitionHero =
+  //   data.currentExhibitions[0] !== undefined
+  //     ? data.currentExhibitions[0].mainImage
+  //     : data.futureExhibitions[0] !== undefined
+  //       ? data.futureExhibitions[0].mainImage
+  //       : data.pastExhibitions[0].mainImage
 
+  let exhibitionHero = data.pastExhibitions[0].mainImage
+  if (data.futureExhibitions[0]) exhibitionHero = data.futureExhibitions[0].mainImage
+  if (data.currentExhibitions[0]) exhibitionHero = data.currentExhibitions[0].mainImage
+
+  // let heroImage = site.seo
   return (
     <Layout
       heroImage={

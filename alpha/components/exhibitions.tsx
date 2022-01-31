@@ -22,10 +22,10 @@ const Exhibitions = ({
       <div className="sidebarContainer">
         <div className="portableContainer">
           <h1>
-            {locale == "cy" && page.title.cy ? page.title.cy : page.title.en}
+            {locale === "cy" && page.title.cy ? page.title.cy : page.title.en}
           </h1>
           <p className="subTitle">
-            {locale == "cy" && page.subtitle.cy
+            {locale === "cy" && page.subtitle.cy
               ? page.subtitle.cy
               : page.subtitle.en}
           </p>
@@ -87,8 +87,8 @@ const Exhibitions = ({
                     <a>
                       <Image
                         src={urlFor(exhibition.mainImage)
-                          .width(468)
-                          .height(468)
+                          .width(1000)
+                          .height(1000)
                           .auto("format")
                           .quality(75)
                           .url()}
@@ -97,8 +97,8 @@ const Exhibitions = ({
                             ? exhibition.title.cy
                             : exhibition.title.en
                         }
-                        width={468}
-                        height={468}
+                        width={1000}
+                        height={1000}
                       />
                       <div className="gridCaption">{exhibition.title.en}</div>
                       <div className="gridCaption">

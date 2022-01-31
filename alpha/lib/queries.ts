@@ -1,97 +1,118 @@
 import groq from "groq"
-// const QUERY_OMIT_DRAFTS = "!(_id in path('drafts.**'))"
+
+const omitDrafts = "!(_id in path('drafts.**'))"
+const dominantBg = "asset->metadata.palette.dominant.background"
 const siteFields = `
-  openingHeading,
-  openingTimes,
   addressLine1,
   addressLine2,
-  telephone,
-  siteName,
+  email,
+  keywords,
+  openingHeading,
+  openingTimes,
   seoDescription,
   seoImage,
-  email,
+  seoTitle,
   signUp,
-  signUpPlaceholder
+  signUpPlaceholder,
+  siteDescription,
+  siteName,
+  telephone,
+  twitterHandle
+`
+const menuFields = `
+  items[]->{
+    _id,
+    slug,
+    menuTitle
+  }
+`
+const sideBarFields = `
+  "posts": *[_type == "post" && ${omitDrafts}]
+  | order(publishedAt desc)[0..3]{
+    _id, slug, title
+  },
+  "events": *[_type == "event" && recurring != true && dateTime(now()) < dateTime(date) && ${omitDrafts}]
+  | order(date asc)[0..3]{
+    _id, slug, title
+  },
+  "exhibitions": *[_type == "exhibition" && dateTime(now()) < dateTime(dateStart) && ${omitDrafts}]
+  | order(dateStart asc)[0..3]{
+    _id, dateStart, dateEnd, slug, title
+  }
 `
 
-export const frontPageQuery = groq`{
-  "site": *[_type == "site" && !(_id in path('drafts.**'))][0]{
+const allPageFields = `
+  "site": *[_type == "site" && ${omitDrafts}][0]{
     ${siteFields}
   },
-  "frontPage": *[_type == "frontPage" && !(_id in path('drafts.**'))][0]{
+  "menu": *[_type == "menu" && ${omitDrafts}][0]{
+    ${menuFields}
+  },
+  "sidebar": {
+    ${sideBarFields}
+  },
+  "socialLinks": *[_type == "site" && ${omitDrafts}][0].socialLinks[]->{
+    _id, link, site
+  }
+`
+
+// export const frontPageQuery = groq`{
+//   "frontPage": *[_type == "frontPage" && ${omitDrafts}][0]{
+//     body,
+//     cta,
+//     ctaLink,
+//     mainImage,
+//     "heroColor": mainImage.${dominantBg},
+//     subImage,
+//     "subColor": subImage.${dominantBg},
+//     featured[0..3]->{
+//       _id,
+//       title,
+//       caption,
+//       heading,
+//       body,
+//       cta,
+//       ctaLink,
+//       mainImage,
+//       "sectionHeroColor": mainImage.${dominantBg},
+//       subImage,
+//       "sectionSubColor": subImage.${dominantBg}
+//     }
+//   },
+//   ${allPageFields}
+// }`
+
+export const frontPageQuery = groq`{
+  "frontPage": *[_type == "frontPage"][0]{
     body,
     cta,
     ctaLink,
-    "heroImage": mainImage,
-    "heroColor": mainImage.asset->metadata.palette.dominant.background,
+    mainImage,
+    subImage
+  },
+  "featured": *[_type == "frontPage"][0].featured[0..3]->{
+    _id,
+    title,
+    caption,
+    heading,
+    body,
+    cta,
+    ctaLink,
+    mainImage,
     subImage,
-    "subColor": subImage.asset->metadata.palette.dominant.background,
-    featured[0..3]->{
-      _id,
-      title,
-      caption,
-      heading,
-      body,
-      cta,
-      ctaLink,
-      mainImage,
-      "sectionHeroColor": mainImage.asset->metadata.palette.dominant.background,
-      subImage,
-      "sectionSubColor": subImage.asset->metadata.palette.dominant.background
-    }
   },
-  "menu": *[_type == "menu" && !(_id in path('drafts.**'))][0]{
-    items[]->{
-      _id,
-      slug,
-      menuTitle
-    }
-  },
-  "socialLinks": *[_type == "site" && !(_id in path('drafts.**'))][0]{
-    socialLinks[]->{
-      _id, link, site
-    }
-  }
+  ${allPageFields}
 }`
 
 export const pageQuery = groq`{
-  "site": *[_type == "site" && !(_id in path('drafts.**'))][0]{
-    ${siteFields}
-  },
-  "page": *[_type == "page" && slug.en.current == $slug && !(_id in path('drafts.**'))][0]{
+  "page": *[_type == "page" && slug.en.current == $slug && ${omitDrafts}][0]{
     "body": body{en, cy},
     "heroImage": mainImage,
-    "heroColor": mainImage.asset->metadata.palette.dominant.background,
+    "heroColor": mainImage.${dominantBg},
     "slug": slug{en, cy},
     subtitle,
     template[0],
     "title": title{en, cy}
-  },
-  "menu": *[_type == "menu" && !(_id in path('drafts.**'))][0]{
-    items[]->{
-      _id,
-      slug,
-      menuTitle
-    }
-  },
-  "socialLinks": *[_type == "site" && !(_id in path('drafts.**'))][0]{
-    socialLinks[]->{
-      _id, link, site
-    }
-  },
-  "sidebar": {
-    "posts": *[_type == "post" && !(_id in path('drafts.**'))]
-    | order(publishedAt desc)[0..3]{
-      _id, slug, title
-    },
-    "events": *[_type == "event" && recurring != true && dateTime(now()) < dateTime(date) && !(_id in path('drafts.**'))]
-    | order(date asc)[0..3]{
-      _id, slug, title
-    },
-    "exhibitions": *[_type == "exhibition" && dateTime(now()) < dateTime(dateStart) && !(_id in path('drafts.**'))]
-    | order(dateStart asc)[0..3]{
-      _id, dateStart, dateEnd, slug, title
-    }
   },
   "artists": *[_type == "artist" && !(_id in path("drafts.**")) && !(_id in path('drafts.**'))] | order(title asc)[]{
     _id,
@@ -187,7 +208,8 @@ export const pageQuery = groq`{
     publishDate,
     slug,
     title
-  }
+  },
+  ${allPageFields}
 }`
 
 export const artistPageQuery = groq`{
@@ -213,21 +235,7 @@ export const artistPageQuery = groq`{
       title
     }
   },
-  "site": *[_type == "site" && !(_id in path('drafts.**'))][0]{
-    ${siteFields}
-  },
-  "menu": *[_type == "menu" && !(_id in path('drafts.**'))][0]{
-    items[]->{
-      _id,
-      slug,
-      menuTitle
-    }
-  },
-  "socialLinks": *[_type == "site" && !(_id in path('drafts.**'))][0]{
-    socialLinks[]->{
-      _id, link, site
-    }
-  }
+  ${allPageFields}
 }`
 
 export const eventPageQuery = groq`{
@@ -239,35 +247,7 @@ export const eventPageQuery = groq`{
     slug,
     title
   },
-  "site": *[_type == "site" && !(_id in path('drafts.**'))][0]{
-    ${siteFields}
-  },
-  "menu": *[_type == "menu" && !(_id in path('drafts.**'))][0]{
-    items[]->{
-      _id,
-      slug,
-      menuTitle
-    }
-  },
-  "socialLinks": *[_type == "site" && !(_id in path('drafts.**'))][0]{
-    socialLinks[]->{
-      _id, link, site
-    }
-  },
-  "sidebar": {
-    "posts": *[_type == "post" && !(_id in path('drafts.**'))]
-    | order(publishedAt desc)[0..3]{
-      _id, slug, title
-    },
-    "events": *[_type == "event" && recurring != true && dateTime(now()) < dateTime(date) && !(_id in path('drafts.**'))]
-    | order(date asc)[0..3]{
-      _id, slug, title
-    },
-    "exhibitions": *[_type == "exhibition" && dateTime(now()) < dateTime(dateStart) && !(_id in path('drafts.**'))]
-    | order(dateStart asc)[0..3]{
-      _id, dateStart, dateEnd, slug, title
-    }
-  }
+  ${allPageFields}
 }`
 
 export const exhibitionPageQuery = groq`{
@@ -290,21 +270,7 @@ export const exhibitionPageQuery = groq`{
       title
     }
   },
-  "site": *[_type == "site" && !(_id in path('drafts.**'))][0]{
-    ${siteFields}
-  },
-  "menu": *[_type == "menu" && !(_id in path('drafts.**'))][0]{
-    items[]->{
-      _id,
-      slug,
-      menuTitle
-    }
-  },
-  "socialLinks": *[_type == "site" && !(_id in path('drafts.**'))][0]{
-    socialLinks[]->{
-      _id, link, site
-    }
-  }
+  ${allPageFields}
 }`
 
 export const postPageQuery = groq`{
@@ -315,35 +281,7 @@ export const postPageQuery = groq`{
     publishedAt,
     title
   },
-  "site": *[_type == "site" && !(_id in path('drafts.**'))][0]{
-    ${siteFields}
-  },
-  "menu": *[_type == "menu" && !(_id in path('drafts.**'))][0]{
-    items[]->{
-      _id,
-      slug,
-      menuTitle
-    }
-  },
-  "socialLinks": *[_type == "site" && !(_id in path('drafts.**'))][0]{
-    socialLinks[]->{
-      _id, link, site
-    }
-  },
-  "sidebar": {
-    "posts": *[_type == "post" && !(_id in path('drafts.**'))]
-    | order(publishedAt desc)[0..3]{
-      _id, slug, title
-    },
-    "events": *[_type == "event" && recurring != true && dateTime(now()) < dateTime(date) && !(_id in path('drafts.**'))]
-    | order(date asc)[0..3]{
-      _id, slug, title
-    },
-    "exhibitions": *[_type == "exhibition" && dateTime(now()) < dateTime(dateStart) && !(_id in path('drafts.**'))]
-    | order(dateStart asc)[0..3]{
-      _id, dateStart, dateEnd, slug, title
-    }
-  }
+  ${allPageFields}
 }`
 
 export const videoPageQuery = groq`{
@@ -353,56 +291,11 @@ export const videoPageQuery = groq`{
     title,
     videoLink
   },
-  "site": *[_type == "site" && !(_id in path('drafts.**'))][0]{
-    ${siteFields}
-  },
-  "menu": *[_type == "menu" && !(_id in path('drafts.**'))][0]{
-    items[]->{
-      _id,
-      slug,
-      menuTitle
-    }
-  },
-  "socialLinks": *[_type == "site" && !(_id in path('drafts.**'))][0]{
-    socialLinks[]->{
-      _id, link, site
-    }
-  },
-  "sidebar": {
-    "posts": *[_type == "post" && !(_id in path('drafts.**'))]
-    | order(publishedAt desc)[0..3]{
-      _id, slug, title
-    },
-    "events": *[_type == "event" && recurring != true && dateTime(now()) < dateTime(date) && !(_id in path('drafts.**'))]
-    | order(date asc)[0..3]{
-      _id, slug, title
-    },
-    "exhibitions": *[_type == "exhibition" && dateTime(now()) < dateTime(dateStart) && !(_id in path('drafts.**'))]
-    | order(dateStart asc)[0..3]{
-      _id, dateStart, dateEnd, slug, title
-    }
-  }
+  ${allPageFields}
 }`
 
 export const notFoundQuery = groq`{
-  "notFound": *[_type == "page" && slug.en.current == "about"  && !(_id in path('drafts.**'))][0]{
-    mainImage
-  },
-  "site": *[_type == "site" && !(_id in path('drafts.**'))][0]{
-    ${siteFields}
-  },
-  "menu": *[_type == "menu" && !(_id in path('drafts.**'))][0]{
-    items[]->{
-      _id,
-      slug,
-      menuTitle
-    }
-  },
-  "socialLinks": *[_type == "site" && !(_id in path('drafts.**'))][0]{
-    socialLinks[]->{
-      _id, link, site
-    }
-  }
+  ${allPageFields}
 }`
 
 export const pagePathQuery = groq`

@@ -10,18 +10,29 @@ import BrandEn from "components/brand.en"
 import BrandCy from "components/brand.cy"
 import Intro from "components/intro"
 import FrontPageFeature from "components/frontPageFeature"
+import { IndexData } from "lib/interfaces"
 
-const Home = ({ data }) => {
+export const getStaticProps: GetStaticProps = async () => {
+  const data = await sanityClient.fetch(frontPageQuery)
+  return {
+    props: { data }
+  }
+}
+
+const Home = ({ data }: {
+  data: IndexData
+}) => {
   const { locale } = useRouter()
+  const { featured, frontPage, site, socialLinks, menu } = data
   const dynamicGap = {
     gap: `${locale === "cy" ? "8.2rem" : "9.4rem"}`
   }
   return (
     <Layout
-      heroImage={data.frontPage.heroImage}
-      menu={data.menu}
-      site={data.site}
-      socialLinks={data.socialLinks}
+      heroImage={frontPage.mainImage}
+      menu={menu}
+      site={site}
+      socialLinks={socialLinks}
     >
       <section>
         <div className="container">
@@ -34,29 +45,29 @@ const Home = ({ data }) => {
               {locale === "cy" ? <BrandCy /> : <BrandEn />}
             </div>
             <Intro
-              body={data.frontPage.body}
-              cta={data.frontPage.cta}
-              ctaLink={data.frontPage.ctaLink}
+              body={frontPage.body}
+              cta={frontPage.cta}
+              ctaLink={frontPage.ctaLink}
             />
             <div className="sideImageContainer">
               <Image
-                src={urlFor(data.frontPage.subImage)
+                src={urlFor(frontPage.subImage)
                   .width(406)
                   .height(300)
                   .auto("format")
                   .quality(75)
                   .url()}
-                alt={data.frontPage.subImage.caption}
+                alt={frontPage.subImage.caption}
                 width={406}
                 height={300}
                 className={"sideImage"}
               />
-              <div>{data.frontPage.subImage.caption}</div>
+              <div>{frontPage.subImage.caption}</div>
             </div>
           </div>
         </div>
       </section>
-      {data.frontPage.featured.map(item => (
+      {featured.map(item => (
         <section key={item._id}>
           <FrontPageFeature feature={item} />
         </section>
@@ -64,12 +75,4 @@ const Home = ({ data }) => {
     </Layout>
   )
 }
-
-export const getStaticProps: GetStaticProps = async () => {
-  const data = await sanityClient.fetch(frontPageQuery)
-  return {
-    props: { data }
-  }
-}
-
 export default Home
