@@ -1,40 +1,22 @@
-import { useRouter } from "next/router"
-import sanityClient from "lib/sanityClient"
-import BlockContent from "@sanity/block-content-to-react"
-import type { Event, Exhibition, Page, Post } from "generated/schema"
+import { FC } from "react"
 import Sidebar from "components/sidebar"
+import PortableText from "components/portableText"
+import Localize from "components/localize"
+import { PageProps } from "lib/interfaces"
 
-const PageTemplate = ({
-  page,
-  exhibitions,
-  events,
-  posts
-}: {
-  page: Page
-  events: Event[]
-  exhibitions: Exhibition[]
-  posts: Post[]
-}) => {
-  const { locale } = useRouter()
+const PageTemplate: FC<PageProps> = ({ page, exhibitions, events, posts }) => {
   return (
     <section>
       <div className="sidebarContainer">
         <div className="portableContainer">
-          <h1>
-            {locale === "cy" && page.title.cy ? page.title.cy : page.title.en}
-          </h1>
-          <p className="subTitle">
-            {locale === "cy" && page.subtitle.cy
-              ? page.subtitle.cy
-              : page.subtitle.en}
-          </p>
+          {page.title.en &&
+            <h1><Localize data={page.title} /></h1>
+          }
+          {page.subtitle.en &&
+            <p className="subTitle"><Localize data={page.subtitle} /></p>
+          }
           {page.body.en && (
-            <BlockContent
-              blocks={
-                locale === "cy" && page.body.cy ? page.body.cy : page.body.en
-              }
-              {...sanityClient.config()}
-            />
+            <PortableText blocks={page.body} />
           )}
         </div>
         <Sidebar events={events} exhibitions={exhibitions} posts={posts} />

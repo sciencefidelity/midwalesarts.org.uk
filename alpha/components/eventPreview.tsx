@@ -1,16 +1,13 @@
-import { CSSProperties } from "react"
+import { FC } from "react"
 import Image from "next/image"
 import { useRouter } from "next/router"
 import { dateOptions, urlFor } from "@/lib/utils"
 import Link from "components/link"
 import Localize from "components/localize"
-import type { Event } from "generated/schema"
+import { EventPreviewProps } from "lib/interfaces"
 
-const EventPreview = ({ heading, eventData, marginTop, grid }: {
-  heading: string
-  eventData: Event[]
-  marginTop: CSSProperties
-  grid: string
+const EventPreview: FC<EventPreviewProps> = ({
+  heading, eventData, marginTop, grid
 }) => {
   const { locale } = useRouter()
   return (
@@ -21,7 +18,7 @@ const EventPreview = ({ heading, eventData, marginTop, grid }: {
         </div>
       </div>
       <div className={grid}>
-        {eventData.map((event: Event) => (
+        {eventData.map(event => (
           <div key={event._id} style={{ margin: 0 }}>
             <Link href={`/events/${event.slug.en.current}`}>
               <Image

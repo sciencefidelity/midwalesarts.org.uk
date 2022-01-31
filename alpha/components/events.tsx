@@ -1,18 +1,13 @@
+// TODO: move titles and placeholders into studio
+// TODO: handle missing events
+import { FC } from "react"
 import { useRouter } from "next/router"
 import EventPreview from "components/eventPreview"
 import Localize from "components/localize"
-import type { Event, Page } from "generated/schema"
+import { EventsProps } from "lib/interfaces"
 
-const Events = ({
-  page,
-  pastEvents,
-  recurringEvents,
-  upcomingEvents
-}: {
-  page: Page
-  pastEvents: Event[]
-  recurringEvents: Event[]
-  upcomingEvents: Event[]
+const Events: FC<EventsProps> = ({
+  page, pastEvents, recurringEvents, upcomingEvents
 }) => {
   const { locale } = useRouter()
   return (

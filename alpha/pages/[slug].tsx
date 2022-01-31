@@ -54,7 +54,7 @@ const PagesTemplage = ({ data }: { data: PageData }) => {
         <Head>
           <meta name="robots" content="noindex" />
         </Head>
-        <ErrorTemplate />[0]
+        <ErrorTemplate />
       </>
     )
   }

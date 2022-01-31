@@ -1,4 +1,4 @@
-import { ReactNode } from "react"
+import { ReactNode, CSSProperties } from "react"
 import type {
   Artist,
   CaptionImage,
@@ -64,4 +64,41 @@ export interface LayoutProps {
   site?: Site
   socialLinks?: Social[]
   title?: string
+}
+
+export interface ArtistsProps {
+  page: Page
+  artists: Artist[]
+}
+
+export interface EventsProps {
+  page: Page
+  pastEvents: Event[]
+  recurringEvents: Event[]
+  upcomingEvents: Event[]
+}
+
+export interface PageProps {
+  page: Page
+  events?: Event[]
+  exhibitions?: Exhibition[]
+  posts?: Post[]
+}
+
+export interface VisitProps {
+  page: Page
+  spaces: Space[]
+}
+
+export interface EventPreviewProps {
+  heading: string
+  eventData: Event[]
+  marginTop: CSSProperties
+  grid: string
+}
+
+export interface SidebarProps {
+  events: Event[]
+  exhibitions: Exhibition[]
+  posts: Post[]
 }
