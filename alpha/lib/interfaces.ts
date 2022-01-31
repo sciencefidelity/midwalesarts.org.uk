@@ -1,12 +1,12 @@
 import { ReactNode, CSSProperties } from "react"
 import type {
   Artist,
+  Artwork,
   CaptionImage,
   Event,
   Exhibition,
   FrontPage,
   FrontPageSection,
-  Menu,
   Post,
   Page,
   SanityReference,
@@ -27,14 +27,14 @@ export interface Image {
 }
 
 interface AllPageData {
-  site: Site,
-  socialLinks: Social[]
-  menu: Menu[],
+  menu: Page[],
   sidebar?: {
     posts: Post[]
     events: Event[]
     exhibitions: Exhibition[]
   }
+  site: Site,
+  socialLinks: Social[]
 }
 
 export interface IndexData extends AllPageData {
@@ -57,10 +57,22 @@ export interface PageData extends AllPageData {
   videos?: Video[]
 }
 
+export interface ArtistData extends AllPageData {
+  artist: ArtistArtworks
+}
+
+interface ArtistArtworks extends Artist {
+  artworks: Artwork[]
+}
+
+export interface NewsData extends AllPageData {
+  post: Post
+}
+
 export interface LayoutProps {
   children: ReactNode
   heroImage?: Image | CaptionImage
-  menu?: Menu[]
+  menu?: Page[]
   site?: Site
   socialLinks?: Social[]
   title?: string
@@ -119,8 +131,22 @@ export interface ExhibitionPreviewProps {
   exhibition: Exhibition
 }
 
+export interface HeaderProps {
+  heroImage: CaptionImage
+  menu: Page[]
+}
+
+export interface NavProps {
+  menu: Page[]
+}
+
 export interface SidebarProps {
   events: Event[]
   exhibitions: Exhibition[]
   posts: Post[]
+}
+
+export interface LogoProps {
+  logoClass: string
+  containerClass: string
 }
