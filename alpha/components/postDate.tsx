@@ -2,7 +2,7 @@ import { useRouter } from "next/router"
 import format from "date-fns/format"
 import { cy, enGB } from "date-fns/locale"
 
-const PostDate = ({ date }) => {
+const PostDate = ({ date }: { date: string }) => {
   const { locale } = useRouter()
   return (
     <>
