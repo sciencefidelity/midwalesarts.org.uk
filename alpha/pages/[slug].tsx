@@ -8,7 +8,6 @@
  * @param slug - all props fetched with `pathQuery` in `lib/queries.ts`.
  */
 import { GetStaticProps, GetStaticPaths } from "next"
-// import DefaultErrorPage from "next/error"
 import Head from "next/head"
 import { useRouter } from "next/router"
 import sanityClient from "lib/sanityClient"
@@ -22,6 +21,7 @@ import Exhibitions from "components/exhibitions"
 import News from "components/news"
 import Videos from "components/videos"
 import Visit from "components/visit"
+import { Image, PageData } from "lib/interfaces"
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await sanityClient.fetch(pagePathQuery)
@@ -40,7 +40,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   }
 }
 
-const PagesTemplage = ({ data }) => {
+const PagesTemplage = ({ data }: { data: PageData }) => {
   const router = useRouter()
   const { locale } = router
   if(router.isFallback) {
@@ -54,81 +54,83 @@ const PagesTemplage = ({ data }) => {
         <Head>
           <meta name="robots" content="noindex" />
         </Head>
-        <ErrorTemplate />
+        <ErrorTemplate />[0]
       </>
     )
   }
-  // const exhibitionHero =
-  //   data.currentExhibitions[0] !== undefined
-  //     ? data.currentExhibitions[0].mainImage
-  //     : data.futureExhibitions[0] !== undefined
-  //       ? data.futureExhibitions[0].mainImage
-  //       : data.pastExhibitions[0].mainImage
-
-  let exhibitionHero = data.pastExhibitions[0].mainImage
-  if (data.futureExhibitions[0]) exhibitionHero = data.futureExhibitions[0].mainImage
-  if (data.currentExhibitions[0]) exhibitionHero = data.currentExhibitions[0].mainImage
-
-  // let heroImage = site.seo
+  const {
+    artists,
+    currentExhibitions,
+    futureExhibitions,
+    heroArtist,
+    menu,
+    page,
+    pastEvents,
+    pastExhibitions,
+    posts,
+    recurringEvents,
+    sidebar,
+    site,
+    socialLinks,
+    spaces,
+    upcomingEvents,
+    videos
+  } = data
+  const template = page.template[0]
+  let exhibitionHero: Image = data.pastExhibitions[0].mainImage
+  if (futureExhibitions[0]) exhibitionHero = futureExhibitions[0].mainImage
+  if (currentExhibitions[0]) exhibitionHero = currentExhibitions[0].mainImage
+  let heroImage: Image = site.seoImage
+  if (template === "artists") heroImage = heroArtist.mainImage
+  if (template === "events") heroImage = upcomingEvents[0].mainImage
+  if (template === "exhibitions") heroImage = exhibitionHero
+  if (template === "news") heroImage = posts[0].image
+  if (template === "page") heroImage = page.mainImage
+  if (template === "visit-us") heroImage = page.mainImage
+  if (template === "videos") heroImage = videos[0].mainImage
   return (
     <Layout
-      heroImage={
-        data.page.template === "page"
-          ? data.page.heroImage
-          : data.page.template === "visit-us"
-            ? data.page.heroImage
-            : data.page.template === "artists"
-              ? data.heroArtist.mainImage
-              : data.page.template === "events"
-                ? data.upcomingEvents[0].mainImage
-                : data.page.template === "exhibitions"
-                  ? exhibitionHero
-                  : data.page.template === "news"
-                    ? data.posts[0].image
-                    : data.page.template === "videos"
-                      ? data.videos[0].mainImage
-                      : ""
-      }
-      menu={data.menu}
-      site={data.site}
-      socialLinks={data.socialLinks}
-      title={locale === "cy" && data.page.title.cy ? data.page.title.cy : data.page.title.en}
+      heroImage={heroImage}
+      menu={menu}
+      site={site}
+      socialLinks={socialLinks}
+      title={locale === "cy" && page.title.cy ? page.title.cy : page.title.en}
     >
-      {data.page.template === "page" && (
+      {template === "page" && (
         <PageTemplate
-          page={data.page}
-          events={data.sidebar.events}
-          exhibitions={data.sidebar.exhibitions}
-          posts={data.sidebar.posts}
+          page={page}
+          events={sidebar.events}
+          exhibitions={sidebar.exhibitions}
+          posts={sidebar.posts}
         />
       )}
-      {data.page.template === "visit-us" && (
-        <Visit page={data.page} spaces={data.spaces} />
+      {template === "visit-us" && (
+        <Visit page={page} spaces={spaces} />
       )}
-      {data.page.template === "artists" && (
-        <Artists page={data.page} artists={data.artists} />
+      {template === "artists" && (
+        <Artists page={page} artists={artists} />
       )}
-      {data.page.template === "events" && (
+      {template === "events" && (
         <Events
-          page={data.page}
-          upcomingEvents={data.upcomingEvents}
-          pastEvents={data.pastEvents}
-          recurringEvents={data.recurringEvents}
+          page={page}
+          upcomingEvents={upcomingEvents}
+          pastEvents={pastEvents}
+          recurringEvents={recurringEvents}
         />
       )}
-      {data.page.template === "exhibitions" && (
+      {template === "exhibitions" && (
         <Exhibitions
-          page={data.page}
-          currentExhibitions={data.currentExhibitions}
-          futureExhibitions={data.futureExhibitions}
-          pastExhibitions={data.pastExhibitions}
+          page={page}
+          currentExhibitions={currentExhibitions}
+          futureExhibitions={futureExhibitions}
+          pastExhibitions={pastExhibitions}
         />
       )}
-      {data.page.template === "news" && (
-        <News page={data.page} posts={data.posts} />
+      {template === "news" && (
+        <News page={page} posts={posts} />
       )}
-      {data.page.template === "videos" && (
-        <Videos page={data.page} videos={data.videos} />
+      {template === "videos" && (
+        <Videos page={page} videos={videos} />
       )}
     </Layout>
   )

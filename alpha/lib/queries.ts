@@ -56,32 +56,8 @@ const allPageFields = `
   }
 `
 
-// export const frontPageQuery = groq`{
-//   "frontPage": *[_type == "frontPage" && ${omitDrafts}][0]{
-//     body,
-//     cta,
-//     ctaLink,
-//     mainImage,
-//     "heroColor": mainImage.${dominantBg},
-//     subImage,
-//     "subColor": subImage.${dominantBg},
-//     featured[0..3]->{
-//       _id,
-//       title,
-//       caption,
-//       heading,
-//       body,
-//       cta,
-//       ctaLink,
-//       mainImage,
-//       "sectionHeroColor": mainImage.${dominantBg},
-//       subImage,
-//       "sectionSubColor": subImage.${dominantBg}
-//     }
-//   },
-//   ${allPageFields}
-// }`
-
+// "heroColor": mainImage.${dominantBg},
+// "subColor": subImage.${dominantBg},
 export const frontPageQuery = groq`{
   "frontPage": *[_type == "frontPage"][0]{
     body,
@@ -107,11 +83,11 @@ export const frontPageQuery = groq`{
 export const pageQuery = groq`{
   "page": *[_type == "page" && slug.en.current == $slug && ${omitDrafts}][0]{
     "body": body{en, cy},
-    "heroImage": mainImage,
+    mainImage,
     "heroColor": mainImage.${dominantBg},
     "slug": slug{en, cy},
     subtitle,
-    template[0],
+    template,
     "title": title{en, cy}
   },
   "artists": *[_type == "artist" && !(_id in path("drafts.**")) && !(_id in path('drafts.**'))] | order(title asc)[]{

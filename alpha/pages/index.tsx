@@ -19,9 +19,7 @@ export const getStaticProps: GetStaticProps = async () => {
   }
 }
 
-const Home = ({ data }: {
-  data: IndexData
-}) => {
+const Home = ({ data }: { data: IndexData }) => {
   const { locale } = useRouter()
   const { featured, frontPage, site, socialLinks, menu } = data
   const dynamicGap = {

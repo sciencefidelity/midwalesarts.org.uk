@@ -1,5 +1,6 @@
 import { ReactNode } from "react"
 import type {
+  Artist,
   CaptionImage,
   Event,
   Exhibition,
@@ -7,12 +8,15 @@ import type {
   FrontPageSection,
   Menu,
   Post,
+  Page,
   SanityReference,
   SanityImageAsset,
   SanityImageCrop,
   SanityImageHotspot,
   Site,
-  Social
+  Space,
+  Social,
+  Video
 } from "@/generated/schema"
 
 export interface Image {
@@ -22,17 +26,35 @@ export interface Image {
   hotspot?: SanityImageHotspot
 }
 
-export interface IndexData {
-  featured: FrontPageSection[]
-  frontPage: FrontPage
+interface AllPageData {
   site: Site,
   socialLinks: Social[]
   menu: Menu[],
-  sidebar: {
+  sidebar?: {
     posts: Post[]
     events: Event[]
     exhibitions: Exhibition[]
   }
+}
+
+export interface IndexData extends AllPageData {
+  featured: FrontPageSection[]
+  frontPage: FrontPage
+}
+
+export interface PageData extends AllPageData {
+  artists?: Artist[]
+  currentExhibitions?: Exhibition[]
+  futureExhibitions?: Exhibition[]
+  heroArtist?: Artist
+  page?: Page
+  pastEvents?: Event[]
+  pastExhibitions?: Exhibition[]
+  posts?: Post[]
+  recurringEvents?: Event[]
+  spaces?: Space[]
+  upcomingEvents?: Event[]
+  videos?: Video[]
 }
 
 export interface LayoutProps {
