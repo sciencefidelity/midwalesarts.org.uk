@@ -3,7 +3,8 @@ import sanityClient from "lib/sanityClient"
 import { notFoundQuery } from "lib/queries"
 import Layout from "components/layout"
 import Link from "components/link"
-
+import { AllPageData } from "lib/interfaces"
+// TODO: Localize this
 export const getStaticProps: GetStaticProps = async () => {
   const data = await sanityClient.fetch(notFoundQuery)
   return {
@@ -13,13 +14,14 @@ export const getStaticProps: GetStaticProps = async () => {
   }
 }
 
-const Error = ({ data }) => {
+const Error = ({ data }: { data: AllPageData }) => {
+  const { menu, site, socialLinks } = data
   return (
     <Layout
-      heroImage={data.notFound.mainImage}
-      menu={data.menu}
-      site={data.site}
-      socialLinks={data.socialLinks}
+      heroImage={site.seoImage}
+      menu={menu}
+      site={site}
+      socialLinks={socialLinks}
       title="404 not found"
     >
       <div
