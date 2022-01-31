@@ -1,7 +1,7 @@
 import groq from "groq"
 
 const omitDrafts = "!(_id in path('drafts.**'))"
-const dominantBg = "asset->metadata.palette.dominant.background"
+// const dominantBg = "asset->metadata.palette.dominant.background"
 const siteFields = `
   addressLine1,
   addressLine2,
@@ -229,12 +229,12 @@ export const artistPageQuery = groq`{
       && ${omitDrafts}
     ]{
       artist,
+      "aspect": mainImage.asset->metadata.dimensions.aspectRatio,
       date,
       dimensions,
       mainImage{
         _type,
         asset,
-        "aspect": asset->metadata.dimensions.aspectRatio
       },
       medium,
       price,

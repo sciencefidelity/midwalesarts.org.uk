@@ -7,8 +7,6 @@
  * @param data - all props fetched with `postPageQuery` in `lib/queries.ts`.
  * @param slug - all props fetched with `postPathQuery` in `lib/queries.ts`.
  */
-// TODO: 'published on', 'next post', 'back to news' and 'previous post' hard coded
-// TODO: create next and previous links
 import { GetStaticProps, GetStaticPaths } from "next"
 import Head from "next/head"
 import { useRouter } from "next/router"
@@ -21,7 +19,8 @@ import PortableText from "components/portableText"
 import PostDate from "components/postDate"
 import Sidebar from "components/sidebar"
 import { NewsData } from "lib/interfaces"
-
+// TODO: published on, next post, back to news, previous post hard coded
+// TODO: create next and previous links
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await sanityClient.fetch(postPathQuery)
   return {
@@ -83,7 +82,7 @@ const PostPage = ({ data }: { data: NewsData }) => {
             )}
             <p>
               {locale === "cy" ? "Wedi'i gyhoeddi ar" : "Published on"}{" "}
-              <PostDate date={post.publishedAt} />
+              {post.publishedAt && <PostDate date={post.publishedAt} />}
             </p>
             <div className="postNavigation">
               {data ? (

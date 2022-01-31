@@ -1,8 +1,9 @@
 import { FC } from "react"
 import Image from "next/image"
-import Link from "components/link"
 import { useRouter } from "next/router"
-import { dateOptionsShort, urlFor } from "@/lib/utils"
+import { urlFor } from "@/lib/utils"
+import ExhibitionDate from "components/exhibitionDate"
+import Link from "components/link"
 import Localize from "components/localize"
 import { ExhibitionPreviewProps } from "lib/interfaces"
 
@@ -39,15 +40,10 @@ const ExhibitionPrieview: FC<ExhibitionPreviewProps> = ({
         {exhibition && (
           <div className="gridCaption">
             <span>
-              {new Date(exhibition.dateStart).toLocaleDateString(
-                locale,
-                dateOptionsShort
-              )}{" "}
-              to{" "}
-              {new Date(exhibition.dateEnd).toLocaleDateString(
-                locale,
-                dateOptionsShort
-              )}
+              <ExhibitionDate
+                dateEnd={exhibition.dateEnd}
+                dateStart={exhibition.dateStart}
+              />
             </span>
           </div>
         )}

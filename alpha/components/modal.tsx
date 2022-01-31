@@ -1,9 +1,12 @@
-import { CSSProperties } from "react"
+import { CSSProperties, FC } from "react"
 import Image from "next/image"
 import { urlFor } from "lib/utils"
+import { ModalProps } from "lib/interfaces"
 
-const Modal = ({ modal, modalImage, closeModal, prevIndex, nextIndex }) => {
-  const aspect = modalImage.aspectRatio.toString()
+const Modal: FC<ModalProps> = ({
+  modal, modalImage, closeModal, prevIndex, nextIndex
+}) => {
+  const aspect = modalImage.aspect
   const imageAspect = {
     aspectRatio: aspect,
     height: `${aspect >= 1 ? "min(81vh, 51vw)" : "unset"}`,

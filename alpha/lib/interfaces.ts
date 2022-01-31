@@ -1,4 +1,4 @@
-import { ReactNode, CSSProperties } from "react"
+import { CSSProperties, MouseEventHandler, ReactNode } from "react"
 import type {
   Artist,
   Artwork,
@@ -62,7 +62,23 @@ export interface ArtistData extends AllPageData {
 }
 
 interface ArtistArtworks extends Artist {
-  artworks: Artwork[]
+  artworks: ArtworkAspect[]
+}
+
+interface ArtworkAspect extends Artwork {
+  aspect: CSSProperties
+}
+
+export interface EventData extends AllPageData {
+  event: Event
+}
+
+export interface ExhibitionData extends AllPageData {
+  exhibition: ExhibitionArtworks
+}
+
+interface ExhibitionArtworks extends Exhibition {
+  artworks: ArtworkAspect[]
 }
 
 export interface NewsData extends AllPageData {
@@ -149,4 +165,12 @@ export interface SidebarProps {
 export interface LogoProps {
   logoClass: string
   containerClass: string
+}
+
+export interface ModalProps {
+  modal: boolean
+  modalImage: ArtworkAspect | Record<string, never>
+  closeModal: MouseEventHandler<HTMLDivElement>
+  prevIndex: MouseEventHandler<HTMLDivElement>
+  nextIndex: MouseEventHandler<HTMLDivElement>
 }

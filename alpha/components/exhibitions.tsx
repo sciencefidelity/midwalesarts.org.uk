@@ -2,8 +2,9 @@
 import { FC } from "react"
 import Image from "next/image"
 import { useRouter } from "next/router"
-import { dateOptionsShort, urlFor } from "lib/utils"
-import ExhibitionPrieview from "components/exhibitionPreview"
+import { urlFor } from "lib/utils"
+import ExhibitionDate from "components/exhibitionDate"
+import ExhibitionPreview from "components/exhibitionPreview"
 import Link from "components/link"
 import Localize from "components/localize"
 import { ExhibitionsProps } from "lib/interfaces"
@@ -23,7 +24,7 @@ const Exhibitions: FC<ExhibitionsProps> = ({
       <div className="exhibitionPreviewGrid">
         {currentExhibitions[0] &&
           (currentExhibitions.length === 1
-            ? <ExhibitionPrieview
+            ? <ExhibitionPreview
               heading={
                 locale === "cy"
                   ? "Arddangosfa gyfredol"
@@ -32,7 +33,7 @@ const Exhibitions: FC<ExhibitionsProps> = ({
               exhibition={currentExhibitions[0]}
             />
             : <>
-              <ExhibitionPrieview
+              <ExhibitionPreview
                 heading={
                   locale === "cy"
                     ? "Arddangosfeydd cyfredol"
@@ -40,7 +41,7 @@ const Exhibitions: FC<ExhibitionsProps> = ({
                 }
                 exhibition={currentExhibitions[0]}
               />
-              <ExhibitionPrieview
+              <ExhibitionPreview
                 heading={" "}
                 exhibition={currentExhibitions[1]}
               />
@@ -48,7 +49,7 @@ const Exhibitions: FC<ExhibitionsProps> = ({
           )
         }
         {futureExhibitions[0] && (
-          <ExhibitionPrieview
+          <ExhibitionPreview
             heading={locale === "cy" ? "Arddangosfa nesaf" : "Next exhibition"}
             exhibition={futureExhibitions[0]}
           />
@@ -85,15 +86,10 @@ const Exhibitions: FC<ExhibitionsProps> = ({
                 />
                 <div className="gridCaption">{exhibition.title.en}</div>
                 <div className="gridCaption">
-                  {new Date(exhibition.dateStart).toLocaleDateString(
-                    locale,
-                    dateOptionsShort
-                  )}{" "}
-                  to{" "}
-                  {new Date(exhibition.dateEnd).toLocaleDateString(
-                    locale,
-                    dateOptionsShort
-                  )}
+                  <ExhibitionDate
+                    dateEnd={exhibition.dateEnd}
+                    dateStart={exhibition.dateStart}
+                  />
                 </div>
               </Link>
             </div>

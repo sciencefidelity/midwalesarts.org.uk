@@ -1,11 +1,14 @@
 import { FC } from "react"
 import Image from "next/image"
+import { useRouter } from "next/router"
 import { urlFor } from "@/lib/utils"
 import Link from "components/link"
 import Localize from "components/localize"
+import PostDate from "components/postDate"
 import { NewsProps } from "lib/interfaces"
 
 const News: FC<NewsProps> = ({ page, posts }) => {
+  const { locale } = useRouter()
   return (
     <section>
       <div className="sidebarContainer">
@@ -33,9 +36,14 @@ const News: FC<NewsProps> = ({ page, posts }) => {
                 width={468}
                 height={468}
               />
-              <div className="gridCaption"><Localize data={post.title} /></div>
+              {post.title &&
+                <div className="gridCaption">
+                  <Localize data={post.title} />
+                </div>
+              }
               <div className="gridCaption">
-                {"Published on"}{" "}{post.publishedAt}
+                {locale === "cy" ? "Wedi'i gyhoeddi ar" : "Published on"}{" "}
+                {post.publishedAt && <PostDate date={post.publishedAt} />}
               </div>
             </Link>
           </div>

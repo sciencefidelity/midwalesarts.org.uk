@@ -7,7 +7,6 @@
  * @param data - all props fetched with `artistPageQuery` in `lib/queries.ts`.
  * @param slug - all props fetched with `artistPathQuery` in `lib/queries.ts`.
  */
-// TODO: 'Artst', 'Works', 'Biography' and Backlink hardcoded
 import { useState } from "react"
 import { GetStaticProps, GetStaticPaths } from "next"
 import Head from "next/head"
@@ -23,7 +22,7 @@ import Localize from "components/localize"
 import Modal from "components/modal"
 import PortableText from "components/portableText"
 import { ArtistData } from "lib/interfaces"
-
+// TODO: 'Artst', 'Works', 'Biography' and Backlink hardcoded
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await sanityClient.fetch(artistPathQuery)
   return {
@@ -42,8 +41,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 }
 
 const ArtistPage = ({ data }: { data: ArtistData }) => {
-  const { artist, menu, site, socialLinks } = data
   const router = useRouter()
+  const { artist, menu, site, socialLinks } = data
   const [bio, setBio] = useState(true)
   const [gallery, setGallery] = useState(false)
   const [modal, setModal] = useState(true)
@@ -99,6 +98,7 @@ const ArtistPage = ({ data }: { data: ArtistData }) => {
   const modalImage = artist.artworks[0] !== undefined
     ? artist.artworks[imageToShow]
     : {}
+  console.log(artist.artworks[10])
   return (
     <Layout
       heroImage={artist.mainImage}

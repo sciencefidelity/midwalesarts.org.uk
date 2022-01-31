@@ -1,9 +1,10 @@
 import { FC } from "react"
 import Image from "next/image"
 import { useRouter } from "next/router"
-import { dateOptions, urlFor } from "@/lib/utils"
+import { urlFor } from "@/lib/utils"
 import Link from "components/link"
 import Localize from "components/localize"
+import PostDate from "components/postDate"
 import { EventPreviewProps } from "lib/interfaces"
 
 const EventPreview: FC<EventPreviewProps> = ({
@@ -37,10 +38,10 @@ const EventPreview: FC<EventPreviewProps> = ({
                 height={468}
               />
               <div className="gridCaption">
-                <Localize data={event.title} />
+                {event.title && <Localize data={event.title} />}
               </div>
               <div className="gridCaption">
-                {new Date(event.date).toLocaleDateString(locale, dateOptions)}
+                {event.date && <PostDate date={event.date} />}
               </div>
             </Link>
           </div>
