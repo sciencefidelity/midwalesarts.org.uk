@@ -43,6 +43,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 const PagesTemplage = ({ data }: { data: PageData }) => {
   const router = useRouter()
   const { locale } = router
+  // https://github.com/vercel/next.js/discussions/10960
   if(router.isFallback) {
     return (
       <ErrorTemplate />
