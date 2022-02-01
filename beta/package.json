@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "@sanity/block-content-to-react": "^3.0.0",
-    "dotenv": "^14.3.2",
+    "dotenv": "^15.0.0",
     "gatsby": "^4.6.0",
     "gatsby-plugin-gatsby-cloud": "^4.6.0",
     "gatsby-plugin-graphql-codegen": "^3.1.0",
