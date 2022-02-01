@@ -47,7 +47,7 @@
     "eslint-plugin-react": "^7.28.0",
     "jest": "^27.4.7",
     "jsdom": "^19.0.0",
-    "postcss": "^8.4.5",
+    "postcss": "^8.4.6",
     "postcss-scss": "^4.0.3",
     "prettier": "^2.5.1",
     "sanity-codegen": "^0.9.8",
