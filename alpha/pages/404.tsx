@@ -18,6 +18,7 @@ const Error = ({ data }: { data: AllPageData }) => {
   const { menu, site, socialLinks } = data
   return (
     <Layout
+      caption={" "}
       heroImage={site.seoImage}
       menu={menu}
       site={site}
