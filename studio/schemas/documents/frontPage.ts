@@ -34,15 +34,10 @@ export default {
       title: "Main image",
       description:
         "Images should be jpeg of 1440px along the longest edge, 500-600k is best.",
-      type: "image",
+      type: "captionImage",
       options: {
         hotspot: true,
       },
-    },
-    {
-      name: "mainImageCaption",
-      title: "Main Image Caption",
-      type: "localeString",
     },
     {
       name: "subImage",
