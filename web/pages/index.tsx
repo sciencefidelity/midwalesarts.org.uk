@@ -1,5 +1,4 @@
 import { GetStaticProps } from "next"
-import Image from "next/image"
 import { useRouter } from "next/router"
 import sanityClient from "lib/sanityClient"
 import { urlFor } from "lib/utils"
@@ -27,6 +26,7 @@ const Home = ({ data }: { data: IndexData }) => {
   }
   return (
     <Layout
+      caption={frontPage.mainImage.caption}
       heroImage={frontPage.mainImage}
       menu={menu}
       site={site}
@@ -48,7 +48,7 @@ const Home = ({ data }: { data: IndexData }) => {
               ctaLink={frontPage.ctaLink}
             />
             <div className="sideImageContainer">
-              <Image
+              <img
                 src={urlFor(frontPage.subImage)
                   .width(406)
                   .height(300)

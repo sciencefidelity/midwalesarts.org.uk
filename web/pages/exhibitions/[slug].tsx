@@ -43,8 +43,12 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
 const ExhibitionPage = ({ data }: { data: ExhibitionData }) => {
   const router = useRouter()
-  const [info, setInfo] = useState(true)
-  const [gallery, setGallery] = useState(false)
+  const [info, setInfo] = useState(
+    data.exhibition.artworks[0] === undefined ? false : true
+  )
+  const [gallery, setGallery] = useState(
+    data.exhibition.artworks[0] === undefined ? true : false
+  )
   const [modal, setModal] = useState(true)
   const [imageToShow, setImageToShow] = useState(0)
   if(router.isFallback) {
@@ -101,6 +105,7 @@ const ExhibitionPage = ({ data }: { data: ExhibitionData }) => {
     : {}
   return (
     <Layout
+      caption={exhibition.mainImage.caption}
       heroImage={exhibition.mainImage}
       menu={menu}
       site={site}

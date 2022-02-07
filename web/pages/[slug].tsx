@@ -21,6 +21,7 @@ import Exhibitions from "components/exhibitions"
 import News from "components/news"
 import Videos from "components/videos"
 import Visit from "components/visit"
+import { CaptionImage } from "generated/schema"
 import { Image, PageData } from "lib/interfaces"
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -43,6 +44,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 const PagesTemplage = ({ data }: { data: PageData }) => {
   const router = useRouter()
   const { locale } = router
+  // https://github.com/vercel/next.js/discussions/10960
   if(router.isFallback) {
     return (
       <ErrorTemplate />
@@ -80,7 +82,7 @@ const PagesTemplage = ({ data }: { data: PageData }) => {
   let exhibitionHero: Image = data.pastExhibitions[0].mainImage
   if (futureExhibitions[0]) exhibitionHero = futureExhibitions[0].mainImage
   if (currentExhibitions[0]) exhibitionHero = currentExhibitions[0].mainImage
-  let heroImage: Image = site.seoImage
+  let heroImage: CaptionImage = site.seoImage
   if (template === "artists") heroImage = heroArtist.mainImage
   if (template === "events") heroImage = upcomingEvents[0].mainImage
   if (template === "exhibitions") heroImage = exhibitionHero
@@ -88,8 +90,25 @@ const PagesTemplage = ({ data }: { data: PageData }) => {
   if (template === "page") heroImage = page.mainImage
   if (template === "visit-us") heroImage = page.mainImage
   if (template === "videos") heroImage = videos[0].mainImage
+  let caption = heroImage.caption
+  if (template === "events") {
+    caption = locale === "cy" && upcomingEvents[0].title.cy
+      ? upcomingEvents[0].title.cy
+      : upcomingEvents[0].title.en
+  }
+  if (template === "news") {
+    caption = locale === "cy" && posts[0].title.cy
+      ? posts[0].title.cy
+      : posts[0].title.en
+  }
+  if (template === "videos") {
+    caption = locale === "cy" && videos[0].title.cy
+      ? videos[0].title.cy
+      : videos[0].title.en
+  }
   return (
     <Layout
+      caption={caption}
       heroImage={heroImage}
       menu={menu}
       site={site}

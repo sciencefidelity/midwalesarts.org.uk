@@ -59,6 +59,10 @@ const EventPage = ({ data }: { data: EventData }) => {
   const { event, menu, sidebar, site, socialLinks } = data
   return (
     <Layout
+      caption={event && (locale === "cy" && event.title.cy
+        ? event.title.cy
+        : event.title.en
+      )}
       heroImage={event && event.mainImage}
       menu={menu}
       site={site}

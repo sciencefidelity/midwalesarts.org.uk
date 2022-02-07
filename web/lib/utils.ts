@@ -14,7 +14,7 @@ export const urlFor = (source: Image) => {
   return imageUrlBuilder(sanityClient).image(source)
 }
 
-//https://stackoverflow.com/questions/5845238/javascript-generate-transparent-1x1-pixel-in-dataurl-format/33919020#33919020
+// https://stackoverflow.com/questions/5845238/javascript-generate-transparent-1x1-pixel-in-dataurl-format/33919020#33919020
 
 export const hexDataURL = (hexColor: string) =>
   `data:image/gif;base64,R0lGODlhAQABAPAA${encodeHex(

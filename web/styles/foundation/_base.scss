@@ -184,7 +184,7 @@ blockquote {
 }
 
 .sidebar {
-  background: rgba(c.$grey-050, 0.8);
+  background: c.$sidebar;
   margin-top: -8rem;
   margin-bottom: -23rem;
   @include b.mq(lg) {

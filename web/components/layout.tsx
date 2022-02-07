@@ -7,6 +7,7 @@ import Scrollup from "components/scrollup"
 import { LayoutProps } from "lib/interfaces"
 
 const Layout: FC<LayoutProps> = ({
+  caption,
   children,
   heroImage,
   menu,
@@ -60,7 +61,7 @@ const Layout: FC<LayoutProps> = ({
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="mask-icon" href="/mask-icon.svg" color="#424A4A" />
       </Head>
-      <Header heroImage={heroImage} menu={menu} />
+      <Header heroImage={heroImage} caption={caption} menu={menu} />
       <main>
         {children}
         <Scrollup />

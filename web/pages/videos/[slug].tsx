@@ -59,6 +59,10 @@ const VideoPage = ({ data }: { data: VideoData }) => {
   const { video, menu, sidebar, site, socialLinks } = data
   return (
     <Layout
+      caption={locale === "cy" && video.title.cy
+        ? video.title.cy
+        : video.title.en
+      }
       heroImage={video.mainImage}
       menu={menu}
       site={site}
