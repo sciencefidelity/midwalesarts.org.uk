@@ -47,6 +47,11 @@ const Modal: FC<ModalProps> = ({
               ${modalImage.title.en}${", "}
               ${modalImage.date}
             `}
+            style={{
+              objectFit: "cover",
+              width: "100%",
+              height: "100%"
+            }}
           />
         </div>
         <p className="modalCaption">
