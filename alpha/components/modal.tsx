@@ -1,5 +1,4 @@
 import { CSSProperties, FC } from "react"
-import Image from "next/image"
 import { urlFor } from "lib/utils"
 import Localize from "components/localize"
 import { ModalProps } from "lib/interfaces"
@@ -37,7 +36,7 @@ const Modal: FC<ModalProps> = ({
       </div>
       <div className="modalImageContiner">
         <div style={imageAspect} className="relative">
-          <Image
+          <img
             src={urlFor(modalImage.mainImage)
               .height(670)
               .auto("format")
@@ -48,8 +47,6 @@ const Modal: FC<ModalProps> = ({
               ${modalImage.title.en}${", "}
               ${modalImage.date}
             `}
-            layout={"fill"}
-            objectFit={"contain"}
           />
         </div>
         <p className="modalCaption">

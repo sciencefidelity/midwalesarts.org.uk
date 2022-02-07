@@ -1,4 +1,3 @@
-import Image from "next/image"
 import { urlFor } from "lib/utils"
 import Link from "components/link"
 import Localize from "components/localize"
@@ -9,7 +8,7 @@ const FrontPageFeature = ({ feature }: { feature: FrontPageSection }) => {
   return (
     <div className="sectionContainer">
       <div className="sectionHero">
-        <Image
+        <img
           src={urlFor(feature.mainImage)
             .width(1080)
             .height(450)
@@ -18,7 +17,6 @@ const FrontPageFeature = ({ feature }: { feature: FrontPageSection }) => {
             .url()}
           width={1080}
           height={450}
-          objectFit="cover"
           alt={feature.subImage.caption}
         />
       </div>
@@ -27,19 +25,17 @@ const FrontPageFeature = ({ feature }: { feature: FrontPageSection }) => {
       </div>
       <div className="sectionContent">
         <div className="sectionInsetImage">
-          <div className="sectionInset">
-            <Image
-              src={urlFor(feature.subImage)
-                .width(1080)
-                .auto("format")
-                .quality(75)
-                .url()}
-              width={340}
-              height={510}
-              objectFit="cover"
-              alt={feature.subImage.caption}
-            />
-          </div>
+          <img
+            src={urlFor(feature.subImage)
+              .width(1080)
+              .auto("format")
+              .quality(75)
+              .url()}
+            width={340}
+            height={510}
+            className="sectionInset"
+            alt={feature.subImage.caption}
+          />
           <div className="caption">{feature.subImage.caption}</div>
         </div>
         <div>

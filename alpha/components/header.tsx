@@ -1,5 +1,4 @@
 import { FC } from "react"
-import Image from "next/image"
 import { useRouter } from "next/router"
 import { urlFor } from "@/lib/utils"
 import ColorLogo from "components/colorLogo"
@@ -18,17 +17,18 @@ const Header: FC<HeaderProps> = ({ caption, heroImage, menu }) => {
           </span>
           <ColorLogo logoClass="colorLogo" containerClass="logoContainer" />
         </Link>
-        <div className="hero">
-          <Image
+        <div
+          className="hero"
+          style={{ overflow: "hidden" }}
+        >
+          <img
             src={urlFor(heroImage)
               .auto("format")
               .width(1600)
-              .height(334)
               .quality(75)
               .url()}
             alt={heroImage.caption}
-            layout="fill"
-            objectFit="cover"
+            style={{ objectFit: "cover", width: "100%", height: "100%" }}
           />
         </div>
       </header>
