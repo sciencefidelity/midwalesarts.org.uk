@@ -42,8 +42,12 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
 const ArtistPage = ({ data }: { data: ArtistData }) => {
   const router = useRouter()
-  const [bio, setBio] = useState(true)
-  const [gallery, setGallery] = useState(false)
+  const [bio, setBio] = useState(
+    data.artist.artworks[0] === undefined ? false : true
+  )
+  const [gallery, setGallery] = useState(
+    data.artist.artworks[0] === undefined ? true : false
+  )
   const [modal, setModal] = useState(true)
   const [imageToShow, setImageToShow] = useState(0)
   if(router.isFallback) {
@@ -128,7 +132,7 @@ const ArtistPage = ({ data }: { data: ArtistData }) => {
         <div
           className={gallery ? "hidden galleryImageGrid" : "galleryImageGrid"}
         >
-          {artist.artworks ?
+          {artist.artworks[0] ?
             (artist.artworks.map((artwork, index) =>
               artwork && (
                 <div
