@@ -6,7 +6,7 @@ header {
   margin-top: 0;
   margin-bottom: 1.2rem;
   position: relative;
-  z-index: 4;
+  z-index: 2;
 }
 
 .hero {
@@ -62,7 +62,7 @@ header {
   margin: auto;
   text-align: right;
   margin-bottom: 5rem;
-  position: relative;
+  // position: relative;
   @include b.mq(md) {
     margin-bottom: 1rem;
   }
