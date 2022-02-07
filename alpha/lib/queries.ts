@@ -227,7 +227,7 @@ export const artistPageQuery = groq`{
       _type == "artwork"
       && artist == ^.title
       && ${omitDrafts}
-    ]{
+    ] | order(date){
       artist,
       "aspect": mainImage.asset->metadata.dimensions.aspectRatio,
       date,
