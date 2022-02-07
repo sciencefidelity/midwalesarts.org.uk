@@ -7,7 +7,7 @@ import Link from "components/link"
 import Navigation from "components/navigation"
 import { HeaderProps } from "lib/interfaces"
 // TODO: screen reader text hard coded
-const Header: FC<HeaderProps> = ({ heroImage, menu }) => {
+const Header: FC<HeaderProps> = ({ caption, heroImage, menu }) => {
   const { locale } = useRouter()
   return (
     <>
@@ -33,7 +33,7 @@ const Header: FC<HeaderProps> = ({ heroImage, menu }) => {
         </div>
       </header>
       <Navigation menu={menu} />
-      <div className="heroCaption">{heroImage.caption}</div>
+      <div className="heroCaption">{caption}</div>
     </>
   )
 }

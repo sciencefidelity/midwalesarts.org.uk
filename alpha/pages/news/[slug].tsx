@@ -60,6 +60,10 @@ const PostPage = ({ data }: { data: NewsData }) => {
   const { menu, post, sidebar, site, socialLinks } = data
   return (
     <Layout
+      caption={locale === "cy" && post.title.cy
+        ? post.title.cy
+        : post.title.en
+      }
       heroImage={post.image}
       menu={menu}
       site={site}

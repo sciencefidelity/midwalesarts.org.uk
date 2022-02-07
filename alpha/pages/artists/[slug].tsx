@@ -100,6 +100,7 @@ const ArtistPage = ({ data }: { data: ArtistData }) => {
     : {}
   return (
     <Layout
+      caption={artist.mainImage.caption}
       heroImage={artist.mainImage}
       menu={menu}
       site={site}

@@ -101,6 +101,7 @@ const ExhibitionPage = ({ data }: { data: ExhibitionData }) => {
     : {}
   return (
     <Layout
+      caption={exhibition.mainImage.caption}
       heroImage={exhibition.mainImage}
       menu={menu}
       site={site}

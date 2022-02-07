@@ -90,6 +90,7 @@ export interface VideoData extends AllPageData {
 }
 
 export interface LayoutProps {
+  caption: string
   children: ReactNode
   heroImage?: Image | CaptionImage
   menu?: Page[]
@@ -152,6 +153,7 @@ export interface ExhibitionPreviewProps {
 }
 
 export interface HeaderProps {
+  caption: string
   heroImage: CaptionImage
   menu: Page[]
 }

@@ -27,6 +27,7 @@ const Home = ({ data }: { data: IndexData }) => {
   }
   return (
     <Layout
+      caption={frontPage.mainImage.caption}
       heroImage={frontPage.mainImage}
       menu={menu}
       site={site}
