@@ -127,36 +127,43 @@ const ArtistPage = ({ data }: { data: ArtistData }) => {
         <div
           className={gallery ? "hidden galleryImageGrid" : "galleryImageGrid"}
         >
-          {artist.artworks && artist.artworks.map((artwork, index) =>
-            artwork && (
-              <div
-                style={{ margin: 0 }}
-                key={artwork._id}
-                onClick={() => openModal(index)}
-              >
-                <Image
-                  src={urlFor(artwork.mainImage)
-                    .width(468)
-                    .height(468)
-                    .auto("format")
-                    .quality(75)
-                    .url()}
-                  alt={`
-                    ${artwork.artist}${", "}
-                    ${artwork.title.en}${", "}
-                    ${artwork.date}
-                  `}
-                  width={468}
-                  height={468}
-                />
-                <div className="gridCaption">
-                  {artwork.title && <Localize data={artwork.title} />}
-                  {" "}
-                  {artwork.date && `(${artwork.date})`}
+          {artist.artworks ?
+            (artist.artworks.map((artwork, index) =>
+              artwork && (
+                <div
+                  style={{ margin: 0 }}
+                  key={artwork._id}
+                  onClick={() => openModal(index)}
+                >
+                  <Image
+                    src={urlFor(artwork.mainImage)
+                      .width(468)
+                      .height(468)
+                      .auto("format")
+                      .quality(75)
+                      .url()}
+                    alt={`
+                      ${artwork.artist}${", "}
+                      ${artwork.title.en}${", "}
+                      ${artwork.date}
+                    `}
+                    width={468}
+                    height={468}
+                  />
+                  <div className="gridCaption">
+                    {artwork.title && <Localize data={artwork.title} />}
+                    {" "}
+                    {artwork.date && `(${artwork.date})`}
+                  </div>
                 </div>
-              </div>
-            )
-          )}
+              )
+            )) :
+            (<p>
+              {locale === "cy"
+                ? "Dim gweithiau celf i'w dangos"
+                : "No artworks to show"}
+            </p>)
+          }
         </div>
         <div>
           <p className="backLink">
@@ -165,7 +172,7 @@ const ArtistPage = ({ data }: { data: ArtistData }) => {
             </Link>
           </p>
         </div>
-        {artist.artworks && (
+        {artist.artworks[0] !== undefined ? (
           <Modal
             modal={modal}
             modalImage={modalImage}
@@ -173,6 +180,8 @@ const ArtistPage = ({ data }: { data: ArtistData }) => {
             prevIndex={prevIndex}
             nextIndex={nextIndex}
           />
+        ) : (
+          <></>
         )}
       </section>
     </Layout>
