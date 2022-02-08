@@ -6,12 +6,12 @@ import { ModalProps } from "lib/interfaces"
 const Modal: FC<ModalProps> = ({
   modal, modalImage, closeModal, prevIndex, nextIndex
 }) => {
-  const aspect = modalImage.aspect
-  const imageAspect = {
-    aspectRatio: aspect,
-    height: `${aspect >= 1 ? "min(81vh, 51vw)" : "unset"}`,
-    width: `${aspect < 1 ? "min(57vh, -4rem + 100vw)" : "unset"}`
-  } as CSSProperties
+  // const aspect = modalImage.aspect
+  // const imageAspect = {
+  //   aspectRatio: aspect,
+  //   height: `${aspect >= 1 ? "min(81vh, 51vw)" : "unset"}`,
+  //   width: `${aspect < 1 ? "min(57vh, -4rem + 100vw)" : "unset"}`
+  // } as CSSProperties
   return (
     <div className={modal ? "modalContainer hideModal" : "modalContainer"}>
       <div className="btnPrev" onClick={prevIndex}>
@@ -35,10 +35,10 @@ const Modal: FC<ModalProps> = ({
         />
       </div>
       <div className="modalImageContiner">
-        <div style={imageAspect} className="relative">
+        <div className="modalImageWrapper">
           <img
             src={urlFor(modalImage.mainImage)
-              .height(670)
+              .width(893)
               .auto("format")
               .quality(75)
               .url()}

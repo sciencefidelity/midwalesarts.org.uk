@@ -184,6 +184,12 @@ export interface LocationProps {
   _text: string
 }
 
+export interface ImageProps {
+  caption: string
+  image: Image | CaptionImage
+  width?: number
+}
+
 export interface ModalProps {
   modal: boolean
   modalImage: ArtworkAspect | Record<string, never>
