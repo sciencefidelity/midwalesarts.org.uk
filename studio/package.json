@@ -16,7 +16,8 @@
   "scripts": {
     "dev": "sanity start",
     "build": "sanity build",
-    "deploy": "sanity deploy && sanity graphql deploy --playground"
+    "deploy": "sanity deploy",
+    "format": "prettier --write '**/*.{ts,js,tsx,jsx,json,md,yml}'"
   },
   "dependencies": {
     "@babel/core": "^7.16.12",
