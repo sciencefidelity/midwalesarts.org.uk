@@ -1,26 +1,26 @@
-import { FaRocket } from "react-icons/fa"
+import { FaRocket } from 'react-icons/fa'
 
 export default {
-  name: "social",
-  title: "Social Links",
-  type: "document",
+  name: 'social',
+  title: 'Social Links',
+  type: 'document',
   icon: FaRocket,
   fields: [
     {
-      name: "site",
-      title: "site",
-      type: "string"
+      name: 'site',
+      title: 'site',
+      type: 'string'
     },
     {
-      name: "link",
-      title: "Link",
-      type: "url"
+      name: 'link',
+      title: 'Link',
+      type: 'url'
     }
   ],
 
   preview: {
     select: {
-      title: "site"
+      title: 'site'
     }
   }
 }

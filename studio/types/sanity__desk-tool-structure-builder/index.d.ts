@@ -1,1 +1,1 @@
-declare module "@sanity/desk-tool/structure-builder"
+declare module '@sanity/desk-tool/structure-builder'

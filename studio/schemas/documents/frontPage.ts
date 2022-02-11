@@ -1,50 +1,50 @@
-import { RiHomeSmileLine } from "react-icons/ri"
+import { RiHomeSmileLine } from 'react-icons/ri'
 
 export default {
-  name: "frontPage",
-  type: "document",
-  title: "Front Page",
-  __experimental_actions: [/*'create',*/ "update", /*'delete',*/ "publish"],
+  name: 'frontPage',
+  type: 'document',
+  title: 'Front Page',
+  __experimental_actions: [/*'create',*/ 'update', /*'delete',*/ 'publish'],
   icon: RiHomeSmileLine,
   fields: [
     {
-      name: "title",
-      title: "Title",
-      type: "localeString",
+      name: 'title',
+      title: 'Title',
+      type: 'localeString'
     },
     {
-      name: "body",
-      title: "Introduction",
-      type: "localeRichText",
+      name: 'body',
+      title: 'Introduction',
+      type: 'localeRichText'
     },
     {
-      name: "cta",
-      title: "Call to Action",
+      name: 'cta',
+      title: 'Call to Action',
       description:
-        "A call to action for the internal link (20 characters max).",
-      type: "localeString",
+        'A call to action for the internal link (20 characters max).',
+      type: 'localeString'
     },
     {
-      name: "ctaLink",
-      title: "Link",
-      type: "string",
+      name: 'ctaLink',
+      title: 'Link',
+      type: 'string'
     },
     {
-      name: "mainImage",
-      title: "Main image",
+      name: 'mainImage',
+      title: 'Main image',
       description:
-        "Images should be jpeg of 1440px along the longest edge, 500-600k is best.",
-      type: "captionImage",
+        'Images should be jpeg of 1440px along the longest edge, 500-600k is best.',
+      type: 'captionImage',
       options: {
-        hotspot: true,
-      },
+        hotspot: true
+      }
     },
     {
-      name: "subImage",
-      title: "Inset image",
+      name: 'subImage',
+      title: 'Inset image',
       description:
-        "Images should be jpeg of 1440px along the longest edge, 500-600k is best.",
-      type: "captionImage",
+        'Images should be jpeg of 1440px along the longest edge, 500-600k is best.',
+      type: 'captionImage',
       options: {
         hotspot: true
       }
@@ -53,7 +53,7 @@ export default {
       name: 'featured',
       title: 'Feature Sections',
       type: 'array',
-      of: [{ type: 'reference', to: {type: 'frontPageSection' }}],
+      of: [{ type: 'reference', to: { type: 'frontPageSection' } }],
       sortable: true,
       description: 'Maximum three items',
       validation: (Rule: any) => Rule.max(4)
@@ -61,8 +61,8 @@ export default {
   ],
   preview: {
     select: {
-      title: "title.en",
-      media: "mainImage"
+      title: 'title.en',
+      media: 'mainImage'
     }
   }
 }

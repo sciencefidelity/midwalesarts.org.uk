@@ -33,32 +33,30 @@ import discipline from './taxonomy/discipline'
 export default createSchema({
   name: 'default',
   types: schemaTypes.concat([
+    // objects
+    blockContent,
+    captionImage,
+    localeRichText,
+    localeSlug,
+    localeString,
 
-      // objects
-      blockContent,
-      captionImage,
-      localeRichText,
-      localeSlug,
-      localeString,
+    // documents
+    artist,
+    artwork,
+    event,
+    exhibition,
+    frontPage,
+    frontPageSection,
+    menu,
+    page,
+    site,
+    social,
+    space,
+    post,
+    video,
 
-      // documents
-      artist,
-      artwork,
-      event,
-      exhibition,
-      frontPage,
-      frontPageSection,
-      menu,
-      page,
-      site,
-      social,
-      space,
-      post,
-      video,
-
-      // taxonomy
-      category,
-      discipline
-
-    ])
+    // taxonomy
+    category,
+    discipline
+  ])
 })

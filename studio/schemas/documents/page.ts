@@ -1,9 +1,9 @@
-import { FaStickyNote } from "react-icons/fa"
+import { FaStickyNote } from 'react-icons/fa'
 
 export default {
-  name: "page",
-  title: "Page",
-  type: "document",
+  name: 'page',
+  title: 'Page',
+  type: 'document',
   icon: FaStickyNote,
   groups: [
     {
@@ -21,26 +21,26 @@ export default {
   ],
   fields: [
     {
-      name: "title",
-      title: "Title",
-      type: "localeString",
+      name: 'title',
+      title: 'Title',
+      type: 'localeString',
       validation: (Rule: any) => Rule.required(),
-      group: "info"
+      group: 'info'
     },
     {
-      name: "menuTitle",
-      title: "Menu Title",
-      type: "localeString",
-      description: "The title shown in the main navigation",
+      name: 'menuTitle',
+      title: 'Menu Title',
+      type: 'localeString',
+      description: 'The title shown in the main navigation',
       validation: (Rule: any) => Rule.required(),
-      group: "info"
+      group: 'info'
     },
     {
-      name: "subtitle",
-      title: "Subtitle",
-      type: "localeString",
+      name: 'subtitle',
+      title: 'Subtitle',
+      type: 'localeString',
       description: "Not available for 'Page' type",
-      group: "info"
+      group: 'info'
     },
     {
       name: 'template',
@@ -61,62 +61,65 @@ export default {
         ]
       },
       initialValue: {
-          title: 'Page',
-          value: 'page'
-        },
+        title: 'Page',
+        value: 'page'
+      },
       validation: (Rule: any) => Rule.required(),
-      group: "info"
+      group: 'info'
     },
     {
-      name: "slug",
-      title: "Slug",
-      type: "localeSlug",
-      group: "info"
+      name: 'slug',
+      title: 'Slug',
+      type: 'localeSlug',
+      group: 'info'
     },
     {
-      name: "body",
-      title: "Body",
-      type: "localeRichText",
+      name: 'body',
+      title: 'Body',
+      type: 'localeRichText',
       description: "Only available for 'Page' type",
-      group: "content"
+      group: 'content'
     },
     {
-      name: "mainImage",
-      title: "Main image",
-      type: "captionImage",
+      name: 'mainImage',
+      title: 'Main image',
+      type: 'captionImage',
       description: "Only available for 'Page' type",
       options: {
-        hotspot: true,
+        hotspot: true
       },
-      group: "content"
+      group: 'content'
     },
     {
       name: 'seoTitle',
       title: 'SEO title',
       type: 'localeString',
-      description: 'Displayed on Facebook and Twitter shares (max 60 characters).',
+      description:
+        'Displayed on Facebook and Twitter shares (max 60 characters).',
       group: 'seo'
     },
     {
       name: 'seoDescription',
       title: 'SEO description',
       type: 'localeString',
-      description: 'Displayed on Facebook and Twitter shares (max 65 characters).',
+      description:
+        'Displayed on Facebook and Twitter shares (max 65 characters).',
       group: 'seo'
     },
     {
       name: 'seoImage',
       title: 'SEO Image',
       type: 'image',
-      description: 'Ideal size 1200 x 630px (if not added main image will be used).',
+      description:
+        'Ideal size 1200 x 630px (if not added main image will be used).',
       group: 'seo'
     }
   ],
 
   preview: {
     select: {
-      title: "title.en",
-      media: "mainImage",
-    },
-  },
+      title: 'title.en',
+      media: 'mainImage'
+    }
+  }
 }

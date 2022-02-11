@@ -1,23 +1,23 @@
 export default {
-  name: "localeString",
-  title: "Localized string",
-  type: "object",
+  name: 'localeString',
+  title: 'Localized string',
+  type: 'object',
   fieldsets: [
     {
-      title: "Translations",
-      name: "translations"
+      title: 'Translations',
+      name: 'translations'
     }
   ],
   fields: [
     {
-      title: "English",
-      name: "en",
-      type: "string"
+      title: 'English',
+      name: 'en',
+      type: 'string'
     },
     {
-      title: "Welsh",
-      name: "cy",
-      type: "string",
+      title: 'Welsh',
+      name: 'cy',
+      type: 'string'
     }
   ]
 }
