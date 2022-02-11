@@ -71,6 +71,10 @@ export default {
       name: 'slug',
       title: 'Slug',
       type: 'localeSlug',
+      options: {
+        source: 'title',
+        maxLength: 96
+      },
       group: 'info'
     },
     {
