@@ -1,9 +1,9 @@
 import type {
   SanityReference,
   SanityKeyedReference,
-  // SanityAsset,
-  // SanityImage,
-  // SanityFile,
+  SanityAsset,
+  SanityImage,
+  SanityFile,
   SanityGeoPoint,
   SanityBlock,
   SanityDocument,
@@ -14,15 +14,15 @@ import type {
   SanityImageMetadata,
   SanityImageDimensions,
   SanityImagePalette,
-  SanityImagePaletteSwatch
-} from "sanity-codegen"
+  SanityImagePaletteSwatch,
+} from "sanity-codegen";
 
 export type {
   SanityReference,
   SanityKeyedReference,
-  // SanityAsset,
-  // SanityImage,
-  // SanityFile,
+  SanityAsset,
+  SanityImage,
+  SanityFile,
   SanityGeoPoint,
   SanityBlock,
   SanityDocument,
@@ -33,8 +33,8 @@ export type {
   SanityImageMetadata,
   SanityImageDimensions,
   SanityImagePalette,
-  SanityImagePaletteSwatch
-}
+  SanityImagePaletteSwatch,
+};
 
 /**
  * Artist
@@ -42,42 +42,42 @@ export type {
  *
  */
 export interface Artist extends SanityDocument {
-  _type: "artist"
+  _type: "artist";
 
   /**
    * Name — `string`
    *
    * Artist full name.
    */
-  title?: string
+  title?: string;
 
   /**
    * Biography — `localeRichText`
    *
    * Artist biography or artistic statment, choose Quote from the dropdown in the top left for statements.
    */
-  body?: LocaleRichText
+  body?: LocaleRichText;
 
   /**
    * Disciplines — `array`
    *
    * Choose from the dropdown. Add disciplines in the Discipline section.
    */
-  disciplines?: Array<SanityKeyedReference<Discipline>>
+  disciplines?: Array<SanityKeyedReference<Discipline>>;
 
   /**
    * Slug — `slug`
    *
    * Click Generate.
    */
-  slug?: { _type: "slug"; current: string }
+  slug?: { _type: "slug"; current: string };
 
   /**
    * Main image — `captionImage`
    *
    * Images should be jpeg of 1440px along the longest edge, 500-600k is best.
    */
-  mainImage?: CaptionImage
+  mainImage?: CaptionImage;
 }
 
 /**
@@ -86,63 +86,63 @@ export interface Artist extends SanityDocument {
  *
  */
 export interface Artwork extends SanityDocument {
-  _type: "artwork"
+  _type: "artwork";
 
   /**
    * Title — `localeString`
    *
    *
    */
-  title?: LocaleString
+  title?: LocaleString;
 
   /**
    * Artist — `string`
    *
    *
    */
-  artist?: string
+  artist?: string;
 
   /**
    * Medium — `localeString`
    *
    *
    */
-  medium?: LocaleString
+  medium?: LocaleString;
 
   /**
    * Dimensions — `string`
    *
    *
    */
-  dimensions?: string
+  dimensions?: string;
 
   /**
    * Date — `string`
    *
    * The year the work was created.
    */
-  date?: string
+  date?: string;
 
   /**
    * Price — `string`
    *
    * Add £ before the price, use POA for enquire only, and NFS for not for sale.
    */
-  price?: string
+  price?: string;
 
   /**
    * Sold? — `boolean`
    *
    * Sold artworks will not display on the artist pages.
    */
-  sold?: boolean
+  sold?: boolean;
 
   /**
    * In exhibition — `array`
    *
    * Before adding artworks to a new exhibition, add the exhibition in the Exhibitions section.
    */
-  exhibition?: Array<SanityKeyedReference<Exhibition>>
+  exhibition?: Array<SanityKeyedReference<Exhibition>>;
 
   /**
    * Main image — `image`
@@ -150,11 +150,11 @@ export interface Artwork extends SanityDocument {
    * Images should be jpeg of 1440px along the longest edge, 500-600k is best.
    */
   mainImage?: {
-    _type: "image"
-    asset: SanityReference<SanityImageAsset>
-    crop?: SanityImageCrop
-    hotspot?: SanityImageHotspot
-  }
+    _type: "image";
+    asset: SanityReference<SanityImageAsset>;
+    crop?: SanityImageCrop;
+    hotspot?: SanityImageHotspot;
+  };
 }
 
 /**
@@ -163,49 +163,49 @@ export interface Artwork extends SanityDocument {
  *
  */
 export interface Event extends SanityDocument {
-  _type: "event"
+  _type: "event";
 
   /**
    * Title — `localeString`
    *
    *
    */
-  title?: LocaleString
+  title?: LocaleString;
 
   /**
    * Slug — `localeSlug`
    *
    * Click Generate.
    */
-  slug?: LocaleSlug
+  slug?: LocaleSlug;
 
   /**
    * Date and time — `datetime`
    *
    *
    */
-  date?: string
+  date?: string;
 
   /**
    * Recurring event — `boolean`
    *
    *
    */
-  recurring?: boolean
+  recurring?: boolean;
 
   /**
    * Eventbrite link — `url`
    *
    * Leave blank if the event is not on Eventbrite.
    */
-  briteLink?: string
+  briteLink?: string;
 
   /**
    * Body — `localeRichText`
    *
    *
    */
-  body?: LocaleRichText
+  body?: LocaleRichText;
 
   /**
    * Main image — `image`
@@ -213,25 +213,25 @@ export interface Event extends SanityDocument {
    * Images should be jpeg of 1440px along the longest edge, 500-600k is best.
    */
   mainImage?: {
-    _type: "image"
-    asset: SanityReference<SanityImageAsset>
-    crop?: SanityImageCrop
-    hotspot?: SanityImageHotspot
-  }
+    _type: "image";
+    asset: SanityReference<SanityImageAsset>;
+    crop?: SanityImageCrop;
+    hotspot?: SanityImageHotspot;
+  };
 
   /**
    * SEO title — `localeString`
    *
    * Displayed on Facebook and Twitter shares (max 60 characters).
    */
-  seoTitle?: LocaleString
+  seoTitle?: LocaleString;
 
   /**
    * SEO description — `localeString`
    *
    * Displayed on Facebook and Twitter shares (max 65 characters).
    */
-  seoDescription?: LocaleString
+  seoDescription?: LocaleString;
 
   /**
    * SEO Image — `image`
@@ -239,11 +239,11 @@ export interface Event extends SanityDocument {
    * Ideal size 1200 x 630px (if not added main image will be used).
    */
   seoImage?: {
-    _type: "image"
-    asset: SanityReference<SanityImageAsset>
-    crop?: SanityImageCrop
-    hotspot?: SanityImageHotspot
-  }
+    _type: "image";
+    asset: SanityReference<SanityImageAsset>;
+    crop?: SanityImageCrop;
+    hotspot?: SanityImageHotspot;
+  };
 }
 
 /**
@@ -252,63 +252,63 @@ export interface Event extends SanityDocument {
  *
  */
 export interface Exhibition extends SanityDocument {
-  _type: "exhibition"
+  _type: "exhibition";
 
   /**
    * Title — `localeString`
    *
    *
    */
-  title?: LocaleString
+  title?: LocaleString;
 
   /**
    * Slug — `localeSlug`
    *
    *
    */
-  slug?: LocaleSlug
+  slug?: LocaleSlug;
 
   /**
-   * Start date — `date`
+   * Start date — `datetime`
    *
    *
    */
-  dateStart?: string
+  dateStart?: string;
 
   /**
-   * End date — `date`
+   * End date — `datetime`
    *
    *
    */
-  dateEnd?: string
+  dateEnd?: string;
 
   /**
    * Body — `localeRichText`
    *
    *
    */
-  body?: LocaleRichText
+  body?: LocaleRichText;
 
   /**
    * Main image — `captionImage`
    *
    *
    */
-  mainImage?: CaptionImage
+  mainImage?: CaptionImage;
 
   /**
    * SEO title — `localeString`
    *
    * Displayed on Facebook and Twitter shares (max 60 characters).
    */
-  seoTitle?: LocaleString
+  seoTitle?: LocaleString;
 
   /**
    * SEO description — `localeString`
    *
    * Displayed on Facebook and Twitter shares (max 65 characters).
    */
-  seoDescription?: LocaleString
+  seoDescription?: LocaleString;
 
   /**
    * SEO Image — `image`
@@ -316,11 +316,11 @@ export interface Exhibition extends SanityDocument {
    * Ideal size 1200 x 630px (if not added main image will be used).
    */
   seoImage?: {
-    _type: "image"
-    asset: SanityReference<SanityImageAsset>
-    crop?: SanityImageCrop
-    hotspot?: SanityImageHotspot
-  }
+    _type: "image";
+    asset: SanityReference<SanityImageAsset>;
+    crop?: SanityImageCrop;
+    hotspot?: SanityImageHotspot;
+  };
 }
 
 /**
@@ -329,56 +329,56 @@ export interface Exhibition extends SanityDocument {
  *
  */
 export interface FrontPage extends SanityDocument {
-  _type: "frontPage"
+  _type: "frontPage";
 
   /**
    * Title — `localeString`
    *
    *
    */
-  title?: LocaleString
+  title?: LocaleString;
 
   /**
    * Introduction — `localeRichText`
    *
    *
    */
-  body?: LocaleRichText
+  body?: LocaleRichText;
 
   /**
    * Call to Action — `localeString`
    *
    * A call to action for the internal link (20 characters max).
    */
-  cta?: LocaleString
+  cta?: LocaleString;
 
   /**
    * Link — `string`
    *
    *
    */
-  ctaLink?: string
+  ctaLink?: string;
 
   /**
    * Main image — `captionImage`
    *
    * Images should be jpeg of 1440px along the longest edge, 500-600k is best.
    */
-  mainImage?: CaptionImage
+  mainImage?: CaptionImage;
 
   /**
    * Inset image — `captionImage`
    *
    * Images should be jpeg of 1440px along the longest edge, 500-600k is best.
    */
-  subImage?: CaptionImage
+  subImage?: CaptionImage;
 
   /**
    * Feature Sections — `array`
    *
    * Maximum three items
    */
-  featured?: Array<SanityKeyedReference<FrontPageSection>>
+  featured?: Array<SanityKeyedReference<FrontPageSection>>;
 }
 
 /**
@@ -387,63 +387,63 @@ export interface FrontPage extends SanityDocument {
  *
  */
 export interface FrontPageSection extends SanityDocument {
-  _type: "frontPageSection"
+  _type: "frontPageSection";
 
   /**
    * Headline — `localeString`
    *
    * Limit 15 characters.
    */
-  title?: LocaleString
+  title?: LocaleString;
 
   /**
    * Subheading — `localeString`
    *
    * Limit 35 characters.
    */
-  caption?: LocaleString
+  caption?: LocaleString;
 
   /**
    * Heading — `localeString`
    *
    * Limit 30 characters.
    */
-  heading?: LocaleString
+  heading?: LocaleString;
 
   /**
    * Body — `localeRichText`
    *
    * Limit 400 characters.
    */
-  body?: LocaleRichText
+  body?: LocaleRichText;
 
   /**
    * Call to Action — `localeString`
    *
    * A call to action for the internal link (20 characters max).
    */
-  cta?: LocaleString
+  cta?: LocaleString;
 
   /**
    * Link — `string`
    *
    *
    */
-  ctaLink?: string
+  ctaLink?: string;
 
   /**
    * Main image — `captionImage`
    *
    * Images should be jpeg of 1440px along the longest edge, 500-600k is best.
    */
-  mainImage?: CaptionImage
+  mainImage?: CaptionImage;
 
   /**
    * Inset image — `captionImage`
    *
    * Images should be jpeg of 1440px along the longest edge, 500-600k is best.
    */
-  subImage?: CaptionImage
+  subImage?: CaptionImage;
 }
 
 /**
@@ -452,21 +452,21 @@ export interface FrontPageSection extends SanityDocument {
  *
  */
 export interface Menu extends SanityDocument {
-  _type: "menu"
+  _type: "menu";
 
   /**
    * Title — `string`
    *
    *
    */
-  title?: string
+  title?: string;
 
   /**
    * Manu Items — `array`
    *
    *
    */
-  items?: Array<SanityKeyedReference<Page>>
+  items?: Array<SanityKeyedReference<Page>>;
 }
 
 /**
@@ -475,70 +475,70 @@ export interface Menu extends SanityDocument {
  *
  */
 export interface Page extends SanityDocument {
-  _type: "page"
+  _type: "page";
 
   /**
    * Title — `localeString`
    *
    *
    */
-  title?: LocaleString
+  title?: LocaleString;
 
   /**
    * Menu Title — `localeString`
    *
    * The title shown in the main navigation
    */
-  menuTitle?: LocaleString
+  menuTitle?: LocaleString;
 
   /**
    * Subtitle — `localeString`
    *
    * Not available for 'Page' type
    */
-  subtitle?: LocaleString
+  subtitle?: LocaleString;
 
   /**
    * Template — `array`
    *
    *
    */
-  template?: Array<SanityKeyed<string>>
+  template?: Array<SanityKeyed<string>>;
 
   /**
    * Slug — `localeSlug`
    *
    *
    */
-  slug?: LocaleSlug
+  slug?: LocaleSlug;
 
   /**
    * Body — `localeRichText`
    *
    * Only available for 'Page' type
    */
-  body?: LocaleRichText
+  body?: LocaleRichText;
 
   /**
    * Main image — `captionImage`
    *
    * Only available for 'Page' type
    */
-  mainImage?: CaptionImage
+  mainImage?: CaptionImage;
 
   /**
    * SEO title — `localeString`
    *
    * Displayed on Facebook and Twitter shares (max 60 characters).
    */
-  seoTitle?: LocaleString
+  seoTitle?: LocaleString;
 
   /**
    * SEO description — `localeString`
    *
    * Displayed on Facebook and Twitter shares (max 65 characters).
    */
-  seoDescription?: LocaleString
+  seoDescription?: LocaleString;
 
   /**
    * SEO Image — `image`
@@ -546,11 +546,11 @@ export interface Page extends SanityDocument {
    * Ideal size 1200 x 630px (if not added main image will be used).
    */
   seoImage?: {
-    _type: "image"
-    asset: SanityReference<SanityImageAsset>
-    crop?: SanityImageCrop
-    hotspot?: SanityImageHotspot
-  }
+    _type: "image";
+    asset: SanityReference<SanityImageAsset>;
+    crop?: SanityImageCrop;
+    hotspot?: SanityImageHotspot;
+  };
 }
 
 /**
@@ -559,49 +559,49 @@ export interface Page extends SanityDocument {
  *
  */
 export interface Site extends SanityDocument {
-  _type: "site"
+  _type: "site";
 
   /**
    * Site Name — `localeString`
    *
    *
    */
-  siteName?: LocaleString
+  siteName?: LocaleString;
 
   /**
    * Site Description — `localeString`
    *
    *
    */
-  siteDescription?: LocaleString
+  siteDescription?: LocaleString;
 
   /**
    * Keywords — `localeString`
    *
    * A list of keywords seperated by commas.
    */
-  keywords?: LocaleString
+  keywords?: LocaleString;
 
   /**
    * SEO title — `localeString`
    *
    * Displayed on Facebook and Twitter shares (max 60 characters).
    */
-  seoTitle?: LocaleString
+  seoTitle?: LocaleString;
 
   /**
    * SEO description — `localeString`
    *
    * Displayed on Facebook and Twitter shares (max 65 characters).
    */
-  seoDescription?: LocaleString
+  seoDescription?: LocaleString;
 
   /**
    * Twitter Handle — `string`
    *
    *
    */
-  twitterHandle?: string
+  twitterHandle?: string;
 
   /**
    * SEO Image — `image`
@@ -609,74 +609,74 @@ export interface Site extends SanityDocument {
    * Ideal size 1200 x 630px.
    */
   seoImage?: {
-    _type: "image"
-    asset: SanityReference<SanityImageAsset>
-    crop?: SanityImageCrop
-    hotspot?: SanityImageHotspot
-  }
+    _type: "image";
+    asset: SanityReference<SanityImageAsset>;
+    crop?: SanityImageCrop;
+    hotspot?: SanityImageHotspot;
+  };
 
   /**
    * Opening Heading — `localeString`
    *
    * Heading before opening times (ie Opening Times)
    */
-  openingHeading?: LocaleString
+  openingHeading?: LocaleString;
 
   /**
    * Opening Times — `localeString`
    *
    * One line only (ie Thursday - Sunday 11-4)
    */
-  openingTimes?: LocaleString
+  openingTimes?: LocaleString;
 
   /**
    * Address Line 1 — `string`
    *
    *
    */
-  addressLine1?: string
+  addressLine1?: string;
 
   /**
    * Address Line 2 — `string`
    *
    *
    */
-  addressLine2?: string
+  addressLine2?: string;
 
   /**
    * Telephone — `string`
    *
    *
    */
-  telephone?: string
+  telephone?: string;
 
   /**
    * Email — `string`
    *
    *
    */
-  email?: string
+  email?: string;
 
   /**
    * Sign Up Title — `localeString`
    *
    * One line only (ie Sign up to our mailing list)
    */
-  signUp?: LocaleString
+  signUp?: LocaleString;
 
   /**
    * Sign Up Placeholder — `localeString`
    *
    * One line only (ie Email address...)
    */
-  signUpPlaceholder?: LocaleString
+  signUpPlaceholder?: LocaleString;
 
   /**
    * Social Links — `array`
    *
    *
    */
-  socialLinks?: Array<SanityKeyedReference<Social>>
+  socialLinks?: Array<SanityKeyedReference<Social>>;
 }
 
 /**
@@ -685,21 +685,21 @@ export interface Site extends SanityDocument {
  *
  */
 export interface Social extends SanityDocument {
-  _type: "social"
+  _type: "social";
 
   /**
    * site — `string`
    *
    *
    */
-  site?: string
+  site?: string;
 
   /**
    * Link — `url`
    *
    *
    */
-  link?: string
+  link?: string;
 }
 
 /**
@@ -708,28 +708,28 @@ export interface Social extends SanityDocument {
  *
  */
 export interface Space extends SanityDocument {
-  _type: "space"
+  _type: "space";
 
   /**
    * Title — `localeString`
    *
    *
    */
-  title?: LocaleString
+  title?: LocaleString;
 
   /**
    * Body — `localeRichText`
    *
    *
    */
-  body?: LocaleRichText
+  body?: LocaleRichText;
 
   /**
    * Slug — `localeSlug`
    *
    *
    */
-  slug?: LocaleSlug
+  slug?: LocaleSlug;
 
   /**
    * Main image — `image`
@@ -737,11 +737,11 @@ export interface Space extends SanityDocument {
    *
    */
   mainImage?: {
-    _type: "image"
-    asset: SanityReference<SanityImageAsset>
-    crop?: SanityImageCrop
-    hotspot?: SanityImageHotspot
-  }
+    _type: "image";
+    asset: SanityReference<SanityImageAsset>;
+    crop?: SanityImageCrop;
+    hotspot?: SanityImageHotspot;
+  };
 }
 
 /**
@@ -750,42 +750,42 @@ export interface Space extends SanityDocument {
  *
  */
 export interface Post extends SanityDocument {
-  _type: "post"
+  _type: "post";
 
   /**
    * Title — `localeString`
    *
    *
    */
-  title?: LocaleString
+  title?: LocaleString;
 
   /**
    * Body — `localeRichText`
    *
    *
    */
-  body?: LocaleRichText
+  body?: LocaleRichText;
 
   /**
    * Categories — `array`
    *
    *
    */
-  categories?: Array<SanityKeyedReference<Category>>
+  categories?: Array<SanityKeyedReference<Category>>;
 
   /**
    * Published on — `datetime`
    *
    *
    */
-  publishedAt?: string
+  publishedAt?: string;
 
   /**
    * Slug — `localeSlug`
    *
    *
    */
-  slug?: LocaleSlug
+  slug?: LocaleSlug;
 
   /**
    * Image — `image`
@@ -793,11 +793,11 @@ export interface Post extends SanityDocument {
    *
    */
   image?: {
-    _type: "image"
-    asset: SanityReference<SanityImageAsset>
-    crop?: SanityImageCrop
-    hotspot?: SanityImageHotspot
-  }
+    _type: "image";
+    asset: SanityReference<SanityImageAsset>;
+    crop?: SanityImageCrop;
+    hotspot?: SanityImageHotspot;
+  };
 }
 
 /**
@@ -806,42 +806,42 @@ export interface Post extends SanityDocument {
  *
  */
 export interface Video extends SanityDocument {
-  _type: "video"
+  _type: "video";
 
   /**
    * Title — `localeString`
    *
    *
    */
-  title?: LocaleString
+  title?: LocaleString;
 
   /**
    * Body — `localeRichText`
    *
    *
    */
-  body?: LocaleRichText
+  body?: LocaleRichText;
 
   /**
    * Video Link — `url`
    *
    *
    */
-  videoLink?: string
+  videoLink?: string;
 
   /**
    * Publish date — `date`
    *
    *
    */
-  publishDate?: string
+  publishDate?: string;
 
   /**
    * Slug — `localeSlug`
    *
    *
    */
-  slug?: LocaleSlug
+  slug?: LocaleSlug;
 
   /**
    * Main image — `image`
@@ -849,11 +849,11 @@ export interface Video extends SanityDocument {
    *
    */
   mainImage?: {
-    _type: "image"
-    asset: SanityReference<SanityImageAsset>
-    crop?: SanityImageCrop
-    hotspot?: SanityImageHotspot
-  }
+    _type: "image";
+    asset: SanityReference<SanityImageAsset>;
+    crop?: SanityImageCrop;
+    hotspot?: SanityImageHotspot;
+  };
 }
 
 /**
@@ -862,14 +862,14 @@ export interface Video extends SanityDocument {
  *
  */
 export interface Category extends SanityDocument {
-  _type: "category"
+  _type: "category";
 
   /**
    * Title — `localeString`
    *
    *
    */
-  title?: LocaleString
+  title?: LocaleString;
 }
 
 /**
@@ -878,97 +878,97 @@ export interface Category extends SanityDocument {
  *
  */
 export interface Discipline extends SanityDocument {
-  _type: "discipline"
+  _type: "discipline";
 
   /**
    * Title — `localeString`
    *
    *
    */
-  title?: LocaleString
+  title?: LocaleString;
 }
 
 export type BlockContent = Array<
   | SanityKeyed<SanityBlock>
   | SanityKeyed<{
-      _type: "image"
-      asset: SanityReference<SanityImageAsset>
-      crop?: SanityImageCrop
-      hotspot?: SanityImageHotspot
+      _type: "image";
+      asset: SanityReference<SanityImageAsset>;
+      crop?: SanityImageCrop;
+      hotspot?: SanityImageHotspot;
     }>
->
+>;
 
 export type CaptionImage = {
-  _type: "image"
-  asset: SanityReference<SanityImageAsset>
-  crop?: SanityImageCrop
-  hotspot?: SanityImageHotspot
+  _type: "captionImage";
+  asset: SanityReference<SanityImageAsset>;
+  crop?: SanityImageCrop;
+  hotspot?: SanityImageHotspot;
 
   /**
    * Caption — `string`
    *
    *
    */
-  caption?: string
+  caption?: string;
 
   /**
    * Attribution — `string`
    *
    *
    */
-  Caption?: string
-}
+  Caption?: string;
+};
 
 export type LocaleRichText = {
-  _type?: "localeRichText"
+  _type: "localeRichText";
   /**
    * English — `blockContent`
    *
    *
    */
-  en?: BlockContent
+  en?: BlockContent;
 
   /**
    * Welsh — `blockContent`
    *
    *
    */
-  cy?: BlockContent
-}
+  cy?: BlockContent;
+};
 
 export type LocaleSlug = {
-  _type: "localeSlug"
+  _type: "localeSlug";
   /**
    * English — `slug`
    *
    *
    */
-  en?: { _type: "en"; current: string }
+  en?: { _type: "en"; current: string };
 
   /**
    * Welsh — `slug`
    *
    *
    */
-  cy?: { _type: "cy"; current: string }
-}
+  cy?: { _type: "cy"; current: string };
+};
 
 export type LocaleString = {
-  _type: "localeString"
+  _type: "localeString";
   /**
    * English — `string`
    *
    *
    */
-  en?: string
+  en?: string;
 
   /**
    * Welsh — `string`
    *
    *
    */
-  cy?: string
-}
+  cy?: string;
+};
 
 export type Documents =
   | Artist
@@ -985,4 +985,4 @@ export type Documents =
   | Post
   | Video
   | Category
-  | Discipline
+  | Discipline;
