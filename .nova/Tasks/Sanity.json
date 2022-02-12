@@ -2,7 +2,7 @@
   "actions" : {
     "build" : {
       "enabled" : true,
-      "script" : "#!\/bin\/sh\ncd studio\nsanity deploy && sanity graphql deploy"
+      "script" : "#!\/bin\/sh\ncd studio\nsanity deploy"
     },
     "run" : {
       "enabled" : true,

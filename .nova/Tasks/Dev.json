@@ -2,15 +2,15 @@
   "actions" : {
     "build" : {
       "enabled" : true,
-      "script" : "#!\/bin\/sh\ncd web\ngatsby build"
+      "script" : "cd alpha\nnpm run build"
     },
     "clean" : {
       "enabled" : true,
-      "script" : "#!\/bin\/sh\ncd web\ngatsby clean"
+      "script" : "cd alpha\nnpm run clean"
     },
     "run" : {
       "enabled" : true,
-      "script" : "#!\/bin\/sh\ncd web\ngatsby develop -H 0.0.0.0"
+      "script" : "cd alpha\nnpm run dev"
     }
   },
   "identifier" : "5F4DCA5E-17FD-4F08-9360-9D718470AFCB",
