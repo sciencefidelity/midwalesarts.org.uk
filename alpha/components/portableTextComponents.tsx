@@ -12,11 +12,18 @@ export const components: PortableTextComponents = {
       )
     },
     internalLink: ({value, children}) => {
-      console.log(value)
+      const slug = value?.item.slug && value?.item.slug.en
+        ? value?.item.slug.en.current
+        : value?.item.slug.current
+      let directory = ""
+      if (value.item._type === "artist") directory = "artists"
+      if (value.item._type === "event") directory = "events"
+      if (value.item._type === "exhibition") directory = "exhibitions"
+      if (value.item._type === "post") directory = "news"
+      if (value.item._type === "video") directory = "videos"
+      const url = `/${directory}/${slug}`
       return (
-        <Link href={value?.item.slug}>
-          {children}
-        </Link>
+        <Link href={url}>{children}</Link>
       )
     }
   }

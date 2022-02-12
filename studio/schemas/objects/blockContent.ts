@@ -33,7 +33,12 @@ export default {
                 name: 'item',
                 type: 'reference',
                 to: [
-                  { type: 'page' }
+                  { type: 'artist' },
+                  { type: 'event' },
+                  { type: 'exhibition' },
+                  { type: 'page' },
+                  { type: 'post' },
+                  { type: 'video' },
                 ]
               }
             ],
