@@ -1,4 +1,5 @@
 import { FaStickyNote } from 'react-icons/fa'
+import { StringValidation } from '../interfaces'
 
 export default {
   name: 'page',
@@ -24,7 +25,7 @@ export default {
       name: 'title',
       title: 'Title',
       type: 'localeString',
-      validation: (Rule: any) => Rule.required(),
+      validation: (Rule: StringValidation) => Rule.required(),
       group: 'info'
     },
     {
@@ -32,7 +33,7 @@ export default {
       title: 'Menu Title',
       type: 'localeString',
       description: 'The title shown in the main navigation',
-      validation: (Rule: any) => Rule.required(),
+      validation: (Rule: StringValidation) => Rule.required(),
       group: 'info'
     },
     {
@@ -64,7 +65,7 @@ export default {
         title: 'Page',
         value: 'page'
       },
-      validation: (Rule: any) => Rule.required(),
+      validation: (Rule: StringValidation) => Rule.required(),
       group: 'info'
     },
     {

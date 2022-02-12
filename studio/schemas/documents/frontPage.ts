@@ -1,4 +1,5 @@
 import { RiHomeSmileLine } from 'react-icons/ri'
+import { StringValidation } from '../interfaces'
 
 export default {
   name: 'frontPage',
@@ -56,7 +57,7 @@ export default {
       of: [{ type: 'reference', to: { type: 'frontPageSection' } }],
       sortable: true,
       description: 'Maximum three items',
-      validation: (Rule: any) => Rule.max(4)
+      validation: (Rule: StringValidation) => Rule.max(4)
     }
   ],
   preview: {
