@@ -10,13 +10,14 @@
 import { GetStaticProps, GetStaticPaths } from "next"
 import Head from "next/head"
 import { useRouter } from "next/router"
+import { PortableText } from "@portabletext/react"
 import sanityClient from "lib/sanityClient"
 import { postPageQuery, postPathQuery } from "lib/queries"
 import Layout from "components/layout"
+import { components } from "components/portableTextComponents"
 import ErrorTemplate from "components/errorTemplate"
 import Link from "components/link"
 import Localize from "components/localize"
-import PortableText from "components/portableText"
 import PostDate from "components/postDate"
 import Sidebar from "components/sidebar"
 import { NewsData } from "lib/interfaces"
@@ -58,6 +59,7 @@ const PostPage = ({ data }: { data: NewsData }) => {
   }
   const { locale } = router
   const { menu, post, sidebar, site, socialLinks } = data
+  const blocks = locale === "cy" && post.body.cy ? post.body.cy : post.body.en
   return (
     <Layout
       caption={locale === "cy" && post.title.cy
@@ -77,7 +79,9 @@ const PostPage = ({ data }: { data: NewsData }) => {
             {post.title &&
               <p className="subTitle"><Localize data={post.title} />.</p>
             }
-            {post.body && <PortableText blocks={post.body} />}
+            {post.body &&
+              <PortableText value={blocks} components={components} />
+            }
             <p>
               {locale === "cy" ? "Wedi'i gyhoeddi ar" : "Published on"}{" "}
               {post.publishedAt && <PostDate date={post.publishedAt} />}

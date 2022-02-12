@@ -12,6 +12,8 @@ import { GetStaticProps, GetStaticPaths } from "next"
 import Head from "next/head"
 import Image from "next/image"
 import { useRouter } from "next/router"
+import { PortableText } from "@portabletext/react"
+import { components } from "components/portableTextComponents"
 import sanityClient from "lib/sanityClient"
 import { urlFor } from "lib/utils"
 import { artistPathQuery, artistPageQuery } from "lib/queries"
@@ -20,7 +22,6 @@ import ErrorTemplate from "components/errorTemplate"
 import Link from "components/link"
 import Localize from "components/localize"
 import Modal from "components/modal"
-import PortableText from "components/portableText"
 import { ArtistData } from "lib/interfaces"
 // TODO: 'Artst', 'Works', 'Biography' and Backlink hardcoded
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -98,6 +99,9 @@ const ArtistPage = ({ data }: { data: ArtistData }) => {
   const modalImage = artist.artworks[0] !== undefined
     ? artist.artworks[imageToShow]
     : {}
+  const blocks = locale === "cy" && artist.body.cy
+    ? artist.body.cy
+    : artist.body.en
   return (
     <Layout
       caption={artist.mainImage.caption}
@@ -121,7 +125,9 @@ const ArtistPage = ({ data }: { data: ArtistData }) => {
               </li>
             </ul>
             <div className={bio ? "hidden galleryInfo" : "galleryInfo"}>
-              {artist.body && <PortableText blocks={artist.body} />}
+              {artist.body &&
+                <PortableText value={blocks} components={components} />
+              }
             </div>
           </div>
         </div>

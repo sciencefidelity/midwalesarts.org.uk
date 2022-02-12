@@ -1,10 +1,16 @@
+import { useRouter } from "next/router"
+import { PortableText } from "@portabletext/react"
 import { urlFor } from "lib/utils"
+import { components } from "components/portableTextComponents"
 import Link from "components/link"
 import Localize from "components/localize"
-import PortableText from "components/portableText"
 import type { FrontPageSection } from "generated/schema"
 
 const FrontPageFeature = ({ feature }: { feature: FrontPageSection }) => {
+  const { locale } = useRouter()
+  const blocks = locale === "cy" && feature.body.cy
+    ? feature.body.cy
+    : feature.body.en
   return (
     <div className="sectionContainer">
       <div className="sectionHero">
@@ -47,8 +53,8 @@ const FrontPageFeature = ({ feature }: { feature: FrontPageSection }) => {
           </div>
           <div className="sectionText">
             <h4>{feature.heading && <Localize data={feature.heading} />}</h4>
-            {feature.body.en && (
-              <PortableText blocks={feature.body} />
+            {feature.body && (
+              <PortableText value={blocks} components={components} />
             )}
           </div>
         </div>

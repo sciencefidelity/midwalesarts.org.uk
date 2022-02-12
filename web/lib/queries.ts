@@ -20,6 +20,30 @@ const siteFields = `
   twitterHandle
 `
 
+const bodyDefs = `body{
+  ...,
+  cy[] {
+    ...,
+    markDefs[]{
+      ...,
+      item->{
+        _type,
+        "slug": slug
+      }
+    }
+  },
+  en[] {
+    ...,
+    markDefs[]{
+      ...,
+      item->{
+        _type,
+        "slug": slug
+      }
+    }
+  }
+}`
+
 const sideBarFields = `
   "posts": *[
     _type == "post"
@@ -57,14 +81,14 @@ const allPageFields = `
 // "subColor": subImage.${dominantBg},
 export const frontPageQuery = groq`{
   "frontPage": *[_type == "frontPage"][0]{
-    body, cta, ctaLink, mainImage, subImage
+    ${bodyDefs}, cta, ctaLink, mainImage, subImage
   },
   "featured": *[_type == "frontPage" && ${omitDrafts}][0].featured[0..3]->{
     _id,
     title,
     caption,
     heading,
-    body,
+    ${bodyDefs},
     cta,
     ctaLink,
     mainImage,
@@ -78,7 +102,7 @@ export const pageQuery = groq`{
     _type == "page"
     && slug.en.current == $slug && ${omitDrafts}
   ][0]{
-    "body": body{ en, cy },
+    ${bodyDefs},
     mainImage,
     "slug": slug{ en, cy },
     subtitle,
@@ -93,7 +117,7 @@ export const pageQuery = groq`{
     _id,
     title,
     slug,
-    body,
+    ${bodyDefs},
     mainImage,
     disciplines[]->{ _id, title }
   },
@@ -103,7 +127,7 @@ export const pageQuery = groq`{
   } | order(random desc)[0],
   "spaces": *[_type == "space" && ${omitDrafts}]{
     _id,
-    body,
+    ${bodyDefs},
     mainImage,
     title,
     slug
@@ -115,7 +139,7 @@ export const pageQuery = groq`{
     && ${omitDrafts}
   ] | order(date desc)[]{
     _id,
-    body,
+    ${bodyDefs},
     briteLink,
     date,
     mainImage,
@@ -128,7 +152,7 @@ export const pageQuery = groq`{
     && ${omitDrafts}
   ][]{
     _id,
-    body,
+    ${bodyDefs},
     briteLink,
     date,
     mainImage,
@@ -142,7 +166,7 @@ export const pageQuery = groq`{
     && ${omitDrafts}
   ] | order(date asc)[]{
     _id,
-    body,
+    ${bodyDefs},
     briteLink,
     date,
     mainImage,
@@ -156,7 +180,7 @@ export const pageQuery = groq`{
     && ${omitDrafts}
   ] | order(dateStart asc){
     _id,
-    body,
+    ${bodyDefs},
     dateEnd,
     dateStart,
     mainImage,
@@ -169,7 +193,7 @@ export const pageQuery = groq`{
     && ${omitDrafts}
   ] | order(dateStart desc){
     _id,
-    body,
+    ${bodyDefs},
     dateEnd,
     dateStart,
     mainImage,
@@ -182,7 +206,7 @@ export const pageQuery = groq`{
     && ${omitDrafts}
   ] | order(dateStart desc){
     _id,
-    body,
+    ${bodyDefs},
     dateEnd,
     dateStart,
     mainImage,
@@ -194,7 +218,7 @@ export const pageQuery = groq`{
     && ${omitDrafts}
   ] | order(publishedAt desc){
     _id,
-    body,
+    ${bodyDefs},
     categories[]->{title},
     image,
     publishedAt,
@@ -216,7 +240,7 @@ export const pageQuery = groq`{
 export const artistPageQuery = groq`{
   "artist": *[
     _type == "artist" && slug.current == $slug && ${omitDrafts}][0]{
-    body,
+    ${bodyDefs},
     disciplines[]->{
       _id,
       title
@@ -250,7 +274,7 @@ export const eventPageQuery = groq`{
     && slug.en.current == $slug
     && ${omitDrafts}
   ][0]{
-    body,
+    ${bodyDefs},
     briteLink,
     date,
     mainImage,
@@ -266,7 +290,7 @@ export const exhibitionPageQuery = groq`{
     && slug.en.current == $slug
     && ${omitDrafts}
   ][0]{
-    body,
+    ${bodyDefs},
     dateEnd,
     dateStart,
     mainImage,
@@ -295,7 +319,7 @@ export const postPageQuery = groq`{
     _type == "post"
     && slug.en.current == $slug
     && ${omitDrafts}][0]{
-    body,
+    ${bodyDefs},
     categories[]->{title},
     image,
     publishedAt,
@@ -309,7 +333,7 @@ export const videoPageQuery = groq`{
     _type == "video"
     && slug.en.current == $slug
     && ${omitDrafts}][0]{
-    body,
+    ${bodyDefs},
     mainImage,
     title,
     videoLink

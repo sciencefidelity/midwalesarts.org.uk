@@ -1,11 +1,12 @@
 import { FC } from "react"
 import Image from "next/image"
 import { useRouter } from "next/router"
+import { PortableText } from "@portabletext/react"
+import { components } from "components/portableTextComponents"
 import { urlFor } from "lib/utils"
 import GoogleMap from "components/googleMap"
 import Link from "components/link"
 import Localize from "components/localize"
-import PortableText from "components/portableText"
 import { VisitProps } from "lib/interfaces"
 
 const Visit: FC<VisitProps> = ({ page, spaces }) => {
@@ -56,7 +57,12 @@ const Visit: FC<VisitProps> = ({ page, spaces }) => {
                   <h4 className="spacesGridTitle">
                     {space.title &&<Localize data={space.title} />}
                   </h4>
-                  {space.body && <PortableText blocks={space.body} />}
+                  {space.body && <PortableText
+                    value={locale === "cy" && space.body.cy
+                      ? space.body.cy
+                      : space.body.en}
+                    components={components}
+                  />}
                 </div>
               )
             ))}

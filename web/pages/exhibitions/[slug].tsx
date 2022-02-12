@@ -12,6 +12,8 @@ import { GetStaticProps, GetStaticPaths } from "next"
 import Head from "next/head"
 import Image from "next/image"
 import { useRouter } from "next/router"
+import { PortableText } from "@portabletext/react"
+import { components } from "components/portableTextComponents"
 import sanityClient from "lib/sanityClient"
 import { urlFor } from "lib/utils"
 import { exhibitionPathQuery, exhibitionPageQuery } from "lib/queries"
@@ -21,7 +23,6 @@ import ExhibitionDate from "components/exhibitionDate"
 import Link from "components/link"
 import Localize from "components/localize"
 import Modal from "components/modal"
-import PortableText from "components/portableText"
 import { ExhibitionData } from "lib/interfaces"
 // TODO: no artworks to show, works, overview hard coded
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -99,6 +100,9 @@ const ExhibitionPage = ({ data }: { data: ExhibitionData }) => {
   const modalImage = exhibition.artworks[0] !== undefined
     ? exhibition.artworks[imageToShow]
     : {}
+  const blocks = locale === "cy" && exhibition.body.cy
+    ? exhibition.body.cy
+    : exhibition.body.en
   return (
     <Layout
       caption={exhibition.mainImage.caption}
@@ -130,7 +134,7 @@ const ExhibitionPage = ({ data }: { data: ExhibitionData }) => {
             </ul>
             <div className={info ? "hidden galleryInfo" : "galleryInfo"}>
               {exhibition.body.en && (
-                <PortableText blocks={exhibition.body} />
+                <PortableText value={blocks} components={components} />
               )}
             </div>
           </div>
