@@ -1,5 +1,5 @@
 import { FaMobileAlt } from 'react-icons/fa'
-import { StringValidation } from '../interfaces'
+import { Rule } from '@sanity/types'
 
 export default {
   name: 'site',
@@ -110,7 +110,7 @@ export default {
       title: 'Email',
       type: 'string',
       group: 'footer',
-      validation: (Rule: StringValidation) =>
+      validation: (Rule: Rule) =>
         Rule.regex(
           /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         ).error('Not a valid email address')

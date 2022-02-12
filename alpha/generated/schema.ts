@@ -920,7 +920,7 @@ export type CaptionImage = {
 }
 
 export type LocaleRichText = {
-  _type: "localeRichText"
+  _type?: "localeRichText"
   /**
    * English — `blockContent`
    *

@@ -10,13 +10,14 @@
 import { GetStaticProps, GetStaticPaths } from "next"
 import Head from "next/head"
 import { useRouter } from "next/router"
+import { PortableText } from "@portabletext/react"
+import { components } from "components/portableTextComponents"
 import sanityClient from "lib/sanityClient"
 import { eventPathQuery, eventPageQuery } from "lib/queries"
 import Layout from "components/layout"
 import ErrorTemplate from "components/errorTemplate"
 import Link from "components/link"
 import Localize from "components/localize"
-import PortableText from "components/portableText"
 import PostDate from "components/postDate"
 import Sidebar from "components/sidebar"
 import { EventData } from "lib/interfaces"
@@ -57,6 +58,9 @@ const EventPage = ({ data }: { data: EventData }) => {
   }
   const { locale } = router
   const { event, menu, sidebar, site, socialLinks } = data
+  const blocks = locale === "cy" && event.body.cy
+    ? event.body.cy
+    : event.body.en
   return (
     <Layout
       caption={event && (locale === "cy" && event.title.cy
@@ -85,7 +89,9 @@ const EventPage = ({ data }: { data: EventData }) => {
                 </a>
               }
             </p>
-            {event.body && <PortableText blocks={event.body} />}
+            {event.body &&
+              <PortableText value={blocks} components={components} />
+            }
             <p>
               {event.briteLink &&
                 <a href={`${event.briteLink}`} target="blank" rel="noreferrer">

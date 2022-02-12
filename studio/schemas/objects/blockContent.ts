@@ -1,3 +1,6 @@
+import React from 'react'
+import { Rule } from '@sanity/types'
+
 export default {
   title: 'Block Content',
   name: 'blockContent',
@@ -22,6 +25,23 @@ export default {
         ],
         annotations: [
           {
+            title: 'Internal Link',
+            name: 'internalLink',
+            type: 'object',
+            fields: [
+              {
+                name: 'item',
+                type: 'reference',
+                to: [
+                  { type: 'page' }
+                ]
+              }
+            ],
+            blockEditor: {
+              icon: () => '🔗'
+            }
+          },
+          {
             title: 'URL',
             name: 'link',
             type: 'object',
@@ -30,8 +50,16 @@ export default {
                 title: 'URL',
                 name: 'href',
                 type: 'url'
+              },
+              {
+                title: 'Open in a new window',
+                name: 'blank',
+                type: 'boolean'
               }
-            ]
+            ],
+            blockEditor: {
+              icon: () => '🌎'
+            }
           }
         ]
       }

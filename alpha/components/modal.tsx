@@ -1,4 +1,4 @@
-import { CSSProperties, FC } from "react"
+import { FC } from "react"
 import { urlFor } from "lib/utils"
 import Localize from "components/localize"
 import { ModalProps } from "lib/interfaces"

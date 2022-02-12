@@ -10,7 +10,8 @@
 import { GetStaticProps, GetStaticPaths } from "next"
 import Head from "next/head"
 import { useRouter } from "next/router"
-import BlockContent from "@sanity/block-content-to-react"
+import { PortableText } from "@portabletext/react"
+import { components } from "components/portableTextComponents"
 import sanityClient from "lib/sanityClient"
 import { videoPageQuery, videoPathQuery } from "lib/queries"
 import Layout from "components/layout"
@@ -57,6 +58,9 @@ const VideoPage = ({ data }: { data: VideoData }) => {
   }
   const { locale } = router
   const { video, menu, sidebar, site, socialLinks } = data
+  const blocks =  locale === "cy" && video.body.cy
+      ? video.body.cy
+      : video.body.en
   return (
     <Layout
       caption={locale === "cy" && video.title.cy
@@ -81,15 +85,8 @@ const VideoPage = ({ data }: { data: VideoData }) => {
             {video.videoLink && (
               <VideoEmbed videoId={video.videoLink} />
             )}
-            {video.body.en && (
-              <BlockContent
-                blocks={
-                  locale === "cy" && video.body.cy
-                    ? video.body.cy
-                    : video.body.en
-                }
-                {...sanityClient.config()}
-              />
+            {video.body && (
+              <PortableText value={blocks} components={components} />
             )}
             <div>
               <p className="backLink">

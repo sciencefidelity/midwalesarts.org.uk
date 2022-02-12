@@ -7,5 +7,6 @@
   "sanity-plugin-intl-input": "836769499d9d622e2bab7ec2729c2aa94d04e642f6f6352ce04e6dfc9f5f23cb",
   "intl-input": "836769499d9d622e2bab7ec2729c2aa94d04e642f6f6352ce04e6dfc9f5f23cb",
   "sanity-plugin-media-library": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-  "media-library": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+  "media-library": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+  "@sanity/vision": "da5b6ed712703ecd04bf4df560570c668aa95252c6bc1c41d6df1bda9b8b8f60"
 }

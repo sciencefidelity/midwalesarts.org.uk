@@ -1421,6 +1421,26 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@portabletext/react@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@portabletext/react/-/react-1.0.3.tgz#44bc66ccf30c4ea18fc7e08fafd69bc2b6e7d00c"
+  integrity sha512-gZk8d5xHXQSsABTyOnh0YSC/bjKCJAEPhdgfjW0xH9L0HCU/eUhteEHVBSbsIO4oUMeNTCXJ/r/ar71TWcGltw==
+  dependencies:
+    "@portabletext/toolkit" "^1.0.4"
+    "@portabletext/types" "^1.0.3"
+
+"@portabletext/toolkit@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@portabletext/toolkit/-/toolkit-1.0.4.tgz#0187397655eee3a4924ace8cf2a364e15db60df7"
+  integrity sha512-r8xMn8HYWAlNBjS7H5lpegWQM7izs0mAW9c6DnleyJSH92xyTyaiVbDIRePEViWlMgRtBzcO9mlRmOBwvbdG0Q==
+  dependencies:
+    "@portabletext/types" "^1.0.3"
+
+"@portabletext/types@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@portabletext/types/-/types-1.0.3.tgz#b23f832ae5331c1d864195a95eba34abf340597e"
+  integrity sha512-SDDsdury2SaTI2D5Ea6o+Y39SSZMYHRMWJHxkxYl3yzFP0n/0EknOhoXcoaV+bxGr2dTTqZi2TOEj+uWYuavSw==
+
 "@rexxars/eventsource-polyfill@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@rexxars/eventsource-polyfill/-/eventsource-polyfill-1.0.0.tgz#ab46f2f44da23aedd6f51f13d92a194a5367525b"

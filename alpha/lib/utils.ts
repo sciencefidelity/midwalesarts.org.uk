@@ -2,8 +2,9 @@ import imageUrlBuilder from "@sanity/image-url"
 import sanityClient from "@/lib/sanityClient"
 import { Image } from "@/lib/interfaces"
 
-export const capitalize = (word: string): string =>
-  word[0].toUpperCase() + word.slice(1, word.length)
+export const capitalize = (word: string): string => {
+  return word[0].toUpperCase() + word.slice(1, word.length)
+}
 
 export const kebabCase = (word: string) => {
   // eslint-disable-next-line no-useless-escape
@@ -16,10 +17,11 @@ export const urlFor = (source: Image) => {
 
 // https://stackoverflow.com/questions/5845238/javascript-generate-transparent-1x1-pixel-in-dataurl-format/33919020#33919020
 
-export const hexDataURL = (hexColor: string) =>
-  `data:image/gif;base64,R0lGODlhAQABAPAA${encodeHex(
+export const hexDataURL = (hexColor: string) => {
+  return `data:image/gif;base64,R0lGODlhAQABAPAA${encodeHex(
     hexColor
   )}/yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==`
+}
 
 const keyStr =
   "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/="

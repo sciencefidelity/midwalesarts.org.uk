@@ -78,7 +78,29 @@ export const pageQuery = groq`{
     _type == "page"
     && slug.en.current == $slug && ${omitDrafts}
   ][0]{
-    "body": body{ en, cy },
+    body{
+      ...,
+      cy[] {
+        ...,
+        markDefs[]{
+          ...,
+          item->{
+            _type,
+            "slug": slug.en.current
+          }
+        }
+      },
+      en[] {
+        ...,
+        markDefs[]{
+          ...,
+          item->{
+            _type,
+            "slug": slug.en.current
+          }
+        }
+      }
+    },
     mainImage,
     "slug": slug{ en, cy },
     subtitle,
