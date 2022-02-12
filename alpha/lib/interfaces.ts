@@ -188,6 +188,7 @@ export interface ImageProps {
   caption: string
   image: Image | CaptionImage
   width?: number
+  height?: number
 }
 
 export interface ModalProps {
