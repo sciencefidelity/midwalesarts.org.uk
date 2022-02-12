@@ -1,5 +1,4 @@
-import React from 'react'
-import { Rule } from '@sanity/types'
+import * as React from 'react'
 
 export default {
   title: 'Block Content',
