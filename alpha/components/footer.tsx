@@ -24,5 +24,4 @@ const Footer: FC<FooterProps> = ({ site, socialLinks}) => {
     </footer>
   )
 }
-
 export default Footer

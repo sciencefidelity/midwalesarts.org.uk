@@ -1,14 +1,16 @@
 import { render, screen } from "@testing-library/react"
-import Home from "../pages/index"
+import sanityClient from "lib/sanityClient"
+import { frontPageQuery } from "lib/queries"
+import { mockUseRouter } from "./__helpers__/router.test"
+import Home from "pages/index"
+import { IndexData } from "lib/interfaces"
 
-describe("Home", () => {
-  it("renders a heading", () => {
-    render(<Home />)
+const router = mockUseRouter()
 
-    const heading = screen.getByRole("heading", {
-      name: /welcome to next\.js!/i
-    })
+test("renders a heading", async () => {
+  const data: IndexData = await sanityClient.fetch(frontPageQuery)
+  const { featured, frontPage, site, socialLinks, menu } = data
+  render(<Home data={{ featured, frontPage, site, socialLinks, menu }} />)
 
-    expect(heading).toBeInTheDocument()
-  })
+  screen.debug()
 })
