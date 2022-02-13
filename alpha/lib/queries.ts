@@ -81,7 +81,13 @@ const allPageFields = `
 // "subColor": subImage.${dominantBg},
 export const frontPageQuery = groq`{
   "frontPage": *[_type == "frontPage"][0]{
-    ${bodyDefs}, cta, ctaLink, mainImage, subImage
+    ${bodyDefs},
+    cta,
+    "ctaLink": ctaLink.item->{
+      _type, slug
+    },
+    mainImage,
+    subImage
   },
   "featured": *[_type == "frontPage" && ${omitDrafts}][0].featured[0..3]->{
     _id,
@@ -90,7 +96,9 @@ export const frontPageQuery = groq`{
     heading,
     ${bodyDefs},
     cta,
-    ctaLink,
+    "ctaLink": ctaLink.item->{
+      _type, slug
+    },
     mainImage,
     subImage,
   },

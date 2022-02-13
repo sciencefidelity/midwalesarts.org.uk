@@ -1,14 +1,50 @@
 import imageUrlBuilder from "@sanity/image-url"
 import sanityClient from "@/lib/sanityClient"
+import { LocaleRichText, LocaleString } from "generated/schema"
 import { Image } from "@/lib/interfaces"
+
+export const buildUrl = (slugData: any) => {
+  const slug = slugData.slug && slugData.slug.en
+    ? slugData.slug.en.current
+    : slugData.slug.current
+  let directory: string
+  switch (slugData._type) {
+  case "artist":
+    directory = "/artists"
+    break
+  case "event":
+    directory = "/events"
+    break
+  case "exhibition":
+    directory = "/exhibitions"
+    break
+  case "post":
+    directory = "/news"
+    break
+  case "video":
+    directory = "/videos"
+    break
+  default:
+    directory = ""
+  }
+  return `${directory}/${slug}`
+}
 
 export const capitalize = (word: string): string => {
   return word[0].toUpperCase() + word.slice(1, word.length)
 }
 
 export const kebabCase = (word: string) => {
-  // eslint-disable-next-line no-useless-escape
-  return word.toLowerCase().split(" ").join("-").replace(/[^a-z0-9\-]/g, "")
+  return word.toLowerCase().split(" ").join("-").replace(/[^a-z0-9-]/g, "")
+}
+
+export const localize = (
+  content: LocaleString | LocaleRichText,
+  locale: string
+) => {
+  return locale === "cy" && content.cy
+    ? content.cy
+    : content.en
 }
 
 export const urlFor = (source: Image) => {

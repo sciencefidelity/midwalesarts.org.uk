@@ -2,11 +2,13 @@ import { CSSProperties, MouseEventHandler, ReactNode } from "react"
 import type {
   Artist,
   Artwork,
-  CaptionImage,
   Event,
   Exhibition,
   FrontPage,
   FrontPageSection,
+  LocaleRichText,
+  LocaleSlug,
+  LocaleString,
   Post,
   Page,
   SanityReference,
@@ -24,6 +26,20 @@ export interface Image {
   asset: SanityReference<SanityImageAsset>
   crop?: SanityImageCrop
   hotspot?: SanityImageHotspot
+}
+
+export type CaptionImage = {
+  _type: "image";
+  asset: SanityReference<SanityImageAsset>;
+  crop?: SanityImageCrop;
+  hotspot?: SanityImageHotspot;
+  caption?: string;
+  Caption?: string;
+}
+
+export interface Slug {
+  _type: "slug"
+  current: string
 }
 
 export interface AllPageData {
@@ -165,6 +181,16 @@ export interface NavProps {
 export interface FooterProps {
   site: Site
   socialLinks: Social[]
+}
+
+export interface CtaLink {
+  ctaLink: LocaleSlug | Slug
+}
+
+export interface IntroProps {
+  body: LocaleRichText
+  cta: LocaleString
+  ctaLink: CtaLink
 }
 
 export interface SidebarProps {
