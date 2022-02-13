@@ -59,8 +59,8 @@ const VideoPage = ({ data }: { data: VideoData }) => {
   const { locale } = router
   const { video, menu, sidebar, site, socialLinks } = data
   const blocks =  locale === "cy" && video.body.cy
-      ? video.body.cy
-      : video.body.en
+    ? video.body.cy
+    : video.body.en
   return (
     <Layout
       caption={locale === "cy" && video.title.cy

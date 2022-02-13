@@ -2,11 +2,13 @@ import { CSSProperties, MouseEventHandler, ReactNode } from "react"
 import type {
   Artist,
   Artwork,
-  CaptionImage,
   Event,
   Exhibition,
   FrontPage,
   FrontPageSection,
+  LocaleRichText,
+  LocaleSlug,
+  LocaleString,
   Post,
   Page,
   SanityReference,
@@ -26,6 +28,20 @@ export interface Image {
   hotspot?: SanityImageHotspot
 }
 
+export interface CaptionImage {
+  _type: "image";
+  asset: SanityReference<SanityImageAsset>;
+  crop?: SanityImageCrop;
+  hotspot?: SanityImageHotspot;
+  caption?: string;
+  Caption?: string;
+}
+
+export interface Slug {
+  _type: "slug"
+  current: string
+}
+
 export interface AllPageData {
   menu: Page[],
   sidebar?: {
@@ -37,9 +53,17 @@ export interface AllPageData {
   socialLinks: Social[]
 }
 
+interface FrontPageLink extends FrontPage {
+  ctaSlug: CtaSlug
+}
+
+interface FeaturedLink extends FrontPageSection {
+  ctaSlug: CtaSlug
+}
+
 export interface IndexData extends AllPageData {
-  featured: FrontPageSection[]
-  frontPage: FrontPage
+  featured: FeaturedLink[]
+  frontPage: FrontPageLink
 }
 
 export interface PageData extends AllPageData {
@@ -167,6 +191,16 @@ export interface FooterProps {
   socialLinks: Social[]
 }
 
+export interface CtaSlug {
+  ctaLink: LocaleSlug | Slug
+}
+
+export interface IntroProps {
+  body: LocaleRichText
+  cta: LocaleString
+  ctaSlug: CtaSlug
+}
+
 export interface SidebarProps {
   events: Event[]
   exhibitions: Exhibition[]
@@ -185,7 +219,7 @@ export interface LocationProps {
 }
 
 export interface ImageProps {
-  caption: string
+  alt: string
   image: Image | CaptionImage
   width?: number
   height?: number
@@ -197,4 +231,8 @@ export interface ModalProps {
   closeModal: MouseEventHandler<HTMLDivElement>
   prevIndex: MouseEventHandler<HTMLDivElement>
   nextIndex: MouseEventHandler<HTMLDivElement>
+}
+
+export interface FrontPageFeatureProps extends FrontPageSection {
+  ctaSlug: CtaSlug
 }

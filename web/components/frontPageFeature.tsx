@@ -1,16 +1,17 @@
 import { useRouter } from "next/router"
 import { PortableText } from "@portabletext/react"
-import { urlFor } from "lib/utils"
+import { buildUrl, urlFor } from "lib/utils"
 import { components } from "components/portableTextComponents"
 import Link from "components/link"
 import Localize from "components/localize"
-import type { FrontPageSection } from "generated/schema"
+import { FrontPageFeatureProps } from "lib/interfaces"
 
-const FrontPageFeature = ({ feature }: { feature: FrontPageSection }) => {
+const FrontPageFeature = ({ feature }: { feature: FrontPageFeatureProps }) => {
   const { locale } = useRouter()
   const blocks = locale === "cy" && feature.body.cy
     ? feature.body.cy
     : feature.body.en
+  const url = buildUrl(feature.ctaSlug)
   return (
     <div className="sectionContainer">
       <div className="sectionHero">
@@ -61,7 +62,7 @@ const FrontPageFeature = ({ feature }: { feature: FrontPageSection }) => {
       </div>
       <div className="sectionCtaContainer">
         <div className="sectionCtaHr"></div>
-        <Link href={`/${feature.ctaLink}/`}>
+        <Link href={url}>
           <h2 className="sectionCta">
             <span>{feature.cta && <Localize data={feature.cta} />}&nbsp;</span>
           </h2>

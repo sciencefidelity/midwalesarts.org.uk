@@ -45,7 +45,7 @@ const Home = ({ data }: { data: IndexData }) => {
             <Intro
               body={frontPage.body}
               cta={frontPage.cta}
-              ctaLink={frontPage.ctaLink}
+              ctaSlug={frontPage.ctaSlug}
             />
             <div className="sideImageContainer">
               <img
