@@ -353,11 +353,19 @@ export interface FrontPage extends SanityDocument {
   cta?: LocaleString;
 
   /**
-   * Link — `string`
+   * Link — `object`
    *
    *
    */
-  ctaLink?: string;
+  ctaLink?: {
+    _type: "ctaLink";
+    /**
+     * item — `reference`
+     *
+     *
+     */
+    item?: SanityReference<Artist | Event | Exhibition | Page | Post | Video>;
+  };
 
   /**
    * Main image — `captionImage`
@@ -425,11 +433,19 @@ export interface FrontPageSection extends SanityDocument {
   cta?: LocaleString;
 
   /**
-   * Link — `string`
+   * Link — `object`
    *
    *
    */
-  ctaLink?: string;
+  ctaLink?: {
+    _type: "ctaLink";
+    /**
+     * item — `reference`
+     *
+     *
+     */
+    item?: SanityReference<Artist | Event | Exhibition | Page | Post | Video>;
+  };
 
   /**
    * Main image — `captionImage`

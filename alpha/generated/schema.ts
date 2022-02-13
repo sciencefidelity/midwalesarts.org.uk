@@ -15,7 +15,7 @@ import type {
   SanityImageDimensions,
   SanityImagePalette,
   SanityImagePaletteSwatch,
-} from "sanity-codegen"
+} from "sanity-codegen";
 
 export type {
   SanityReference,
@@ -34,7 +34,7 @@ export type {
   SanityImageDimensions,
   SanityImagePalette,
   SanityImagePaletteSwatch,
-}
+};
 
 /**
  * Artist
@@ -353,11 +353,19 @@ export interface FrontPage extends SanityDocument {
   cta?: LocaleString;
 
   /**
-   * Link — `string`
+   * Link — `object`
    *
    *
    */
-  ctaLink?: string;
+  ctaLink?: {
+    _type: "ctaLink";
+    /**
+     * item — `reference`
+     *
+     *
+     */
+    item?: SanityReference<Artist | Event | Exhibition | Page | Post | Video>;
+  };
 
   /**
    * Main image — `captionImage`
@@ -425,11 +433,19 @@ export interface FrontPageSection extends SanityDocument {
   cta?: LocaleString;
 
   /**
-   * Link — `string`
+   * Link — `object`
    *
    *
    */
-  ctaLink?: string;
+  ctaLink?: {
+    _type: "ctaLink";
+    /**
+     * item — `reference`
+     *
+     *
+     */
+    item?: SanityReference<Artist | Event | Exhibition | Page | Post | Video>;
+  };
 
   /**
    * Main image — `captionImage`
@@ -899,7 +915,7 @@ export type BlockContent = Array<
 >;
 
 export type CaptionImage = {
-  _type: "image";
+  _type: "captionImage";
   asset: SanityReference<SanityImageAsset>;
   crop?: SanityImageCrop;
   hotspot?: SanityImageHotspot;
