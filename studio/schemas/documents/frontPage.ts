@@ -26,9 +26,23 @@ export default {
       type: 'localeString'
     },
     {
-      name: 'ctaLink',
       title: 'Link',
-      type: 'string'
+      name: 'ctaLink',
+      type: 'object',
+      fields: [
+        {
+          name: 'item',
+          type: 'reference',
+          to: [
+            { type: 'artist' },
+            { type: 'event' },
+            { type: 'exhibition' },
+            { type: 'page' },
+            { type: 'post' },
+            { type: 'video' },
+          ]
+        }
+      ],
     },
     {
       name: 'mainImage',
