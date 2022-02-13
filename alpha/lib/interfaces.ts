@@ -185,7 +185,7 @@ export interface LocationProps {
 }
 
 export interface ImageProps {
-  caption: string
+  alt: string
   image: Image | CaptionImage
   width?: number
   height?: number

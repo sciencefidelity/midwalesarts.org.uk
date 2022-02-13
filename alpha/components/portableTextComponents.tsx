@@ -4,9 +4,9 @@ import Link from "components/link"
 export const components: PortableTextComponents = {
   marks: {
     link: ({value, children}) => {
-      const target = value?.blank ? '_blank' : undefined
+      const target = value?.blank ? "_blank" : undefined
       return (
-        <a href={value?.href} target={target} rel={target === '_blank' && 'noindex nofollow'}>
+        <a href={value?.href} target={target} rel={target === "_blank" && "noindex nofollow"}>
           {children}
         </a>
       )

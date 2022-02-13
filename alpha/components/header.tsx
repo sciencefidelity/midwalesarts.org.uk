@@ -21,7 +21,7 @@ const Header: FC<HeaderProps> = ({ caption, heroImage, menu }) => {
           className="hero"
           style={{ overflow: "hidden" }}
         >
-          <Image caption={caption} image={heroImage} width={1600} />
+          <Image alt={caption} image={heroImage} width={1600} />
         </div>
       </header>
       <Navigation menu={menu} />

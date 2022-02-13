@@ -15,21 +15,21 @@ const ExhibitionPrieview: FC<ExhibitionPreviewProps> = ({
     <div className="exhibitionPreview">
       <p>{heading}</p>
       <Link href={`/exhibitions/${exhibition.slug.en.current}`}>
-          <Image
-            src={urlFor(exhibition.mainImage)
-              .width(624)
-              .height(624)
-              .auto("format")
-              .quality(75)
-              .url()}
-            alt={
-              locale === "cy" && exhibition.title.cy
-                ? exhibition.title.cy
-                : exhibition.title.en
-            }
-            width={624}
-            height={624}
-          />
+        <Image
+          src={urlFor(exhibition.mainImage)
+            .width(624)
+            .height(624)
+            .auto("format")
+            .quality(75)
+            .url()}
+          alt={
+            locale === "cy" && exhibition.title.cy
+              ? exhibition.title.cy
+              : exhibition.title.en
+          }
+          width={624}
+          height={624}
+        />
         {exhibition &&
           <div className="gridCaption">
             <Localize data={exhibition.title} />
