@@ -20,7 +20,7 @@ const FooterContact = ({ site }: { site: Site }) => {
         <a href={`mailto:${site.email}`}>{site.email}</a>
       </p>
       <p className="copy">
-        &copy;{" "}<Localize data={site.siteName} />{year}
+        &copy;{" "}<Localize data={site.siteName} />{" "}{year}
       </p>
     </div>
   )
