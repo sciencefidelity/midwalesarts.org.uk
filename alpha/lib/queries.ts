@@ -83,7 +83,7 @@ export const frontPageQuery = groq`{
   "frontPage": *[_type == "frontPage"][0]{
     ${bodyDefs},
     cta,
-    "ctaLink": ctaLink.item->{
+    "ctaSlug": ctaLink.item->{
       _type, slug
     },
     mainImage,
@@ -96,7 +96,7 @@ export const frontPageQuery = groq`{
     heading,
     ${bodyDefs},
     cta,
-    "ctaLink": ctaLink.item->{
+    "ctaSlug": ctaLink.item->{
       _type, slug
     },
     mainImage,

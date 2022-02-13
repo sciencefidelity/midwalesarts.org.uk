@@ -28,7 +28,7 @@ export interface Image {
   hotspot?: SanityImageHotspot
 }
 
-export type CaptionImage = {
+export interface CaptionImage {
   _type: "image";
   asset: SanityReference<SanityImageAsset>;
   crop?: SanityImageCrop;
@@ -53,9 +53,17 @@ export interface AllPageData {
   socialLinks: Social[]
 }
 
+interface FrontPageLink extends FrontPage {
+  ctaSlug: CtaSlug
+}
+
+interface FeaturedLink extends FrontPageSection {
+  ctaSlug: CtaSlug
+}
+
 export interface IndexData extends AllPageData {
-  featured: FrontPageSection[]
-  frontPage: FrontPage
+  featured: FeaturedLink[]
+  frontPage: FrontPageLink
 }
 
 export interface PageData extends AllPageData {
@@ -183,14 +191,14 @@ export interface FooterProps {
   socialLinks: Social[]
 }
 
-export interface CtaLink {
+export interface CtaSlug {
   ctaLink: LocaleSlug | Slug
 }
 
 export interface IntroProps {
   body: LocaleRichText
   cta: LocaleString
-  ctaLink: CtaLink
+  ctaSlug: CtaSlug
 }
 
 export interface SidebarProps {
@@ -223,4 +231,8 @@ export interface ModalProps {
   closeModal: MouseEventHandler<HTMLDivElement>
   prevIndex: MouseEventHandler<HTMLDivElement>
   nextIndex: MouseEventHandler<HTMLDivElement>
+}
+
+export interface FrontPageFeatureProps extends FrontPageSection {
+  ctaSlug: CtaSlug
 }

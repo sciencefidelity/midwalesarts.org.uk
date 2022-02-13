@@ -7,16 +7,16 @@ import Link from "components/link"
 import Localize from "components/localize"
 import { IntroProps } from "lib/interfaces"
 
-const Intro: FC<IntroProps> = ({ body, cta, ctaLink }) => {
+const Intro: FC<IntroProps> = ({ body, cta, ctaSlug }) => {
   const { locale } = useRouter()
   const blocks = locale === "cy" && body.cy ? body.cy : body.en
-  const url = buildUrl(ctaLink)
+  const url = buildUrl(ctaSlug)
   return (
     <div className="introText">
       {body && (
         <PortableText value={blocks} components={components} />
       )}
-      {ctaLink && (<Link href={url}>
+      {ctaSlug && (<Link href={url}>
         <h2 className="introCta">
           <span>{cta && <Localize data={cta} />}&nbsp;</span>
         </h2>
