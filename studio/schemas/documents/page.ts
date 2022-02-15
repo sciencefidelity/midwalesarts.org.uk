@@ -110,14 +110,6 @@ export default {
       description:
         'Displayed on Facebook and Twitter shares (max 65 characters).',
       group: 'seo'
-    },
-    {
-      name: 'seoImage',
-      title: 'SEO Image',
-      type: 'image',
-      description:
-        'Ideal size 1200 x 630px (if not added main image will be used).',
-      group: 'seo'
     }
   ],
 
