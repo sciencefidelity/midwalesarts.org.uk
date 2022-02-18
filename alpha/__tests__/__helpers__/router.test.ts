@@ -1,3 +1,4 @@
+// https://github.com/vercel/next.js/issues/7479
 import * as nextRouter from "next/router"
 
 it("Dummy test", () => {
