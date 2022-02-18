@@ -10,7 +10,12 @@ insert_final_newline = true
 charset = utf-8
 
 # TypeScript, JavaScript
-[*.{ts,tsx,js,jsx}]
+[*.{ts,js,tsx,jsx}]
+indent_style = space
+indent_size = 2
+
+# html
+[*.html]
 indent_style = space
 indent_size = 2
 
