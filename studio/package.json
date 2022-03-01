@@ -20,7 +20,7 @@
     "format": "prettier --write '**/*.{ts,js,tsx,jsx,json,md,yml}'"
   },
   "dependencies": {
-    "@babel/core": "^7.16.12",
+    "@babel/core": "^7.17.5",
     "@sanity/base": "^2.27.0",
     "@sanity/components": "^2.14.0",
     "@sanity/core": "^2.27.0",
