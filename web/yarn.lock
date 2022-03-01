@@ -1601,10 +1601,10 @@
   dependencies:
     "@babel/types" "^7.3.0"
 
-"@types/google-map-react@^2.1.3":
-  version "2.1.4"
-  resolved "https://registry.yarnpkg.com/@types/google-map-react/-/google-map-react-2.1.4.tgz#b3021415f285fce1d1d98da4c7b524960ddea902"
-  integrity sha512-2510nBV6Jnyr34x4W39VlhGwspDGG+8/7TSKXd8blUlWEAvmep+qjl92gWacSUipZqdngaymoCOJ1Te5SkUqag==
+"@types/google-map-react@^2.1.5":
+  version "2.1.5"
+  resolved "https://registry.yarnpkg.com/@types/google-map-react/-/google-map-react-2.1.5.tgz#2c477abffa33ae97e8bb893891892b97c5dc9135"
+  integrity sha512-79FeuNnqPbLNWLChfcqL6exS9oPfvzPkxSxdry12ueVYRaGDGWze4TjV6cRTZP4QRZxtZBTLtDqly2zeD5VEoQ==
   dependencies:
     "@types/react" "*"
 
