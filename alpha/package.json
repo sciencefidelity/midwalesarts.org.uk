@@ -52,7 +52,7 @@
     "postcss-scss": "^4.0.3",
     "prettier": "^2.5.1",
     "sanity-codegen": "^0.9.8",
-    "stylelint": "^14.3.0",
+    "stylelint": "^14.5.3",
     "stylelint-config-prettier": "^9.0.3",
     "stylelint-config-recess-order": "^3.0.0",
     "stylelint-config-recommended-scss": "^5.0.2",
