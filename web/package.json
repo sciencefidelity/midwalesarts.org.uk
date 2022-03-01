@@ -15,7 +15,7 @@
     "test": "jest --watchAll"
   },
   "dependencies": {
-    "@babel/core": "^7.16.12",
+    "@babel/core": "^7.17.5",
     "@portabletext/react": "^1.0.3",
     "@sanity/client": "^2.23.2",
     "@sanity/image-url": "^1.0.1",
