@@ -41,18 +41,18 @@
     "@types/react": "^17.0.38",
     "@typescript-eslint/parser": "^5.10.0",
     "concurrently": "^7.0.0",
-    "eslint": "^8.8.0",
+    "eslint": "^8.10.0",
     "eslint-config-next": "12.0.10",
     "eslint-config-prettier": "^8.3.0",
     "eslint-config-react-app": "^7.0.0",
     "eslint-plugin-react": "^7.28.0",
     "jest": "^27.5.1",
     "jsdom": "^19.0.0",
-    "postcss": "^8.4.6",
+    "postcss": "^8.4.7",
     "postcss-scss": "^4.0.3",
     "prettier": "^2.5.1",
     "sanity-codegen": "^0.9.8",
-    "stylelint": "^14.3.0",
+    "stylelint": "^14.5.3",
     "stylelint-config-prettier": "^9.0.3",
     "stylelint-config-recess-order": "^3.0.0",
     "stylelint-config-recommended-scss": "^5.0.2",
@@ -61,6 +61,6 @@
     "stylelint-order": "^5.0.0",
     "stylelint-scss": "^4.1.0",
     "stylelint-selector-bem-pattern": "^2.1.1",
-    "typescript": "^4.5.5"
+    "typescript": "^4.6.2"
   }
 }
