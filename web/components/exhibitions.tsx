@@ -50,12 +50,18 @@ const Exhibitions: FC<ExhibitionsProps> = ({
           )
         }
         {futureExhibitions[0] && (
-          <ExhibitionPreview
-            heading={locale === "cy"
-              ? "Arddangosfa nesaf"
-              : "Next exhibition"}
-            exhibition={futureExhibitions[0]}
-          />
+          <>
+            <ExhibitionPreview
+              heading={locale === "cy"
+                ? "Arddangosfa nesaf"
+                : "Upcoming exhibitions"}
+              exhibition={futureExhibitions[0]}
+            />
+            <ExhibitionPreview
+              heading={" "}
+              exhibition={futureExhibitions[1]}
+            />
+          </>
         )}
       </div>
       <div className="sidebarContainer" style={{ marginTop: "6rem" }}>

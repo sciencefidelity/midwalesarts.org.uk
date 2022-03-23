@@ -13,7 +13,7 @@ const ExhibitionPrieview: FC<ExhibitionPreviewProps> = ({
   const { locale } = useRouter()
   return (
     <div className="exhibitionPreview">
-      <p>{heading}</p>
+      <p>{heading}&nbsp;</p>
       <Link href={`/exhibitions/${exhibition.slug.en.current}`}>
         <Image
           src={urlFor(exhibition.mainImage)
