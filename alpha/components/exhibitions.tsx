@@ -46,16 +46,30 @@ const Exhibitions: FC<ExhibitionsProps> = ({
                 heading={" "}
                 exhibition={currentExhibitions[1]}
               />
+              {currentExhibitions[2] &&
+                <ExhibitionPreview
+                  heading={" "}
+                  exhibition={currentExhibitions[2]}
+                />
+              }
             </>
           )
         }
         {futureExhibitions[0] && (
-          <ExhibitionPreview
-            heading={locale === "cy"
-              ? "Arddangosfa nesaf"
-              : "Next exhibition"}
-            exhibition={futureExhibitions[0]}
-          />
+          <>
+            <ExhibitionPreview
+              heading={locale === "cy"
+                ? "Arddangosfa nesaf"
+                : "Upcoming exhibitions"}
+              exhibition={futureExhibitions[0]}
+            />
+            {futureExhibitions[1] &&
+              <ExhibitionPreview
+                heading={" "}
+                exhibition={futureExhibitions[1]}
+              />
+            }
+          </>
         )}
       </div>
       <div className="sidebarContainer" style={{ marginTop: "6rem" }}>

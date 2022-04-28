@@ -46,6 +46,12 @@ const Exhibitions: FC<ExhibitionsProps> = ({
                 heading={" "}
                 exhibition={currentExhibitions[1]}
               />
+              {currentExhibitions[2] &&
+                <ExhibitionPreview
+                  heading={" "}
+                  exhibition={currentExhibitions[2]}
+                />
+              }
             </>
           )
         }
@@ -57,10 +63,12 @@ const Exhibitions: FC<ExhibitionsProps> = ({
                 : "Upcoming exhibitions"}
               exhibition={futureExhibitions[0]}
             />
-            <ExhibitionPreview
-              heading={" "}
-              exhibition={futureExhibitions[1]}
-            />
+            {futureExhibitions[1] &&
+              <ExhibitionPreview
+                heading={" "}
+                exhibition={futureExhibitions[1]}
+              />
+            }
           </>
         )}
       </div>
