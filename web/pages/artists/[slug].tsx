@@ -99,9 +99,9 @@ const ArtistPage = ({ data }: { data: ArtistData }) => {
   const modalImage = artist.artworks[0] !== undefined
     ? artist.artworks[imageToShow]
     : {}
-  const blocks = locale === "cy" && artist.body.cy
+  const blocks = artist.body && (locale === "cy" && artist.body.cy
     ? artist.body.cy
-    : artist.body.en
+    : artist.body.en)
   return (
     <Layout
       caption={artist.mainImage.caption}
@@ -125,7 +125,7 @@ const ArtistPage = ({ data }: { data: ArtistData }) => {
               </li>
             </ul>
             <div className={bio ? "hidden galleryInfo" : "galleryInfo"}>
-              {artist.body &&
+              {blocks &&
                 <PortableText value={blocks} components={components} />
               }
             </div>
