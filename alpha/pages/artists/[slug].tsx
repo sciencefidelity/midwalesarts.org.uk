@@ -22,13 +22,16 @@ import ErrorTemplate from "components/errorTemplate"
 import Link from "components/link"
 import Localize from "components/localize"
 import Modal from "components/modal"
-import { ArtistData } from "lib/interfaces"
+import { ArtistData, Path } from "lib/interfaces"
 // TODO: 'Artst', 'Works', 'Biography' and Backlink hardcoded
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
   const paths = await sanityClient.fetch(artistPathQuery)
+  const pathsWithLocales = paths.flatMap((path: Path) => {
+    return locales.map(locale => ({...path, locale}) )
+  })
   return {
-    paths: paths.map((slug: string[]) => ({ params: { slug } })),
-    fallback: true
+    paths: pathsWithLocales,
+    fallback: false
   }
 }
 export const getStaticProps: GetStaticProps = async ({ params }) => {
@@ -47,20 +50,12 @@ const ArtistPage = ({ data }: { data: ArtistData }) => {
   const [gallery, setGallery] = useState(false)
   const [modal, setModal] = useState(true)
   const [imageToShow, setImageToShow] = useState(0)
-  if(router.isFallback) {
-    return (
-      <ErrorTemplate />
-    )
-  }
+  if(router.isFallback) return <ErrorTemplate />
   if(!data) {
-    return (
-      <>
-        <Head>
-          <meta name="robots" content="noindex" />
-        </Head>
-        <ErrorTemplate />
-      </>
-    )
+    return (<>
+      <Head><meta name="robots" content="noindex" /></Head>
+      <ErrorTemplate />
+    </>)
   }
   const { locale } = router
   const { artist, menu, site, socialLinks } = data
@@ -154,8 +149,8 @@ const ArtistPage = ({ data }: { data: ArtistData }) => {
                       ${artwork.title.en}${", "}
                       ${artwork.date}
                     `}
-                    width={468}
-                    height={468}
+                    width={2000}
+                    height={2000}
                   />
                   <div className="gridCaption">
                     {artwork.title && <Localize data={artwork.title} />}

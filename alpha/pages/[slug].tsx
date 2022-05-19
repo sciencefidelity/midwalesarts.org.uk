@@ -22,13 +22,17 @@ import News from "components/news"
 import Videos from "components/videos"
 import Visit from "components/visit"
 import { CaptionImage } from "generated/schema"
-import { Image, PageData } from "lib/interfaces"
+import { Image, PageData, Path } from "lib/interfaces"
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
   const paths = await sanityClient.fetch(pagePathQuery)
+  const pathsWithLocales = paths.flatMap((path: Path) => {
+    return locales.map(locale => ({...path, locale}) )
+  })
+  console.log(pathsWithLocales)
   return {
-    paths: paths.map((slug: string[]) => ({ params: { slug } })),
-    fallback: true
+    paths: pathsWithLocales,
+    fallback: false
   }
 }
 export const getStaticProps: GetStaticProps = async ({ params }) => {
@@ -45,20 +49,12 @@ const PagesTemplage = ({ data }: { data: PageData }) => {
   const router = useRouter()
   const { locale } = router
   // https://github.com/vercel/next.js/discussions/10960
-  if(router.isFallback) {
-    return (
-      <ErrorTemplate />
-    )
-  }
+  if(router.isFallback) return <ErrorTemplate />
   if(!data) {
-    return (
-      <>
-        <Head>
-          <meta name="robots" content="noindex" />
-        </Head>
-        <ErrorTemplate />
-      </>
-    )
+    return (<>
+      <Head><meta name="robots" content="noindex" /></Head>
+      <ErrorTemplate />
+    </>)
   }
   const {
     artists,
