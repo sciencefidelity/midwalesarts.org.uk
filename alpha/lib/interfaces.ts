@@ -172,7 +172,7 @@ export interface EventPreviewProps {
 }
 
 export interface ExhibitionPreviewProps {
-  heading: string
+  heading?: string
   exhibition: Exhibition
 }
 
@@ -247,5 +247,11 @@ export interface SlugProps {
     en?: {
       current: string
     }
+  }
+}
+
+export interface Path {
+  params: {
+    slug: string
   }
 }

@@ -43,12 +43,10 @@ const Exhibitions: FC<ExhibitionsProps> = ({
                 exhibition={currentExhibitions[0]}
               />
               <ExhibitionPreview
-                heading={" "}
                 exhibition={currentExhibitions[1]}
               />
               {currentExhibitions[2] &&
                 <ExhibitionPreview
-                  heading={" "}
                   exhibition={currentExhibitions[2]}
                 />
               }
@@ -88,8 +86,8 @@ const Exhibitions: FC<ExhibitionsProps> = ({
               <Link href={`/exhibitions/${exhibition.slug.en.current}`}>
                 <Image
                   src={urlFor(exhibition.mainImage)
-                    .width(1000)
-                    .height(1000)
+                    .width(624)
+                    .height(624)
                     .auto("format")
                     .quality(75)
                     .url()}
@@ -98,8 +96,8 @@ const Exhibitions: FC<ExhibitionsProps> = ({
                       ? exhibition.title.cy
                       : exhibition.title.en
                   }
-                  width={1000}
-                  height={1000}
+                  width={2000}
+                  height={2000}
                 />
                 <div className="gridCaption">{exhibition.title.en}</div>
                 <div className="gridCaption">

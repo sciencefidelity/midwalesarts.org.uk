@@ -354,50 +354,37 @@ export const notFoundQuery = groq`{
 }`
 
 export const pagePathQuery = groq`
-  *[
-    _type == "page"
-    && defined(slug)
-    && slug.en.current != "index"
-    && ${omitDrafts}
-  ][].slug.en.current
+  *[_type == "page" && defined(slug) && slug.en.current != "index" && ${omitDrafts}]{
+    "params": { "slug": slug.en.current }
+  }
 `
 
 export const artistPathQuery = groq`
-  *[
-    _type == "artist"
-    && defined(slug)
-    && ${omitDrafts}
-  ][].slug.current
+  *[_type == "artist" && defined(slug) && ${omitDrafts}]{
+    "params": { "slug": slug.current }
+  }
 `
 
 export const eventPathQuery = groq`
-  *[
-    _type == "event"
-    && defined(slug)
-    && ${omitDrafts}
-  ][].slug.en.current
+  *[_type == "event" && defined(slug) && ${omitDrafts}]{
+    "params": { "slug": slug.en.current }
+  }
 `
 
 export const exhibitionPathQuery = groq`
-  *[
-    _type == "exhibition"
-    && defined(slug)
-    && ${omitDrafts}
-  ][].slug.en.current
+  *[_type == "exhibition" && defined(slug) && ${omitDrafts}]{
+    "params": { "slug": slug.en.current }
+  }
 `
 
 export const postPathQuery = groq`
-  *[
-    _type == "post"
-    && defined(slug)
-    && ${omitDrafts}
-  ][].slug.en.current
+  *[_type == "post" && defined(slug) && ${omitDrafts}]{
+    "params": { "slug": slug.en.current }
+  }
 `
 
 export const videoPathQuery = groq`
-  *[
-    _type == "video"
-    && defined(slug)
-    && ${omitDrafts}
-  ][].slug.en.current
+  *[_type == "video" && defined(slug) && ${omitDrafts}]{
+    "params": { "slug": slug.en.current }
+  }
 `

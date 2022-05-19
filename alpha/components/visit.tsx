@@ -36,8 +36,8 @@ const Visit: FC<VisitProps> = ({ page, spaces }) => {
                       ? space.title.cy
                       : space.title.en
                   }
-                  width={468}
-                  height={468}
+                  width={2000}
+                  height={2000}
                 />
                 <div className="gridCaption">
                   {space.title && <Localize data={space.title} />}
