@@ -23,13 +23,16 @@ import ExhibitionDate from "components/exhibitionDate"
 import Link from "components/link"
 import Localize from "components/localize"
 import Modal from "components/modal"
-import { ExhibitionData } from "lib/interfaces"
+import { ExhibitionData, Path } from "lib/interfaces"
 // TODO: no artworks to show, works, overview hard coded
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
   const paths = await sanityClient.fetch(exhibitionPathQuery)
+  const pathsWithLocales = paths.flatMap((path: Path) => {
+    return locales.map(locale => ({...path, locale}) )
+  })
   return {
-    paths: paths.map((slug: string[]) => ({ params: { slug } })),
-    fallback: true
+    paths: pathsWithLocales,
+    fallback: false
   }
 }
 export const getStaticProps: GetStaticProps = async ({ params }) => {
@@ -165,8 +168,8 @@ const ExhibitionPage = ({ data }: { data: ExhibitionData }) => {
                     ${", "}
                     ${artwork.date}
                   `}
-                  width={468}
-                  height={468}
+                  width={2000}
+                  height={2000}
                 />
                 {artwork.artist &&
                   <div className="gridCaption">{artwork.artist}</div>

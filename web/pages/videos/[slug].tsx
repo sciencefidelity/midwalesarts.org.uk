@@ -20,13 +20,16 @@ import Link from "components/link"
 import Localize from "components/localize"
 import Sidebar from "components/sidebar"
 import VideoEmbed from "components/videoEmbed"
-import { VideoData } from "lib/interfaces"
+import { VideoData, Path } from "lib/interfaces"
 // TODO: video, back to videos hard coded
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
   const paths = await sanityClient.fetch(videoPathQuery)
+  const pathsWithLocales = paths.flatMap((path: Path) => {
+    return locales.map(locale => ({...path, locale}) )
+  })
   return {
-    paths: paths.map((slug: string[]) => ({ params: { slug } })),
-    fallback: true
+    paths: pathsWithLocales,
+    fallback: false
   }
 }
 export const getStaticProps: GetStaticProps = async ({ params }) => {
@@ -41,20 +44,12 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
 const VideoPage = ({ data }: { data: VideoData }) => {
   const router = useRouter()
-  if(router.isFallback) {
-    return (
-      <ErrorTemplate />
-    )
-  }
+  if(router.isFallback) return <ErrorTemplate />
   if(!data) {
-    return (
-      <>
-        <Head>
-          <meta name="robots" content="noindex" />
-        </Head>
-        <ErrorTemplate />
-      </>
-    )
+    return (<>
+      <Head><meta name="robots" content="noindex" /></Head>
+      <ErrorTemplate />
+    </>)
   }
   const { locale } = router
   const { video, menu, sidebar, site, socialLinks } = data

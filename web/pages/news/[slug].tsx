@@ -20,14 +20,17 @@ import Link from "components/link"
 import Localize from "components/localize"
 import PostDate from "components/postDate"
 import Sidebar from "components/sidebar"
-import { NewsData } from "lib/interfaces"
+import { NewsData, Path } from "lib/interfaces"
 // TODO: published on, next post, back to news, previous post hard coded
 // TODO: create next and previous links
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
   const paths = await sanityClient.fetch(postPathQuery)
+  const pathsWithLocales = paths.flatMap((path: Path) => {
+    return locales.map(locale => ({...path, locale}) )
+  })
   return {
-    paths: paths.map((slug: string[]) => ({ params: { slug } })),
-    fallback: true
+    paths: pathsWithLocales,
+    fallback: false
   }
 }
 export const getStaticProps: GetStaticProps = async ({ params }) => {
