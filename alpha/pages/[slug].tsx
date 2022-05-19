@@ -29,7 +29,6 @@ export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
   const pathsWithLocales = paths.flatMap((path: Path) => {
     return locales.map(locale => ({...path, locale}) )
   })
-  console.log(pathsWithLocales)
   return {
     paths: pathsWithLocales,
     fallback: false

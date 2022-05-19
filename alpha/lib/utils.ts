@@ -2,6 +2,7 @@ import imageUrlBuilder from "@sanity/image-url"
 import sanityClient from "lib/sanityClient"
 import { LocaleRichText, LocaleString } from "generated/schema"
 import { Image, SlugProps } from "lib/interfaces"
+import { Artist } from "generated/schema"
 
 export const buildUrl = (slugData: SlugProps): string => {
   let slug = ""
@@ -44,6 +45,15 @@ export const localize = (
   return locale === "cy" && content.cy
     ? content.cy
     : content.en
+}
+
+export const sortArtists = (artists: Artist[]): Artist[] => {
+  return artists.sort((a, b) => {
+    return a.title
+      .trim()
+      .replace(/(^\b\w+\s)/gi, "")
+      .localeCompare(b.title.trim().replace(/(^\b\w+\s)/gi, ""))
+  })
 }
 
 export const urlFor = (source: Image) => {
