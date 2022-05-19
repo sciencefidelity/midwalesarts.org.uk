@@ -110,13 +110,13 @@
 }
 
 .headerMenu {
-  position: absolute;
+  position: fixed;
   width: calc(104vw * 2);
   height: calc(104vw * 2);
   background: rgba(c.$grey-000, 0.8);
   border-radius: 50%;
   z-index: 1;
-  right: calc(4.8rem - 104vw + 9.6rem);
+  left: calc(4.8rem - 104vw);
   top: calc(4.8rem - 104vw);
   clip-path: circle(0% at 50% 50%);
   transition: clip-path 1s ease-out;
