@@ -37,8 +37,8 @@ const EventPreview: FC<EventPreviewProps> = ({
                   ? event.title.cy
                   : event.title.en
               }
-              width={468}
-              height={468}
+              width={2000}
+              height={2000}
             />
             <div className="gridCaption">
               {event.title && <Localize data={event.title} />}

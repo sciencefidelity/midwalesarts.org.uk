@@ -13,7 +13,9 @@ const ExhibitionPrieview: FC<ExhibitionPreviewProps> = ({
   const { locale } = useRouter()
   return (
     <div className="exhibitionPreview">
-      <p>{heading}&nbsp;</p>
+      {heading ?
+        <p>{heading}</p> : <p dangerouslySetInnerHTML={{__html: "&nbsp;"}}/>
+      }
       <Link href={`/exhibitions/${exhibition.slug.en.current}`}>
         <Image
           src={urlFor(exhibition.mainImage)
@@ -27,8 +29,8 @@ const ExhibitionPrieview: FC<ExhibitionPreviewProps> = ({
               ? exhibition.title.cy
               : exhibition.title.en
           }
-          width={624}
-          height={624}
+          width={2000}
+          height={2000}
         />
         {exhibition &&
           <div className="gridCaption">

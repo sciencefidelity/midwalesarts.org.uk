@@ -39,8 +39,8 @@ const Videos: FC<VideosProps> = ({ page, videos }) => {
                       ? video.title.cy
                       : video.title.en
                   }
-                  width={468}
-                  height={468}
+                  width={2000}
+                  height={2000}
                 />
                 {video.title &&
                   <div className="gridCaption">

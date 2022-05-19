@@ -54,11 +54,11 @@ export interface AllPageData {
 }
 
 interface FrontPageLink extends FrontPage {
-  ctaSlug: CtaSlug
+  ctaSlug: SlugProps
 }
 
 interface FeaturedLink extends FrontPageSection {
-  ctaSlug: CtaSlug
+  ctaSlug: SlugProps
 }
 
 export interface IndexData extends AllPageData {
@@ -172,7 +172,7 @@ export interface EventPreviewProps {
 }
 
 export interface ExhibitionPreviewProps {
-  heading: string
+  heading?: string
   exhibition: Exhibition
 }
 
@@ -198,7 +198,7 @@ export interface CtaSlug {
 export interface IntroProps {
   body: LocaleRichText
   cta: LocaleString
-  ctaSlug: CtaSlug
+  ctaSlug: SlugProps
 }
 
 export interface SidebarProps {
@@ -234,5 +234,24 @@ export interface ModalProps {
 }
 
 export interface FrontPageFeatureProps extends FrontPageSection {
-  ctaSlug: CtaSlug
+  ctaSlug: SlugProps
+}
+
+export interface SlugProps {
+  _type: "artist" | "event" | "exhibition" | "post" | "video" | "page"
+  slug?: {
+    current?: string
+    cy?: {
+      current: string
+    }
+    en?: {
+      current: string
+    }
+  }
+}
+
+export interface Path {
+  params: {
+    slug: string
+  }
 }

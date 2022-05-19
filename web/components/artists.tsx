@@ -30,8 +30,8 @@ const ArtistsPage: FC<ArtistsProps> = ({ page, artists }) => {
                   .quality(75)
                   .url()}
                 alt={artist.mainImage.caption}
-                width={468}
-                height={468}
+                width={2000}
+                height={2000}
               />
               <div className="gridCaption">{artist.title}</div>
             </Link>

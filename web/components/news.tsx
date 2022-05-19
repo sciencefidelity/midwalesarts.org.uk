@@ -33,8 +33,8 @@ const News: FC<NewsProps> = ({ page, posts }) => {
                   .quality(75)
                   .url()}
                 alt={post.title.en}
-                width={468}
-                height={468}
+                width={2000}
+                height={2000}
               />
               {post.title &&
                 <div className="gridCaption">
