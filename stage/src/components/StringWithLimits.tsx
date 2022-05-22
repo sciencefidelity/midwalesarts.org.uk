@@ -4,7 +4,7 @@ import { TextInput, Stack, Text } from '@sanity/ui'
 import PatchEvent, { set, unset } from '@sanity/form-builder/PatchEvent'
 import { useId } from '@reach/auto-id' // hook to generate unique IDs
 
-const StringWithLimits = React.forwardRef((props, ref) => {
+export const StringWithLimits = React.forwardRef((props, ref) => {
   const {
     type, // Schema information
     value, // Current field value
@@ -59,5 +59,3 @@ const StringWithLimits = React.forwardRef((props, ref) => {
     </Stack>
   )
 })
-
-export default StringWithLimits

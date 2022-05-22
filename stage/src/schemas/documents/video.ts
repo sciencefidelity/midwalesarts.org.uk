@@ -1,5 +1,6 @@
 import { i18n } from '../../languages'
 import { isUniqueLocale } from '../../lib/isUniqueLocale'
+import { StringWithLimits } from '../../components/StringWithLimits'
 import { Rule } from '@sanity/types'
 import { FilmProjector } from '../../components/twemoji'
 
@@ -14,30 +15,59 @@ export default {
     __i18n_lang: i18n.base,
     __i18n_refs: []
   },
+  groups: [
+    {
+      name: 'content',
+      title: 'Content'
+    },
+    {
+      name: 'settings',
+      title: 'Settings'
+    },
+    {
+      name: 'social',
+      title: 'Social'
+    }
+  ],
   fields: [
     {
       name: 'title',
       title: 'Title',
-      type: 'string'
+      type: 'string',
+      group: 'content'
     },
     {
       name: 'body',
       title: 'Body',
-      type: 'portableText'
+      type: 'portableText',
+      group: 'content'
     },
     {
       name: 'videoLink',
       title: 'Video Link',
-      type: 'url'
+      type: 'url',
+      group: 'settings'
+    },
+    {
+      name: 'mainImage',
+      title: 'Main image',
+      type: 'image',
+      description: 'Video thumbnail (1920 x 1080px).',
+      options: {
+        hotspot: true
+      },
+      group: 'settings'
     },
     {
       name: 'publishDate',
       title: 'Publish date',
-      type: 'date',
+      type: 'datetime',
       options: {
         dateFormat: 'dddd, MMMM Do YYYY',
         calendarTodayLabel: 'Today'
-      }
+      },
+      initialValue: new Date().toISOString(),
+      group: 'settings'
     },
     {
       name: 'slug',
@@ -49,21 +79,40 @@ export default {
         maxLength: 96,
         isUnique: isUniqueLocale
       },
-      validation: (Rule: Rule) => [ Rule.required() ]
+      // validation: (Rule: Rule) => Rule.required()
     },
     {
-      name: 'mainImage',
-      title: 'Main image',
+      name: 'ogImage',
+      title: 'Social image',
       type: 'image',
+      description: 'Image for Facebook and Twitter share (1200 x 630px).',
       options: {
         hotspot: true
-      }
+      },
+      group: 'social'
+    },
+    {
+      name: 'ogTitle',
+      title: 'Social title',
+      type: 'string',
+      inputComponent: StringWithLimits,
+      validation: (Rule: Rule) => Rule.max(70).warning("Some text won't be visible."),
+      group: 'social'
+    },
+    {
+      name: 'ogDescription',
+      title: 'Social Description',
+      type: 'text',
+      rows: 3,
+      description: 'Recommended: 125 characters.',
+      validation: (Rule: Rule) => Rule.max(125).warning("Some text won't be visible."),
+      group: 'social'
     }
   ],
 
   preview: {
     select: {
-      title: 'title.en',
+      title: 'title',
       media: 'mainImage'
     }
   }

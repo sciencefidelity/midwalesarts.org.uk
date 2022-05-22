@@ -1,3 +1,5 @@
+import { i18n } from '../../languages'
+import { StringWithLimits } from '../../components/StringWithLimits'
 import { isUniqueLocale } from '../../lib/isUniqueLocale'
 import { Rule } from '@sanity/types'
 import { Books } from '../../components/twemoji'
@@ -7,18 +9,23 @@ export default {
   title: 'Page',
   type: 'document',
   icon: Books,
+  i18n,
+  initialValue: {
+    __i18n_lang: i18n.base,
+    __i18n_refs: []
+  },
   groups: [
-    {
-      name: 'info',
-      title: 'Info'
-    },
     {
       name: 'content',
       title: 'Content'
     },
     {
-      name: 'seo',
-      title: 'SEO'
+      name: 'settings',
+      title: 'Settings'
+    },
+    {
+      name: 'social',
+      title: 'Social'
     }
   ],
   fields: [
@@ -26,51 +33,14 @@ export default {
       name: 'title',
       title: 'Title',
       type: 'string',
-      group: 'info'
+      group: 'content'
     },
     {
       name: 'subtitle',
       title: 'Subtitle',
-      type: 'localeString',
+      type: 'string',
       description: "Not available for 'Page' type",
-      group: 'info'
-    },
-    {
-      name: 'template',
-      title: 'Template',
-      type: 'array',
-      of: [{ type: 'string' }],
-      options: {
-        layout: 'grid',
-        list: [
-          { title: 'Page', value: 'page' },
-          { title: 'Home', value: 'index' },
-          { title: 'News', value: 'news' },
-          { title: 'Artists', value: 'artists' },
-          { title: 'Events', value: 'events' },
-          { title: 'Exhibitions', value: 'exhibitions' },
-          { title: 'Videos', value: 'videos' },
-          { title: 'Visit Us', value: 'visit-us' }
-        ]
-      },
-      initialValue: {
-        title: 'Page',
-        value: 'page'
-      },
-      validation: (Rule: Rule) => Rule.required(),
-      group: 'info'
-    },
-    {
-      name: 'slug',
-      title: 'Slug',
-      type: 'slug',
-      options: {
-        source: 'title',
-        maxLength: 96,
-        isUnique: isUniqueLocale
-      },
-      validation: (Rule: Rule) => Rule.required(),
-      group: 'info'
+      group: 'content'
     },
     {
       name: 'body',
@@ -80,36 +50,90 @@ export default {
       group: 'content'
     },
     {
+      name: 'template',
+      title: 'Page template',
+      type: 'string',
+      options: {
+        list: [
+          'Artists',
+          'Events',
+          'Exhibitions',
+          'Index',
+          'News',
+          'Page',
+          'Videos',
+          'Visit Us'
+        ]
+      },
+      initialValue: 'Page',
+      validation: (Rule: Rule) => Rule.required(),
+      group: 'settings'
+    },
+    {
       name: 'mainImage',
       title: 'Main image',
-      type: 'captionImage',
-      description: "Only available for 'Page' type",
+      description: 'Should be a jpeg of 1440px along the longest edge, 500-600k is best.',
+      type: 'image',
       options: {
         hotspot: true
       },
-      group: 'content'
+      fields: [
+        {
+          name: 'caption',
+          type: 'string',
+          title: 'Caption',
+          description: 'Image caption (title of artwork)',
+          options: {
+            isHighlighted: true
+          }
+        }
+      ],
+      group: 'settings'
     },
     {
-      name: 'seoTitle',
-      title: 'SEO title',
-      type: 'string',
-      description:
-        'Displayed on Facebook and Twitter shares (max 60 characters).',
-      group: 'seo'
+      name: 'slug',
+      title: 'Slug',
+      description: 'Click Generate.',
+      type: 'slug',
+      options: {
+        source: 'title',
+        maxLength: 96,
+        isUnique: isUniqueLocale
+      },
+      validation: (Rule: Rule) => [ Rule.required() ],
+      group: 'settings'
     },
     {
-      name: 'seoDescription',
-      title: 'SEO description',
+      name: 'ogImage',
+      title: 'Social image',
+      type: 'image',
+      description: 'Image for Facebook and Twitter share (1200 x 630px).',
+      options: {
+        hotspot: true
+      },
+      group: 'social'
+    },
+    {
+      name: 'ogTitle',
+      title: 'Social title',
       type: 'string',
-      description:
-        'Displayed on Facebook and Twitter shares (max 65 characters).',
-      group: 'seo'
+      inputComponent: StringWithLimits,
+      // validation: (Rule: Rule) => Rule.max(70).warning("Some text won't be visible."),
+      group: 'social'
+    },
+    {
+      name: 'ogDescription',
+      title: 'Social Description',
+      type: 'text',
+      rows: 3,
+      description: 'Recommended: 125 characters.',
+      group: 'social'
     }
   ],
 
   preview: {
     select: {
-      title: 'title.en',
+      title: 'title',
       media: 'mainImage'
     }
   }

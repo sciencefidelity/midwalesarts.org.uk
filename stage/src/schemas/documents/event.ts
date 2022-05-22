@@ -1,4 +1,5 @@
 import { i18n } from '../../languages'
+import { StringWithLimits } from '../../components/StringWithLimits'
 import { isUniqueLocale } from '../../lib/isUniqueLocale'
 import { Rule } from '@sanity/types'
 import { Date } from '../../components/twemoji'
@@ -15,16 +16,16 @@ export default {
   },
   groups: [
     {
-      name: 'info',
-      title: 'Info'
-    },
-    {
       name: 'content',
       title: 'Content'
     },
     {
-      name: 'seo',
-      title: 'SEO'
+      name: 'settings',
+      title: 'Settings'
+    },
+    {
+      name: 'social',
+      title: 'Social'
     }
   ],
   fields: [
@@ -33,18 +34,6 @@ export default {
       title: 'Title',
       type: 'string',
       group: 'content'
-    },
-    {
-      name: 'slug',
-      title: 'Slug',
-      description: 'Click Generate.',
-      type: 'slug',
-      options: {
-        source: 'title',
-        maxLength: 96,
-        isUnique: isUniqueLocale
-      },
-      validation: (Rule: Rule) => [ Rule.required() ]
     },
     {
       name: 'date',
@@ -56,13 +45,6 @@ export default {
         timeStep: 15,
         calendarTodayLabel: 'Today'
       },
-      group: 'content'
-    },
-    {
-      name: 'briteLink',
-      title: 'Eventbrite link',
-      description: 'Leave blank if the event is not on Eventbrite.',
-      type: 'url',
       group: 'content'
     },
     {
@@ -80,29 +62,59 @@ export default {
       options: {
         hotspot: true
       },
-      group: 'content'
+      group: 'settings'
     },
     {
-      name: 'seoTitle',
-      title: 'SEO title',
-      type: 'localeString',
-      description:
-        'Displayed on Facebook and Twitter shares (max 60 characters).',
-      group: 'seo'
+      name: 'slug',
+      title: 'Slug',
+      description: 'Click Generate.',
+      type: 'slug',
+      options: {
+        source: 'title',
+        maxLength: 96,
+        isUnique: isUniqueLocale
+      },
+      // validation: (Rule: Rule) => Rule.required(),
+      group: 'settings'
     },
     {
-      name: 'seoDescription',
-      title: 'SEO description',
-      type: 'localeString',
-      description:
-        'Displayed on Facebook and Twitter shares (max 65 characters).',
-      group: 'seo'
+      name: 'briteLink',
+      title: 'Eventbrite link',
+      description: 'Leave blank if the event is not on Eventbrite.',
+      type: 'url',
+      group: 'settings'
+    },
+    {
+      name: 'ogImage',
+      title: 'Social image',
+      description: 'Image for Facebook and Twitter share (1200 x 630px).',
+      type: 'image',
+      options: {
+        hotspot: true
+      },
+      group: 'social'
+    },
+    {
+      name: 'ogTitle',
+      title: 'Social title',
+      type: 'string',
+      inputComponent: StringWithLimits,
+      validation: (Rule: Rule) => Rule.max(70).warning("Some text won't be visible."),
+      group: 'social'
+    },
+    {
+      name: 'ogDescription',
+      title: 'Social Description',
+      type: 'text',
+      rows: 3,
+      description: 'Recommended: 125 characters.',
+      group: 'social'
     }
   ],
 
   preview: {
     select: {
-      title: 'title.en',
+      title: 'title',
       media: 'mainImage'
     }
   }
