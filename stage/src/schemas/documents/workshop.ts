@@ -1,23 +1,11 @@
-import { i18n } from '../../languages'
-import { isUniqueLocale } from '../../lib/isUniqueLocale'
-import { Rule } from '@sanity/types'
-import { Date } from '../../components/twemoji'
+import { Amphora } from '../../components/twemoji'
 
 export default {
-  name: 'event',
-  title: 'Event',
+  name: 'workshop',
+  title: 'Workshop',
   type: 'document',
-  icon: Date,
-  i18n,
-  initialValue: {
-    __i18n_lang: i18n.base,
-    __i18n_refs: []
-  },
+  icon: Amphora,
   groups: [
-    {
-      name: 'info',
-      title: 'Info'
-    },
     {
       name: 'content',
       title: 'Content'
@@ -37,32 +25,31 @@ export default {
     {
       name: 'slug',
       title: 'Slug',
-      description: 'Click Generate.',
       type: 'slug',
       options: {
         source: 'title',
-        maxLength: 96,
-        isUnique: isUniqueLocale
-      },
-      validation: (Rule: Rule) => [ Rule.required() ]
-    },
-    {
-      name: 'date',
-      title: 'Date and time',
-      type: 'datetime',
-      options: {
-        dateFormat: 'dddd, MMMM Do YYYY,',
-        timeFormat: 'h:mm a',
-        timeStep: 15,
-        calendarTodayLabel: 'Today'
+        maxLength: 96
       },
       group: 'content'
     },
     {
-      name: 'briteLink',
-      title: 'Eventbrite link',
-      description: 'Leave blank if the event is not on Eventbrite.',
-      type: 'url',
+      name: 'dateStart',
+      title: 'Start date',
+      type: 'datetime',
+      options: {
+        dateFormat: 'dddd, MMMM Do YYYY',
+        timeFormat: ''
+      },
+      group: 'content'
+    },
+    {
+      name: 'dateEnd',
+      title: 'End date',
+      type: 'datetime',
+      options: {
+        dateFormat: 'dddd, MMMM Do YYYY',
+        timeFormat: ''
+      },
       group: 'content'
     },
     {
@@ -74,18 +61,27 @@ export default {
     {
       name: 'mainImage',
       title: 'Main image',
-      description:
-        'Images should be jpeg of 1440px along the longest edge, 500-600k is best.',
+      description: 'Should be a jpeg of 1440px along the longest edge, 500-600k is best.',
       type: 'image',
       options: {
         hotspot: true
       },
-      group: 'content'
+      fields: [
+        {
+          name: 'caption',
+          type: 'string',
+          title: 'Caption',
+          description: 'Image caption',
+          options: {
+            isHighlighted: true
+          }
+        }
+      ]
     },
     {
       name: 'seoTitle',
       title: 'SEO title',
-      type: 'localeString',
+      type: 'string',
       description:
         'Displayed on Facebook and Twitter shares (max 60 characters).',
       group: 'seo'
@@ -93,7 +89,7 @@ export default {
     {
       name: 'seoDescription',
       title: 'SEO description',
-      type: 'localeString',
+      type: 'string',
       description:
         'Displayed on Facebook and Twitter shares (max 65 characters).',
       group: 'seo'
@@ -107,4 +103,3 @@ export default {
     }
   }
 }
-
