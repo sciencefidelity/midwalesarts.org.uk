@@ -1,14 +1,15 @@
 import { i18n } from '../../languages'
 import { isUniqueLocale } from '../../lib/isUniqueLocale'
 import { StringWithLimits } from '../../components/StringWithLimits'
+import { TimeInput } from '../../components/TimeInput'
 import { Rule } from '@sanity/types'
-import { Amphora } from '../../components/twemoji'
+import { Clipboard } from '../../components/twemoji'
 
 export default {
   name: 'workshop',
   title: 'Workshop',
   type: 'document',
-  icon: Amphora,
+  icon: Clipboard,
   i18n,
   initialValue: {
     __i18n_lang: i18n.base,
@@ -71,6 +72,16 @@ export default {
       group: 'settings'
     },
     {
+      name: 'mainImage',
+      title: 'Main image',
+      description: 'Should be a jpeg of 1440px along the longest edge, 500-600k is best.',
+      type: 'image',
+      options: {
+        hotspot: true
+      },
+      group: 'settings'
+    },
+    {
       name: 'slug',
       title: 'Slug',
       description: 'Click Generate.',
@@ -81,16 +92,6 @@ export default {
         isUnique: isUniqueLocale
       },
       // validation: (Rule: Rule) => Rule.required(),
-      group: 'settings'
-    },
-    {
-      name: 'mainImage',
-      title: 'Main image',
-      description: 'Should be a jpeg of 1440px along the longest edge, 500-600k is best.',
-      type: 'image',
-      options: {
-        hotspot: true
-      },
       group: 'settings'
     },
     {
@@ -123,8 +124,18 @@ export default {
 
   preview: {
     select: {
-      title: 'title.en',
+      title: 'title',
+      day: 'day',
+      startTime: 'startTime',
+      endTime: 'endTime',
       media: 'mainImage'
+    },
+    prepare: ({ day, endTime, media, startTime, title }) => {
+      return {
+        title,
+        subtitle: `${day}s – ${startTime} to ${endTime}`,
+        media
+      }
     }
   }
 }

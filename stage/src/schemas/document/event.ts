@@ -1,14 +1,15 @@
 import { i18n } from '../../languages'
+import moment from 'moment'
 import { StringWithLimits } from '../../components/StringWithLimits'
 import { isUniqueLocale } from '../../lib/isUniqueLocale'
 import { Rule } from '@sanity/types'
-import { Date } from '../../components/twemoji'
+import { StudioMicrophone } from '../../components/twemoji'
 
 export default {
   name: 'event',
   title: 'Event',
   type: 'document',
-  icon: Date,
+  icon: StudioMicrophone,
   i18n,
   initialValue: {
     __i18n_lang: i18n.base,
@@ -115,7 +116,17 @@ export default {
   preview: {
     select: {
       title: 'title',
+      subtitle: 'date',
       media: 'mainImage'
+    },
+    prepare: ({ title, subtitle, media }) => {
+      return {
+        title: title,
+        subtitle: `${
+          subtitle ? moment(subtitle).format('ddd Do MMM YYYY') : 'TBA'
+        }`,
+        media: media
+      }
     }
   }
 }

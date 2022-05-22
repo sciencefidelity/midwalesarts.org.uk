@@ -1,4 +1,5 @@
 import { i18n } from '../../languages'
+import moment from 'moment'
 import { StringWithLimits } from '../../components/StringWithLimits'
 import { isUniqueLocale } from '../../lib/isUniqueLocale'
 import { Rule } from '@sanity/types'
@@ -51,7 +52,8 @@ export default {
       type: 'datetime',
       options: {
         dateFormat: 'dddd, MMMM Do YYYY',
-        timeFormat: ''
+        timeFormat: '',
+        timeStep: 15
       },
       group: 'content'
     },
@@ -126,7 +128,18 @@ export default {
   preview: {
     select: {
       title: 'title',
+      dateStart: 'dateStart',
+      dateEnd: 'dateEnd',
       media: 'mainImage'
+    },
+    prepare: ({ dateEnd, dateStart, media, title }) => {
+      return {
+        title: title,
+        subtitle: `${
+          dateStart ? moment(dateStart).format('Do MMM') + ' – ' + moment(dateEnd).format('Do MMM YYYY') : 'TBA'
+        }`,
+        media: media
+      }
     }
   }
 }
