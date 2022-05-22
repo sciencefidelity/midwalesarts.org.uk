@@ -8,7 +8,7 @@ export default {
   fields: [
     {
       name: 'primary',
-      title: 'Primary navigation',
+      title: 'Main menu',
       type: 'array',
       of: [
         {

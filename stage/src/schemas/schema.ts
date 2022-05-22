@@ -2,24 +2,32 @@ import createSchema from 'part:@sanity/base/schema-creator'
 import schemaTypes from 'all:part:@sanity/base/schema-type'
 
 // objects
-import localeString from './objects/localeString'
-import localeText from './objects/localeText'
-import portableText from './objects/portableText'
+import address from './object/address'
+import portableText from './object/portableText'
+import social from './object/social'
+
+// locale
+import localeAddress from './object/localeAddress'
+import localeEmail from './object/localeEmail'
+import localeString from './object/localeString'
+import localeText from './object/localeText'
 
 // documement translation
-import artist from './documents/artist'
-import event from './documents/event'
-import exhibition from './documents/exhibition'
-import navigation from './fields/navigation'
-import page from './documents/page'
-import post from './documents/post'
-import video from './documents/video'
-import workshop from './documents/workshop'
+import artist from './document/artist'
+import event from './document/event'
+import exhibition from './document/exhibition'
+import page from './document/page'
+import post from './document/post'
+import video from './document/video'
+import workshop from './document/workshop'
 
 // field translation
-import artwork from './fields/artwork'
-import labelGroup from './fields/labelGroup'
-import settings from './fields/settings'
+import artwork from './field/artwork'
+import feedback from './field/feedback'
+import labelGroup from './field/labelGroup'
+import navigation from './field/navigation'
+import organisation from './field/organisation'
+import settings from './field/settings'
 
 // taxonomy
 import tag from './taxonomy/tag'
@@ -30,27 +38,34 @@ export default createSchema({
   types: schemaTypes.concat([
 
     // objects
+    address,
+    portableText,
+    social,
+
+    // locale
+    localeAddress,
+    localeEmail,
     localeString,
     localeText,
-    portableText,
 
     // documement translation
     artist,
+    discipline,
     event,
     exhibition,
     page,
     post,
+    tag,
     video,
     workshop,
 
     // field translation
     artwork,
+    feedback,
     labelGroup,
     navigation,
-    settings,
+    organisation,
+    settings
 
-    // taxonomy
-    discipline,
-    tag
   ])
 })

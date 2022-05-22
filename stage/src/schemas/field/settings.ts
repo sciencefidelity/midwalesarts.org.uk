@@ -54,13 +54,20 @@ export default {
       title: 'Social Description',
       type: 'localeText',
       group: 'social'
+    },
+    {
+      name: 'social',
+      title: 'Social links',
+      type: 'social',
+      description: 'URLs of your social profiles',
+      group: 'social'
     }
-
   ],
   preview: {
     select: {
       title: 'title.en',
-      subtitle: 'description.en'
+      subtitle: 'description.en',
+      media: 'ogImage'
     }
   }
 }
