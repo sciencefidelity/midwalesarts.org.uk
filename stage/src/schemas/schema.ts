@@ -9,10 +9,10 @@ import portableText from './objects/portableText'
 // documements
 import author from './documents/author'
 import event from './documents/event'
-import navigation from './documents/navigation'
+import navigation from './fields/navigation'
 import post from './documents/post'
 import page from './documents/page'
-import settings from './documents/settings'
+import settings from './fields/settings'
 
 // taxonomy
 import tag from './documents/tag'
@@ -25,15 +25,15 @@ export default createSchema({
     localeText,
     portableText,
 
-    // documements
+    // documement translation
     author,
     event,
-    navigation,
     post,
     page,
-    settings,
+    tag,
 
-    // taxonomy
-    tag
+    // field translation
+    navigation,
+    settings
   ])
 })
