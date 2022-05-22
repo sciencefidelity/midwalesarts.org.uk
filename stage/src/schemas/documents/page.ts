@@ -1,35 +1,24 @@
-import { i18n } from '../../languages'
 import { isUniqueLocale } from '../../lib/isUniqueLocale'
-import StringWithLimits from '../../components/StringWithLimits'
-import { Books } from '../../components/twemoji'
 import { Rule } from '@sanity/types'
+import { Books } from '../../components/twemoji'
 
 export default {
   name: 'page',
   title: 'Page',
   type: 'document',
   icon: Books,
-  i18n,
-  initialValue: {
-    __i18n_lang: i18n.base,
-    __i18n_refs: []
-  },
   groups: [
+    {
+      name: 'info',
+      title: 'Info'
+    },
     {
       name: 'content',
       title: 'Content'
     },
     {
-      name: 'settings',
-      title: 'Settings'
-    },
-    {
-      name: 'meta',
-      title: 'Meta'
-    },
-    {
-      name: 'social',
-      title: 'Social'
+      name: 'seo',
+      title: 'SEO'
     }
   ],
   fields: [
@@ -37,22 +26,39 @@ export default {
       name: 'title',
       title: 'Title',
       type: 'string',
-      group: 'content'
+      group: 'info'
     },
     {
-      name: 'image',
-      title: 'Feature image',
-      type: 'image',
+      name: 'subtitle',
+      title: 'Subtitle',
+      type: 'localeString',
+      description: "Not available for 'Page' type",
+      group: 'info'
+    },
+    {
+      name: 'template',
+      title: 'Template',
+      type: 'array',
+      of: [{ type: 'string' }],
       options: {
-        hotspot: true
+        layout: 'grid',
+        list: [
+          { title: 'Page', value: 'page' },
+          { title: 'Home', value: 'index' },
+          { title: 'News', value: 'news' },
+          { title: 'Artists', value: 'artists' },
+          { title: 'Events', value: 'events' },
+          { title: 'Exhibitions', value: 'exhibitions' },
+          { title: 'Videos', value: 'videos' },
+          { title: 'Visit Us', value: 'visit-us' }
+        ]
       },
-      group: 'content'
-    },
-    {
-      name: 'body',
-      title: 'Body',
-      type: 'portableText',
-      group: 'content'
+      initialValue: {
+        title: 'Page',
+        value: 'page'
+      },
+      validation: (Rule: Rule) => Rule.required(),
+      group: 'info'
     },
     {
       name: 'slug',
@@ -63,70 +69,49 @@ export default {
         maxLength: 96,
         isUnique: isUniqueLocale
       },
+      validation: (Rule: Rule) => Rule.required(),
+      group: 'info'
+    },
+    {
+      name: 'body',
+      title: 'Body',
+      type: 'portableText',
+      description: "Only available for 'Page' type",
       group: 'content'
     },
     {
-      name: 'mataTitle',
-      title: 'Meta Title',
-      type: 'string',
-      inputComponent: StringWithLimits,
-      validation: (Rule: Rule) => Rule.max(70).warning("Some text won't be visible."),
-      group: 'meta'
-    },
-    {
-      name: 'mataDescription',
-      title: 'Meta Description',
-      type: 'text',
-      rows: 3,
-      description: 'Recommended: 156 characters.', // You’ve used 0
-      validation: (Rule: Rule) => Rule.max(156).warning("Some text won't be visible."),
-      group: 'meta'
-    },
-    {
-      name: 'canonicalURL',
-      title: 'Canonical URL',
-      type: 'url',
-      group: 'meta'
-    },
-    {
-      name: 'ogImage',
-      title: 'Social image',
-      type: 'image',
+      name: 'mainImage',
+      title: 'Main image',
+      type: 'captionImage',
+      description: "Only available for 'Page' type",
       options: {
         hotspot: true
       },
-      group: 'social'
+      group: 'content'
     },
     {
-      name: 'ogTitle',
-      title: 'Social title',
+      name: 'seoTitle',
+      title: 'SEO title',
       type: 'string',
-      inputComponent: StringWithLimits,
-      validation: (Rule: Rule) => Rule.max(70).warning("Some text won't be visible."),
-      group: 'social'
+      description:
+        'Displayed on Facebook and Twitter shares (max 60 characters).',
+      group: 'seo'
     },
     {
-      name: 'ogDescription',
-      title: 'Social Description',
-      type: 'text',
-      rows: 3,
-      description: 'Recommended: 125 characters.', // You’ve used 0
-      group: 'social'
+      name: 'seoDescription',
+      title: 'SEO description',
+      type: 'string',
+      description:
+        'Displayed on Facebook and Twitter shares (max 65 characters).',
+      group: 'seo'
     }
   ],
 
   preview: {
     select: {
-      title: 'title',
-      author: 'author.name',
+      title: 'title.en',
       media: 'mainImage'
-    },
-    prepare: ({ title, author, media }) => {
-      return {
-        title,
-        subtitle: author && `by ${author}`,
-        media
-      }
     }
   }
 }
+

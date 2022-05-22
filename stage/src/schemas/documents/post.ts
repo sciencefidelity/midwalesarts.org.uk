@@ -15,48 +15,33 @@ export default {
     __i18n_refs: [],
     publishedAt: new Date().toISOString()
   },
-  groups: [
-    {
-      name: 'content',
-      title: 'Content'
-    },
-    {
-      name: 'settings',
-      title: 'Settings'
-    },
-    {
-      name: 'meta',
-      title: 'Meta'
-    },
-    {
-      name: 'settings',
-      title: 'Settings'
-    },
-    {
-      name: 'social',
-      title: 'Social'
-    }
-  ],
   fields: [
     {
       name: 'title',
       title: 'Title',
-      type: 'string',
-      group: 'content'
-    },
-    {
-      name: 'image',
-      title: 'Feature image',
-      type: 'image',
-      options: {
-        hotspot: true
-      },
-      group: 'content'
+      type: 'string'
     },
     {
       name: 'body',
       title: 'Body',
       type: 'portableText'
+    },
+    {
+      name: 'tags',
+      title: 'Tags',
+      type: 'array',
+      of: [{ type: 'reference', to: { type: 'tag' } }]
+    },
+    {
+      name: 'publishedAt',
+      title: 'Published on',
+      type: 'datetime',
+      initialValue: new Date().toISOString(),
+      options: {
+        dateFormat: 'dddd, MMMM Do YYYY,',
+        timeFormat: 'h:mm a',
+        calendarTodayLabel: 'Today'
+      }
     },
     {
       name: 'slug',
@@ -67,64 +52,15 @@ export default {
         maxLength: 96,
         isUnique: isUniqueLocale
       },
-      group: 'settings'
+      validation: (Rule: Rule) => Rule.required()
     },
     {
-      name: 'author',
-      title: 'Author',
-      type: 'reference',
-      to: { type: 'author' },
+      name: 'image',
+      title: 'Image',
+      type: 'image',
       options: {
-        filter: ({ document }) => {
-          const { __i18n_lang } = document
-          return {
-            filter: `__i18n_lang == "${__i18n_lang}"`
-          }
-        }
+        hotspot: true
       }
-    },
-    {
-      name: 'tags',
-      title: 'Tags',
-      type: 'array',
-      of: [
-        {
-          type: 'reference',
-          to: { type: 'tag' },
-          options: {
-            filter: ({ document }) => {
-              const { __i18n_lang } = document
-              return {
-                filter: `__i18n_lang == "${__i18n_lang}"`
-              }
-            }
-          }
-        }
-      ],
-      group: 'settings'
-    },
-    {
-      name: 'publishedAt',
-      title: 'Published at',
-      type: 'datetime',
-      group: 'settings'
-    },
-    {
-      name: 'mataTitle',
-      title: 'Meta Title',
-      type: 'string',
-      inputComponent: StringWithLimits,
-      validation: (Rule: Rule) => Rule.max(70).warning("Some text won't be visible."),
-      group: 'meta'
-    },
-    {
-      name: 'mataDescription',
-      title: 'Meta Description',
-      type: 'text',
-      rows: 3,
-      description: 'Recommended: 156 characters.', // You’ve used 0
-      validation: (Rule: Rule) => Rule.max(156).warning("Some text won't be visible."),
-      group: 'meta'
     },
     {
       name: 'canonicalURL',
