@@ -1,17 +1,190 @@
 import S from '@sanity/desk-tool/structure-builder'
 import * as Structure from '@sanity/document-internationalization/lib/structure'
-import { EarthAfrica } from '../components/twemoji'
+import {
+  Art,
+  Artist,
+  Books,
+  CardFileBox,
+  Clipboard,
+  Compass,
+  Date,
+  Dolls,
+  EarthAfrica,
+  FilmProjector,
+  FramedPicture,
+  Gear,
+  Label,
+  Paintbrush,
+  PostOffice,
+  SpeechBalloon,
+  StudioMicrophone,
+  WorldMap,
+  WritingHand
+} from '../components/twemoji'
 
 const items = [
-  ...S.documentTypeListItems(),
+  S.listItem()
+    .title('Event')
+    .icon(Date)
+    .child(
+      S.list()
+        .title('Events')
+        .items([
+          S.listItem()
+            .title('Event')
+            .icon(StudioMicrophone)
+            .child(
+              S.documentTypeList('event')
+                .title('Event')
+                .filter('_type == "event" && __i18n_lang != "cy"')
+            ),
+          S.listItem()
+            .title('Exhibition')
+            .icon(FramedPicture)
+            .child(
+              S.documentTypeList('exhibition')
+                .title('Exhibition')
+                .filter('_type == "exhibition" && __i18n_lang != "cy"')
+            ),
+          S.listItem()
+            .title('Workshop')
+            .icon(Clipboard)
+            .child(
+              S.documentTypeList('workshop')
+                .title('Workshop')
+                .filter('_type == "workshop" && __i18n_lang != "cy"')
+            )
+        ])
+    ),
+  S.listItem()
+    .title('Post')
+    .icon(WritingHand)
+    .child(
+      S.documentTypeList('post')
+        .title('Post')
+        .filter('_type == "post" && __i18n_lang != "cy"')
+    ),
+  S.listItem()
+    .title('Page')
+    .icon(Books)
+    .child(
+      S.documentTypeList('page')
+        .title('Page')
+        .filter('_type == "page" && __i18n_lang != "cy"')
+    ),
+  S.listItem()
+    .title('Artist')
+    .icon(Artist)
+    .child(
+      S.documentTypeList('artist')
+        .title('Artist')
+        .filter('_type == "artist" && __i18n_lang != "cy"')
+    ),
+  S.listItem()
+    .title('Artwork')
+    .icon(Art)
+    .child(
+      S.documentTypeList('artwork').title('Artwork')
+    ),
+  S.listItem()
+    .title('Video')
+    .icon(FilmProjector)
+    .child(
+      S.documentTypeList('video')
+        .title('Video')
+        .filter('_type == "video" && __i18n_lang != "cy"')
+    ),
+  S.divider(),
+  S.listItem()
+    .title('Friends')
+    .icon(Dolls)
+    .child(
+      S.list()
+        .title('Friends')
+        .items([
+          S.listItem()
+            .title('Feedback')
+            .icon(SpeechBalloon)
+            .child(
+              S.document().schemaType('feedback').documentId('feedback')
+            )
+        ])
+    ),
+  S.listItem()
+  .title('Taxonomy')
+  .icon(WorldMap)
+  .child(
+    S.list()
+      .title('Taxonomy')
+      .items([
+        S.listItem()
+          .title('Discipline')
+          .icon(Paintbrush)
+          .child(
+            S.documentTypeList('discipline').title('Discipline')
+          ),
+        S.listItem()
+          .title('Tag')
+          .icon(Label)
+          .child(
+            S.documentTypeList('tag').title('Tag')
+          ),
+      ])
+  ),
+  S.divider(),
+  S.listItem()
+    .title('Settings')
+    .icon(Gear)
+    .child(
+      S.list()
+        .title('Settings')
+        .items([
+          S.listItem()
+            .title('Settings')
+            .icon(Gear)
+            .child(S.document().schemaType('settings').documentId('settings')),
+          S.listItem()
+            .title('Navigation')
+            .icon(Compass)
+            .child(
+              S.document().schemaType('navigation').documentId('navigation')
+            ),
+          S.listItem()
+            .title('Company')
+            .icon(PostOffice)
+            .child(S.document().schemaType('company').documentId('company')),
+          S.listItem()
+            .title('Label Group')
+            .icon(CardFileBox)
+            .child(
+              S.document().schemaType('labelGroup').documentId('labelGroup')
+            )
+        ])
+    ),
   S.divider(),
   Structure.getMaintenanceListItem().icon(EarthAfrica).serialize(),
+  ...S.documentTypeListItems().filter(
+  item =>
+    ![
+      'artist',
+      'artwork',
+      'discipline',
+      'event',
+      'exhibition',
+      'feedback',
+      'labelGroup',
+      'navigation',
+      'organisation',
+      'page',
+      'post',
+      'settings',
+      'tag',
+      'video',
+      'workshop'
+    ].includes(item.getId())
+  )
 ]
 
 export default () => {
-  return (
-    S.list()
-      .title('Content')
-      .items(items)
-  )
+  return S.list().title('Content').items(items)
 }

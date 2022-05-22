@@ -879,6 +879,31 @@ export const Label = () => (
   </svg>
 )
 
+export const Microphone = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+    role="img"
+    width="1em"
+    height="1em"
+    preserveAspectRatio="xMidYMid meet"
+    viewBox="0 0 36 36"
+  >
+    <path
+      fill="#8899A6"
+      d="M35.999 11.917a6.884 6.884 0 1 1-13.769.001A6.884 6.884 0 0 1 36 11.917z"
+    ></path>
+    <path
+      fill="#31373D"
+      d="M32.81 18.568a.86.86 0 0 1-1.217 0L22.466 9.44a.86.86 0 0 1 0-1.217l1.217-1.217a.86.86 0 0 1 1.217 0l9.127 9.128a.86.86 0 0 1 0 1.217l-1.217 1.217zm-6.071.136l-4.325-4.327c-.778-.779-1.995-.733-2.719.101l-9.158 10.574c-1.219 1.408-1.461 3.354-.711 4.73l-4.911 4.912l1.409 1.409l4.877-4.877c1.381.84 3.411.609 4.862-.648l10.575-9.157c.834-.723.881-1.94.101-2.717z"
+    ></path>
+    <path
+      fill="#55ACEE"
+      d="M4 6v8.122A4.292 4.292 0 0 0 3 14c-1.657 0-3 .896-3 2s1.343 2 3 2s3-.896 3-2V9.889l5 2.222v5.011A4.292 4.292 0 0 0 10 17c-1.657 0-3 .896-3 2s1.343 2 3 2s2.999-.896 3-2v-9L4 6zm14-5v8.123A4.292 4.292 0 0 0 17 9c-1.657 0-3 .895-3 2c0 1.104 1.343 2 3 2c1.656 0 3-.896 3-2V1h-2z"
+    ></path>
+  </svg>
+)
+
 export const MobilePhone = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -1064,6 +1089,50 @@ export const SpeechBalloon = () => (
     <circle cx="18" cy="15" r="2" fill="#2A6797"></circle>
     <circle cx="26" cy="15" r="2" fill="#2A6797"></circle>
     <circle cx="10" cy="15" r="2" fill="#2A6797"></circle>
+  </svg>
+)
+
+export const StudioMicrophone = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+    role="img"
+    width="1em"
+    height="1em"
+    preserveAspectRatio="xMidYMid meet"
+    viewBox="0 0 36 36"
+  >
+    <path
+      fill="#292F33"
+      d="M6 15h24v2H6zm15 15c0 2.208-.792 4-3 4c-2.209 0-3-1.792-3-4s.791-2 3-2c2.208 0 3-.208 3 2z"
+    ></path>
+    <path
+      fill="#66757F"
+      d="M18 31c-6.627 0-10 1.343-10 3v2h20v-2c0-1.657-3.373-3-10-3z"
+    ></path>
+    <path fill="#99AAB5" d="M18 0a9 9 0 0 0-9 9v7h18V9a9 9 0 0 0-9-9z"></path>
+    <g fill="#292F33">
+      <circle cx="15.5" cy="2.5" r="1.5"></circle>
+      <circle cx="20.5" cy="2.5" r="1.5"></circle>
+      <circle cx="17.5" cy="6.5" r="1.5"></circle>
+      <circle cx="22.5" cy="6.5" r="1.5"></circle>
+      <circle cx="12.5" cy="6.5" r="1.5"></circle>
+      <circle cx="15.5" cy="10.5" r="1.5"></circle>
+      <circle cx="10.5" cy="10.5" r="1.5"></circle>
+      <circle cx="20.5" cy="10.5" r="1.5"></circle>
+      <circle cx="25.5" cy="10.5" r="1.5"></circle>
+      <circle cx="17.5" cy="14.5" r="1.5"></circle>
+      <circle cx="22.5" cy="14.5" r="1.5"></circle>
+      <circle cx="12.5" cy="14.5" r="1.5"></circle>
+    </g>
+    <path
+      fill="#66757F"
+      d="M9 15.062V17c0 4.971 4.029 9 9 9s9-4.029 9-9v-1.938H9z"
+    ></path>
+    <path
+      fill="#66757F"
+      d="M30 14a1 1 0 0 0-1 1v2c0 6.074-4.925 11-11 11S7 23.074 7 17v-2a1 1 0 0 0-2 0v2c0 7.18 5.82 13 13 13s13-5.82 13-13v-2a1 1 0 0 0-1-1z"
+    ></path>
   </svg>
 )
 
