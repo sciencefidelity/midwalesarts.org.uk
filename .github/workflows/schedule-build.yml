@@ -1,0 +1,13 @@
+name: Scheduled Build
+
+on:
+  schedule:
+  # Runs at 1am every day
+    - cron: "0 1 * * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build hook request
+        run: curl -X POST -d {} ${{ secrets.BUILD_HOOK }}
