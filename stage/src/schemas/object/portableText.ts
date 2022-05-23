@@ -79,21 +79,6 @@ export default {
             }
           },
           {
-            title: 'Target',
-            name: 'target',
-            type: 'object',
-            fields: [
-              {
-                name: 'target',
-                type: 'string'
-              }
-            ],
-            blockEditor: {
-              icon: RiHashtag,
-              render: linkRender
-            }
-          },
-          {
             title: 'Email',
             name: 'mailto',
             type: 'object',
