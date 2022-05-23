@@ -13,13 +13,11 @@ export default {
       title: 'English',
       name: 'en',
       type: 'text',
-      rows: 3
     },
     {
       title: 'Welsh',
       name: 'cy',
       type: 'text',
-      rows: 3
     }
   ]
 }

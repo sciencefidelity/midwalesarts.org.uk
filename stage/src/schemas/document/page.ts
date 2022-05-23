@@ -82,9 +82,9 @@ export default {
       options: {
         source: 'title',
         maxLength: 96,
-        isUnique: isUniqueLocale
+        // isUnique: isUniqueLocale
       },
-      // validation: (Rule: Rule) => Rule.required(),
+      validation: (Rule: Rule) => Rule.required(),
       hidden: ({ document }) => document?.template === 'Home',
       group: 'settings'
     },
@@ -331,6 +331,7 @@ export default {
       options: {
         hotspot: true
       },
+      hidden: ({ document }) => document?.template === 'Home',
       group: 'social'
     },
     {
@@ -340,6 +341,7 @@ export default {
       // inputComponent: StringWithLimits,
       description: 'Recommended: 70 characters.',
       validation: (Rule: Rule) => Rule.max(70).warning("Some text won't be visible."),
+      hidden: ({ document }) => document?.template === 'Home',
       group: 'social'
     },
     {
@@ -348,7 +350,8 @@ export default {
       type: 'text',
       rows: 3,
       description: 'Recommended: 125 characters.',
-      validation: (Rule: Rule) => Rule.max(70).warning("Some text won't be visible."),
+      validation: (Rule: Rule) => Rule.max(125).warning("Some text won't be visible."),
+      hidden: ({ document }) => document?.template === 'Home',
       group: 'social'
     }
   ],

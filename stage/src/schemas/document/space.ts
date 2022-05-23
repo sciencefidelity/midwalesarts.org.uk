@@ -1,6 +1,6 @@
 import { i18n } from '../../languages'
-import { isUniqueLocale } from '../../lib/isUniqueLocale'
-// import { Rule } from '@sanity/types'
+// import { isUniqueLocale } from '../../lib/isUniqueLocale'
+import { Rule } from '@sanity/types'
 import { ClassicalBuilding } from '../../components/twemoji'
 
 export default {
@@ -32,9 +32,9 @@ export default {
       options: {
         source: 'title',
         maxLength: 96,
-        isUnique: isUniqueLocale
+        // isUnique: isUniqueLocale
       },
-      // validation: (Rule: Rule) => Rule.required(),
+      validation: (Rule: Rule) => Rule.required(),
     },
     {
       name: 'mainImage',
@@ -48,7 +48,7 @@ export default {
 
   preview: {
     select: {
-      title: 'title.en',
+      title: 'title',
       media: 'mainImage'
     }
   }
