@@ -5,6 +5,7 @@ import schemaTypes from 'all:part:@sanity/base/schema-type'
 import address from './object/address'
 import portableText from './object/portableText'
 import social from './object/social'
+import youtube from './object/youtube'
 
 // locale
 import localeAddress from './object/localeAddress'
@@ -42,6 +43,7 @@ export default createSchema({
     address,
     portableText,
     social,
+    youtube,
 
     // locale
     localeAddress,

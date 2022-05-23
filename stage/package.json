@@ -29,6 +29,7 @@
     "@sanity/document-internationalization": "^0.3.2",
     "@sanity/language-filter": "^2.29.8",
     "@sanity/vision": "^2.30.0",
+    "get-youtube-id": "^1.0.1",
     "prop-types": "^15.7",
     "react": "^17.0",
     "react-dom": "^17.0",
