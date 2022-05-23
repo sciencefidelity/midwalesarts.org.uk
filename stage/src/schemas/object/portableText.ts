@@ -1,3 +1,7 @@
+import { emailRender, linkRender } from '../../components/textComponents'
+import { MdOutlineAddLink, MdOutlineAlternateEmail } from 'react-icons/md'
+import { RiExternalLinkLine, RiHashtag } from 'react-icons/ri'
+
 export default {
   title: 'Rich Text',
   name: 'portableText',
@@ -6,6 +10,7 @@ export default {
     {
       title: 'Block',
       type: 'block',
+      options: { spellCheck: true },
       styles: [
         { title: 'Normal', value: 'normal' },
         { title: 'H1', value: 'h1' },
@@ -22,16 +27,86 @@ export default {
         ],
         annotations: [
           {
+            title: 'Internal link',
+            name: 'internalLink',
+            type: 'object',
+            fields: [
+              {
+                name: 'item',
+                type: 'reference',
+                to: [
+                  { type: 'artist' },
+                  { type: 'event' },
+                  { type: 'exhibition' },
+                  { type: 'page' },
+                  { type: 'post' },
+                  { type: 'video' },
+                  { type: 'workshop' }
+                ],
+                options: {
+                  filter: ({ document }) => {
+                    const { __i18n_lang } = document
+                    return {
+                      filter: `__i18n_lang == '${__i18n_lang}'`
+                    }
+                  }
+                }
+              }
+            ],
+            blockEditor: {
+              icon: MdOutlineAddLink,
+              render: linkRender
+            }
+          },
+          {
             title: 'URL',
             name: 'link',
             type: 'object',
             fields: [
               {
-                title: 'URL',
                 name: 'href',
                 type: 'url'
+              },
+              {
+                title: 'Open in a new window',
+                name: 'blank',
+                type: 'boolean',
+                initialValue: true
               }
-            ]
+            ],
+            blockEditor: {
+              icon: RiExternalLinkLine
+            }
+          },
+          {
+            title: 'Target',
+            name: 'target',
+            type: 'object',
+            fields: [
+              {
+                name: 'target',
+                type: 'string'
+              }
+            ],
+            blockEditor: {
+              icon: RiHashtag,
+              render: linkRender
+            }
+          },
+          {
+            title: 'Email',
+            name: 'mailto',
+            type: 'object',
+            fields: [
+              {
+                name: 'mailto',
+                type: 'email'
+              }
+            ],
+            blockEditor: {
+              icon: MdOutlineAlternateEmail,
+              render: emailRender
+            }
           }
         ]
       }
@@ -39,6 +114,9 @@ export default {
     {
       type: 'image',
       options: { hotspot: true }
-    }
+    },
+    {
+      type: 'youtube'
+    },
   ]
 }
