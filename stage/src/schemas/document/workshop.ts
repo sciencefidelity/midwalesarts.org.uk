@@ -1,7 +1,6 @@
 import { i18n } from '../../languages'
 import { isUniqueLocale } from '../../lib/isUniqueLocale'
-import { StringWithLimits } from '../../components/StringWithLimits'
-import { TimeInput } from '../../components/TimeInput'
+// import { TimeInput } from '../../components/TimeInput'
 import { Rule } from '@sanity/types'
 import { Clipboard } from '../../components/twemoji'
 
@@ -95,6 +94,13 @@ export default {
       group: 'settings'
     },
     {
+      name: 'briteLink',
+      title: 'Eventbrite link',
+      description: 'Leave blank if the event is not on Eventbrite.',
+      type: 'url',
+      group: 'settings'
+    },
+    {
       name: 'ogImage',
       title: 'Social image',
       description: 'Image for Facebook and Twitter share (1200 x 630px).',
@@ -108,7 +114,6 @@ export default {
       name: 'ogTitle',
       title: 'Social title',
       type: 'string',
-      inputComponent: StringWithLimits,
       validation: (Rule: Rule) => Rule.max(70).warning("Some text won't be visible."),
       group: 'social'
     },
@@ -118,6 +123,7 @@ export default {
       type: 'text',
       rows: 3,
       description: 'Recommended: 125 characters.',
+      validation: (Rule: Rule) => Rule.max(125).warning("Some text won't be visible."),
       group: 'social'
     }
   ],
