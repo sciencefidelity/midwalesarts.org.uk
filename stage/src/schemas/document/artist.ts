@@ -116,7 +116,21 @@ export default {
   preview: {
     select: {
       title: 'title',
+      discipline0: 'disciplines.0.title.en',
+      discipline1: 'disciplines.1.title.en',
+      discipline2: 'disciplines.2.title.en',
+      discipline3: 'disciplines.3.title.en',
       media: 'mainImage'
+    },
+    prepare: ({ title, discipline0, discipline1, discipline2, discipline3, media }) => {
+      const disciplines = [discipline0, discipline1, discipline2].filter(Boolean)
+      const subtitle = disciplines.length > 0 ? disciplines.join(', ') : ''
+      const hasMoreDisciplines = Boolean(discipline3)
+      return {
+        title,
+        subtitle: hasMoreDisciplines ? `${subtitle}…` : subtitle,
+        media
+      }
     }
   }
 }

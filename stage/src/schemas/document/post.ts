@@ -1,4 +1,5 @@
 import { i18n } from '../../languages'
+import moment from 'moment'
 import { isUniqueLocale } from '../../lib/isUniqueLocale'
 import { StringWithLimits } from '../../components/StringWithLimits'
 import { Rule } from '@sanity/types'
@@ -114,13 +115,13 @@ export default {
   preview: {
     select: {
       title: 'title',
-      author: 'author.title',
+      date: 'publishedAt',
       media: 'image'
     },
-    prepare: ({ title, author, media }) => {
+    prepare: ({ date, media, title }) => {
       return {
         title,
-        subtitle: author && `by ${author}`,
+        subtitle: moment(date).format('Do MMM YYYY'),
         media
       }
     }

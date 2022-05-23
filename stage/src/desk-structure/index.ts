@@ -150,9 +150,9 @@ const items = [
               S.document().schemaType('navigation').documentId('navigation')
             ),
           S.listItem()
-            .title('Company')
+            .title('Organisation')
             .icon(PostOffice)
-            .child(S.document().schemaType('company').documentId('company')),
+            .child(S.document().schemaType('organisation').documentId('organisation')),
           S.listItem()
             .title('Label Group')
             .icon(CardFileBox)

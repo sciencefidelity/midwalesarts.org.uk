@@ -4,12 +4,11 @@ export default {
   name: 'organisation',
   title: 'Organisation',
   type: 'document',
-  // __experimental_actions: [/*'create',*/ 'update', /*'delete',*/ 'publish'],
   icon: PostOffice,
   fields: [
     {
       name: 'title',
-      title: 'Company name',
+      title: 'Organisation name',
       type: 'localeString'
     },
     {
@@ -26,6 +25,11 @@ export default {
       name: 'telephone',
       title: 'Telephone',
       type: 'string'
+    },
+    {
+      name: 'opening',
+      title: 'Opening times',
+      type: 'localeString'
     }
   ],
   preview: {

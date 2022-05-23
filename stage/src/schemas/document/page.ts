@@ -100,7 +100,7 @@ export default {
         maxLength: 96,
         isUnique: isUniqueLocale
       },
-      validation: (Rule: Rule) => [ Rule.required() ],
+      validation: (Rule: Rule) => Rule.required(),
       group: 'settings'
     },
     {
@@ -117,8 +117,9 @@ export default {
       name: 'ogTitle',
       title: 'Social title',
       type: 'string',
-      inputComponent: StringWithLimits,
-      // validation: (Rule: Rule) => Rule.max(70).warning("Some text won't be visible."),
+      // inputComponent: StringWithLimits,
+      description: 'Recommended: 70 characters.',
+      validation: (Rule: Rule) => Rule.max(70).warning("Some text won't be visible."),
       group: 'social'
     },
     {
@@ -127,6 +128,7 @@ export default {
       type: 'text',
       rows: 3,
       description: 'Recommended: 125 characters.',
+      validation: (Rule: Rule) => Rule.max(70).warning("Some text won't be visible."),
       group: 'social'
     }
   ],
@@ -134,7 +136,15 @@ export default {
   preview: {
     select: {
       title: 'title',
+      template: 'template',
       media: 'mainImage'
+    },
+    prepare: ({ media, template, title }) => {
+      return {
+        title: title,
+        subtitle: `Template: ${template}`,
+        media: media
+      }
     }
   }
 }
