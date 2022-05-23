@@ -6,6 +6,7 @@ import {
   Books,
   CardFileBox,
   Clipboard,
+  ClassicalBuilding,
   Compass,
   Date,
   Dolls,
@@ -96,6 +97,14 @@ const items = [
     ),
   S.divider(),
   S.listItem()
+    .title('Space')
+    .icon(ClassicalBuilding)
+    .child(
+      S.documentTypeList('space')
+        .title('Space')
+        .filter('_type == "space" && __i18n_lang != "cy"')
+    ),
+  S.listItem()
     .title('Friends')
     .icon(Dolls)
     .child(
@@ -178,6 +187,7 @@ const items = [
       'page',
       'post',
       'settings',
+      'space',
       'tag',
       'video',
       'workshop'

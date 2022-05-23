@@ -18,6 +18,7 @@ import event from './document/event'
 import exhibition from './document/exhibition'
 import page from './document/page'
 import post from './document/post'
+import space from './document/space'
 import video from './document/video'
 import workshop from './document/workshop'
 
@@ -55,6 +56,7 @@ export default createSchema({
     exhibition,
     page,
     post,
+    space,
     tag,
     video,
     workshop,

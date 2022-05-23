@@ -1,7 +1,6 @@
 import { i18n } from '../../languages'
 import moment from 'moment'
 import { isUniqueLocale } from '../../lib/isUniqueLocale'
-import { StringWithLimits } from '../../components/StringWithLimits'
 import { Rule } from '@sanity/types'
 import { WritingHand } from '../../components/twemoji'
 
@@ -14,7 +13,6 @@ export default {
   initialValue: {
     __i18n_lang: i18n.base,
     __i18n_refs: [],
-    publishedAt: new Date().toISOString()
   },
   groups: [
     {
@@ -97,7 +95,7 @@ export default {
       name: 'ogTitle',
       title: 'Social title',
       type: 'string',
-      inputComponent: StringWithLimits,
+      // inputComponent: StringWithLimits,
       validation: (Rule: Rule) => Rule.max(70).warning("Some text won't be visible."),
       group: 'social'
     },
