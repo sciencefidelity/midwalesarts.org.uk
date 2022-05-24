@@ -1,6 +1,6 @@
 import { i18n } from '../../languages'
-import { StringWithLimits } from '../../components/StringWithLimits'
-import { isUniqueLocale } from '../../lib/isUniqueLocale'
+// import { StringWithLimits } from '../../components/StringWithLimits'
+// import { isUniqueLocale } from '../../lib/isUniqueLocale'
 import { Rule } from '@sanity/types'
 import { Books, Newspaper } from '../../components/twemoji'
 
@@ -63,7 +63,7 @@ export default {
       name: 'title',
       title: 'Title',
       type: 'string',
-      hidden: ({ document }) => document?.template === 'Home',
+      // hidden: ({ document }) => document?.template === 'Home',
       group: 'settings'
 
     },

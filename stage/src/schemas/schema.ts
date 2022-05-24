@@ -3,6 +3,7 @@ import schemaTypes from 'all:part:@sanity/base/schema-type'
 
 // objects
 import address from './object/address'
+import captionImage from './object/captionImage'
 import portableText from './object/portableText'
 import social from './object/social'
 import youtube from './object/youtube'
@@ -41,6 +42,7 @@ export default createSchema({
 
     // objects
     address,
+    captionImage,
     portableText,
     social,
     youtube,

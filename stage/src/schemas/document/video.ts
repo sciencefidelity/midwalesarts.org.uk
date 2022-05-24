@@ -1,6 +1,7 @@
 import { i18n } from '../../languages'
-import { isUniqueLocale } from '../../lib/isUniqueLocale'
-import { StringWithLimits } from '../../components/StringWithLimits'
+import moment from 'moment'
+// import { isUniqueLocale } from '../../lib/isUniqueLocale'
+// import { StringWithLimits } from '../../components/StringWithLimits'
 import { Rule } from '@sanity/types'
 import { FilmProjector } from '../../components/twemoji'
 
@@ -77,9 +78,9 @@ export default {
       options: {
         source: 'title',
         maxLength: 96,
-        isUnique: isUniqueLocale
+        // isUnique: isUniqueLocale
       },
-      // validation: (Rule: Rule) => Rule.required()
+      validation: (Rule: Rule) => Rule.required()
     },
     {
       name: 'ogImage',
@@ -95,7 +96,7 @@ export default {
       name: 'ogTitle',
       title: 'Social title',
       type: 'string',
-      inputComponent: StringWithLimits,
+      // inputComponent: StringWithLimits,
       validation: (Rule: Rule) => Rule.max(70).warning("Some text won't be visible."),
       group: 'social'
     },
@@ -113,7 +114,15 @@ export default {
   preview: {
     select: {
       title: 'title',
+      date: 'publishDate',
       media: 'mainImage'
+    },
+    prepare: ({ date, media, title }) => {
+      return {
+        title,
+        subtitle: moment(date).format('Do MMM YYYY'),
+        media
+      }
     }
   }
 }

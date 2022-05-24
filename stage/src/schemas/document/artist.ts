@@ -1,6 +1,6 @@
 import { i18n } from '../../languages'
 import { StringWithLimits } from '../../components/StringWithLimits'
-import { isUniqueLocale } from '../../lib/isUniqueLocale'
+// import { isUniqueLocale } from '../../lib/isUniqueLocale'
 import { Rule } from '@sanity/types'
 import { Artist } from '../../components/twemoji'
 
@@ -47,21 +47,10 @@ export default {
       name: 'mainImage',
       title: 'Main image',
       description: 'Should be a jpeg of 1440px along the longest edge, 500-600k is best.',
-      type: 'image',
+      type: 'captionImage',
       options: {
         hotspot: true
       },
-      fields: [
-        {
-          name: 'caption',
-          type: 'string',
-          title: 'Caption',
-          description: 'Image caption (title of artwork)',
-          options: {
-            isHighlighted: true
-          }
-        }
-      ],
       group: 'settings'
     },
     {
@@ -72,9 +61,9 @@ export default {
       options: {
         source: 'title',
         maxLength: 96,
-        isUnique: isUniqueLocale
+        // isUnique: isUniqueLocale
       },
-      // validation: (Rule: Rule) => Rule.required(),
+      validation: (Rule: Rule) => Rule.required(),
       group: 'settings'
     },
     {
@@ -99,7 +88,7 @@ export default {
       name: 'ogTitle',
       title: 'Social title',
       type: 'string',
-      inputComponent: StringWithLimits,
+      // inputComponent: StringWithLimits,
       validation: (Rule: Rule) => Rule.max(70).warning("Some text won't be visible."),
       group: 'social'
     },
