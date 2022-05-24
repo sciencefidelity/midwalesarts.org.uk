@@ -1,4 +1,3 @@
-import { i18n } from '../../languages'
 import { Label } from '../../components/twemoji'
 
 export default {
@@ -6,11 +5,6 @@ export default {
   title: 'Tag',
   type: 'document',
   icon: Label,
-  i18n,
-  initialValue: {
-    __i18n_lang: i18n.base,
-    __i18n_refs: []
-  },
   fields: [
     {
       name: 'title',
