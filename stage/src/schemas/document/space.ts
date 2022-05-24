@@ -1,5 +1,5 @@
 import { i18n } from '../../languages'
-// import { isUniqueLocale } from '../../lib/isUniqueLocale'
+import { isUniqueLocale } from '../../lib/isUniqueLocale'
 import { Rule } from '@sanity/types'
 import { ClassicalBuilding } from '../../components/twemoji'
 
@@ -32,7 +32,7 @@ export default {
       options: {
         source: 'title',
         maxLength: 96,
-        // isUnique: isUniqueLocale
+        isUnique: isUniqueLocale
       },
       validation: (Rule: Rule) => Rule.required(),
     },

@@ -1,6 +1,6 @@
 import { i18n } from '../../languages'
 // import { StringWithLimits } from '../../components/StringWithLimits'
-// import { isUniqueLocale } from '../../lib/isUniqueLocale'
+import { isUniqueLocale } from '../../lib/isUniqueLocale'
 import { Rule } from '@sanity/types'
 import { Artist } from '../../components/twemoji'
 
@@ -61,7 +61,7 @@ export default {
       options: {
         source: 'title',
         maxLength: 96,
-        // isUnique: isUniqueLocale
+        isUnique: isUniqueLocale
       },
       validation: (Rule: Rule) => Rule.required(),
       group: 'settings'
@@ -98,6 +98,7 @@ export default {
       type: 'text',
       rows: 3,
       description: 'Recommended: 125 characters.',
+      validation: (Rule: Rule) => Rule.max(125).warning("Some text won't be visible."),
       group: 'social'
     }
   ],

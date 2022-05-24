@@ -1,6 +1,6 @@
 import { i18n } from '../../languages'
 // import { StringWithLimits } from '../../components/StringWithLimits'
-// import { isUniqueLocale } from '../../lib/isUniqueLocale'
+import { isUniqueLocale } from '../../lib/isUniqueLocale'
 import { Rule } from '@sanity/types'
 import { Books } from '../../components/twemoji'
 
@@ -53,13 +53,14 @@ export default {
       },
       initialValue: 'Page',
       validation: (Rule: Rule) => Rule.required(),
+      hidden: ({ document }) => document?.template !== '',
       group: 'settings'
     },
     {
       name: 'title',
       title: 'Title',
       type: 'string',
-      // hidden: ({ document }) => document?.template === 'Home',
+      hidden: ({ document }) => document?.template === 'Home',
       group: 'settings'
 
     },
@@ -78,10 +79,10 @@ export default {
       options: {
         source: 'title',
         maxLength: 96,
-        // isUnique: isUniqueLocale
+        isUnique: isUniqueLocale
       },
       validation: (Rule: Rule) => Rule.required(),
-      // hidden: ({ document }) => document?.template === 'Home',
+      hidden: ({ document }) => document?.template === 'Home',
       group: 'settings'
     },
     {

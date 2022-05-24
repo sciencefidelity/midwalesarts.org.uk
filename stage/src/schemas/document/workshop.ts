@@ -90,7 +90,7 @@ export default {
         maxLength: 96,
         isUnique: isUniqueLocale
       },
-      // validation: (Rule: Rule) => Rule.required(),
+      validation: (Rule: Rule) => Rule.required(),
       group: 'settings'
     },
     {

@@ -1,10 +1,18 @@
-import client from 'part:@sanity/base/client'
+import sanityClient from 'part:@sanity/base/client'
+
+interface Options {
+  document: {
+    __i18n_lang: String
+    _id: String
+    _type: string
+  }
+}
 
 // Note: this assumes that every document that has a slug field
 // has it on the `slug` field at the root
-export function isUniqueLocale(slug, options) {
+export function isUniqueLocale(slug: string, options: Options) {
   const { document } = options
-
+  const client = sanityClient.withConfig({apiVersion: '2021-06-07'})
   const id = document._id.replace(/^drafts\./, '')
   const params = {
     draft: `drafts.${id}`,
