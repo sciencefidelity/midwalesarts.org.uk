@@ -1,5 +1,6 @@
 import S from '@sanity/desk-tool/structure-builder'
 import * as Structure from '@sanity/document-internationalization/lib/structure'
+import { Facebook, Google, Twitter } from '../components/social'
 import {
   Art,
   Artist,
@@ -23,6 +24,25 @@ import {
   WorldMap,
   WritingHand
 } from '../components/twemoji'
+
+export const getDefaultDocumentNode = ({ schemaType }) => {
+  if (
+    schemaType === 'artist' ||
+    schemaType === 'event' ||
+    schemaType === 'exhibition' ||
+    schemaType === 'page' ||
+    schemaType === 'post' ||
+    schemaType === 'video' ||
+    schemaType === 'workshop'
+  ) {
+    return S.document().views([
+      S.view.form(),
+      S.view.component(Google).title('Google'),
+      S.view.component(Twitter).title('Twitter'),
+      S.view.component(Facebook).title('Facebook')
+    ])
+  }
+}
 
 const items = [
   S.listItem()
@@ -85,9 +105,7 @@ const items = [
   S.listItem()
     .title('Artwork')
     .icon(Art)
-    .child(
-      S.documentTypeList('artwork').title('Artwork')
-    ),
+    .child(S.documentTypeList('artwork').title('Artwork')),
   S.listItem()
     .title('Video')
     .icon(FilmProjector)
@@ -100,10 +118,7 @@ const items = [
   S.listItem()
     .title('Headline')
     .icon(Newspaper)
-    .child(
-      S.documentTypeList('frontPageSection')
-        .title('Headline')
-    ),
+    .child(S.documentTypeList('frontPageSection').title('Headline')),
   S.listItem()
     .title('Space')
     .icon(ClassicalBuilding)
@@ -122,32 +137,26 @@ const items = [
           S.listItem()
             .title('Feedback')
             .icon(SpeechBalloon)
-            .child(
-              S.document().schemaType('feedback').documentId('feedback')
-            )
+            .child(S.document().schemaType('feedback').documentId('feedback'))
         ])
     ),
   S.listItem()
-  .title('Taxonomy')
-  .icon(WorldMap)
-  .child(
-    S.list()
-      .title('Taxonomy')
-      .items([
-        S.listItem()
-          .title('Discipline')
-          .icon(Paintbrush)
-          .child(
-            S.documentTypeList('discipline').title('Discipline')
-          ),
-        S.listItem()
-          .title('Tag')
-          .icon(Label)
-          .child(
-            S.documentTypeList('tag').title('Tag')
-          ),
-      ])
-  ),
+    .title('Taxonomy')
+    .icon(WorldMap)
+    .child(
+      S.list()
+        .title('Taxonomy')
+        .items([
+          S.listItem()
+            .title('Discipline')
+            .icon(Paintbrush)
+            .child(S.documentTypeList('discipline').title('Discipline')),
+          S.listItem()
+            .title('Tag')
+            .icon(Label)
+            .child(S.documentTypeList('tag').title('Tag'))
+        ])
+    ),
   S.divider(),
   S.listItem()
     .title('Settings')
@@ -169,7 +178,9 @@ const items = [
           S.listItem()
             .title('Organisation')
             .icon(PostOffice)
-            .child(S.document().schemaType('organisation').documentId('organisation')),
+            .child(
+              S.document().schemaType('organisation').documentId('organisation')
+            ),
           S.listItem()
             .title('Label Group')
             .icon(CardFileBox)
@@ -181,26 +192,26 @@ const items = [
   S.divider(),
   Structure.getMaintenanceListItem().icon(EarthAfrica).serialize(),
   ...S.documentTypeListItems().filter(
-  item =>
-    ![
-      'artist',
-      'artwork',
-      'discipline',
-      'event',
-      'exhibition',
-      'feedback',
-      'frontPageSection',
-      'labelGroup',
-      'navigation',
-      'organisation',
-      'page',
-      'post',
-      'settings',
-      'space',
-      'tag',
-      'video',
-      'workshop'
-    ].includes(item.getId())
+    item =>
+      ![
+        'artist',
+        'artwork',
+        'discipline',
+        'event',
+        'exhibition',
+        'feedback',
+        'frontPageSection',
+        'labelGroup',
+        'navigation',
+        'organisation',
+        'page',
+        'post',
+        'settings',
+        'space',
+        'tag',
+        'video',
+        'workshop'
+      ].includes(item.getId())
   )
 ]
 
