@@ -14,7 +14,15 @@ export default {
   ],
   preview: {
     select: {
-      title: 'title.en'
+      title: 'title.en',
+      subtitle: 'title.cy'
+    },
+    prepare({ subtitle, title }) {
+      return {
+        title: title,
+        subtitle: subtitle,
+        media: Paintbrush
+      }
     }
   }
 }

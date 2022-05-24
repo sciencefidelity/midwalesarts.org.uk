@@ -6,7 +6,7 @@ import { WritingHand } from '../../components/twemoji'
 
 export default {
   name: 'post',
-  title: 'Post',
+  title: 'News',
   type: 'document',
   icon: WritingHand,
   i18n,

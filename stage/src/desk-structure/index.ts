@@ -59,11 +59,11 @@ const items = [
         ])
     ),
   S.listItem()
-    .title('Post')
+    .title('News')
     .icon(WritingHand)
     .child(
       S.documentTypeList('post')
-        .title('Post')
+        .title('News')
         .filter('_type == "post" && __i18n_lang != "cy"')
     ),
   S.listItem()

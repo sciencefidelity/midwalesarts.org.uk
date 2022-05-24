@@ -1,5 +1,4 @@
 import { i18n } from '../../languages'
-import { isUniqueLocale } from '../../lib/isUniqueLocale'
 import { Label } from '../../components/twemoji'
 
 export default {
@@ -16,27 +15,20 @@ export default {
     {
       name: 'title',
       title: 'Title',
-      type: 'string'
-    },
-    {
-      name: 'description',
-      title: 'Description',
-      type: 'text'
-    },
-    {
-      name: 'slug',
-      title: 'Slug',
-      type: 'slug',
-      options: {
-        source: 'title',
-        maxLength: 96,
-        isUnique: isUniqueLocale
-      }
+      type: 'localeString'
     }
   ],
   preview: {
     select: {
-      title: 'title'
+      title: 'title.en',
+      subtitle: 'title.cy'
+    },
+    prepare({ subtitle, title }) {
+      return {
+        title: title,
+        subtitle: subtitle,
+        media: Label
+      }
     }
   }
 }
