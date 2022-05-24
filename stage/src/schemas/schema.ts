@@ -27,6 +27,7 @@ import workshop from './document/workshop'
 // field translation
 import artwork from './field/artwork'
 import feedback from './field/feedback'
+import frontPageSection from './field/frontPageSection'
 import labelGroup from './field/labelGroup'
 import navigation from './field/navigation'
 import organisation from './field/organisation'
@@ -68,6 +69,7 @@ export default createSchema({
     // field translation
     artwork,
     feedback,
+    frontPageSection,
     labelGroup,
     navigation,
     organisation,

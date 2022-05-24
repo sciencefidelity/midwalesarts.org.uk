@@ -1,5 +1,5 @@
 import { i18n } from '../../languages'
-import { StringWithLimits } from '../../components/StringWithLimits'
+// import { StringWithLimits } from '../../components/StringWithLimits'
 // import { isUniqueLocale } from '../../lib/isUniqueLocale'
 import { Rule } from '@sanity/types'
 import { Artist } from '../../components/twemoji'

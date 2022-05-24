@@ -15,6 +15,7 @@ import {
   FramedPicture,
   Gear,
   Label,
+  Newspaper,
   Paintbrush,
   PostOffice,
   SpeechBalloon,
@@ -96,6 +97,13 @@ const items = [
         .filter('_type == "video" && __i18n_lang != "cy"')
     ),
   S.divider(),
+  S.listItem()
+    .title('Headline')
+    .icon(Newspaper)
+    .child(
+      S.documentTypeList('frontPageSection')
+        .title('Headline')
+    ),
   S.listItem()
     .title('Space')
     .icon(ClassicalBuilding)
@@ -181,6 +189,7 @@ const items = [
       'event',
       'exhibition',
       'feedback',
+      'frontPageSection',
       'labelGroup',
       'navigation',
       'organisation',
