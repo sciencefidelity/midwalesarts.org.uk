@@ -45,9 +45,8 @@ export default {
                 ],
                 options: {
                   filter: ({ document }) => {
-                    const { __i18n_lang } = document
                     return {
-                      filter: `__i18n_lang == '${__i18n_lang}'`
+                      filter: `__i18n_lang == 'en'`
                     }
                   }
                 }
