@@ -3,10 +3,6 @@
   "project": {
     "name": "MWA Stage"
   },
-  "api": {
-    "projectId": "atuc1oy0",
-    "dataset": "production"
-  },
   "plugins": [
     "@sanity/base",
     "@sanity/default-layout",
