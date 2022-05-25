@@ -82,7 +82,7 @@ export default {
         isUnique: isUniqueLocale
       },
       validation: (Rule: Rule) => Rule.required(),
-      hidden: ({ document }) => document?.template === 'Home',
+      hidden: ({ document }) => document?.template !== 'Page',
       group: 'settings'
     },
     {
