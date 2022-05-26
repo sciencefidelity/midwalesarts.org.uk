@@ -14,12 +14,12 @@ export default {
     {
       name: 'address',
       title: 'Address',
-      type: 'localeAddress'
+      type: 'address'
     },
     {
       name: 'email',
       title: 'Email',
-      type: 'localeEmail'
+      type: 'email'
     },
     {
       name: 'telephone',

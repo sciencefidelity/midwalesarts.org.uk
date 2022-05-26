@@ -4,18 +4,13 @@ export default {
   type: 'object',
   fields: [
     {
-      name: 'line1',
-      title: 'Address Line 1',
+      name: 'town',
+      title: 'Town',
       type: 'string'
     },
     {
-      name: 'line2',
-      title: 'Address Line 2',
-      type: 'string'
-    },
-    {
-      name: 'city',
-      title: 'City',
+      name: 'county',
+      title: 'County',
       type: 'string'
     },
     {
@@ -23,9 +18,5 @@ export default {
       title: 'Postcode',
       type: 'string'
     }
-  ],
-  options: {
-    collapsible: true,
-    collapsed: true
-  }
+  ]
 }

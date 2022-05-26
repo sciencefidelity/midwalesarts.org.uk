@@ -9,8 +9,6 @@ import social from './object/social'
 import youtube from './object/youtube'
 
 // locale
-import localeAddress from './object/localeAddress'
-import localeEmail from './object/localeEmail'
 import localeString from './object/localeString'
 import localeText from './object/localeText'
 
@@ -49,8 +47,6 @@ export default createSchema({
     youtube,
 
     // locale
-    localeAddress,
-    localeEmail,
     localeString,
     localeText,
 
