@@ -11,6 +11,7 @@ import youtube from './object/youtube'
 // locale
 import localeString from './object/localeString'
 import localeText from './object/localeText'
+import localeTextSmall from './object/localeTextSmall'
 
 // documement translation
 import artist from './document/artist'
@@ -49,6 +50,7 @@ export default createSchema({
     // locale
     localeString,
     localeText,
+    localeTextSmall,
 
     // documement translation
     artist,

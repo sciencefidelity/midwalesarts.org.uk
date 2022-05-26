@@ -25,7 +25,7 @@ export default {
     {
       name: 'description',
       title: 'Site description',
-      type: 'localeText',
+      type: 'localeTextSmall',
       group: 'meta'
     },
     {
@@ -52,7 +52,7 @@ export default {
     {
       name: 'ogDescription',
       title: 'Social Description',
-      type: 'localeText',
+      type: 'localeTextSmall',
       group: 'social'
     },
     {
