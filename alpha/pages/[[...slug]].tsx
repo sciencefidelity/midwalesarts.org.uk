@@ -1,10 +1,10 @@
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next"
-// import { useRouter } from "next/router"
 import sanityClient from "lib/sanityClient"
 import { getLocalizedPaths } from "lib/localizeHelpers"
-// import { Layout } from "components/layout"
+import { Home } from "components/home"
 import { pageQuery, pagePathQuery } from "lib/queries"
 import {
+  Label,
   Navigation,
   Organisation,
   Page,
@@ -13,7 +13,9 @@ import {
 } from "lib/interfaces"
 
 interface Props {
-  navigation:
+  labels:Label[]
+  navigation: Navigation[]
+  organisation: Organisation
   page: Page
   pageContext: PageContext
   settings: Settings
@@ -34,7 +36,7 @@ export const getStaticProps: GetStaticProps = async ({
 }) => {
   const slug = params.slug ? params.slug[params?.slug?.length - 1] : "index"
   const data = await sanityClient.fetch(pageQuery, { slug, locale })
-  const { page, settings } = data as Props
+  const { labels, navigation, organisation, page, settings } = data as Props
   const pageContext = {
     locale: page.__i18n_lang,
     localization: page.localization,
@@ -45,6 +47,9 @@ export const getStaticProps: GetStaticProps = async ({
   const localizedPaths = pageContext.localization ? getLocalizedPaths(pageContext) : ""
   return {
     props: {
+      labels,
+      navigation,
+      organisation,
       page,
       pageContext: {
         ...pageContext,
@@ -55,11 +60,27 @@ export const getStaticProps: GetStaticProps = async ({
   }
 }
 
-const Home: NextPage<Props> = ({
+const PageComponent: NextPage<Props> = ({
+  labels,
+  navigation,
+  organisation,
   page,
+  pageContext,
   settings
 }) => {
-  return page.template === "Home" && <div>{page.title}</div>
+  return (
+    <>
+      {page.template === "Home" &&
+        <Home
+          labels={labels}
+          navigation={navigation}
+          page={page}
+          organisation={organisation}
+          pageContext={pageContext}
+          settings={settings}
+        />
+      }
+    </>
+  )
 }
-
-export default Home
+export default PageComponent

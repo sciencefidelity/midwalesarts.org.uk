@@ -5,12 +5,16 @@ export interface Address {
 }
 
 export interface Artist extends SanityDocument {
+  __i18n_lang: "cy" | "en"
+  _type: "artist"
   mainImage: Image
   slug: string
   title: string
 }
 
 export interface Event extends SanityDocument {
+  __i18n_lang: "cy" | "en"
+  _type: "event"
   date: string
   mainImage: Image
   slug: string
@@ -18,6 +22,8 @@ export interface Event extends SanityDocument {
 }
 
 export interface Exhibition extends SanityDocument {
+  __i18n_lang: "cy" | "en"
+  _type: "exhibition"
   dateEnd: string
   dateStart: string
   mainImage: Image
@@ -60,6 +66,13 @@ export interface Image {
   hotspot?: SanityImageHotspot
 }
 
+export interface Label {
+  key: string
+  text: LocaleString
+}
+
+export type Locale = "cy" | "en";
+
 export interface LocaleAddress {
   cy: Address
   en: Address
@@ -74,6 +87,19 @@ export interface Localization {
   id: string
   locale: "cy" | "en"
   slug: string[]
+}
+
+export interface Navigation {
+  _key: string
+  label: LocaleString
+  slug: LocaleString
+}
+
+export interface Organisation {
+  address: Address
+  email: string
+  opeining: LocaleString
+  telephone: string
 }
 
 export interface Page extends SanityDocument {
@@ -112,6 +138,8 @@ export interface PageContext {
 }
 
 export interface Post extends SanityDocument {
+  __i18n_lang: "cy" | "en"
+  _type: "post"
   image: Image
   publishedAt: string
   slug: string
@@ -119,8 +147,12 @@ export interface Post extends SanityDocument {
 }
 
 export interface Settings {
-  description: string
-  title: string
+  canonicalURL: string
+  description: LocaleString
+  ogDescription: LocaleString
+  ogImage: Image
+  ogTitle: LocaleString
+  title: LocaleString
 }
 
 export interface Space extends SanityDocument {
@@ -131,12 +163,16 @@ export interface Space extends SanityDocument {
 }
 
 export interface Video extends SanityDocument {
+  __i18n_lang: "cy" | "en"
+  _type: "video"
   mainImage: Image
   slug: string
   title: string
 }
 
 export interface Workshop extends SanityDocument {
+  __i18n_lang: "cy" | "en"
+  _type: "workshop"
   day: string
   endTime: string
   mainImage: Image
@@ -155,7 +191,7 @@ type Template =
   "Support" |
   "Videos" |
   "Visit" |
-  "Workshops"
+  "Workshops";
 
 export type PortableText = Array<
     | SanityKeyed<SanityBlock>
@@ -249,9 +285,9 @@ export declare type SanityKeyed<T> = T extends object
   ? T & {
       _key: string
     }
-  : T
+  : T;
 
 export declare type SanityReference<_T> = {
   _type: "reference"
   _ref: string
-}
+};

@@ -11,21 +11,7 @@ export default {
         {
           name: 'name',
           title: 'Social network',
-          type: 'string',
-          options: {
-            list: [
-              'facebook',
-              'github',
-              'instagram',
-              'linkedin',
-              'pinterest',
-              'soundcloud',
-              'tiktok',
-              'twitter',
-              'youtube',
-              'vimeo'
-            ]
-          }
+          type: 'string'
         },
         {
           name: 'url',

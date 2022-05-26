@@ -74,18 +74,24 @@ const videoSubset = `
 `
 
 const workshopSubset = `
-  "workshops": *[_type == "workshop" && __i18n_lang == ^.__i18n_lang]{
+  "workshops": *[_type == "workshop" && __i18n_lang == ^.__i18n_lang && ${omitDrafts}]{
     _id, day, endTime, mainImage, ${slug}, startTime, title
   }
 `
 
-const feedback = "'feedback': *[_type == 'feedback'].feedback[]{ _key, quote{ cy, en } }"
+const feedback = `
+  "feedback": *[_type == "feedback" && ${omitDrafts}].feedback[]{  _key, quote{ cy, en } }
+`
 
 const headline = `
   headline[]->{
     _id, body{ cy, en }, caption{ cy, en }, cta{ cy, en }, ${ctaLink},
     heading{ cy, en }, mainImage, subImage, title{ cy, en }
   }
+`
+
+const labels = `
+  "labels": *[_type == "labelGroup" && ${omitDrafts}][0].labels[]{ key, text{ cy, en } }
 `
 
 /*
@@ -116,14 +122,14 @@ const localization = `
 `
 
 const navigation = `
-  "navigation": *[_type == "navigation"][0].primary[]{
+  "navigation": *[_type == "navigation" && ${omitDrafts}][0].primary[]{
     _key, label{ cy, en },
     "slug": url->{ "cy": __i18n_refs[0]->.slug.current, "en": slug.current }
   }
 `
 
 const organisation = `
-  "organisation": *[_type == "organisation"][0]{
+  "organisation": *[_type == "organisation" && ${omitDrafts}][0]{
     address{ county, postcode, town }, email, opening{ cy, en }, telephone
   }
 `
@@ -136,14 +142,19 @@ const spaces = `
 `
 
 const settings = `
-  "settings": *[_type == "settings"][0]{
+  "settings": *[_type == "settings" && ${omitDrafts}][0]{
     canonicalURL, description{ cy, en }, ogDescription{ cy, en }, ogImage, ogTitle{ cy, en },
     social[]{ _key, name, url }, title{ cy, en }
   }
 `
 
 const page = `
-  "page": *[_type == "page" && slug.current == $slug && __i18n_lang == $locale][0]{
+  "page": *[
+    _type == "page"
+    && slug.current == $slug
+    && __i18n_lang == $locale
+    && ${omitDrafts}
+  ][0]{
     __i18n_lang, _type, ${slug}, template, title, ${seo},
     template == "Artists" => { ${artistSubset}, subtitle },
     template == "Events" => { ${eventSubset}, subtitle },
@@ -160,7 +171,7 @@ const page = `
 `
 
 export const localizePageQuery = groq`{
-  "page": *[_type == "page" && _id == $id]{
+  "page": *[_type == "page" && _id == $id && ${omitDrafts}]{
     __i18n_lang, _id, _type, body, canonicalURL,
     mataTitle, ogTitle, "slug": slug.current, title,
     "localization": [select(
@@ -185,7 +196,7 @@ export const pagePathQuery = groq`
 `
 
 export const pageQuery = groq`{
-  ${navigation}, ${organisation}, ${page}, ${settings}
+  ${labels}, ${navigation}, ${organisation}, ${page}, ${settings}
 }`
 
 
