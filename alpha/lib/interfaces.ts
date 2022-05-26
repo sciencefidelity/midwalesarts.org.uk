@@ -1,7 +1,6 @@
 export interface Address {
-  city: string
-  line1: string
-  line2: string
+  town: string
+  county: string
   postcode: string
 }
 

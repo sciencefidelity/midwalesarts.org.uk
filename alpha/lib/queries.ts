@@ -115,6 +115,19 @@ const localization = `
   )
 `
 
+const navigation = `
+  "navigation": *[_type == "navigation"][0].primary[]{
+    _key, label{ cy, en },
+    "slug": url->{ "cy": __i18n_refs[0]->.slug.current, "en": slug.current }
+  }
+`
+
+const organisation = `
+  "organisation": *[_type == "organisation"][0]{
+    address{ county, postcode, town }, email, opening{ cy, en }, telephone
+  }
+`
+
 const spaces = `
   "spaces": select(
     defined(__i18n_refs[]) => spaces[]->{ _id, ${body}, mainImage, ${slug}, title },
@@ -172,7 +185,7 @@ export const pagePathQuery = groq`
 `
 
 export const pageQuery = groq`{
-  ${page}, ${settings}
+  ${navigation}, ${organisation}, ${page}, ${settings}
 }`
 
 

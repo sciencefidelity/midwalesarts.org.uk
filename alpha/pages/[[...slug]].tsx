@@ -5,12 +5,15 @@ import { getLocalizedPaths } from "lib/localizeHelpers"
 // import { Layout } from "components/layout"
 import { pageQuery, pagePathQuery } from "lib/queries"
 import {
+  Navigation,
+  Organisation,
   Page,
   PageContext,
   Settings
 } from "lib/interfaces"
 
 interface Props {
+  navigation:
   page: Page
   pageContext: PageContext
   settings: Settings
