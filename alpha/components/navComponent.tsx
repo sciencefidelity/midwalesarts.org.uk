@@ -3,6 +3,7 @@ import { useState } from "react"
 import { useRouter } from "next/router"
 import { Language } from "components/language"
 import { LinkTo } from "components/linkTo"
+import { Social } from "components/social"
 import { Label, Navigation, PageContext } from "lib/interfaces"
 import s from "styles/layout.module.scss"
 import u from "styles/utils.module.scss"
@@ -55,8 +56,7 @@ export const NavComponent: FC<Props> = ({ labels, navigation, pageContext }) => 
           ></div>
         </div>
         <Language pageContext={pageContext} />
-
-
+        <Social labels={labels} />
       </div>
     </nav>
   )

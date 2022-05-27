@@ -39,7 +39,7 @@ export const Layout: FC<Props> = ({
 }) => {
   const { locale } = useRouter()
   return (
-    <div>
+    <>
       <BaseHead
         pageHead={pageHead}
         settings={settings}
@@ -58,6 +58,6 @@ export const Layout: FC<Props> = ({
         {/* <Scrollup /> */}
       </main>
       {/* <Footer organisation={organisation} settings={settings} /> */}
-    </div>
+    </>
   )
 }

@@ -25,7 +25,6 @@
   margin: auto;
   text-align: right;
   margin-bottom: 5rem;
-  // position: relative;
   @include b.mq(md) {
     margin-bottom: 1rem;
   }
@@ -202,9 +201,6 @@
   font-weight: 900;
   letter-spacing: 0.1em;
   margin: 1.2rem 2.4rem 13.6rem;
-  // cursor: pointer;
-  // display: inline-block;
-  // position: relative;
   z-index: 1;
   &:hover {
     color: c.$grey-650;
