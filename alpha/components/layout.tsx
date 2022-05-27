@@ -55,9 +55,9 @@ export const Layout: FC<Props> = ({
       {settings.title[locale]}
       <main>
         {children}
-        <Scrollup label={labels[6].text} />
+        <Scrollup label={labels[8].text} />
       </main>
-      <Footer organisation={organisation} settings={settings} />
+      <Footer labels={labels} organisation={organisation} settings={settings} />
     </>
   )
 }

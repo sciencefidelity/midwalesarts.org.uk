@@ -253,3 +253,113 @@
 .scrollup {
   margin-top: 0;
 }
+
+.footer {
+  background: rgba(c.$grey-050, 0.8);
+  margin-top: 23rem;
+  z-index: 0;
+  @include b.mq(sm) {
+    margin-top: 12rem;
+  }
+  p {
+    font-size: 2rem;
+    line-height: 1.4;
+    padding-bottom: 1.3rem;
+    color: c.$grey-600;
+    a {
+      background: transparent;
+      font-weight: 400;
+      color: inherit;
+      text-decoration: underline;
+      text-decoration-thickness: 0.1em;
+      text-decoration-color: c.$grey-050;
+      transition: text-decoration-color 0.3s ease-in-out;
+      &:hover {
+        background: transparent;
+        color: inherit;
+        text-decoration: underline;
+        text-decoration-thickness: 0.1em;
+        text-decoration-color: c.$grey-500;
+        transition: text-decoration-color 0.3s ease-in-out;
+      }
+    }
+    @include b.mq(md) {
+      font-size: 2rem;
+      padding-bottom: 0.6rem;
+    }
+  }
+}
+
+.footerContainer {
+  grid-template-columns: auto auto;
+  width: 81.25%;
+  padding: 5rem 0 1.3rem;
+  @include b.mq(lg) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.copy {
+  font-size: 2rem;
+  @include b.mq(lg) {
+    display: none;
+  }
+}
+
+.footerRight {
+  justify-content: right;
+  @include b.mq(lg) {
+    gap: 2rem;
+  }
+  @include b.mq(sm) {
+    justify-content: center;
+  }
+}
+
+////
+
+.linksMenuContainer {
+  align-self: end;
+  padding-bottom: 3.5rem;
+  @include b.mq(md) {
+    display: none;
+  }
+}
+
+.linksMenu {
+  list-style: none;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+  li {
+    margin-top: 0;
+    padding-left: 3rem;
+    &:first-child {
+      padding: 0;
+    }
+    a {
+      text-decoration: underline;
+      text-decoration-thickness: 0.1em;
+      text-decoration-color: rgba(c.$grey-050, 0.8);
+      transition: text-decoration-color 0.3s ease-in-out;
+    }
+    a:hover {
+      text-decoration: underline;
+      text-decoration-thickness: 0.1em;
+      text-decoration-color: c.$grey-500;
+      transition: text-decoration-color 0.3s ease-in-out;
+    }
+  }
+}
+
+.smallCopy {
+  font-size: 2rem;
+  // display: none;
+  @include b.mq(lg) {
+    display: block;
+    padding-top: 2rem;
+    font-size: 1.8rem;
+  }
+}

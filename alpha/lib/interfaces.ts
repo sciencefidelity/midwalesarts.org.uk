@@ -99,7 +99,7 @@ export interface Navigation {
 export interface Organisation {
   address: Address
   email: string
-  opeining: LocaleString
+  opening: LocaleString
   telephone: string
 }
 
