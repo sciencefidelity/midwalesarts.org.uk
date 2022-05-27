@@ -1,7 +1,16 @@
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next"
 import sanityClient from "lib/sanityClient"
 import { getLocalizedPaths } from "lib/localizeHelpers"
+import { Artists } from "components/artists"
+import { Events } from "components/events"
+import { Exhibitions } from "components/exhibitions"
 import { Home } from "components/home"
+import { News } from "components/news"
+import { PageComponent } from "components/pageComponent"
+import { Support } from "components/support"
+import { Videos } from "components/videos"
+import { Visit } from "components/visit"
+import { Workshops } from "components/workshops"
 import { pageQuery, pagePathQuery } from "lib/queries"
 import {
   Label,
@@ -150,7 +159,7 @@ const Pages: NextPage<Props> = ({
           settings={settings}
         />
       }
-      {page.template === "Support" &&
+      {page.template === "Visit" &&
         <Visit
           labels={labels}
           navigation={navigation}
@@ -160,7 +169,7 @@ const Pages: NextPage<Props> = ({
           settings={settings}
         />
       }
-      {page.template === "Support" &&
+      {page.template === "Workshops" &&
         <Workshops
           labels={labels}
           navigation={navigation}

@@ -28,8 +28,8 @@ export const Artists: FC<Props> = ({
 }) => {
   return (
     <Layout
-      caption={page.mainImage.caption}
-      heroImage={page.mainImage}
+      caption={page.artists[0].mainImage.caption}
+      heroImage={page.artists[0].mainImage}
       labels={labels}
       navigation={navigation}
       organisation={organisation}

@@ -28,8 +28,8 @@ export const Events: FC<Props> = ({
 }) => {
   return (
     <Layout
-      caption={page.mainImage.caption}
-      heroImage={page.mainImage}
+      caption={page.events[0].title}
+      heroImage={page.events[0].mainImage}
       labels={labels}
       navigation={navigation}
       organisation={organisation}

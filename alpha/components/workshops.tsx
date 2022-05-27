@@ -28,7 +28,7 @@ export const Workshops: FC<Props> = ({
 }) => {
   return (
     <Layout
-      caption={page.mainImage.caption}
+      caption={page.title}
       heroImage={page.mainImage}
       labels={labels}
       navigation={navigation}

@@ -28,8 +28,8 @@ export const Videos: FC<Props> = ({
 }) => {
   return (
     <Layout
-      caption={page.mainImage.caption}
-      heroImage={page.mainImage}
+      caption={page.videos[0].title}
+      heroImage={page.videos[0].mainImage}
       labels={labels}
       navigation={navigation}
       organisation={organisation}

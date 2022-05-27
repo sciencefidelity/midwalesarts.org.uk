@@ -28,8 +28,8 @@ export const News: FC<Props> = ({
 }) => {
   return (
     <Layout
-      caption={page.mainImage.caption}
-      heroImage={page.mainImage}
+      caption={page.posts[0].title}
+      heroImage={page.posts[0].image}
       labels={labels}
       navigation={navigation}
       organisation={organisation}

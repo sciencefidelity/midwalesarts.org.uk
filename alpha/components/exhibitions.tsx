@@ -18,7 +18,7 @@ interface Props {
   settings: Settings
 }
 
-export const Exhibitons: FC<Props> = ({
+export const Exhibitions: FC<Props> = ({
   labels,
   navigation,
   organisation,
@@ -28,8 +28,8 @@ export const Exhibitons: FC<Props> = ({
 }) => {
   return (
     <Layout
-      caption={page.mainImage.caption}
-      heroImage={page.mainImage}
+      caption={page.exhibitions[0].mainImage.caption}
+      heroImage={page.exhibitions[0].mainImage}
       labels={labels}
       navigation={navigation}
       organisation={organisation}
