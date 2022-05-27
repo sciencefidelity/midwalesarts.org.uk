@@ -14,7 +14,9 @@ export const BaseHead: FC<Props> = ({ pageHead, settings }) => {
   return (
     <Head>
       <title>
-        {pageHead && pageHead.title + " | "}{settings.title[locale]}
+        {pageHead && pageHead.title + " | "}
+        {settings.title[locale]}
+        {pageHead ? "" : " | " + settings.description[locale]}
       </title>
       <meta
         name="Description"

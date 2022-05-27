@@ -2,8 +2,8 @@ import { FC, ReactNode } from "react"
 import { useRouter } from "next/router"
 import { BaseHead } from "components/baseHead"
 import { Header } from "components/header"
-//import Footer from "components/footer"
-//import Scrollup from "components/scrollup"
+import { Footer } from "components/footer"
+import { Scrollup } from "components/scrollup"
 import {
   HeadProps,
   Label,
@@ -55,9 +55,9 @@ export const Layout: FC<Props> = ({
       {settings.title[locale]}
       <main>
         {children}
-        {/* <Scrollup /> */}
+        <Scrollup label={labels[6].text} />
       </main>
-      {/* <Footer organisation={organisation} settings={settings} /> */}
+      <Footer organisation={organisation} settings={settings} />
     </>
   )
 }

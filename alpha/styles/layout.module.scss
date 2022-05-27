@@ -221,3 +221,35 @@
     transition: opacity 0.3s ease;
   }
 }
+
+.scrollupContainer {
+  width: 5rem;
+  height: 5rem;
+  background: rgba(c.$grey-000, 0.9);
+  position: fixed;
+  bottom: 3rem;
+  right: 3rem;
+  z-index: 6;
+  padding: 1.6rem 0.8rem;
+  border-radius: 3px;
+  box-shadow: 2px 2px 0 rgba(black, 0.1);
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    box-shadow: 2px 2px 0 rgba(black, 0.1);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  &:hover::after {
+    opacity: 1;
+    transition: opacity 0.3s;
+  }
+}
+
+.scrollup {
+  margin-top: 0;
+}

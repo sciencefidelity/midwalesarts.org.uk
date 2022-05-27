@@ -1,14 +1,14 @@
 import { FC } from "react"
 import { useRouter } from "next/router"
-import { Label } from "lib/interfaces"
+import { LocaleString } from "lib/interfaces"
 import s from "styles/layout.module.scss"
 import u from "styles/utils.module.scss"
 
 interface Props {
-  labels: Label[]
+  label: LocaleString
 }
-
-export const Social: FC<Props> = ({ labels }) => {
+// TODO: change icons to svg
+export const Social: FC<Props> = ({ label }) => {
   const { locale } = useRouter()
   return (
     <>
@@ -19,7 +19,7 @@ export const Social: FC<Props> = ({ labels }) => {
           rel="noreferrer"
         >
           <span className={`${u.srOnly}`}>
-            {labels[3].text[locale]}Facebook
+            {label[locale]}Facebook
           </span>
           <img
             alt="http://en-gb.facebook.com/MidWalesArtsCentre"
@@ -35,7 +35,7 @@ export const Social: FC<Props> = ({ labels }) => {
           rel="noreferrer"
         >
           <span className={`${u.srOnly}`}>
-            {labels[3].text[locale]}Instagram
+            {label[locale]}Instagram
           </span>
           <img
             alt=""
@@ -51,7 +51,7 @@ export const Social: FC<Props> = ({ labels }) => {
           rel="noreferrer"
         >
           <span className={`${u.srOnly}`}>
-            {labels[3].text[locale]}Twitter
+            {label[locale]}Twitter
           </span>
           <img
             alt=""

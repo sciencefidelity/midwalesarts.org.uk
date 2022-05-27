@@ -14,7 +14,6 @@ interface Props {
   pageContext: PageContext
 }
 
-// TODO: change icons to svg
 export const NavComponent: FC<Props> = ({ labels, navigation, pageContext }) => {
   const router = useRouter()
   const { locale } = router
@@ -56,7 +55,7 @@ export const NavComponent: FC<Props> = ({ labels, navigation, pageContext }) => 
           ></div>
         </div>
         <Language pageContext={pageContext} />
-        <Social labels={labels} />
+        <Social label={labels[3].text} />
       </div>
     </nav>
   )

@@ -153,7 +153,14 @@ export interface Settings {
   ogDescription: LocaleString
   ogImage: Image
   ogTitle: LocaleString
+  social: Social[]
   title: LocaleString
+}
+
+export interface Social {
+  _key: string
+  name: string
+  url: string
 }
 
 export interface Space extends SanityDocument {
