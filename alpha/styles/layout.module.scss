@@ -1,0 +1,49 @@
+@use './base/breakpoints' as b;
+// @use 'colors' as c;
+
+.header {
+  margin-top: 0;
+  margin-bottom: 1.2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.hero {
+  height: 45rem;
+  margin-bottom: 9.3rem;
+  position: relative;
+  margin: auto;
+  @include b.mq(sm) {
+    height: 35rem;
+  }
+}
+
+.heroCaption {
+  font-size: 1.6rem;
+  z-index: 5;
+  width: 89%;
+  margin: auto;
+  text-align: right;
+  margin-bottom: 5rem;
+  // position: relative;
+  @include b.mq(md) {
+    margin-bottom: 1rem;
+  }
+  @include b.mq(sm) {
+    font-size: 1.2rem;
+  }
+}
+
+.colorLogo {
+  width: 12rem;
+  transition: opacity 0.3s ease;
+  &:hover,
+  &:active {
+    opacity: 0.92;
+    transition: opacity 0.3s ease;
+  }
+  @include b.mq(sm) {
+    width: 8rem;
+  }
+}
+

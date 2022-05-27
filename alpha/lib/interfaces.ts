@@ -54,6 +54,7 @@ export interface HeadProps {
   ogSiteName?: string
   ogTitle: string
   ogURL: string
+  slug: string
   title: string
 }
 

@@ -5,6 +5,8 @@ import { SanityImage } from "components/sanityImage"
 import { LinkTo } from "components/linkTo"
 import { NavComponent } from "components/navComponent"
 import { Image, Label, Navigation, PageContext } from "lib/interfaces"
+import s from "styles/layout.module.scss"
+import u from "styles/utils.module.scss"
 
 interface Props {
   caption: string
@@ -24,22 +26,22 @@ export const Header: FC<Props> = ({
   const { locale } = useRouter()
   return (
     <>
-      <header>
+      <header className={`${s.header}`}>
         <LinkTo href="/">
-          <span className="screenReaderText">
+          <span className={`${u.srOnly}`}>
             {labels[0].text[locale]}
           </span>
-          <ColorLogo logoClass="colorLogo" containerClass="logoContainer" />
+          <ColorLogo />
         </LinkTo>
         <div
-          className="hero"
+          className={`${s.hero}`}
           style={{ overflow: "hidden" }}
         >
           <SanityImage alt={caption} image={heroImage} width={1600} />
         </div>
       </header>
       <NavComponent labels={labels} navigation={navigation} pageContext={pageContext} />
-      <div className="heroCaption">{caption}</div>
+      <div className={`${s.heroCaption}`}>{caption}</div>
     </>
   )
 }

@@ -1,7 +1,7 @@
 import { FC } from "react"
 import Head from "next/head"
 import { useRouter } from "next/router"
-import { localize, urlFor } from "lib/utils"
+import { urlFor } from "lib/utils"
 import { HeadProps, Settings } from "lib/interfaces"
 
 interface Props {
@@ -14,15 +14,13 @@ export const BaseHead: FC<Props> = ({ pageHead, settings }) => {
   return (
     <Head>
       <title>
-        {pageHead && pageHead.title
-          ? pageHead.title
-          : localize(settings.title, locale)}
+        {pageHead && pageHead.title + " | "}{settings.title[locale]}
       </title>
       <meta
         name="Description"
         content={pageHead && pageHead.description
           ? pageHead.description
-          : localize(settings.description, locale)}
+          : settings.description[locale]}
       />
       <meta name="keywords" content="" />
       {/* Facebook */}
@@ -30,22 +28,25 @@ export const BaseHead: FC<Props> = ({ pageHead, settings }) => {
         property="og:title"
         content={pageHead && pageHead.ogTitle
           ? pageHead.ogTitle
-          : localize(settings.ogTitle, locale)}
+          : settings.ogTitle[locale]}
       />
       <meta
         property="og:description"
-        content={pageHead && pageHead.ogDescription ? pageHead.ogDescription :
-          localize(settings.ogDescription, locale)}
+        content={pageHead && pageHead.ogDescription
+          ? pageHead.ogDescription
+          : settings.ogDescription[locale]}
       />
       <meta
         property="og:url"
-        content={pageHead && pageHead.ogURL
-          ? pageHead.ogURL
+        content={pageHead && pageHead.slug
+          ? settings.canonicalURL + "/" + pageHead.slug
           : settings.canonicalURL}
       />
       <meta
         property="og:image"
-        content={urlFor(pageHead ? pageHead.ogImage : settings.ogImage)
+        content={urlFor(pageHead && pageHead.ogImage
+          ? pageHead.ogImage
+          : settings.ogImage)
           .auto("format")
           .width(1200)
           .height(630)
@@ -54,7 +55,7 @@ export const BaseHead: FC<Props> = ({ pageHead, settings }) => {
       />
       <meta
         property="og:site_name"
-        content={localize(settings.title, locale)}
+        content={settings.title[locale]}
       />
       <meta property="og:locale" content="en_GB" />
       <meta property="og:type" content="article" />
@@ -64,24 +65,26 @@ export const BaseHead: FC<Props> = ({ pageHead, settings }) => {
         name="twitter:title"
         content={pageHead && pageHead.ogTitle
           ? pageHead.ogTitle
-          : localize(settings.ogTitle, locale)}
+          : settings.ogTitle[locale]}
       />
       <meta
         name="twitter:description"
         content={pageHead &&
           pageHead.ogDescription
           ? pageHead.ogDescription
-          : localize(settings.ogDescription, locale)}
+          : settings.ogDescription[locale]}
       />
       <meta
         name="twitter:site"
-        content={pageHead && pageHead.ogURL
-          ? pageHead.ogURL
+        content={pageHead && pageHead.slug
+          ? settings.canonicalURL + "/" + pageHead.slug
           : settings.canonicalURL}
       />
       <meta
         name="twitter:image"
-        content={urlFor(pageHead ? pageHead.ogImage : settings.ogImage)
+        content={urlFor(pageHead && pageHead.ogImage
+          ? pageHead.ogImage
+          : settings.ogImage)
           .auto("format")
           .width(1200)
           .height(628)

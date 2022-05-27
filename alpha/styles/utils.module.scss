@@ -1,0 +1,80 @@
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+}
+
+.inlineBlock {
+  display: inline-block;
+}
+
+.inline {
+  display: inline;
+}
+
+.flex {
+  display: flex;
+}
+
+.grid {
+  display: grid;
+}
+
+.hidden {
+  display: none;
+}
+
+.justifyCenter {
+  justify-content: center;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.m-auto {
+  margin: auto;
+}
+
+.brand {
+  font-family: var(--brand);
+}
+
+.textCenter {
+  text-align: center;
+}
+
+.textRight {
+  text-align: right;
+}
+
+.noUnderline {
+  text-decoration-line: none;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.bgTransparent {
+  background-color: transparent;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+// https://webaim.org/techniques/css/invisiblecontent/
+
+.srOnly {
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+}
+
