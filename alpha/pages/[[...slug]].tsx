@@ -60,7 +60,7 @@ export const getStaticProps: GetStaticProps = async ({
   }
 }
 
-const PageComponent: NextPage<Props> = ({
+const Pages: NextPage<Props> = ({
   labels,
   navigation,
   organisation,
@@ -70,8 +70,98 @@ const PageComponent: NextPage<Props> = ({
 }) => {
   return (
     <>
+      {page.template === "Artists" &&
+        <Artists
+          labels={labels}
+          navigation={navigation}
+          page={page}
+          organisation={organisation}
+          pageContext={pageContext}
+          settings={settings}
+        />
+      }
+      {page.template === "Events" &&
+        <Events
+          labels={labels}
+          navigation={navigation}
+          page={page}
+          organisation={organisation}
+          pageContext={pageContext}
+          settings={settings}
+        />
+      }
+      {page.template === "Exhibitions" &&
+        <Exhibitions
+          labels={labels}
+          navigation={navigation}
+          page={page}
+          organisation={organisation}
+          pageContext={pageContext}
+          settings={settings}
+        />
+      }
       {page.template === "Home" &&
         <Home
+          labels={labels}
+          navigation={navigation}
+          page={page}
+          organisation={organisation}
+          pageContext={pageContext}
+          settings={settings}
+        />
+      }
+      {page.template === "News" &&
+        <News
+          labels={labels}
+          navigation={navigation}
+          page={page}
+          organisation={organisation}
+          pageContext={pageContext}
+          settings={settings}
+        />
+      }
+      {page.template === "Page" &&
+        <PageComponent
+          labels={labels}
+          navigation={navigation}
+          page={page}
+          organisation={organisation}
+          pageContext={pageContext}
+          settings={settings}
+        />
+      }
+      {page.template === "Support" &&
+        <Support
+          labels={labels}
+          navigation={navigation}
+          page={page}
+          organisation={organisation}
+          pageContext={pageContext}
+          settings={settings}
+        />
+      }
+      {page.template === "Videos" &&
+        <Videos
+          labels={labels}
+          navigation={navigation}
+          page={page}
+          organisation={organisation}
+          pageContext={pageContext}
+          settings={settings}
+        />
+      }
+      {page.template === "Support" &&
+        <Visit
+          labels={labels}
+          navigation={navigation}
+          page={page}
+          organisation={organisation}
+          pageContext={pageContext}
+          settings={settings}
+        />
+      }
+      {page.template === "Support" &&
+        <Workshops
           labels={labels}
           navigation={navigation}
           page={page}
@@ -83,4 +173,4 @@ const PageComponent: NextPage<Props> = ({
     </>
   )
 }
-export default PageComponent
+export default Pages
