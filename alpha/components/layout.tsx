@@ -1,6 +1,7 @@
 import { FC, ReactNode } from "react"
+import { useRouter } from "next/router"
 import { BaseHead } from "components/baseHead"
-//import Header from "components/header"
+import { Header } from "components/header"
 //import Footer from "components/footer"
 //import Scrollup from "components/scrollup"
 import {
@@ -14,7 +15,7 @@ import {
 } from "lib/interfaces"
 
 interface Props {
-  caption: String
+  caption: string
   children: ReactNode
   heroImage: Image
   labels: Label[]
@@ -36,19 +37,21 @@ export const Layout: FC<Props> = ({
   pageHead,
   settings
 }) => {
+  const { locale } = useRouter()
   return (
     <div>
       <BaseHead
         pageHead={pageHead}
         settings={settings}
       />
-      {/* <Header
+      <Header
         caption={caption}
         heroImage={heroImage}
         labels={labels}
         navigation={navigation}
         pageContext={pageContext}
-      /> */}
+      />
+      {settings.title[locale]}
       <main>
         {children}
         {/* <Scrollup /> */}

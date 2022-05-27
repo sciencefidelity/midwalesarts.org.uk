@@ -60,7 +60,9 @@ const exhibitionSubset = `
 `
 
 const postSubset = `
-  "posts": *[_type == "post" && __i18n_lang == ^.__i18n_lang && ${omitDrafts}]{
+  "posts": *[
+    _type == "post" && __i18n_lang == ^.__i18n_lang && ${omitDrafts}
+  ] | order(publishedAt desc){
     image, publishedAt, ${slug}, title
   }
 `

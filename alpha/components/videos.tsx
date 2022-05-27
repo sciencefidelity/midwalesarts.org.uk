@@ -1,4 +1,5 @@
 import { FC } from "react"
+import { useRouter } from "next/router"
 import { Layout } from "components/layout"
 import {
   Label,
@@ -26,9 +27,10 @@ export const Videos: FC<Props> = ({
   pageContext,
   settings
 }) => {
+  const { locale } = useRouter()
   return (
     <Layout
-      caption={page.videos[0].title}
+      caption={page.videos[0].title[locale]}
       heroImage={page.videos[0].mainImage}
       labels={labels}
       navigation={navigation}
