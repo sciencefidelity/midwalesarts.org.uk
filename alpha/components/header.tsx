@@ -4,7 +4,7 @@ import { ColorLogo } from "components/colorLogo"
 import { SanityImage } from "components/sanityImage"
 import { LinkTo } from "components/linkTo"
 import { NavComponent } from "components/navComponent"
-import { Image, Label, Navigation, PageContext } from "lib/interfaces"
+import { Image, Label, Navigation, PageContext, Settings } from "lib/interfaces"
 import s from "styles/layout.module.scss"
 import u from "styles/utils.module.scss"
 
@@ -14,6 +14,7 @@ interface Props {
   labels: Label[]
   navigation: Navigation[]
   pageContext: PageContext
+  settings: Settings
 }
 
 export const Header: FC<Props> = ({
@@ -21,7 +22,8 @@ export const Header: FC<Props> = ({
   heroImage,
   labels,
   navigation,
-  pageContext
+  pageContext,
+  settings
 }) => {
   const { locale } = useRouter()
   return (
@@ -31,7 +33,7 @@ export const Header: FC<Props> = ({
           <span className={`${u.srOnly}`}>
             {labels[0].text[locale]}
           </span>
-          <ColorLogo />
+          <ColorLogo alt={settings.title[locale]} />
         </LinkTo>
         <div
           className={`${s.hero}`}
@@ -40,7 +42,11 @@ export const Header: FC<Props> = ({
           <SanityImage alt={caption} image={heroImage} width={1600} />
         </div>
       </header>
-      <NavComponent labels={labels} navigation={navigation} pageContext={pageContext} />
+      <NavComponent
+        labels={labels}
+        navigation={navigation}
+        pageContext={pageContext}
+      />
       <div className={`${s.heroCaption}`}>{caption}</div>
     </>
   )

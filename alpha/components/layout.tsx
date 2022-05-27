@@ -50,6 +50,7 @@ export const Layout: FC<Props> = ({
         labels={labels}
         navigation={navigation}
         pageContext={pageContext}
+        settings={settings}
       />
       {settings.title[locale]}
       <main>

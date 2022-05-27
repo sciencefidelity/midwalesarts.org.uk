@@ -167,7 +167,7 @@ const page = `
     template == "Support" => { ${body}, ${feedback}, mainImage, subtitle },
     template == "Videos" => { subtitle, ${videoSubset} },
     template == "Visit" => { mainImage, ${spaces}, subtitle },
-    template == "Workshops" => { ${body}, subtitle, ${workshopSubset} },
+    template == "Workshops" => { ${body}, mainImage, subtitle, ${workshopSubset} },
     ${localization}
   }
 `
