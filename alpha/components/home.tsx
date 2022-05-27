@@ -1,4 +1,10 @@
 import { FC } from "react"
+import { useRouter } from "next/router"
+import { urlFor } from "lib/utils"
+import { ColorLogo } from "components/colorLogo"
+import { BrandCy, BrandEn } from "components/brand"
+import { FrontPageHeadline } from "components/frontPageHeadline"
+import { Intro } from "components/intro"
 import { Layout } from "components/layout"
 import {
   Label,
@@ -26,6 +32,9 @@ export const Home: FC<Props> = ({
   pageContext,
   settings
 }) => {
+  const { locale } = useRouter()
+  console.log(page)
+  const dynamicGap = { gap: `${locale === "cy" ? "8.2rem" : "9.4rem"}` }
   return (
     <Layout
       caption={page.mainImage.caption}
@@ -36,7 +45,41 @@ export const Home: FC<Props> = ({
       pageContext={pageContext}
       settings={settings}
     >
-      <div>{page.title}</div>
+      <section>
+        <div className="container">
+          <div style={dynamicGap} className="introduction">
+            <div className="introBranding">
+              {/* <ColorLogo
+                logoClass="introLogo"
+                containerClass="introLogoContainer"
+              /> */}
+              <ColorLogo alt="" />
+              {locale === "cy" ? <BrandCy /> : <BrandEn />}
+            </div>
+            <Intro page={page} />
+            <div className="sideImageContainer">
+              <img
+                src={urlFor(page.subImage)
+                  .width(406)
+                  .height(300)
+                  .auto("format")
+                  .quality(75)
+                  .url()}
+                alt={page.subImage.caption}
+                width={406}
+                height={300}
+                className={"sideImage"}
+              />
+              <div>{page.subImage.caption}</div>
+            </div>
+          </div>
+        </div>
+      </section>
+      {page.headline.map(item => (
+        <section key={item._id}>
+          <FrontPageHeadline headline={item} />
+        </section>
+      ))}
     </Layout>
   )
 }

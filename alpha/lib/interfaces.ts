@@ -114,7 +114,7 @@ export interface Page extends SanityDocument {
   exhibitions?: Exhibition[]
   feedback?: Feedback[]
   futureExhibitions?: Exhibition[]
-  headline?: Headline
+  headline?: Headline[]
   localization: Localization
   mainImage?: Image
   pastExhibitions?: Exhibition[]
