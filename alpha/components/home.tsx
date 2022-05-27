@@ -33,7 +33,6 @@ export const Home: FC<Props> = ({
   settings
 }) => {
   const { locale } = useRouter()
-  console.log(page)
   const dynamicGap = { gap: `${locale === "cy" ? "8.2rem" : "9.4rem"}` }
   return (
     <Layout
