@@ -32,13 +32,13 @@ export const Language: FC<Props> = ({ pageContext }) => {
     >
       {locale === "cy" ?
         <LinkTo
-          href={`/${pageContext.localization.slug.join("/")}`}
+          href={`/${pageContext.localization.slug.join("/").replace("index", "")}`}
           locale={locales[0]}
           onClick={() => handleLocaleChange(locales[0])}
         >{langs[0]}</LinkTo>
         :
         <LinkTo
-          href={`/${pageContext.localization.slug.join("/")}`}
+          href={`/${pageContext.localization.slug.join("/").replace("index", "")}`}
           locale={locales[1]}
           onClick={() => handleLocaleChange(locales[1])}
         >{langs[1]}</LinkTo>

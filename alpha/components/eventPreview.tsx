@@ -1,27 +1,35 @@
-import { FC } from "react"
+import { CSSProperties, FC } from "react"
 import Image from "next/image"
 import { useRouter } from "next/router"
-import { urlFor } from "@/lib/utils"
-import Link from "components/link"
-import Localize from "components/localize"
-import PostDate from "components/postDate"
-import { EventPreviewProps } from "lib/interfaces"
+import { buildUrl, urlFor } from "@/lib/utils"
+import { LinkTo } from "components/linkTo"
+import { PostDate } from "components/postDate"
+import { Event } from "lib/interfaces"
+import s from "styles/events.module.scss"
+import u from "styles/utils.module.scss"
 
-const EventPreview: FC<EventPreviewProps> = ({
-  heading, eventData, marginTop, grid
+interface Props {
+  eventData: Event[]
+  heading: string
+  marginTop: CSSProperties
+  grid: string
+}
+
+export const EventPreview: FC<Props> = ({
+  eventData, heading, marginTop, grid
 }) => {
   const { locale } = useRouter()
   return (
     <>
-      <div className="sidebarContainer" style={marginTop}>
-        <div className="portableContainer">
+      <div className={`${s.sidebarContainer} ${u.grid}`} style={marginTop}>
+        <div className={`${s.portableContainer}`}>
           <p>{heading}</p>
         </div>
       </div>
-      <div className={grid}>
+      <div className={s[grid]}>
         {eventData.map(event => (
-          <Link
-            href={`/events/${event.slug.en.current}`}
+          <LinkTo
+            href={buildUrl(locale, event.slug, event._type)}
             key={event._id}
             style={{ margin: 0 }}
           >
@@ -32,24 +40,17 @@ const EventPreview: FC<EventPreviewProps> = ({
                 .auto("format")
                 .quality(75)
                 .url()}
-              alt={
-                locale === "cy" && event.title.cy
-                  ? event.title.cy
-                  : event.title.en
-              }
+              alt={event.title}
               width={2000}
               height={2000}
             />
-            <div className="gridCaption">
-              {event.title && <Localize data={event.title} />}
-            </div>
-            <div className="gridCaption">
+            {event.title && <div className={`${s.gridCaption}`}>{event.title}</div>}
+            <div className={`${s.gridCaption}`}>
               {event.date && <PostDate date={event.date} />}
             </div>
-          </Link>
+          </LinkTo>
         ))}
       </div>
     </>
   )
 }
-export default EventPreview

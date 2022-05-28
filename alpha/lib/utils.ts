@@ -4,6 +4,9 @@ import { LocaleString } from "lib/interfaces"
 import { Artist, Image } from "lib/interfaces"
 
 export const buildUrl = (locale: string, slug: string, type: string): string => {
+  console.log(locale)
+  console.log(slug)
+  console.log(type)
   return `${subdir(locale, type)}/${slug}`
 }
 

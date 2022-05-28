@@ -1,0 +1,39 @@
+@use "./base/colors" as c;
+@use "./base/breakpoints" as b;
+
+.sidebarContainer {
+  grid-template-columns: 3fr 1fr;
+  @include b.mq(lg) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.portableContainer {
+  width: 75%;
+  margin: 0 auto;
+  @include b.mq(lg) {
+    width: 81.25%;
+  }
+}
+
+.pastEventsImageGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 3rem;
+  width: 81.25%;
+  margin: auto;
+  z-index: 5;
+  @include b.mq(lg) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @include b.mq(sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.gridCaption {
+  font-size: 1.8rem;
+  color: c.$grey-700;
+  text-align: right;
+  margin: 0.6em 0 0.6em;
+}

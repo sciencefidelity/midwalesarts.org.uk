@@ -19,7 +19,7 @@ const ctaLink = `
 
 const artistSubset = `
   "artists": *[_type == "artist" && __i18n_lang == ^.__i18n_lang && ${omitDrafts}]{
-    _id, mainImage, ${slug}, title
+    _id, _type, mainImage, ${slug}, title
   }
 `
 
@@ -30,7 +30,7 @@ const eventSubset = `
     && dateTime(now()) < dateTime(date)
     && ${omitDrafts}
   ] | order(date asc){
-    _id, date, mainImage, ${slug}, title
+    _id, _type, date, mainImage, ${slug}, title
   },
   "pastEvents": *[
     _type == "event"
@@ -38,7 +38,7 @@ const eventSubset = `
     && dateTime(now()) > dateTime(date)
     && ${omitDrafts}
   ] | order(date desc){
-    _id, date, mainImage, ${slug}, title
+    _id, _type, date, mainImage, ${slug}, title
   }
 `
 
@@ -50,7 +50,7 @@ const exhibitionSubset = `
     && dateTime(now()) <= dateTime(dateEnd)
     && ${omitDrafts}
   ] | order(dateStart asc){
-    _id, dateEnd, dateStart, mainImage, ${slug}, title
+    _id, _type, dateEnd, dateStart, mainImage, ${slug}, title
   },
   "futureExhibitions": *[
     _type == "exhibition"
@@ -58,7 +58,7 @@ const exhibitionSubset = `
     && dateTime(now()) < dateTime(dateStart)
     && ${omitDrafts}
   ] | order(dateStart desc){
-    _id, dateEnd, dateStart, mainImage, ${slug}, title
+    _id, _type, dateEnd, dateStart, mainImage, ${slug}, title
   },
   "pastExhibitions": *[
     _type == "exhibition"
@@ -66,7 +66,7 @@ const exhibitionSubset = `
     && dateTime(now()) > dateTime(dateEnd)
     && ${omitDrafts}
   ] | order(dateStart desc){
-    _id, dateEnd, dateStart, mainImage, ${slug}, title
+    _id, _type, dateEnd, dateStart, mainImage, ${slug}, title
   }
 `
 
@@ -74,7 +74,7 @@ const postSubset = `
   "posts": *[
     _type == "post" && __i18n_lang == ^.__i18n_lang && ${omitDrafts}
   ] | order(publishedAt desc){
-    image, publishedAt, ${slug}, title
+    _id, _type, image, publishedAt, ${slug}, title
   }
 `
 
@@ -82,13 +82,13 @@ const videoSubset = `
   "videos": *[
     _type == "video" && __i18n_lang == ^.__i18n_lang && ${omitDrafts}
   ] | order(publishDate desc){
-    _id, mainImage, ${slug}, title
+    _id, _type, mainImage, ${slug}, title
   }
 `
 
 const workshopSubset = `
   "workshops": *[_type == "workshop" && __i18n_lang == ^.__i18n_lang && ${omitDrafts}]{
-    _id, day, endTime, mainImage, ${slug}, startTime, title
+    _id, _type, day, endTime, mainImage, ${slug}, startTime, title
   }
 `
 
