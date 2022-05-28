@@ -13,6 +13,7 @@ import {
   Organisation,
   Page,
   PageContext,
+  PageHead,
   Settings
 } from "lib/interfaces"
 import s from "styles/visit.module.scss"
@@ -35,6 +36,15 @@ export const Visit: FC<Props> = ({
   pageContext,
   settings
 }) => {
+  const { locale } = useRouter()
+  const pageHead: PageHead = {
+    title: page.title,
+    description: page.ogDescription,
+    ogTitle: page.ogTitle,
+    ogDescription: page.ogDescription,
+    ogURL: `${settings.canonicalURL}${locale === "cy" ? "/cy" : ""}/${page.slug}`,
+    ogImage: page.ogImage
+  }
   return (
     <Layout
       caption={page.mainImage.caption}
@@ -43,11 +53,12 @@ export const Visit: FC<Props> = ({
       navigation={navigation}
       organisation={organisation}
       pageContext={pageContext}
+      pageHead={pageHead}
       settings={settings}
     >
-      <section className={`${s.visitContainer} ${u.mAuto}`}>
+      <section className={`${s.container} ${u.mAuto}`}>
         <h1>{page.title}</h1>
-        <p className={`${s.subTitle}`}>{page.subtitle} </p>
+        <h2 className={`${s.subtitle}`}>{page.subtitle} </h2>
         <div className={`${s.spacesGrid} ${u.grid}`}>
           {page.spaces && page.spaces.map(space => (
             <LinkTo
@@ -67,7 +78,7 @@ export const Visit: FC<Props> = ({
                 height={2000}
               />
               {space.title &&
-                <div className={`${s.gridCaption}`}>{space.title}</div>
+                <div className={`${s.caption} ${u.textRight}`}>{space.title}</div>
               }
             </LinkTo>
           ))}
@@ -79,7 +90,7 @@ export const Visit: FC<Props> = ({
                 id={space.slug}
                 style={{ margin: 0 }}
                 key={space._id}
-                className={`${s.spacesText}`}
+                className={`${s.text}`}
               >
                 {space.title && <h4>{space.title}</h4>}
                 {space.body &&

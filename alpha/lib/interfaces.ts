@@ -7,6 +7,7 @@ export interface Address {
 export interface Artist extends SanityDocument {
   __i18n_lang: "cy" | "en"
   _type: "artist"
+  disciplines: string[]
   mainImage: Image
   slug: string
   title: string
@@ -187,6 +188,7 @@ export interface Video extends SanityDocument {
   __i18n_lang: "cy" | "en"
   _type: "video"
   mainImage: Image
+  publishDate: string
   slug: string
   title: string
 }

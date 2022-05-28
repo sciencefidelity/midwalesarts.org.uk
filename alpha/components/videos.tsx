@@ -4,12 +4,14 @@ import { useRouter } from "next/router"
 import { buildUrl, urlFor } from "lib/utils"
 import { Layout } from "components/layout"
 import { LinkTo } from "components/linkTo"
+import { PostDate } from "components/date"
 import {
   Label,
   Navigation,
   Organisation,
   Page,
   PageContext,
+  PageHead,
   Settings
 } from "lib/interfaces"
 import s from "styles/videos.module.scss"
@@ -33,21 +35,30 @@ export const Videos: FC<Props> = ({
   settings
 }) => {
   const { locale } = useRouter()
+  const pageHead: PageHead = {
+    title: page.title,
+    description: page.ogDescription,
+    ogTitle: page.ogTitle,
+    ogDescription: page.ogDescription,
+    ogURL: `${settings.canonicalURL}${locale === "cy" ? "/cy" : ""}/${page.slug}`,
+    ogImage: page.ogImage
+  }
   return (
     <Layout
-      caption={page.videos[0].title[locale]}
+      caption={page.videos[0].title}
       heroImage={page.videos[0].mainImage}
       labels={labels}
       navigation={navigation}
       organisation={organisation}
       pageContext={pageContext}
+      pageHead={pageHead}
       settings={settings}
     >
-      <div className={`${s.sidebarContainer} ${u.grid}`}>
-        <div className={`${s.portableContainer}`}>
+      <div className={`${s.container} ${u.grid}`}>
+        <div className={`${s.title}`}>
           {page.title && <h1>{page.title}</h1>}
           {page.subtitle &&
-            <p className={`${s.subTitle}`}>{page.subtitle}</p>
+            <h2 className={`${s.subtitle}`}>{page.subtitle}</h2>
           }
         </div>
       </div>
@@ -67,8 +78,12 @@ export const Videos: FC<Props> = ({
                 height={2000}
               />
               {video.title &&
-                <div className={`${s.gridCaption}`}>{video.title}</div>
+                <div className={`${s.caption} ${u.textRight}`}>{video.title}</div>
               }
+              <div className={`${s.caption} ${u.textRight}`}>
+                {labels[17].text[locale]}
+                {video.publishDate && <PostDate date={video.publishDate} />}
+              </div>
             </LinkTo>
           </div>
         )}

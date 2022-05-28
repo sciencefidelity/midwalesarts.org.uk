@@ -78,7 +78,12 @@ export const Artists: FC<Props> = ({
               width={2000}
               height={2000}
             />
-            <div className={`${s.caption} ${u.textRight}`}>{artist.title}</div>
+            {artist.title && <div className={`${s.caption} ${u.textRight}`}>
+              {artist.title}
+            </div>}
+            {artist.disciplines && <div className={`${s.caption} ${u.textRight}`}>
+              {artist.disciplines.sort().join(", ")}
+            </div>}
           </LinkTo>
         )}
       </div>

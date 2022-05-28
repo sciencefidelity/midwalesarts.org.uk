@@ -11,6 +11,7 @@ import {
   Organisation,
   Page,
   PageContext,
+  PageHead,
   Settings
 } from "lib/interfaces"
 import s from "styles/news.module.scss"
@@ -34,14 +35,23 @@ export const News: FC<Props> = ({
   settings
 }) => {
   const { locale } = useRouter()
+  const pageHead: PageHead = {
+    title: page.title,
+    description: page.ogDescription,
+    ogTitle: page.ogTitle,
+    ogDescription: page.ogDescription,
+    ogURL: `${settings.canonicalURL}${locale === "cy" ? "/cy" : ""}/${page.slug}`,
+    ogImage: page.ogImage
+  }
   return (
     <Layout
-      caption={page.posts[0].title[locale]}
+      caption={page.posts[0].title}
       heroImage={page.posts[0].image}
       labels={labels}
       navigation={navigation}
       organisation={organisation}
       pageContext={pageContext}
+      pageHead={pageHead}
       settings={settings}
     >
       <div className={`${s.container} ${u.grid}`}>

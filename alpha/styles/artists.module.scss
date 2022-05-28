@@ -43,8 +43,13 @@
 .caption {
   font-size: 1.8rem;
   color: c.$grey-550;
-  margin: 0.6em 0 0.6em;
-  line-height: 1.4;
-  margin-block: 0.88em 1.3em;
-  font-weight: 500;
+  &:first-of-type {
+    line-height: 1.4;
+    margin-block: 0.88em 0.48em;
+    font-weight: 500;
+  }
+  &:last-of-type {
+    margin-block: 0.48em 1.3em;
+  }
 }
+

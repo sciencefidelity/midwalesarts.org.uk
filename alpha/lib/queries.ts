@@ -19,7 +19,7 @@ const ctaLink = `
 
 const artistSubset = `
   "artists": *[_type == "artist" && __i18n_lang == ^.__i18n_lang && ${omitDrafts}]{
-    _id, _type, mainImage, ${slug}, title,
+    _id, _type, "disciplines": disciplines[]->title[$locale], mainImage, ${slug}, title,
     "hero": *[_type == "artist" && ${omitDrafts}]{
       ...,
       "random": (dateTime(now()) - dateTime(_createdAt)) % 199
@@ -86,7 +86,7 @@ const videoSubset = `
   "videos": *[
     _type == "video" && __i18n_lang == ^.__i18n_lang && ${omitDrafts}
   ] | order(publishDate desc){
-    _id, _type, mainImage, ${slug}, title
+    _id, _type, mainImage, publishDate, ${slug}, title
   }
 `
 
