@@ -11,7 +11,6 @@ interface Props {
 
 export const SanityImage: FC<Props> = ({ alt, image, width, height }) => {
   const hotspot = image.hotspot
-  console.log(image.hotspot)
   const position = hotspot
     ? `${Math.round(hotspot.x * 100)}% ${Math.round(hotspot.y * 100)}%`
     : "50% 50%"

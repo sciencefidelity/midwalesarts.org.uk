@@ -1,10 +1,10 @@
 import imageUrlBuilder from "@sanity/image-url"
 import sanityClient from "lib/sanityClient"
 import { LocaleString } from "lib/interfaces"
-import { Artist, Image, Locale } from "lib/interfaces"
+import { Artist, Image } from "lib/interfaces"
 
-export const buildUrl = (locale: Locale, slug: string, type: string): string => {
-  return `${subdir(locale, type)}/${slug}`
+export const buildUrl = (locale: string, slug: string, type: string): string => {
+  return `/${subdir(locale, type)}/${slug}`
 }
 
 export const capitalize = (str: string): string => {
@@ -32,7 +32,7 @@ export const sortNames = (names: Artist[]): Artist[] => {
   })
 }
 
-export const subdir = (locale: Locale, type: string): string => {
+export const subdir = (locale: string, type: string): string => {
   if (locale === "cy") {
     switch (type) {
     case "artist":

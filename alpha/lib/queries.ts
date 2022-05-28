@@ -4,7 +4,18 @@ const omitDrafts = "!(_id in path('drafts.**'))"
 const slug = "'slug': slug.current"
 const body = `body[]{ ..., markDefs[]{ ..., item->{ _type, ${slug} } } }`
 const seo = "ogDescription, ogImage, ogTitle"
-const ctaLink = "ctaLink->{ 'cy': __i18n_refs[0]->.slug.current, 'en': slug.current }"
+const ctaLink = `
+  "ctaLink": select(
+    __i18n_lang == "en" => {
+      "_type": ctaLink->._type,
+      "slug": ctaLink->.slug.current
+    },
+    __i18n_lang == "cy" => {
+      "_type": ctaLink->._type,
+      "slug": __i18n_base->.ctaLink->.__i18n_refs[0]->.slug.current
+    }
+  )
+`
 
 const artistSubset = `
   "artists": *[_type == "artist" && __i18n_lang == ^.__i18n_lang && ${omitDrafts}]{
@@ -85,11 +96,19 @@ const feedback = `
   "feedback": *[_type == "feedback" && ${omitDrafts}].feedback[]{  _key, quote{ cy, en } }
 `
 
-const headline = `
-  headline[]->{
-    _id, body{ cy, en }, caption{ cy, en }, cta{ cy, en }, ${ctaLink},
-    heading{ cy, en }, mainImage, subImage, title{ cy, en }
-  }
+const headlines = `
+  "headlines": select(
+    __i18n_lang == "en" => headline[]->{
+      _id, "body": body.en, "caption": caption.en, "cta": cta.en,
+      "heading": heading.en, mainImage, subImage, "title": title.en,
+      "ctaLink": {"_type": ctaLink.item->._type, "slug": ctaLink.item->.slug.current}
+    },
+    __i18n_lang == "cy" => __i18n_base->.headline[]->{
+      _id, "body": body.cy, "caption": caption.cy, "cta": cta.cy,
+      "heading": heading.cy, mainImage, subImage, "title": title.cy,
+      "ctaLink": { "_type": ctaLink.item->._type, "slug": ctaLink.item->.__i18n_refs[0]->.slug.current }
+    }
+  )
 `
 
 const labels = `
@@ -157,17 +176,17 @@ const page = `
     && __i18n_lang == $locale
     && ${omitDrafts}
   ][0]{
-    __i18n_lang, _type, ${slug}, template, title, ${seo},
-    template == "Artists" => { ${artistSubset}, subtitle },
-    template == "Events" => { ${eventSubset}, subtitle },
-    template == "Exhibitions" => { ${exhibitionSubset}, subtitle },
-    template == "Home" => { ${body}, cta, ${ctaLink}, mainImage, subImage, ${headline} },
-    template == "News" => { ${postSubset}, subtitle },
-    template == "Page" => { ${body}, mainImage, subtitle },
-    template == "Support" => { ${body}, ${feedback}, mainImage, subtitle },
-    template == "Videos" => { subtitle, ${videoSubset} },
-    template == "Visit" => { mainImage, ${spaces}, subtitle },
-    template == "Workshops" => { ${body}, mainImage, subtitle, ${workshopSubset} },
+    __i18n_lang, _type, ${slug}, template, title,
+    template == "Artists" => { ${artistSubset}, subtitle, ${seo} },
+    template == "Events" => { ${eventSubset}, subtitle, ${seo} },
+    template == "Exhibitions" => { ${exhibitionSubset}, subtitle, ${seo} },
+    template == "Home" => { ${body}, cta, ${ctaLink}, mainImage, subImage, ${headlines} },
+    template == "News" => { ${postSubset}, subtitle, ${seo} },
+    template == "Page" => { ${body}, mainImage, subtitle, ${seo} },
+    template == "Support" => { ${body}, ${feedback}, mainImage, subtitle, ${seo} },
+    template == "Videos" => { subtitle, ${videoSubset}, ${seo} },
+    template == "Visit" => { mainImage, ${spaces}, subtitle, ${seo} },
+    template == "Workshops" => { ${body}, mainImage, subtitle, ${workshopSubset}, ${seo} },
     ${localization}
   }
 `

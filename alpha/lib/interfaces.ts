@@ -12,6 +12,11 @@ export interface Artist extends SanityDocument {
   title: string
 }
 
+export interface CTALink {
+  _type: string
+  slug: string
+}
+
 export interface Event extends SanityDocument {
   __i18n_lang: "cy" | "en"
   _type: "event"
@@ -37,14 +42,14 @@ export interface Feedback {
 }
 
 export interface Headline extends SanityDocument {
-  body: LocaleString
-  caption: LocaleString
-  cta: LocaleString
-  ctaLink: LocaleString
-  heading: LocaleString
+  body: string
+  caption: string
+  cta: string
+  ctaLink: CTALink
+  heading: string
   mainImage: Image
   subImage: Image
-  title: LocaleString
+  title: string
 }
 
 export interface HeadProps {
@@ -109,12 +114,12 @@ export interface Page extends SanityDocument {
   body?: PortableText
   artists?: Artist[]
   cta?: string
-  ctaLink?: LocaleString
+  ctaLink?: CTALink
   events?: Event[]
   exhibitions?: Exhibition[]
   feedback?: Feedback[]
   futureExhibitions?: Exhibition[]
-  headline?: Headline[]
+  headlines?: Headline[]
   localization: Localization
   mainImage?: Image
   pastExhibitions?: Exhibition[]

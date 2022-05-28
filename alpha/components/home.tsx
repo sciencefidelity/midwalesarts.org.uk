@@ -74,9 +74,9 @@ export const Home: FC<Props> = ({
           </div>
         </div>
       </section>
-      {page.headline.map(item => (
-        <section key={item._id}>
-          <FrontPageHeadline headline={item} />
+      {page.headlines.map(headline => (
+        <section key={headline._id}>
+          <FrontPageHeadline headline={headline} />
         </section>
       ))}
     </Layout>

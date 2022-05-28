@@ -12,14 +12,14 @@ interface Props {
 
 export const Intro: FC<Props> = ({ page }) => {
   const { locale } = useRouter()
-  // const url = buildUrl(ctaLink)
+  const url = buildUrl(locale, page.ctaLink.slug, page.ctaLink._type)
   return (
     <div className="introText">
       {page.body && (
         <PortableText value={page.body} components={components} />
       )}
       {page.ctaLink &&
-        <LinkTo href={page.ctaLink[locale]}>
+        <LinkTo href={url}>
           {page.cta && <h2 className="introCta">{page.cta}&nbsp;</h2>}
         </LinkTo>
       }

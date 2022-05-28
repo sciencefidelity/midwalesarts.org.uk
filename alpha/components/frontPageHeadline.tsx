@@ -10,8 +10,7 @@ interface Props {
 
 export const FrontPageHeadline: FC<Props> = ({ headline }) => {
   const { locale } = useRouter()
-  // const url = buildUrl(headline.ctaSlug)
-  const url = headline.ctaLink[locale]
+  const url = buildUrl(locale, headline.ctaLink.slug, headline.ctaLink._type)
   return (
     <div className="sectionContainer">
       <div className="sectionHero">
@@ -24,11 +23,11 @@ export const FrontPageHeadline: FC<Props> = ({ headline }) => {
             .url()}
           width={1080}
           height={450}
-          alt={headline.subImage.caption}
+          alt={headline.subImage.caption[locale]}
         />
       </div>
       <div className="sectionHeroCaption caption">
-        {headline.mainImage.caption}
+        {headline.mainImage.caption[locale]}
       </div>
       <div className="sectionContent">
         <div className="sectionInsetImage">
@@ -41,20 +40,20 @@ export const FrontPageHeadline: FC<Props> = ({ headline }) => {
             width={340}
             height={510}
             className="sectionInset"
-            alt={headline.subImage.caption}
+            alt={headline.subImage.caption[locale]}
           />
-          <div className="caption">{headline.subImage.caption}</div>
+          <div className="caption">{headline.subImage.caption[locale]}</div>
         </div>
         <div>
           <div className="sectionTitleContainer">
             <div>
-              {headline.title && <h2>{headline.title[locale]}</h2>}
-              {headline.caption && <h3>{headline.caption[locale]}</h3>}
+              {headline.title && <h2>{headline.title}</h2>}
+              {headline.caption && <h3>{headline.caption}</h3>}
             </div>
           </div>
           <div className="sectionText">
-            {headline.heading && <h4>{headline.heading[locale]}</h4>}
-            {headline.body && <p>{headline.body[locale]}</p>}
+            {headline.heading && <h4>{headline.heading}</h4>}
+            {headline.body && <p>{headline.body}</p>}
           </div>
         </div>
       </div>
@@ -62,7 +61,7 @@ export const FrontPageHeadline: FC<Props> = ({ headline }) => {
         <div className="sectionCtaHr"></div>
         <LinkTo href={url}>
           <h2 className="sectionCta">
-            {headline.cta && <span>{headline.cta[locale]}&nbsp;</span>}
+            {headline.cta && <span>{headline.cta}&nbsp;</span>}
           </h2>
         </LinkTo>
       </div>
