@@ -1,6 +1,10 @@
 import { FC } from "react"
 import { useRouter } from "next/router"
+import Image from "next/image"
+import { buildUrl, urlFor } from "@/lib/utils"
 import { Layout } from "components/layout"
+import { LinkTo } from "components/linkTo"
+import { PostDate } from "components/date"
 import {
   Label,
   Navigation,
@@ -9,6 +13,8 @@ import {
   PageContext,
   Settings
 } from "lib/interfaces"
+import s from "styles/news.module.scss"
+import u from "styles/utils.module.scss"
 
 interface Props {
   labels:Label[]
@@ -38,7 +44,38 @@ export const News: FC<Props> = ({
       pageContext={pageContext}
       settings={settings}
     >
-      <div>{page.title}</div>
+      <div className={`${s.sidebarContainer} ${u.grid}`}>
+        <div className={`${s.portableContainer}`}>
+          {page.title && <h1>{page.title}</h1>}
+          {page.subtitle && <p className={`${s.subTitle}`}>{page.subtitle}</p>}
+        </div>
+      </div>
+      <div className={`${s.imageGrid} ${u.grid}`}>
+        {page.posts && page.posts.map(post => post && (
+          <div key={post._id} style={{ margin: 0 }}>
+            <LinkTo href={buildUrl(locale, post.slug, page._type)}>
+              <Image
+                src={urlFor(post.image)
+                  .width(468)
+                  .height(468)
+                  .auto("format")
+                  .quality(75)
+                  .url()}
+                alt={post.title}
+                width={2000}
+                height={2000}
+              />
+              {post.title &&
+                <div className={`${s.gridCaption}`}>{post.title}</div>
+              }
+              <div className={`${s.gridCaption}`}>
+                {labels[17].text[locale]}
+                {post.publishedAt && <PostDate date={post.publishedAt} />}
+              </div>
+            </LinkTo>
+          </div>
+        ))}
+      </div>
     </Layout>
   )
 }
