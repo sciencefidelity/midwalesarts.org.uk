@@ -1,14 +1,14 @@
 @use "./base/colors" as c;
 @use "./base/breakpoints" as b;
 
-.sidebarContainer {
+.container {
   grid-template-columns: 3fr 1fr;
   @include b.mq(lg) {
     grid-template-columns: 1fr;
   }
 }
 
-.portableContainer {
+.title {
   width: 75%;
   margin: 0 auto 0;
   @include b.mq(lg) {
@@ -16,14 +16,15 @@
   }
 }
 
-.subTitle {
+.subtitle {
   font-size: 3rem;
-  margin-block: 0.3em;
+  margin-block: 0.5em 0.4em;
+  color: c.$grey-600;
   @include b.mq(sm) {
     font-size: 2.6em;
   }
 }
 
 .body {
-  margin-top: 9rem;
+  margin-top: 8.1rem;
 }

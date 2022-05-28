@@ -1,6 +1,6 @@
 import { FC } from "react"
-import Image from "next/image"
 import { useRouter } from "next/router"
+import Image from "next/image"
 import { buildUrl, urlFor } from "lib/utils"
 import { Layout } from "components/layout"
 import { LinkTo } from "components/linkTo"

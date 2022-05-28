@@ -1,4 +1,5 @@
 import { FC } from "react"
+import { useRouter } from "next/router"
 import { PortableText } from "@portabletext/react"
 import { components } from "components/portableTextComponents"
 import { Layout } from "components/layout"
@@ -9,6 +10,7 @@ import {
   Organisation,
   Page,
   PageContext,
+  PageHead,
   Settings
 } from "lib/interfaces"
 import s from "styles/pages.module.scss"
@@ -31,6 +33,15 @@ export const Workshops: FC<Props> = ({
   pageContext,
   settings
 }) => {
+  const { locale } = useRouter()
+  const pageHead: PageHead = {
+    title: page.title,
+    description: page.ogDescription,
+    ogTitle: page.ogTitle,
+    ogDescription: page.ogDescription,
+    ogURL: `${settings.canonicalURL}${locale === "cy" ? "/cy" : ""}/${page.slug}`,
+    ogImage: page.ogImage
+  }
   return (
     <Layout
       caption={page.title}
@@ -39,13 +50,16 @@ export const Workshops: FC<Props> = ({
       navigation={navigation}
       organisation={organisation}
       pageContext={pageContext}
+      pageHead={pageHead}
       settings={settings}
     >
-      <div className={`${s.sidebarContainer} ${u.grid}`}>
-        <section className={`${s.portableContainer}`}>
+      <div className={`${s.container} ${u.grid}`}>
+        <section className={`${s.title}`}>
           {page.title && <h1>{page.title}</h1>}
-          {page.subtitle && <p className={`${s.subTitle}`}>{page.subtitle}</p>}
-          {page.body && <PortableText value={page.body} components={components} />}
+          {page.subtitle && <h2 className={`${s.subtitle}`}>{page.subtitle}</h2>}
+          {page.body && <div className={`${s.body}`}>
+            <PortableText value={page.body} components={components} />
+          </div>}
         </section>
         <Sidebar />
       </div>
