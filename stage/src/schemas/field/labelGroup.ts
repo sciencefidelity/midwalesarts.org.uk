@@ -32,8 +32,8 @@ export default {
           ],
           preview: {
             select: {
-              title: 'key',
-              subtitle: 'text.en'
+              title: 'text.en',
+              subtitle: 'text.cy'
             },
             prepare({ subtitle, title }) {
               return {
