@@ -44,10 +44,10 @@ export const News: FC<Props> = ({
       pageContext={pageContext}
       settings={settings}
     >
-      <div className={`${s.sidebarContainer} ${u.grid}`}>
-        <div className={`${s.portableContainer}`}>
+      <div className={`${s.container} ${u.grid}`}>
+        <div className={`${s.title}`}>
           {page.title && <h1>{page.title}</h1>}
-          {page.subtitle && <p className={`${s.subTitle}`}>{page.subtitle}</p>}
+          {page.subtitle && <h2 className={`${s.subtitle}`}>{page.subtitle}</h2>}
         </div>
       </div>
       <div className={`${s.imageGrid} ${u.grid}`}>
@@ -66,9 +66,9 @@ export const News: FC<Props> = ({
                 height={2000}
               />
               {post.title &&
-                <div className={`${s.gridCaption}`}>{post.title}</div>
+                <div className={`${s.caption} ${u.textRight}`}>{post.title}</div>
               }
-              <div className={`${s.gridCaption}`}>
+              <div className={`${s.caption} ${u.textRight}`}>
                 {labels[17].text[locale]}
                 {post.publishedAt && <PostDate date={post.publishedAt} />}
               </div>
