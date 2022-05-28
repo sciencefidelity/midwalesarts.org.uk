@@ -7,9 +7,24 @@ export interface Address {
 export interface Artist extends SanityDocument {
   __i18n_lang: "cy" | "en"
   _type: "artist"
+  body: PortableText
   disciplines: string[]
   mainImage: Image
+  ogDescription: string
+  ogImage: Image
+  ogTitle: string
   slug: string
+  title: string
+  works: Artwork[]
+}
+
+export interface Artwork {
+  _id: String
+  date: number
+  mainImage: Image
+  medium: string
+  sold: boolean
+  price: string
   title: string
 }
 
@@ -21,8 +36,13 @@ export interface CTALink {
 export interface Event extends SanityDocument {
   __i18n_lang: "cy" | "en"
   _type: "event"
+  body: PortableText
+  briteLink: string
   date: string
   mainImage: Image
+  ogDescription: string
+  ogImage: Image
+  ogTitle: string
   slug: string
   title: string
 }
@@ -30,11 +50,16 @@ export interface Event extends SanityDocument {
 export interface Exhibition extends SanityDocument {
   __i18n_lang: "cy" | "en"
   _type: "exhibition"
+  body: PortableText
   dateEnd: string
   dateStart: string
   mainImage: Image
+  ogDescription: string
+  ogImage: Image
+  ogTitle: string
   slug: string
   title: string
+  works: Artwork[]
 }
 
 export interface Feedback {
@@ -152,9 +177,16 @@ export interface PageHead {
 export interface Post extends SanityDocument {
   __i18n_lang: "cy" | "en"
   _type: "post"
+  body: PortableText
   image: Image
+  nextPost: Post
+  ogDescription: string
+  ogImage: Image
+  ogTitle: string
+  previousPost: Post
   publishedAt: string
   slug: string
+  tags: string[]
   title: string
 }
 
@@ -195,18 +227,27 @@ export interface Space extends SanityDocument {
 export interface Video extends SanityDocument {
   __i18n_lang: "cy" | "en"
   _type: "video"
+  body: PortableText
   mainImage: Image
+  ogDescription: string
+  ogImage: Image
+  ogTitle: LocaleString
   publishDate: string
   slug: string
   title: string
+  videoLink: string
 }
 
 export interface Workshop extends SanityDocument {
   __i18n_lang: "cy" | "en"
   _type: "workshop"
+  body: PortableText
   day: string
   endTime: string
   mainImage: Image
+  ogDescription: string
+  ogImage: Image
+  ogTitle: LocaleString
   slug: string
   startTime: string
   title: string

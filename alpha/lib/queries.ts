@@ -17,6 +17,77 @@ const ctaLink = `
   )
 `
 
+const artist = `
+  "artist": *[
+    _type == "artist"
+    && slug.current == $slug
+    && __i18n_lang == $locale
+    && ${omitDrafts}
+  ][0]{
+    ${body}, "disciplines": disciplines[]->title[$locale], mainImage, ${seo}, title,
+    "works": *[_type == "artwork" && artist == ^.title && ${omitDrafts}]{
+      _id, date, mainImage, medium, price, title
+    }
+  }
+`
+
+const event = `
+  "event": *[
+    _type == "event"
+    && slug.current == $slug
+    && __i18n_lang == $locale
+    && ${omitDrafts}
+  ][0]{
+    ${body}, briteLink, date, mainImage, ${seo}, title
+  }
+`
+
+const exhibition = `
+  "exhibition": *[
+    _type == "exhibition"
+    && slug.current == $slug
+    && __i18n_lang == $locale
+    && ${omitDrafts}
+  ][0]{
+    ${body}, dateEnd, dateStart, mainImage, ${seo}, title,
+    "works": *[_type == "artwork" && references(^._id)]{
+      artist, mainImage, medium, price, title
+    }
+  }
+`
+
+const post = `
+  "post": *[
+    _type == "post"
+    && slug.current == $slug
+    && __i18n_lang == $locale
+    && ${omitDrafts}
+  ][0]{
+    ${body}, image, publishedAt, ${seo}, "tags": tags[]->title[$locale], title,
+    "previousPost": *[
+      _type == "post" && __i18n_lang == $locale && publishedAt < ^.publishedAt
+    ] | order(publishedAt desc)[0]{ _type, ${slug}, title },
+    "nextPost": *[
+      _type == "post" && __i18n_lang == $locale && publishedAt > ^.publishedAt
+    ] | order(publishedAt asc)[0]{ _type, ${slug}, title }
+  }
+`
+
+const video = `
+  "video": *[
+    _type == "video"
+    && slug.current == $slug
+    && __i18n_lang == $locale
+    && ${omitDrafts}
+  ][0]{ ${body}, mainImage, publishDate, ${seo}, title, videoLink }
+`
+
+const workshop = `
+  "workshop": *[
+    _type == "workshop" && __i18n_lang == $locale
+  ][0]{ ${body}, day, endTime, mainImage, ${seo}, startTime, title }
+`
+
 const artistSubset = `
   "artists": *[_type == "artist" && __i18n_lang == ^.__i18n_lang && ${omitDrafts}]{
     _id, _type, "disciplines": disciplines[]->title[$locale], mainImage, ${slug}, title,
@@ -254,5 +325,28 @@ export const pageQuery = groq`{
   ${labels}, ${navigation}, ${organisation}, ${page}, ${settings}
 }`
 
+export const artistQuery = groq`{
+  ${artist}, ${labels}, ${navigation}, ${organisation}, ${settings}
+}`
+
+export const eventQuery = groq`{
+  ${event}, ${labels}, ${navigation}, ${organisation}, ${settings}
+}`
+
+export const exhibitionQuery = groq`{
+  ${exhibition}, ${labels}, ${navigation}, ${organisation}, ${settings}
+}`
+
+export const newsQuery = groq`{
+  ${labels}, ${navigation}, ${organisation}, ${post}, ${settings}
+}`
+
+export const videoQuery = groq`{
+  ${labels}, ${navigation}, ${organisation}, ${settings}, ${video}
+}`
+
+export const workshopQuery = groq`{
+  ${labels}, ${navigation}, ${organisation}, ${settings}, ${workshop}
+}`
 
 
