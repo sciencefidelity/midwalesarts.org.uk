@@ -16,6 +16,14 @@
   }
 }
 
+.subTitle {
+  font-size: 3rem;
+  margin-block: 0.3em;
+  @include b.mq(sm) {
+    font-size: 2.6em;
+  }
+}
+
 .pastEventsImageGrid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;

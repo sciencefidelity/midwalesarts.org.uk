@@ -10,12 +10,14 @@ import {
   Organisation,
   Page,
   PageContext,
+  PageHead,
   Settings
 } from "lib/interfaces"
 import s from "styles/artists.module.scss"
 import u from "styles/utils.module.scss"
 
 interface Props {
+  pageHead: PageHead
   labels:Label[]
   navigation: Navigation[]
   organisation: Organisation
@@ -33,20 +35,29 @@ export const Artists: FC<Props> = ({
   settings
 }) => {
   const { locale } = useRouter()
+  const pageHead: PageHead = {
+    title: page.title,
+    description: page.ogDescription,
+    ogTitle: page.ogTitle,
+    ogDescription: page.ogDescription,
+    ogURL: `${settings.canonicalURL}${locale === "cy" ? "/cy" : ""}/${page.slug}`,
+    ogImage: page.ogImage
+  }
   return (
     <Layout
-      caption={page.artists[0].mainImage.caption}
-      heroImage={page.artists[0].mainImage}
+      caption={page.hero.mainImage.caption}
+      heroImage={page.hero.mainImage}
       labels={labels}
       navigation={navigation}
       organisation={organisation}
       pageContext={pageContext}
+      pageHead={pageHead}
       settings={settings}
     >
-      <div className={`${s.sidebarContainer} ${u.grid}`}>
-        <div className={`${s.portableContainer}`}>
+      <div className={`${s.container} ${u.grid}`}>
+        <div className={`${s.title}`}>
           <h1>{page.title}</h1>
-          <p className="subTitle">{page.subtitle}</p>
+          <p className={`${s.subtitle}`}>{page.subtitle}</p>
         </div>
       </div>
       <div className={`${s.imageGrid} ${u.grid}`}>
@@ -67,7 +78,7 @@ export const Artists: FC<Props> = ({
               width={2000}
               height={2000}
             />
-            <div className={`${s.gridCaption}`}>{artist.title}</div>
+            <div className={`${s.caption}`}>{artist.title}</div>
           </LinkTo>
         )}
       </div>

@@ -52,17 +52,6 @@ export interface Headline extends SanityDocument {
   title: string
 }
 
-export interface HeadProps {
-  description: string
-  ogDescription: string
-  ogImage: Image
-  ogSiteName?: string
-  ogTitle: string
-  ogURL: string
-  slug: string
-  title: string
-}
-
 export interface Image {
   _key?: string
   _type: "image"
@@ -120,8 +109,12 @@ export interface Page extends SanityDocument {
   feedback?: Feedback[]
   futureExhibitions?: Exhibition[]
   headlines?: Headline[]
+  hero?: RandomHero
   localization: Localization
   mainImage?: Image
+  ogDescription: string
+  ogImage: Image
+  ogTitle: string
   pastExhibitions?: Exhibition[]
   pastEvents?: Event[]
   posts?: Post[]
@@ -143,6 +136,17 @@ export interface PageContext {
   slug: string[] | string
 }
 
+export interface PageHead {
+  description: string
+  ogDescription: string
+  ogImage: Image
+  ogSiteName?: string
+  ogTitle: string
+  ogURL: string
+  slug?: string
+  title: string
+}
+
 export interface Post extends SanityDocument {
   __i18n_lang: "cy" | "en"
   _type: "post"
@@ -150,6 +154,10 @@ export interface Post extends SanityDocument {
   publishedAt: string
   slug: string
   title: string
+}
+
+export interface RandomHero {
+  mainImage: Image
 }
 
 export interface Settings {

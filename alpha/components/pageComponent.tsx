@@ -45,7 +45,9 @@ export const PageComponent: FC<Props> = ({
         <section className={`${s.portableContainer}`}>
           {page.title && <h1>{page.title}</h1>}
           {page.subtitle && <p className={`${s.subTitle}`}>{page.subtitle}</p>}
-          {page.body && <PortableText value={page.body} components={components} />}
+          {page.body && <div className={`${s.body}`}>
+            <PortableText value={page.body} components={components} />
+          </div>}
         </section>
         <Sidebar />
       </div>

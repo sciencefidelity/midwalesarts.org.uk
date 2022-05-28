@@ -33,7 +33,7 @@ export const Events: FC<Props> = ({
   const { locale } = useRouter()
   return (
     <Layout
-      caption={page.events[0].title[locale]}
+      caption={page.events[0].title}
       heroImage={page.events[0].mainImage}
       labels={labels}
       navigation={navigation}
@@ -46,7 +46,7 @@ export const Events: FC<Props> = ({
           <div className={`${s.portableContainer}`}>
             {page.title && <h1>{page.title}</h1>}
             {page.subtitle &&
-              <p className={`${s.sidebarContainer} ${u.grid}`}>{page.subtitle}</p>
+              <p className={`${s.subTitle} ${u.grid}`}>{page.subtitle}</p>
             }
           </div>
         </div>

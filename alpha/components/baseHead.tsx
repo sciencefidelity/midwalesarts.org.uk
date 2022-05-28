@@ -2,10 +2,10 @@ import { FC } from "react"
 import Head from "next/head"
 import { useRouter } from "next/router"
 import { urlFor } from "lib/utils"
-import { HeadProps, Settings } from "lib/interfaces"
+import { PageHead, Settings } from "lib/interfaces"
 
 interface Props {
-  pageHead?: HeadProps
+  pageHead?: PageHead
   settings: Settings
 }
 
@@ -24,7 +24,7 @@ export const BaseHead: FC<Props> = ({ pageHead, settings }) => {
           ? pageHead.description
           : settings.description[locale]}
       />
-      <meta name="keywords" content="" />
+      {/* <meta name="keywords" content="" /> */}
       {/* Facebook */}
       <meta
         property="og:title"
@@ -40,8 +40,8 @@ export const BaseHead: FC<Props> = ({ pageHead, settings }) => {
       />
       <meta
         property="og:url"
-        content={pageHead && pageHead.slug
-          ? settings.canonicalURL + "/" + pageHead.slug
+        content={pageHead && pageHead.ogURL
+          ? pageHead.ogURL
           : settings.canonicalURL}
       />
       <meta
@@ -78,8 +78,8 @@ export const BaseHead: FC<Props> = ({ pageHead, settings }) => {
       />
       <meta
         name="twitter:site"
-        content={pageHead && pageHead.slug
-          ? settings.canonicalURL + "/" + pageHead.slug
+        content={pageHead && pageHead.ogURL
+          ? pageHead.ogURL
           : settings.canonicalURL}
       />
       <meta

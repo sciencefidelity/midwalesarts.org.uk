@@ -46,7 +46,7 @@ export const Visit: FC<Props> = ({
       settings={settings}
     >
       <section className={`${s.visitContainer} ${u.mAuto}`}>
-        <h1>{page.title} </h1>
+        <h1>{page.title}</h1>
         <p className={`${s.subTitle}`}>{page.subtitle} </p>
         <div className={`${s.spacesGrid} ${u.grid}`}>
           {page.spaces && page.spaces.map(space => (

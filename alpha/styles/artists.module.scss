@@ -1,14 +1,14 @@
 @use "./base/colors" as c;
 @use "./base/breakpoints" as b;
 
-.sidebarContainer {
+.container {
   grid-template-columns: 3fr 1fr;
   @include b.mq(lg) {
     grid-template-columns: 1fr;
   }
 }
 
-.portableContainer {
+.title {
   width: 75%;
   margin: 0 auto;
   @include b.mq(lg) {
@@ -16,11 +16,20 @@
   }
 }
 
+.subtitle {
+  font-size: 3rem;
+  margin-block: 0.3em;
+  @include b.mq(sm) {
+    font-size: 2.6em;
+  }
+}
+
 .imageGrid {
+  margin-top: 8rem;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 3rem;
   width: 81.25%;
-  margin: auto;
+  margin-inline: auto;
   z-index: 5;
   @include b.mq(lg) {
     grid-template-columns: 1fr 1fr;
@@ -30,7 +39,7 @@
   }
 }
 
-.gridCaption {
+.caption {
   font-size: 1.8rem;
   color: c.$grey-700;
   text-align: right;

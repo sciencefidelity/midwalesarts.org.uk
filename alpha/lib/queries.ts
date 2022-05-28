@@ -19,7 +19,11 @@ const ctaLink = `
 
 const artistSubset = `
   "artists": *[_type == "artist" && __i18n_lang == ^.__i18n_lang && ${omitDrafts}]{
-    _id, _type, mainImage, ${slug}, title
+    _id, _type, mainImage, ${slug}, title,
+    "hero": *[_type == "artist" && ${omitDrafts}]{
+      ...,
+      "random": (dateTime(now()) - dateTime(_createdAt)) % 199
+    } | order(random desc)[0]
   }
 `
 
@@ -111,6 +115,13 @@ const headlines = `
   )
 `
 
+const heroArtist = `
+  "hero": *[_type == "artist"]{
+    mainImage,
+    "random": (dateTime(now()) - dateTime(_createdAt)) % 199
+  } | order(random desc)[0]
+`
+
 const labels = `
   "labels": *[_type == "labelGroup" && ${omitDrafts}][0].labels[]{ key, text{ cy, en } }
 `
@@ -177,7 +188,7 @@ const page = `
     && ${omitDrafts}
   ][0]{
     __i18n_lang, _type, ${slug}, template, title,
-    template == "Artists" => { ${artistSubset}, subtitle, ${seo} },
+    template == "Artists" => { ${artistSubset}, ${heroArtist}, subtitle, ${seo} },
     template == "Events" => { ${eventSubset}, subtitle, ${seo} },
     template == "Exhibitions" => { ${exhibitionSubset}, subtitle, ${seo} },
     template == "Home" => { ${body}, cta, ${ctaLink}, mainImage, subImage, ${headlines} },

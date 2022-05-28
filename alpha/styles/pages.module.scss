@@ -10,7 +10,7 @@
 
 .portableContainer {
   width: 75%;
-  margin: 0 auto;
+  margin: 0 auto 0;
   @include b.mq(lg) {
     width: 81.25%;
   }
@@ -18,7 +18,12 @@
 
 .subTitle {
   font-size: 3rem;
+  margin-block: 0.3em;
   @include b.mq(sm) {
     font-size: 2.6em;
   }
+}
+
+.body {
+  margin-top: 9rem;
 }
