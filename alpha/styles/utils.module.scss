@@ -96,6 +96,15 @@
   }
 }
 
+// .truncate {
+//   white-space: nowrap;
+//   overflow: hidden;
+//   text-overflow: ellipsis;
+//   -webkit-text-overflow: ellipsis;
+//   -webkit-line-clamp: 1;
+//   -webkit-box-orient: vertical;
+// }
+
 .srOnly {
   border: 0;
   clip: rect(1px, 1px, 1px, 1px);

@@ -12,26 +12,24 @@ interface Props {
   eventData: Event[]
   heading: string
   marginTop: CSSProperties
-  grid: string
 }
 
-export const EventPreview: FC<Props> = ({
-  eventData, heading, marginTop, grid
-}) => {
+export const EventPreview: FC<Props> = ({ eventData, heading, marginTop }) => {
   const { locale } = useRouter()
   return (
     <>
-      <div className={`${s.sidebarContainer} ${u.grid}`} style={marginTop}>
-        <div className={`${s.portableContainer}`}>
-          <p>{heading}</p>
+      <div className={`${s.container} ${u.grid}`} style={marginTop}>
+        <div className={`${s.title}`}>
+          <h3 className={`${s.heading}`}>{heading}</h3>
         </div>
       </div>
-      <div className={s[grid]}>
+      <div className={`${s.imageGrid}`}>
         {eventData.map(event => (
           <LinkTo
             href={buildUrl(locale, event.slug, event._type)}
             key={event._id}
             style={{ margin: 0 }}
+            className={`${u.truncate}`}
           >
             <Image
               src={urlFor(event.mainImage)
@@ -44,10 +42,14 @@ export const EventPreview: FC<Props> = ({
               width={2000}
               height={2000}
             />
-            {event.title && <div className={`${s.gridCaption}`}>{event.title}</div>}
-            <div className={`${s.gridCaption}`}>
-              {event.date && <PostDate date={event.date} />}
-            </div>
+            {event.title &&
+              <div className={`${s.caption} ${u.textRight}`}>
+                {event.title}
+              </div>
+            }
+            {event.date && <div className={`${s.caption} ${u.textRight}`}>
+              <PostDate date={event.date} />
+            </div>}
           </LinkTo>
         ))}
       </div>

@@ -8,6 +8,7 @@ import {
   Organisation,
   Page,
   PageContext,
+  PageHead,
   Settings
 } from "lib/interfaces"
 import s from "styles/events.module.scss"
@@ -31,22 +32,31 @@ export const Events: FC<Props> = ({
   settings
 }) => {
   const { locale } = useRouter()
+  const pageHead: PageHead = {
+    title: page.title,
+    description: page.ogDescription,
+    ogTitle: page.ogTitle,
+    ogDescription: page.ogDescription,
+    ogURL: `${settings.canonicalURL}${locale === "cy" ? "/cy" : ""}/${page.slug}`,
+    ogImage: page.ogImage
+  }
   return (
     <Layout
       caption={page.events[0].title}
       heroImage={page.events[0].mainImage}
       labels={labels}
       navigation={navigation}
+      pageHead={pageHead}
       organisation={organisation}
       pageContext={pageContext}
       settings={settings}
     >
       <section>
-        <div className={`${s.sidebarContainer} ${u.grid}`}>
-          <div className={`${s.portableContainer}`}>
+        <div className={`${s.container} ${u.grid}`}>
+          <div className={`${s.title}`}>
             {page.title && <h1>{page.title}</h1>}
             {page.subtitle &&
-              <p className={`${s.subTitle} ${u.grid}`}>{page.subtitle}</p>
+              <h2 className={`${s.subtitle} ${u.grid}`}>{page.subtitle}</h2>
             }
           </div>
         </div>
@@ -55,14 +65,13 @@ export const Events: FC<Props> = ({
             heading={labels[9].text[locale]}
             eventData={page.events}
             marginTop={{ marginTop: "2rem" }}
-            grid="pastEventsImageGrid"
           />
         ) : (
           <div
-            className={`${s.sidebarContainer} ${u.grid}`}
+            className={`${s.container} ${u.grid}`}
             style={{ marginTop: "5rem" }}
           >
-            <div className={`${s.portableContainer}`}>
+            <div className={`${s.title}`}>
               <p>{labels[10].text[locale]}</p>
             </div>
           </div>
@@ -80,7 +89,6 @@ export const Events: FC<Props> = ({
             heading={labels[12].text[locale]}
             eventData={page.pastEvents}
             marginTop={{ marginTop: "6rem" }}
-            grid="pastEventsImageGrid"
           />
         )}
       </section>
