@@ -3,7 +3,7 @@ import { useRouter } from "next/router"
 import { PortableText } from "@portabletext/react"
 import { components } from "components/portableTextComponents"
 import { Layout } from "components/layout"
-import { Sidebar } from "components/sidebar"
+import { SidebarComponent } from "components/sidebarComponent"
 import {
   Label,
   Navigation,
@@ -61,7 +61,7 @@ export const PageComponent: FC<Props> = ({
             <PortableText value={page.body} components={components} />
           </div>}
         </section>
-        <Sidebar />
+        <SidebarComponent sidebar={page.sidebar} />
       </div>
     </Layout>
   )

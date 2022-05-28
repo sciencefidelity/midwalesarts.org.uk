@@ -17,7 +17,6 @@ import s from "styles/artists.module.scss"
 import u from "styles/utils.module.scss"
 
 interface Props {
-  pageHead: PageHead
   labels:Label[]
   navigation: Navigation[]
   organisation: Organisation

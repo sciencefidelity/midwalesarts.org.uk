@@ -180,6 +180,29 @@ const settings = `
   }
 `
 
+const sidebar = `
+  "sidebar": {
+    "posts": *[
+      _type == "post" && __i18n_lang == $locale
+    ] | order(publishedAt desc)[0..4]{
+      _type, publishedAt, ${slug}, title
+    },
+    "events": *[
+      _type == "event" && __i18n_lang == $locale && dateTime(now()) < dateTime(date)
+    ] | order(date asc)[0..4]{
+      _type, date, ${slug}, title
+    },
+    "exhibitions": *[
+      _type == "exhibition" && __i18n_lang == $locale && dateTime(now()) < dateTime(dateEnd)
+    ][0..4] | order(dateStart asc){
+      _type, dateEnd, dateStart, ${slug}, title
+    },
+    "workshops": *[_type == "workshop" && __i18n_lang == $locale][0..4]{
+      _type, day, startTime, ${slug}, title
+    }
+  }
+`
+
 const page = `
   "page": *[
     _type == "page"
@@ -193,11 +216,11 @@ const page = `
     template == "Exhibitions" => { ${exhibitionSubset}, subtitle, ${seo} },
     template == "Home" => { ${body}, cta, ${ctaLink}, mainImage, subImage, ${headlines} },
     template == "News" => { ${postSubset}, subtitle, ${seo} },
-    template == "Page" => { ${body}, mainImage, subtitle, ${seo} },
-    template == "Support" => { ${body}, ${feedback}, mainImage, subtitle, ${seo} },
+    template == "Page" => { ${body}, mainImage, subtitle, ${seo}, ${sidebar} },
+    template == "Support" => { ${body}, ${feedback}, mainImage, subtitle, ${seo}, ${sidebar} },
     template == "Videos" => { subtitle, ${videoSubset}, ${seo} },
     template == "Visit" => { mainImage, ${spaces}, subtitle, ${seo} },
-    template == "Workshops" => { ${body}, mainImage, subtitle, ${workshopSubset}, ${seo} },
+    template == "Workshops" => { ${body}, mainImage, subtitle, ${workshopSubset}, ${seo}, ${sidebar} },
     ${localization}
   }
 `

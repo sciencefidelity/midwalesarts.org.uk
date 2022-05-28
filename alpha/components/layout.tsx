@@ -4,12 +4,12 @@ import { Header } from "components/header"
 import { Footer } from "components/footer"
 import { Scrollup } from "components/scrollup"
 import {
-  HeadProps,
   Label,
   Image,
   Navigation,
   Organisation,
   PageContext,
+  PageHead,
   Settings
 } from "lib/interfaces"
 
@@ -21,7 +21,7 @@ interface Props {
   navigation: Navigation[]
   organisation: Organisation
   pageContext: PageContext
-  pageHead?: HeadProps
+  pageHead?: PageHead
   settings: Settings
 }
 

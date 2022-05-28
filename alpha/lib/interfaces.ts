@@ -119,6 +119,7 @@ export interface Page extends SanityDocument {
   pastExhibitions?: Exhibition[]
   pastEvents?: Event[]
   posts?: Post[]
+  sidebar?: Sidebar
   slug: string
   spaces?: Space[]
   subImage?: Image
@@ -169,6 +170,13 @@ export interface Settings {
   ogTitle: LocaleString
   social: Social[]
   title: LocaleString
+}
+
+export interface Sidebar {
+  events: Event[]
+  exhibitions: Exhibition[]
+  posts: Post[]
+  workshops: Workshop[]
 }
 
 export interface Social {
