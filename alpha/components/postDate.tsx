@@ -12,7 +12,7 @@ interface Props {
 export const PostDate: FC<Props> = ({ date }) => {
   const { locale } = useRouter()
   return (
-    <>
+    <time dateTime={format(new Date(date), "yyyy-MM-dd")}>
       {locale === "cy"
         ? format(new Date(date),
           "eeee, MMMM do yyyy",
@@ -23,7 +23,7 @@ export const PostDate: FC<Props> = ({ date }) => {
           {locale: enGB}
         )
       }
-    </>
+    </time>
   )
 }
 export default PostDate

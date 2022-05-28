@@ -4,9 +4,6 @@ import { LocaleString } from "lib/interfaces"
 import { Artist, Image } from "lib/interfaces"
 
 export const buildUrl = (locale: string, slug: string, type: string): string => {
-  console.log(locale)
-  console.log(slug)
-  console.log(type)
   return `${subdir(locale, type)}/${slug}`
 }
 
@@ -29,9 +26,12 @@ export const localize = (
     : content.en
 }
 
-export const sortNames = (names: Artist[]): Artist[] => {
-  return names.sort((a, b) => {
-    return a.title.split(" ").pop().localeCompare(b.title.split(" ").pop())
+export const sortArtists = (artists: Artist[]): Artist[] => {
+  return artists.sort((a, b) => {
+    return a.title
+      .trim()
+      .replace(/(^\b\w+\s)/gi, "")
+      .localeCompare(b.title.trim().replace(/(^\b\w+\s)/gi, ""))
   })
 }
 
