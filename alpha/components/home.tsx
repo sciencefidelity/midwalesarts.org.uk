@@ -48,11 +48,12 @@ export const Home: FC<Props> = ({
         <div className="container">
           <div style={dynamicGap} className="introduction">
             <div className="introBranding">
-              {/* <ColorLogo
-                logoClass="introLogo"
+              <ColorLogo
+                alt={settings.title[locale]}
                 containerClass="introLogoContainer"
-              /> */}
-              <ColorLogo alt="" />
+                logoClass="introLogo"
+              />
+              {/* <ColorLogo alt="" /> */}
               {locale === "cy" ? <BrandCy /> : <BrandEn />}
             </div>
             <Intro page={page} />

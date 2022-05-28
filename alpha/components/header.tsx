@@ -33,7 +33,11 @@ export const Header: FC<Props> = ({
           <span className={`${u.srOnly}`}>
             {labels[0].text[locale]}
           </span>
-          <ColorLogo alt={settings.title[locale]} />
+          <ColorLogo
+            alt={settings.title[locale]}
+            containerClass="logoContainer"
+            logoClass="colorLogo"
+          />
         </LinkTo>
         <div
           className={`${s.hero}`}

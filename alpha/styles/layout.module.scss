@@ -34,6 +34,7 @@
 }
 
 .logoContainer {
+  position: absolute;
   right: 1rem;
   top: 0.4rem;
   margin-top: 0;
@@ -47,7 +48,6 @@
   }
 }
 
-
 .colorLogo {
   width: 12rem;
   transition: opacity 0.3s ease;
@@ -58,6 +58,23 @@
   }
   @include b.mq(sm) {
     width: 8rem;
+  }
+}
+
+.introLogoContainer {
+  padding-top: 3.4rem;
+  @include b.mq(lg) {
+    justify-self: right;
+  }
+  @include b.mq(sm) {
+    padding-top: 2.7rem;
+  }
+}
+
+.introLogo {
+  width: 18.7rem;
+  @include b.mq(sm) {
+    width: 12.5rem;
   }
 }
 

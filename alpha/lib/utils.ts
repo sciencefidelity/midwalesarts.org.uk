@@ -4,7 +4,7 @@ import { LocaleString } from "lib/interfaces"
 import { Artist, Image } from "lib/interfaces"
 
 export const buildUrl = (locale: string, slug: string, type: string): string => {
-  return `/${subdir(locale, type)}/${slug}`
+  return `${subdir(locale, type)}/${slug}`
 }
 
 export const capitalize = (str: string): string => {
