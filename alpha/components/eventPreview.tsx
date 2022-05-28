@@ -1,15 +1,15 @@
 import { CSSProperties, FC } from "react"
 import { useRouter } from "next/router"
 import Image from "next/image"
-import { buildUrl, urlFor } from "@/lib/utils"
+import { buildUrl, dayToNumber, getNextDate, urlFor } from "@/lib/utils"
 import { LinkTo } from "components/linkTo"
 import { PostDate } from "components/date"
-import { Event } from "lib/interfaces"
+import { Event, Workshop } from "lib/interfaces"
 import s from "styles/events.module.scss"
 import u from "styles/utils.module.scss"
 
 interface Props {
-  eventData: Event[]
+  eventData: Event[] | Workshop[]
   heading: string
   marginTop: CSSProperties
 }
@@ -23,7 +23,7 @@ export const EventPreview: FC<Props> = ({ eventData, heading, marginTop }) => {
           <h3 className={`${s.heading}`}>{heading}</h3>
         </div>
       </div>
-      <div className={`${s.imageGrid}`}>
+      <div className={`${s.imageGrid} ${u.grid}`}>
         {eventData.map(event => (
           <LinkTo
             href={buildUrl(locale, event.slug, event._type)}
@@ -47,8 +47,10 @@ export const EventPreview: FC<Props> = ({ eventData, heading, marginTop }) => {
                 {event.title}
               </div>
             }
-            {event.date && <div className={`${s.caption} ${u.textRight}`}>
-              <PostDate date={event.date} />
+            {<div className={`${s.caption} ${u.textRight}`}>
+              <PostDate
+                date={event.date ? event.date : getNextDate(dayToNumber(event.day))}
+              />{event.startTime && ", " + event.startTime}
             </div>}
           </LinkTo>
         ))}

@@ -1,5 +1,6 @@
 import { FC } from "react"
 import { useRouter } from "next/router"
+import { sortWorkshops } from "lib/utils"
 import { EventPreview } from "components/eventPreview"
 import { Layout } from "components/layout"
 import {
@@ -40,6 +41,7 @@ export const Events: FC<Props> = ({
     ogURL: `${settings.canonicalURL}${locale === "cy" ? "/cy" : ""}/${page.slug}`,
     ogImage: page.ogImage
   }
+  const workshops = sortWorkshops(page.workshops)
   return (
     <Layout
       caption={page.events[0].title}
@@ -51,47 +53,44 @@ export const Events: FC<Props> = ({
       pageContext={pageContext}
       settings={settings}
     >
-      <section>
-        <div className={`${s.container} ${u.grid}`}>
+      <div className={`${s.container} ${u.grid}`}>
+        <div className={`${s.title}`}>
+          {page.title && <h1>{page.title}</h1>}
+          {page.subtitle &&
+            <h2 className={`${s.subtitle} ${u.grid}`}>{page.subtitle}</h2>
+          }
+        </div>
+      </div>
+      {page.events[0] !== undefined ? (
+        <EventPreview
+          heading={labels[9].text[locale]}
+          eventData={page.events}
+          marginTop={{ marginTop: "2rem" }}
+        />
+      ) : (
+        <div
+          className={`${s.container} ${u.grid}`}
+          style={{ marginTop: "5rem" }}
+        >
           <div className={`${s.title}`}>
-            {page.title && <h1>{page.title}</h1>}
-            {page.subtitle &&
-              <h2 className={`${s.subtitle} ${u.grid}`}>{page.subtitle}</h2>
-            }
+            <h3 className={`${s.heading}`}>{labels[10].text[locale]}</h3>
           </div>
         </div>
-        {page.events[0] !== undefined ? (
-          <EventPreview
-            heading={labels[9].text[locale]}
-            eventData={page.events}
-            marginTop={{ marginTop: "2rem" }}
-          />
-        ) : (
-          <div
-            className={`${s.container} ${u.grid}`}
-            style={{ marginTop: "5rem" }}
-          >
-            <div className={`${s.title}`}>
-              <p>{labels[10].text[locale]}</p>
-            </div>
-          </div>
-        )}
-        {/* {page.workshops && (
-          <EventPreview
-            heading={labels[11].text[locale]}
-            eventData={page.workshops}
-            marginTop={{ marginTop: "6rem" }}
-            grid="pastEventsImageGrid"
-          />
-        )} */}
-        {page.pastEvents && (
-          <EventPreview
-            heading={labels[12].text[locale]}
-            eventData={page.pastEvents}
-            marginTop={{ marginTop: "6rem" }}
-          />
-        )}
-      </section>
+      )}
+      {page.workshops && (
+        <EventPreview
+          heading={labels[11].text[locale]}
+          eventData={workshops}
+          marginTop={{ marginTop: "6rem" }}
+        />
+      )}
+      {page.pastEvents && (
+        <EventPreview
+          heading={labels[12].text[locale]}
+          eventData={page.pastEvents}
+          marginTop={{ marginTop: "6rem" }}
+        />
+      )}
     </Layout>
   )
 }

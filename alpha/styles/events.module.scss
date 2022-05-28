@@ -37,14 +37,11 @@
 }
 
 .imageGrid {
-  display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 3rem;
   width: 81.25%;
   margin: auto;
   z-index: 5;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
   @include b.mq(lg) {
     grid-template-columns: 1fr 1fr;
   }

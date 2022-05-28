@@ -12,6 +12,7 @@ import {
   Organisation,
   Page,
   PageContext,
+  PageHead,
   Settings
 } from "lib/interfaces"
 import s from "styles/exhibitions.module.scss"
@@ -35,6 +36,14 @@ export const Exhibitions: FC<Props> = ({
   settings
 }) => {
   const { locale } = useRouter()
+  const pageHead: PageHead = {
+    title: page.title,
+    description: page.ogDescription,
+    ogTitle: page.ogTitle,
+    ogDescription: page.ogDescription,
+    ogURL: `${settings.canonicalURL}${locale === "cy" ? "/cy" : ""}/${page.slug}`,
+    ogImage: page.ogImage
+  }
   return (
     <Layout
       caption={page.exhibitions[0].mainImage.caption}
@@ -43,12 +52,13 @@ export const Exhibitions: FC<Props> = ({
       navigation={navigation}
       organisation={organisation}
       pageContext={pageContext}
+      pageHead={pageHead}
       settings={settings}
     >
-      <div className={`${s.sidebarContainer} ${u.grid}`}>
-        <div className={`${s.portableContainer}`}>
+      <div className={`${s.container} ${u.grid}`}>
+        <div className={`${s.title}`}>
           {page.title && <h1>{page.title}</h1>}
-          {page.subtitle && <p className={`${s.subTitle}`}>{page.subtitle}</p>}
+          {page.subtitle && <h2 className={`${s.subtitle}`}>{page.subtitle}</h2>}
         </div>
       </div>
       <div className={`${s.exhibitionPreviewGrid} ${u.flex} ${u.mAuto}`}>
@@ -79,16 +89,18 @@ export const Exhibitions: FC<Props> = ({
           />}
         </>}
       </div>
-      <div className={`${s.sidebarContainer}`} style={{ marginTop: "6rem" }}>
-        <div className={`${s.portableContainer}`}>
-          <p>{labels[16].text[locale]}</p>
+      <div className={`${s.container} ${u.grid}`} style={{ marginTop: "6rem" }}>
+        <div className={`${s.title}`}>
+          <h3 className={`${s.heading}`}>{labels[16].text[locale]}</h3>
         </div>
       </div>
       <div className={`${s.exhibitionGrid} ${u.grid}`}>
         {page.pastExhibitions && page.pastExhibitions.map(exhibition =>
           exhibition && (
             <div key={exhibition._id} style={{ margin: 0 }}>
-              <LinkTo href={buildUrl(locale, exhibition.slug, exhibition._type)}>
+              <LinkTo
+                href={buildUrl(locale, exhibition.slug, exhibition._type)}
+              >
                 <Image
                   src={urlFor(exhibition.mainImage)
                     .width(624)
@@ -100,8 +112,10 @@ export const Exhibitions: FC<Props> = ({
                   width={2000}
                   height={2000}
                 />
-                <div className={`${s.gridCaption}`}>{exhibition.title}</div>
-                <div className={`${s.gridCaption}`}>
+                <div className={`${s.caption} ${u.textRight}`}>
+                  {exhibition.title}
+                </div>
+                <div className={`${s.caption} ${u.textRight}`}>
                   <ExhibitionDate
                     dateEnd={exhibition.dateEnd}
                     dateStart={exhibition.dateStart}

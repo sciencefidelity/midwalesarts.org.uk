@@ -189,7 +189,7 @@ const page = `
   ][0]{
     __i18n_lang, _type, ${slug}, template, title,
     template == "Artists" => { ${artistSubset}, ${heroArtist}, subtitle, ${seo} },
-    template == "Events" => { ${eventSubset}, subtitle, ${seo} },
+    template == "Events" => { ${eventSubset}, subtitle, ${seo},${workshopSubset} },
     template == "Exhibitions" => { ${exhibitionSubset}, subtitle, ${seo} },
     template == "Home" => { ${body}, cta, ${ctaLink}, mainImage, subImage, ${headlines} },
     template == "News" => { ${postSubset}, subtitle, ${seo} },

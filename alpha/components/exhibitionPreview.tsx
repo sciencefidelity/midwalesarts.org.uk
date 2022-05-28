@@ -18,9 +18,10 @@ export const ExhibitionPreview: FC<Props> = ({
   const { locale } = useRouter()
   return (
     <div className={`${s.exhibitionPreview}`}>
-      {heading ?
-        <p>{heading}</p> : <p dangerouslySetInnerHTML={{__html: "&nbsp;"}}/>
-      }
+      <h3
+        className={`${s.heading}`}
+        dangerouslySetInnerHTML={{__html: heading ? heading : "&nbsp;"}}
+      />
       <LinkTo href={buildUrl(locale, exhibition.slug, exhibition._type)}>
         <Image
           src={urlFor(exhibition.mainImage)
@@ -34,10 +35,10 @@ export const ExhibitionPreview: FC<Props> = ({
           height={2000}
         />
         {exhibition &&
-          <div className={`${s.gridCaption}`}>{exhibition.title}</div>
+          <div className={`${s.caption}`}>{exhibition.title}</div>
         }
         {exhibition && (
-          <div className={`${s.gridCaption}`}>
+          <div className={`${s.caption}`}>
             <span>
               <ExhibitionDate
                 dateEnd={exhibition.dateEnd}
