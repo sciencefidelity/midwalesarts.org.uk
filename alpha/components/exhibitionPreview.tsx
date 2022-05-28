@@ -1,0 +1,52 @@
+import { FC } from "react"
+import Image from "next/image"
+import { useRouter } from "next/router"
+import { buildUrl, urlFor } from "@/lib/utils"
+import ExhibitionDate from "components/exhibitionDate"
+import { LinkTo } from "components/linkTo"
+import { Exhibition } from "lib/interfaces"
+import s from "styles/exhibitions.module.scss"
+
+interface Props {
+  exhibition: Exhibition
+  heading?: string
+}
+
+export const ExhibitionPreview: FC<Props> = ({
+  exhibition, heading
+}) => {
+  const { locale } = useRouter()
+  return (
+    <div className={`${s.exhibitionPreview}`}>
+      {heading ?
+        <p>{heading}</p> : <p dangerouslySetInnerHTML={{__html: "&nbsp;"}}/>
+      }
+      <LinkTo href={buildUrl(locale, exhibition.slug, exhibition._type)}>
+        <Image
+          src={urlFor(exhibition.mainImage)
+            .width(624)
+            .height(624)
+            .auto("format")
+            .quality(75)
+            .url()}
+          alt={exhibition.title}
+          width={2000}
+          height={2000}
+        />
+        {exhibition &&
+          <div className={`${s.gridCaption}`}>{exhibition.title}</div>
+        }
+        {exhibition && (
+          <div className={`${s.gridCaption}`}>
+            <span>
+              <ExhibitionDate
+                dateEnd={exhibition.dateEnd}
+                dateStart={exhibition.dateStart}
+              />
+            </span>
+          </div>
+        )}
+      </LinkTo>
+    </div>
+  )
+}
