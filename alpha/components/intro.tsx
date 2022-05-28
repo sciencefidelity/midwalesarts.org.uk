@@ -5,6 +5,8 @@ import { buildUrl } from "lib/utils"
 import { components } from "components/portableTextComponents"
 import { LinkTo } from "components/linkTo"
 import { Page } from "lib/interfaces"
+import s from "styles/home.module.scss"
+import u from "styles/utils.module.scss"
 
 interface Props {
   page: Page
@@ -14,16 +16,20 @@ export const Intro: FC<Props> = ({ page }) => {
   const { locale } = useRouter()
   const url = buildUrl(locale, page.ctaLink.slug, page.ctaLink._type)
   return (
-    <div className="introText">
+    <div className={`${s.introText} ${u.relative}`}>
       {page.body && (
         <PortableText value={page.body} components={components} />
       )}
       {page.ctaLink &&
         <LinkTo href={url}>
-          {page.cta && <h2 className="introCta">{page.cta}&nbsp;</h2>}
+          {page.cta &&
+            <h2 className={`${s.introCta} ${u.relative}`}>
+              <span>{page.cta}&nbsp;</span>
+            </h2>
+          }
         </LinkTo>
       }
-      <div className="introCtaHr"></div>
+      <div className={`${s.introCtaHr} ${u.absolute}`}></div>
     </div>
   )
 }

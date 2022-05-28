@@ -1,6 +1,5 @@
 import { FC } from "react"
 import s from "styles/layout.module.scss"
-import u from "styles/utils.module.scss"
 
 interface Props {
   alt: string

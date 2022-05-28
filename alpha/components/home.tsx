@@ -14,6 +14,8 @@ import {
   PageContext,
   Settings
 } from "lib/interfaces"
+import s from "styles/home.module.scss"
+import u from "styles/utils.module.scss"
 
 interface Props {
   labels:Label[]
@@ -45,19 +47,18 @@ export const Home: FC<Props> = ({
       settings={settings}
     >
       <section>
-        <div className="container">
-          <div style={dynamicGap} className="introduction">
-            <div className="introBranding">
+        <div className={`${u.container} ${u.relative}`}>
+          <div style={dynamicGap} className={`${s.introduction} ${u.grid}`}>
+            <div className={`${s.introBranding} ${u.grid}`}>
               <ColorLogo
                 alt={settings.title[locale]}
                 containerClass="introLogoContainer"
                 logoClass="introLogo"
               />
-              {/* <ColorLogo alt="" /> */}
               {locale === "cy" ? <BrandCy /> : <BrandEn />}
             </div>
             <Intro page={page} />
-            <div className="sideImageContainer">
+            <div className={`${s.sideImageContainer} ${u.absolute}`}>
               <img
                 src={urlFor(page.subImage)
                   .width(406)
@@ -68,7 +69,7 @@ export const Home: FC<Props> = ({
                 alt={page.subImage.caption}
                 width={406}
                 height={300}
-                className={"sideImage"}
+                className={`${s.sideImage}`}
               />
               <div>{page.subImage.caption}</div>
             </div>

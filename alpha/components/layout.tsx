@@ -1,5 +1,4 @@
 import { FC, ReactNode } from "react"
-import { useRouter } from "next/router"
 import { BaseHead } from "components/baseHead"
 import { Header } from "components/header"
 import { Footer } from "components/footer"
@@ -37,7 +36,6 @@ export const Layout: FC<Props> = ({
   pageHead,
   settings
 }) => {
-  const { locale } = useRouter()
   return (
     <>
       <BaseHead
@@ -52,7 +50,6 @@ export const Layout: FC<Props> = ({
         pageContext={pageContext}
         settings={settings}
       />
-      {settings.title[locale]}
       <main>
         {children}
         <Scrollup label={labels[8].text} />

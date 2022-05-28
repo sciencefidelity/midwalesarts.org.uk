@@ -1,9 +1,10 @@
 import { FC } from "react"
+import s from "styles/home.module.scss"
 
 export const BrandCy: FC = () => {
   return (
     <div>
-      <h1 className="brand" style={{
+      <h1 className={`${s.brand}`} style={{
         fontWeight: "bold",
         paddingBottom: "0.1em"
       }}>
@@ -12,14 +13,14 @@ export const BrandCy: FC = () => {
         <span>l</span>
         <span>f</span>
       </h1>
-      <h1 className="brand">
+      <h1 className={`${s.brand}`}>
         <span>C</span>
         <span>a</span>
         <span style={{ letterSpacing: "-0.02em" }}>n</span>
         <span style={{ letterSpacing: "-0.02em" }}>o</span>
         <span>l</span>
       </h1>
-      <h1 className="brand">
+      <h1 className={`${s.brand}`}>
         <span style={{ letterSpacing: "0.02em" }}>C</span>
         <span style={{ letterSpacing: "0.01em" }}>y</span>
         <span style={{ letterSpacing: "0.01em" }}>m</span>
@@ -33,12 +34,12 @@ export const BrandCy: FC = () => {
 export const BrandEn: FC = () => {
   return (
     <div>
-      <h1 className="brand" style={{ paddingLeft: "0.05em" }}>
+      <h1 className={`${s.brand}`} style={{ paddingLeft: "0.05em" }}>
         <span style={{ letterSpacing: "0.02em" }}>M</span>
         <span style={{ letterSpacing: "0.03em" }}>i</span>
         <span>d</span>
       </h1>
-      <h1 className="brand">
+      <h1 className={`${s.brand}`}>
         <span style={{ letterSpacing: "-0.12em" }}>W</span>
         <span>a</span>
         <span style={{ letterSpacing: "0.01em" }}>l</span>
@@ -46,7 +47,7 @@ export const BrandEn: FC = () => {
         <span>s</span>
       </h1>
       <h1
-        className="brand"
+        className={`${s.brand}`}
         style={{
           fontWeight: "bold",
           paddingLeft: "0.03em",

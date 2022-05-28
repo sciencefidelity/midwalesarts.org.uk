@@ -1,3 +1,6 @@
+@use "./base/colors" as c;
+@use "./base/breakpoints" as b;
+
 .absolute {
   position: absolute;
 }
@@ -8,6 +11,10 @@
 
 .fixed {
   position: fixed;
+}
+
+.block {
+  display: block;
 }
 
 .inlineBlock {
@@ -68,6 +75,25 @@
 
 .pointer {
   cursor: pointer;
+}
+
+.cover {
+  object-fit: cover;
+}
+
+.container {
+  max-width: 108rem;
+  margin: 0 auto;
+  z-index: 3;
+}
+
+.caption {
+  font-size: 1.6rem;
+  text-align: right;
+  color: c.$grey-650;
+  @include b.mq(sm) {
+    font-size: 1.2rem;
+  }
 }
 
 .srOnly {
