@@ -1,5 +1,8 @@
 import { FC } from "react"
+import { PortableText } from "@portabletext/react"
+import { components } from "components/portableTextComponents"
 import { Layout } from "components/layout"
+import { Sidebar } from "components/sidebar"
 import {
   Label,
   Navigation,
@@ -8,6 +11,8 @@ import {
   PageContext,
   Settings
 } from "lib/interfaces"
+import s from "styles/pages.module.scss"
+import u from "styles/utils.module.scss"
 
 interface Props {
   labels:Label[]
@@ -36,7 +41,14 @@ export const PageComponent: FC<Props> = ({
       pageContext={pageContext}
       settings={settings}
     >
-      <div>{page.title}</div>
+      <div className={`${s.sidebarContainer} ${u.grid}`}>
+        <section className={`${s.portableContainer}`}>
+          {page.title && <h1>{page.title}</h1>}
+          {page.subtitle && <p className={`${s.subTitle}`}>{page.subtitle}</p>}
+          {page.body && <PortableText value={page.body} components={components} />}
+        </section>
+        <Sidebar />
+      </div>
     </Layout>
   )
 }

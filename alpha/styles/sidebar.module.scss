@@ -1,0 +1,36 @@
+@use "./base/colors" as c;
+@use "./base/breakpoints" as b;
+
+.sidebar {
+  background: c.$sidebar;
+  margin-top: -8rem;
+  margin-bottom: -23rem;
+  @include b.mq(lg) {
+    display: none;
+  }
+}
+
+.sidebarContent {
+  padding: 6rem 5rem;
+  h3 {
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: 0.7em;
+    color: c.$grey-700;
+    @include b.mq(xl) {
+      font-size: 3rem;
+    }
+  }
+  a {
+    text-decoration: underline;
+    text-decoration-thickness: 0.1em;
+    text-decoration-color: rgba(c.$grey-050, 0.8);
+    transition: text-decoration-color 0.3s ease-in-out;
+  }
+  a:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 0.1em;
+    text-decoration-color: c.$grey-500;
+    transition: text-decoration-color 0.3s ease-in-out;
+  }
+}
