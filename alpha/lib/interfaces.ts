@@ -1,3 +1,5 @@
+import { CSSProperties } from "react"
+
 export interface Address {
   town: string
   county: string
@@ -9,6 +11,7 @@ export interface Artist extends SanityDocument {
   _type: "artist"
   body: PortableText
   disciplines: string[]
+  localization: Localization
   mainImage: Image
   ogDescription: string
   ogImage: Image
@@ -19,7 +22,9 @@ export interface Artist extends SanityDocument {
 }
 
 export interface Artwork {
-  _id: String
+  _id: string
+  artist: string
+  aspect: CSSProperties
   date: number
   mainImage: Image
   medium: string
@@ -39,6 +44,7 @@ export interface Event extends SanityDocument {
   body: PortableText
   briteLink: string
   date: string
+  localization: Localization
   mainImage: Image
   ogDescription: string
   ogImage: Image
@@ -53,6 +59,7 @@ export interface Exhibition extends SanityDocument {
   body: PortableText
   dateEnd: string
   dateStart: string
+  localization: Localization
   mainImage: Image
   ogDescription: string
   ogImage: Image
@@ -179,6 +186,7 @@ export interface Post extends SanityDocument {
   _type: "post"
   body: PortableText
   image: Image
+  localization: Localization
   nextPost: Post
   ogDescription: string
   ogImage: Image
@@ -228,6 +236,7 @@ export interface Video extends SanityDocument {
   __i18n_lang: "cy" | "en"
   _type: "video"
   body: PortableText
+  localization: Localization
   mainImage: Image
   ogDescription: string
   ogImage: Image
@@ -244,6 +253,7 @@ export interface Workshop extends SanityDocument {
   body: PortableText
   day: string
   endTime: string
+  localization: Localization
   mainImage: Image
   ogDescription: string
   ogImage: Image

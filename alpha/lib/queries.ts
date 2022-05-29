@@ -17,77 +17,6 @@ const ctaLink = `
   )
 `
 
-const artist = `
-  "artist": *[
-    _type == "artist"
-    && slug.current == $slug
-    && __i18n_lang == $locale
-    && ${omitDrafts}
-  ][0]{
-    ${body}, "disciplines": disciplines[]->title[$locale], mainImage, ${seo}, title,
-    "works": *[_type == "artwork" && artist == ^.title && ${omitDrafts}]{
-      _id, date, mainImage, medium, price, title
-    }
-  }
-`
-
-const event = `
-  "event": *[
-    _type == "event"
-    && slug.current == $slug
-    && __i18n_lang == $locale
-    && ${omitDrafts}
-  ][0]{
-    ${body}, briteLink, date, mainImage, ${seo}, title
-  }
-`
-
-const exhibition = `
-  "exhibition": *[
-    _type == "exhibition"
-    && slug.current == $slug
-    && __i18n_lang == $locale
-    && ${omitDrafts}
-  ][0]{
-    ${body}, dateEnd, dateStart, mainImage, ${seo}, title,
-    "works": *[_type == "artwork" && references(^._id)]{
-      artist, mainImage, medium, price, title
-    }
-  }
-`
-
-const post = `
-  "post": *[
-    _type == "post"
-    && slug.current == $slug
-    && __i18n_lang == $locale
-    && ${omitDrafts}
-  ][0]{
-    ${body}, image, publishedAt, ${seo}, "tags": tags[]->title[$locale], title,
-    "previousPost": *[
-      _type == "post" && __i18n_lang == $locale && publishedAt < ^.publishedAt
-    ] | order(publishedAt desc)[0]{ _type, ${slug}, title },
-    "nextPost": *[
-      _type == "post" && __i18n_lang == $locale && publishedAt > ^.publishedAt
-    ] | order(publishedAt asc)[0]{ _type, ${slug}, title }
-  }
-`
-
-const video = `
-  "video": *[
-    _type == "video"
-    && slug.current == $slug
-    && __i18n_lang == $locale
-    && ${omitDrafts}
-  ][0]{ ${body}, mainImage, publishDate, ${seo}, title, videoLink }
-`
-
-const workshop = `
-  "workshop": *[
-    _type == "workshop" && __i18n_lang == $locale
-  ][0]{ ${body}, day, endTime, mainImage, ${seo}, startTime, title }
-`
-
 const artistSubset = `
   "artists": *[_type == "artist" && __i18n_lang == ^.__i18n_lang && ${omitDrafts}]{
     _id, _type, "disciplines": disciplines[]->title[$locale], mainImage, ${slug}, title,
@@ -224,6 +153,25 @@ const localization = `
   )
 `
 
+const localizationNested = `
+  "localization": select(
+    defined(__i18n_refs[]) => __i18n_refs[0]->{
+      "id": _id, "locale": __i18n_lang,
+      "slug": [
+        *[_type == "page" && template == $template && __i18n_lang == $locale][0].__i18n_refs[0]->.slug.current,
+        slug.current
+      ]
+    },
+    defined(__i18n_base) => __i18n_base->{
+      "id": _id, "locale": __i18n_lang,
+      "slug": [
+        *[_type == "page" && template == $template && __i18n_lang == $locale][0].__i18n_base->.slug.current,
+        slug.current
+      ]
+    }
+  )
+`
+
 const navigation = `
   "navigation": *[_type == "navigation" && ${omitDrafts}][0].primary[]{
     _key, label{ cy, en },
@@ -274,6 +222,49 @@ const sidebar = `
   }
 `
 
+const artist = `
+  "artist": *[
+    _type == "artist"
+    && slug.current == $slug
+    && __i18n_lang == $locale
+    && ${omitDrafts}
+  ][0]{
+    __i18n_lang, _type, ${body}, "disciplines": disciplines[]->title[$locale],
+    mainImage, ${seo}, title, ${localizationNested},
+    "works": *[_type == "artwork" && artist == ^.title && ${omitDrafts}]{
+      _id, artist, date, mainImage, "medium": medium[$locale], "title": title[$locale],
+      "aspect": mainImage.asset->metadata.dimensions.aspectRatio, price
+    }
+  }
+`
+
+const event = `
+  "event": *[
+    _type == "event"
+    && slug.current == $slug
+    && __i18n_lang == $locale
+    && ${omitDrafts}
+  ][0]{
+    __i18n_lang, _type, ${body}, briteLink, date, mainImage, ${seo},
+    title, ${localizationNested}
+  }
+`
+
+const exhibition = `
+  "exhibition": *[
+    _type == "exhibition"
+    && slug.current == $slug
+    && __i18n_lang == $locale
+    && ${omitDrafts}
+  ][0]{
+    __i18n_lang, _type, ${body}, dateEnd, dateStart, mainImage, ${seo},
+    title, ${localizationNested},
+    "works": *[_type == "artwork" && references(^._id)]{
+      artist, mainImage, medium, price, title
+    }
+  }
+`
+
 const page = `
   "page": *[
     _type == "page"
@@ -293,6 +284,45 @@ const page = `
     template == "Visit" => { mainImage, ${spaces}, subtitle, ${seo} },
     template == "Workshops" => { ${body}, mainImage, subtitle, ${workshopSubset}, ${seo}, ${sidebar} },
     ${localization}
+  }
+`
+
+const post = `
+  "post": *[
+    _type == "post"
+    && slug.current == $slug
+    && __i18n_lang == $locale
+    && ${omitDrafts}
+  ][0]{
+    __i18n_lang, _type, ${body}, image, publishedAt, ${seo},
+    "tags": tags[]->title[$locale], title, ${localizationNested},
+    "previousPost": *[
+      _type == "post" && __i18n_lang == $locale && publishedAt < ^.publishedAt
+    ] | order(publishedAt desc)[0]{ _type, ${slug}, title },
+    "nextPost": *[
+      _type == "post" && __i18n_lang == $locale && publishedAt > ^.publishedAt
+    ] | order(publishedAt asc)[0]{ _type, ${slug}, title }
+  }
+`
+
+const video = `
+  "video": *[
+    _type == "video"
+    && slug.current == $slug
+    && __i18n_lang == $locale
+    && ${omitDrafts}
+  ][0]{
+    __i18n_lang, _type, ${body}, mainImage, publishDate, ${seo}, title,
+    videoLink, ${localizationNested}
+  }
+`
+
+const workshop = `
+  "workshop": *[
+    _type == "workshop" && __i18n_lang == $locale
+  ][0]{
+    __i18n_lang, _type, ${body}, day, endTime, mainImage, ${seo}, startTime,
+    title, ${localizationNested}
   }
 `
 
@@ -328,6 +358,12 @@ export const pageQuery = groq`{
 export const artistQuery = groq`{
   ${artist}, ${labels}, ${navigation}, ${organisation}, ${settings}
 }`
+
+export const artistPathQuery = groq`
+  *[_type == "artist" && defined(slug) && __i18n_lang == $locale && ${omitDrafts}]{
+    "params": { "slug": slug.current }, "locale": __i18n_lang
+  }
+`
 
 export const eventQuery = groq`{
   ${event}, ${labels}, ${navigation}, ${organisation}, ${settings}

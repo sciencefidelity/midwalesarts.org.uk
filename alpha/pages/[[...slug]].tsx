@@ -22,7 +22,7 @@ import {
 } from "lib/interfaces"
 
 interface Props {
-  labels:Label[]
+  labels: Label[]
   navigation: Navigation[]
   organisation: Organisation
   page: Page
