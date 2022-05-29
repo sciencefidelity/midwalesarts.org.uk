@@ -103,11 +103,17 @@ export const ArtistComponent: FC<Props> = ({
         <div className={`${s.title}`}>
           <h1>{labels[22].text[locale]}</h1>
           <p className={`${s.subtitle}`}>{artist.title}</p>
-          <ul className={`${s.tabs}`}>
-            <li onClick={toggleGallery} className={`${bio ? s.selected : null}`}>
+          <ul className={`${s.tabs} ${u.flex}`}>
+            <li
+              onClick={toggleGallery}
+              className={`${s.tabItem} ${bio ? s.selected : null} ${u.pointer}`}
+            >
               {labels[23].text[locale]}
             </li>
-            <li onClick={toggleBio} className={`${bio ? null : s.selected}`}>
+            <li
+              onClick={toggleBio}
+              className={`${s.tabItem} ${bio ? null : s.selected} ${u.pointer}`}
+            >
               {labels[24].text[locale]}
             </li>
           </ul>
