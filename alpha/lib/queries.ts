@@ -231,7 +231,7 @@ const artist = `
   ][0]{
     __i18n_lang, _type, ${body}, "disciplines": disciplines[]->title[$locale],
     mainImage, ${seo}, title, ${localizationNested},
-    "works": *[_type == "artwork" && artist == ^.title && ${omitDrafts}]{
+    "works": *[_type == "artwork" && artist == ^.title && ${omitDrafts}] | order(date desc){
       _id, artist, date, mainImage, "medium": medium{ cy, en }, "title": title{ cy, en },
       "aspect": mainImage.asset->metadata.dimensions.aspectRatio, price
     }
@@ -295,7 +295,7 @@ const post = `
     && ${omitDrafts}
   ][0]{
     __i18n_lang, _type, ${body}, image, publishedAt, ${seo},
-    "tags": tags[]->title[$locale], title, ${localizationNested},
+    "tags": tags[]->title[$locale], title, ${localizationNested}, ${sidebar},
     "previousPost": *[
       _type == "post" && __i18n_lang == $locale && publishedAt < ^.publishedAt
     ] | order(publishedAt desc)[0]{ _type, ${slug}, title },
@@ -379,9 +379,21 @@ export const exhibitionQuery = groq`{
   ${exhibition}, ${labels}, ${navigation}, ${organisation}, ${settings}
 }`
 
-export const newsQuery = groq`{
+export const exhibitionPathQuery = groq`
+  *[_type == "exhibition" && defined(slug) && __i18n_lang == $locale && ${omitDrafts}]{
+    "params": { "slug": slug.current }, "locale": __i18n_lang
+  }
+`
+
+export const postQuery = groq`{
   ${labels}, ${navigation}, ${organisation}, ${post}, ${settings}
 }`
+
+export const postPathQuery = groq`
+  *[_type == "post" && defined(slug) && __i18n_lang == $locale && ${omitDrafts}]{
+    "params": { "slug": slug.current }, "locale": __i18n_lang
+  }
+`
 
 export const videoQuery = groq`{
   ${labels}, ${navigation}, ${organisation}, ${settings}, ${video}

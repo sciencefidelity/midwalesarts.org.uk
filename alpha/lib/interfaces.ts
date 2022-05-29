@@ -194,6 +194,7 @@ export interface Post extends SanityDocument {
   ogTitle: string
   previousPost: Post
   publishedAt: string
+  sidebar: Sidebar
   slug: string
   tags: string[]
   title: string

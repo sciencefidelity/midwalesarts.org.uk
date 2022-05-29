@@ -63,7 +63,7 @@ export const News: FC<Props> = ({
       <div className={`${s.imageGrid} ${u.grid}`}>
         {page.posts && page.posts.map(post => post && (
           <div key={post._id} style={{ margin: 0 }}>
-            <LinkTo href={buildUrl(locale, post.slug, page._type)}>
+            <LinkTo href={buildUrl(locale, post.slug, post._type)}>
               <Image
                 src={urlFor(post.image)
                   .width(468)

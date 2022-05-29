@@ -145,17 +145,17 @@ export const ArtistComponent: FC<Props> = ({
                     .url()}
                   alt={`
                     ${artist.title}${", "}
-                    ${artwork.title}${", "}
+                    ${localize(artwork.title, locale)}${", "}
                     ${artwork.date}
                   `}
                   width={2000}
                   height={2000}
                 />
-                <div className={`${s.caption}`}>
-                  {artwork.title && localize(artwork.title, locale)}
+                {artwork.title && <div className={`${s.caption} ${u.textRight}`}>
+                  {localize(artwork.title, locale)}
                   {" "}
                   {artwork.date && `(${artwork.date})`}
-                </div>
+                </div>}
               </div>
             )
           )) :
