@@ -97,7 +97,6 @@ export const EventComponent: FC<Props> = ({
             <h2 className={`${s.subtitle}`}>
               {event.date && <PostDate date={event.date} />}
             </h2> */}
-
             {event.body &&
               <PortableText value={event.body} components={components} />
             }

@@ -44,7 +44,7 @@ export const FrontPageHeadline: FC<Props> = ({ headline }) => {
             className={`${s.sectionInset} ${u.wFull} ${u.cover}`}
             alt={headline.subImage.caption[locale]}
           />
-          <div className={`${u.caption}`}>
+          <div className={`${s.sectionInsetCaption} ${u.caption}`}>
             {headline.subImage.caption[locale]}
           </div>
         </div>

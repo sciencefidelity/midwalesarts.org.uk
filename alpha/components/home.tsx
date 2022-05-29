@@ -71,7 +71,7 @@ export const Home: FC<Props> = ({
                 height={300}
                 className={`${s.sideImage}`}
               />
-              <div>{page.subImage.caption}</div>
+              <div className={`${s.sideImageCaption}`}>{page.subImage.caption}</div>
             </div>
           </div>
         </div>
