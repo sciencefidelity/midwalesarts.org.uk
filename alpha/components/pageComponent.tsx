@@ -44,7 +44,6 @@ export const PageComponent: FC<Props> = ({
   }
   return (
     <Layout
-      caption={page.mainImage.caption}
       heroImage={page.mainImage}
       labels={labels}
       navigation={navigation}
@@ -61,7 +60,7 @@ export const PageComponent: FC<Props> = ({
             <PortableText value={page.body} components={components} />
           </div>}
         </section>
-        <SidebarComponent sidebar={page.sidebar} />
+        <SidebarComponent labels={labels} sidebar={page.sidebar} />
       </div>
     </Layout>
   )

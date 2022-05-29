@@ -14,7 +14,7 @@ import {
 } from "lib/interfaces"
 
 interface Props {
-  caption: string
+  caption?: string
   children: ReactNode
   heroImage: Image
   labels: Label[]

@@ -61,7 +61,7 @@ export const Workshops: FC<Props> = ({
             <PortableText value={page.body} components={components} />
           </div>}
         </section>
-        <SidebarComponent sidebar={page.sidebar} />
+        <SidebarComponent labels={labels} sidebar={page.sidebar} />
       </div>
     </Layout>
   )

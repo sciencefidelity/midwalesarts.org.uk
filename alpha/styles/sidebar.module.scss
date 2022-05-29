@@ -1,10 +1,10 @@
+
 @use "./base/colors" as c;
 @use "./base/breakpoints" as b;
 
 .sidebar {
   background: c.$sidebar;
-  margin-top: -8rem;
-  margin-bottom: -23rem;
+  margin-block: -8rem -23rem;
   @include b.mq(lg) {
     display: none;
   }
@@ -12,16 +12,9 @@
 
 .sidebarContent {
   padding: 6rem 5rem;
-  h3 {
-    font-weight: 500;
-    line-height: 1.2;
-    margin-bottom: 0.7em;
-    color: c.$grey-700;
-    @include b.mq(xl) {
-      font-size: 3rem;
-    }
-  }
+  margin-block: 0;
   a {
+    margin-block: 0;
     text-decoration: underline;
     text-decoration-thickness: 0.1em;
     text-decoration-color: rgba(c.$grey-050, 0.8);
@@ -36,30 +29,42 @@
 }
 
 .sidebarMenu {
-  // font-size: 2.2rem;
   line-height: 1.3;
   padding: 0;
   list-style: none;
-  margin-bottom: 5rem;
+  margin-block: 0rem 4rem;
   @include b.mq(xl) {
     font-size: 2rem;
   }
 }
 
 .listItem {
-  margin-bottom: 1em;
-  font-size: 1.8rem;
+  margin-block: 0rem 1rem;
+  font-size: 1.7rem;
+  line-height: 1.6;
+  time {
+    margin: 0;
+    padding: 0;
+    line-height: 0;
+  }
+}
+
+.listHeading {
+  margin-bottom: 0rem 1rem;
+  font-size: 1.9rem;
+  font-weight: 500;
   line-height: 1.4;
 }
 
 .h3 {
-  font-size: 3.1em;
-  font-weight: 300;
-  color: c.$grey-600;
-  margin: 0;
-  line-height: 1;
-  @include b.mq(sm) {
-    font-size: 2em;
-    line-height: 1.5;
+  font-size: 2.8em;
+  font-weight: 500;
+  color: c.$grey-700;
+  line-height: 1.2;
+  margin-block: 0rem 2rem;
+  @include b.mq(xl) {
+    font-size: 3rem;
   }
 }
+
+
