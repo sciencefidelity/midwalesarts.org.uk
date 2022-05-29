@@ -27,10 +27,10 @@ export interface Artwork {
   aspect: CSSProperties
   date: number
   mainImage: Image
-  medium: string
+  medium: LocaleString
   sold: boolean
   price: string
-  title: string
+  title: LocaleString
 }
 
 export interface CTALink {

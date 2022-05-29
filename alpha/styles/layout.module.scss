@@ -8,8 +8,6 @@
 
 .hero {
   height: 45rem;
-  margin-bottom: 9.3rem;
-  margin-block: auto;
   @include b.mq(sm) {
     height: 35rem;
   }
@@ -17,9 +15,10 @@
 
 .heroCaption {
   font-size: 1.6rem;
-  z-index: 5;
+  z-index: 1;
   width: 89%;
   margin-bottom: 5rem;
+  margin-inline: auto;
   @include b.mq(md) {
     margin-bottom: 1rem;
   }
@@ -84,7 +83,7 @@
       rgba(c.$grey-000,0.8) 0%,
       rgba(c.$grey-000,0.8) 50%,
       rgba(c.$grey-000,0) 100%);
-  z-index: 4;
+  z-index: 2;
   @include b.mq(sm) {
     height: 35rem;
   }
@@ -93,10 +92,11 @@
 .nav {
   width: calc(104vw * 2);
   height: calc(104vw * 2);
+  inset: calc(4.8rem - 104vw) auto auto calc(4.8rem - 104vw);
+  // inset: 0 auto auto 0;
   background-color: rgba(c.$grey-000, 0.8);
   border-radius: 50%;
   z-index: 1;
-  inset: calc(4.8rem - 104vw) auto auto calc(4.8rem - 104vw);
   clip-path: circle(0% at 50% 50%);
   transition: clip-path 1s ease-out;
   @include b.mq(sm) {

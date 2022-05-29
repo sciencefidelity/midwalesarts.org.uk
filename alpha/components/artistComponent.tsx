@@ -3,7 +3,7 @@ import { useRouter } from "next/router"
 import Image from "next/image"
 import { PortableText } from "@portabletext/react"
 import { components } from "components/portableTextComponents"
-import { buildUrl, urlFor } from "lib/utils"
+import { buildUrl, localize, subdir, urlFor } from "lib/utils"
 import { Layout } from "components/layout"
 import { LinkTo } from "components/linkTo"
 import { Modal } from "components/modal"
@@ -102,19 +102,19 @@ export const ArtistComponent: FC<Props> = ({
       <div className={`${s.container} ${u.grid}`}>
         <div className={`${s.title}`}>
           <h1>{labels[22].text[locale]}</h1>
-          <p className={`${s.subtitle}`}>{artist.title}</p>
+          <h2 className={`${s.subtitle}`}>{artist.title.replace(".", "")}.</h2>
           <ul className={`${s.tabs} ${u.flex}`}>
             <li
               onClick={toggleGallery}
               className={`${s.tabItem} ${bio ? s.selected : null} ${u.pointer}`}
             >
-              {labels[23].text[locale]}
+              <h3 className={`${s.h3}`}>{labels[23].text[locale]}</h3>
             </li>
             <li
               onClick={toggleBio}
               className={`${s.tabItem} ${bio ? null : s.selected} ${u.pointer}`}
             >
-              {labels[24].text[locale]}
+              <h3 className={`${s.h3}`}>{labels[24].text[locale]}</h3>
             </li>
           </ul>
           <div className={`${s.info} ${bio ? s.hidden : null}`}>
@@ -152,7 +152,7 @@ export const ArtistComponent: FC<Props> = ({
                   height={2000}
                 />
                 <div className={`${s.caption}`}>
-                  {artwork.title && artwork.title}
+                  {artwork.title && localize(artwork.title, locale)}
                   {" "}
                   {artwork.date && `(${artwork.date})`}
                 </div>
@@ -162,9 +162,11 @@ export const ArtistComponent: FC<Props> = ({
           (<p>{labels[25].text[locale]}</p>)
         }
       </div>
-      <div>
+      <div className={`${s.backLink}`}>
         <p className={`${u.textCenter}`}>
-          <LinkTo href="/artists">{labels[26].text[locale]}</LinkTo>
+          <LinkTo href={`/${subdir(locale, artist._type)}`}>
+            {labels[26].text[locale]}
+          </LinkTo>
         </p>
       </div>
       {artist.works[0] !== undefined ? (

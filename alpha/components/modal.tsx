@@ -1,5 +1,6 @@
 import { FC, MouseEventHandler } from "react"
-import { urlFor } from "lib/utils"
+import { useRouter } from "next/router"
+import { localize, urlFor } from "lib/utils"
 import { Artwork } from "lib/interfaces"
 import s from "styles/artist.module.scss"
 import u from "styles/utils.module.scss"
@@ -15,6 +16,7 @@ interface Props {
 export const Modal: FC<Props> = ({
   modal, modalImage, closeModal, prevIndex, nextIndex
 }) => {
+  const { locale } = useRouter()
   // const aspect = modalImage.aspect
   // const imageAspect = {
   //   aspectRatio: aspect,
@@ -64,11 +66,11 @@ export const Modal: FC<Props> = ({
           />
         </div>
         <p className={`${s.modalCaption} ${u.textRight}`}>
-          <em>{modalImage.title && modalImage.title}</em>,
+          <em>{modalImage.title && localize(modalImage.title, locale)}</em>,
           {" "}{modalImage.artist}
         </p>
         <p className={`${s.modalCaption} ${u.textRight}`}>
-          {modalImage.medium && modalImage.medium},
+          {modalImage.medium && localize(modalImage.medium, locale)},
           {" "}{modalImage.price}
         </p>
       </div>

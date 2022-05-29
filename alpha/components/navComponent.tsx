@@ -32,7 +32,7 @@ export const NavComponent: FC<Props> = ({ labels, navigation, pageContext }) => 
       onClick={isActive ? menuClose : null}
     >
       <div
-        className={`${s.nav} ${isActive ? s.isActive : null} ${u.fixed}`}
+        className={`${s.nav} ${isActive ? s.isActive : null} ${u.absolute}`}
       >
         <ul style={align} className={`${s.navList} ${u.absolute} ${u.uppercase}`}>
           {navigation.map(item => (

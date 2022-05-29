@@ -18,7 +18,7 @@
 
 .subtitle {
   font-size: 3rem;
-  margin-block: 0.5em 0.44em;
+  margin-block: 0.5em;
   color: c.$grey-600;
   @include b.mq(sm) {
     font-size: 2.6em;

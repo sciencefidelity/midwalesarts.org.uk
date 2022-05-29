@@ -44,10 +44,13 @@ export const Exhibitions: FC<Props> = ({
     ogURL: `${settings.canonicalURL}${locale === "cy" ? "/cy" : ""}/${page.slug}`,
     ogImage: page.ogImage
   }
+  let exhibitionHero: any = page.pastExhibitions[0].mainImage
+  if (page.futureExhibitions[0]) exhibitionHero = page.futureExhibitions[0].mainImage
+  if (page.exhibitions[0]) exhibitionHero = page.exhibitions[0].mainImage
   return (
     <Layout
-      caption={page.exhibitions[0].mainImage.caption}
-      heroImage={page.exhibitions[0].mainImage}
+      caption={exhibitionHero.caption}
+      heroImage={exhibitionHero}
       labels={labels}
       navigation={navigation}
       organisation={organisation}
@@ -58,7 +61,11 @@ export const Exhibitions: FC<Props> = ({
       <div className={`${s.container} ${u.grid}`}>
         <div className={`${s.title}`}>
           {page.title && <h1>{page.title}</h1>}
-          {page.subtitle && <h2 className={`${s.subtitle}`}>{page.subtitle}</h2>}
+          {page.subtitle &&
+            <h2 className={`${s.subtitle}`}>
+              {page.subtitle.replace(".", "")}.
+            </h2>
+          }
         </div>
       </div>
       <div className={`${s.exhibitionPreviewGrid} ${u.flex} ${u.mAuto}`}>

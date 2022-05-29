@@ -232,7 +232,7 @@ const artist = `
     __i18n_lang, _type, ${body}, "disciplines": disciplines[]->title[$locale],
     mainImage, ${seo}, title, ${localizationNested},
     "works": *[_type == "artwork" && artist == ^.title && ${omitDrafts}]{
-      _id, artist, date, mainImage, "medium": medium[$locale], "title": title[$locale],
+      _id, artist, date, mainImage, "medium": medium{ cy, en }, "title": title{ cy, en },
       "aspect": mainImage.asset->metadata.dimensions.aspectRatio, price
     }
   }

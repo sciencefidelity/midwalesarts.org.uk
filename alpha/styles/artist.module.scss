@@ -26,9 +26,8 @@
 }
 
 .tabs {
-  font-size: 2.2rem;
-  list-style: none;
-  margin: 0;
+  // margin-block: 3.5rem -3.1rem;
+  margin-block: 3rem -2.6rem;
   padding: 0;
 }
 
@@ -36,6 +35,10 @@
   list-style: none;
   margin: 0;
   padding: 0 5rem 0 0;
+}
+
+.h3 {
+  font-weight: 500;
 }
 
 .selected {
@@ -79,6 +82,10 @@
   &:last-of-type {
     margin-block: 0.48em 1.3em;
   }
+}
+
+.backLink {
+  margin-block: 6.5rem -6.5rem;
 }
 
 .hideModal {
@@ -153,6 +160,9 @@
   font-size: 1.8rem;
   margin-bottom: 0;
   z-index: 7;
+  &:first-of-type {
+    margin-top: 1rem;
+  }
   @include b.mq(sm) {
     font-size: 1.6rem;
   }

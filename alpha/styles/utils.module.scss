@@ -1,6 +1,30 @@
 @use "./base/colors" as c;
 @use "./base/breakpoints" as b;
 
+.guide {
+  width: 100vw;
+  height: 1px;
+  // background-color: rgb(0, 255, 0);
+  position: absolute;
+  z-index: 100;
+}
+
+.one {
+  inset: 57.25rem 0 0 auto;
+}
+
+.two {
+  inset: 62.3rem 0 0 auto;
+}
+
+.three {
+  inset: 69.1rem 0 0 auto;
+}
+
+.four {
+  inset: 71.1rem 0 0 auto;
+}
+
 .absolute {
   position: absolute;
 }

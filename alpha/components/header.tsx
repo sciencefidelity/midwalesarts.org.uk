@@ -52,7 +52,7 @@ export const Header: FC<Props> = ({
         pageContext={pageContext}
       />
       <div
-        className={`${s.heroCaption} ${u.mAuto} ${u.textRight}`}
+        className={`${s.heroCaption} ${u.relative} ${u.textRight}`}
         dangerouslySetInnerHTML={{__html: caption ? caption : "&nbsp;"}}
       />
     </>
