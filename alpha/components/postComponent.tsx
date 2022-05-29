@@ -38,7 +38,6 @@ export const PostComponent: FC<Props> = ({
   settings
 }) => {
   const { locale } = useRouter()
-  console.log(pageContext)
   const pageHead: PageHead = {
     title: post.title,
     description: post.ogDescription,
