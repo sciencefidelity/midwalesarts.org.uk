@@ -246,7 +246,7 @@ const event = `
     && ${omitDrafts}
   ][0]{
     __i18n_lang, _type, ${body}, briteLink, date, mainImage, ${seo},
-    title, ${localizationNested}
+    title, ${localizationNested}, ${sidebar}
   }
 `
 
@@ -368,6 +368,12 @@ export const artistPathQuery = groq`
 export const eventQuery = groq`{
   ${event}, ${labels}, ${navigation}, ${organisation}, ${settings}
 }`
+
+export const eventPathQuery = groq`
+  *[_type == "event" && defined(slug) && __i18n_lang == $locale && ${omitDrafts}]{
+    "params": { "slug": slug.current }, "locale": __i18n_lang
+  }
+`
 
 export const exhibitionQuery = groq`{
   ${exhibition}, ${labels}, ${navigation}, ${organisation}, ${settings}

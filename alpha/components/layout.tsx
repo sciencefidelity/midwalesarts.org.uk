@@ -51,6 +51,7 @@ export const Layout: FC<Props> = ({
         pageContext={pageContext}
         settings={settings}
       />
+      <div className={`${u.guide} ${u.zero}`}></div>
       <div className={`${u.guide} ${u.one}`}></div>
       <div className={`${u.guide} ${u.two}`}></div>
       <div className={`${u.guide} ${u.three}`}></div>

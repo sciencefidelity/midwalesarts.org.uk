@@ -49,6 +49,7 @@ export interface Event extends SanityDocument {
   ogDescription: string
   ogImage: Image
   ogTitle: string
+  sidebar: Sidebar
   slug: string
   title: string
 }

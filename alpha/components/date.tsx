@@ -9,6 +9,8 @@ interface Props {
   dateStart?: string
 }
 
+const year = new Date().getFullYear()
+
 // 4th November to 19th December 2021
 //4ydd Tachwedd i 19eg Rhagfyr 2021
 export const ExhibitionDate: FC<Props> = ({ dateEnd, dateStart }) => {
@@ -48,13 +50,13 @@ export const PostDate: FC<Props> = ({ date }) => {
     <time dateTime={format(new Date(date), "yyyy-MM-dd")}>
       {locale === "cy"
         ? format(new Date(date),
-          "eeee, MMMM do yyyy",
+          "eeee, do MMMM yyyy",
           {locale: cy}
-        )
+        ).replace(` ${year}`, "")
         : format(new Date(date),
-          "eeee, MMMM do yyyy",
+          "eeee, do MMMM yyyy",
           {locale: enGB}
-        )
+        ).replace(` ${year}`, "")
       }
     </time>
   )
