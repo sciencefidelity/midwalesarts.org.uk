@@ -188,11 +188,11 @@ export interface Post extends SanityDocument {
   body: PortableText
   image: Image
   localization: Localization
-  nextPost: Post
+  next: Post
   ogDescription: string
   ogImage: Image
   ogTitle: string
-  previousPost: Post
+  prev: Post
   publishedAt: string
   sidebar: Sidebar
   slug: string
@@ -240,10 +240,13 @@ export interface Video extends SanityDocument {
   body: PortableText
   localization: Localization
   mainImage: Image
+  next: Video
   ogDescription: string
   ogImage: Image
-  ogTitle: LocaleString
+  ogTitle: string
+  prev: Video
   publishDate: string
+  sidebar: Sidebar
   slug: string
   title: string
   videoLink: string
@@ -260,6 +263,7 @@ export interface Workshop extends SanityDocument {
   ogDescription: string
   ogImage: Image
   ogTitle: LocaleString
+  sidebar: Sidebar
   slug: string
   startTime: string
   title: string

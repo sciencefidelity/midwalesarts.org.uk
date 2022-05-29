@@ -51,7 +51,6 @@ export const EventComponent: FC<Props> = ({
   }
   return (
     <Layout
-      caption={event.mainImage.caption}
       heroImage={event.mainImage}
       labels={labels}
       navigation={navigation}

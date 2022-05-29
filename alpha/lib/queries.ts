@@ -296,10 +296,10 @@ const post = `
   ][0]{
     __i18n_lang, _type, ${body}, image, publishedAt, ${seo},
     "tags": tags[]->title[$locale], title, ${localizationNested}, ${sidebar},
-    "previousPost": *[
+    "prev": *[
       _type == "post" && __i18n_lang == $locale && publishedAt < ^.publishedAt
     ] | order(publishedAt desc)[0]{ _type, ${slug}, title },
-    "nextPost": *[
+    "next": *[
       _type == "post" && __i18n_lang == $locale && publishedAt > ^.publishedAt
     ] | order(publishedAt asc)[0]{ _type, ${slug}, title }
   }
@@ -313,7 +313,13 @@ const video = `
     && ${omitDrafts}
   ][0]{
     __i18n_lang, _type, ${body}, mainImage, publishDate, ${seo}, title,
-    videoLink, ${localizationNested}
+    videoLink, ${localizationNested}, ${sidebar},
+    "prev": *[
+      _type == "video" && __i18n_lang == $locale && publishDate < ^.publishDate
+    ] | order(publishDate desc)[0]{ _type, ${slug}, title },
+    "next": *[
+      _type == "video" && __i18n_lang == $locale && publishDate > ^.publishDate
+    ] | order(publishDate asc)[0]{ _type, ${slug}, title }
   }
 `
 
@@ -322,7 +328,7 @@ const workshop = `
     _type == "workshop" && __i18n_lang == $locale
   ][0]{
     __i18n_lang, _type, ${body}, day, endTime, mainImage, ${seo}, startTime,
-    title, ${localizationNested}
+    title, ${localizationNested}, ${sidebar}
   }
 `
 
@@ -399,8 +405,18 @@ export const videoQuery = groq`{
   ${labels}, ${navigation}, ${organisation}, ${settings}, ${video}
 }`
 
+export const videoPathQuery = groq`
+  *[_type == "video" && defined(slug) && __i18n_lang == $locale && ${omitDrafts}]{
+    "params": { "slug": slug.current }, "locale": __i18n_lang
+  }
+`
+
 export const workshopQuery = groq`{
   ${labels}, ${navigation}, ${organisation}, ${settings}, ${workshop}
 }`
 
-
+export const workshopPathQuery = groq`
+  *[_type == "workshop" && defined(slug) && __i18n_lang == $locale && ${omitDrafts}]{
+    "params": { "slug": slug.current }, "locale": __i18n_lang
+  }
+`
