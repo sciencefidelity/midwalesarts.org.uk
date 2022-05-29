@@ -13,7 +13,7 @@ export const Scrollup: FC<Props> = ({ label }) => {
   const { locale } = useRouter()
   return (
     <LinkTo href="#">
-      <div className={`${s.scrollupContainer}`}>
+      <div className={`${s.scrollupContainer} ${u.fixed}`}>
         <span className={`${u.srOnly}`}>
           {label[locale]}
         </span>

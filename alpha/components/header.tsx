@@ -28,7 +28,7 @@ export const Header: FC<Props> = ({
   const { locale } = useRouter()
   return (
     <>
-      <header className={`${s.header}`}>
+      <header className={`${s.header} ${u.relative}`}>
         <LinkTo href="/">
           <span className={`${u.srOnly}`}>
             {labels[0].text[locale]}
@@ -40,7 +40,7 @@ export const Header: FC<Props> = ({
           />
         </LinkTo>
         <div
-          className={`${s.hero}`}
+          className={`${s.hero} ${u.relative}`}
           style={{ overflow: "hidden" }}
         >
           <SanityImage alt={caption} image={heroImage} width={1600} />
@@ -52,7 +52,7 @@ export const Header: FC<Props> = ({
         pageContext={pageContext}
       />
       <div
-        className={`${s.heroCaption}`}
+        className={`${s.heroCaption} ${u.mAuto} ${u.textRight}`}
         dangerouslySetInnerHTML={{__html: caption ? caption : "&nbsp;"}}
       />
     </>

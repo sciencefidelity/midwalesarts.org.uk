@@ -28,16 +28,19 @@ export const NavComponent: FC<Props> = ({ labels, navigation, pageContext }) => 
   if (locale === "cy") align = { right: "calc(50% - 35.5rem)" }
   return (
     <nav
-      className={`${s.menuOverlay} ${u.absolute}`}
+      className={`${s.navOverlay} ${u.absolute}`}
       onClick={isActive ? menuClose : null}
     >
       <div
-        className={`${s.headerMenu} ${isActive ? s.isActive : null} ${u.fixed}`}
+        className={`${s.nav} ${isActive ? s.isActive : null} ${u.fixed}`}
       >
-        <ul style={align}>
+        <ul style={align} className={`${s.navList} ${u.absolute} ${u.uppercase}`}>
           {navigation.map(item => (
-            <li key={item._key}>
-              <LinkTo href={`/${item.slug[locale].replace("index", "")}`}>
+            <li key={item._key} className={`${s.navItem}`}>
+              <LinkTo
+                href={`/${item.slug[locale].replace("index", "")}`}
+                className={`${s.navLink}`}
+              >
                 {item.label[locale]}
               </LinkTo>
             </li>

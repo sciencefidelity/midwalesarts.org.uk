@@ -2,6 +2,7 @@ import { FC } from "react"
 import { useRouter } from "next/router"
 import { Label } from "lib/interfaces"
 import s from "styles/layout.module.scss"
+import u from "styles/utils.module.scss"
 
 interface Props {
   labels: Label[]
@@ -33,7 +34,7 @@ export const Signup: FC<Props> = ({ labels }) => {
           <input
             type="image"
             src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 512'%3E%3Cpath d='M285 273L91 467c-9 10-24 10-34 0l-22-22c-10-10-10-25-1-34l155-155L34 101c-9-9-9-24 1-34l22-22c10-10 25-10 34 0l194 194c10 9 10 25 0 34z' fill='%23fff'/%3E%3C/svg%3E"
-            className={`${s.signupSubmit}`}
+            className={`${s.signupSubmit} ${u.pointer}`}
             name="subscribe"
             id="mc-embedded-subscribe"
             alt={labels[7].text[locale]}

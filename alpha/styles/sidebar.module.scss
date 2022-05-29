@@ -4,14 +4,14 @@
 
 .sidebar {
   background: c.$sidebar;
-  margin-block: -8rem -23rem;
+  margin-block: -8rem -20rem;
   @include b.mq(lg) {
     display: none;
   }
 }
 
 .sidebarContent {
-  padding: 6rem 5rem;
+  padding: 8rem 5rem 6rem;
   margin-block: 0;
   a {
     margin-block: 0;

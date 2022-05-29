@@ -14,20 +14,22 @@ export const FooterContact: FC<Props> = ({ label, organisation, settings }) => {
   const year = new Date().getFullYear()
   return (
     <div>
-      <p>
+      <p className={`${s.footerText}`}>
         {label[locale]}<br />
         {organisation.opening[locale]}
       </p>
-      <p>
+      <p className={`${s.footerText}`}>
         {settings.title[locale]}<br />
         {organisation.address.town}<br />
         {organisation.address.county}{" "}{organisation.address.postcode}
       </p>
-      <p>
+      <p className={`${s.footerText}`}>
         {organisation.telephone}<br />
-        <a href={`mailto:${organisation.email}`}>{organisation.email}</a>
+        <a href={`mailto:${organisation.email}`} className={`${s.footerLink}`}>
+          {organisation.email}
+        </a>
       </p>
-      <p className={`${s.copy}`}>
+      <p className={`${s.footerText} ${s.copy}`}>
         &copy;{" "}{settings.title[locale]}{" "}{year}
       </p>
     </div>

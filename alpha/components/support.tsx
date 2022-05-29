@@ -44,7 +44,6 @@ export const Support: FC<Props> = ({
   }
   return (
     <Layout
-      caption={page.mainImage.caption}
       heroImage={page.mainImage}
       labels={labels}
       navigation={navigation}
