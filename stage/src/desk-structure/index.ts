@@ -21,6 +21,7 @@ import {
   PostOffice,
   SpeechBalloon,
   StudioMicrophone,
+  Tickets,
   WorldMap,
   WritingHand
 } from '../components/twemoji'
@@ -148,13 +149,17 @@ const items = [
         .title('Taxonomy')
         .items([
           S.listItem()
-            .title('Discipline')
-            .icon(Paintbrush)
-            .child(S.documentTypeList('discipline').title('Discipline')),
-          S.listItem()
             .title('Tag')
             .icon(Label)
-            .child(S.documentTypeList('tag').title('Tag'))
+            .child(S.documentTypeList('tag').title('Tag')),
+          S.listItem()
+            .title('Category')
+            .icon(Tickets)
+            .child(S.documentTypeList('category').title('Category')),
+          S.listItem()
+            .title('Discipline')
+            .icon(Paintbrush)
+            .child(S.documentTypeList('discipline').title('Discipline'))
         ])
     ),
   S.divider(),
@@ -196,6 +201,7 @@ const items = [
       ![
         'artist',
         'artwork',
+        'category',
         'discipline',
         'event',
         'exhibition',

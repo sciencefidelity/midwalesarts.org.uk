@@ -33,8 +33,9 @@ import organisation from './field/organisation'
 import settings from './field/settings'
 
 // taxonomy
-import tag from './taxonomy/tag'
+import category from './taxonomy/category'
 import discipline from './taxonomy/discipline'
+import tag from './taxonomy/tag'
 
 export default createSchema({
   name: 'default',
@@ -54,6 +55,7 @@ export default createSchema({
 
     // documement translation
     artist,
+    category,
     discipline,
     event,
     exhibition,

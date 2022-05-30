@@ -77,6 +77,13 @@ export default {
       group: 'settings'
     },
     {
+      name: 'category',
+      title: 'Category',
+      type: 'reference',
+      to: { type: 'category' },
+      group: 'settings'
+    },
+    {
       name: 'briteLink',
       title: 'Eventbrite link',
       description: 'Leave blank if the event is not on Eventbrite.',
