@@ -23,7 +23,7 @@
     margin-bottom: 1rem;
   }
   @include b.mq(sm) {
-    font-size: 1.2rem;
+    visibility: hidden;
   }
 }
 
@@ -93,17 +93,14 @@
   width: calc(104vw * 2);
   height: calc(104vw * 2);
   inset: calc(4.8rem - 104vw) auto auto calc(4.8rem - 104vw);
-  // inset: 0 auto auto 0;
   background-color: rgba(c.$grey-000, 0.8);
   border-radius: 50%;
   z-index: 1;
   clip-path: circle(0% at 50% 50%);
   transition: clip-path 1s ease-out;
   @include b.mq(sm) {
-    width: calc(104vh * 2);
-    height: calc(104vh * 2);
-    right: calc(4.8rem - 104vh + 9.6rem);
-    top: calc(4.8rem - 104vh);
+    width: calc(200vw * 2);
+    left: calc(4.8rem - 200vw);
   }
 }
 
@@ -115,10 +112,10 @@
   list-style: none;
   padding: 0 4rem;
   @include b.mq(sm) {
-    right: calc(50% - 21rem);
-    top: calc(50% - 3rem);
+    top: calc(50% - 2.5rem);
+    transform: translateX(-4rem);
     font-size: 1.8rem;
-    line-height: 1;
+    line-height: 1.1;
   }
 }
 
