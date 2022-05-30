@@ -111,13 +111,13 @@ export const ExhibitionComponent: FC<Props> = ({
               onClick={toggleInfo}
               className={`${s.tabItem} ${info ? s.selected : null} ${u.pointer}`}
             >
-              <h3 className={`${s.h3}`}>{labels[29].text[locale]}</h3>
+              <h3 className={`${s.h3}`}>{labels[34].text[locale]}</h3>
             </li>
             <li
               onClick={toggleGallery}
               className={`${s.tabItem} ${info ? null : s.selected} ${u.pointer}`}
             >
-              <h3 className={`${s.h3}`}>{labels[30].text[locale]}</h3>
+              <h3 className={`${s.h3}`}>{labels[35].text[locale]}</h3>
             </li>
           </ul>
           <div className={`${s.info} ${info ? null : s.hidden}`}>
@@ -162,14 +162,14 @@ export const ExhibitionComponent: FC<Props> = ({
             </div>)
           )) :
           (<p>
-            {labels[31].text[locale]}
+            {labels[36].text[locale]}
           </p>)
         }
       </div>
       <div>
         <p className={`${s.backLink} ${u.textCenter}`}>
           <LinkTo href={`/${subdir(locale, exhibition._type)}`}>
-            {labels[32].text[locale]}
+            {labels[38].text[locale]}
           </LinkTo>
         </p>
       </div>

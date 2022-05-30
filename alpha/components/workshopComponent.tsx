@@ -77,7 +77,7 @@ export const WorkshopComponent: FC<Props> = ({
             </div>
             <div className={`${s.headerContent} ${u.grid}`}>
               <h3 className={`${s.type} ${u.uppercase}`}>
-                {workshop.category ? workshop.category[locale] : "Workshop"}
+                {workshop.category ? workshop.category[locale] : labels[50].text[locale]}
               </h3>
               {workshop.day && <h2 className={`${s.subtitle}`}>
                 <PostDate date={getNextDate(dayToNumber(workshop.day))} />{", "}
@@ -86,7 +86,7 @@ export const WorkshopComponent: FC<Props> = ({
               <h1 className={`${s.h1}`}>{workshop.title}</h1>
               {workshop.briteLink ? <p className={`${s.headerLink}`}>
                 <a href={`${workshop.briteLink}`} target="blank" rel="noreferrer">
-                  {labels[27].text[locale]}
+                  {labels[51].text[locale]}
                 </a>
               </p>
                 : <p
@@ -102,14 +102,14 @@ export const WorkshopComponent: FC<Props> = ({
             <p className={`${s.briteLink} ${u.textCenter}`}>
               {workshop.briteLink &&
                 <a href={`${workshop.briteLink}`} target="blank" rel="noreferrer">
-                  {labels[27].text[locale]}
+                  {labels[51].text[locale]}
                 </a>
               }
             </p>
             <div>
               <p className={`${s.backLink} ${u.textCenter}`}>
                 <LinkTo href={`/${subdir(locale, workshop._type)}`}>
-                  {labels[28].text[locale]}
+                  {labels[53].text[locale]}
                 </LinkTo>
               </p>
             </div>

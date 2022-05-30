@@ -61,7 +61,7 @@ export const PostComponent: FC<Props> = ({
     >
       <div className={`${s.container} ${u.grid}`}>
         <div className={`${s.title}`}>
-          <h1>{labels[33].text[locale]}</h1>
+          <h1>{labels[40].text[locale]}</h1>
           {post.title && <h2 className={`${s.subtitle}`}>
             {post.title.trim().replace(".", "")}.
           </h2>}
@@ -69,7 +69,7 @@ export const PostComponent: FC<Props> = ({
             <PortableText value={post.body} components={components} />
           </div>}
           <p>
-            {labels[34].text[locale]}
+            {labels[41].text[locale].trim()}{" "}
             {post.publishedAt && <PostDate date={post.publishedAt} />}
           </p>
           <nav className={`${s.postNavigation} ${u.flex}`}>
@@ -79,12 +79,12 @@ export const PostComponent: FC<Props> = ({
                   locale, post.prev.slug, post.prev._type
                 )}`}
               >
-                &laquo;{" "}{labels[35].text[locale]}
+                &laquo;{" "}{labels[42].text[locale]}
               </LinkTo>
             </p> : <p>{" "}</p>}
             <p className={`${s.backLink} ${u.textCenter}`}>
               <LinkTo href={`/${subdir(locale, post._type)}`}>
-                {labels[36].text[locale]}
+                {labels[43].text[locale]}
               </LinkTo>
             </p>
             {post.next ? <p className={`${s.nextLink} ${u.textRight}`}>
@@ -93,7 +93,7 @@ export const PostComponent: FC<Props> = ({
                   locale, post.next.slug, post.next._type
                 )}`}
               >
-                {labels[37].text[locale]}{" "}&raquo;
+                {labels[44].text[locale]}{" "}&raquo;
               </LinkTo>
             </p> : <p>{" "}</p>}
           </nav>
