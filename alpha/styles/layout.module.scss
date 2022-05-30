@@ -276,6 +276,12 @@
   @include b.mq(lg) {
     grid-template-columns: 1fr;
   }
+  @include b.mq(md) {
+    width: 88%;
+  }
+  @include b.mq(sm) {
+    width: 90%;
+  }
 }
 
 .footerText {
@@ -325,19 +331,24 @@
 }
 
 .signup {
-  margin-top: -0.7rem;
+  margin-block: -0.7rem 0;
+  @include b.mq(sm) {
+    width: 90vw;
+    justify-content: center;
+  }
 }
 
 .signupHeading {
   display: inline-block;
   width: 100%;
   font-size: 2rem;
-  margin-bottom: -4rem;
+  margin-block: 0 -4rem;
   color: c.$grey-600;
   text-align: right;
   @include b.mq(md) {
     font-size: 2rem;
-    text-align: right;
+    text-align: left;
+    margin-block: 3rem -4rem;
   }
 }
 
@@ -358,11 +369,12 @@
   padding: 0.85em 1.5em;
   font-size: 2.2rem;
   border: 0.14em solid c.$grey-400;
-  margin-top: -1rem;
+  margin-block: -1rem 0;
   color: c.$grey-550;
   @include b.mq(md) {
     font-size: 2rem;
     width: calc(100% - 6rem);
+    margin-block: -1rem 3rem;
   }
   @include b.mq(sm) {
     height: 5rem;
@@ -393,8 +405,10 @@
   justify-content: right;
   @include b.mq(md) {
     justify-content: left;
+    margin-bottom: 3rem;
   }
   @include b.mq(sm) {
+    gap: 2rem;
     flex-direction: column;
   }
 }
@@ -403,6 +417,7 @@
   justify-content: right;
   @include b.mq(sm) {
     margin-top: 2rem;
+    justify-content: unset;
   }
 }
 
@@ -470,6 +485,7 @@
 }
 
 .smallCopy {
+  display: none;
   font-size: 2rem;
   @include b.mq(lg) {
     display: block;
