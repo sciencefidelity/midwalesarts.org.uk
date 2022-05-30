@@ -11,6 +11,26 @@ interface Props {
 
 const year = new Date().getFullYear()
 
+// Saturday, February 12th 2022
+// dydd Sadwrn, Chwefror 12, 2022
+export const EventDate: FC<Props> = ({ date }) => {
+  const { locale } = useRouter()
+  return (
+    <time dateTime={format(new Date(date), "yyyy-MM-dd")}>
+      {locale === "cy"
+        ? format(new Date(date),
+          "eeee, do MMMM yyyy, hh:mm",
+          {locale: cy}
+        ).replace(` ${year}`, "")
+        : format(new Date(date),
+          "eeee, do MMMM yyyy, h:mmbbb",
+          {locale: enGB}
+        ).replace(` ${year}`, "")
+      }
+    </time>
+  )
+}
+
 // 4th November to 19th December 2021
 //4ydd Tachwedd i 19eg Rhagfyr 2021
 export const ExhibitionDate: FC<Props> = ({ dateEnd, dateStart }) => {

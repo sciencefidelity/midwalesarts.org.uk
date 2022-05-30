@@ -159,7 +159,7 @@ export const ArtistComponent: FC<Props> = ({
       <div className={`${s.backLink}`}>
         <p className={`${u.textCenter}`}>
           <LinkTo href={`/${subdir(locale, artist._type)}`}>
-            {labels[26].text[locale]}
+            {labels[27].text[locale]}
           </LinkTo>
         </p>
       </div>

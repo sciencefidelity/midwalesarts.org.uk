@@ -4,9 +4,9 @@ import Image from "next/image"
 import { PortableText } from "@portabletext/react"
 import { components } from "components/portableTextComponents"
 import { buildUrl, subdir, urlFor } from "lib/utils"
+import { EventDate } from "components/date"
 import { Layout } from "components/layout"
 import { LinkTo } from "components/linkTo"
-import { PostDate } from "components/date"
 import { SidebarComponent } from "components/sidebarComponent"
 import {
   Event,
@@ -75,18 +75,23 @@ export const EventComponent: FC<Props> = ({
                 height={2000}
               />
             </div>
-            <div className={`${u.grid}`}>
+            <div className={`${s.headerContent} ${u.grid}`}>
+              <h3 className={`${s.type} ${u.uppercase}`}>
+                {event.category ? event.category[locale] : labels[29].text[locale]}
+              </h3>
               {event.date && <h2 className={`${s.subtitle}`}>
-                <PostDate date={event.date} />
+                <EventDate date={event.date} />
               </h2>}
-              {event.title && <h1 className={`${s.h1}`}>{event.title}</h1>}
-              <p className={`${s.headerLink}`}>
-                {event.briteLink &&
-                  <a href={`${event.briteLink}`} target="blank" rel="noreferrer">
-                    {labels[27].text[locale]}
-                  </a>
-                }
+              <h1 className={`${s.h1}`}>{event.title}</h1>
+              {event.briteLink ? <p className={`${s.headerLink}`}>
+                <a href={`${event.briteLink}`} target="blank" rel="noreferrer">
+                  {labels[30].text[locale]}
+                </a>
               </p>
+                : <p
+                  className={`${s.headerLink}`}
+                  dangerouslySetInnerHTML={{ __html: "&nbsp;" }}
+                />}
             </div>
           </div>
           <div>
@@ -96,14 +101,14 @@ export const EventComponent: FC<Props> = ({
             <p className={`${s.briteLink} ${u.textCenter}`}>
               {event.briteLink &&
                 <a href={`${event.briteLink}`} target="blank" rel="noreferrer">
-                  {labels[27].text[locale]}
+                  {labels[30].text[locale]}
                 </a>
               }
             </p>
             <div>
               <p className={`${s.backLink} ${u.textCenter}`}>
                 <LinkTo href={`/${subdir(locale, event._type)}`}>
-                  {labels[28].text[locale]}
+                  {labels[32].text[locale]}
                 </LinkTo>
               </p>
             </div>

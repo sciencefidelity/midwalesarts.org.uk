@@ -8,14 +8,6 @@
   }
 }
 
-// .title {
-//   width: 75%;
-//   margin: 0 auto;
-//   @include b.mq(lg) {
-//     width: 81.25%;
-//   }
-// }
-
 .title {
   width: 75%;
   margin: 0 auto;
@@ -31,21 +23,33 @@
   grid-template-columns: 1fr 1fr;
 }
 
-.h1 {
-  font-size: 4rem;
-  text-transform: unset;
+.headerContent {
+  grid-template-rows: auto;
+}
+
+.type {
+  line-height: 1;
+  font-size: 2.5rem;
   font-weight: 500;
-  line-height: 1.2;
-  margin-block: -6rem 0rem;
+  color: c.$grey-700;
 }
 
 .subtitle {
+  align-self: start;
   font-size: 2.5rem;
   margin-block: 0;
   color: c.$grey-600;
   @include b.mq(sm) {
     font-size: 2.6em;
   }
+}
+
+.h1 {
+  font-size: 4rem;
+  text-transform: unset;
+  font-weight: 500;
+  line-height: 1.2;
+  margin-block: -5rem 0rem;
 }
 
 .headerLink {
