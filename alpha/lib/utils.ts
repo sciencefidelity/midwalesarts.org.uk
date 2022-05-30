@@ -85,17 +85,17 @@ export const subdir = (locale: string, type: string): string => {
   if (locale === "cy") {
     switch (type) {
     case "artist":
-      return "/artistiaid"
+      return "artistiaid"
     case "event":
-      return "/digwyddiadau"
+      return "digwyddiadau"
     case "exhibition":
-      return "/arddangosfeydd"
+      return "arddangosfeydd"
     case "post":
-      return "/newyddion"
+      return "newyddion"
     case "video":
-      return "/fideos"
+      return "fideos"
     case "workshop":
-      return "/gweithdai"
+      return "gweithdai"
     default:
       return ""
     }
@@ -103,17 +103,17 @@ export const subdir = (locale: string, type: string): string => {
   if (locale === "en") {
     switch (type) {
     case "artist":
-      return "/artists"
+      return "artists"
     case "event":
-      return "/events"
+      return "events"
     case "exhibition":
-      return "/exhibitions"
+      return "exhibitions"
     case "post":
-      return "/news"
+      return "news"
     case "video":
-      return "/videos"
+      return "videos"
     case "workshop":
-      return "/workshops"
+      return "workshops"
     default:
       return ""
     }
