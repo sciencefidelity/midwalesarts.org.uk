@@ -14,33 +14,71 @@
   @include b.mq(lg) {
     width: 81.25%;
   }
+  @include b.mq(md) {
+    width: 90%;
+  }
 }
 
 .header {
   width: 100%;
   gap: 5rem;
+  gap: 3.3vw;
   margin-block: 0.5rem 8rem;
   grid-template-columns: 1fr 1fr;
+  @include b.mq(md) {
+    grid-template-columns: 1fr;
+    margin-block: -2vw 8rem;
+  }
 }
 
 .headerContent {
-  grid-template-rows: auto;
+  flex-direction: column;
+  height: 100%;
 }
 
 .type {
   line-height: 1;
-  font-size: 2.5rem;
+  font-size: 1.65vw;
   font-weight: 500;
   color: c.$grey-700;
+  @include b.mq(lg) {
+    font-size: 2.5vw;
+  }
+  @include b.mq(md) {
+    font-size: 2.5rem;
+    margin-block: 1rem 3rem;
+  }
 }
 
 .subtitle {
   align-self: start;
-  font-size: 2.5rem;
+  font-size: 1.65vw;
   margin-block: 0;
   color: c.$grey-600;
+  margin-bottom: 1rem;
+  @include b.mq(lg) {
+    font-size: 2.5vw;
+  }
+  @include b.mq(md) {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
   @include b.mq(sm) {
     font-size: 2.6em;
+  }
+}
+
+.h1 {
+  font-size: 2.65vw;
+  text-transform: unset;
+  font-weight: 500;
+  line-height: 1.2;
+  @include b.mq(lg) {
+    font-size: 4vw;
+  }
+  @include b.mq(md) {
+    font-size: clamp(3.6rem, 5.5vw, 4.2em);
+    margin-bottom: 4rem;
   }
 }
 

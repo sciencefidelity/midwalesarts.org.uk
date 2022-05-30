@@ -79,10 +79,12 @@ export const EventComponent: FC<Props> = ({
               <h3 className={`${s.type} ${u.uppercase}`}>
                 {event.category ? event.category : labels[29].text[locale]}
               </h3>
-              {event.date && <h2 className={`${s.subtitle}`}>
-                <EventDate date={event.date} />
-              </h2>}
-              <h1 className={`${s.h1}`}>{event.title}</h1>
+              <div>
+                {event.date && <h2 className={`${s.subtitle}`}>
+                  <EventDate date={event.date} />
+                </h2>}
+                {event.title && <h1 className={`${s.h1}`}>{event.title}</h1>}
+              </div>
               {event.briteLink ? <p className={`${s.headerLink}`}>
                 <a href={`${event.briteLink}`} target="blank" rel="noreferrer">
                   {labels[30].text[locale]}

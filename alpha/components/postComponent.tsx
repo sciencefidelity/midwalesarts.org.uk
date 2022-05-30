@@ -75,7 +75,7 @@ export const PostComponent: FC<Props> = ({
                 height={2000}
               />
             </div>
-            <div className={`${s.headerContent} ${u.grid}`}>
+            <div className={`${s.headerContent} ${u.flex}`}>
               <h3 className={`${s.type} ${u.uppercase}`}>
                 {post.tags[0] ? post.tags[0] : labels[50].text[locale]}
               </h3>
