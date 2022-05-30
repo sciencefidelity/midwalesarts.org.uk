@@ -79,7 +79,7 @@ export const EventComponent: FC<Props> = ({
               {event.date && <h2 className={`${s.subtitle}`}>
                 <PostDate date={event.date} />
               </h2>}
-              <h1 className={`${s.h1}`}>{event.title}</h1>
+              {event.title && <h1 className={`${s.h1}`}>{event.title}</h1>}
               <p className={`${s.headerLink}`}>
                 {event.briteLink &&
                   <a href={`${event.briteLink}`} target="blank" rel="noreferrer">
@@ -90,12 +90,6 @@ export const EventComponent: FC<Props> = ({
             </div>
           </div>
           <div>
-            {/* <h1>
-              {event.title && event.title}
-            </h1>
-            <h2 className={`${s.subtitle}`}>
-              {event.date && <PostDate date={event.date} />}
-            </h2> */}
             {event.body &&
               <PortableText value={event.body} components={components} />
             }

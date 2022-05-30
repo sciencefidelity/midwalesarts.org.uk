@@ -24,7 +24,7 @@ export const Modal: FC<Props> = ({
   //   width: `${aspect < 1 ? "min(57vh, -4rem + 100vw)" : "unset"}`
   // } as CSSProperties
   return (
-    <div className={`${s.modalContainer} ${modal ? s.hideModal : null} ${u.flex} ${u.fixed}`}>
+    <div className={`${s.modalContainer} ${modal ? null : s.hideModal} ${u.flex} ${u.fixed}`}>
       <div className={`${s.btnPrev} ${u.absolute} ${u.pointer}`} onClick={prevIndex}>
         <img
           alt="Previous"

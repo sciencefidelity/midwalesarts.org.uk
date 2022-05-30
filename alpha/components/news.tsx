@@ -57,7 +57,9 @@ export const News: FC<Props> = ({
       <div className={`${s.container} ${u.grid}`}>
         <div className={`${s.title}`}>
           {page.title && <h1>{page.title}</h1>}
-          {page.subtitle && <h2 className={`${s.subtitle}`}>{page.subtitle}</h2>}
+          {page.subtitle && <h2 className={`${s.subtitle}`}>
+            {page.subtitle.trim().replace(".", "")}.
+          </h2>}
         </div>
       </div>
       <div className={`${s.imageGrid} ${u.grid}`}>

@@ -54,15 +54,15 @@ export const FrontPageHeadline: FC<Props> = ({ headline }) => {
           >
             <div className={`${s.sectionTitle} ${u.inlineBlock}`}>
               {headline.title && <h2 className={`${s.h2} ${u.uppercase}`}>
-                {headline.title}
+                {headline.title.trim()}
               </h2>}
               {headline.caption && <h3 className={`${s.h3}`}>
-                {headline.caption}
+                {headline.caption.trim().replace(".", "")}
               </h3>}
             </div>
           </div>
           <div className={`${s.sectionText}`}>
-            {headline.heading && <h4>{headline.heading}</h4>}
+            {headline.heading && <h4>{headline.heading.trim()}</h4>}
             {headline.body && <p>{headline.body}</p>}
           </div>
         </div>
@@ -71,7 +71,7 @@ export const FrontPageHeadline: FC<Props> = ({ headline }) => {
         <div className={`${s.sectionCtaHr} ${u.absolute}`}></div>
         <LinkTo href={url}>
           <h2 className={`${s.sectionCta} ${u.relative} ${u.textRight}`}>
-            {headline.cta && <span>{headline.cta}&nbsp;</span>}
+            {headline.cta && <span>{headline.cta.trim()}&nbsp;</span>}
           </h2>
         </LinkTo>
       </div>

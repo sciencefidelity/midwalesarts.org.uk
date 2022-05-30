@@ -24,7 +24,7 @@ export const Intro: FC<Props> = ({ page }) => {
         <LinkTo href={url}>
           {page.cta &&
             <h2 className={`${s.introCta} ${u.relative} ${u.textRight}`}>
-              <span>{page.cta}&nbsp;</span>
+              <span>{page.cta.trim()}&nbsp;</span>
             </h2>
           }
         </LinkTo>

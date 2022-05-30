@@ -43,6 +43,7 @@ export interface Event extends SanityDocument {
   _type: "event"
   body: PortableText
   briteLink: string
+  category: string
   date: string
   localization: Localization
   mainImage: Image
@@ -257,6 +258,7 @@ export interface Workshop extends SanityDocument {
   _type: "workshop"
   body: PortableText
   briteLink: string
+  category: string
   day: string
   endTime: string
   localization: Localization

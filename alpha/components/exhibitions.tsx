@@ -63,7 +63,7 @@ export const Exhibitions: FC<Props> = ({
           {page.title && <h1>{page.title}</h1>}
           {page.subtitle &&
             <h2 className={`${s.subtitle}`}>
-              {page.subtitle.replace(".", "")}.
+              {page.subtitle.trim().replace(".", "")}.
             </h2>
           }
         </div>

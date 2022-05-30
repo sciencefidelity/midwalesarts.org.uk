@@ -56,9 +56,9 @@ export const Events: FC<Props> = ({
       <div className={`${s.container} ${u.grid}`}>
         <div className={`${s.title}`}>
           {page.title && <h1>{page.title}</h1>}
-          {page.subtitle &&
-            <h2 className={`${s.subtitle} ${u.grid}`}>{page.subtitle}</h2>
-          }
+          {page.subtitle && <h2 className={`${s.subtitle} ${u.grid}`}>
+            {page.subtitle.trim().replace(".", "")}.
+          </h2>}
         </div>
       </div>
       {page.events[0] !== undefined ? (

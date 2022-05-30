@@ -57,8 +57,10 @@ export const Visit: FC<Props> = ({
       settings={settings}
     >
       <section className={`${s.container} ${u.mAuto}`}>
-        <h1>{page.title}</h1>
-        <h2 className={`${s.subtitle}`}>{page.subtitle} </h2>
+        {page.title && <h1>{page.title}</h1>}
+        {page.subtitle && <h2 className={`${s.subtitle}`}>
+          {page.subtitle.trim().replace(".", "")}.
+        </h2>}
         <div className={`${s.spacesGrid} ${u.grid}`}>
           {page.spaces && page.spaces.map(space => (
             <LinkTo
@@ -77,9 +79,9 @@ export const Visit: FC<Props> = ({
                 width={2000}
                 height={2000}
               />
-              {space.title &&
-                <div className={`${s.caption} ${u.textRight}`}>{space.title}</div>
-              }
+              {space.title && <div className={`${s.caption} ${u.textRight}`}>
+                {space.title}
+              </div>}
             </LinkTo>
           ))}
         </div>

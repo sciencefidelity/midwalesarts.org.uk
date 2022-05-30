@@ -57,9 +57,9 @@ export const Videos: FC<Props> = ({
       <div className={`${s.container} ${u.grid}`}>
         <div className={`${s.title}`}>
           {page.title && <h1>{page.title}</h1>}
-          {page.subtitle &&
-            <h2 className={`${s.subtitle}`}>{page.subtitle}</h2>
-          }
+          {page.subtitle && <h2 className={`${s.subtitle}`}>
+            {page.subtitle.trim().replace(".", "")}.
+          </h2>}
         </div>
       </div>
       <div className={`${s.imageGrid} ${u.grid}`}>
@@ -77,9 +77,9 @@ export const Videos: FC<Props> = ({
                 width={2000}
                 height={2000}
               />
-              {video.title &&
-                <div className={`${s.caption} ${u.textRight}`}>{video.title}</div>
-              }
+              {video.title && <div className={`${s.caption} ${u.textRight}`}>
+                {video.title}
+              </div>}
               <div className={`${s.caption} ${u.textRight}`}>
                 {labels[17].text[locale]}
                 {video.publishDate && <PostDate date={video.publishDate} />}

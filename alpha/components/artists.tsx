@@ -55,8 +55,10 @@ export const Artists: FC<Props> = ({
     >
       <div className={`${s.container} ${u.grid}`}>
         <div className={`${s.title}`}>
-          <h1>{page.title}</h1>
-          <h2 className={`${s.subtitle}`}>{page.subtitle.replace(".", "")}.</h2>
+          {page.title && <h1>{page.title}</h1>}
+          {page.subtitle && <h2 className={`${s.subtitle}`}>
+            {page.subtitle.trim().replace(".", "")}.
+          </h2>}
         </div>
       </div>
       <div className={`${s.imageGrid} ${u.grid}`}>

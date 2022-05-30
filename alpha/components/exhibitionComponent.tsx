@@ -38,9 +38,9 @@ export const ExhibitionComponent: FC<Props> = ({
   settings
 }) => {
   const { locale } = useRouter()
-  const [info, setInfo] = useState(true)
-  const [gallery, setGallery] = useState(false)
-  const [modal, setModal] = useState(true)
+  const [info, setInfo] = useState(exhibition.works[0] ? false : true)
+  const [gallery, setGallery] = useState(exhibition.works[0] ? true : false)
+  const [modal, setModal] = useState(false)
   const [imageToShow, setImageToShow] = useState(0)
   const pageHead: PageHead = {
     title: exhibition.title,
@@ -54,34 +54,32 @@ export const ExhibitionComponent: FC<Props> = ({
     ogImage: exhibition.ogImage
   }
   const toggleInfo = () => {
-    setInfo(false)
-    setGallery(true)
-  }
-  const toggleGallery = () => {
     setInfo(true)
     setGallery(false)
   }
+  const toggleGallery = () => {
+    setInfo(false)
+    setGallery(true)
+  }
   const openModal = (index: number) => {
-    setModal(false)
+    setModal(true)
     setImageToShow(index)
   }
   const closeModal = () => {
-    setModal(true)
+    setModal(false)
   }
   let currentIndex = imageToShow
   function prevIndex() {
     currentIndex = currentIndex - 1
     if (currentIndex < 0) {
-      setModal(true)
-      return
+      currentIndex = exhibition.works.length - 1
     }
     setImageToShow(currentIndex)
   }
   function nextIndex() {
     currentIndex = currentIndex + 1
     if (currentIndex > exhibition.works.length - 1) {
-      setModal(true)
-      return
+      currentIndex = 0
     }
     setImageToShow(currentIndex)
   }
@@ -101,28 +99,28 @@ export const ExhibitionComponent: FC<Props> = ({
     >
       <div className={`${s.container} ${u.grid}`}>
         <div className={`${s.title}`}>
-          <h1>{exhibition.title && exhibition.title}</h1>
+          {exhibition.title && <h1>{exhibition.title}</h1>}
           <h2 className={`${s.subtitle}`}>
-            <ExhibitionDate
+            {exhibition.dateStart && exhibition.dateEnd && <ExhibitionDate
               dateEnd={exhibition.dateEnd}
               dateStart={exhibition.dateStart}
-            />
+            />}
           </h2>
           <ul className={`${s.tabs} ${u.flex}`}>
             <li
               onClick={toggleInfo}
-              className={`${s.tabItem} ${info ? null : s.selected} ${u.pointer}`}
+              className={`${s.tabItem} ${info ? s.selected : null} ${u.pointer}`}
             >
               <h3 className={`${s.h3}`}>{labels[29].text[locale]}</h3>
             </li>
             <li
               onClick={toggleGallery}
-              className={`${s.tabItem} ${info ? s.selected : null} ${u.pointer}`}
+              className={`${s.tabItem} ${info ? null : s.selected} ${u.pointer}`}
             >
               <h3 className={`${s.h3}`}>{labels[30].text[locale]}</h3>
             </li>
           </ul>
-          <div className={`${s.info} ${info ? s.hidden : null}`}>
+          <div className={`${s.info} ${info ? null : s.hidden}`}>
             {exhibition.body &&
               <PortableText value={exhibition.body} components={components} />
             }
@@ -130,7 +128,7 @@ export const ExhibitionComponent: FC<Props> = ({
         </div>
       </div>
       <div
-        className={`${s.imageGrid}  ${gallery ? s.hidden : null} ${u.grid}`}
+        className={`${s.imageGrid}  ${gallery ? null : s.hidden} ${u.grid}`}
       >
         {exhibition.works ?
           (exhibition.works.map((artwork, index) =>

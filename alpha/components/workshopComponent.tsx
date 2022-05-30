@@ -76,7 +76,9 @@ export const WorkshopComponent: FC<Props> = ({
               />
             </div>
             <div className={`${s.headerContent} ${u.grid}`}>
-              <h3 className={`${s.type} ${u.uppercase}`}>Club</h3>
+              <h3 className={`${s.type} ${u.uppercase}`}>
+                {workshop.category ? workshop.category[locale] : "Workshop"}
+              </h3>
               {workshop.day && <h2 className={`${s.subtitle}`}>
                 <PostDate date={getNextDate(dayToNumber(workshop.day))} />{", "}
                 {workshop.startTime.toLowerCase().replace(" ", "")}

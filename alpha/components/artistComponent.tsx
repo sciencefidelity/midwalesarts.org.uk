@@ -37,39 +37,37 @@ export const ArtistComponent: FC<Props> = ({
   settings
 }) => {
   const { locale } = useRouter()
-  const [bio, setBio] = useState(true)
-  const [gallery, setGallery] = useState(false)
-  const [modal, setModal] = useState(true)
+  const [bio, setBio] = useState(artist.works[0] ? false : true)
+  const [gallery, setGallery] = useState(artist.works[0] ? true : false)
+  const [modal, setModal] = useState(false)
   const [imageToShow, setImageToShow] = useState(0)
   const toggleBio = () => {
-    setBio(false)
-    setGallery(true)
-  }
-  const toggleGallery = () => {
     setBio(true)
     setGallery(false)
   }
+  const toggleGallery = () => {
+    setBio(false)
+    setGallery(true)
+  }
   const openModal = (index: number) => {
-    setModal(false)
+    setModal(true)
     setImageToShow(index)
   }
   const closeModal = () => {
-    setModal(true)
+    setModal(false)
   }
   let currentIndex = imageToShow
   function prevIndex() {
     currentIndex = currentIndex - 1
     if (currentIndex < 0) {
-      setModal(true)
-      return
+      currentIndex = artist.works.length - 1
     }
     setImageToShow(currentIndex)
   }
   function nextIndex() {
     currentIndex = currentIndex + 1
     if (currentIndex > artist.works.length - 1) {
-      setModal(true)
-      return
+      currentIndex = 0
     }
     setImageToShow(currentIndex)
   }
@@ -102,22 +100,24 @@ export const ArtistComponent: FC<Props> = ({
       <div className={`${s.container} ${u.grid}`}>
         <div className={`${s.title}`}>
           <h1>{labels[22].text[locale]}</h1>
-          <h2 className={`${s.subtitle}`}>{artist.title.replace(".", "")}.</h2>
+          {artist.title && <h2 className={`${s.subtitle}`}>
+            {artist.title.trim().replace(".", "")}.
+          </h2>}
           <ul className={`${s.tabs} ${u.flex}`}>
             <li
               onClick={toggleGallery}
-              className={`${s.tabItem} ${bio ? s.selected : null} ${u.pointer}`}
+              className={`${s.tabItem} ${bio ? null : s.selected} ${u.pointer}`}
             >
               <h3 className={`${s.h3}`}>{labels[23].text[locale]}</h3>
             </li>
             <li
               onClick={toggleBio}
-              className={`${s.tabItem} ${bio ? null : s.selected} ${u.pointer}`}
+              className={`${s.tabItem} ${bio ? s.selected : null} ${u.pointer}`}
             >
               <h3 className={`${s.h3}`}>{labels[24].text[locale]}</h3>
             </li>
           </ul>
-          <div className={`${s.info} ${bio ? s.hidden : null}`}>
+          <div className={`${s.info} ${bio ? null : s.hidden}`}>
             {artist.body &&
               <PortableText value={blocks} components={components} />
             }
@@ -125,42 +125,36 @@ export const ArtistComponent: FC<Props> = ({
         </div>
       </div>
       <div
-        className={`${s.imageGrid} ${gallery ? s.hidden : null} ${u.grid}`}
+        className={`${s.imageGrid} ${gallery ? null : s.hidden} ${u.grid}`}
       >
-        {artist.works[0] ?
-          (artist.works.map((artwork, index) =>
-            artwork && (
-              <div
-                style={{ margin: 0 }}
-                key={artwork._id}
-                onClick={() => openModal(index)}
-                className={`${u.pointer}`}
-              >
-                <Image
-                  src={urlFor(artwork.mainImage)
-                    .width(468)
-                    .height(468)
-                    .auto("format")
-                    .quality(75)
-                    .url()}
-                  alt={`
-                    ${artist.title}${", "}
-                    ${localize(artwork.title, locale)}${", "}
-                    ${artwork.date}
-                  `}
-                  width={2000}
-                  height={2000}
-                />
-                {artwork.title && <div className={`${s.caption} ${u.textRight}`}>
-                  {localize(artwork.title, locale)}
-                  {" "}
-                  {artwork.date && `(${artwork.date})`}
-                </div>}
-              </div>
-            )
-          )) :
-          (<p>{labels[25].text[locale]}</p>)
-        }
+        {artist.works[0] ? (artist.works.map((artwork, index) => artwork &&
+          <div
+            style={{ margin: 0 }}
+            key={artwork._id}
+            onClick={() => openModal(index)}
+            className={`${u.pointer}`}
+          >
+            <Image
+              src={urlFor(artwork.mainImage)
+                .width(468)
+                .height(468)
+                .auto("format")
+                .quality(75)
+                .url()}
+              alt={`
+                ${artist.title}${", "}
+                ${localize(artwork.title, locale)}${", "}
+                ${artwork.date}
+              `}
+              width={2000}
+              height={2000}
+            />
+            {artwork.title && <div className={`${s.caption} ${u.textRight}`}>
+              {localize(artwork.title, locale)}{" "}
+              {artwork.date && `(${artwork.date})`}
+            </div>}
+          </div>
+        )) : <p>{labels[25].text[locale]}</p>}
       </div>
       <div className={`${s.backLink}`}>
         <p className={`${u.textCenter}`}>

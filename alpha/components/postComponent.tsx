@@ -21,20 +21,20 @@ import s from "styles/post.module.scss"
 import u from "styles/utils.module.scss"
 
 interface Props {
-  post: Post
   labels: Label[]
   navigation: Navigation[]
   organisation: Organisation
   pageContext: PageContext
+  post: Post
   settings: Settings
 }
 
 export const PostComponent: FC<Props> = ({
-  post,
   labels,
   navigation,
   organisation,
   pageContext,
+  post,
   settings
 }) => {
   const { locale } = useRouter()
@@ -62,7 +62,9 @@ export const PostComponent: FC<Props> = ({
       <div className={`${s.container} ${u.grid}`}>
         <div className={`${s.title}`}>
           <h1>{labels[33].text[locale]}</h1>
-          {post.title && <h2 className={`${s.subtitle}`}>{post.title}.</h2>}
+          {post.title && <h2 className={`${s.subtitle}`}>
+            {post.title.trim().replace(".", "")}.
+          </h2>}
           {post.body && <div className={`${s.body}`}>
             <PortableText value={post.body} components={components} />
           </div>}

@@ -55,7 +55,9 @@ export const Workshops: FC<Props> = ({
       <div className={`${s.container} ${u.grid}`}>
         <section className={`${s.title}`}>
           {page.title && <h1>{page.title}</h1>}
-          {page.subtitle && <h2 className={`${s.subtitle}`}>{page.subtitle}</h2>}
+          {page.subtitle && <h2 className={`${s.subtitle}`}>
+            {page.subtitle.trim().replace(".", "")}.
+          </h2>}
           {page.body && <div className={`${s.body}`}>
             <PortableText value={page.body} components={components} />
           </div>}
