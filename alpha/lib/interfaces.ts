@@ -256,13 +256,14 @@ export interface Workshop extends SanityDocument {
   __i18n_lang: "cy" | "en"
   _type: "workshop"
   body: PortableText
+  briteLink: string
   day: string
   endTime: string
   localization: Localization
   mainImage: Image
   ogDescription: string
   ogImage: Image
-  ogTitle: LocaleString
+  ogTitle: string
   sidebar: Sidebar
   slug: string
   startTime: string

@@ -325,9 +325,12 @@ const video = `
 
 const workshop = `
   "workshop": *[
-    _type == "workshop" && __i18n_lang == $locale
+    _type == "workshop"
+    && slug.current == $slug
+    && __i18n_lang == $locale
+    && ${omitDrafts}
   ][0]{
-    __i18n_lang, _type, ${body}, day, endTime, mainImage, ${seo}, startTime,
+    __i18n_lang, _type, ${body}, briteLink, day, endTime, mainImage, ${seo}, startTime,
     title, ${localizationNested}, ${sidebar}
   }
 `
