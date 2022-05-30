@@ -13,12 +13,12 @@ export const components: PortableTextComponents = {
         >{children}</a>
       )
     },
+    mailto: ({value, children}) => {
+      return <a href={`mailto:${value?.mailto}`}>{children}</a>
+    },
     internalLink: ({value, children}) => {
-      // const url = buildUrl(value?.item)
-      const url = value?.item
-      return (
-        <LinkTo href={url}>{children}</LinkTo>
-      )
+      const url = buildUrl(value?.item.__i18n_lang, value?.item.slug, value?.item._type)
+      return <LinkTo href={`/${url}`}>{children}</LinkTo>
     }
   }
 }

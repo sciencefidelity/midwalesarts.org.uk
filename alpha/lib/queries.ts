@@ -2,7 +2,7 @@ import groq from "groq"
 
 const omitDrafts = "!(_id in path('drafts.**'))"
 const slug = "'slug': slug.current"
-const body = `body[]{ ..., markDefs[]{ ..., item->{ _type, ${slug} } } }`
+const body = `body[]{ ..., markDefs[]{ ..., item->{ __i18n_lang, _type, ${slug} } } }`
 const seo = "ogDescription, ogImage, ogTitle"
 const ctaLink = `
   "ctaLink": select(
