@@ -91,7 +91,7 @@ const videoSubset = `
 `
 
 const workshopSubset = `
-  "workshops": *[_type == "workshop" && __i18n_lang == ^.__i18n_lang && ${omitDrafts}]{
+  "workshops": *[_type == "workshop" && __i18n_lang == ^.__i18n_lang && ${omitDrafts}] | order(startTime){
     _id, _type, day, endTime, mainImage, ${slug}, startTime, title
   }
 `
@@ -216,7 +216,7 @@ const sidebar = `
     ][0..3] | order(dateStart asc){
       _id, _type, dateEnd, dateStart, ${slug}, title
     },
-    "workshops": *[_type == "workshop" && __i18n_lang == $locale][0..3]{
+    "workshops": *[_type == "workshop" && __i18n_lang == $locale][0..3] | order(startTime){
       _id, _type, day, startTime, ${slug}, title
     }
   }

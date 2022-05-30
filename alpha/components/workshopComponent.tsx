@@ -78,16 +78,19 @@ export const WorkshopComponent: FC<Props> = ({
             <div className={`${s.headerContent} ${u.grid}`}>
               <h3 className={`${s.type} ${u.uppercase}`}>Club</h3>
               {workshop.day && <h2 className={`${s.subtitle}`}>
-                <PostDate date={getNextDate(dayToNumber(workshop.day))} />
+                <PostDate date={getNextDate(dayToNumber(workshop.day))} />{", "}
+                {workshop.startTime.toLowerCase().replace(" ", "")}
               </h2>}
               <h1 className={`${s.h1}`}>{workshop.title}</h1>
-              <p className={`${s.headerLink}`}>
-                {workshop.briteLink &&
-                  <a href={`${workshop.briteLink}`} target="blank" rel="noreferrer">
-                    {labels[27].text[locale]}
-                  </a>
-                }
+              {workshop.briteLink ? <p className={`${s.headerLink}`}>
+                <a href={`${workshop.briteLink}`} target="blank" rel="noreferrer">
+                  {labels[27].text[locale]}
+                </a>
               </p>
+                : <p
+                  className={`${s.headerLink}`}
+                  dangerouslySetInnerHTML={{ __html: "&nbsp;" }}
+                />}
             </div>
           </div>
           <div>
