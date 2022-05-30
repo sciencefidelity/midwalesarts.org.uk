@@ -61,10 +61,39 @@ export const PostComponent: FC<Props> = ({
     >
       <div className={`${s.container} ${u.grid}`}>
         <div className={`${s.title}`}>
-          <h1>{labels[40].text[locale]}</h1>
+          <div className={`${s.header} ${u.grid}`}>
+            <div>
+              <Image
+                src={urlFor(post.image)
+                  .width(468)
+                  .height(468)
+                  .auto("format")
+                  .quality(75)
+                  .url()}
+                alt={post.title}
+                width={2000}
+                height={2000}
+              />
+            </div>
+            <div className={`${s.headerContent} ${u.grid}`}>
+              <h3 className={`${s.type} ${u.uppercase}`}>
+                {post.tags[0] ? post.tags[0] : labels[50].text[locale]}
+              </h3>
+              {post.publishedAt && <h2 className={`${s.subtitle}`}>
+                {labels[41].text[locale].trim()}{" "}
+                <PostDate date={post.publishedAt} />
+              </h2>}
+              <h1 className={`${s.h1}`}>{post.title}</h1>
+              <p
+                className={`${s.headerLink}`}
+                dangerouslySetInnerHTML={{ __html: "&nbsp;" }}
+              />
+            </div>
+          </div>
+          {/* <h1>{labels[40].text[locale]}</h1>
           {post.title && <h2 className={`${s.subtitle}`}>
             {post.title.trim().replace(".", "")}.
-          </h2>}
+          </h2>} */}
           {post.body && <div className={`${s.body}`}>
             <PortableText value={post.body} components={components} />
           </div>}

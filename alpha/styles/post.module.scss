@@ -16,9 +16,28 @@
   }
 }
 
+.header {
+  width: 100%;
+  gap: 5rem;
+  margin-block: 0.5rem 8rem;
+  grid-template-columns: 1fr 1fr;
+}
+
+.headerContent {
+  grid-template-rows: auto;
+}
+
+.type {
+  line-height: 1;
+  font-size: 2.5rem;
+  font-weight: 500;
+  color: c.$grey-700;
+}
+
 .subtitle {
-  font-size: 3rem;
-  margin-block: 0.5em 0.4em;
+  align-self: start;
+  font-size: 2.5rem;
+  margin-block: 0;
   color: c.$grey-600;
   @include b.mq(sm) {
     font-size: 2.6em;
@@ -27,6 +46,14 @@
 
 .body {
   margin-top: 8.1rem;
+}
+
+.h1 {
+  font-size: 4rem;
+  text-transform: unset;
+  font-weight: 500;
+  line-height: 1.2;
+  margin-block: -4rem 0rem;
 }
 
 .postNavigation {
