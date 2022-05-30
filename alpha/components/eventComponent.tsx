@@ -77,7 +77,7 @@ export const EventComponent: FC<Props> = ({
             </div>
             <div className={`${s.headerContent} ${u.grid}`}>
               <h3 className={`${s.type} ${u.uppercase}`}>
-                {event.category ? event.category[locale] : labels[29].text[locale]}
+                {event.category ? event.category : labels[29].text[locale]}
               </h3>
               {event.date && <h2 className={`${s.subtitle}`}>
                 <EventDate date={event.date} />

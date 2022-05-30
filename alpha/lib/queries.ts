@@ -246,7 +246,11 @@ const event = `
     && ${omitDrafts}
   ][0]{
     __i18n_lang, _type, ${body}, briteLink, date, mainImage, ${seo},
-    title, ${localizationNested}, ${sidebar}
+    title, ${localizationNested}, ${sidebar},
+    "category": select(
+      __i18n_lang == "en" => category->.title[$locale],
+      __i18n_lang == "cy" => __i18n_base->.category->.title[$locale]
+    )
   }
 `
 
@@ -331,7 +335,11 @@ const workshop = `
     && ${omitDrafts}
   ][0]{
     __i18n_lang, _type, ${body}, briteLink, day, endTime, mainImage, ${seo}, startTime,
-    title, ${localizationNested}, ${sidebar}
+    title, ${localizationNested}, ${sidebar},
+    "category": select(
+      __i18n_lang == "en" => category->.title[$locale],
+      __i18n_lang == "cy" => __i18n_base->.category->.title[$locale]
+    )
   }
 `
 
