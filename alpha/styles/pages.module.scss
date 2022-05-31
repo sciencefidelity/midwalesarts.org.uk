@@ -1,5 +1,5 @@
-@use "./base/colors" as c;
-@use "./base/breakpoints" as b;
+@use './base/colors' as c;
+@use './base/breakpoints' as b;
 
 .container {
   grid-template-columns: 3fr 1fr;
@@ -10,15 +10,15 @@
 
 .title {
   width: 75%;
-  margin: 0 auto 0;
+  margin: 0 auto;
   @include b.mq(lg) {
     width: 81.25%;
   }
 }
 
 .subtitle {
-  font-size: 3rem;
   margin-block: 0.5em 0.4em;
+  font-size: 3rem;
   color: c.$grey-600;
   @include b.mq(sm) {
     font-size: 2.6em;

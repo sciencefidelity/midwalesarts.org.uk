@@ -2,9 +2,9 @@
 @use './base/colors' as c;
 
 .footer {
-  background-color: rgba(c.$grey-050, 0.8);
-  margin-top: 16rem;
   z-index: 0;
+  margin-top: 16rem;
+  background-color: rgba(c.$grey-050, 0.8);
   @include b.mq(sm) {
     margin-top: 12rem;
   }
@@ -27,31 +27,31 @@
 }
 
 .footerText {
+  padding-bottom: 1.3rem;
   font-size: 2rem;
   line-height: 1.4;
-  padding-bottom: 1.3rem;
   color: c.$grey-600;
   @include b.mq(md) {
-    font-size: 2rem;
     padding-bottom: 0.6rem;
+    font-size: 2rem;
   }
 }
 
-.footerLink  {
-  background-color: transparent;
+.footerLink {
   font-weight: 400;
   color: inherit;
   text-decoration: underline;
   text-decoration-thickness: 0.1em;
   text-decoration-color: rgba(c.$grey-500, 0);
+  background-color: transparent;
   transition: text-decoration-color 0.3s ease-in-out;
   &:hover,
   &:focus {
-    background-color: transparent;
     color: inherit;
     text-decoration: underline;
     text-decoration-thickness: 0.1em;
     text-decoration-color: rgba(c.$grey-500, 1);
+    background-color: transparent;
     transition: text-decoration-color 0.3s ease-in-out;
   }
 }
@@ -75,22 +75,22 @@
 .signup {
   margin-block: -0.7rem 0;
   @include b.mq(sm) {
-    width: 90vw;
     justify-content: center;
+    width: 90vw;
   }
 }
 
 .signupHeading {
   display: inline-block;
   width: 100%;
-  font-size: 2rem;
   margin-block: 0 -4rem;
+  font-size: 2rem;
   color: c.$grey-600;
   text-align: right;
   @include b.mq(md) {
+    margin-block: 3rem -4rem;
     font-size: 2rem;
     text-align: left;
-    margin-block: 3rem -4rem;
   }
 }
 
@@ -104,43 +104,43 @@
 }
 
 .signupInput {
-  background-color: white;
-  border: 0;
   width: 48rem;
   height: 6rem;
   padding: 0.85em 1.5em;
-  font-size: 2.2rem;
-  border: 0.14em solid c.$grey-400;
   margin-block: -1rem 0;
+  font-size: 2.2rem;
   color: c.$grey-550;
+  background-color: white;
+  border: 0;
+  border: 0.14em solid c.$grey-400;
   @include b.mq(lg) {
     margin-block: -1rem 3rem;
   }
   @include b.mq(md) {
-    font-size: 2rem;
     width: calc(100% - 6rem);
     margin-block: -1rem 3rem;
+    font-size: 2rem;
   }
   @include b.mq(sm) {
+    width: calc(100% - 5rem);
     height: 5rem;
     padding: 0.85em 1em;
-    width: calc(100% - 5rem);
   }
 }
 
 .signupSubmit {
+  width: 6rem;
+  height: 6rem;
+  padding: 1.2rem;
   background-color: c.$grey-400;
   border: 0;
-  height: 6rem;
-  width: 6rem;
-  padding: 1.2rem;
   transform: translateY(2.25rem);
   @include b.mq(md) {
     transform: translateY(2.35rem);
   }
   @include b.mq(sm) {
-    height: 5rem;
     width: 5rem;
+    height: 5rem;
     transform: translateY(1.85rem);
   }
 }
@@ -153,22 +153,22 @@
     margin-bottom: 3rem;
   }
   @include b.mq(sm) {
-    gap: 2rem;
     flex-direction: column;
+    gap: 2rem;
   }
 }
 
 .logosRight {
   justify-content: right;
   @include b.mq(sm) {
-    margin-top: 2rem;
     justify-content: unset;
+    margin-top: 2rem;
   }
 }
 
 .funderLogo {
-  height: 6rem;
   width: auto;
+  height: 6rem;
   padding-left: 3rem;
   @include b.mq(md) {
     height: 5.2rem;
@@ -203,26 +203,26 @@
 }
 
 .linksMenu {
-  justify-content: right;
-  list-style: none;
-  font-size: 1.8rem;
   flex-direction: row;
-  padding: 0;
-  gap: 1.5rem 3rem;
   flex-wrap: wrap;
+  gap: 1.5rem 3rem;
+  justify-content: right;
+  padding: 0;
+  font-size: 1.8rem;
+  list-style: none;
 }
 
 .linksMenuItem {
-  font-size: 1.8rem;
   margin-top: 0;
+  font-size: 1.8rem;
 }
 
 .linksMenuLink {
+  font-weight: 500;
   text-decoration: underline;
   text-decoration-thickness: 0.1em;
   text-decoration-color: rgba(c.$grey-050, 0.8);
   transition: text-decoration-color 0.3s ease-in-out;
-  font-weight: 500;
   &:hover,
   &:focus {
     text-decoration: underline;

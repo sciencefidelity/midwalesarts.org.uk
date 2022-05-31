@@ -1,5 +1,5 @@
-@use "./base/colors" as c;
-@use "./base/breakpoints" as b;
+@use './base/colors' as c;
+@use './base/breakpoints' as b;
 
 .container {
   grid-template-columns: 3fr 1fr;
@@ -20,11 +20,11 @@
 }
 
 .header {
-  width: 100%;
+  grid-template-columns: 1fr 1fr;
   gap: 5rem;
   gap: 3.3vw;
+  width: 100%;
   margin-block: 0.5rem 8rem;
-  grid-template-columns: 1fr 1fr;
   @include b.mq(md) {
     grid-template-columns: 1fr;
     margin-block: -2vw 8rem;
@@ -37,30 +37,30 @@
 }
 
 .type {
-  line-height: 1;
   font-size: 1.65vw;
   font-weight: 500;
+  line-height: 1;
   color: c.$grey-700;
   @include b.mq(lg) {
     font-size: 2.5vw;
   }
   @include b.mq(md) {
-    font-size: 2.5rem;
     margin-block: 1rem 3rem;
+    font-size: 2.5rem;
   }
 }
 
 .subtitle {
-  font-size: 1.65vw;
   margin-block: 0;
-  color: c.$grey-600;
   margin-bottom: 1rem;
+  font-size: 1.65vw;
+  color: c.$grey-600;
   @include b.mq(lg) {
     font-size: 2.5vw;
   }
   @include b.mq(md) {
-    font-size: 2.5rem;
     margin-bottom: 0.5rem;
+    font-size: 2.5rem;
   }
   @include b.mq(sm) {
     font-size: 2.6em;
@@ -69,15 +69,15 @@
 
 .h1 {
   font-size: 2.65vw;
-  text-transform: unset;
   font-weight: 500;
   line-height: 1.2;
+  text-transform: unset;
   @include b.mq(lg) {
     font-size: 4vw;
   }
   @include b.mq(md) {
-    font-size: clamp(3.6rem, 5.5vw, 4.2em);
     margin-bottom: 4rem;
+    font-size: clamp(3.6rem, 5.5vw, 4.2em);
   }
 }
 
@@ -94,15 +94,15 @@
 }
 
 .publishedAt {
-  font-weight: 500;
   margin-top: 6rem;
+  font-weight: 500;
 }
 
 .postNavigation {
-  margin-block: 6.5rem -6.5rem;
   align-items: flex-end;
+  margin-block: 6.5rem -6.5rem;
   & > p {
-    margin: 0;
     width: 100%;
+    margin: 0;
   }
 }

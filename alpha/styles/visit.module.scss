@@ -1,13 +1,13 @@
 @use './base/colors' as c;
-@use "./base/breakpoints" as b;
+@use './base/breakpoints' as b;
 
 .container {
   width: 81.25%;
 }
 
 .subtitle {
-  font-size: 3rem;
   margin-block: 0.5em 0.4em;
+  font-size: 3rem;
   color: c.$grey-600;
   @include b.mq(sm) {
     font-size: 2.6em;
@@ -28,22 +28,22 @@
 }
 
 .caption {
-  font-size: 1.8rem;
-  color: c.$grey-550;
   margin-block: 0.88em 1.3em;
-  line-height: 1.4;
+  font-size: 1.8rem;
   font-weight: 500;
+  line-height: 1.4;
+  color: c.$grey-550;
 }
 
 .spacesTextGrid {
   grid-template-columns: 1fr 1fr;
   gap: 5rem 5rem;
   margin-bottom: 16rem;
-  h4 {
-    padding-top: 5rem;
-  }
   @include b.mq(xl) {
     grid-template-columns: 1fr;
+  }
+  h4 {
+    padding-top: 5rem;
   }
 }
 
@@ -54,9 +54,9 @@
 }
 
 .feedback {
+  width: 87%;
   max-width: 810px;
   margin-inline: auto;
-  width: 87%;
   @include b.mq(lg) {
     width: 95%;
   }
@@ -64,8 +64,8 @@
 
 .quoteBtns {
   justify-content: center;
-  text-align: center;
   margin: auto;
+  text-align: center;
   background: transparent;
 }
 
@@ -90,7 +90,7 @@
 .googleMap {
   width: 100%;
   height: calc(100vh - 30rem);
-  margin: 20rem 0 -16rem 0;
+  margin: 20rem 0 -16rem;
   filter: grayscale(100%);
 }
 
@@ -99,8 +99,8 @@
 }
 
 .info {
-  margin-top: 8rem;
-  max-width: 850px;
   width: 81.25%;
+  max-width: 850px;
+  margin-top: 8rem;
   margin-right: auto;
 }

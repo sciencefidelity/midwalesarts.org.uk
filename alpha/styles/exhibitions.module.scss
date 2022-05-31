@@ -1,5 +1,5 @@
-@use "./base/colors" as c;
-@use "./base/breakpoints" as b;
+@use './base/colors' as c;
+@use './base/breakpoints' as b;
 
 .container {
   grid-template-columns: 3fr 1fr;
@@ -17,8 +17,8 @@
 }
 
 .subtitle {
-  font-size: 3rem;
   margin-block: 0.5em;
+  font-size: 3rem;
   color: c.$grey-600;
   @include b.mq(sm) {
     font-size: 2.6em;
@@ -26,11 +26,11 @@
 }
 
 .heading {
-  font-size: 2.4rem;
-  line-height: 1.47;
   margin-bottom: 0.5em;
-  color: c.$grey-550;
+  font-size: 2.4rem;
   font-weight: 500;
+  line-height: 1.47;
+  color: c.$grey-550;
   @include b.mq(sm) {
     font-size: 2rem;
   }
@@ -47,20 +47,20 @@
   width: 50%;
   margin-top: 2rem;
   margin-right: 3rem;
-  &:last-child {
-    margin-right: 0;
-  }
   @include b.mq(md) {
     width: 100%;
+  }
+  &:last-child {
+    margin-right: 0;
   }
 }
 
 .exhibitionGrid {
+  z-index: 5;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 3rem;
   width: 81.25%;
   margin: auto;
-  z-index: 5;
   @include b.mq(lg) {
     grid-template-columns: 1fr 1fr;
   }
@@ -73,9 +73,9 @@
   font-size: 1.8rem;
   color: c.$grey-550;
   &:first-of-type {
-    line-height: 1.4;
     margin-block: 0.88em 0.48em;
     font-weight: 500;
+    line-height: 1.4;
   }
   &:last-of-type {
     margin-block: 0.48em 1.3em;

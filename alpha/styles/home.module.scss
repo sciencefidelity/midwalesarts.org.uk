@@ -1,32 +1,32 @@
-@use "./base/colors" as c;
-@use "./base/breakpoints" as b;
+@use './base/colors' as c;
+@use './base/breakpoints' as b;
 
 .introduction {
   grid-template-columns: 1fr 2fr;
   padding-bottom: 6rem;
   @include b.mq(lg) {
     grid-template-columns: 1fr;
-    padding-bottom: 0rem;
+    padding-bottom: 0;
     margin-bottom: -6rem;
   }
   @include b.mq(md) {
     grid-template-columns: 1fr;
-    padding-bottom: 0rem;
+    padding-bottom: 0;
     margin-bottom: -6rem;
   }
   @include b.mq(sm) {
     grid-template-columns: 1fr;
-    padding-bottom: 0rem;
+    padding-bottom: 0;
     margin-bottom: -6rem;
   }
 }
 
 .introBranding {
-  gap: 2.2rem;
   grid-template-columns: auto auto;
+  gap: 2.2rem;
   @include b.mq(lg) {
     width: 100vw;
-    padding: 0 6% 0 6%;
+    padding: 0 6%;
   }
 }
 
@@ -36,39 +36,42 @@
   font-weight: 500;
   line-height: 0.96;
   color: c.$grey-750;
-  &:first-child{
-    padding-top: 0.5em;
-  }
   @include b.mq(sm) {
     font-size: 4rem;
+  }
+  &:first-child {
+    padding-top: 0.5em;
   }
 }
 
 .introText {
   padding-top: 8.6rem;
   @include b.mq(lg) {
-    max-width: 70rem;
     width: 88%;
-    margin: 0 auto 0;
+    max-width: 70rem;
     padding-top: 0;
+    margin: 0 auto;
   }
   @include b.mq(md) {
-    margin: -4rem 6% 0 6%;
     padding-top: 0;
+    margin: -4rem 6% 0;
   }
   @include b.mq(sm) {
-    margin: -4rem 6% 0 6%;
     padding-top: 0;
+    margin: -4rem 6% 0;
   }
 }
 
 %cta {
-  color: c.$grey-450;
   line-height: 1.1;
+  color: c.$grey-450;
   transition: color 0.25s;
+  @include b.mq(sm) {
+    text-align: left;
+  }
   span {
-    background-color: c.$grey-000;
     padding: 0 0 0 2rem;
+    background-color: c.$grey-000;
     @include b.mq(lg) {
       font-size: 5rem;
     }
@@ -77,32 +80,32 @@
     }
     @include b.mq(sm) {
       padding: 0;
-      background-color: transparent;
       margin-right: auto;
       font-size: 3.2rem;
+      background-color: transparent;
     }
   }
   &::after {
-    content: url('data:image/svg+xml,%3Csvg height="3.5em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"%3E%3Cpath d="M224 273L88 409c-9 9-24 9-34 0l-22-23c-10-9-10-24 0-34l96-96-96-96c-10-10-10-25 0-34l22-23c10-9 25-9 34 0l136 136c10 9 10 25 0 34zm192-34L280 103c-9-9-24-9-34 0l-22 23c-10 9-10 24 0 33l96 97-96 96c-10 10-10 25 0 34l22 23c10 9 25 9 34 0l136-136c10-9 10-25 0-34z" fill="%238c8c8c"/%3E%3C/svg%3E');
     position: absolute;
+    content: url('data:image/svg+xml,%3Csvg height="3.5em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"%3E%3Cpath d="M224 273L88 409c-9 9-24 9-34 0l-22-23c-10-9-10-24 0-34l96-96-96-96c-10-10-10-25 0-34l22-23c10-9 25-9 34 0l136 136c10 9 10 25 0 34zm192-34L280 103c-9-9-24-9-34 0l-22 23c-10 9-10 24 0 33l96 97-96 96c-10 10-10 25 0 34l22 23c10 9 25 9 34 0l136-136c10-9 10-25 0-34z" fill="%238c8c8c"/%3E%3C/svg%3E');
     transition: transform 0.25s;
     @include b.mq(md) {
-      content: url('data:image/svg+xml,%3Csvg height="3em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"%3E%3Cpath d="M224 273L88 409c-9 9-24 9-34 0l-22-23c-10-9-10-24 0-34l96-96-96-96c-10-10-10-25 0-34l22-23c10-9 25-9 34 0l136 136c10 9 10 25 0 34zm192-34L280 103c-9-9-24-9-34 0l-22 23c-10 9-10 24 0 33l96 97-96 96c-10 10-10 25 0 34l22 23c10 9 25 9 34 0l136-136c10-9 10-25 0-34z" fill="%238c8c8c"/%3E%3C/svg%3E');
       top: 0.6rem;
+      content: url('data:image/svg+xml,%3Csvg height="3em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"%3E%3Cpath d="M224 273L88 409c-9 9-24 9-34 0l-22-23c-10-9-10-24 0-34l96-96-96-96c-10-10-10-25 0-34l22-23c10-9 25-9 34 0l136 136c10 9 10 25 0 34zm192-34L280 103c-9-9-24-9-34 0l-22 23c-10 9-10 24 0 33l96 97-96 96c-10 10-10 25 0 34l22 23c10 9 25 9 34 0l136-136c10-9 10-25 0-34z" fill="%238c8c8c"/%3E%3C/svg%3E');
     }
     @include b.mq(sm) {
-      content: url('data:image/svg+xml,%3Csvg height="2em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"%3E%3Cpath d="M224 273L88 409c-9 9-24 9-34 0l-22-23c-10-9-10-24 0-34l96-96-96-96c-10-10-10-25 0-34l22-23c10-9 25-9 34 0l136 136c10 9 10 25 0 34zm192-34L280 103c-9-9-24-9-34 0l-22 23c-10 9-10 24 0 33l96 97-96 96c-10 10-10 25 0 34l22 23c10 9 25 9 34 0l136-136c10-9 10-25 0-34z" fill="%238c8c8c"/%3E%3C/svg%3E');
       top: 0.3rem;
+      content: url('data:image/svg+xml,%3Csvg height="2em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"%3E%3Cpath d="M224 273L88 409c-9 9-24 9-34 0l-22-23c-10-9-10-24 0-34l96-96-96-96c-10-10-10-25 0-34l22-23c10-9 25-9 34 0l136 136c10 9 10 25 0 34zm192-34L280 103c-9-9-24-9-34 0l-22 23c-10 9-10 24 0 33l96 97-96 96c-10 10-10 25 0 34l22 23c10 9 25 9 34 0l136-136c10-9 10-25 0-34z" fill="%238c8c8c"/%3E%3C/svg%3E');
     }
   }
   &:hover,
   &:focus {
     color: c.$grey-500;
-    transition: color 0.25s;
     outline: none;
+    transition: color 0.25s;
     &::after {
-      transform: translateX(0.7rem);
       transition: transform 0.25s;
+      transform: translateX(0.7rem);
     }
   }
   &:focus {
@@ -111,16 +114,14 @@
   &:focus-visible {
     outline: none;
   }
-  @include b.mq(sm) {
-    text-align: left;
-  }
 }
 
 .introCta {
   @extend %cta;
+
+  padding-right: 5.4rem;
   margin-top: 18.3rem;
   margin-left: auto;
-  padding-right: 5.4rem;
   font-size: 5.4em;
   font-weight: 800;
   @include b.mq(lg) {
@@ -130,8 +131,8 @@
     margin-top: 5rem;
   }
   @include b.mq(sm) {
-    margin-top: 3rem;
     padding-right: 0;
+    margin-top: 3rem;
     margin-right: 6%;
     line-height: 1.1;
   }
@@ -139,9 +140,9 @@
 
 %ctaHr {
   bottom: 1.05rem;
+  z-index: -1;
   height: 0.14rem;
   background-color: c.$grey-300;
-  z-index: -1;
   @include b.mq(sm) {
     display: none;
   }
@@ -149,17 +150,18 @@
 
 .introCtaHr {
   @extend %ctaHr;
+
   left: -13rem;
   width: 55rem;
 }
 
 .sideImageContainer {
   bottom: 3.75rem;
-  left: 0rem;
+  left: 0;
+  margin-bottom: 1rem;
   font-size: 1.6rem;
   line-height: 0.8;
   text-align: right;
-  margin-bottom: 1rem;
   @include b.mq(lg) {
     position: relative;
     margin: 6rem auto 0 6%;
@@ -179,11 +181,11 @@
 }
 
 .sideImage {
-  height: 31.7rem;
   width: auto;
+  height: 31.7rem;
   @include b.mq(sm) {
-    height: auto;
     width: 100vw;
+    height: auto;
   }
 }
 
@@ -192,8 +194,8 @@
 }
 
 .sectionContainer {
-  padding-top: 12.5rem;
   max-width: 108rem;
+  padding-top: 12.5rem;
   @include b.mq(sm) {
     padding-top: 9rem;
   }
@@ -218,10 +220,10 @@
 }
 
 .sectionContent {
-  margin: 0 0 0 5.5rem;
   z-index: 4;
+  margin: 0 0 0 5.5rem;
   @include b.mq(md) {
-    margin: 2rem 0 0 0;
+    margin: 2rem 0 0;
   }
 }
 
@@ -232,10 +234,10 @@
 }
 
 .sectionInset {
-  height: 100%;
-  margin-top: 5rem;
   width: 34rem;
+  height: 100%;
   height: 51rem;
+  margin-top: 5rem;
   @include b.mq(lg) {
     width: 22.5rem;
     height: 38.25rem;
@@ -249,27 +251,27 @@
 .sectionTitleContainer {
   margin: 5rem auto 6.6rem;
   @include b.mq(sm) {
+    margin: 0 auto 4rem;
     text-align: left;
-    margin: 0rem auto 4rem;
   }
 }
 
 .sectionTitle {
+  padding: 1.3rem 3.7rem 1.7rem;
   background-color: c.$grey-100;
-  padding: 1.3rem 3.7rem 1.7rem 3.7rem;
   @include b.mq(sm) {
     display: block;
-    padding: 1.6rem 6% 1.7rem 6%;
+    padding: 1.6rem 6% 1.7rem;
     background-color: rgba(c.$grey-100, 0.8);
   }
 }
 
 .h2 {
-  color: c.$grey-650;
+  margin: 0;
   font-size: 5rem;
   font-weight: 800;
-  margin: 0;
   line-height: 1.3;
+  color: c.$grey-650;
   @include b.mq(sm) {
     font-size: 4em;
     line-height: 1.1;
@@ -277,11 +279,11 @@
 }
 
 .h3 {
-  color: c.$grey-500;
+  margin: 0;
   font-size: 3.1em;
   font-weight: 300;
-  margin: 0;
   line-height: 1;
+  color: c.$grey-500;
   @include b.mq(sm) {
     font-size: 2em;
     line-height: 1.5;
@@ -294,12 +296,12 @@
     margin: 0 5.6rem 6rem 6rem;
   }
   @include b.mq(md) {
-    margin: 0 auto 8rem auto;
     width: 88%;
+    margin: 0 auto 8rem;
   }
   @include b.mq(sm) {
-    margin: 0 auto 0 auto;
     width: 90%;
+    margin: 0 auto;
   }
 }
 
@@ -307,8 +309,8 @@
   margin: 1rem 3.4rem 0 0;
   font-size: 5.4em;
   font-weight: 800;
-  color: c.$grey-600;
   line-height: 1.3;
+  color: c.$grey-600;
   @media (max-width: 1080px) {
     margin-right: 9rem;
     font-size: 3em;
@@ -321,21 +323,23 @@
 
 .sectionCtaHr {
   @extend %ctaHr;
+
   width: 75%;
   margin: auto;
 }
 
 .sectionCta {
   @extend %cta;
+
+  padding-right: 2rem;
   margin-top: -3rem;
   margin-left: auto;
-  padding-right: 2rem;
   @include b.mq(md) {
-    padding-right: 0rem;
+    padding-right: 0;
     margin-left: 6%;
   }
   @include b.mq(sm) {
-    background-color: transparent;
     margin-top: 2rem;
+    background-color: transparent;
   }
 }

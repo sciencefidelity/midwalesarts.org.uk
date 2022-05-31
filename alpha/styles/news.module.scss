@@ -1,5 +1,5 @@
-@use "./base/colors" as c;
-@use "./base/breakpoints" as b;
+@use './base/colors' as c;
+@use './base/breakpoints' as b;
 
 .container {
   grid-template-columns: 3fr 1fr;
@@ -17,8 +17,8 @@
 }
 
 .subtitle {
-  font-size: 3rem;
   margin-block: 0.5em 0.4em;
+  font-size: 3rem;
   color: c.$grey-600;
   @include b.mq(sm) {
     font-size: 2.6em;
@@ -26,12 +26,12 @@
 }
 
 .imageGrid {
-  margin-top: 7rem;
+  z-index: 5;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 3rem;
   width: 81.25%;
   margin-inline: auto;
-  z-index: 5;
+  margin-top: 7rem;
   @include b.mq(lg) {
     grid-template-columns: 1fr 1fr;
   }
@@ -44,9 +44,9 @@
   font-size: 1.8rem;
   color: c.$grey-550;
   &:first-of-type {
-    line-height: 1.4;
     margin-block: 0.88em 0.48em;
     font-weight: 500;
+    line-height: 1.4;
   }
   &:last-of-type {
     margin-block: 0.48em 1.3em;

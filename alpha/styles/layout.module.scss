@@ -3,13 +3,13 @@
 
 .logoContainer {
   position: absolute;
-  right: 1rem;
   top: 0.4rem;
-  margin-top: 0;
+  right: 1rem;
   z-index: 3;
-  background-color: rgba(c.$grey-000, 0.6);
-  background: radial-gradient(circle at center, rgba(c.$grey-000, 0.8) 30%, transparent 50%);
   padding: 3rem 2.6rem 2.6rem 2.8rem;
+  margin-top: 0;
+  background: radial-gradient(circle at center, rgba(c.$grey-000, 0.8) 30%, transparent 50%);
+  background-color: rgba(c.$grey-000, 0.6);
   border-radius: 50%;
   @include b.mq(sm) {
     padding: 2rem 1.6rem 1.6rem 1.8rem;
@@ -19,13 +19,13 @@
 .colorLogo {
   width: 12rem;
   transition: opacity 0.3s ease;
+  @include b.mq(sm) {
+    width: 8rem;
+  }
   &:hover,
   &:focus {
     opacity: 0.92;
     transition: opacity 0.3s ease;
-  }
-  @include b.mq(sm) {
-    width: 8rem;
   }
 }
 
@@ -47,21 +47,21 @@
 }
 
 .scrollupContainer {
-  width: 5rem;
-  height: 5rem;
-  background-color: rgba(c.$grey-000, 0.9);
   inset: auto 3rem 3rem auto;
   z-index: 6;
+  width: 5rem;
+  height: 5rem;
   padding: 1.6rem 0.8rem;
+  background-color: rgba(c.$grey-000, 0.9);
   border-radius: 3px;
   box-shadow: 2px 2px 0 rgba(black, 0.1);
   &:focus {
     outline: 1px dotted rgba(c.$grey-650, 0.5);
   }
   &::after {
-    content: '';
     position: absolute;
     inset: 0;
+    content: '';
     box-shadow: 2px 2px 0 rgba(black, 0.1);
     opacity: 0;
     transition: opacity 0.3s;
