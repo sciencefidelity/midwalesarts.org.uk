@@ -35,7 +35,7 @@ export const FrontPageHeadline: FC<Props> = ({ headline }) => {
         <div className={`${s.sectionInsetImage}`}>
           <img
             src={urlFor(headline.subImage)
-              .width(1080)
+              .width(680)
               .auto("format")
               .quality(75)
               .url()}
