@@ -3,6 +3,28 @@ import { buildUrl } from "lib/utils"
 import { LinkTo } from "components/linkTo"
 
 export const components: PortableTextComponents = {
+  list: {
+    bullet: ({ children }) => {
+      return (
+        <ul style={{
+          listStyle: "disc"
+        }}>
+          {children}
+        </ul>
+      )
+    }
+  },
+  listItem: {
+    bullet: ({ children }) => {
+      return (
+        <li style={{
+          marginBottom: "1rem"
+        }}>
+          {children}
+        </li>
+      )
+    }
+  },
   marks: {
     link: ({value, children}) => {
       const target = value?.blank ? "_blank" : undefined
