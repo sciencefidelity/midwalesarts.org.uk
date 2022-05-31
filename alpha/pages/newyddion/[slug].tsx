@@ -35,12 +35,10 @@ export const getStaticProps: GetStaticProps = async ({
   params
 }) => {
   const slug = params.slug
-  console.log(slug)
   const data = await sanityClient.fetch(postQuery, {
     slug, locale, template: "News"
   })
   const { post, labels, navigation, organisation, settings } = data as Props
-  console.log()
   const pageContext = {
     locale: post.__i18n_lang,
     localization: post.localization,

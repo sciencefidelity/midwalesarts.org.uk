@@ -35,12 +35,10 @@ export const getStaticProps: GetStaticProps = async ({
   params
 }) => {
   const slug = params.slug
-  console.log(slug)
   const data = await sanityClient.fetch(eventQuery, {
     slug, locale, template: "Events"
   })
   const { event, labels, navigation, organisation, settings } = data as Props
-  console.log()
   const pageContext = {
     locale: event.__i18n_lang,
     localization: event.localization,

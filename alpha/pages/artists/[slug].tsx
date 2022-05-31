@@ -35,12 +35,10 @@ export const getStaticProps: GetStaticProps = async ({
   params
 }) => {
   const slug = params.slug
-  console.log(slug)
   const data = await sanityClient.fetch(artistQuery, {
     slug, locale, template: "Artists"
   })
   const { artist, labels, navigation, organisation, settings } = data as Props
-  console.log()
   const pageContext = {
     locale: artist.__i18n_lang,
     localization: artist.localization,

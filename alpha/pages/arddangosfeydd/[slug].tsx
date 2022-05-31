@@ -35,12 +35,10 @@ export const getStaticProps: GetStaticProps = async ({
   params
 }) => {
   const slug = params.slug
-  console.log(slug)
   const data = await sanityClient.fetch(exhibitionQuery, {
     slug, locale, template: "Exhibitions"
   })
   const { exhibition, labels, navigation, organisation, settings } = data as Props
-  console.log()
   const pageContext = {
     locale: exhibition.__i18n_lang,
     localization: exhibition.localization,
