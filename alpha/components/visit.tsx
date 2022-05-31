@@ -103,7 +103,7 @@ export const Visit: FC<Props> = ({
           ))}
         </div>
       </section>
-      {/* <GoogleMap /> */}
+      <GoogleMap />
     </Layout>
   )
 }
