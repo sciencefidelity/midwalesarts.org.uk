@@ -8,7 +8,7 @@ import u from "styles/utils.module.scss"
 export const Logos: FC = () => {
   const { locale } = useRouter()
   return (
-    <div className={`${s.funderLogos} ${s.logosLeft} ${u.flex}`}>
+    <div className={`${s.funderLogos} ${u.flex}`}>
       <a href="https://arts.wales" target="blank" rel="noreferrer">
         <span className={`${u.srOnly}`}>
           {locale === "cy"

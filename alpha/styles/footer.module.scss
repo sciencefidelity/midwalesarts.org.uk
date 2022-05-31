@@ -16,9 +16,10 @@
   padding: 5rem 0 1.3rem;
   @include b.mq(lg) {
     grid-template-columns: 1fr;
+    width: 90%;
   }
   @include b.mq(md) {
-    width: 88%;
+    width: 90%;
   }
   @include b.mq(sm) {
     width: 90%;
@@ -112,6 +113,9 @@
   border: 0.14em solid c.$grey-400;
   margin-block: -1rem 0;
   color: c.$grey-550;
+  @include b.mq(lg) {
+    margin-block: -1rem 3rem;
+  }
   @include b.mq(md) {
     font-size: 2rem;
     width: calc(100% - 6rem);
@@ -190,25 +194,27 @@
 .linksMenuContainer {
   align-self: end;
   padding-bottom: 3.5rem;
+  @include b.mq(lg) {
+    margin-top: 3rem;
+  }
   @include b.mq(md) {
     display: none;
   }
 }
 
 .linksMenu {
+  justify-content: right;
   list-style: none;
   font-size: 1.8rem;
   flex-direction: row;
   padding: 0;
+  gap: 1.5rem 3rem;
+  flex-wrap: wrap;
 }
 
 .linksMenuItem {
   font-size: 1.8rem;
   margin-top: 0;
-  padding-left: 3rem;
-  &:first-child {
-    padding: 0;
-  }
 }
 
 .linksMenuLink {
