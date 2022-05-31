@@ -123,14 +123,6 @@
   background-color: c.$grey-600;
   border-radius: 0.2rem;
   transition: transform 0.5s;
-  &:hover,
-  &focus {
-    background-color: c.$grey-650;
-    &::before,
-    &::after {
-      background-color: c.$grey-650;
-    }
-  }
   &::before,
   &::after {
     display: block;
@@ -148,6 +140,14 @@
     transition: transform 0.5s;
     transition-delay: 0.5s;
     transform: translateY(2.35rem);
+  }
+  &:hover,
+  &focus {
+    background-color: c.$grey-650;
+    &::before,
+    &::after {
+      background-color: c.$grey-650;
+    }
   }
 }
 

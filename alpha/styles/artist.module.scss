@@ -101,23 +101,7 @@
   margin: 0;
   overflow: auto;
   font-size: 1rem;
-  background-color: rgba(white, 0.75);
-}
-
-.modalClose,
-.btnNext,
-.btnPrev {
-  z-index: 9;
-  width: 4rem;
-  opacity: 0.7;
-  transition: opacity 0.3s ease;
-  @include b.mq(sm) {
-    display: none;
-  }
-  &:hover {
-    opacity: 1;
-    transition: opacity 0.3s ease;
-  }
+  background-color: rgba(c.$grey-000, 0.75);
 }
 
 .btnNext,
@@ -139,6 +123,22 @@
   left: 3em;
 }
 
+.modalClose,
+.btnNext,
+.btnPrev {
+  z-index: 9;
+  width: 4rem;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+  @include b.mq(sm) {
+    display: none;
+  }
+  &:hover {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+  }
+}
+
 .handleClose {
   inset: 0;
   z-index: 8;
@@ -150,7 +150,7 @@
 .modalImageContiner {
   z-index: 7;
   padding: 2rem;
-  background-color: white;
+  background-color: c.$grey-000;
 }
 
 .modalImageWrapper {

@@ -105,6 +105,9 @@ b {
 a {
   color: c.$grey-600;
   text-decoration: none;
+  &:focus {
+    outline: 1px dotted rgba(c.$grey-650, 0.5);
+  }
 }
 
 p a {
@@ -130,10 +133,6 @@ blockquote {
   font-style: italic;
   line-height: 1.3;
   border-left: 0.4rem solid rgba(c.$grey-500, 0.5);
-}
-
-a:focus {
-  outline: 1px dotted rgba(c.$grey-650, 0.5);
 }
 
 .logoLink:focus {
