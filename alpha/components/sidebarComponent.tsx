@@ -24,9 +24,10 @@ export const SidebarComponent: FC<Props> = ({ labels, sidebar }) => {
               <LinkTo
                 href={buildUrl(locale, event.slug, event._type)}
                 key={event._id}
+                className={`${s.sidebarLink}`}
               >
                 <li className={s.listItem}>
-                  {event.date && <SidebarEventDate date={event.date} />}<br />
+                  {event.date && <span className={`${s.date}`}><SidebarEventDate date={event.date} /></span>}<br />
                   {event.title &&
                     <h4 className={`${s.listHeading}`}>{event.title}</h4>
                   }
