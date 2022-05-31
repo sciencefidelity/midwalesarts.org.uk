@@ -475,6 +475,7 @@
   text-decoration-thickness: 0.1em;
   text-decoration-color: rgba(c.$grey-050, 0.8);
   transition: text-decoration-color 0.3s ease-in-out;
+  font-weight: 500;
   &:hover,
   &:focus {
     text-decoration: underline;

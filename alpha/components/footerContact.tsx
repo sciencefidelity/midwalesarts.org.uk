@@ -15,18 +15,18 @@ export const FooterContact: FC<Props> = ({ label, organisation, settings }) => {
   return (
     <div>
       <p className={`${s.footerText}`}>
-        {label[locale]}<br />
+        <b>{label[locale]}<br /></b>
         {organisation.opening[locale]}
       </p>
       <p className={`${s.footerText}`}>
-        {settings.title[locale]}<br />
+        <b>{settings.title[locale]}</b><br />
         {organisation.address.town}<br />
         {organisation.address.county}{" "}{organisation.address.postcode}
       </p>
       <p className={`${s.footerText}`}>
         {organisation.telephone}<br />
         <a href={`mailto:${organisation.email}`} className={`${s.footerLink}`}>
-          {organisation.email}
+          <b>{organisation.email}</b>
         </a>
       </p>
       <p className={`${s.footerText} ${s.copy}`}>
