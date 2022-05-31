@@ -2,6 +2,8 @@ import { FC } from "react"
 import { useRouter } from "next/router"
 import { PortableText } from "@portabletext/react"
 import { components } from "components/portableTextComponents"
+import { sortWorkshops } from "lib/utils"
+import { WorkshopPreview } from "components/workshopPreview"
 import { Layout } from "components/layout"
 import { SidebarComponent } from "components/sidebarComponent"
 import {
@@ -13,7 +15,7 @@ import {
   PageHead,
   Settings
 } from "lib/interfaces"
-import s from "styles/pages.module.scss"
+import s from "styles/workshops.module.scss"
 import u from "styles/utils.module.scss"
 
 interface Props {
@@ -42,6 +44,7 @@ export const Workshops: FC<Props> = ({
     ogURL: `${settings.canonicalURL}${locale === "cy" ? "/cy" : ""}/${page.slug}`,
     ogImage: page.ogImage
   }
+  const workshops = sortWorkshops(page.workshops)
   return (
     <Layout
       heroImage={page.mainImage}
@@ -58,6 +61,13 @@ export const Workshops: FC<Props> = ({
           {page.subtitle && <h2 className={`${s.subtitle}`}>
             {page.subtitle.trim().replace(".", "")}.
           </h2>}
+          {page.workshops && (
+            <WorkshopPreview
+              eventData={workshops}
+              heading=""
+              marginTop={{ marginTop: "6rem" }}
+            />
+          )}
           {page.body && <div className={`${s.body}`}>
             <PortableText value={page.body} components={components} />
           </div>}
