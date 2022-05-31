@@ -1,7 +1,7 @@
 import { FC } from "react"
 import { useRouter } from "next/router"
 import { LocaleString, Organisation, Settings } from "lib/interfaces"
-import s from "styles/layout.module.scss"
+import s from "styles/footer.module.scss"
 
 interface Props {
   label: LocaleString

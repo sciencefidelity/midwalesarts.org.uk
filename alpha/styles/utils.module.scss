@@ -110,7 +110,7 @@
 }
 
 .outline:focus {
-  outline: 4px dashed rgba(c.$grey-650, 0.5);
+  outline: 1px dotted rgba(c.$grey-650, 0.5);
 }
 
 .container {
@@ -127,15 +127,6 @@
     font-size: 1.2rem;
   }
 }
-
-// .truncate {
-//   white-space: nowrap;
-//   overflow: hidden;
-//   text-overflow: ellipsis;
-//   -webkit-text-overflow: ellipsis;
-//   -webkit-line-clamp: 1;
-//   -webkit-box-orient: vertical;
-// }
 
 .srOnly {
   border: 0;

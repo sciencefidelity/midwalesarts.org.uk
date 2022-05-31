@@ -178,13 +178,28 @@
     color: c.$grey-650;
   }
   a:focus {
-    outline: 4px dashed rgba(c.$grey-650, 0.5);
+    outline: 1px dotted rgba(c.$grey-650, 0.5);
   }
   a:focus-visible {
-    outline: 4px dashed rgba(c.$grey-650, 0.5);
+    outline: 1px dotted rgba(c.$grey-650, 0.5);
+  }
+  a:active {
+    outline: none;
   }
   @include b.mq(sm) {
     margin: 1.2rem 2.4rem 4rem;
   }
 }
 
+.social {
+  margin: -0.2rem 3rem;
+  width: 3.8rem;
+  z-index: 1;
+  transition: opacity 0.3s ease;
+  margin-block: 1rem;
+  &:hover,
+  &:active {
+    opacity: 0.92;
+    transition: opacity 0.3s ease;
+  }
+}

@@ -105,6 +105,9 @@
       transition: transform 0.25s;
     }
   }
+  &:focus {
+    outline: none;
+  }
   &:focus-visible {
     outline: none;
   }

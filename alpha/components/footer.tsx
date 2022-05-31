@@ -5,7 +5,7 @@ import { FooterLinks } from "components/footerLinks"
 import { Logos } from "components/logos"
 import { Signup } from "components/signup"
 import { Label, Organisation, Settings } from "lib/interfaces"
-import s from "styles/layout.module.scss"
+import s from "styles/footer.module.scss"
 import u from "styles/utils.module.scss"
 
 interface Props {

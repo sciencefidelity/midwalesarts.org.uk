@@ -1,7 +1,7 @@
 import { FC } from "react"
 import { useRouter } from "next/router"
 import { Label } from "lib/interfaces"
-import s from "styles/layout.module.scss"
+import s from "styles/footer.module.scss"
 import u from "styles/utils.module.scss"
 
 interface Props {

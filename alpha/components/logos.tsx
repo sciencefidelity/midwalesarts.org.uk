@@ -1,6 +1,6 @@
 import { FC } from "react"
 import { useRouter } from "next/router"
-import s from "styles/layout.module.scss"
+import s from "styles/footer.module.scss"
 import u from "styles/utils.module.scss"
 
 // TODO: can a way be found to manage this in the studio

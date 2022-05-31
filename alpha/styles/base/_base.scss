@@ -133,9 +133,9 @@ blockquote {
 }
 
 a:focus {
-  outline: 4px dashed rgba(c.$grey-650, 0.5);
+  outline: 1px dotted rgba(c.$grey-650, 0.5);
 }
 
 .logoLink:focus {
-  outline: 4px dashed rgba(c.$grey-650, 0.5);
+  outline: 4px dotted rgba(c.$grey-650, 0.5);
 }

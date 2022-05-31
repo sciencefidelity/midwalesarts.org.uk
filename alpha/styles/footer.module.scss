@@ -1,0 +1,237 @@
+@use './base/breakpoints' as b;
+@use './base/colors' as c;
+
+.footer {
+  background-color: rgba(c.$grey-050, 0.8);
+  margin-top: 16rem;
+  z-index: 0;
+  @include b.mq(sm) {
+    margin-top: 12rem;
+  }
+}
+
+.footerContainer {
+  grid-template-columns: auto auto;
+  width: 81.25%;
+  padding: 5rem 0 1.3rem;
+  @include b.mq(lg) {
+    grid-template-columns: 1fr;
+  }
+  @include b.mq(md) {
+    width: 88%;
+  }
+  @include b.mq(sm) {
+    width: 90%;
+  }
+}
+
+.footerText {
+  font-size: 2rem;
+  line-height: 1.4;
+  padding-bottom: 1.3rem;
+  color: c.$grey-600;
+  @include b.mq(md) {
+    font-size: 2rem;
+    padding-bottom: 0.6rem;
+  }
+}
+
+.footerLink  {
+  background-color: transparent;
+  font-weight: 400;
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 0.1em;
+  text-decoration-color: rgba(c.$grey-500, 0);
+  transition: text-decoration-color 0.3s ease-in-out;
+  &:hover,
+  &:focus {
+    background-color: transparent;
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-thickness: 0.1em;
+    text-decoration-color: rgba(c.$grey-500, 1);
+    transition: text-decoration-color 0.3s ease-in-out;
+  }
+}
+
+.copy {
+  @include b.mq(lg) {
+    display: none;
+  }
+}
+
+.footerRight {
+  justify-content: right;
+  @include b.mq(lg) {
+    gap: 2rem;
+  }
+  @include b.mq(sm) {
+    justify-content: center;
+  }
+}
+
+.signup {
+  margin-block: -0.7rem 0;
+  @include b.mq(sm) {
+    width: 90vw;
+    justify-content: center;
+  }
+}
+
+.signupHeading {
+  display: inline-block;
+  width: 100%;
+  font-size: 2rem;
+  margin-block: 0 -4rem;
+  color: c.$grey-600;
+  text-align: right;
+  @include b.mq(md) {
+    font-size: 2rem;
+    text-align: left;
+    margin-block: 3rem -4rem;
+  }
+}
+
+.signupForm {
+  display: block;
+  margin-top: -0.8rem;
+  text-align: right;
+  @include b.mq(md) {
+    text-align: left;
+  }
+}
+
+.signupInput {
+  background-color: white;
+  border: 0;
+  width: 48rem;
+  height: 6rem;
+  padding: 0.85em 1.5em;
+  font-size: 2.2rem;
+  border: 0.14em solid c.$grey-400;
+  margin-block: -1rem 0;
+  color: c.$grey-550;
+  @include b.mq(md) {
+    font-size: 2rem;
+    width: calc(100% - 6rem);
+    margin-block: -1rem 3rem;
+  }
+  @include b.mq(sm) {
+    height: 5rem;
+    padding: 0.85em 1em;
+    width: calc(100% - 5rem);
+  }
+}
+
+.signupSubmit {
+  background-color: c.$grey-400;
+  border: 0;
+  height: 6rem;
+  width: 6rem;
+  padding: 1.2rem;
+  transform: translateY(2.25rem);
+  @include b.mq(md) {
+    transform: translateY(2.35rem);
+  }
+  @include b.mq(sm) {
+    height: 5rem;
+    width: 5rem;
+    transform: translateY(1.85rem);
+  }
+}
+
+.funderLogos {
+  align-self: center;
+  justify-content: right;
+  @include b.mq(md) {
+    justify-content: left;
+    margin-bottom: 3rem;
+  }
+  @include b.mq(sm) {
+    gap: 2rem;
+    flex-direction: column;
+  }
+}
+
+.logosRight {
+  justify-content: right;
+  @include b.mq(sm) {
+    margin-top: 2rem;
+    justify-content: unset;
+  }
+}
+
+.funderLogo {
+  height: 6rem;
+  width: auto;
+  padding-left: 3rem;
+  @include b.mq(md) {
+    height: 5.2rem;
+  }
+}
+
+.first {
+  padding-left: 0;
+}
+
+.second {
+  @include b.mq(sm) {
+    padding-left: 0;
+  }
+}
+
+.acw,
+.wg,
+.gtg {
+  margin-top: 0;
+}
+
+.linksMenuContainer {
+  align-self: end;
+  padding-bottom: 3.5rem;
+  @include b.mq(md) {
+    display: none;
+  }
+}
+
+.linksMenu {
+  list-style: none;
+  font-size: 1.8rem;
+  flex-direction: row;
+  padding: 0;
+}
+
+.linksMenuItem {
+  font-size: 1.8rem;
+  margin-top: 0;
+  padding-left: 3rem;
+  &:first-child {
+    padding: 0;
+  }
+}
+
+.linksMenuLink {
+  text-decoration: underline;
+  text-decoration-thickness: 0.1em;
+  text-decoration-color: rgba(c.$grey-050, 0.8);
+  transition: text-decoration-color 0.3s ease-in-out;
+  font-weight: 500;
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+    text-decoration-thickness: 0.1em;
+    text-decoration-color: c.$grey-500;
+    transition: text-decoration-color 0.3s ease-in-out;
+  }
+}
+
+.smallCopy {
+  display: none;
+  font-size: 2rem;
+  @include b.mq(lg) {
+    display: block;
+    padding-top: 2rem;
+    font-size: 1.8rem;
+  }
+}

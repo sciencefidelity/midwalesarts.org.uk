@@ -40,16 +40,20 @@ export const NavComponent: FC<Props> = ({ labels, navigation, pageContext }) => 
               <LinkTo
                 href={`/${item.slug[locale].replace("index", "")}`}
                 className={`${s.navLink}`}
-              >
-                {item.label[locale]}
-              </LinkTo>
+              >{item.label[locale]}</LinkTo>
             </li>
           ))}
         </ul>
       </div>
       <div>
         <button
-          className={`${s.hamburgerContainer} ${u.relative} ${u.grid} ${u.pointer} ${u.outline}`}
+          className={`
+            ${s.hamburgerContainer}
+            ${u.relative}
+            ${u.grid}
+            ${u.pointer}
+            ${u.outline}
+          `}
           onClick={isActive ? menuClose : menuOpen}
           tabIndex={0}
         >
