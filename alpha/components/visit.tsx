@@ -61,6 +61,9 @@ export const Visit: FC<Props> = ({
         {page.subtitle && <h2 className={`${s.subtitle}`}>
           {page.subtitle.trim().replace(".", "")}.
         </h2>}
+        {page.body && <div className={`${s.info}`}>
+          <PortableText value={page.body} components={components} />
+        </div>}
         <div className={`${s.spacesGrid} ${u.grid}`}>
           {page.spaces && page.spaces.map(space => (
             <LinkTo

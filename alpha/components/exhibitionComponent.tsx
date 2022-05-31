@@ -113,12 +113,12 @@ export const ExhibitionComponent: FC<Props> = ({
             >
               <h3 className={`${s.h3}`}>{labels[34].text[locale]}</h3>
             </li>
-            <li
+            {exhibition.works[0] && <li
               onClick={toggleGallery}
               className={`${s.tabItem} ${info ? null : s.selected} ${u.pointer}`}
             >
               <h3 className={`${s.h3}`}>{labels[35].text[locale]}</h3>
-            </li>
+            </li>}
           </ul>
           <div className={`${s.info} ${info ? null : s.hidden}`}>
             {exhibition.body &&

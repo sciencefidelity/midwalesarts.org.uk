@@ -38,7 +38,7 @@
 .spacesTextGrid {
   grid-template-columns: 1fr 1fr;
   gap: 5rem 5rem;
-  margin-bottom: 10rem;
+  margin-bottom: 16rem;
   h4 {
     padding-top: 5rem;
   }
@@ -56,10 +56,17 @@
 .googleMap {
   width: 100%;
   height: calc(100vh - 30rem);
-  margin: 14rem 0 -16rem 0;
+  margin: 20rem 0 -16rem 0;
   filter: grayscale(100%);
 }
 
 .pin {
   width: 4rem;
+}
+
+.info {
+  margin-top: 8rem;
+  max-width: 850px;
+  width: 81.25%;
+  margin-right: auto;
 }

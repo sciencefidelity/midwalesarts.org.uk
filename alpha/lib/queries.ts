@@ -285,7 +285,7 @@ const page = `
     template == "Page" => { ${body}, mainImage, subtitle, ${seo}, ${sidebar} },
     template == "Support" => { ${body}, ${feedback}, mainImage, subtitle, ${seo}, ${sidebar} },
     template == "Videos" => { subtitle, ${videoSubset}, ${seo} },
-    template == "Visit" => { mainImage, ${spaces}, subtitle, ${seo} },
+    template == "Visit" => { ${body}, mainImage, ${spaces}, subtitle, ${seo} },
     template == "Workshops" => { ${body}, mainImage, subtitle, ${workshopSubset}, ${seo}, ${sidebar} },
     ${localization}
   }
