@@ -24,10 +24,9 @@ export const SidebarComponent: FC<Props> = ({ labels, sidebar }) => {
               <LinkTo
                 href={buildUrl(locale, event.slug, event._type)}
                 key={event._id}
-                className={`${s.sidebarLink}`}
               >
-                <li className={s.listItem}>
-                  {event.date && <span className={`${s.date}`}><SidebarEventDate date={event.date} /></span>}<br />
+                <li className={`${s.listItem}`}>
+                  {event.date && <SidebarEventDate date={event.date} />}<br />
                   {event.title &&
                     <h4 className={`${s.listHeading}`}>{event.title}</h4>
                   }
@@ -44,7 +43,7 @@ export const SidebarComponent: FC<Props> = ({ labels, sidebar }) => {
                 href={buildUrl(locale, exhibition.slug, exhibition._type)}
                 key={exhibition._id}
               >
-                <li className={s.listItem}>
+                <li className={`${s.listItem}`}>
                   {exhibition.dateStart &&
                     <SidebarExhibitionDate
                       dateEnd={exhibition.dateEnd}
