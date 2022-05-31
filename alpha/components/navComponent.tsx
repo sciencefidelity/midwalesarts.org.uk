@@ -5,7 +5,7 @@ import { Language } from "components/language"
 import { LinkTo } from "components/linkTo"
 import { Social } from "components/social"
 import { Label, Navigation, PageContext } from "lib/interfaces"
-import s from "styles/layout.module.scss"
+import s from "styles/header.module.scss"
 import u from "styles/utils.module.scss"
 
 interface Props {
@@ -48,15 +48,16 @@ export const NavComponent: FC<Props> = ({ labels, navigation, pageContext }) => 
         </ul>
       </div>
       <div>
-        <div
-          className={`${s.hamburgerContainer} ${u.pointer}`}
+        <button
+          className={`${s.hamburgerContainer} ${u.relative} ${u.grid} ${u.pointer} ${u.outline}`}
           onClick={isActive ? menuClose : menuOpen}
+          tabIndex={0}
         >
           <span className={`${u.srOnly}`}>{labels[1].text[locale]}</span>
           <div
             className={`${s.hamburger} ${isActive ? s.active : null} ${u.relative}`}
           ></div>
-        </div>
+        </button>
         <Language pageContext={pageContext} />
         <Social label={labels[3].text} />
       </div>

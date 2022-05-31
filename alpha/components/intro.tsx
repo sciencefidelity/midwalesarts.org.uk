@@ -21,9 +21,12 @@ export const Intro: FC<Props> = ({ page }) => {
         <PortableText value={page.body} components={components} />
       )}
       {page.ctaLink &&
-        <LinkTo href={url}>
+        <LinkTo href={url} tabIndex={-1}>
           {page.cta &&
-            <h2 className={`${s.introCta} ${u.relative} ${u.textRight}`}>
+            <h2
+              className={`${s.introCta} ${u.relative} ${u.textRight}`}
+              tabIndex={0}
+            >
               <span>{page.cta.trim()}&nbsp;</span>
             </h2>
           }

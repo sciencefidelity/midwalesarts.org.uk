@@ -69,8 +69,11 @@ export const FrontPageHeadline: FC<Props> = ({ headline }) => {
       </div>
       <div className={`${s.sectionCtaContainer}`}>
         <div className={`${s.sectionCtaHr} ${u.absolute}`}></div>
-        <LinkTo href={url}>
-          <h2 className={`${s.sectionCta} ${u.relative} ${u.textRight}`}>
+        <LinkTo href={url} tabIndex={-1}>
+          <h2
+            className={`${s.sectionCta} ${u.relative} ${u.textRight}`}
+            tabIndex={0}
+          >
             {headline.cta && <span>{headline.cta.trim()}&nbsp;</span>}
           </h2>
         </LinkTo>

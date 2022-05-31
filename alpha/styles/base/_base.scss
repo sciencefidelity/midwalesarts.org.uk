@@ -132,3 +132,10 @@ blockquote {
   border-left: 0.4rem solid rgba(c.$grey-500, 0.5);
 }
 
+a:focus {
+  outline: 4px dashed rgba(c.$grey-650, 0.5);
+}
+
+.logoLink:focus {
+  outline: 4px dashed rgba(c.$grey-650, 0.5);
+}

@@ -96,13 +96,17 @@
     }
   }
   &:hover,
-  &:active {
+  &:focus {
     color: c.$grey-500;
     transition: color 0.25s;
+    outline: none;
     &::after {
       transform: translateX(0.7rem);
       transition: transform 0.25s;
     }
+  }
+  &:focus-visible {
+    outline: none;
   }
   @include b.mq(sm) {
     text-align: left;

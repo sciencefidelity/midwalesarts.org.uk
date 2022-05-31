@@ -2,7 +2,7 @@ import { FC, useEffect, useRef, useState } from "react"
 import { useRouter } from "next/router"
 import { LinkTo } from "components/linkTo"
 import { PageContext } from "lib/interfaces"
-import s from "styles/layout.module.scss"
+import s from "styles/header.module.scss"
 import u from "styles/utils.module.scss"
 
 interface Props {

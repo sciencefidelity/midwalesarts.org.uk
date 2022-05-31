@@ -109,6 +109,10 @@
   object-fit: cover;
 }
 
+.outline:focus {
+  outline: 4px dashed rgba(c.$grey-650, 0.5);
+}
+
 .container {
   max-width: 108rem;
   margin: 0 auto;

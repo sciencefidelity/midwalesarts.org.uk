@@ -5,7 +5,7 @@ import { SanityImage } from "components/sanityImage"
 import { LinkTo } from "components/linkTo"
 import { NavComponent } from "components/navComponent"
 import { Image, Label, Navigation, PageContext, Settings } from "lib/interfaces"
-import s from "styles/layout.module.scss"
+import s from "styles/header.module.scss"
 import u from "styles/utils.module.scss"
 
 interface Props {

@@ -12,8 +12,8 @@ interface Props {
 export const Scrollup: FC<Props> = ({ label }) => {
   const { locale } = useRouter()
   return (
-    <LinkTo href="#">
-      <div className={`${s.scrollupContainer} ${u.fixed}`}>
+    <LinkTo href="#" tabIndex={-1}>
+      <button className={`${s.scrollupContainer} ${u.fixed}`}>
         <span className={`${u.srOnly}`}>
           {label[locale]}
         </span>
@@ -23,7 +23,7 @@ export const Scrollup: FC<Props> = ({ label }) => {
           loading="lazy"
           className={`${s.scrollup}`}
         />
-      </div>
+      </button>
     </LinkTo>
   )
 }
