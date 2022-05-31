@@ -78,22 +78,18 @@ export const Events: FC<Props> = ({
           </div>
         </div>
       )}
-      {page.workshops && (
-        <EventPreview
-          heading={labels[11].text[locale]}
-          eventData={workshops}
-          fallbackImage={settings.ogImage}
-          marginTop={{ marginTop: "6rem" }}
-        />
-      )}
-      {page.pastEvents && (
-        <EventPreview
-          heading={labels[12].text[locale]}
-          eventData={page.pastEvents}
-          fallbackImage={settings.ogImage}
-          marginTop={{ marginTop: "6rem" }}
-        />
-      )}
+      {page.workshops && <EventPreview
+        heading={labels[11].text[locale]}
+        eventData={workshops}
+        fallbackImage={settings.ogImage}
+        marginTop={{ marginTop: "6rem" }}
+      />}
+      {page.pastEvents && <EventPreview
+        heading={labels[12].text[locale]}
+        eventData={page.pastEvents}
+        fallbackImage={settings.ogImage}
+        marginTop={{ marginTop: "6rem" }}
+      />}
     </Layout>
   )
 }

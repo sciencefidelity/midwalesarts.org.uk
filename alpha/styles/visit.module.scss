@@ -53,6 +53,40 @@
   }
 }
 
+.feedback {
+  max-width: 810px;
+  margin-inline: auto;
+  width: 87%;
+  @include b.mq(lg) {
+    width: 95%;
+  }
+}
+
+.quoteBtns {
+  justify-content: center;
+  text-align: center;
+  margin: auto;
+  background: transparent;
+}
+
+.quoteBtn {
+  font-size: 6rem;
+  color: c.$grey-400;
+  text-align: center;
+  background: transparent;
+  &:hover,
+  &:focus-visible {
+    color: c.$grey-700;
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+.quoteBtnActive {
+  color: c.$grey-700;
+}
+
 .googleMap {
   width: 100%;
   height: calc(100vh - 30rem);

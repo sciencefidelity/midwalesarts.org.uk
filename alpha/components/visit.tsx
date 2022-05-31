@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, Fragment, useState } from "react"
 import { useRouter } from "next/router"
 import Image from "next/image"
 import { PortableText } from "@portabletext/react"
@@ -36,6 +36,7 @@ export const Visit: FC<Props> = ({
   pageContext,
   settings
 }) => {
+  const [quoteNumber, setQuoteNumber] = useState(0)
   const { locale } = useRouter()
   const pageHead: PageHead = {
     title: page.title,
@@ -105,6 +106,30 @@ export const Visit: FC<Props> = ({
             )
           ))}
         </div>
+      </section>
+      <section>
+        {page.feedback[0] && <div className={`${s.feedback}`}>
+          <blockquote>{page.feedback[quoteNumber].quote}</blockquote>
+        </div>}
+        <nav className={`${u.flex} ${s.quoteBtns}`}>
+          {page.feedback.map((quote, idx) =>
+            <Fragment key={quote._key}>
+              <button
+                onClick={() => setQuoteNumber(idx)}
+                className={`
+                  ${s.quoteBtn}
+                  ${idx === quoteNumber ? s.quoteBtnActive : null}
+                  ${u.pointer}
+                `}
+              >
+                {" "}&bull;{" "}
+                {/* <span className={`${u.screenReaderText}`}>
+                  <Localize data={label.text} />
+                </span> */}
+              </button>
+            </Fragment>
+          )}
+        </nav>
       </section>
       <GoogleMap />
     </Layout>

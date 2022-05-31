@@ -97,7 +97,9 @@ const workshopSubset = `
 `
 
 const feedback = `
-  "feedback": *[_type == "feedback" && ${omitDrafts}].feedback[]{  _key, quote{ cy, en } }
+  "feedback": *[_type == "feedback" && ${omitDrafts}].feedback[]{
+    _key, "quote": quote[$locale]
+  }
 `
 
 const headlines = `
@@ -283,10 +285,10 @@ const page = `
     template == "Home" => { ${body}, cta, ${ctaLink}, mainImage, subImage, ${headlines} },
     template == "News" => { ${postSubset}, subtitle, ${seo} },
     template == "Page" => { ${body}, mainImage, subtitle, ${seo}, ${sidebar} },
-    template == "Support" => { ${body}, ${feedback}, mainImage, subtitle, ${seo}, ${sidebar} },
+    template == "Support" => { ${body}, mainImage, subtitle, ${seo}, ${sidebar} },
     template == "Videos" => { subtitle, ${videoSubset}, ${seo} },
-    template == "Visit" => { ${body}, mainImage, ${spaces}, subtitle, ${seo} },
-    template == "Workshops" => { ${body}, mainImage, subtitle, ${workshopSubset}, ${seo}, ${sidebar} },
+    template == "Visit" => { ${body}, ${feedback}, mainImage, ${spaces}, subtitle, ${seo} },
+    template == "Workshops" => { ${body}, subtitle, ${workshopSubset}, ${seo}, ${sidebar} },
     ${localization}
   }
 `
