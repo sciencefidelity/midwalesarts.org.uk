@@ -28,7 +28,7 @@
 .imageGrid {
   grid-template-columns: 1fr 1fr 1fr;
   gap: 3rem;
-  margin: 8.2rem auto 0;
+  margin: 5rem auto 0;
   z-index: 5;
   @include b.mq(lg) {
     grid-template-columns: 1fr 1fr;
@@ -38,6 +38,8 @@
     grid-template-columns: 1fr;
   }
 }
+
+
 
 .caption {
   font-size: 1.8rem;
@@ -49,6 +51,31 @@
   }
   &:last-of-type {
     margin-block: 0.48em 1.3em;
+  }
+}
+
+.calendar {
+  margin-top: 2.7rem;
+}
+
+.h3 {
+  margin-top: 1.5rem;
+  font-size: 2.2rem;
+  font-weight: 500;
+  line-height: 1.7;
+}
+
+.calendarList {
+  padding: 0;
+}
+
+.calendarItem {
+  font-size: 2.2rem;
+  line-height: 1.7;
+  div {
+    &:last-of-type {
+      padding-left: 2rem;
+    }
   }
 }
 
