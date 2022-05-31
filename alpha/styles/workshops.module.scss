@@ -14,6 +14,9 @@
   @include b.mq(lg) {
     width: 81.25%;
   }
+  @include b.mq(md) {
+    width: 90%;
+  }
 }
 
 .subtitle {
@@ -33,8 +36,7 @@
   @include b.mq(lg) {
     grid-template-columns: 1fr 1fr;
   }
-  @include b.mq(md) {
-    width: 90%;
+  @include b.mq(sm) {
     grid-template-columns: 1fr;
   }
 }
@@ -59,10 +61,13 @@
 }
 
 .h3 {
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   font-size: 2.2rem;
   font-weight: 500;
-  line-height: 1.7;
+  line-height: 2;
+  @include b.mq(sm) {
+    font-size: 2rem;
+  }
 }
 
 .calendarList {
@@ -70,13 +75,45 @@
 }
 
 .calendarItem {
-  font-size: 2.2rem;
+  font-size: 2rem;
   line-height: 1.7;
   div {
     &:last-of-type {
       padding-left: 2rem;
     }
   }
+  a {
+    text-decoration: underline;
+    text-decoration-thickness: 0.1em;
+    text-decoration-color: rgba(c.$grey-500, 0);
+    transition: text-decoration-color 0.3s ease-in-out;
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+      text-decoration-thickness: 0.1em;
+      text-decoration-color: rgba(c.$grey-500, 1);
+      transition: text-decoration-color 0.3s ease-in-out;
+    }
+  }
+  @include b.mq(sm) {
+    font-size: 1.8rem;
+  }
+}
+
+.longTime {
+  @include b.mq(sm) {
+    display: none;
+  }
+}
+
+.shortTime {
+  @include b.mq(sm) {
+    display: block;
+  }
+}
+
+.calendarTitle {
+  font-weight: 500;
 }
 
 .body {

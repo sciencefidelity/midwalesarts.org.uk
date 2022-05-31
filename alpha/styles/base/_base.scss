@@ -110,13 +110,13 @@ a {
 p a {
   font-weight: 500;
   color: c.$grey-600;
-  background: c.$grey-050;
+  background-color: c.$grey-050;
   transition:
     color 0.5s ease-in-out,
     background 0.5s ease-in-out;
   &:hover {
     color: c.$grey-700;
-    background: c.$grey-100;
+    background-color: c.$grey-100;
     transition:
       color 0.5s ease-in-out,
       background 0.5s ease-in-out;

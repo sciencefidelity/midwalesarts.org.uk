@@ -8,12 +8,13 @@ import { Exhibition } from "lib/interfaces"
 import s from "styles/exhibitions.module.scss"
 
 interface Props {
+  fallbackImage: any
   exhibition: Exhibition
   heading?: string
 }
 
 export const ExhibitionPreview: FC<Props> = ({
-  exhibition, heading
+  exhibition, fallbackImage, heading
 }) => {
   const { locale } = useRouter()
   return (
@@ -24,7 +25,9 @@ export const ExhibitionPreview: FC<Props> = ({
       />
       <LinkTo href={buildUrl(locale, exhibition.slug, exhibition._type)}>
         <Image
-          src={urlFor(exhibition.mainImage)
+          src={urlFor(exhibition.mainImage.asset
+            ? exhibition.mainImage
+            : fallbackImage)
             .width(624)
             .height(624)
             .auto("format")

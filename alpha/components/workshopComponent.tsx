@@ -64,7 +64,7 @@ export const WorkshopComponent: FC<Props> = ({
           <div className={`${s.header} ${u.grid}`}>
             <div>
               <Image
-                src={urlFor(workshop.mainImage)
+                src={urlFor(workshop.mainImage ? workshop.mainImage : settings.ogImage)
                   .width(468)
                   .height(468)
                   .auto("format")

@@ -64,7 +64,7 @@ export const PostComponent: FC<Props> = ({
           <div className={`${s.header} ${u.grid}`}>
             <div>
               <Image
-                src={urlFor(post.image)
+                src={urlFor(post.image ? post.image : settings.ogImage)
                   .width(468)
                   .height(468)
                   .auto("format")

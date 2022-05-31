@@ -67,7 +67,7 @@
   line-height: 1.1;
   transition: color 0.25s;
   span {
-    background: c.$grey-000;
+    background-color: c.$grey-000;
     padding: 0 0 0 2rem;
     @include b.mq(lg) {
       font-size: 5rem;
@@ -77,7 +77,7 @@
     }
     @include b.mq(sm) {
       padding: 0;
-      background: transparent;
+      background-color: transparent;
       margin-right: auto;
       font-size: 3.2rem;
     }
@@ -140,7 +140,7 @@
 %ctaHr {
   bottom: 1.05rem;
   height: 0.14rem;
-  background: c.$grey-300;
+  background-color: c.$grey-300;
   z-index: -1;
   @include b.mq(sm) {
     display: none;
@@ -335,7 +335,7 @@
     margin-left: 6%;
   }
   @include b.mq(sm) {
-    background: transparent;
+    background-color: transparent;
     margin-top: 2rem;
   }
 }

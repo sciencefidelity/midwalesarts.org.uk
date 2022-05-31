@@ -14,6 +14,27 @@ export const capitalize = (str: string): string => {
     .join(" ")
 }
 
+export const days = {
+  cy: [
+    "Suliau",
+    "Dydd Llun",
+    "dydd Mawrth",
+    "dydd Mercher",
+    "dydd Iau",
+    "dydd Gwener",
+    "dydd Sadwrn"
+  ],
+  en: [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+  ]
+}
+
 export const dayToNumber = (type: string): number => {
   switch (type) {
   case "Sunday":

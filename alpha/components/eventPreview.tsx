@@ -10,11 +10,17 @@ import u from "styles/utils.module.scss"
 
 interface Props {
   eventData: Event[] | Workshop[]
+  fallbackImage: any
   heading: string
   marginTop: CSSProperties
 }
 
-export const EventPreview: FC<Props> = ({ eventData, heading, marginTop }) => {
+export const EventPreview: FC<Props> = ({
+  eventData,
+  fallbackImage,
+  heading,
+  marginTop
+}) => {
   const { locale } = useRouter()
   return (
     <>
@@ -32,7 +38,7 @@ export const EventPreview: FC<Props> = ({ eventData, heading, marginTop }) => {
             className={`${u.truncate}`}
           >
             <Image
-              src={urlFor(event.mainImage)
+              src={urlFor(event.mainImage ? event.mainImage : fallbackImage)
                 .width(468)
                 .height(468)
                 .auto("format")

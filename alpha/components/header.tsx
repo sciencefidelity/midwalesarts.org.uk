@@ -43,7 +43,10 @@ export const Header: FC<Props> = ({
           className={`${s.hero} ${u.relative}`}
           style={{ overflow: "hidden" }}
         >
-          <SanityImage alt={caption} image={heroImage} width={1600} />
+          <SanityImage
+            alt={caption}
+            image={heroImage?.asset ? heroImage : settings.ogImage}
+            width={1600} />
         </div>
       </header>
       <NavComponent

@@ -2,8 +2,8 @@
 @use "./base/breakpoints" as b;
 
 .sidebar {
-  background: c.$sidebar;
-  margin-block: -8rem -20rem;
+  background-color: c.$sidebar;
+  margin-block: -8.1rem -20rem;
   @include b.mq(lg) {
     display: none;
   }

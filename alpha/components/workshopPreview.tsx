@@ -1,50 +1,49 @@
-import { CSSProperties, FC } from "react"
+import { FC } from "react"
 import { useRouter } from "next/router"
 import Image from "next/image"
 import { buildUrl, dayToNumber, getNextDate, urlFor } from "@/lib/utils"
 import { LinkTo } from "components/linkTo"
 import { PostDate } from "components/date"
-import { Event, Workshop } from "lib/interfaces"
+import { Workshop } from "lib/interfaces"
 import s from "styles/workshops.module.scss"
 import u from "styles/utils.module.scss"
 
 interface Props {
-  eventData: Event[] | Workshop[]
-  heading: string
-  marginTop: CSSProperties
+  fallbackImage: any
+  workshops: Workshop[]
 }
 
-export const WorkshopPreview: FC<Props> = ({ eventData, heading, marginTop }) => {
+export const WorkshopPreview: FC<Props> = ({ fallbackImage, workshops }) => {
   const { locale } = useRouter()
   return (
     <div className={`${s.imageGrid} ${u.grid}`}>
-      {eventData.map(event => (
+      {workshops.map(workshop => (
         <LinkTo
-          href={buildUrl(locale, event.slug, event._type)}
-          key={event._id}
+          href={buildUrl(locale, workshop.slug, workshop._type)}
+          key={workshop._id}
           style={{ margin: 0 }}
           className={`${u.truncate}`}
         >
           <Image
-            src={urlFor(event.mainImage)
+            src={urlFor(workshop.mainImage ? workshop.mainImage : fallbackImage)
               .width(468)
               .height(468)
               .auto("format")
               .quality(75)
               .url()}
-            alt={event.title}
+            alt={workshop.title}
             width={2000}
             height={2000}
           />
-          {event.title &&
+          {workshop.title &&
             <div className={`${s.caption} ${u.textRight}`}>
-              {event.title}
+              {workshop.title}
             </div>
           }
           {<div className={`${s.caption} ${u.textRight}`}>
             <PostDate
-              date={event.date ? event.date : getNextDate(dayToNumber(event.day))}
-            />{event.startTime && ", " + event.startTime}
+              date={workshop.day && getNextDate(dayToNumber(workshop.day))}
+            />{workshop.startTime && ", " + workshop.startTime.toLowerCase().replace(/\s/g, "")}
           </div>}
         </LinkTo>
       ))}

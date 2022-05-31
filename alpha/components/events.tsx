@@ -65,6 +65,7 @@ export const Events: FC<Props> = ({
         <EventPreview
           heading={labels[9].text[locale]}
           eventData={page.events}
+          fallbackImage={settings.ogImage}
           marginTop={{ marginTop: "2rem" }}
         />
       ) : (
@@ -81,6 +82,7 @@ export const Events: FC<Props> = ({
         <EventPreview
           heading={labels[11].text[locale]}
           eventData={workshops}
+          fallbackImage={settings.ogImage}
           marginTop={{ marginTop: "6rem" }}
         />
       )}
@@ -88,6 +90,7 @@ export const Events: FC<Props> = ({
         <EventPreview
           heading={labels[12].text[locale]}
           eventData={page.pastEvents}
+          fallbackImage={settings.ogImage}
           marginTop={{ marginTop: "6rem" }}
         />
       )}

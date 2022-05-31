@@ -2,7 +2,7 @@ import { FC, Fragment } from "react"
 import { useRouter } from "next/router"
 import { PortableText } from "@portabletext/react"
 import { components } from "components/portableTextComponents"
-import { sortWorkshops } from "lib/utils"
+import { dayToNumber, sortWorkshops } from "lib/utils"
 import { CalendarWorkshops } from "components/calendarWorkshops"
 import { WorkshopPreview } from "components/workshopPreview"
 import { Layout } from "components/layout"
@@ -46,14 +46,12 @@ export const Workshops: FC<Props> = ({
     ogImage: page.ogImage
   }
   const workshops = sortWorkshops(page.workshops)
-  const sundays = workshops.filter(workshop => workshop.day === "Sunday")
-  const mondays = workshops.filter(workshop => workshop.day === "Monday")
-  const tuesdays = workshops.filter(workshop => workshop.day === "Tuesday")
-  const wednesdays = workshops.filter(workshop => workshop.day === "Wednesday")
-  const thursdays = workshops.filter(workshop => workshop.day === "Thursday")
-  const fridays = workshops.filter(workshop => workshop.day === "Friday")
-  const saturdays = workshops.filter(workshop => workshop.day === "Saturday")
-  const days = [ sundays, mondays, tuesdays, wednesdays, thursdays, fridays, saturdays ]
+  let calendarDays = []
+  for (let i = 0; i < 7; i++) {
+    calendarDays[i] = workshops.filter(workshop => {
+      return dayToNumber(workshop.day) === i
+    })
+  }
   return (
     <Layout
       heroImage={page.mainImage}
@@ -75,14 +73,13 @@ export const Workshops: FC<Props> = ({
           </div>}
           {page.workshops && (
             <WorkshopPreview
-              eventData={workshops}
-              heading=""
-              marginTop={{ marginTop: "6rem" }}
+              workshops={workshops}
+              fallbackImage={settings.ogImage}
             />
           )}
           <section className={`${s.calendar}`}>
             {/* <h3 className={`${s.h3}`}>Workshop Calendar</h3> */}
-            {days.map((day, idx) =>
+            {calendarDays.map((day, idx) =>
               <Fragment key={idx}>
                 <CalendarWorkshops workshops={day} />
               </Fragment>

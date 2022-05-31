@@ -69,13 +69,13 @@ export const Artists: FC<Props> = ({
             key={artist._id}
           >
             <Image
-              src={urlFor(artist.mainImage)
+              src={urlFor(artist.mainImage.asset ? artist.mainImage : settings.ogImage)
                 .width(468)
                 .height(468)
                 .auto("format")
                 .quality(75)
                 .url()}
-              alt={artist.mainImage.caption}
+              alt={artist?.mainImage?.caption}
               width={2000}
               height={2000}
             />

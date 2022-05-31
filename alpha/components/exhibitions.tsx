@@ -71,11 +71,13 @@ export const Exhibitions: FC<Props> = ({
       <div className={`${s.exhibitionPreviewGrid} ${u.flex} ${u.mAuto}`}>
         {page.exhibitions[0] && (page.exhibitions.length === 1
           ? <ExhibitionPreview
+            fallbackImage={settings.ogImage}
             heading={labels[13].text[locale]}
             exhibition={page.exhibitions[0]}
           />
           : <>
             <ExhibitionPreview
+              fallbackImage={settings.ogImage}
               heading={labels[14].text[locale]}
               exhibition={page.exhibitions[0]}
             />
@@ -87,6 +89,7 @@ export const Exhibitions: FC<Props> = ({
         )}
         {page.futureExhibitions[0] && <>
           <ExhibitionPreview
+            fallbackImage={settings.ogImage}
             heading={labels[15].text[locale]}
             exhibition={page.futureExhibitions[0]}
           />
@@ -109,7 +112,10 @@ export const Exhibitions: FC<Props> = ({
                 href={buildUrl(locale, exhibition.slug, exhibition._type)}
               >
                 <Image
-                  src={urlFor(exhibition.mainImage)
+                  src={urlFor(
+                    exhibition.mainImage.asset
+                      ? exhibition.mainImage
+                      : settings.ogImage)
                     .width(624)
                     .height(624)
                     .auto("format")
