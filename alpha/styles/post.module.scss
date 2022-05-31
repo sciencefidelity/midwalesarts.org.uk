@@ -51,7 +51,6 @@
 }
 
 .subtitle {
-  align-self: start;
   font-size: 1.65vw;
   margin-block: 0;
   color: c.$grey-600;
@@ -82,16 +81,21 @@
   }
 }
 
+.headerLink {
+  align-self: end;
+  margin: 0;
+  @include b.mq(md) {
+    font-size: 2.5rem;
+  }
+}
+
 .body {
   margin-top: 8.1rem;
 }
 
-.h1 {
-  font-size: 4rem;
-  text-transform: unset;
+.publishedAt {
   font-weight: 500;
-  line-height: 1.2;
-  margin-block: -4rem 0rem;
+  margin-top: 6rem;
 }
 
 .postNavigation {

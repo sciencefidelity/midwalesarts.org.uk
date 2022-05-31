@@ -5,7 +5,6 @@ import { SidebarEventDate, SidebarExhibitionDate } from "components/date"
 import { LinkTo } from "components/linkTo"
 import { Label, Sidebar } from "lib/interfaces"
 import s from "styles/sidebar.module.scss"
-import u from "styles/utils.module.scss"
 
 interface Props {
   labels: Label[]

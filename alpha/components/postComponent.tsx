@@ -1,9 +1,9 @@
-import { FC, useState } from "react"
+import { FC } from "react"
 import { useRouter } from "next/router"
 import Image from "next/image"
 import { PortableText } from "@portabletext/react"
 import { components } from "components/portableTextComponents"
-import { buildUrl, localize, subdir, urlFor } from "lib/utils"
+import { buildUrl, subdir, urlFor } from "lib/utils"
 import { Layout } from "components/layout"
 import { LinkTo } from "components/linkTo"
 import { PostDate } from "components/date"
@@ -75,32 +75,30 @@ export const PostComponent: FC<Props> = ({
                 height={2000}
               />
             </div>
-            <div className={`${s.headerContent} ${u.flex}`}>
+            <div className={`${s.headerContent} ${u.grid}`}>
               <h3 className={`${s.type} ${u.uppercase}`}>
                 {post.tags[0] ? post.tags[0] : labels[50].text[locale]}
               </h3>
-              {post.publishedAt && <h2 className={`${s.subtitle}`}>
-                {labels[41].text[locale].trim()}{" "}
-                <PostDate date={post.publishedAt} />
-              </h2>}
-              <h1 className={`${s.h1}`}>{post.title}</h1>
+              <div>
+                {post.publishedAt && <h2 className={`${s.subtitle}`}>
+                  {labels[41].text[locale].trim()}{" "}
+                  <PostDate date={post.publishedAt} />
+                </h2>}
+                {post.title && <h1 className={`${s.h1}`}>{post.title}</h1>}
+              </div>
               <p
                 className={`${s.headerLink}`}
                 dangerouslySetInnerHTML={{ __html: "&nbsp;" }}
               />
             </div>
           </div>
-          {/* <h1>{labels[40].text[locale]}</h1>
-          {post.title && <h2 className={`${s.subtitle}`}>
-            {post.title.trim().replace(".", "")}.
-          </h2>} */}
           {post.body && <div className={`${s.body}`}>
             <PortableText value={post.body} components={components} />
           </div>}
-          <p>
+          {post.publishedAt && <p className={`${s.publishedAt}`}>
             {labels[41].text[locale].trim()}{" "}
-            {post.publishedAt && <PostDate date={post.publishedAt} />}
-          </p>
+            <PostDate date={post.publishedAt} />
+          </p>}
           <nav className={`${s.postNavigation} ${u.flex}`}>
             {post.prev ? <p className={`${s.prevLink}`}>
               <LinkTo

@@ -79,11 +79,13 @@ export const WorkshopComponent: FC<Props> = ({
               <h3 className={`${s.type} ${u.uppercase}`}>
                 {workshop.category ? workshop.category : labels[50].text[locale]}
               </h3>
-              {workshop.day && <h2 className={`${s.subtitle}`}>
-                <PostDate date={getNextDate(dayToNumber(workshop.day))} />{", "}
-                {workshop.startTime.toLowerCase().replace(" ", "")}
-              </h2>}
-              <h1 className={`${s.h1}`}>{workshop.title}</h1>
+              <div>
+                {workshop.day && <h2 className={`${s.subtitle}`}>
+                  <PostDate date={getNextDate(dayToNumber(workshop.day))} />{", "}
+                  {workshop.startTime.toLowerCase().replace(" ", "")}
+                </h2>}
+                {workshop.title && <h1 className={`${s.h1}`}>{workshop.title}</h1>}
+              </div>
               {workshop.briteLink ? <p className={`${s.headerLink}`}>
                 <a href={`${workshop.briteLink}`} target="blank" rel="noreferrer">
                   {labels[51].text[locale]}
