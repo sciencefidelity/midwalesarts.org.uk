@@ -40,7 +40,7 @@ export const WorkshopPreview: FC<Props> = ({ fallbackImage, workshops }) => {
               {workshop.title}
             </div>
           }
-          {<div className={`${s.caption} ${u.textRight}`}>
+          {workshop.day && <div className={`${s.caption} ${u.textRight}`}>
             <PostDate
               date={workshop.day && getNextDate(dayToNumber(workshop.day))}
             />

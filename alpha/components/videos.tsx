@@ -46,7 +46,7 @@ export const Videos: FC<Props> = ({
   return (
     <Layout
       caption={page.videos[0]?.title ? page.videos[0].title : null}
-      heroImage={page.videos[0]?.mainImage.asset ? page.videos[0].mainImage : settings.ogImage}
+      heroImage={page.videos[0]?.mainImage?.asset ? page.videos[0].mainImage : settings.ogImage}
       labels={labels}
       navigation={navigation}
       organisation={organisation}
@@ -67,7 +67,7 @@ export const Videos: FC<Props> = ({
           <div key={video._id} style={{ margin: 0 }}>
             <LinkTo href={buildUrl(locale, video.slug, video._type)}>
               <Image
-                src={urlFor(video.mainImage)
+                src={urlFor(video.mainImage ? video.mainImage : settings.ogImage)
                   .width(468)
                   .height(468)
                   .auto("format")
@@ -82,10 +82,10 @@ export const Videos: FC<Props> = ({
                   {video.title}
                 </div>
               }
-              <div className={`${s.caption} ${u.textRight}`}>
+              {video.publishDate && <div className={`${s.caption} ${u.textRight}`}>
                 {labels[18].text.trim() + " "}
-                {video.publishDate && <PostDate date={video.publishDate} />}
-              </div>
+                <PostDate date={video.publishDate} />
+              </div>}
             </LinkTo>
           </div>
         )}

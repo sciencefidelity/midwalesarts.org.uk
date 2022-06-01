@@ -53,7 +53,7 @@ export const EventPreview: FC<Props> = ({
                 {event.title}
               </div>
             }
-            {<div className={`${s.caption} ${u.textRight}`}>
+            {(event.date || event.day) && <div className={`${s.caption} ${u.textRight}`}>
               <PostDate
                 date={event.date ? event.date : getNextDate(dayToNumber(event.day))}
               />{event.startTime && ", " + event.startTime}

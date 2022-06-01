@@ -68,6 +68,7 @@ export default {
         calendarTodayLabel: 'Today'
       },
       initialValue: new Date().toISOString(),
+      validation: (Rule: Rule) => Rule.required(),
       group: 'settings'
     },
     {
