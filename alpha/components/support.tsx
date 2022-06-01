@@ -13,7 +13,7 @@ import {
   PageHead,
   Settings
 } from "lib/interfaces"
-import s from "styles/pages.module.scss"
+import s from "styles/support.module.scss"
 import u from "styles/utils.module.scss"
 
 interface Props {

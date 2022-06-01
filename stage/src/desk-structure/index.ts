@@ -138,8 +138,12 @@ const items = [
           S.listItem()
             .title('Feedback')
             .icon(SpeechBalloon)
-            .child(S.document().schemaType('feedback').documentId('feedback'))
-        ])
+            .child(S.document().schemaType('feedback').documentId('feedback')),
+          S.listItem()
+            .title('Friend')
+            .icon(Dolls)
+            .child(S.documentTypeList('friend').title('Friend'))
+        ]),
     ),
   S.listItem()
     .title('Taxonomy')
@@ -206,6 +210,7 @@ const items = [
         'event',
         'exhibition',
         'feedback',
+        'friend',
         'frontPageSection',
         'labelGroup',
         'navigation',
