@@ -8,8 +8,8 @@
   z-index: 3;
   padding: 3rem 2.6rem 2.6rem 2.8rem;
   margin-top: 0;
-  background: radial-gradient(circle at center, rgba(c.$grey-000, 0.8) 30%, transparent 50%);
   background-color: rgba(c.$grey-000, 0.6);
+  background: radial-gradient(circle at center, rgba(c.$grey-000, 0.8) 30%, transparent 50%);
   border-radius: 50%;
   @include b.mq(sm) {
     padding: 2rem 1.6rem 1.6rem 1.8rem;

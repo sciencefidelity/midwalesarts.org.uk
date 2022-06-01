@@ -33,12 +33,12 @@
   width: 19.2rem;
   height: 45rem;
   margin-top: 0;
+  background-color: rgba(c.$grey-100, 0.8);
   background:
     linear-gradient(90deg,
     rgba(c.$grey-000, 0.8) 0%,
     rgba(c.$grey-000, 0.8) 50%,
     rgba(c.$grey-000, 0) 100%);
-  background-color: rgba(c.$grey-100, 0.8);
   @include b.mq(sm) {
     height: 35rem;
   }
