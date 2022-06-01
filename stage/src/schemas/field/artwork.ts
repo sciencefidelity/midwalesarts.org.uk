@@ -43,7 +43,8 @@ export default {
       name: 'sold',
       title: 'Sold?',
       description: 'Sold artworks will not display on the artist\'s page.',
-      type: 'boolean'
+      type: 'boolean',
+      initialValue: false
     },
     {
       name: 'exhibition',
@@ -51,7 +52,19 @@ export default {
       description:
         'Before adding artworks to a new exhibition, add the exhibition in the Exhibitions section.',
       type: 'array',
-      of: [{ type: 'reference', to: { type: 'exhibition' } }]
+      of: [
+        {
+          type: 'reference',
+          to: { type: 'exhibition' },
+          options: {
+            filter: () => {
+              return {
+                filter: '__i18n_lang == "en"'
+              }
+            }
+          }
+        }
+      ]
     },
     {
       name: 'mainImage',

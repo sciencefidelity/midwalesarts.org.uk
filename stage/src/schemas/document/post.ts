@@ -71,7 +71,6 @@ export default {
         maxLength: 96,
         isUnique: isUniqueLocale
       },
-      initialValue: undefined,
       validation: (Rule: Rule) => Rule.required(),
       group: 'settings'
     },
