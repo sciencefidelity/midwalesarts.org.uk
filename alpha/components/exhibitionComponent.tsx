@@ -38,8 +38,12 @@ export const ExhibitionComponent: FC<Props> = ({
   settings
 }) => {
   const { locale } = useRouter()
-  const [info, setInfo] = useState(exhibition.works[0] ? false : true)
-  const [gallery, setGallery] = useState(exhibition.works[0] ? true : false)
+  const [info, setInfo] = useState(
+    exhibition.works[0] && exhibition.dateStart < new Date().toISOString()
+      ? false : true)
+  const [gallery, setGallery] = useState(
+    exhibition.works[0] && exhibition.dateStart < new Date().toISOString()
+      ? true : false)
   const [modal, setModal] = useState(false)
   const [imageToShow, setImageToShow] = useState(0)
   const pageHead: PageHead = {
@@ -113,12 +117,14 @@ export const ExhibitionComponent: FC<Props> = ({
             >
               <h3 className={`${s.h3}`}>{labels[34].text[locale]}</h3>
             </li>
-            {exhibition.works[0] && <li
-              onClick={toggleGallery}
-              className={`${s.tabItem} ${info ? null : s.selected} ${u.pointer}`}
-            >
-              <h3 className={`${s.h3}`}>{labels[35].text[locale]}</h3>
-            </li>}
+            {exhibition.works[0] && exhibition.dateStart < new Date().toISOString() &&
+              <li
+                onClick={toggleGallery}
+                className={`${s.tabItem} ${info ? null : s.selected} ${u.pointer}`}
+              >
+                <h3 className={`${s.h3}`}>{labels[35].text[locale]}</h3>
+              </li>
+            }
           </ul>
           <div className={`${s.info} ${info ? null : s.hidden}`}>
             {exhibition.body &&
