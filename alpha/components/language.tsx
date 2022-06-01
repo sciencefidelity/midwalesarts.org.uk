@@ -21,13 +21,13 @@ export const Language: FC<Props> = ({ pageContext }) => {
   const handleLocaleChangeRef = useRef(handleLocaleChange)
   useEffect(() => {
     handleLocaleChangeRef.current(locale)
-    setCurrentLocale(pageContext.localization.locale)
+    setCurrentLocale(pageContext.localization?.locale)
     return () => {
       isMounted.current = true
     }
   }, [currentLocale, locale, pageContext])
   return (
-    <div
+    pageContext.localization ? <div
       className={`${s.languageSwitcher} ${u.pointer} ${u.inlineBlock} ${u.relative}`}
     >
       {locale === "cy" ?
@@ -43,6 +43,9 @@ export const Language: FC<Props> = ({ pageContext }) => {
           onClick={() => handleLocaleChange(locales[1])}
         >{langs[1]}</LinkTo>
       }
-    </div>
+    </div> : <div
+      className={`${s.languageSwitcher} ${u.inlineBlock} ${u.relative} ${u.noSelect}`}
+      dangerouslySetInnerHTML={{__html: "&nbsp;"}}
+    />
   )
 }

@@ -77,7 +77,7 @@ export const PostComponent: FC<Props> = ({
             </div>
             <div className={`${s.headerContent} ${u.grid}`}>
               <h3 className={`${s.type} ${u.uppercase}`}>
-                {post.tags[0] ? post.tags[0] : labels[50].text[locale]}
+                {post.tags ? post.tags[0] : labels[40].text[locale]}
               </h3>
               <div>
                 {post.publishedAt && <h2 className={`${s.subtitle}`}>

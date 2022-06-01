@@ -45,8 +45,8 @@ export const News: FC<Props> = ({
   }
   return (
     <Layout
-      caption={page.posts[0].title}
-      heroImage={page.posts[0].image}
+      caption={page.posts[0]?.title ? page.posts[0]?.title : null}
+      heroImage={page.posts[0]?.image ? page.posts[0]?.image : settings.ogImage}
       labels={labels}
       navigation={navigation}
       organisation={organisation}

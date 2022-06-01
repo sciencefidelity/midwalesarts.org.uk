@@ -109,6 +109,11 @@
   object-fit: cover;
 }
 
+.noSelect {
+  user-select: none;
+  cursor: default;
+}
+
 .outline:focus {
   outline: 1px dotted rgba(c.$grey-650, 0.5);
 }
