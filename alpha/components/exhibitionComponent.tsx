@@ -104,19 +104,19 @@ export const ExhibitionComponent: FC<Props> = ({
       <div className={`${s.container} ${u.grid}`}>
         <div className={`${s.title}`}>
           {exhibition.title && <h1>{exhibition.title}</h1>}
-          <h2 className={`${s.subtitle}`}>
-            {exhibition.dateStart && exhibition.dateEnd && <ExhibitionDate
+          {exhibition.dateStart && exhibition.dateEnd && <h2 className={`${s.subtitle}`}>
+            <ExhibitionDate
               dateEnd={exhibition.dateEnd}
               dateStart={exhibition.dateStart}
-            />}
-          </h2>
+            />
+          </h2>}
           <ul className={`${s.tabs} ${u.flex}`}>
-            <li
+            {exhibition.body && <li
               onClick={toggleInfo}
               className={`${s.tabItem} ${info ? s.selected : null} ${u.pointer}`}
             >
               <h3 className={`${s.h3}`}>{labels[34].text[locale]}</h3>
-            </li>
+            </li>}
             {exhibition.works[0] && exhibition.dateStart < new Date().toISOString() &&
               <li
                 onClick={toggleGallery}

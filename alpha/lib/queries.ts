@@ -61,7 +61,7 @@ const exhibitionSubset = `
     && __i18n_lang == ^.__i18n_lang
     && dateTime(now()) < dateTime(dateStart)
     && ${omitDrafts}
-  ] | order(dateStart desc){
+  ] | order(dateStart asc){
     _id, _type, dateEnd, dateStart, mainImage, ${slug}, title
   },
   "pastExhibitions": *[

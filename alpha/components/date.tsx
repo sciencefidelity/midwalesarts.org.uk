@@ -37,6 +37,7 @@ export const ExhibitionDate: FC<Props> = ({ dateEnd, dateStart }) => {
   const { locale } = useRouter()
   return (
     <time dateTime={format(new Date(dateStart), "yyyy-MM-dd")}>
+      {!dateEnd && "Opening "}
       {locale === "cy"
         ? format(new Date(dateStart),
           "do MMMM",
@@ -47,17 +48,16 @@ export const ExhibitionDate: FC<Props> = ({ dateEnd, dateStart }) => {
           {locale: enGB}
         )
       }
-      {" "}{locale === "cy" ? "i" : "to"}{" "}
-      {locale === "cy"
-        ? format(new Date(dateEnd),
+      {dateEnd && (locale === "cy"
+        ? " i " + format(new Date(dateEnd),
           "do MMMM yyyy",
           {locale: cy}
         )
-        : format(new Date(dateEnd),
+        : " to " + format(new Date(dateEnd),
           "do MMMM yyyy",
           {locale: enGB}
         )
-      }
+      )}
     </time>
   )
 }

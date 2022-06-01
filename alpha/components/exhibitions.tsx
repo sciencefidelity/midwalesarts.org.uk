@@ -102,7 +102,6 @@ export const Exhibitions: FC<Props> = ({
           {page.futureExhibitions[1] && <ExhibitionPreview
             exhibition={page.futureExhibitions[1]}
             fallbackImage={settings.ogImage}
-            heading={" "}
           />}
         </>}
       </div>

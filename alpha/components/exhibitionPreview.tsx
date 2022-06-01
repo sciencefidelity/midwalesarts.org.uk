@@ -2,7 +2,7 @@ import { FC } from "react"
 import Image from "next/image"
 import { useRouter } from "next/router"
 import { buildUrl, urlFor } from "@/lib/utils"
-import ExhibitionDate from "components/exhibitionDate"
+import { ExhibitionDate } from "components/date"
 import { LinkTo } from "components/linkTo"
 import { Exhibition } from "lib/interfaces"
 import s from "styles/exhibitions.module.scss"
@@ -25,7 +25,7 @@ export const ExhibitionPreview: FC<Props> = ({
       />
       <LinkTo href={buildUrl(locale, exhibition.slug, exhibition._type)}>
         <Image
-          src={urlFor(exhibition.mainImage.asset
+          src={urlFor(exhibition.mainImage?.asset
             ? exhibition.mainImage
             : fallbackImage)
             .width(624)
@@ -40,7 +40,7 @@ export const ExhibitionPreview: FC<Props> = ({
         {exhibition &&
           <div className={`${s.caption}`}>{exhibition.title}</div>
         }
-        {exhibition && (
+        {exhibition && exhibition.dateStart && (
           <div className={`${s.caption}`}>
             <span>
               <ExhibitionDate
