@@ -105,7 +105,13 @@ export default {
           }
         }
       ],
-      hidden: ({ document }) => ['Artists', 'Events', 'Exhibitions', 'News', 'Videos'].find(e => e === document?.template),
+      hidden: ({ document }) => [
+        'Artists',
+        'Events',
+        'Exhibitions',
+        'News',
+        'Videos'
+      ].find(e => e === document?.template),
       group: 'content'
     },
     {
@@ -135,7 +141,13 @@ export default {
       name: 'body',
       title: 'Body',
       type: 'portableText',
-      hidden: ({ document }) => ['Artists', 'Events', 'Exhibitions', 'News', 'Videos'].find(e => e === document?.template),
+      hidden: ({ document }) => [
+        'Artists',
+        'Events',
+        'Exhibitions',
+        'News',
+        'Videos'
+      ].find(e => e === document?.template),
       group: 'content'
     },
     {

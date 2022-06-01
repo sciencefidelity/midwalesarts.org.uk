@@ -73,7 +73,14 @@ export default {
             { type: 'post' },
             { type: 'video' },
             { type: 'workshop' }
-          ]
+          ],
+          options: {
+            filter: () => {
+              return {
+                filter: '__i18n_lang == "en"'
+              }
+            }
+          }
         }
       ],
       group: 'body'
