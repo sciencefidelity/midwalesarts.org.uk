@@ -88,7 +88,7 @@ export const ArtistComponent: FC<Props> = ({
   }
   return (
     <Layout
-      caption={artist.mainImage?.caption ? artist.mainImage.caption : artist.title}
+      caption={artist.mainImage?.caption ? artist.mainImage.caption : null}
       heroImage={artist.mainImage?.asset ? artist.mainImage : settings.ogImage}
       labels={labels}
       navigation={navigation}
@@ -104,18 +104,18 @@ export const ArtistComponent: FC<Props> = ({
             {artist.title.trim().replace(".", "")}.
           </h2>}
           <ul className={`${s.tabs} ${u.flex}`}>
-            <li
+            {artist.works[0] && <li
               onClick={toggleGallery}
               className={`${s.tabItem} ${bio ? null : s.selected} ${u.pointer}`}
             >
               <h3 className={`${s.h3}`}>{labels[23].text[locale]}</h3>
-            </li>
-            <li
+            </li>}
+            {artist.works[0] && <li
               onClick={toggleBio}
               className={`${s.tabItem} ${bio ? s.selected : null} ${u.pointer}`}
             >
               <h3 className={`${s.h3}`}>{labels[24].text[locale]}</h3>
-            </li>
+            </li>}
           </ul>
           <div className={`${s.info} ${bio ? null : s.hidden}`}>
             {artist.body &&

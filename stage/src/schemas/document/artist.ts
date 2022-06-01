@@ -34,6 +34,7 @@ export default {
       title: 'Name',
       description: 'Artist full name.',
       type: 'string',
+      validation: (Rule: Rule) => Rule.required(),
       group: 'content'
     },
     {
