@@ -1,3 +1,4 @@
+import { Rule } from '@sanity/types'
 import { Newspaper } from '../../components/twemoji'
 
 export default {
@@ -53,6 +54,7 @@ export default {
       title: 'Call to Action',
       type: 'localeString',
       description: 'A call to action for the internal link (20 characters max).',
+      validation: (Rule: Rule) => Rule.required(),
       group: 'body'
     },
     {

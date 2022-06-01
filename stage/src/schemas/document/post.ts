@@ -12,7 +12,7 @@ export default {
   i18n,
   initialValue: {
     __i18n_lang: i18n.base,
-    __i18n_refs: [],
+    __i18n_refs: []
   },
   groups: [
     {
@@ -71,6 +71,7 @@ export default {
         maxLength: 96,
         isUnique: isUniqueLocale
       },
+      initialValue: undefined,
       validation: (Rule: Rule) => Rule.required(),
       group: 'settings'
     },
