@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, Fragment } from "react"
 import { useRouter } from "next/router"
 import Image from "next/image"
 import { buildUrl, urlFor } from "lib/utils"
@@ -47,6 +47,7 @@ export const Exhibitions: FC<Props> = ({
   let exhibitionHero: any = page.pastExhibitions[0].mainImage
   if (page.futureExhibitions[0]) exhibitionHero = page.futureExhibitions[0].mainImage
   if (page.exhibitions[0]) exhibitionHero = page.exhibitions[0].mainImage
+  const count = page.exhibitions.length + page.futureExhibitions.length
   return (
     <Layout
       caption={exhibitionHero?.caption ? exhibitionHero.caption : null}
@@ -68,46 +69,39 @@ export const Exhibitions: FC<Props> = ({
           }
         </div>
       </div>
-      <div className={`${s.exhibitionPreviewGrid} ${u.flex} ${u.mAuto}`}>
-        {page.exhibitions[0] && (page.exhibitions.length === 1
-          ? <ExhibitionPreview
-            fallbackImage={settings.ogImage}
-            heading={labels[13].text[locale]}
-            exhibition={page.exhibitions[0]}
-          />
-          : <>
+      <div className={`${s.exhibitionGrid} ${count < 3 && s.twoCols} ${u.grid} ${u.mAuto}`}>
+        {page.exhibitions[0] && page.exhibitions.map((exhibition, idx) =>
+          <Fragment key={exhibition._id}>
             <ExhibitionPreview
               fallbackImage={settings.ogImage}
-              heading={labels[14].text[locale]}
-              exhibition={page.exhibitions[0]}
+              heading={
+                idx === 0 &&
+                page.exhibitions.length === 1
+                  ? labels[13].text
+                  : labels[14].text
+              }
+              exhibition={exhibition}
             />
-            <ExhibitionPreview
-              exhibition={page.exhibitions[1]}
-              fallbackImage={settings.ogImage}
-            />
-            {page.exhibitions[2] &&
-              <ExhibitionPreview
-                exhibition={page.exhibitions[2]}
-                fallbackImage={settings.ogImage}
-              />
-            }
-          </>
+          </Fragment>
         )}
-        {page.futureExhibitions[0] && <>
-          <ExhibitionPreview
-            fallbackImage={settings.ogImage}
-            heading={labels[15].text[locale]}
-            exhibition={page.futureExhibitions[0]}
-          />
-          {page.futureExhibitions[1] && <ExhibitionPreview
-            exhibition={page.futureExhibitions[1]}
-            fallbackImage={settings.ogImage}
-          />}
-        </>}
+        {page.futureExhibitions[0] && page.futureExhibitions.map((exhibition, idx) =>
+          <Fragment key={exhibition._id}>
+            <ExhibitionPreview
+              fallbackImage={settings.ogImage}
+              heading={
+                idx === 0 &&
+                page.exhibitions.length === 1
+                  ? labels[15].text
+                  : labels[16].text
+              }
+              exhibition={exhibition}
+            />
+          </Fragment>
+        )}
       </div>
       <div className={`${s.container} ${u.grid}`} style={{ marginTop: "6rem" }}>
         <div className={`${s.title}`}>
-          <h3 className={`${s.heading}`}>{labels[16].text[locale]}</h3>
+          <h3 className={`${s.heading}`}>{labels[17].text}</h3>
         </div>
       </div>
       <div className={`${s.exhibitionGrid} ${u.grid}`}>
@@ -118,10 +112,9 @@ export const Exhibitions: FC<Props> = ({
                 href={buildUrl(locale, exhibition.slug, exhibition._type)}
               >
                 <Image
-                  src={urlFor(
-                    exhibition.mainImage.asset
-                      ? exhibition.mainImage
-                      : settings.ogImage)
+                  src={urlFor(exhibition.mainImage?.asset
+                    ? exhibition.mainImage
+                    : settings.ogImage)
                     .width(624)
                     .height(624)
                     .auto("format")

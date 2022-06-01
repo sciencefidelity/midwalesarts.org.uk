@@ -63,7 +63,7 @@ export const Events: FC<Props> = ({
       </div>
       {page.events[0] !== undefined ? (
         <EventPreview
-          heading={labels[9].text[locale]}
+          heading={labels[9].text}
           eventData={page.events}
           fallbackImage={settings.ogImage}
           marginTop={{ marginTop: "2rem" }}
@@ -74,18 +74,18 @@ export const Events: FC<Props> = ({
           style={{ marginTop: "5rem" }}
         >
           <div className={`${s.title}`}>
-            <h3 className={`${s.heading}`}>{labels[10].text[locale]}</h3>
+            <h3 className={`${s.heading}`}>{labels[10].text}</h3>
           </div>
         </div>
       )}
       {page.workshops && <EventPreview
-        heading={labels[11].text[locale]}
+        heading={labels[11].text}
         eventData={workshops}
         fallbackImage={settings.ogImage}
         marginTop={{ marginTop: "6rem" }}
       />}
       {page.pastEvents && <EventPreview
-        heading={labels[12].text[locale]}
+        heading={labels[12].text}
         eventData={page.pastEvents}
         fallbackImage={settings.ogImage}
         marginTop={{ marginTop: "6rem" }}

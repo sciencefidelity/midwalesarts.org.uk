@@ -77,7 +77,7 @@ export const EventComponent: FC<Props> = ({
             </div>
             <div className={`${s.headerContent} ${u.grid}`}>
               <h3 className={`${s.type} ${u.uppercase}`}>
-                {event.category ? event.category : labels[29].text[locale]}
+                {event.category ? event.category : labels[30].text}
               </h3>
               <div>
                 {event.date && <h2 className={`${s.subtitle}`}>
@@ -87,7 +87,7 @@ export const EventComponent: FC<Props> = ({
               </div>
               {event.briteLink ? <p className={`${s.headerLink}`}>
                 <a href={`${event.briteLink}`} target="blank" rel="noreferrer">
-                  {labels[30].text[locale]}
+                  {labels[31].text}
                 </a>
               </p>
                 : <p
@@ -103,14 +103,14 @@ export const EventComponent: FC<Props> = ({
             <p className={`${s.briteLink} ${u.textCenter}`}>
               {event.briteLink &&
                 <a href={`${event.briteLink}`} target="blank" rel="noreferrer">
-                  {labels[30].text[locale]}
+                  {labels[31].text}
                 </a>
               }
             </p>
             <div>
               <p className={`${s.backLink} ${u.textCenter}`}>
                 <LinkTo href={`/${subdir(locale, event._type)}`}>
-                  {labels[32].text[locale]}
+                  {labels[33].text}
                 </LinkTo>
               </p>
             </div>

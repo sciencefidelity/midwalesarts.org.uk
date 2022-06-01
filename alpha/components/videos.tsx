@@ -81,7 +81,7 @@ export const Videos: FC<Props> = ({
                 {video.title}
               </div>}
               <div className={`${s.caption} ${u.textRight}`}>
-                {labels[17].text[locale]}
+                {labels[18].text.trim() + " "}
                 {video.publishDate && <PostDate date={video.publishDate} />}
               </div>
             </LinkTo>

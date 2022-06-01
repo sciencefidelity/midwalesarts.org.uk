@@ -99,7 +99,7 @@ export const ArtistComponent: FC<Props> = ({
     >
       <div className={`${s.container} ${u.grid}`}>
         <div className={`${s.title}`}>
-          <h1>{labels[22].text[locale]}</h1>
+          <h1>{labels[23].text}</h1>
           {artist.title && <h2 className={`${s.subtitle}`}>
             {artist.title.trim().replace(".", "")}.
           </h2>}
@@ -108,13 +108,13 @@ export const ArtistComponent: FC<Props> = ({
               onClick={toggleGallery}
               className={`${s.tabItem} ${bio ? null : s.selected} ${u.pointer}`}
             >
-              <h3 className={`${s.h3}`}>{labels[23].text[locale]}</h3>
+              <h3 className={`${s.h3}`}>{labels[24].text}</h3>
             </li>}
             {artist.works[0] && <li
               onClick={toggleBio}
               className={`${s.tabItem} ${bio ? s.selected : null} ${u.pointer}`}
             >
-              <h3 className={`${s.h3}`}>{labels[24].text[locale]}</h3>
+              <h3 className={`${s.h3}`}>{labels[25].text}</h3>
             </li>}
           </ul>
           <div className={`${s.info} ${bio ? null : s.hidden}`}>
@@ -154,12 +154,12 @@ export const ArtistComponent: FC<Props> = ({
               {artwork.date && `(${artwork.date})`}
             </div>}
           </div>
-        )) : <p>{labels[25].text[locale]}</p>}
+        )) : <p>{labels[26].text}</p>}
       </div>
       <div className={`${s.backLink}`}>
         <p className={`${u.textCenter}`}>
           <LinkTo href={`/${subdir(locale, artist._type)}`}>
-            {labels[27].text[locale]}
+            {labels[28].text}
           </LinkTo>
         </p>
       </div>

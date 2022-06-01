@@ -77,11 +77,11 @@ export const PostComponent: FC<Props> = ({
             </div>
             <div className={`${s.headerContent} ${u.grid}`}>
               <h3 className={`${s.type} ${u.uppercase}`}>
-                {post.tags ? post.tags[0] : labels[40].text[locale]}
+                {post.tags ? post.tags[0] : labels[41].text}
               </h3>
               <div>
                 {post.publishedAt && <h2 className={`${s.subtitle}`}>
-                  {labels[41].text[locale].trim()}{" "}
+                  {labels[42].text.trim()}{" "}
                   <PostDate date={post.publishedAt} />
                 </h2>}
                 {post.title && <h1 className={`${s.h1}`}>{post.title}</h1>}
@@ -96,7 +96,7 @@ export const PostComponent: FC<Props> = ({
             <PortableText value={post.body} components={components} />
           </div>}
           {post.publishedAt && <p className={`${s.publishedAt}`}>
-            {labels[41].text[locale].trim()}{" "}
+            {labels[42].text.trim()}{" "}
             <PostDate date={post.publishedAt} />
           </p>}
           <nav className={`${s.postNavigation} ${u.flex}`}>
@@ -106,12 +106,12 @@ export const PostComponent: FC<Props> = ({
                   locale, post.prev.slug, post.prev._type
                 )}`}
               >
-                &laquo;{" "}{labels[42].text[locale]}
+                &laquo;{" "}{labels[43].text}
               </LinkTo>
             </p> : <p>{" "}</p>}
             <p className={`${s.backLink} ${u.textCenter}`}>
               <LinkTo href={`/${subdir(locale, post._type)}`}>
-                {labels[43].text[locale]}
+                {labels[44].text}
               </LinkTo>
             </p>
             {post.next ? <p className={`${s.nextLink} ${u.textRight}`}>
@@ -120,7 +120,7 @@ export const PostComponent: FC<Props> = ({
                   locale, post.next.slug, post.next._type
                 )}`}
               >
-                {labels[44].text[locale]}{" "}&raquo;
+                {labels[45].text}{" "}&raquo;
               </LinkTo>
             </p> : <p>{" "}</p>}
           </nav>

@@ -60,12 +60,12 @@ export const VideoComponent: FC<Props> = ({
     >
       <div className={`${s.container} ${u.grid}`}>
         <div className={`${s.title}`}>
-          <h1>{labels[45].text[locale]}</h1>
+          <h1>{labels[46].text}</h1>
           {video.title && <h2 className={`${s.subtitle}`}>
             {video.title.trim().replace(".", "")}.
           </h2>}
           {video.videoLink && (
-            <VideoEmbed label={labels[49].text[locale]} videoId={video.videoLink} />
+            <VideoEmbed label={labels[50].text} videoId={video.videoLink} />
           )}
           {video.body && <div className={`${s.body}`}>
             <PortableText value={video.body} components={components} />
@@ -77,12 +77,12 @@ export const VideoComponent: FC<Props> = ({
                   locale, video.prev.slug, video.prev._type
                 )}`}
               >
-                &laquo;{" "}{labels[46].text[locale]}
+                &laquo;{" "}{labels[47].text}
               </LinkTo>
             </p> : <p>{" "}</p>}
             <p className={`${s.backLink} ${u.textCenter}`}>
               <LinkTo href={`/${subdir(locale, video._type)}`}>
-                {labels[47].text[locale]}
+                {labels[48].text}
               </LinkTo>
             </p>
             {video.next ? <p className={`${s.nextLink} ${u.textRight}`}>
@@ -91,7 +91,7 @@ export const VideoComponent: FC<Props> = ({
                   locale, video.next.slug, video.next._type
                 )}`}
               >
-                {labels[48].text[locale]}{" "}&raquo;
+                {labels[49].text}{" "}&raquo;
               </LinkTo>
             </p> : <p>{" "}</p>}
           </nav>

@@ -17,7 +17,7 @@ export const SidebarComponent: FC<Props> = ({ labels, sidebar }) => {
   return (
     <aside className={`${s.sidebar}`}>
       <div className={`${s.sidebarContent}`}>
-        <h3 className={`${s.h3}`}>{labels[19].text[locale]}</h3>
+        <h3 className={`${s.h3}`}>{labels[20].text}</h3>
         <ul className={`${s.sidebarMenu}`}>
           {sidebar.events && sidebar.events.map(event =>
             event && (
@@ -35,7 +35,7 @@ export const SidebarComponent: FC<Props> = ({ labels, sidebar }) => {
             )
           )}
         </ul>
-        <h3 className={`${s.h3}`}>{labels[20].text[locale]}</h3>
+        <h3 className={`${s.h3}`}>{labels[21].text}</h3>
         <ul className={`${s.sidebarMenu}`}>
           {sidebar.exhibitions && sidebar.exhibitions.map(exhibition =>
             exhibition && (
@@ -58,7 +58,7 @@ export const SidebarComponent: FC<Props> = ({ labels, sidebar }) => {
             )
           )}
         </ul>
-        <h3 className={`${s.h3}`}>{labels[21].text[locale]}</h3>
+        <h3 className={`${s.h3}`}>{labels[22].text}</h3>
         <ul className={`${s.sidebarMenu}`}>
           {workshops && workshops.map(workshop =>
             workshop && (
@@ -76,7 +76,7 @@ export const SidebarComponent: FC<Props> = ({ labels, sidebar }) => {
             )
           )}
         </ul>
-        <h3 className={`${s.h3}`}>{labels[18].text[locale]}</h3>
+        <h3 className={`${s.h3}`}>{labels[19].text}</h3>
         <ul className={`${s.sidebarMenu}`}>
           {sidebar.posts && sidebar.posts.map(post =>
             post && (

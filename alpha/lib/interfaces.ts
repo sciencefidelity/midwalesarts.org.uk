@@ -98,7 +98,7 @@ export interface Image {
 
 export interface Label {
   key: string
-  text: LocaleString
+  text: string
 }
 
 export type Locale = "cy" | "en";

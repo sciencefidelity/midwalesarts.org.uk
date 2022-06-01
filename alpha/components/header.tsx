@@ -31,7 +31,7 @@ export const Header: FC<Props> = ({
       <header className={`${s.header} ${u.relative}`}>
         <LinkTo href="/">
           <span className={`${u.srOnly}`}>
-            {labels[0].text[locale]}
+            {labels[0].text}
           </span>
           <ColorLogo
             alt={settings.title[locale]}

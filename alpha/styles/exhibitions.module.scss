@@ -36,7 +36,7 @@
   }
 }
 
-.exhibitionPreviewGrid {
+.exhibitionGrid {
   width: 81.25%;
   @include b.mq(md) {
     flex-direction: column;
@@ -44,9 +44,9 @@
 }
 
 .exhibitionPreview {
-  width: 50%;
-  margin-top: 2rem;
-  margin-right: 3rem;
+  // width: 50%;
+  // margin-top: 2rem;
+  // margin-right: 3rem;
   @include b.mq(md) {
     width: 100%;
   }
@@ -67,6 +67,10 @@
   @include b.mq(sm) {
     grid-template-columns: 1fr;
   }
+}
+
+.twoCols {
+  grid-template-columns: 1fr 1fr;
 }
 
 .caption {

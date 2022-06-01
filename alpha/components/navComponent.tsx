@@ -57,7 +57,7 @@ export const NavComponent: FC<Props> = ({ labels, navigation, pageContext }) => 
           onClick={isActive ? menuClose : menuOpen}
           tabIndex={0}
         >
-          <span className={`${u.srOnly}`}>{labels[1].text[locale]}</span>
+          <span className={`${u.srOnly}`}>{labels[1].text}</span>
           <div
             className={`${s.hamburger} ${isActive ? s.active : null} ${u.relative}`}
           ></div>

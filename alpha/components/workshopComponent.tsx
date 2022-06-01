@@ -77,7 +77,7 @@ export const WorkshopComponent: FC<Props> = ({
             </div>
             <div className={`${s.headerContent} ${u.grid}`}>
               <h3 className={`${s.type} ${u.uppercase}`}>
-                {workshop.category ? workshop.category : labels[50].text[locale]}
+                {workshop.category ? workshop.category : labels[51].text}
               </h3>
               <div>
                 {workshop.day && <h2 className={`${s.subtitle}`}>
@@ -88,7 +88,7 @@ export const WorkshopComponent: FC<Props> = ({
               </div>
               {workshop.briteLink ? <p className={`${s.headerLink}`}>
                 <a href={`${workshop.briteLink}`} target="blank" rel="noreferrer">
-                  {labels[51].text[locale]}
+                  {labels[52].text}
                 </a>
               </p>
                 : <p
@@ -104,14 +104,14 @@ export const WorkshopComponent: FC<Props> = ({
             <p className={`${s.briteLink} ${u.textCenter}`}>
               {workshop.briteLink &&
                 <a href={`${workshop.briteLink}`} target="blank" rel="noreferrer">
-                  {labels[51].text[locale]}
+                  {labels[52].text}
                 </a>
               }
             </p>
             <div>
               <p className={`${s.backLink} ${u.textCenter}`}>
                 <LinkTo href={`/${subdir(locale, workshop._type)}`}>
-                  {labels[53].text[locale]}
+                  {labels[54].text}
                 </LinkTo>
               </p>
             </div>

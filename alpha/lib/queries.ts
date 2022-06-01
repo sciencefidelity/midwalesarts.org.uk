@@ -125,7 +125,9 @@ const heroArtist = `
 `
 
 const labels = `
-  "labels": *[_type == "labelGroup" && ${omitDrafts}][0].labels[]{ key, text{ cy, en } }
+  "labels": *[_type == "labelGroup" && ${omitDrafts}][0].labels[]{
+    key, "text": coalesce(text[$locale], text.en)
+  }
 `
 
 /*

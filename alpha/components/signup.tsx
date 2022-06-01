@@ -14,7 +14,7 @@ export const Signup: FC<Props> = ({ labels }) => {
   return (
     <div className={`${s.signup}`}>
       <div className={`${s.signupHeading}`}>
-        {labels[5].text[locale]}
+        {labels[5].text}
       </div>
       <div className={`${s.signupForm}`}>
         <form
@@ -28,7 +28,7 @@ export const Signup: FC<Props> = ({ labels }) => {
           <input
             type="text"
             name="email"
-            placeholder={labels[6].text[locale]}
+            placeholder={labels[6].text}
             className={`${s.signupInput}`}
           />
           <input
@@ -37,7 +37,7 @@ export const Signup: FC<Props> = ({ labels }) => {
             className={`${s.signupSubmit} ${u.pointer}`}
             name="subscribe"
             id="mc-embedded-subscribe"
-            alt={labels[7].text[locale]}
+            alt={labels[7].text}
           />
           <div id="mce-responses">
             <div id="mce-error-response" style={{ display: "none" }}></div>

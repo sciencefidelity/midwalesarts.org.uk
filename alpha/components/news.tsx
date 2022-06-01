@@ -81,7 +81,7 @@ export const News: FC<Props> = ({
                 <div className={`${s.caption} ${u.textRight}`}>{post.title}</div>
               }
               <div className={`${s.caption} ${u.textRight}`}>
-                {labels[17].text[locale]}
+                {labels[18].text.trim() + " "}
                 {post.publishedAt && <PostDate date={post.publishedAt} />}
               </div>
             </LinkTo>

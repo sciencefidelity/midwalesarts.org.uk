@@ -1,10 +1,10 @@
 import { FC } from "react"
 import { useRouter } from "next/router"
-import { LocaleString, Organisation, Settings } from "lib/interfaces"
+import { Organisation, Settings } from "lib/interfaces"
 import s from "styles/footer.module.scss"
 
 interface Props {
-  label: LocaleString
+  label: string
   organisation: Organisation
   settings: Settings
 }
@@ -15,7 +15,7 @@ export const FooterContact: FC<Props> = ({ label, organisation, settings }) => {
   return (
     <div>
       <p className={`${s.footerText}`}>
-        <b>{label[locale]}<br /></b>
+        <b>{label}<br /></b>
         {organisation.opening[locale]}
       </p>
       <p className={`${s.footerText}`}>
