@@ -44,8 +44,8 @@ export const Events: FC<Props> = ({
   const workshops = sortWorkshops(page.workshops)
   return (
     <Layout
-      caption={page.events[0].title}
-      heroImage={page.events[0].mainImage}
+      caption={page.events[0]?.title ? page.events[0].title : null}
+      heroImage={page.events[0]?.mainImage?.asset ? page.events[0].mainImage : settings.ogImage}
       labels={labels}
       navigation={navigation}
       pageHead={pageHead}

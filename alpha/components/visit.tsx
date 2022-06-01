@@ -48,8 +48,8 @@ export const Visit: FC<Props> = ({
   }
   return (
     <Layout
-      caption={page.mainImage.caption}
-      heroImage={page.mainImage}
+      caption={page.mainImage?.caption ? page.mainImage.caption : null}
+      heroImage={page.mainImage?.asset ? page.mainImage : settings.ogImage}
       labels={labels}
       navigation={navigation}
       organisation={organisation}

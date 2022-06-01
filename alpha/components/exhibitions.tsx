@@ -49,8 +49,8 @@ export const Exhibitions: FC<Props> = ({
   if (page.exhibitions[0]) exhibitionHero = page.exhibitions[0].mainImage
   return (
     <Layout
-      caption={exhibitionHero.caption}
-      heroImage={exhibitionHero}
+      caption={exhibitionHero?.caption ? exhibitionHero.caption : null}
+      heroImage={exhibitionHero?.asset ? exhibitionHero : settings.ogImage}
       labels={labels}
       navigation={navigation}
       organisation={organisation}
@@ -81,9 +81,15 @@ export const Exhibitions: FC<Props> = ({
               heading={labels[14].text[locale]}
               exhibition={page.exhibitions[0]}
             />
-            <ExhibitionPreview exhibition={page.exhibitions[1]} />
+            <ExhibitionPreview
+              exhibition={page.exhibitions[1]}
+              fallbackImage={settings.ogImage}
+            />
             {page.exhibitions[2] &&
-              <ExhibitionPreview exhibition={page.exhibitions[2]} />
+              <ExhibitionPreview
+                exhibition={page.exhibitions[2]}
+                fallbackImage={settings.ogImage}
+              />
             }
           </>
         )}
@@ -94,8 +100,9 @@ export const Exhibitions: FC<Props> = ({
             exhibition={page.futureExhibitions[0]}
           />
           {page.futureExhibitions[1] && <ExhibitionPreview
-            heading={" "}
             exhibition={page.futureExhibitions[1]}
+            fallbackImage={settings.ogImage}
+            heading={" "}
           />}
         </>}
       </div>

@@ -50,7 +50,7 @@ export const VideoComponent: FC<Props> = ({
   }
   return (
     <Layout
-      heroImage={video.mainImage}
+      heroImage={video.mainImage?.asset ? video.mainImage : settings.ogImage}
       labels={labels}
       navigation={navigation}
       organisation={organisation}

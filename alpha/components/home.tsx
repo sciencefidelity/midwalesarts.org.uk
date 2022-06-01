@@ -38,8 +38,8 @@ export const Home: FC<Props> = ({
   const dynamicGap = { gap: `${locale === "cy" ? "8.2rem" : "9.4rem"}` }
   return (
     <Layout
-      caption={page.mainImage.caption}
-      heroImage={page.mainImage}
+      caption={page.mainImage?.caption ? page.mainImage.caption : null}
+      heroImage={page.mainImage?.asset ? page.mainImage : settings.ogImage}
       labels={labels}
       navigation={navigation}
       organisation={organisation}

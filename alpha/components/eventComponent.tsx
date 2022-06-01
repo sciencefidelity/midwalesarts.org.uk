@@ -51,7 +51,7 @@ export const EventComponent: FC<Props> = ({
   }
   return (
     <Layout
-      heroImage={event.mainImage}
+      heroImage={event.mainImage ? event.mainImage : settings.ogImage}
       labels={labels}
       navigation={navigation}
       organisation={organisation}
@@ -64,7 +64,7 @@ export const EventComponent: FC<Props> = ({
           <div className={`${s.header} ${u.grid}`}>
             <div>
               <Image
-                src={urlFor(event.mainImage ? event.mainImage : settings.ogImage)
+                src={urlFor(event.mainImage?.asset ? event.mainImage : settings.ogImage)
                   .width(468)
                   .height(468)
                   .auto("format")

@@ -44,8 +44,8 @@ export const Artists: FC<Props> = ({
   }
   return (
     <Layout
-      caption={page.hero.mainImage.caption}
-      heroImage={page.hero.mainImage}
+      caption={page.hero.mainImage?.caption ? page.hero.mainImage.caption : null}
+      heroImage={page.hero.mainImage?.asset ? page.hero.mainImage : settings.ogImage}
       labels={labels}
       navigation={navigation}
       organisation={organisation}

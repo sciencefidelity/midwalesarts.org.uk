@@ -92,8 +92,8 @@ export const ExhibitionComponent: FC<Props> = ({
     : {}
   return (
     <Layout
-      caption={exhibition.mainImage.caption}
-      heroImage={exhibition.mainImage}
+      caption={exhibition.mainImage?.caption ? exhibition.mainImage.caption : null}
+      heroImage={exhibition.mainImage?.asset ? exhibition.mainImage : settings.ogImage}
       labels={labels}
       navigation={navigation}
       organisation={organisation}

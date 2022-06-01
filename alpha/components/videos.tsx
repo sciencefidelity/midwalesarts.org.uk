@@ -45,8 +45,8 @@ export const Videos: FC<Props> = ({
   }
   return (
     <Layout
-      caption={page.videos[0].title}
-      heroImage={page.videos[0].mainImage}
+      caption={page.videos[0]?.title ? page.videos[0].title : null}
+      heroImage={page.videos[0]?.mainImage.asset ? page.videos[0].mainImage : settings.ogImage}
       labels={labels}
       navigation={navigation}
       organisation={organisation}

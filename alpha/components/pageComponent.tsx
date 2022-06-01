@@ -44,7 +44,7 @@ export const PageComponent: FC<Props> = ({
   }
   return (
     <Layout
-      heroImage={page.mainImage}
+      heroImage={page.mainImage?.asset ? page.mainImage : settings.ogImage}
       labels={labels}
       navigation={navigation}
       organisation={organisation}

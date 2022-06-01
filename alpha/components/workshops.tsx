@@ -52,9 +52,10 @@ export const Workshops: FC<Props> = ({
       return dayToNumber(workshop.day) === i
     })
   }
+  console.log(page)
   return (
     <Layout
-      heroImage={page.mainImage}
+      heroImage={page.mainImage?.asset ? page.mainImage : settings.ogImage}
       labels={labels}
       navigation={navigation}
       organisation={organisation}

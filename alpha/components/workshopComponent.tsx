@@ -51,7 +51,7 @@ export const WorkshopComponent: FC<Props> = ({
   }
   return (
     <Layout
-      heroImage={workshop.mainImage}
+      heroImage={workshop.mainImage?.asset ? workshop.mainImage : settings.ogImage}
       labels={labels}
       navigation={navigation}
       organisation={organisation}

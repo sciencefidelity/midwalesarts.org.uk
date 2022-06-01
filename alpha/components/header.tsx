@@ -45,7 +45,7 @@ export const Header: FC<Props> = ({
         >
           <SanityImage
             alt={caption}
-            image={heroImage?.asset ? heroImage : settings.ogImage}
+            image={heroImage}
             width={1600} />
         </div>
       </header>

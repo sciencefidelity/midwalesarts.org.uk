@@ -88,8 +88,8 @@ export const ArtistComponent: FC<Props> = ({
   }
   return (
     <Layout
-      caption={artist.mainImage.caption}
-      heroImage={artist.mainImage}
+      caption={artist.mainImage?.caption ? artist.mainImage.caption : artist.title}
+      heroImage={artist.mainImage?.asset ? artist.mainImage : settings.ogImage}
       labels={labels}
       navigation={navigation}
       organisation={organisation}
