@@ -54,9 +54,7 @@
   visibility: hidden;
   background-color: rgba(c.$grey-000, 0.8);
   border-radius: 50%;
-  transition: clip-path 1s ease-out, visibility 0s;
-  transition-property: clip-path, visibility;
-  transition-delay: 0s, 1s;
+  transition: clip-path 1s ease-out 0s, visibility 0s 1s;
   @include b.mq(sm) {
     left: calc(4.8rem - 200vw);
     width: calc(200vw * 2);

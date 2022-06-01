@@ -265,7 +265,10 @@ const exhibition = `
   ][0]{
     __i18n_lang, _type, ${body}, dateEnd, dateStart, mainImage, ${seo},
     title, ${localizationNested},
-    "works": *[_type == "artwork" && references(^._id)]{
+    "works": *[
+      _type == "artwork"
+      && (references(^._id) || references(^.__i18n_base->._id))
+    ]{
       artist, mainImage, medium, price, title
     }
   }

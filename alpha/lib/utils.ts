@@ -1,7 +1,7 @@
 import imageUrlBuilder from "@sanity/image-url"
 import sanityClient from "lib/sanityClient"
 import { LocaleString } from "lib/interfaces"
-import { Artist, Image, Workshop } from "lib/interfaces"
+import { Artist, Artwork, Image, Workshop } from "lib/interfaces"
 
 export const buildUrl = (locale: string, slug: string, type: string): string => {
   return `${subdir(locale, type)}/${slug}`
@@ -87,6 +87,15 @@ export const sortArtists = (artists: Artist[]): Artist[] => {
       .trim()
       .replace(/(^\b\w+\s)/gi, "")
       .localeCompare(b.title.trim().replace(/(^\b\w+\s)/gi, ""))
+  })
+}
+
+export const sortArtworks = (artists: Artwork[]): Artwork[] => {
+  return artists.sort((a, b) => {
+    return a.artist
+      .trim()
+      .replace(/(^\b\w+\s)/gi, "")
+      .localeCompare(b.artist.trim().replace(/(^\b\w+\s)/gi, ""))
   })
 }
 

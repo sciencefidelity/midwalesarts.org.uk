@@ -135,16 +135,16 @@ export const ArtistComponent: FC<Props> = ({
             className={`${u.pointer}`}
           >
             <Image
-              src={urlFor(artwork.mainImage)
+              src={urlFor(artwork.mainImage ? artwork.mainImage : settings.ogImage)
                 .width(468)
                 .height(468)
                 .auto("format")
                 .quality(75)
                 .url()}
               alt={`
-                ${artist.title}${", "}
-                ${localize(artwork.title, locale)}${", "}
-                ${artwork.date}
+                ${artist.title && artist.title + ", "}
+                ${artwork.title && localize(artwork.title, locale) + ", "}
+                ${artwork.date && artwork.date}
               `}
               width={2000}
               height={2000}
@@ -165,9 +165,10 @@ export const ArtistComponent: FC<Props> = ({
       </div>
       {artist.works[0] !== undefined ? (
         <Modal
+          closeModal={closeModal}
+          fallbackImage={settings.ogImage}
           modal={modal}
           modalImage={modalImage}
-          closeModal={closeModal}
           prevIndex={prevIndex}
           nextIndex={nextIndex}
         />

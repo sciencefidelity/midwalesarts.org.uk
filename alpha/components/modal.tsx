@@ -1,20 +1,21 @@
 import { FC, MouseEventHandler } from "react"
 import { useRouter } from "next/router"
 import { localize, urlFor } from "lib/utils"
-import { Artwork } from "lib/interfaces"
+import { Artwork, Image } from "lib/interfaces"
 import s from "styles/artist.module.scss"
 import u from "styles/utils.module.scss"
 
 interface Props {
+  closeModal: MouseEventHandler<HTMLDivElement>
+  fallbackImage: Image
   modal: boolean
   modalImage: Artwork | Record<string, never>
-  closeModal: MouseEventHandler<HTMLDivElement>
   prevIndex: MouseEventHandler<HTMLDivElement>
   nextIndex: MouseEventHandler<HTMLDivElement>
 }
 
 export const Modal: FC<Props> = ({
-  modal, modalImage, closeModal, prevIndex, nextIndex
+  closeModal, fallbackImage, modal, modalImage, prevIndex, nextIndex
 }) => {
   const { locale } = useRouter()
   // const aspect = modalImage.aspect
@@ -48,15 +49,15 @@ export const Modal: FC<Props> = ({
       <div className={`${s.modalImageContiner} ${u.mAuto}`}>
         <div className={`${s.modalImageWrapper} ${u.relative}`}>
           <img
-            src={urlFor(modalImage.mainImage)
+            src={urlFor(modalImage?.mainImage ? modalImage?.mainImage : fallbackImage)
               .width(893)
               .auto("format")
               .quality(75)
               .url()}
             alt={`
-              ${modalImage.artist}${", "}
-              ${modalImage.title}${", "}
-              ${modalImage.date}
+              ${modalImage?.artist && modalImage.artist + ", "}
+              ${modalImage?.title && modalImage.title + ", "}
+              ${modalImage?.date && modalImage.date}
             `}
             style={{
               objectFit: "cover",
@@ -66,12 +67,11 @@ export const Modal: FC<Props> = ({
           />
         </div>
         <p className={`${s.modalCaption} ${u.textRight}`}>
-          <em>{modalImage.title && localize(modalImage.title, locale)}</em>,
-          {" "}{modalImage.artist}
+          <em>{modalImage.title && localize(modalImage.title, locale) + ", "}</em>
+          {modalImage.artist}
         </p>
         <p className={`${s.modalCaption} ${u.textRight}`}>
-          {modalImage.medium && localize(modalImage.medium, locale)},
-          {" "}{modalImage.price}
+          {modalImage.medium && localize(modalImage.medium, locale) + ", "}{modalImage.price}
         </p>
       </div>
     </div>

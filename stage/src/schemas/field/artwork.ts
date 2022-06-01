@@ -1,3 +1,4 @@
+import { Rule } from '@sanity/types'
 import { Art } from '../../components/twemoji'
 
 export default {
@@ -14,7 +15,8 @@ export default {
     {
       name: 'artist',
       title: 'Artist',
-      type: 'string'
+      type: 'string',
+      validation: (Rule: Rule) => Rule.required()
     },
     {
       name: 'medium',

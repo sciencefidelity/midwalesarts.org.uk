@@ -3,7 +3,7 @@ import { useRouter } from "next/router"
 import Image from "next/image"
 import { PortableText } from "@portabletext/react"
 import { components } from "components/portableTextComponents"
-import { buildUrl, localize, subdir, urlFor } from "lib/utils"
+import { buildUrl, localize, sortArtworks, subdir, urlFor } from "lib/utils"
 import { ExhibitionDate } from "components/date"
 import { Layout } from "components/layout"
 import { LinkTo } from "components/linkTo"
@@ -137,7 +137,7 @@ export const ExhibitionComponent: FC<Props> = ({
         className={`${s.imageGrid}  ${gallery ? null : s.hidden} ${u.grid}`}
       >
         {exhibition.works ?
-          (exhibition.works.map((artwork, index) =>
+          (sortArtworks(exhibition.works).map((artwork, index) =>
             artwork && (<div
               style={{ margin: 0 }}
               key={artwork._id}
@@ -145,16 +145,16 @@ export const ExhibitionComponent: FC<Props> = ({
               className={`${u.pointer}`}
             >
               <Image
-                src={urlFor(artwork.mainImage)
+                src={urlFor(artwork.mainImage ? artwork.mainImage : settings.ogImage)
                   .width(468)
                   .height(468)
                   .auto("format")
                   .quality(75)
                   .url()}
                 alt={`
-                  ${artwork.artist}${", "}
-                  ${localize(artwork.title, locale)}${", "}
-                  ${artwork.date}
+                  ${artwork.artist && artwork.artist + ", "}
+                  ${artwork.title && localize(artwork.title, locale) + ", "}
+                  ${artwork.date && artwork.date}
                 `}
                 width={2000}
                 height={2000}
@@ -167,9 +167,7 @@ export const ExhibitionComponent: FC<Props> = ({
               </div>}
             </div>)
           )) :
-          (<p>
-            {labels[36].text[locale]}
-          </p>)
+          (<p>{labels[36].text[locale]}</p>)
         }
       </div>
       <div>
@@ -181,9 +179,10 @@ export const ExhibitionComponent: FC<Props> = ({
       </div>
       {exhibition.works[0] !== undefined ? (
         <Modal
+          closeModal={closeModal}
+          fallbackImage={settings.ogImage}
           modal={modal}
           modalImage={modalImage}
-          closeModal={closeModal}
           prevIndex={prevIndex}
           nextIndex={nextIndex}
         />
