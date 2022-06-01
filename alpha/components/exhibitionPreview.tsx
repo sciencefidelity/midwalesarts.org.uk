@@ -6,6 +6,7 @@ import { ExhibitionDate } from "components/date"
 import { LinkTo } from "components/linkTo"
 import { Exhibition } from "lib/interfaces"
 import s from "styles/exhibitions.module.scss"
+import u from "styles/utils.module.scss"
 
 interface Props {
   fallbackImage: any
@@ -41,11 +42,11 @@ export const ExhibitionPreview: FC<Props> = ({
           width={2000}
           height={2000}
         />
-        {exhibition &&
-          <div className={`${s.caption}`}>{exhibition.title}</div>
-        }
+        {exhibition && <div className={`${s.caption} ${u.textRight} ${u.semibold}`}>
+          {exhibition.title}
+        </div>}
         {exhibition && exhibition.dateStart && (
-          <div className={`${s.caption}`}>
+          <div className={`${s.caption} ${u.textRight}`}>
             <span>
               <ExhibitionDate
                 dateEnd={exhibition.dateEnd}

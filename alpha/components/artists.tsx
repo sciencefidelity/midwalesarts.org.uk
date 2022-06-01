@@ -79,7 +79,7 @@ export const Artists: FC<Props> = ({
               width={2000}
               height={2000}
             />
-            {artist.title && <div className={`${s.caption} ${u.textRight}`}>
+            {artist.title && <div className={`${s.caption} ${u.textRight} ${u.semibold}`}>
               {artist.title}
             </div>}
             {artist.disciplines && <div className={`${s.caption} ${u.textRight}`}>

@@ -77,9 +77,11 @@ export const Videos: FC<Props> = ({
                 width={2000}
                 height={2000}
               />
-              {video.title && <div className={`${s.caption} ${u.textRight}`}>
-                {video.title}
-              </div>}
+              {video.title &&
+                <div className={`${s.caption} ${u.textRight} ${u.semibold}`}>
+                  {video.title}
+                </div>
+              }
               <div className={`${s.caption} ${u.textRight}`}>
                 {labels[18].text.trim() + " "}
                 {video.publishDate && <PostDate date={video.publishDate} />}

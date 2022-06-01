@@ -50,15 +50,6 @@
   }
 }
 
-// .exhibitionPreview {
-//   @include b.mq(md) {
-//     width: 100%;
-//   }
-//   &:last-child {
-//     margin-right: 0;
-//   }
-// }
-
 .twoCols {
   grid-template-columns: 1fr 1fr;
 }
@@ -70,12 +61,11 @@
 .caption {
   font-size: 1.8rem;
   color: c.$grey-550;
-  &:first-of-type {
-    margin-block: 0.88em 0.48em;
-    font-weight: 500;
-    line-height: 1.4;
-  }
   &:last-of-type {
     margin-block: 0.48em 1em;
+  }
+  &:first-of-type {
+    margin-block: 0.88em 0.48em;
+    line-height: 1.4;
   }
 }

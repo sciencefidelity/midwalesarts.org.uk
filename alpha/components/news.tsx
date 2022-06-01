@@ -78,7 +78,9 @@ export const News: FC<Props> = ({
                 height={2000}
               />
               {post.title &&
-                <div className={`${s.caption} ${u.textRight}`}>{post.title}</div>
+                <div className={`${s.caption} ${u.textRight} ${u.semibold}`}>
+                  {post.title}
+                </div>
               }
               <div className={`${s.caption} ${u.textRight}`}>
                 {labels[18].text.trim() + " "}

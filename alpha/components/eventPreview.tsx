@@ -49,7 +49,7 @@ export const EventPreview: FC<Props> = ({
               height={2000}
             />
             {event.title &&
-              <div className={`${s.caption} ${u.textRight}`}>
+              <div className={`${s.caption} ${u.textRight} ${u.semibold}`}>
                 {event.title}
               </div>
             }

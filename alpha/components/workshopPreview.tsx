@@ -36,14 +36,17 @@ export const WorkshopPreview: FC<Props> = ({ fallbackImage, workshops }) => {
             height={2000}
           />
           {workshop.title &&
-            <div className={`${s.caption} ${u.textRight}`}>
+            <div className={`${s.caption} ${u.textRight} ${u.semibold}`}>
               {workshop.title}
             </div>
           }
           {<div className={`${s.caption} ${u.textRight}`}>
             <PostDate
               date={workshop.day && getNextDate(dayToNumber(workshop.day))}
-            />{workshop.startTime && ", " + workshop.startTime.toLowerCase().replace(/\s/g, "")}
+            />
+            {workshop.startTime
+              && ", " + workshop.startTime.toLowerCase().replace(/\s/g, "")
+            }
           </div>}
         </LinkTo>
       ))}
