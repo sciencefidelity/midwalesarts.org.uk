@@ -1,11 +1,7 @@
 import { FC, Fragment } from "react"
 import { useRouter } from "next/router"
-import Image from "next/image"
-import { buildUrl, urlFor } from "lib/utils"
-import { ExhibitionDate } from "components/date"
 import { ExhibitionPreview } from "components/exhibitionPreview"
 import { Layout } from "components/layout"
-import { LinkTo } from "components/linkTo"
 import {
   Label,
   Navigation,
@@ -59,7 +55,7 @@ export const Exhibitions: FC<Props> = ({
       pageHead={pageHead}
       settings={settings}
     >
-      <div className={`${s.container} ${u.grid}`}>
+      <header className={`${s.container} ${u.grid}`}>
         <div className={`${s.title}`}>
           {page.title && <h1>{page.title}</h1>}
           {page.subtitle &&
@@ -68,19 +64,23 @@ export const Exhibitions: FC<Props> = ({
             </h2>
           }
         </div>
-      </div>
-      <div className={`${s.exhibitionGrid} ${count < 3 && s.twoCols} ${u.grid} ${u.mAuto}`}>
+      </header>
+      <section className={`
+        ${s.exhibitionGrid} ${count < 3 && s.twoCols} ${u.grid} ${u.mAuto}`
+      }>
         {page.exhibitions[0] && page.exhibitions.map((exhibition, idx) =>
           <Fragment key={exhibition._id}>
             <ExhibitionPreview
               fallbackImage={settings.ogImage}
               heading={
                 idx === 0 &&
-                page.exhibitions.length === 1
+                (page.exhibitions.length === 1
                   ? labels[13].text
-                  : labels[14].text
+                  : labels[14].text)
               }
               exhibition={exhibition}
+              label={labels[56].text}
+              margin={page.futureExhibitions[0] && idx >= 3 ? "6rem" : "0"}
             />
           </Fragment>
         )}
@@ -90,54 +90,29 @@ export const Exhibitions: FC<Props> = ({
               fallbackImage={settings.ogImage}
               heading={
                 idx === 0 &&
-                page.exhibitions.length === 1
+                (page.futureExhibitions.length === 1
                   ? labels[15].text
-                  : labels[16].text
+                  : labels[16].text)
               }
               exhibition={exhibition}
+              label={labels[56].text}
+              margin={page.exhibitions.length >= 3 ? "6rem" : "0"}
             />
           </Fragment>
         )}
-      </div>
-      <div className={`${s.container} ${u.grid}`} style={{ marginTop: "6rem" }}>
-        <div className={`${s.title}`}>
-          <h3 className={`${s.heading}`}>{labels[17].text}</h3>
-        </div>
-      </div>
-      <div className={`${s.exhibitionGrid} ${u.grid}`}>
-        {page.pastExhibitions && page.pastExhibitions.map(exhibition =>
-          exhibition && (
-            <div key={exhibition._id} style={{ margin: 0 }}>
-              <LinkTo
-                href={buildUrl(locale, exhibition.slug, exhibition._type)}
-              >
-                <Image
-                  src={urlFor(exhibition.mainImage?.asset
-                    ? exhibition.mainImage
-                    : settings.ogImage)
-                    .width(624)
-                    .height(624)
-                    .auto("format")
-                    .quality(75)
-                    .url()}
-                  alt={exhibition.title}
-                  width={2000}
-                  height={2000}
-                />
-                <div className={`${s.caption} ${u.textRight}`}>
-                  {exhibition.title}
-                </div>
-                <div className={`${s.caption} ${u.textRight}`}>
-                  <ExhibitionDate
-                    dateEnd={exhibition.dateEnd}
-                    dateStart={exhibition.dateStart}
-                  />
-                </div>
-              </LinkTo>
-            </div>
-          )
+      </section>
+      <section className={`${s.exhibitionGrid} ${s.pastExhibitions} ${u.grid}`}>
+        {page.pastExhibitions[0] && page.pastExhibitions.map((exhibition, idx) =>
+          <Fragment key={exhibition._id}>
+            <ExhibitionPreview
+              fallbackImage={settings.ogImage}
+              heading={idx === 0 && labels[17].text}
+              exhibition={exhibition}
+              label={labels[56].text}
+            />
+          </Fragment>
         )}
-      </div>
+      </section>
     </Layout>
   )
 }

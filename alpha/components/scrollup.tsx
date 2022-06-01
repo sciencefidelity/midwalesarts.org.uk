@@ -1,12 +1,11 @@
 import { FC } from "react"
 import { useRouter } from "next/router"
 import { LinkTo } from "components/linkTo"
-import { LocaleString } from "lib/interfaces"
 import s from "styles/layout.module.scss"
 import u from "styles/utils.module.scss"
 
 interface Props {
-  label: LocaleString
+  label: string
 }
 // TODO: change icon to svg
 export const Scrollup: FC<Props> = ({ label }) => {

@@ -37,28 +37,9 @@
 }
 
 .exhibitionGrid {
-  width: 81.25%;
-  @include b.mq(md) {
-    flex-direction: column;
-  }
-}
-
-.exhibitionPreview {
-  // width: 50%;
-  // margin-top: 2rem;
-  // margin-right: 3rem;
-  @include b.mq(md) {
-    width: 100%;
-  }
-  &:last-child {
-    margin-right: 0;
-  }
-}
-
-.exhibitionGrid {
   z-index: 5;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 3rem;
+  gap: 0 3rem;
   width: 81.25%;
   margin: auto;
   @include b.mq(lg) {
@@ -69,8 +50,21 @@
   }
 }
 
+// .exhibitionPreview {
+//   @include b.mq(md) {
+//     width: 100%;
+//   }
+//   &:last-child {
+//     margin-right: 0;
+//   }
+// }
+
 .twoCols {
   grid-template-columns: 1fr 1fr;
+}
+
+.pastExhibitions {
+  margin-top: 6rem;
 }
 
 .caption {
@@ -82,6 +76,6 @@
     line-height: 1.4;
   }
   &:last-of-type {
-    margin-block: 0.48em 1.3em;
+    margin-block: 0.48em 1em;
   }
 }

@@ -7,6 +7,7 @@ interface Props {
   date?: string | Date
   dateEnd?: string
   dateStart?: string
+  label?: string
 }
 
 const year = new Date().getFullYear()
@@ -33,11 +34,11 @@ export const EventDate: FC<Props> = ({ date }) => {
 
 // 4th November to 19th December 2021
 //4ydd Tachwedd i 19eg Rhagfyr 2021
-export const ExhibitionDate: FC<Props> = ({ dateEnd, dateStart }) => {
+export const ExhibitionDate: FC<Props> = ({ dateEnd, dateStart, label }) => {
   const { locale } = useRouter()
   return (
     <time dateTime={format(new Date(dateStart), "yyyy-MM-dd")}>
-      {!dateEnd && "Opening "}
+      {!dateEnd && label && label.trim() + " "}
       {locale === "cy"
         ? format(new Date(dateStart),
           "do MMMM",

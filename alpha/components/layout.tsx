@@ -56,6 +56,7 @@ export const Layout: FC<Props> = ({
       <div className={`${u.guide} ${u.two}`}></div>
       <div className={`${u.guide} ${u.three}`}></div>
       <div className={`${u.guide} ${u.four}`}></div>
+      <div className={`${u.guide} ${u.five}`}></div>
       <main>
         {children}
         <Scrollup label={labels[8].text} />

@@ -11,14 +11,18 @@ interface Props {
   fallbackImage: any
   exhibition: Exhibition
   heading?: string
+  label: string
+  margin?: string
 }
 
+// const margin = "6rem"
+
 export const ExhibitionPreview: FC<Props> = ({
-  exhibition, fallbackImage, heading
+  exhibition, fallbackImage, heading, label, margin
 }) => {
   const { locale } = useRouter()
   return (
-    <div className={`${s.exhibitionPreview}`}>
+    <div style={ margin && { marginTop: margin }}>
       <h3
         className={`${s.heading}`}
         dangerouslySetInnerHTML={{__html: heading ? heading : "&nbsp;"}}
@@ -46,6 +50,7 @@ export const ExhibitionPreview: FC<Props> = ({
               <ExhibitionDate
                 dateEnd={exhibition.dateEnd}
                 dateStart={exhibition.dateStart}
+                label={label}
               />
             </span>
           </div>
