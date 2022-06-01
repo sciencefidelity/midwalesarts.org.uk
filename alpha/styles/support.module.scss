@@ -28,3 +28,21 @@
 .body {
   margin-top: 8.1rem;
 }
+
+.friendForm {
+  margin-top: 6rem;
+  label,
+  input,
+  textarea,
+  button {
+    font-size: 2.2rem;
+    line-height: 1.4;
+  }
+
+  input,
+  textarea {
+    border-bottom: 2px solid c.$grey-550;
+    margin-bottom: 1rem;
+    width: 100%;
+  }
+}

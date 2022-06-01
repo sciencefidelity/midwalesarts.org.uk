@@ -41,12 +41,12 @@ export default {
       type: 'string'
     },
     {
-      name: 'addressL1',
+      name: 'address1',
       title: 'Address line 1',
       type: 'string'
     },
     {
-      name: 'addressL2',
+      name: 'address2',
       title: 'Address line 2',
       type: 'string'
     },

@@ -2,6 +2,7 @@ import { FC } from "react"
 import { useRouter } from "next/router"
 import { PortableText } from "@portabletext/react"
 import { components } from "components/portableTextComponents"
+import { FriendForm } from "components/friendForm"
 import { Layout } from "components/layout"
 import { SidebarComponent } from "components/sidebarComponent"
 import {
@@ -59,6 +60,7 @@ export const Support: FC<Props> = ({
           {page.body && <div className={`${s.body}`}>
             <PortableText value={page.body} components={components} />
           </div>}
+          <FriendForm />
         </section>
         <SidebarComponent labels={labels} sidebar={page.sidebar} />
       </div>
