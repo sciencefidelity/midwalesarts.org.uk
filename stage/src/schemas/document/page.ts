@@ -178,7 +178,7 @@ export default {
           }
         }
       },
-      validation: (Rule: Rule) => Rule.required(),
+      // validation: (Rule: Rule) => Rule.required(),
       hidden: ({ document }) => document?.template !== 'Home',
       group: 'links'
     },
