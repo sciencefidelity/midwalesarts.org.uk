@@ -198,7 +198,6 @@ export const FriendForm: FC = () => {
         If this is a gift, please write a message to the recipient below...
       </label>
       <textarea
-        type="submit"
         value={message}
         onChange={e => {setMessage(e.target.value)}}
         name="comment"
