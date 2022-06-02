@@ -1,10 +1,7 @@
-import { FC } from "react"
+import { FC, useEffect, useState } from "react"
 import { useRouter } from "next/router"
-import Image from "next/image"
-import { buildUrl, urlFor } from "@/lib/utils"
 import { Layout } from "components/layout"
-import { LinkTo } from "components/linkTo"
-import { PostDate } from "components/date"
+import { PostsList } from "components/postsList"
 import {
   Label,
   Navigation,
@@ -35,6 +32,8 @@ export const News: FC<Props> = ({
   settings
 }) => {
   const { locale } = useRouter()
+  const [postsToShow, setPostsToShow] = useState([])
+  const [postsPerPage, setPostsPerPage] = useState(12)
   const pageHead: PageHead = {
     title: page.title,
     description: page.ogDescription,
@@ -43,6 +42,20 @@ export const News: FC<Props> = ({
     ogURL: `${settings.canonicalURL}${locale === "cy" ? "/cy" : ""}/${page.slug}`,
     ogImage: page.ogImage
   }
+
+  function loopWithSlice(start, end) {
+    const slicedPosts = page.posts.slice(start, end)
+    setPostsToShow(slicedPosts)
+  }
+
+  useEffect(() => {
+    loopWithSlice(0, postsPerPage)
+  }, [postsPerPage])
+
+  function handleShowMorePosts() {
+    setPostsPerPage(prevPostsPerPage => prevPostsPerPage + 9)
+  }
+
   return (
     <Layout
       caption={page.posts[0]?.title ? page.posts[0]?.title : null}
@@ -62,34 +75,17 @@ export const News: FC<Props> = ({
           </h2>}
         </div>
       </div>
-      <div className={`${s.imageGrid} ${u.grid}`}>
-        {page.posts && page.posts.map(post => post && (
-          <div key={post._id} style={{ margin: 0 }}>
-            <LinkTo href={buildUrl(locale, post.slug, post._type)}>
-              <Image
-                src={urlFor(post.image ? post.image : settings.ogImage)
-                  .width(468)
-                  .height(468)
-                  .auto("format")
-                  .quality(75)
-                  .url()}
-                alt={post.title}
-                width={2000}
-                height={2000}
-              />
-              {post.title &&
-                <div className={`${s.caption} ${u.textRight} ${u.semibold}`}>
-                  {post.title}
-                </div>
-              }
-              <div className={`${s.caption} ${u.textRight}`}>
-                {labels[18].text.trim() + " "}
-                {post.publishedAt && <PostDate date={post.publishedAt} />}
-              </div>
-            </LinkTo>
-          </div>
-        ))}
-      </div>
+      <PostsList
+        fallbackImage={settings.ogImage}
+        label={labels[18].text.trim() + " "}
+        posts={postsToShow}
+      />
+      {postsToShow.length < page.posts.length && <button
+        onClick={handleShowMorePosts}
+        className={`${s.loadMore} ${u.pointer}`}
+      >
+        {labels[84].text}
+      </button>}
     </Layout>
   )
 }
