@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, useEffect, useState } from "react"
 import { useRouter } from "next/router"
 import { sortWorkshops } from "lib/utils"
 import { EventPreview } from "components/eventPreview"
@@ -32,6 +32,8 @@ export const Events: FC<Props> = ({
   pageContext,
   settings
 }) => {
+  const [pastEventsToShow, setPastEventsToShow] = useState([])
+  const [pastEventsPerPage, setPastEventsPerPage] = useState(6)
   const { locale } = useRouter()
   const pageHead: PageHead = {
     title: page.title,
@@ -42,6 +44,16 @@ export const Events: FC<Props> = ({
     ogImage: page.ogImage
   }
   const workshops = sortWorkshops(page.workshops)
+  function loopWithSlice(start, end) {
+    const slicedPosts = page.pastEvents.slice(start, end)
+    setPastEventsToShow(slicedPosts)
+  }
+  useEffect(() => {
+    loopWithSlice(0, pastEventsPerPage)
+  }, [pastEventsPerPage])
+  function handleShowMoreEvents() {
+    setPastEventsPerPage(prevEventsPerPage => prevEventsPerPage + 9)
+  }
   return (
     <Layout
       caption={page.events[0]?.title ? page.events[0].title : null}
@@ -86,10 +98,16 @@ export const Events: FC<Props> = ({
       />}
       {page.pastEvents && <EventPreview
         heading={labels[12].text}
-        eventData={page.pastEvents}
+        eventData={pastEventsToShow}
         fallbackImage={settings.ogImage}
         marginTop={{ marginTop: "6rem" }}
       />}
+      {pastEventsToShow.length < page.pastEvents.length && <button
+        onClick={handleShowMoreEvents}
+        className={`${s.loadMore} ${u.pointer}`}
+      >
+        {labels[84].text}
+      </button>}
     </Layout>
   )
 }

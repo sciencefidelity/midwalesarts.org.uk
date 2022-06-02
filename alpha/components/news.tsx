@@ -31,9 +31,9 @@ export const News: FC<Props> = ({
   pageContext,
   settings
 }) => {
-  const { locale } = useRouter()
   const [postsToShow, setPostsToShow] = useState([])
   const [postsPerPage, setPostsPerPage] = useState(12)
+  const { locale } = useRouter()
   const pageHead: PageHead = {
     title: page.title,
     description: page.ogDescription,
@@ -42,20 +42,16 @@ export const News: FC<Props> = ({
     ogURL: `${settings.canonicalURL}${locale === "cy" ? "/cy" : ""}/${page.slug}`,
     ogImage: page.ogImage
   }
-
   function loopWithSlice(start, end) {
     const slicedPosts = page.posts.slice(start, end)
     setPostsToShow(slicedPosts)
   }
-
   useEffect(() => {
     loopWithSlice(0, postsPerPage)
   }, [postsPerPage])
-
   function handleShowMorePosts() {
     setPostsPerPage(prevPostsPerPage => prevPostsPerPage + 9)
   }
-
   return (
     <Layout
       caption={page.posts[0]?.title ? page.posts[0]?.title : null}
