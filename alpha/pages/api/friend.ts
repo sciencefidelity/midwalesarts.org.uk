@@ -1,6 +1,6 @@
 import sanityClient from "@sanity/client"
 
-async function sendComment(req, res) {
+async function sendFriendForm(req, res) {
   const client = sanityClient({
     projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "",
     dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || "production",
@@ -10,17 +10,22 @@ async function sendComment(req, res) {
   })
   const doc = {
     _type: "friend",
-    title: req.body.title,
-    name: req.body.name,
-    surname: req.body.surname,
-    friendName: req.body.friendName,
-    address1: req.body.address2,
-    address2: req.body.address2,
-    county: req.body.county,
-    postcode: req.body.postcode,
-    telephone: req.body.telephone,
+    processed: false,
+    friendGift: req.body.friendGift,
+    givenName: req.body.givenName,
+    familyName: req.body.familyName,
+    honorificPrefix: req.body.honorificPrefix,
+    friend: req.body.friend,
+    addressLine1: req.body.addressLine1,
+    addressLine2: req.body.addressLine2,
+    addressLine3: req.body.addressLine3,
+    postalCode: req.body.postalCode,
+    tel: req.body.tel,
     email: req.body.email,
-    message: req.body.message
+    message: req.body.message,
+    reason: req.body.reason,
+    otherReason: req.body.otherReason,
+    giftAid: req.body.giftAid
   }
   try {
     await client.create(doc).then(res => {
@@ -31,4 +36,4 @@ async function sendComment(req, res) {
   }
   return res.status(200).json({ success: "message sent" })
 }
-export default sendComment
+export default sendFriendForm

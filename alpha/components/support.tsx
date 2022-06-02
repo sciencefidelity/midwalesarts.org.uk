@@ -60,7 +60,7 @@ export const Support: FC<Props> = ({
           {page.body && <div className={`${s.body}`}>
             <PortableText value={page.body} components={components} />
           </div>}
-          <FriendForm />
+          <FriendForm labels={labels} />
         </section>
         <SidebarComponent labels={labels} sidebar={page.sidebar} />
       </div>

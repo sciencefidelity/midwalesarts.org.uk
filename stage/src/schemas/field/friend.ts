@@ -13,7 +13,7 @@ export default {
       initialValue: false
     },
     {
-      name: 'person',
+      name: 'friendGift',
       title: 'Who is becoming a friend',
       type: 'string',
       options: {
@@ -27,7 +27,7 @@ export default {
     },
     {
       name: 'honorificPrefix',
-      title: 'First name',
+      title: 'Title',
       type: 'string'
     },
     {
@@ -98,12 +98,12 @@ export default {
       }
     },
     {
-      name: 'other',
+      name: 'otherReason',
       title: 'Other reason',
       type: 'string'
     },
     {
-      name: 'giftaid',
+      name: 'giftAid',
       title: 'Gift Aid',
       type: 'boolean',
       initialValue: false
@@ -112,8 +112,8 @@ export default {
   preview: {
     select: {
       email: 'email',
-      name: 'name',
-      surname: 'surname'
+      name: 'givenName',
+      surname: 'familyName'
     },
     prepare: ({ email, name, surname }) => {
       return {

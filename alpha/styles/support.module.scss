@@ -51,10 +51,9 @@
   button {
     font-size: 2.2rem;
     line-height: 1.4;
-  }
-
-  label:last-of-type {
-    margin-bottom: 1.5rem;
+    @include b.mq(sm) {
+      font-size: 2rem;
+    }
   }
 
   button {
@@ -62,6 +61,9 @@
     font-weight: 500;
     padding: 1rem 2.8rem;
     margin-top: 2rem;
+    @include b.mq(sm) {
+      font-size: 2.4em;
+    }
   }
 
   textarea {
@@ -74,6 +76,9 @@
   input[type=email] {
     padding-left: 1rem;
     margin-block: 0 6rem;
+    @include b.mq(sm) {
+      margin-block: 0 4rem;
+    }
   }
 
   input[type=text],
@@ -88,6 +93,9 @@
       color: c.$grey-450;
       font-size: 1.8rem;
       opacity: 1;
+      @include b.mq(sm) {
+        font-size: 1.7rem;
+      }
     }
   }
 
@@ -99,6 +107,9 @@
     font-size: 2.2rem;
     font-weight: 500;
     margin-block: 0 2rem;
+    @include b.mq(sm) {
+      font-size: 2rem;
+    }
   }
 }
 
@@ -113,6 +124,7 @@
 
 .comment {
   font-weight: 500;
+  margin-bottom: 1rem;
 }
 
 .reasons {
@@ -126,3 +138,25 @@
 input[type=text].other {
   margin-top: 1.5em;
 }
+
+.giftAid {
+  margin-bottom: 5rem;
+  input[type=checkbox] {
+    margin-right: 2rem;
+  }
+  h3 {
+    color: c.$grey-650;
+    font-size: 2.8rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+  p {
+    font-weight: 400;
+    margin-bottom: 1rem;
+  }
+}
+
+.successFailure {
+  margin-top: 2rem;
+}
+
