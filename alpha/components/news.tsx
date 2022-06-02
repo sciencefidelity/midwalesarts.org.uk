@@ -72,11 +72,11 @@ export const News: FC<Props> = ({
           </h2>}
         </div>
       </div>
-      <PostsList
+      {postsToShow && <PostsList
         fallbackImage={settings.ogImage}
         label={labels[18].text.trim() + " "}
         posts={postsToShow}
-      />
+      />}
       {postsToShow.length < page.posts.length && <button
         onClick={handleShowMorePosts}
         className={`${s.loadMore} ${u.pointer}`}

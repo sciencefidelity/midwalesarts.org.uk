@@ -1,5 +1,4 @@
 import { FC, Fragment } from "react"
-import { useRouter } from "next/router"
 import { ExhibitionPreview } from "components/exhibitionPreview"
 import { Label, Exhibition, Settings } from "lib/interfaces"
 import s from "styles/exhibitions.module.scss"
@@ -12,7 +11,6 @@ interface Props {
 }
 
 export const PastExhibitionsList: FC<Props> = ({ exhibitions, labels, settings }) => {
-  const { locale } = useRouter()
   return (
     <section className={`${s.exhibitionGrid} ${s.pastExhibitions} ${u.grid}`}>
       {exhibitions && exhibitions.map((exhibition, idx) =>

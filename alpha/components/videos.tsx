@@ -1,10 +1,7 @@
-import { FC } from "react"
+import { FC, useCallback, useEffect, useState } from "react"
 import { useRouter } from "next/router"
-import Image from "next/image"
-import { buildUrl, urlFor } from "lib/utils"
 import { Layout } from "components/layout"
-import { LinkTo } from "components/linkTo"
-import { PostDate } from "components/date"
+import { VideosList } from "components/videosList"
 import {
   Label,
   Navigation,
@@ -12,13 +9,14 @@ import {
   Page,
   PageContext,
   PageHead,
-  Settings
+  Settings,
+  Video
 } from "lib/interfaces"
 import s from "styles/videos.module.scss"
 import u from "styles/utils.module.scss"
 
 interface Props {
-  labels:Label[]
+  labels: Label[]
   navigation: Navigation[]
   organisation: Organisation
   page: Page
@@ -34,6 +32,8 @@ export const Videos: FC<Props> = ({
   pageContext,
   settings
 }) => {
+  const [videosToShow, setVideosToShow] = useState<Video[]>([])
+  const [videosPerPage, setVideosPerPage] = useState(12)
   const { locale } = useRouter()
   const pageHead: PageHead = {
     title: page.title,
@@ -43,10 +43,22 @@ export const Videos: FC<Props> = ({
     ogURL: `${settings.canonicalURL}${locale === "cy" ? "/cy" : ""}/${page.slug}`,
     ogImage: page.ogImage
   }
+  const loopWithSlice = useCallback((start: number, end: number) => {
+    const slicedVideos = page.videos.slice(start, end)
+    setVideosToShow(slicedVideos)
+  }, [page.videos])
+  useEffect(() => {
+    loopWithSlice(0, videosPerPage)
+  }, [loopWithSlice, videosPerPage])
+  const handleShowMoreVideos = () => {
+    setVideosPerPage(prevVideosPerPage => prevVideosPerPage + 3)
+  }
   return (
     <Layout
       caption={page.videos[0]?.title ? page.videos[0].title : null}
-      heroImage={page.videos[0]?.mainImage?.asset ? page.videos[0].mainImage : settings.ogImage}
+      heroImage={page.videos[0]?.mainImage?.asset
+        ? page.videos[0].mainImage
+        : settings.ogImage}
       labels={labels}
       navigation={navigation}
       organisation={organisation}
@@ -62,34 +74,17 @@ export const Videos: FC<Props> = ({
           </h2>}
         </div>
       </div>
-      <div className={`${s.imageGrid} ${u.grid}`}>
-        {page.videos && page.videos.map(video => video &&
-          <div key={video._id} style={{ margin: 0 }}>
-            <LinkTo href={buildUrl(locale, video.slug, video._type)}>
-              <Image
-                src={urlFor(video.mainImage ? video.mainImage : settings.ogImage)
-                  .width(468)
-                  .height(468)
-                  .auto("format")
-                  .quality(75)
-                  .url()}
-                alt={video.title}
-                width={2000}
-                height={2000}
-              />
-              {video.title &&
-                <div className={`${s.caption} ${u.textRight} ${u.semibold}`}>
-                  {video.title}
-                </div>
-              }
-              {video.publishDate && <div className={`${s.caption} ${u.textRight}`}>
-                {labels[18].text.trim() + " "}
-                <PostDate date={video.publishDate} />
-              </div>}
-            </LinkTo>
-          </div>
-        )}
-      </div>
+      {videosToShow && <VideosList
+        fallbackImage={settings.ogImage}
+        label={labels[18].text.trim() + " "}
+        videos={videosToShow}
+      />}
+      {videosToShow.length < page.videos.length && <button
+        onClick={handleShowMoreVideos}
+        className={`${s.loadMore} ${u.pointer}`}
+      >
+        {labels[84].text}
+      </button>}
     </Layout>
   )
 }
