@@ -137,6 +137,7 @@ export const FriendForm: FC<Props> = ({ labels }) => {
           name="given-name"
           id="given-name"
           className={`${u.block}`}
+          required
         />
         <label htmlFor="family-name" className={`${u.hidden}`}>
           {labels[60].text}
@@ -149,6 +150,7 @@ export const FriendForm: FC<Props> = ({ labels }) => {
           name="family-name"
           id="family-name"
           className={`${u.block}`}
+          required
         />
         <label htmlFor="honorific-prefix" className={`${u.hidden}`}>
           {labels[61].text}
@@ -245,6 +247,7 @@ export const FriendForm: FC<Props> = ({ labels }) => {
           name="email"
           id="email"
           className={`${u.block}`}
+          required
         />
       </div>
       <label htmlFor="comment" className={`${s.comment} ${u.block}`}>
