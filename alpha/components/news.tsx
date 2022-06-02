@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react"
+import { FC, useCallback, useEffect, useState } from "react"
 import { useRouter } from "next/router"
 import { Layout } from "components/layout"
 import { PostsList } from "components/postsList"
@@ -9,13 +9,14 @@ import {
   Page,
   PageContext,
   PageHead,
+  Post,
   Settings
 } from "lib/interfaces"
 import s from "styles/news.module.scss"
 import u from "styles/utils.module.scss"
 
 interface Props {
-  labels:Label[]
+  labels: Label[]
   navigation: Navigation[]
   organisation: Organisation
   page: Page
@@ -31,7 +32,7 @@ export const News: FC<Props> = ({
   pageContext,
   settings
 }) => {
-  const [postsToShow, setPostsToShow] = useState([])
+  const [postsToShow, setPostsToShow] = useState<Post[]>([])
   const [postsPerPage, setPostsPerPage] = useState(12)
   const { locale } = useRouter()
   const pageHead: PageHead = {
@@ -42,14 +43,14 @@ export const News: FC<Props> = ({
     ogURL: `${settings.canonicalURL}${locale === "cy" ? "/cy" : ""}/${page.slug}`,
     ogImage: page.ogImage
   }
-  function loopWithSlice(start, end) {
+  const loopWithSlice = useCallback((start: number, end: number) => {
     const slicedPosts = page.posts.slice(start, end)
     setPostsToShow(slicedPosts)
-  }
+  }, [page.posts])
   useEffect(() => {
     loopWithSlice(0, postsPerPage)
-  }, [postsPerPage])
-  function handleShowMorePosts() {
+  }, [loopWithSlice, postsPerPage])
+  const handleShowMorePosts = () => {
     setPostsPerPage(prevPostsPerPage => prevPostsPerPage + 9)
   }
   return (

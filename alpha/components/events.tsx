@@ -1,9 +1,10 @@
-import { FC, useEffect, useState } from "react"
+import { FC, useCallback, useEffect, useState } from "react"
 import { useRouter } from "next/router"
 import { sortWorkshops } from "lib/utils"
 import { EventPreview } from "components/eventPreview"
 import { Layout } from "components/layout"
 import {
+  Event,
   Label,
   Navigation,
   Organisation,
@@ -32,7 +33,7 @@ export const Events: FC<Props> = ({
   pageContext,
   settings
 }) => {
-  const [pastEventsToShow, setPastEventsToShow] = useState([])
+  const [pastEventsToShow, setPastEventsToShow] = useState<Event[]>([])
   const [pastEventsPerPage, setPastEventsPerPage] = useState(6)
   const { locale } = useRouter()
   const pageHead: PageHead = {
@@ -44,20 +45,22 @@ export const Events: FC<Props> = ({
     ogImage: page.ogImage
   }
   const workshops = sortWorkshops(page.workshops)
-  function loopWithSlice(start, end) {
+  const loopWithSlice = useCallback((start: number, end: number) => {
     const slicedPosts = page.pastEvents.slice(start, end)
     setPastEventsToShow(slicedPosts)
-  }
+  }, [page.pastEvents])
   useEffect(() => {
     loopWithSlice(0, pastEventsPerPage)
-  }, [pastEventsPerPage])
-  function handleShowMoreEvents() {
+  }, [loopWithSlice, pastEventsPerPage])
+  const handleShowMoreEvents = () => {
     setPastEventsPerPage(prevEventsPerPage => prevEventsPerPage + 9)
   }
   return (
     <Layout
       caption={page.events[0]?.title ? page.events[0].title : null}
-      heroImage={page.events[0]?.mainImage?.asset ? page.events[0].mainImage : settings.ogImage}
+      heroImage={page.events[0]?.mainImage?.asset
+        ? page.events[0].mainImage
+        : settings.ogImage}
       labels={labels}
       navigation={navigation}
       pageHead={pageHead}
