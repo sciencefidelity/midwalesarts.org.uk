@@ -98,9 +98,7 @@ export const FriendForm: FC<Props> = ({ labels }) => {
   const handleReasonChange = (event: ChangeEvent) => {
     setReason((event.target as HTMLInputElement).value)
   }
-  const handleGiftAidChange = () => {
-    setGiftAid(!giftAid)
-  }
+  const handleGiftAidChange = () => setGiftAid(!giftAid)
   return (
     <form onSubmit={handleSubmit} className={s.friendForm}>
       <div className={`${s.friendGift} ${u.flex}`}>
