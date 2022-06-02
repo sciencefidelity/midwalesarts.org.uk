@@ -1,8 +1,10 @@
-import { FC, Fragment } from "react"
+import { FC, Fragment, useCallback, useEffect, useState } from "react"
 import { useRouter } from "next/router"
 import { ExhibitionPreview } from "components/exhibitionPreview"
 import { Layout } from "components/layout"
+import { PastExhibitionsList } from "components/pastExhibitionsList"
 import {
+  Exhibition,
   Label,
   Navigation,
   Organisation,
@@ -31,6 +33,8 @@ export const Exhibitions: FC<Props> = ({
   pageContext,
   settings
 }) => {
+  const [pastExhibitionsToShow, setPastExhibitionsToShow] = useState<Exhibition[]>([])
+  const [pastExhibitionsPerPage, setPastExhibitionsPerPage] = useState(9)
   const { locale } = useRouter()
   const pageHead: PageHead = {
     title: page.title,
@@ -39,6 +43,16 @@ export const Exhibitions: FC<Props> = ({
     ogDescription: page.ogDescription,
     ogURL: `${settings.canonicalURL}${locale === "cy" ? "/cy" : ""}/${page.slug}`,
     ogImage: page.ogImage
+  }
+  const loopWithSlice = useCallback((start: number, end: number) => {
+    const slicedExhibitions = page.pastExhibitions.slice(start, end)
+    setPastExhibitionsToShow(slicedExhibitions)
+  }, [page.pastExhibitions])
+  useEffect(() => {
+    loopWithSlice(0, pastExhibitionsPerPage)
+  }, [loopWithSlice, pastExhibitionsPerPage])
+  const handleShowMoreExhibitions = () => {
+    setPastExhibitionsPerPage(prevExhibitionsPerPage => prevExhibitionsPerPage + 3)
   }
   let exhibitionHero: any = page.pastExhibitions[0].mainImage
   if (page.futureExhibitions[0]) exhibitionHero = page.futureExhibitions[0].mainImage
@@ -101,18 +115,17 @@ export const Exhibitions: FC<Props> = ({
           </Fragment>
         )}
       </section>
-      <section className={`${s.exhibitionGrid} ${s.pastExhibitions} ${u.grid}`}>
-        {page.pastExhibitions[0] && page.pastExhibitions.map((exhibition, idx) =>
-          <Fragment key={exhibition._id}>
-            <ExhibitionPreview
-              fallbackImage={settings.ogImage}
-              heading={idx === 0 && labels[17].text}
-              exhibition={exhibition}
-              label={labels[56].text}
-            />
-          </Fragment>
-        )}
-      </section>
+      {pastExhibitionsToShow && <PastExhibitionsList
+        exhibitions={pastExhibitionsToShow}
+        labels={labels}
+        settings={settings}
+      />}
+      {pastExhibitionsToShow.length < page.pastExhibitions.length && <button
+        onClick={handleShowMoreExhibitions}
+        className={`${s.loadMore} ${u.pointer}`}
+      >
+        {labels[84].text}
+      </button>}
     </Layout>
   )
 }

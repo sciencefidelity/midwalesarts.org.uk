@@ -46,8 +46,8 @@ export const Events: FC<Props> = ({
   }
   const workshops = sortWorkshops(page.workshops)
   const loopWithSlice = useCallback((start: number, end: number) => {
-    const slicedPosts = page.pastEvents.slice(start, end)
-    setPastEventsToShow(slicedPosts)
+    const slicedEvents = page.pastEvents.slice(start, end)
+    setPastEventsToShow(slicedEvents)
   }, [page.pastEvents])
   useEffect(() => {
     loopWithSlice(0, pastEventsPerPage)
@@ -99,7 +99,7 @@ export const Events: FC<Props> = ({
         fallbackImage={settings.ogImage}
         marginTop={{ marginTop: "6rem" }}
       />}
-      {page.pastEvents && <EventPreview
+      {pastEventsToShow && <EventPreview
         heading={labels[12].text}
         eventData={pastEventsToShow}
         fallbackImage={settings.ogImage}
