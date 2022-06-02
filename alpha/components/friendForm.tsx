@@ -72,76 +72,85 @@ export const FriendForm: FC = () => {
   }
   return (
     <form onSubmit={handleSubmit} className={s.friendForm}>
-      <label htmlFor="name" style={{display:"block"}}>Title</label>
+      <label htmlFor="honorific-prefix" style={{display:"block"}}>Title</label>
       <input
         type="text"
         value={title}
         onChange={e => {setTitle(e.target.value)}}
-        name="name"
+        name="honorific-prefix"
+        id="honorific-prefix"
         style={{display:"block"}}
       />
-      <label htmlFor="name" style={{display:"block"}}>First name</label>
+      <label htmlFor="given-name" style={{display:"block"}}>First name</label>
       <input
         type="text"
         value={name}
         onChange={e => {setName(e.target.value)}}
-        name="name"
+        name="given-name"
+        id="given-name"
         style={{display:"block"}}
       />
-      <label htmlFor="name" style={{display:"block"}}>Surname</label>
+      <label htmlFor="family-name" style={{display:"block"}}>Surname</label>
       <input
-        type="text"
+        type="family-name"
         value={surname}
         onChange={e => {setSurname(e.target.value)}}
-        name="name"
+        name="family-name"
+        id="family-name"
         style={{display:"block"}}
       />
-      <label htmlFor="name" style={{display:"block"}}>Joint friend&apos;s name</label>
+      <label htmlFor="friend-name" style={{display:"block"}}>Joint friend&apos;s name</label>
       <input
         type="text"
         value={friendName}
         onChange={e => {setFriendName(e.target.value)}}
-        name="name"
+        name="friend-name"
+        id="friend-name"
         style={{display:"block"}}
       />
-      <label htmlFor="name" style={{display:"block"}}>Address line 1</label>
+      <label htmlFor="address-line1" style={{display:"block"}}>Address line 1</label>
       <input
         type="text"
         value={address1}
         onChange={e => {setAddress1(e.target.value)}}
-        name="name"
+        name="address-line1"
+        id="address-line1"
         style={{display:"block"}}
       />
-      <label htmlFor="name" style={{display:"block"}}>Address line 2</label>
+      <label htmlFor="address-line2" style={{display:"block"}}>Address line 2</label>
       <input
         type="text"
         value={address2}
         onChange={e => {setAddress2(e.target.value)}}
-        name="name"
+        name="address-line2"
+        id="address-line2"
         style={{display:"block"}}
       />
-      <label htmlFor="name" style={{display:"block"}}>County</label>
+      <label htmlFor="address-line3" style={{display:"block"}}>County</label>
       <input
         type="text"
         value={county}
         onChange={e => {setCounty(e.target.value)}}
-        name="name"
+        name="address-line3"
+        id="address-line3"
         style={{display:"block"}}
       />
-      <label htmlFor="name" style={{display:"block"}}>Post code</label>
+      <label htmlFor="postal-code" style={{display:"block"}}>Post code</label>
       <input
         type="text"
         value={postcode}
         onChange={e => {setPostcode(e.target.value)}}
-        name="name"
+        name="postal-code"
+        id="postal-code"
         style={{display:"block"}}
       />
-      <label htmlFor="name" style={{display:"block"}}>Telephone</label>
+      <label htmlFor="tel" style={{display:"block"}}>Telephone</label>
       <input
         type="text"
         value={telephone}
         onChange={e => {setTelephone(e.target.value)}}
-        name="name"
+        name="tel"
+        id="tel"
         style={{display:"block"}}
       />
       <label htmlFor="email" style={{display:"block"}}>Email address</label>
