@@ -70,19 +70,59 @@
     border: 2px solid c.$grey-350;
   }
 
-  input,
+  input[type=text],
+  input[type=email] {
+    padding-left: 1rem;
+    margin-block: 0 6rem;
+  }
+
+  input[type=text],
+  input[type=email],
   textarea {
     border-bottom: 2px solid c.$grey-350;
-    margin-block: 0 6rem;
     &:focus {
       border-bottom: 2px solid c.$grey-650;
     }
     &::placeholder {
       text-transform: uppercase;
-      color: c.$grey-350;
+      color: c.$grey-450;
       font-size: 1.8rem;
-      // font-weight: 500;
-      opacity: 1; /* Firefox */
+      opacity: 1;
     }
   }
+
+  textarea {
+    margin-block: 0 3rem;
+  }
+
+  p {
+    font-size: 2.2rem;
+    font-weight: 500;
+    margin-block: 0 2rem;
+  }
+}
+
+.friendGift {
+  flex-direction: column;
+  margin-bottom: 4rem;
+  input[type=radio] {
+    margin-block: 0;
+    margin-right: 2rem;
+  }
+}
+
+.comment {
+  font-weight: 500;
+}
+
+.reasons {
+  flex-direction: column;
+  input[type=radio] {
+    margin-block: 0;
+    margin-right: 2rem;
+  }
+}
+
+input[type=text].other {
+  margin-top: 1.5em;
 }

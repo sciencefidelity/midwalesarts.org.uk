@@ -19,49 +19,54 @@ export default {
       options: {
         list: [
           'I would like to become a friend',
-          'I would like to give the perfect gift of becoming a friend on Mid Wales Arts'
+          'I would like to give as a gift'
         ],
         layout: 'radio',
         direction: 'vertical'
       }
     },
     {
-      name: 'name',
+      name: 'honorificPrefix',
       title: 'First name',
       type: 'string'
     },
     {
-      name: 'surname',
+      name: 'givenName',
+      title: 'First name',
+      type: 'string'
+    },
+    {
+      name: 'familyName',
       title: 'Surname',
       type: 'string'
     },
     {
-      name: 'friendName',
+      name: 'friend',
       title: 'Joint friend\'s name',
       type: 'string'
     },
     {
-      name: 'address1',
+      name: 'addressLine1',
       title: 'Address line 1',
       type: 'string'
     },
     {
-      name: 'address2',
+      name: 'addressLine2',
       title: 'Address line 2',
       type: 'string'
     },
     {
-      name: 'county',
-      title: 'County',
+      name: 'addressLine3',
+      title: 'Address line 3',
       type: 'string'
     },
     {
-      name: 'postcode',
+      name: 'postalCode',
       title: 'Post code',
       type: 'string'
     },
     {
-      name: 'telephone',
+      name: 'tel',
       title: 'Telephone',
       type: 'string'
     },
