@@ -1,5 +1,6 @@
 import { FC, useState } from "react"
 import s from "styles/support.module.scss"
+import u from "styles/utils.module.scss"
 
 export const FriendForm: FC = () => {
   const [title, setTitle] = useState("")
@@ -72,102 +73,141 @@ export const FriendForm: FC = () => {
   }
   return (
     <form onSubmit={handleSubmit} className={s.friendForm}>
-      <label htmlFor="honorific-prefix" style={{display:"block"}}>Title</label>
-      <input
-        type="text"
-        value={title}
-        onChange={e => {setTitle(e.target.value)}}
-        name="honorific-prefix"
-        id="honorific-prefix"
-        style={{display:"block"}}
-      />
-      <label htmlFor="given-name" style={{display:"block"}}>First name</label>
-      <input
-        type="text"
-        value={name}
-        onChange={e => {setName(e.target.value)}}
-        name="given-name"
-        id="given-name"
-        style={{display:"block"}}
-      />
-      <label htmlFor="family-name" style={{display:"block"}}>Surname</label>
-      <input
-        type="family-name"
-        value={surname}
-        onChange={e => {setSurname(e.target.value)}}
-        name="family-name"
-        id="family-name"
-        style={{display:"block"}}
-      />
-      <label htmlFor="friend-name" style={{display:"block"}}>Joint friend&apos;s name</label>
-      <input
-        type="text"
-        value={friendName}
-        onChange={e => {setFriendName(e.target.value)}}
-        name="friend-name"
-        id="friend-name"
-        style={{display:"block"}}
-      />
-      <label htmlFor="address-line1" style={{display:"block"}}>Address line 1</label>
-      <input
-        type="text"
-        value={address1}
-        onChange={e => {setAddress1(e.target.value)}}
-        name="address-line1"
-        id="address-line1"
-        style={{display:"block"}}
-      />
-      <label htmlFor="address-line2" style={{display:"block"}}>Address line 2</label>
-      <input
-        type="text"
-        value={address2}
-        onChange={e => {setAddress2(e.target.value)}}
-        name="address-line2"
-        id="address-line2"
-        style={{display:"block"}}
-      />
-      <label htmlFor="address-line3" style={{display:"block"}}>County</label>
-      <input
-        type="text"
-        value={county}
-        onChange={e => {setCounty(e.target.value)}}
-        name="address-line3"
-        id="address-line3"
-        style={{display:"block"}}
-      />
-      <label htmlFor="postal-code" style={{display:"block"}}>Post code</label>
-      <input
-        type="text"
-        value={postcode}
-        onChange={e => {setPostcode(e.target.value)}}
-        name="postal-code"
-        id="postal-code"
-        style={{display:"block"}}
-      />
-      <label htmlFor="tel" style={{display:"block"}}>Telephone</label>
-      <input
-        type="text"
-        value={telephone}
-        onChange={e => {setTelephone(e.target.value)}}
-        name="tel"
-        id="tel"
-        style={{display:"block"}}
-      />
-      <label htmlFor="email" style={{display:"block"}}>Email address</label>
-      <input
-        type="email"
-        value={email}
-        onChange={e => {setEmail(e.target.value)}}
-        name="email"
-        style={{display:"block"}}
-      />
-      <label htmlFor="comment" style={{display:"block"}}>If a gift, message to recipient</label>
+      <div className={`${s.formGrid} ${u.grid}`}>
+        <label htmlFor="honorific-prefix" className={`${u.hidden}`}>
+          Title
+        </label>
+        <input
+          type="text"
+          value={title}
+          onChange={e => {setTitle(e.target.value)}}
+          placeholder="Title"
+          name="honorific-prefix"
+          id="honorific-prefix"
+          className={`${u.block}`}
+        />
+        <label htmlFor="given-name" className={`${u.hidden}`}>
+          First name
+        </label>
+        <input
+          type="text"
+          value={name}
+          onChange={e => {setName(e.target.value)}}
+          placeholder="First name"
+          name="given-name"
+          id="given-name"
+          className={`${u.block}`}
+        />
+        <label htmlFor="family-name" className={`${u.hidden}`}>
+          Surname
+        </label>
+        <input
+          type="family-name"
+          value={surname}
+          onChange={e => {setSurname(e.target.value)}}
+          placeholder="Surname"
+          name="family-name"
+          id="family-name"
+          className={`${u.block}`}
+        />
+        <label htmlFor="friend-name" className={`${u.hidden}`}>
+          Joint friend&apos;s name
+        </label>
+        <input
+          type="text"
+          value={friendName}
+          onChange={e => {setFriendName(e.target.value)}}
+          placeholder="Joint friend's name"
+          name="friend-name"
+          id="friend-name"
+          className={`${u.block}`}
+        />
+        <label htmlFor="address-line1" className={`${u.hidden}`}>
+          Address line 1
+        </label>
+        <input
+          type="text"
+          value={address1}
+          onChange={e => {setAddress1(e.target.value)}}
+          placeholder="Address line 1"
+          name="address-line1"
+          id="address-line1"
+          className={`${u.block}`}
+        />
+        <label htmlFor="address-line2" className={`${u.hidden}`}>
+          Address line 2
+        </label>
+        <input
+          type="text"
+          value={address2}
+          onChange={e => {setAddress2(e.target.value)}}
+          placeholder="Address line 2"
+          name="address-line2"
+          id="address-line2"
+          className={`${u.block}`}
+        />
+        <label htmlFor="address-line3" className={`${u.hidden}`}>
+          County
+        </label>
+        <input
+          type="text"
+          value={county}
+          onChange={e => {setCounty(e.target.value)}}
+          placeholder="Address line 3"
+          name="address-line3"
+          id="address-line3"
+          className={`${u.block}`}
+        />
+        <label htmlFor="postal-code" className={`${u.hidden}`}>
+          Post code
+        </label>
+        <input
+          type="text"
+          value={postcode}
+          onChange={e => {setPostcode(e.target.value)}}
+          placeholder="Post code"
+          name="postal-code"
+          id="postal-code"
+          className={`${u.block}`}
+        />
+        <label htmlFor="tel" className={`${u.hidden}`}>
+          Telephone
+        </label>
+        <input
+          type="text"
+          value={telephone}
+          onChange={e => {setTelephone(e.target.value)}}
+          placeholder="Telephone"
+          name="tel"
+          id="tel"
+          className={`${u.block}`}
+        />
+        <label htmlFor="email" className={`${u.hidden}`}>
+          Email address
+        </label>
+        <input
+          type="email"
+          value={email}
+          onChange={e => {setEmail(e.target.value)}}
+          placeholder="Email address"
+          name="email"
+          className={`${u.block}`}
+        />
+      </div>
+      <label htmlFor="comment" className={`${u.block}`}>
+        If this is a gift, please write a message to the recipient below...
+      </label>
       <textarea
-        name="text"
+        type="submit"
         value={message}
         onChange={e => {setMessage(e.target.value)}}
+        name="comment"
+        className={`${u.block}`}
+        rows={6}
       ></textarea>
-      <button type="submit" style={{display:"block"}}>{buttonText}</button>
+      <button type="submit" className={`${u.block} ${u.pointer}`}>
+        {buttonText}
+      </button>
       <div>
         {showSuccessMessage && (
           <p>Thankyou! Your Message has been delivered.</p>

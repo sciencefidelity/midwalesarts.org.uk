@@ -14,6 +14,9 @@
   @include b.mq(lg) {
     width: 81.25%;
   }
+  @include b.mq(md) {
+    width: 90%;
+  }
 }
 
 .subtitle {
@@ -29,6 +32,17 @@
   margin-top: 8.1rem;
 }
 
+.formGrid {
+  grid-template-columns: 1fr 1fr;
+  gap: 0 6rem;
+  @include b.mq(lg) {
+    gap: 0 3rem;
+  }
+  @include b.mq(md) {
+    grid-template-columns: 1fr;
+  }
+}
+
 .friendForm {
   margin-top: 6rem;
   label,
@@ -39,10 +53,36 @@
     line-height: 1.4;
   }
 
+  label:last-of-type {
+    margin-bottom: 1.5rem;
+  }
+
+  button {
+    font-size: 2.8rem;
+    font-weight: 500;
+    padding: 1rem 2.8rem;
+    margin-top: 2rem;
+  }
+
+  textarea {
+    padding: 2rem;
+    width: 100%;
+    border: 2px solid c.$grey-350;
+  }
+
   input,
   textarea {
-    border-bottom: 2px solid c.$grey-550;
-    margin-bottom: 1rem;
-    width: 100%;
+    border-bottom: 2px solid c.$grey-350;
+    margin-block: 0 6rem;
+    &:focus {
+      border-bottom: 2px solid c.$grey-650;
+    }
+    &::placeholder {
+      text-transform: uppercase;
+      color: c.$grey-350;
+      font-size: 1.8rem;
+      // font-weight: 500;
+      opacity: 1; /* Firefox */
+    }
   }
 }
