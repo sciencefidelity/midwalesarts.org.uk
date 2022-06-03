@@ -1,5 +1,4 @@
 import { FC } from "react"
-import { useRouter } from "next/router"
 import { Label } from "lib/interfaces"
 import s from "styles/footer.module.scss"
 import u from "styles/utils.module.scss"
@@ -8,9 +7,7 @@ interface Props {
   labels: Label[]
 }
 
-// TODO: alt text not translated
 export const Signup: FC<Props> = ({ labels }) => {
-  const { locale } = useRouter()
   return (
     <div className={`${s.signup}`}>
       <div className={`${s.signupHeading}`}>

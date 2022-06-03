@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useState } from "react"
+import { FC, useState } from "react"
 import { useRouter } from "next/router"
 import { Layout } from "components/layout"
 import { PostsList } from "components/postsList"
@@ -9,7 +9,6 @@ import {
   Page,
   PageContext,
   PageHead,
-  Post,
   Settings
 } from "lib/interfaces"
 import s from "styles/news.module.scss"
@@ -32,7 +31,6 @@ export const News: FC<Props> = ({
   pageContext,
   settings
 }) => {
-  // const [postsToShow, setPostsToShow] = useState<Post[]>([])
   const [postsPerPage, setPostsPerPage] = useState(9)
   const { locale } = useRouter()
   const pageHead: PageHead = {
@@ -43,13 +41,6 @@ export const News: FC<Props> = ({
     ogURL: `${settings.canonicalURL}${locale === "cy" ? "/cy" : ""}/${page.slug}`,
     ogImage: page.ogImage
   }
-  // const loopWithSlice = useCallback((start: number, end: number) => {
-  //   const slicedPosts = page.posts.slice(start, end)
-  //   setPostsToShow(slicedPosts)
-  // }, [page.posts])
-  // useEffect(() => {
-  //   loopWithSlice(0, postsPerPage)
-  // }, [loopWithSlice, postsPerPage])
   const handleShowMorePosts = () => {
     setPostsPerPage(prevPostsPerPage => prevPostsPerPage + 9)
   }
@@ -78,11 +69,6 @@ export const News: FC<Props> = ({
         posts={page.posts}
         postsPerPage={postsPerPage}
       />}
-      {/* {postsToShow && <PostsList
-        fallbackImage={settings.ogImage}
-        label={labels[18].text.trim() + " "}
-        posts={postsToShow}
-      />} */}
       {postsPerPage < page.posts.length && <button
         onClick={handleShowMorePosts}
         className={`${s.loadMore} ${u.pointer}`}

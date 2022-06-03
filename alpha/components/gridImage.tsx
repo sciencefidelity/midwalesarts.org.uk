@@ -20,7 +20,6 @@ export const GridImage: FC<Props> = ({ alt, idx, image, postsPerPage }) => {
   useEffect(() => {
     setLoaded(true)
   }, [loaded, onLoad])
-  console.log(loaded)
   return (
     <div className={`${s.container} ${u.relative}`}>
       <div className={`${s.imageContainer} ${u.relative}`}>
