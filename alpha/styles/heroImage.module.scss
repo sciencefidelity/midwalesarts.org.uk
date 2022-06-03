@@ -1,16 +1,10 @@
-.container {
-  z-index: 5;
-  aspect-ratio: 1 / 1;
-}
-
 .imageContainer {
   inset: 0;
-  z-index: 10;
+  z-index: 2;
 }
 
 .image {
   opacity: 0;
-  height: 100%;
   width: 100%;
 }
 

@@ -1,7 +1,7 @@
 import { FC } from "react"
 import { useRouter } from "next/router"
 import { ColorLogo } from "components/colorLogo"
-import { SanityImage } from "components/sanityImage"
+import { HeroImage } from "components/heroImage"
 import { LinkTo } from "components/linkTo"
 import { NavComponent } from "components/navComponent"
 import { Image, Label, Navigation, PageContext, Settings } from "lib/interfaces"
@@ -43,10 +43,10 @@ export const Header: FC<Props> = ({
           className={`${s.hero} ${u.relative}`}
           style={{ overflow: "hidden" }}
         >
-          <SanityImage
+          <HeroImage
             alt={caption}
             image={heroImage}
-            width={1600} />
+          />
         </div>
       </header>
       <NavComponent
