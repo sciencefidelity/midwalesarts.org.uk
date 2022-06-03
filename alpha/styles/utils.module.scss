@@ -30,7 +30,15 @@
 }
 
 .five {
+  inset: 118.8rem 0 0 auto;
+}
+
+.six {
   inset: 122rem 0 0 auto;
+}
+
+.seven {
+  inset: 127.7rem 0 0 auto;
 }
 
 .absolute {
@@ -117,13 +125,41 @@
   object-fit: cover;
 }
 
+.lazyImageContainer {
+  position: relative;
+  margin-bottom: 2.1rem;
+  aspect-ratio: 1 / 1;
+}
+
+.gridImageContainer {
+  position: relative;
+  inset: 0;
+  z-index: 10;
+}
+
 .gridImage {
+  position: relative;
   opacity: 0;
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
 }
 
 .loaded {
   opacity: 1;
   transition: opacity 0.3s ease-in;
+}
+
+.placeholderContainer {
+  position: absolute;
+  inset: 0;
+}
+
+.placeholder {
+  position: relative;
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
 }
 
 .noSelect {

@@ -14,6 +14,9 @@
   @include b.mq(lg) {
     width: 81.25%;
   }
+  @include b.mq(md) {
+    width: 90%;
+  }
 }
 
 .subtitle {
@@ -35,6 +38,9 @@
   @include b.mq(lg) {
     grid-template-columns: 1fr 1fr;
   }
+  @include b.mq(md) {
+    width: 90%;
+  }
   @include b.mq(sm) {
     grid-template-columns: 1fr;
   }
@@ -44,10 +50,10 @@
   font-size: 1.8rem;
   color: c.$grey-550;
   &:last-of-type {
-    margin-block: 0.48em 1.3em;
+    margin-block: 1.1rem 2.3rem;
   }
   &:first-of-type {
-    margin-block: 0.88em 0.48em;
+    margin-block: 1.1rem 0;
     line-height: 1.4;
   }
 }

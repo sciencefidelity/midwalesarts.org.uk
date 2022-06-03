@@ -1,3 +1,4 @@
+/* eslint indent: "off" */
 import { FC, useState } from "react"
 import { useRouter } from "next/router"
 import Image from "next/image"
@@ -15,7 +16,12 @@ interface Props {
   postsPerPage: number
 }
 
-export const PostsList: FC<Props> = ({ fallbackImage, label, posts, postsPerPage }) => {
+export const PostsList: FC<Props> = ({
+  fallbackImage,
+  label,
+  posts,
+  postsPerPage
+}) => {
   const [loaded, setLoaded] = useState(false)
   const { locale } = useRouter()
 
@@ -24,81 +30,101 @@ export const PostsList: FC<Props> = ({ fallbackImage, label, posts, postsPerPage
   }
   return (
     <div className={`${s.imageGrid} ${u.grid}`}>
-      {posts && posts.map((post, idx) => post && (
-        <div key={post._id} style={{ margin: 0 }} className={`${idx >= postsPerPage ? u.hidden : null}`}>
-          <LinkTo href={buildUrl(locale, post.slug, post._type)}>
-
-            <div
-              style={{
-                // backgroundColor: post.accent,
-                aspectRatio: "1/1",
-                marginBottom: "1.5rem",
-                position: "relative"
-              }}
-            >
+      {posts &&
+        posts.map(
+          (post, idx) =>
+            post && (
               <div
-                style={{ position: "relative", aspectRatio: "1/1", inset: 0, zIndex: 10 }}
-                className={`${u.gridImage} ${loaded ? u.loaded : null}`}
+                key={post._id}
+                className={`${idx >= postsPerPage ? u.hidden : null}`}
               >
-                <Image
-                  src={urlFor(post.image ? post.image : fallbackImage)
-                    .width(468)
-                    .height(468)
-                    .auto("format")
-                    .quality(75)
-                    .url()}
-                  alt={post.title}
-                  onLoad={onLoad}
-                  width={2000}
-                  height={2000}
-                />
+                <LinkTo href={buildUrl(locale, post.slug, post._type)}>
+                  <div className={`${u.lazyImageContainer}`}>
+                    <div className={`${u.gridImageContainer} ${loaded ? u.loaded : null}`}>
+                      <img
+                        onLoad={onLoad}
+                        loading={idx < 3 ? "eager" : "lazy"}
+                        className={`${u.gridImage} ${loaded ? u.loaded : null}`}
+                        alt={post.title}
+                        src={urlFor(post.image ? post.image : fallbackImage)
+                          .width(468)
+                          .height(468)
+                          .auto("format")
+                          .quality(75)
+                          .url()}
+                        srcSet={
+                          `${urlFor(post.image ? post.image : fallbackImage)
+                            .width(300)
+                            .height(300)
+                            .auto("format")
+                            .quality(70)
+                            .url()} 300w,
+                          ${urlFor(post.image ? post.image : fallbackImage)
+                            .width(400)
+                            .height(400)
+                            .auto("format")
+                            .quality(70)
+                            .url()} 400w,
+                          ${urlFor(post.image ? post.image : fallbackImage)
+                            .width(500)
+                            .height(500)
+                            .auto("format")
+                            .quality(70)
+                            .url()} 500w,
+                          ${urlFor(post.image ? post.image : fallbackImage)
+                            .width(600)
+                            .height(600)
+                            .auto("format")
+                            .quality(70)
+                            .url()} 600w,
+                          ${urlFor(post.image ? post.image : fallbackImage)
+                            .width(700)
+                            .height(700)
+                            .auto("format")
+                            .quality(70)
+                            .url()} 700w,
+                          ${urlFor(post.image ? post.image : fallbackImage)
+                            .width(800)
+                            .height(800)
+                            .auto("format")
+                            .quality(70)
+                            .url()} 800w,
+                        `}
+                        height={468}
+                        width={468}
+                      />
+                    </div>
+                    <div className={`${u.placeholderContainer}`}>
+                      <img
+                        src={urlFor(post.image ? post.image : fallbackImage)
+                          .width(10)
+                          .height(10)
+                          .auto("format")
+                          .quality(5)
+                          .url()}
+                        alt=""
+                        className={`${u.placeholder}`}
+                        width={468}
+                        height={468}
+                        loading={idx >= postsPerPage ? "lazy" : "eager"}
+                      />
+                    </div>
+                  </div>
+                  {post.title && (
+                    <div
+                      className={`${s.caption} ${u.textRight} ${u.semibold}`}
+                    >
+                      {post.title}
+                    </div>
+                  )}
+                  <div className={`${s.caption} ${u.textRight}`}>
+                    {label}
+                    {post.publishedAt && <PostDate date={post.publishedAt} />}
+                  </div>
+                </LinkTo>
               </div>
-              {/* <img
-                src={urlFor(post.image ? post.image : fallbackImage)
-                  .width(468)
-                  .height(468)
-                  .auto("format")
-                  .quality(75)
-                  .url()}
-                alt={post.title}
-                width="100%"
-                height="100%"
-                onLoad={onLoad}
-                style={{
-                  zIndex: 2,
-                  position: "relative",
-                  objectFit: "cover"
-                }}
-                className={`${u.gridImage} ${loaded ? u.loaded : null}`}
-              /> */}
-              <div style={{ position: "absolute", aspectRatio: "1/1", inset: 0 }}>
-                <Image
-                  src={urlFor(post.image ? post.image : fallbackImage)
-                    .width(10)
-                    .height(10)
-                    .auto("format")
-                    .quality(5)
-                    .url()}
-                  alt=""
-                  width={2000}
-                  height={2000}
-                  onLoad={onLoad}
-                  loading="eager"
-                />
-              </div>
-            </div>
-            {post.title &&
-              <div className={`${s.caption} ${u.textRight} ${u.semibold}`}>
-                {post.title}
-              </div>
-            }
-            <div className={`${s.caption} ${u.textRight}`}>
-              {label}
-              {post.publishedAt && <PostDate date={post.publishedAt} />}
-            </div>
-          </LinkTo>
-        </div>
-      ))}
+            )
+        )}
     </div>
   )
 }
