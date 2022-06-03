@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useState } from "react"
+import { FC, useState } from "react"
 import { useRouter } from "next/router"
 import { Layout } from "components/layout"
 import { VideosList } from "components/videosList"
@@ -10,7 +10,6 @@ import {
   PageContext,
   PageHead,
   Settings,
-  Video
 } from "lib/interfaces"
 import s from "styles/videos.module.scss"
 import u from "styles/utils.module.scss"
@@ -32,7 +31,6 @@ export const Videos: FC<Props> = ({
   pageContext,
   settings
 }) => {
-  const [videosToShow, setVideosToShow] = useState<Video[]>([])
   const [videosPerPage, setVideosPerPage] = useState(12)
   const { locale } = useRouter()
   const pageHead: PageHead = {
@@ -43,13 +41,6 @@ export const Videos: FC<Props> = ({
     ogURL: `${settings.canonicalURL}${locale === "cy" ? "/cy" : ""}/${page.slug}`,
     ogImage: page.ogImage
   }
-  const loopWithSlice = useCallback((start: number, end: number) => {
-    const slicedVideos = page.videos.slice(start, end)
-    setVideosToShow(slicedVideos)
-  }, [page.videos])
-  useEffect(() => {
-    loopWithSlice(0, videosPerPage)
-  }, [loopWithSlice, videosPerPage])
   const handleShowMoreVideos = () => {
     setVideosPerPage(prevVideosPerPage => prevVideosPerPage + 3)
   }
@@ -74,12 +65,13 @@ export const Videos: FC<Props> = ({
           </h2>}
         </div>
       </div>
-      {videosToShow && <VideosList
+      {page.videos[0] && <VideosList
         fallbackImage={settings.ogImage}
         label={labels[18].text.trim() + " "}
-        videos={videosToShow}
+        postsPerPage={videosPerPage}
+        videos={page.videos}
       />}
-      {videosToShow.length < page.videos.length && <button
+      {videosPerPage < page.videos.length && <button
         onClick={handleShowMoreVideos}
         className={`${s.loadMore} ${u.pointer}`}
       >

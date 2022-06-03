@@ -24,36 +24,30 @@ export const PostsList: FC<Props> = ({
   const { locale } = useRouter()
   return (
     <div className={`${s.imageGrid} ${u.grid}`}>
-      {posts &&
-        posts.map(
-          (post, idx) =>
-            post && (
-              <div
-                key={post._id}
-                className={`${idx >= postsPerPage ? u.hidden : null}`}
-              >
-                <LinkTo href={buildUrl(locale, post.slug, post._type)}>
-                  <GridImage
-                    alt={post.title ? post.title : ""}
-                    idx={idx}
-                    image={post.image ? post.image : fallbackImage}
-                    postsPerPage={postsPerPage}
-                  />
-                  {post.title && (
-                    <div
-                      className={`${s.caption} ${u.textRight} ${u.semibold}`}
-                    >
-                      {post.title}
-                    </div>
-                  )}
-                  <div className={`${s.caption} ${u.textRight}`}>
-                    {label}
-                    {post.publishedAt && <PostDate date={post.publishedAt} />}
-                  </div>
-                </LinkTo>
+      {posts && posts.map((post, idx) => post &&
+        <div
+          key={post._id}
+          className={`${idx >= postsPerPage ? u.hidden : null}`}
+        >
+          <LinkTo href={buildUrl(locale, post.slug, post._type)}>
+            <GridImage
+              alt={post.title ? post.title : ""}
+              idx={idx}
+              image={post.image ? post.image : fallbackImage}
+              postsPerPage={postsPerPage}
+            />
+            {post.title &&
+              <div className={`${s.caption} ${u.textRight} ${u.semibold}`}>
+                {post.title}
               </div>
-            )
-        )}
+            }
+            <div className={`${s.caption} ${u.textRight}`}>
+              {label}
+              {post.publishedAt && <PostDate date={post.publishedAt} />}
+            </div>
+          </LinkTo>
+        </div>
+      )}
     </div>
   )
 }
