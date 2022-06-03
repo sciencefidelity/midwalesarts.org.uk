@@ -4,6 +4,7 @@ import Image from "next/image"
 import { PortableText } from "@portabletext/react"
 import { components } from "components/portableTextComponents"
 import { buildUrl, dayToNumber, getNextDate, subdir, urlFor } from "lib/utils"
+import { GridImage } from "components/gridImage"
 import { Layout } from "components/layout"
 import { LinkTo } from "components/linkTo"
 import { PostDate } from "components/date"
@@ -63,16 +64,11 @@ export const WorkshopComponent: FC<Props> = ({
         <div className={`${s.title}`}>
           <div className={`${s.header} ${u.grid}`}>
             <div>
-              <Image
-                src={urlFor(workshop.mainImage ? workshop.mainImage : settings.ogImage)
-                  .width(468)
-                  .height(468)
-                  .auto("format")
-                  .quality(75)
-                  .url()}
-                alt={workshop.title}
-                width={2000}
-                height={2000}
+              <GridImage
+                alt={workshop.title ? workshop.title : ""}
+                idx={1}
+                image={workshop.mainImage ? workshop.mainImage : settings.ogImage}
+                postsPerPage={1}
               />
             </div>
             <div className={`${s.headerContent} ${u.grid}`}>

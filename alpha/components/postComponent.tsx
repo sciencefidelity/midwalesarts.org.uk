@@ -1,9 +1,9 @@
 import { FC } from "react"
 import { useRouter } from "next/router"
-import Image from "next/image"
 import { PortableText } from "@portabletext/react"
 import { components } from "components/portableTextComponents"
-import { buildUrl, subdir, urlFor } from "lib/utils"
+import { buildUrl, subdir } from "lib/utils"
+import { GridImage } from "components/gridImage"
 import { Layout } from "components/layout"
 import { LinkTo } from "components/linkTo"
 import { PostDate } from "components/date"
@@ -63,16 +63,11 @@ export const PostComponent: FC<Props> = ({
         <div className={`${s.title}`}>
           <div className={`${s.header} ${u.grid}`}>
             <div>
-              <Image
-                src={urlFor(post.image ? post.image : settings.ogImage)
-                  .width(468)
-                  .height(468)
-                  .auto("format")
-                  .quality(75)
-                  .url()}
-                alt={post.title}
-                width={2000}
-                height={2000}
+              <GridImage
+                alt={post.title ? post.title : ""}
+                idx={1}
+                image={post.image ? post.image : settings.ogImage}
+                postsPerPage={1}
               />
             </div>
             <div className={`${s.headerContent} ${u.grid}`}>
