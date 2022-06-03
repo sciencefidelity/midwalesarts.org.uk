@@ -112,7 +112,7 @@ export const Exhibitions: FC<Props> = ({
       </section>
       {page.pastExhibitions[0] && <PastExhibitionsList
         exhibitions={page.pastExhibitions}
-        // fallbackImage={settings.ogImage}
+        fallbackImage={settings.ogImage}
         labels={labels}
         postsPerPage={pastExhibitionsPerPage}
         top={false}

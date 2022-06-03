@@ -1,10 +1,9 @@
-import { FC, useCallback, useEffect, useState } from "react"
+import { FC, useState } from "react"
 import { useRouter } from "next/router"
 import { sortWorkshops } from "lib/utils"
 import { EventPreview } from "components/eventPreview"
 import { Layout } from "components/layout"
 import {
-  Event,
   Label,
   Navigation,
   Organisation,
