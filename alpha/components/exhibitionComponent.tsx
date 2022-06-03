@@ -1,10 +1,10 @@
 import { FC, useState } from "react"
 import { useRouter } from "next/router"
-import Image from "next/image"
 import { PortableText } from "@portabletext/react"
 import { components } from "components/portableTextComponents"
-import { buildUrl, localize, sortArtworks, subdir, urlFor } from "lib/utils"
+import { buildUrl, localize, sortArtworks, subdir } from "lib/utils"
 import { ExhibitionDate } from "components/date"
+import { GridImage } from "components/gridImage"
 import { Layout } from "components/layout"
 import { LinkTo } from "components/linkTo"
 import { Modal } from "components/modal"
@@ -137,29 +137,23 @@ export const ExhibitionComponent: FC<Props> = ({
         className={`${s.imageGrid}  ${gallery ? null : s.hidden} ${u.grid}`}
       >
         {exhibition.works ?
-          (sortArtworks(exhibition.works).map((artwork, index) =>
+          (sortArtworks(exhibition.works).map((artwork, idx) =>
             artwork && (<div
-              style={{ margin: 0 }}
               key={artwork._id}
-              onClick={() => openModal(index)}
+              onClick={() => openModal(idx)}
               className={`${u.pointer}`}
             >
-              <Image
-                src={urlFor(artwork.mainImage ? artwork.mainImage : settings.ogImage)
-                  .width(468)
-                  .height(468)
-                  .auto("format")
-                  .quality(75)
-                  .url()}
+              <GridImage
                 alt={`
                   ${artwork.artist && artwork.artist + ", "}
                   ${artwork.title && localize(artwork.title, locale) + ", "}
                   ${artwork.date && artwork.date}
                 `}
-                width={2000}
-                height={2000}
+                idx={idx}
+                image={artwork.mainImage ? artwork.mainImage : settings.ogImage}
+                postsPerPage={200}
               />
-              {artwork.artist && <div className={`${s.caption}`}>
+              {artwork.artist && <div className={`${s.caption} ${u.semibold}`}>
                 {artwork.artist}
               </div>}
               {artwork.title && <div className={`${s.caption}`}>
