@@ -115,7 +115,6 @@ export const Exhibitions: FC<Props> = ({
         fallbackImage={settings.ogImage}
         labels={labels}
         postsPerPage={pastExhibitionsPerPage}
-        top={false}
       />}
       {pastExhibitionsPerPage < page.pastExhibitions.length && <button
         onClick={handleShowMoreExhibitions}
