@@ -33,7 +33,6 @@ export const Events: FC<Props> = ({
   pageContext,
   settings
 }) => {
-  const [pastEventsToShow, setPastEventsToShow] = useState<Event[]>([])
   const [pastEventsPerPage, setPastEventsPerPage] = useState(6)
   const { locale } = useRouter()
   const pageHead: PageHead = {
@@ -45,13 +44,6 @@ export const Events: FC<Props> = ({
     ogImage: page.ogImage
   }
   const workshops = sortWorkshops(page.workshops)
-  const loopWithSlice = useCallback((start: number, end: number) => {
-    const slicedEvents = page.pastEvents.slice(start, end)
-    setPastEventsToShow(slicedEvents)
-  }, [page.pastEvents])
-  useEffect(() => {
-    loopWithSlice(0, pastEventsPerPage)
-  }, [loopWithSlice, pastEventsPerPage])
   const handleShowMoreEvents = () => {
     setPastEventsPerPage(prevEventsPerPage => prevEventsPerPage + 9)
   }
@@ -82,6 +74,7 @@ export const Events: FC<Props> = ({
           eventData={page.events}
           fallbackImage={settings.ogImage}
           marginTop={{ marginTop: "2rem" }}
+          postsPerPage={100}
         />
       ) : (
         <div
@@ -98,14 +91,18 @@ export const Events: FC<Props> = ({
         eventData={workshops}
         fallbackImage={settings.ogImage}
         marginTop={{ marginTop: "6rem" }}
+        postsPerPage={100}
+        top={false}
       />}
-      {pastEventsToShow && <EventPreview
+      {page.pastEvents[0] && <EventPreview
         heading={labels[12].text}
-        eventData={pastEventsToShow}
+        eventData={page.pastEvents}
         fallbackImage={settings.ogImage}
         marginTop={{ marginTop: "6rem" }}
+        postsPerPage={pastEventsPerPage}
+        top={false}
       />}
-      {pastEventsToShow.length < page.pastEvents.length && <button
+      {pastEventsPerPage < page.pastEvents.length && <button
         onClick={handleShowMoreEvents}
         className={`${s.loadMore} ${u.pointer}`}
       >

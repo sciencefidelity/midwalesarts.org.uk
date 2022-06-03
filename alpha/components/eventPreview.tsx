@@ -1,7 +1,7 @@
 import { CSSProperties, FC } from "react"
 import { useRouter } from "next/router"
-import Image from "next/image"
-import { buildUrl, dayToNumber, getNextDate, urlFor } from "@/lib/utils"
+import { buildUrl, dayToNumber, getNextDate } from "@/lib/utils"
+import { GridImage } from "components/gridImage"
 import { LinkTo } from "components/linkTo"
 import { PostDate } from "components/date"
 import { Event, Workshop } from "lib/interfaces"
@@ -13,13 +13,17 @@ interface Props {
   fallbackImage: any
   heading: string
   marginTop: CSSProperties
+  postsPerPage: number
+  top?: boolean
 }
 
 export const EventPreview: FC<Props> = ({
   eventData,
   fallbackImage,
   heading,
-  marginTop
+  marginTop,
+  postsPerPage,
+  top = true
 }) => {
   const { locale } = useRouter()
   return (
@@ -30,35 +34,35 @@ export const EventPreview: FC<Props> = ({
         </div>
       </div>
       <div className={`${s.imageGrid} ${u.grid}`}>
-        {eventData.map(event => (
-          <LinkTo
-            href={buildUrl(locale, event.slug, event._type)}
+        {eventData.map((event, idx: number) => (
+          <div
             key={event._id}
-            style={{ margin: 0 }}
-            className={`${u.truncate}`}
+            className={`${idx >= postsPerPage ? u.hidden : null}`}
           >
-            <Image
-              src={urlFor(event.mainImage ? event.mainImage : fallbackImage)
-                .width(468)
-                .height(468)
-                .auto("format")
-                .quality(75)
-                .url()}
-              alt={event.title}
-              width={2000}
-              height={2000}
-            />
-            {event.title &&
-              <div className={`${s.caption} ${u.textRight} ${u.semibold}`}>
-                {event.title}
-              </div>
-            }
-            {(event.date || event.day) && <div className={`${s.caption} ${u.textRight}`}>
-              <PostDate
-                date={event.date ? event.date : getNextDate(dayToNumber(event.day))}
-              />{event.startTime && ", " + event.startTime}
-            </div>}
-          </LinkTo>
+            <LinkTo
+              href={buildUrl(locale, event.slug, event._type)}
+              style={{ margin: 0 }}
+              className={`${u.truncate}`}
+            >
+              <GridImage
+                alt={event.title ? event.title : ""}
+                idx={idx}
+                image={event.mainImage ? event.mainImage : fallbackImage}
+                postsPerPage={postsPerPage}
+                top={top}
+              />
+              {event.title &&
+                <div className={`${s.caption} ${u.textRight} ${u.semibold}`}>
+                  {event.title}
+                </div>
+              }
+              {(event.date || event.day) && <div className={`${s.caption} ${u.textRight}`}>
+                <PostDate
+                  date={event.date ? event.date : getNextDate(dayToNumber(event.day))}
+                />{event.startTime && ", " + event.startTime}
+              </div>}
+            </LinkTo>
+          </div>
         ))}
       </div>
     </>

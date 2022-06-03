@@ -10,9 +10,10 @@ interface Props {
   idx: number
   image: Image
   postsPerPage: number
+  top?: boolean
 }
 
-export const GridImage: FC<Props> = ({ alt, idx, image, postsPerPage }) => {
+export const GridImage: FC<Props> = ({ alt, idx, image, postsPerPage, top = true }) => {
   const [loaded, setLoaded] = useState(false)
   const onLoad = useCallback(() => {
     setLoaded(true)
@@ -25,7 +26,7 @@ export const GridImage: FC<Props> = ({ alt, idx, image, postsPerPage }) => {
       <div className={`${s.imageContainer} ${u.relative}`}>
         <img
           onLoad={onLoad}
-          loading={idx < 3 ? "eager" : "lazy"}
+          loading={top && idx < 3 ? "eager" : "lazy"}
           className={`${s.image} ${loaded ? s.loaded : null} ${u.relative} ${u.cover}`}
           alt={alt}
           src={urlFor(image)
