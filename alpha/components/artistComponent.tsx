@@ -4,6 +4,7 @@ import Image from "next/image"
 import { PortableText } from "@portabletext/react"
 import { components } from "components/portableTextComponents"
 import { buildUrl, localize, subdir, urlFor } from "lib/utils"
+import { GridImage } from "components/gridImage"
 import { Layout } from "components/layout"
 import { LinkTo } from "components/linkTo"
 import { Modal } from "components/modal"
@@ -127,31 +128,29 @@ export const ArtistComponent: FC<Props> = ({
       <div
         className={`${s.imageGrid} ${gallery ? null : s.hidden} ${u.grid}`}
       >
-        {artist.works[0] ? (artist.works.map((artwork, index) => artwork &&
+        {artist.works[0] ? (artist.works.map((artwork, idx) => artwork &&
           <div
             style={{ margin: 0 }}
             key={artwork._id}
-            onClick={() => openModal(index)}
+            onClick={() => openModal(idx)}
             className={`${u.pointer}`}
           >
-            <Image
-              src={urlFor(artwork.mainImage ? artwork.mainImage : settings.ogImage)
-                .width(468)
-                .height(468)
-                .auto("format")
-                .quality(75)
-                .url()}
+            <GridImage
               alt={`
                 ${artist.title && artist.title + ", "}
                 ${artwork.title && localize(artwork.title, locale) + ", "}
                 ${artwork.date && artwork.date}
               `}
-              width={2000}
-              height={2000}
+              idx={idx}
+              image={artwork.mainImage ? artwork.mainImage : settings.ogImage}
+              postsPerPage={100}
             />
-            {artwork.title && <div className={`${s.caption} ${u.textRight}`}>
+            {artwork.title && <div className={`${s.caption} ${u.textRight} ${u.semibold}`}>
               {localize(artwork.title, locale)}{" "}
               {artwork.date && `(${artwork.date})`}
+            </div>}
+            {(artwork.medium || artwork.price) && <div className={`${s.caption} ${u.textRight}`}>
+              {artwork.medium && localize(artwork.medium, locale) + ", "}{artwork.price}
             </div>}
           </div>
         )) : <p>{labels[26].text}</p>}

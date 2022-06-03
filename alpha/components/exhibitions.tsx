@@ -1,10 +1,9 @@
-import { FC, Fragment, useCallback, useEffect, useState } from "react"
+import { FC, Fragment, useState } from "react"
 import { useRouter } from "next/router"
 import { ExhibitionPreview } from "components/exhibitionPreview"
 import { Layout } from "components/layout"
 import { PastExhibitionsList } from "components/pastExhibitionsList"
 import {
-  Exhibition,
   Label,
   Navigation,
   Organisation,
@@ -33,7 +32,6 @@ export const Exhibitions: FC<Props> = ({
   pageContext,
   settings
 }) => {
-  const [pastExhibitionsToShow, setPastExhibitionsToShow] = useState<Exhibition[]>([])
   const [pastExhibitionsPerPage, setPastExhibitionsPerPage] = useState(9)
   const { locale } = useRouter()
   const pageHead: PageHead = {
@@ -44,13 +42,6 @@ export const Exhibitions: FC<Props> = ({
     ogURL: `${settings.canonicalURL}${locale === "cy" ? "/cy" : ""}/${page.slug}`,
     ogImage: page.ogImage
   }
-  const loopWithSlice = useCallback((start: number, end: number) => {
-    const slicedExhibitions = page.pastExhibitions.slice(start, end)
-    setPastExhibitionsToShow(slicedExhibitions)
-  }, [page.pastExhibitions])
-  useEffect(() => {
-    loopWithSlice(0, pastExhibitionsPerPage)
-  }, [loopWithSlice, pastExhibitionsPerPage])
   const handleShowMoreExhibitions = () => {
     setPastExhibitionsPerPage(prevExhibitionsPerPage => prevExhibitionsPerPage + 3)
   }
@@ -85,6 +76,7 @@ export const Exhibitions: FC<Props> = ({
         {page.exhibitions[0] && page.exhibitions.map((exhibition, idx) =>
           <Fragment key={exhibition._id}>
             <ExhibitionPreview
+              exhibition={exhibition}
               fallbackImage={settings.ogImage}
               heading={
                 idx === 0 &&
@@ -92,15 +84,17 @@ export const Exhibitions: FC<Props> = ({
                   ? labels[13].text
                   : labels[14].text)
               }
-              exhibition={exhibition}
+              idx={idx}
               label={labels[56].text}
               margin={page.futureExhibitions[0] && idx >= 3 ? "6rem" : "0"}
+              postsPerPage={10}
             />
           </Fragment>
         )}
         {page.futureExhibitions[0] && page.futureExhibitions.map((exhibition, idx) =>
           <Fragment key={exhibition._id}>
             <ExhibitionPreview
+              exhibition={exhibition}
               fallbackImage={settings.ogImage}
               heading={
                 idx === 0 &&
@@ -108,19 +102,22 @@ export const Exhibitions: FC<Props> = ({
                   ? labels[15].text
                   : labels[16].text)
               }
-              exhibition={exhibition}
+              idx={page.exhibitions.length + idx}
               label={labels[56].text}
               margin={page.exhibitions.length >= 3 ? "6rem" : "0"}
+              postsPerPage={10}
             />
           </Fragment>
         )}
       </section>
-      {pastExhibitionsToShow && <PastExhibitionsList
-        exhibitions={pastExhibitionsToShow}
+      {page.pastExhibitions[0] && <PastExhibitionsList
+        exhibitions={page.pastExhibitions}
+        // fallbackImage={settings.ogImage}
         labels={labels}
-        settings={settings}
+        postsPerPage={pastExhibitionsPerPage}
+        top={false}
       />}
-      {pastExhibitionsToShow.length < page.pastExhibitions.length && <button
+      {pastExhibitionsPerPage < page.pastExhibitions.length && <button
         onClick={handleShowMoreExhibitions}
         className={`${s.loadMore} ${u.pointer}`}
       >

@@ -4,13 +4,13 @@ import { buildUrl, dayToNumber, getNextDate } from "@/lib/utils"
 import { GridImage } from "components/gridImage"
 import { LinkTo } from "components/linkTo"
 import { PostDate } from "components/date"
-import { Event, Workshop } from "lib/interfaces"
+import { Event, Image, Workshop } from "lib/interfaces"
 import s from "styles/events.module.scss"
 import u from "styles/utils.module.scss"
 
 interface Props {
   eventData: Event[] | Workshop[]
-  fallbackImage: any
+  fallbackImage: Image
   heading: string
   marginTop: CSSProperties
   postsPerPage: number

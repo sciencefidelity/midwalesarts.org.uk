@@ -27,7 +27,6 @@
 
 .tabs {
   padding: 0;
-  // margin-block: 3.5rem -3.1rem;
   margin-block: 3rem -2.6rem;
 }
 
@@ -74,14 +73,12 @@
 .caption {
   font-size: 1.8rem;
   color: c.$grey-550;
-  &:first-of-type {
-    margin-block: 0.88em 0.48em;
-    font-weight: 500;
-    line-height: 1.4;
-  }
   &:last-of-type {
-    // margin-block: 0.48em 1.3em;
-    margin-block: 0.88em 1.3em;
+    margin-block: 1.1rem 2.3rem;
+  }
+  &:first-of-type {
+    margin-block: 1.1rem 0;
+    line-height: 1.4;
   }
 }
 

@@ -1,27 +1,39 @@
-import { FC, Fragment } from "react"
+import { FC } from "react"
 import { ExhibitionPreview } from "components/exhibitionPreview"
-import { Label, Exhibition, Settings } from "lib/interfaces"
+import { Image, Label, Exhibition } from "lib/interfaces"
 import s from "styles/exhibitions.module.scss"
 import u from "styles/utils.module.scss"
 
 interface Props {
   exhibitions: Exhibition[]
+  fallbackImage: Image
   labels:Label[]
-  settings: Settings
+  postsPerPage: number
 }
 
-export const PastExhibitionsList: FC<Props> = ({ exhibitions, labels, settings }) => {
+export const PastExhibitionsList: FC<Props> = ({
+  exhibitions,
+  fallbackImage,
+  labels,
+  postsPerPage,
+}) => {
   return (
     <section className={`${s.exhibitionGrid} ${s.pastExhibitions} ${u.grid}`}>
       {exhibitions && exhibitions.map((exhibition, idx) =>
-        <Fragment key={exhibition._id}>
+        <div
+          key={exhibition._id}
+          className={`${idx >= postsPerPage ? u.hidden : null}`}
+        >
           <ExhibitionPreview
-            fallbackImage={settings.ogImage}
-            heading={idx === 0 && labels[17].text}
             exhibition={exhibition}
+            fallbackImage={fallbackImage}
+            heading={idx === 0 && labels[17].text}
+            idx={idx}
             label={labels[56].text}
+            postsPerPage={postsPerPage}
+            top={false}
           />
-        </Fragment>
+        </div>
       )}
     </section>
   )

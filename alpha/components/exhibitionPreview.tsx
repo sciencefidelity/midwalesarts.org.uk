@@ -1,8 +1,8 @@
 import { FC } from "react"
-import Image from "next/image"
 import { useRouter } from "next/router"
-import { buildUrl, urlFor } from "@/lib/utils"
+import { buildUrl } from "@/lib/utils"
 import { ExhibitionDate } from "components/date"
+import { GridImage } from "components/gridImage"
 import { LinkTo } from "components/linkTo"
 import { Exhibition } from "lib/interfaces"
 import s from "styles/exhibitions.module.scss"
@@ -12,14 +12,22 @@ interface Props {
   fallbackImage: any
   exhibition: Exhibition
   heading?: string
+  idx: number
   label: string
   margin?: string
+  postsPerPage: number
+  top?: boolean
 }
 
-// const margin = "6rem"
-
 export const ExhibitionPreview: FC<Props> = ({
-  exhibition, fallbackImage, heading, label, margin
+  exhibition,
+  fallbackImage,
+  heading,
+  idx,
+  label,
+  margin,
+  postsPerPage,
+  top = true
 }) => {
   const { locale } = useRouter()
   return (
@@ -29,18 +37,12 @@ export const ExhibitionPreview: FC<Props> = ({
         dangerouslySetInnerHTML={{__html: heading ? heading : "&nbsp;"}}
       />
       <LinkTo href={buildUrl(locale, exhibition.slug, exhibition._type)}>
-        <Image
-          src={urlFor(exhibition.mainImage?.asset
-            ? exhibition.mainImage
-            : fallbackImage)
-            .width(624)
-            .height(624)
-            .auto("format")
-            .quality(75)
-            .url()}
-          alt={exhibition.title}
-          width={2000}
-          height={2000}
+        <GridImage
+          alt={exhibition.title ? exhibition.title : ""}
+          idx={idx}
+          image={exhibition.mainImage?.asset ? exhibition.mainImage : fallbackImage}
+          postsPerPage={postsPerPage}
+          top={top}
         />
         {exhibition && <div className={`${s.caption} ${u.textRight} ${u.semibold}`}>
           {exhibition.title}
