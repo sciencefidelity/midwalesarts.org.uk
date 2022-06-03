@@ -32,8 +32,8 @@ export const News: FC<Props> = ({
   pageContext,
   settings
 }) => {
-  const [postsToShow, setPostsToShow] = useState<Post[]>([])
-  const [postsPerPage, setPostsPerPage] = useState(12)
+  // const [postsToShow, setPostsToShow] = useState<Post[]>([])
+  // const [postsPerPage, setPostsPerPage] = useState(12)
   const { locale } = useRouter()
   const pageHead: PageHead = {
     title: page.title,
@@ -43,16 +43,16 @@ export const News: FC<Props> = ({
     ogURL: `${settings.canonicalURL}${locale === "cy" ? "/cy" : ""}/${page.slug}`,
     ogImage: page.ogImage
   }
-  const loopWithSlice = useCallback((start: number, end: number) => {
-    const slicedPosts = page.posts.slice(start, end)
-    setPostsToShow(slicedPosts)
-  }, [page.posts])
-  useEffect(() => {
-    loopWithSlice(0, postsPerPage)
-  }, [loopWithSlice, postsPerPage])
-  const handleShowMorePosts = () => {
-    setPostsPerPage(prevPostsPerPage => prevPostsPerPage + 9)
-  }
+  // const loopWithSlice = useCallback((start: number, end: number) => {
+  //   const slicedPosts = page.posts.slice(start, end)
+  //   setPostsToShow(slicedPosts)
+  // }, [page.posts])
+  // useEffect(() => {
+  //   loopWithSlice(0, postsPerPage)
+  // }, [loopWithSlice, postsPerPage])
+  // const handleShowMorePosts = () => {
+  //   setPostsPerPage(prevPostsPerPage => prevPostsPerPage + 9)
+  // }
   return (
     <Layout
       caption={page.posts[0]?.title ? page.posts[0]?.title : null}
@@ -72,17 +72,22 @@ export const News: FC<Props> = ({
           </h2>}
         </div>
       </div>
-      {postsToShow && <PostsList
+      {page.posts[0] && <PostsList
+        fallbackImage={settings.ogImage}
+        label={labels[18].text.trim() + " "}
+        posts={page.posts}
+      />}
+      {/* {postsToShow && <PostsList
         fallbackImage={settings.ogImage}
         label={labels[18].text.trim() + " "}
         posts={postsToShow}
-      />}
-      {postsToShow.length < page.posts.length && <button
+      />} */}
+      {/* {postsToShow.length < page.posts.length && <button
         onClick={handleShowMorePosts}
         className={`${s.loadMore} ${u.pointer}`}
       >
         {labels[84].text}
-      </button>}
+      </button>} */}
     </Layout>
   )
 }
