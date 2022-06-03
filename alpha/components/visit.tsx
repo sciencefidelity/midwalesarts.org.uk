@@ -1,10 +1,9 @@
 import { FC, Fragment, useState } from "react"
 import { useRouter } from "next/router"
-import Image from "next/image"
 import { PortableText } from "@portabletext/react"
 import { components } from "components/portableTextComponents"
-import { urlFor } from "lib/utils"
 import { GoogleMap } from "components/googleMap"
+import { GridImage } from "components/gridImage"
 import { Layout } from "components/layout"
 import { LinkTo } from "components/linkTo"
 import {
@@ -66,22 +65,18 @@ export const Visit: FC<Props> = ({
           <PortableText value={page.body} components={components} />
         </div>}
         <div className={`${s.spacesGrid} ${u.grid}`}>
-          {page.spaces && page.spaces.map(space => (
+          {page.spaces && page.spaces.map((space, idx) => (
             <LinkTo
               href={`#${space.slug}`}
               key={space._id}
               style={{ margin: 0 }}
             >
-              <Image
-                src={urlFor(space.mainImage)
-                  .width(468)
-                  .height(468)
-                  .auto("format")
-                  .quality(75)
-                  .url()}
-                alt={space.title}
-                width={2000}
-                height={2000}
+              <GridImage
+                alt={space.title ? space.title : ""}
+                idx={idx}
+                image={space.mainImage ? space.mainImage : settings.ogImage}
+                postsPerPage={12}
+                top={false}
               />
               {space.title && <div className={`${s.caption} ${u.textRight}`}>
                 {space.title}
