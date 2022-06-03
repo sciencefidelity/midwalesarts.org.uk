@@ -186,6 +186,7 @@ export interface PageHead {
 export interface Post extends SanityDocument {
   __i18n_lang: "cy" | "en"
   _type: "post"
+  accent: string
   body: PortableText
   image: Image
   localization: Localization

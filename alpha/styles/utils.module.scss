@@ -117,6 +117,15 @@
   object-fit: cover;
 }
 
+.gridImage {
+  opacity: 0;
+}
+
+.loaded {
+  opacity: 1;
+  transition: opacity 0.3s ease-in;
+}
+
 .noSelect {
   user-select: none;
   cursor: default;

@@ -2,6 +2,7 @@ import groq from "groq"
 
 const omitDrafts = "!(_id in path('drafts.**'))"
 const slug = "'slug': slug.current"
+const accent = "'accent': image.asset->.metadata.palette.dominant.background"
 const body = `body[]{ ..., markDefs[]{ ..., item->{ __i18n_lang, _type, ${slug} } } }`
 const seo = "ogDescription, ogImage, ogTitle"
 const ctaLink = `
@@ -78,7 +79,7 @@ const postSubset = `
   "posts": *[
     _type == "post" && __i18n_lang == ^.__i18n_lang && ${omitDrafts}
   ] | order(publishedAt desc){
-    _id, _type, image, publishedAt, ${slug}, title
+    ${accent}, _id, _type, image, publishedAt, ${slug}, title
   }
 `
 
