@@ -1,0 +1,29 @@
+.container {
+  margin-bottom: 2.1rem;
+  aspect-ratio: 1 / 1;
+}
+
+.imageContainer {
+  inset: 0;
+  z-index: 10;
+}
+
+.image {
+  opacity: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.loaded {
+  opacity: 1;
+  transition: opacity 0.3s ease-in;
+}
+
+.placeholderContainer {
+  inset: 0;
+}
+
+.placeholder {
+  height: 100%;
+  width: 100%;
+}
