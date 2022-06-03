@@ -1,7 +1,7 @@
 import { FC } from "react"
 import { useRouter } from "next/router"
-import Image from "next/image"
-import { buildUrl, sortArtists, urlFor } from "@/lib/utils"
+import { buildUrl, sortArtists } from "@/lib/utils"
+import { GridImage } from "components/gridImage"
 import { Layout } from "components/layout"
 import { LinkTo } from "components/linkTo"
 import {
@@ -62,22 +62,17 @@ export const Artists: FC<Props> = ({
         </div>
       </div>
       <div className={`${s.imageGrid} ${u.grid}`}>
-        {page.artists && sortArtists(page.artists).map(artist => artist &&
+        {page.artists && sortArtists(page.artists).map((artist, idx) => artist &&
           <LinkTo
             href={buildUrl(locale, artist.slug, artist._type)}
             style={{ margin: 0 }}
             key={artist._id}
           >
-            <Image
-              src={urlFor(artist.mainImage?.asset ? artist.mainImage : settings.ogImage)
-                .width(468)
-                .height(468)
-                .auto("format")
-                .quality(75)
-                .url()}
-              alt={artist?.mainImage?.caption}
-              width={2000}
-              height={2000}
+            <GridImage
+              alt={artist?.mainImage?.caption ? artist?.mainImage?.caption: ""}
+              idx={idx}
+              image={artist.mainImage?.asset ? artist.mainImage : settings.ogImage}
+              postsPerPage={100}
             />
             {artist.title && <div className={`${s.caption} ${u.textRight} ${u.semibold}`}>
               {artist.title}
