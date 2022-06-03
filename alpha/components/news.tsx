@@ -33,7 +33,7 @@ export const News: FC<Props> = ({
   settings
 }) => {
   // const [postsToShow, setPostsToShow] = useState<Post[]>([])
-  // const [postsPerPage, setPostsPerPage] = useState(12)
+  const [postsPerPage, setPostsPerPage] = useState(9)
   const { locale } = useRouter()
   const pageHead: PageHead = {
     title: page.title,
@@ -50,9 +50,9 @@ export const News: FC<Props> = ({
   // useEffect(() => {
   //   loopWithSlice(0, postsPerPage)
   // }, [loopWithSlice, postsPerPage])
-  // const handleShowMorePosts = () => {
-  //   setPostsPerPage(prevPostsPerPage => prevPostsPerPage + 9)
-  // }
+  const handleShowMorePosts = () => {
+    setPostsPerPage(prevPostsPerPage => prevPostsPerPage + 9)
+  }
   return (
     <Layout
       caption={page.posts[0]?.title ? page.posts[0]?.title : null}
@@ -76,18 +76,19 @@ export const News: FC<Props> = ({
         fallbackImage={settings.ogImage}
         label={labels[18].text.trim() + " "}
         posts={page.posts}
+        postsPerPage={postsPerPage}
       />}
       {/* {postsToShow && <PostsList
         fallbackImage={settings.ogImage}
         label={labels[18].text.trim() + " "}
         posts={postsToShow}
       />} */}
-      {/* {postsToShow.length < page.posts.length && <button
+      {postsPerPage < page.posts.length && <button
         onClick={handleShowMorePosts}
         className={`${s.loadMore} ${u.pointer}`}
       >
         {labels[84].text}
-      </button>} */}
+      </button>}
     </Layout>
   )
 }

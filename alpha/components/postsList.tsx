@@ -12,9 +12,10 @@ interface Props {
   fallbackImage: any
   label: string
   posts: Post[]
+  postsPerPage: number
 }
 
-export const PostsList: FC<Props> = ({ fallbackImage, label, posts }) => {
+export const PostsList: FC<Props> = ({ fallbackImage, label, posts, postsPerPage }) => {
   const [loaded, setLoaded] = useState(false)
   const { locale } = useRouter()
 
@@ -23,8 +24,8 @@ export const PostsList: FC<Props> = ({ fallbackImage, label, posts }) => {
   }
   return (
     <div className={`${s.imageGrid} ${u.grid}`}>
-      {posts && posts.map(post => post && (
-        <div key={post._id} style={{ margin: 0 }}>
+      {posts && posts.map((post, idx) => post && (
+        <div key={post._id} style={{ margin: 0 }} className={`${idx >= postsPerPage ? u.hidden : null}`}>
           <LinkTo href={buildUrl(locale, post.slug, post._type)}>
 
             <div
