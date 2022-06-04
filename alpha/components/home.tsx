@@ -1,6 +1,5 @@
 import { FC } from "react"
 import { useRouter } from "next/router"
-import { urlFor } from "lib/utils"
 import { ColorLogo } from "components/colorLogo"
 import { BrandCy, BrandEn } from "components/brand"
 import { FrontPageHeadline } from "components/frontPageHeadline"
@@ -68,7 +67,7 @@ export const Home: FC<Props> = ({
       </section>
       {page.headlines.map(headline => (
         <section key={headline._id}>
-          <FrontPageHeadline headline={headline} />
+          <FrontPageHeadline headline={headline} settings={settings} />
         </section>
       ))}
     </Layout>

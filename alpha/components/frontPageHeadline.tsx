@@ -1,16 +1,18 @@
 import { FC } from "react"
 import { useRouter } from "next/router"
 import { buildUrl, urlFor } from "lib/utils"
+import { HeadlineInsetImage } from "components/headlineInsetImage"
 import { LinkTo } from "components/linkTo"
-import { Headline } from "lib/interfaces"
+import { Headline, Settings } from "lib/interfaces"
 import s from "styles/home.module.scss"
 import u from "styles/utils.module.scss"
 
 interface Props {
   headline: Headline
+  settings: Settings
 }
 
-export const FrontPageHeadline: FC<Props> = ({ headline }) => {
+export const FrontPageHeadline: FC<Props> = ({ headline, settings }) => {
   const { locale } = useRouter()
   const url = buildUrl(locale, headline.ctaLink.slug, headline.ctaLink._type)
   return (
@@ -33,7 +35,7 @@ export const FrontPageHeadline: FC<Props> = ({ headline }) => {
       </div>
       <div className={`${s.sectionContent} ${u.flex}`}>
         <div className={`${s.sectionInsetImage}`}>
-          <img
+          {/* <img
             src={urlFor(headline.subImage)
               .width(680)
               .auto("format")
@@ -43,6 +45,10 @@ export const FrontPageHeadline: FC<Props> = ({ headline }) => {
             height={510}
             className={`${s.sectionInset} ${u.wFull} ${u.cover}`}
             alt={headline.subImage.caption[locale]}
+          /> */}
+          <HeadlineInsetImage
+            alt={headline.subImage.caption[locale]}
+            image={headline.subImage?.asset ? headline.subImage : settings.ogImage }
           />
           <div className={`${s.sectionInsetCaption} ${u.caption}`}>
             {headline.subImage.caption[locale]}
