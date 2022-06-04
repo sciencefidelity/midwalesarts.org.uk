@@ -3,6 +3,9 @@
 
 .container {
   width: 81.25%;
+  @include b.mq(md) {
+    width: 90%;
+  }
 }
 
 .subtitle {
@@ -61,6 +64,9 @@
   @include b.mq(lg) {
     width: 95%;
   }
+  @include b.mq(md) {
+    width: 100%;
+  }
 }
 
 .quoteBtns {
@@ -104,4 +110,7 @@
   max-width: 850px;
   margin-top: 8rem;
   margin-right: auto;
+  @include b.mq(md) {
+    width: 100%;
+  }
 }

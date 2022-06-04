@@ -14,6 +14,9 @@
   @include b.mq(lg) {
     width: 81.25%;
   }
+  @include b.mq(md) {
+    width: 90%;
+  }
 }
 
 .subtitle {
@@ -34,6 +37,9 @@
   margin-top: 7rem;
   @include b.mq(lg) {
     grid-template-columns: 1fr 1fr;
+  }
+  @include b.mq(md) {
+    width: 90%;
   }
   @include b.mq(sm) {
     grid-template-columns: 1fr;

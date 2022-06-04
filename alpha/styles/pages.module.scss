@@ -14,6 +14,9 @@
   @include b.mq(lg) {
     width: 81.25%;
   }
+  @include b.mq(md) {
+    width: 90%;
+  }
 }
 
 .subtitle {

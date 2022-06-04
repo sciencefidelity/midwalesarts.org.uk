@@ -14,6 +14,9 @@
   @include b.mq(lg) {
     width: 81.25%;
   }
+  @include b.mq(md) {
+    width: 90%;
+  }
 }
 
 .subtitle {
@@ -45,6 +48,9 @@
   @include b.mq(lg) {
     grid-template-columns: 1fr 1fr;
   }
+  @include b.mq(md) {
+    width: 90%;
+  }
   @include b.mq(sm) {
     grid-template-columns: 1fr;
   }
@@ -52,6 +58,9 @@
 
 .twoCols {
   grid-template-columns: 1fr 1fr;
+  @include b.mq(md) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .pastExhibitions {
