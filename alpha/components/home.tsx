@@ -48,7 +48,7 @@ export const Home: FC<Props> = ({
       settings={settings}
     >
       <section>
-        <div className={`${u.container} ${u.relative}`}>
+        <div className={`${s.introContainer} ${u.relative}`}>
           <div style={dynamicGap} className={`${s.introduction} ${u.grid}`}>
             <div className={`${s.introBranding} ${u.grid}`}>
               <ColorLogo

@@ -25,7 +25,7 @@ export const InsetImage: FC<Props> = ({ alt, image }) => {
           onLoad={onLoad}
           loading="lazy"
           className={`
-            ${s.image} ${loaded ? s.loaded : null} ${u.relative} ${u.cover}
+            ${s.sideImage} ${loaded ? s.loaded : null} ${u.relative} ${u.cover}
           `}
           alt={alt}
           src={urlFor(image)
@@ -77,24 +77,24 @@ export const InsetImage: FC<Props> = ({ alt, image }) => {
               .quality(70)
               .url()} 1800w
           `}
-          width={429}
-          height={317}
+          width={600}
+          height={443}
         />
-      </div>
-      <div className={`${s.placeholderContainer} ${u.absolute}`}>
-        <img
-          src={urlFor(image)
-            .width(21)
-            .height(16)
-            .auto("format")
-            .quality(5)
-            .url()}
-          alt=""
-          className={`${s.sideImage} ${s.placeholder} ${u.relative} ${u.cover}`}
-          width={429}
-          height={317}
-          loading="eager"
-        />
+        <div className={`${s.placeholderContainer} ${u.absolute}`}>
+          <img
+            src={urlFor(image)
+              .width(21)
+              .height(16)
+              .auto("format")
+              .quality(5)
+              .url()}
+            alt=""
+            className={`${s.placeholder} ${u.relative} ${u.cover}`}
+            width={600}
+            height={443}
+            loading="eager"
+          />
+        </div>
       </div>
     </>
   )
