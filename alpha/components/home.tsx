@@ -4,6 +4,7 @@ import { urlFor } from "lib/utils"
 import { ColorLogo } from "components/colorLogo"
 import { BrandCy, BrandEn } from "components/brand"
 import { FrontPageHeadline } from "components/frontPageHeadline"
+import { InsetImage } from "components/insetImage"
 import { Intro } from "components/intro"
 import { Layout } from "components/layout"
 import {
@@ -59,18 +60,7 @@ export const Home: FC<Props> = ({
             </div>
             <Intro page={page} />
             <div className={`${s.sideImageContainer} ${u.absolute}`}>
-              <img
-                src={urlFor(page.subImage)
-                  .width(406)
-                  .height(300)
-                  .auto("format")
-                  .quality(75)
-                  .url()}
-                alt={page.subImage.caption}
-                width={406}
-                height={300}
-                className={`${s.sideImage}`}
-              />
+              <InsetImage image={page.subImage} alt={page.subImage.caption} />
               <div className={`${s.sideImageCaption}`}>{page.subImage.caption}</div>
             </div>
           </div>

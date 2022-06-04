@@ -174,12 +174,6 @@
   }
 }
 
-.sideImageContainer div {
-  @include b.mq(sm) {
-    margin-right: 6%;
-  }
-}
-
 .sideImage {
   width: auto;
   height: 31.7rem;
@@ -189,8 +183,44 @@
   }
 }
 
+.imageContainer {
+  z-index: 10;
+  width: auto;
+  height: 31.7rem;
+  @include b.mq(sm) {
+    width: 100vw;
+    height: auto;
+  }
+}
+
+.image {
+  opacity: 0;
+}
+
+.loaded {
+  opacity: 1;
+  transition: opacity 0.3s ease-in;
+}
+
+.placeholderContainer {
+  inset: 0;
+  height: 31.7rem;
+  @include b.mq(sm) {
+    width: 100vw;
+    height: auto;
+  }
+}
+
+.placeholder {
+  height: 100%;
+  width: 100%;
+}
+
 .sideImageCaption {
   margin-top: 1rem;
+  @include b.mq(sm) {
+    margin-right: 6%;
+  }
 }
 
 .sectionContainer {

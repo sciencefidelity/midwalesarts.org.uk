@@ -33,8 +33,8 @@ export const HeroImage: FC<Props> = ({ alt, image }) => {
           `}
           alt={alt}
           src={urlFor(image)
-            .width(468)
-            .height(468)
+            .width(1600)
+            .height(450)
             .auto("format")
             .quality(75)
             .url()}
