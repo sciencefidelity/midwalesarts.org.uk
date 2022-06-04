@@ -41,59 +41,70 @@ export const HeroImage: FC<Props> = ({ alt, image }) => {
           srcSet={
             `${urlFor(image)
               .width(400)
+              .height(350)
               .auto("format")
               .quality(70)
               .url()} 400w,
             ${urlFor(image)
-              .width(600)
-              .auto("format")
-              .quality(70)
-              .url()} 600w,
-            ${urlFor(image)
               .width(800)
+              .height(700)
               .auto("format")
               .quality(70)
               .url()} 800w,
             ${urlFor(image)
-              .width(1000)
+              .width(1200)
+              .height(667)
               .auto("format")
               .quality(70)
-              .url()} 1000w,
+              .url()} 1200w,
             ${urlFor(image)
-              .width(1500)
+              .width(1620)
+              .height(900)
               .auto("format")
               .quality(70)
-              .url()} 1500w,
+              .url()} 1620w,
+            ${urlFor(image)
+              .width(1620)
+              .height(900)
+              .auto("format")
+              .quality(70)
+              .url()} 1620w,
             ${urlFor(image)
               .width(2000)
+              .height(900)
               .auto("format")
               .quality(70)
               .url()} 2000w,
             ${urlFor(image)
               .width(2500)
+              .height(900)
               .auto("format")
               .quality(70)
               .url()} 2500w,
             ${urlFor(image)
               .width(3000)
+              .height(900)
               .auto("format")
               .quality(70)
               .url()} 3000w,
             ${urlFor(image)
               .width(3500)
+              .height(900)
               .auto("format")
               .quality(70)
               .url()} 3500w,
             ${urlFor(image)
               .width(4000)
+              .height(900)
               .auto("format")
               .quality(70)
               .url()} 4000w,
             ${urlFor(image)
+              .width(5000)
               .height(900)
               .auto("format")
               .quality(70)
-              .url()} 4500w,
+              .url()} 5000w
           `}
           width={1600}
           height={450}
