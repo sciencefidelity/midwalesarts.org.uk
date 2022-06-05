@@ -86,7 +86,7 @@ export const Exhibitions: FC<Props> = ({
               }
               idx={idx}
               label={labels[56].text}
-              margin={page.futureExhibitions[0] && idx >= 3 ? "6rem" : "0"}
+              margin={page.futureExhibitions[0] && idx >= 3 ? "6rem" : "2rem"}
               postsPerPage={10}
             />
           </Fragment>
@@ -104,7 +104,7 @@ export const Exhibitions: FC<Props> = ({
               }
               idx={page.exhibitions.length + idx}
               label={labels[56].text}
-              margin={page.exhibitions.length >= 3 ? "6rem" : "0"}
+              margin={page.exhibitions.length >= 3 ? "6rem" : "2rem"}
               postsPerPage={10}
             />
           </Fragment>

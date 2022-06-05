@@ -42,6 +42,7 @@ export const Artists: FC<Props> = ({
     ogURL: `${settings.canonicalURL}${locale === "cy" ? "/cy" : ""}/${page.slug}`,
     ogImage: page.ogImage
   }
+  const count = page.artists.filter(e => e.permanent).length
   return (
     <Layout
       caption={page.hero.mainImage?.caption ? page.hero.mainImage.caption : null}
@@ -61,8 +62,13 @@ export const Artists: FC<Props> = ({
           </h2>}
         </div>
       </div>
-      <div className={`${s.imageGrid} ${u.grid}`}>
-        {page.artists && sortArtists(page.artists).map((artist, idx) => artist &&
+      <div className={`${s.container} ${u.grid}`} style={{marginTop: "2rem"}}>
+        <div className={`${s.title}`}>
+          <h3 className={`${s.heading}`}>Permanent Collections</h3>
+        </div>
+      </div>
+      <div className={`${s.imageGrid} ${u.grid} ${count < 3 && s.twoCols} `}>
+        {page.artists && sortArtists(page.artists).map((artist, idx) => artist.permanent &&
           <LinkTo
             href={buildUrl(locale, artist.slug, artist._type)}
             style={{ margin: 0 }}
@@ -73,6 +79,34 @@ export const Artists: FC<Props> = ({
               idx={idx}
               image={artist.mainImage?.asset ? artist.mainImage : settings.ogImage}
               postsPerPage={100}
+            />
+            {artist.title && <div className={`${s.caption} ${u.textRight} ${u.semibold}`}>
+              {artist.title}
+            </div>}
+            {artist.disciplines && <div className={`${s.caption} ${u.textRight}`}>
+              {artist.disciplines.sort().join(", ")}
+            </div>}
+          </LinkTo>
+        )}
+      </div>
+      <div className={`${s.container} ${u.grid}`} style={{marginTop: "2rem"}}>
+        <div className={`${s.title}`}>
+          <h3 className={`${s.heading}`}>Represented Artists</h3>
+        </div>
+      </div>
+      <div className={`${s.imageGrid} ${u.grid}`}>
+        {page.artists && sortArtists(page.artists).map((artist, idx) => !artist.permanent &&
+          <LinkTo
+            href={buildUrl(locale, artist.slug, artist._type)}
+            style={{ margin: 0 }}
+            key={artist._id}
+          >
+            <GridImage
+              alt={artist?.mainImage?.caption ? artist?.mainImage?.caption: ""}
+              idx={idx}
+              image={artist.mainImage?.asset ? artist.mainImage : settings.ogImage}
+              postsPerPage={100}
+              top={false}
             />
             {artist.title && <div className={`${s.caption} ${u.textRight} ${u.semibold}`}>
               {artist.title}
