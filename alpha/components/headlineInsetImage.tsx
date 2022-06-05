@@ -18,6 +18,10 @@ export const HeadlineInsetImage: FC<Props> = ({ alt, image }) => {
   useEffect(() => {
     setLoaded(true)
   }, [loaded, onLoad])
+  const hotspot = image.hotspot
+  const position = hotspot
+    ? `${Math.round(hotspot.x * 100)}% ${Math.round(hotspot.y * 100)}%`
+    : "50% 50%"
   return (
     <>
       <div className={`${s.sectionImageContainer} ${u.relative}`}>
@@ -68,6 +72,9 @@ export const HeadlineInsetImage: FC<Props> = ({ alt, image }) => {
           `}
           width={340}
           height={510}
+          style={{
+            objectPosition: position
+          }}
         />
         <div className={`${s.sectionPlaceholderContainer} ${u.absolute}`}>
           <img
@@ -82,6 +89,9 @@ export const HeadlineInsetImage: FC<Props> = ({ alt, image }) => {
             width={340}
             height={510}
             loading="eager"
+            style={{
+              objectPosition: position
+            }}
           />
         </div>
       </div>

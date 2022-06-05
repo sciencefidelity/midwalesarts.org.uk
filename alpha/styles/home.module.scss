@@ -253,7 +253,7 @@
 }
 
 .sectionContent {
-  z-index: 4;
+  z-index: 20;
   margin: 0 0 0 5.5rem;
   @include b.mq(md) {
     margin: 2rem 0 0;
@@ -319,6 +319,12 @@
 .sectionTitle {
   padding: 1.3rem 3.7rem 1.7rem;
   background-color: c.$grey-100;
+  @include b.mq(md) {
+    width: 100vw;
+    display: block;
+    padding: 1.6rem 6% 1.7rem;
+    background-color: rgba(c.$grey-100, 0.88);
+  }
   @include b.mq(sm) {
     display: block;
     padding: 1.6rem 6% 1.7rem;
