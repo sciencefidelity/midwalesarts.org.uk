@@ -49,26 +49,14 @@ export const HeadlineInsetImage: FC<Props> = ({ alt, image }) => {
               .width(340)
               .height(510)
               .auto("format")
-              .quality(70)
+              .quality(60)
               .url()} 340w,
             ${urlFor(image)
               .width(450)
               .height(766)
               .auto("format")
-              .quality(70)
-              .url()} 450w,
-            ${urlFor(image)
-              .width(680)
-              .height(1020)
-              .auto("format")
-              .quality(70)
-              .url()} 680w,
-            ${urlFor(image)
-              .width(1020)
-              .height(1530)
-              .auto("format")
-              .quality(70)
-              .url()} 1020w
+              .quality(60)
+              .url()} 450w
           `}
           width={340}
           height={510}

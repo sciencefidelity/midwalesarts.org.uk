@@ -54,28 +54,18 @@ export const InsetImage: FC<Props> = ({ alt, image }) => {
             ${urlFor(image)
               .width(800)
               .auto("format")
-              .quality(70)
+              .quality(60)
               .url()} 800w,
             ${urlFor(image)
               .width(1000)
               .auto("format")
-              .quality(70)
+              .quality(60)
               .url()} 1000w,
             ${urlFor(image)
               .width(1200)
               .auto("format")
-              .quality(70)
-              .url()} 1200w,
-            ${urlFor(image)
-              .width(1500)
-              .auto("format")
-              .quality(70)
-              .url()} 1500w,
-            ${urlFor(image)
-              .width(1800)
-              .auto("format")
-              .quality(70)
-              .url()} 1800w
+              .quality(60)
+              .url()} 1200w
           `}
           width={600}
           height={443}

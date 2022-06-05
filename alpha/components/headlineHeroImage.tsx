@@ -61,26 +61,20 @@ export const HeadlineHeroImage: FC<Props> = ({ alt, image }) => {
               .width(1000)
               .height(900)
               .auto("format")
-              .quality(70)
+              .quality(60)
               .url()} 1000w,
             ${urlFor(image)
               .width(1200)
               .height(900)
               .auto("format")
-              .quality(70)
+              .quality(60)
               .url()} 1200w,
             ${urlFor(image)
               .width(2160)
               .height(900)
               .auto("format")
-              .quality(70)
-              .url()} 2160w,
-            ${urlFor(image)
-              .width(3240)
-              .height(1350)
-              .auto("format")
-              .quality(70)
-              .url()} 3240w
+              .quality(60)
+              .url()} 2160w
           `}
           width={1600}
           height={450}
