@@ -1,5 +1,4 @@
 import { FC } from "react"
-import { useRouter } from "next/router"
 import { LinkTo } from "components/linkTo"
 import s from "styles/layout.module.scss"
 import u from "styles/utils.module.scss"
@@ -9,12 +8,14 @@ interface Props {
 }
 // TODO: change icon to svg
 export const Scrollup: FC<Props> = ({ label }) => {
-  const { locale } = useRouter()
   return (
     <LinkTo href="#" tabIndex={-1}>
+      <span className={`${u.srOnly}`}>
+        {label}
+      </span>
       <button className={`${s.scrollupContainer} ${u.fixed}`}>
         <span className={`${u.srOnly}`}>
-          {label[locale]}
+          {label}
         </span>
         <img
           alt=""
