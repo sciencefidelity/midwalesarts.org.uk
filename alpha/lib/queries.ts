@@ -19,8 +19,12 @@ const ctaLink = `
 `
 
 const artistSubset = `
-  "artists": *[_type == "artist" && __i18n_lang == ^.__i18n_lang && ${omitDrafts}]{
-    _id, _type, "disciplines": disciplines[]->title[$locale], mainImage, ${slug}, title,
+  "artists": *[
+    _type == "artist"
+    && __i18n_lang == ^.__i18n_lang && ${omitDrafts}
+  ]{
+    _id, _type, "disciplines": disciplines[]->title[$locale], mainImage,
+    ${slug}, title, "permanent": coalesce(permanent, __i18n_base->.permanent),
     "hero": *[_type == "artist" && ${omitDrafts}]{
       ...,
       "random": (dateTime(now()) - dateTime(_createdAt)) % 199

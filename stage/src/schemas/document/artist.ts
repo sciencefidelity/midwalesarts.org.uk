@@ -38,6 +38,13 @@ export default {
       group: 'content'
     },
     {
+      name: 'permanent',
+      title: 'Permanent collection',
+      type: 'boolean',
+      group: 'content',
+      initialValue: false
+    },
+    {
       name: 'body',
       title: 'Biography',
       description: 'Biography or artistic statment, choose Quote from the dropdown in the top left for statements.',

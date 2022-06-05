@@ -16,6 +16,7 @@ export interface Artist extends SanityDocument {
   ogDescription: string
   ogImage: Image
   ogTitle: string
+  permanent: boolean
   slug: string
   title: string
   works: Artwork[]
