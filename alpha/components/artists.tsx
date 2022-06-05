@@ -64,7 +64,7 @@ export const Artists: FC<Props> = ({
       </div>
       <div className={`${s.container} ${u.grid}`} style={{marginTop: "2rem"}}>
         <div className={`${s.title}`}>
-          <h3 className={`${s.heading}`}>Permanent Collections</h3>
+          <h3 className={`${s.heading}`}>{labels[85].text}</h3>
         </div>
       </div>
       <div className={`${s.imageGrid} ${u.grid} ${count < 3 && s.twoCols} `}>
@@ -91,7 +91,7 @@ export const Artists: FC<Props> = ({
       </div>
       <div className={`${s.container} ${u.grid}`} style={{marginTop: "2rem"}}>
         <div className={`${s.title}`}>
-          <h3 className={`${s.heading}`}>Represented Artists</h3>
+          <h3 className={`${s.heading}`}>{labels[86].text}</h3>
         </div>
       </div>
       <div className={`${s.imageGrid} ${u.grid}`}>
