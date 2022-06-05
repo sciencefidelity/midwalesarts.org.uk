@@ -56,6 +56,25 @@ export default {
           'Saturday'
         ]
       },
+      initialValue: 'Sunday',
+      group: 'settings'
+    },
+    {
+      name: 'frequency',
+      title: 'Frequency',
+      type: 'string',
+      options: {
+        list: [
+          {title: 'Weekly', value: '1'},
+          {title: 'Fortnighly, first and third week', value: '2'},
+          {title: 'Fortnighly, second and forth week', value: '3'},
+          {title: 'Monthly, first week', value: '4'},
+          {title: 'Monthly, second week', value: '5'},
+          {title: 'Monthly, third week', value: '6'},
+          {title: 'Monthly, fourth week', value: '7'}
+        ]
+      },
+      initialValue: '1',
       group: 'settings'
     },
     {
