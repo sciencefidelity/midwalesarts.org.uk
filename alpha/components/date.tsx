@@ -71,7 +71,7 @@ export const PostDate: FC<Props> = ({ date }) => {
     <time dateTime={format(new Date(date), "yyyy-MM-dd")}>
       {locale === "cy"
         ? format(new Date(date),
-          "eeee, do MMMM yyyy",
+          "eee, do MMMM yyyy",
           {locale: cy}
         ).replace(` ${year}`, "")
         : format(new Date(date),

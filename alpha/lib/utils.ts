@@ -1,7 +1,7 @@
 import imageUrlBuilder from "@sanity/image-url"
 import sanityClient from "lib/sanityClient"
 import { LocaleString } from "lib/interfaces"
-import { Artist, Artwork, Image, Workshop } from "lib/interfaces"
+import { Artist, Artwork, Image } from "lib/interfaces"
 
 export const buildUrl = (locale: string, slug: string, type: string): string => {
   return `${subdir(locale, type)}/${slug}`
@@ -12,61 +12,6 @@ export const capitalize = (str: string): string => {
     .split(/[\s-]/g)
     .map(e => e.replace(e[0], e[0].toUpperCase()))
     .join(" ")
-}
-
-export const days = {
-  cy: [
-    "Suliau",
-    "Dydd Llun",
-    "dydd Mawrth",
-    "dydd Mercher",
-    "dydd Iau",
-    "dydd Gwener",
-    "dydd Sadwrn"
-  ],
-  en: [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday"
-  ]
-}
-
-export const dayToNumber = (type: string): number => {
-  switch (type) {
-  case "Sunday":
-    return 0
-  case "Monday":
-    return 1
-  case "Tuesday":
-    return 2
-  case "Wednesday":
-    return 3
-  case "Thursday":
-    return 4
-  case "Friday":
-    return 5
-  case "Saturday":
-    return 6
-  }
-}
-
-export const getNextDate = (day: number): Date => {
-  const now = new Date()
-  const dateCopy = new Date(now.getTime())
-  let nextDate: Date
-  if (day  === now.getDay()) {
-    return nextDate = now
-  }
-  nextDate = new Date(
-    dateCopy.setDate(
-      dateCopy.getDate() + ((7 - dateCopy.getDay() + day) % 7 || 7)
-    )
-  )
-  return nextDate
 }
 
 export const joinName = (name: string): string => {
@@ -96,18 +41,6 @@ export const sortArtworks = (artists: Artwork[]): Artwork[] => {
       .trim()
       .replace(/(^\b\w+\s)/gi, "")
       .localeCompare(b.artist.trim().replace(/(^\b\w+\s)/gi, ""))
-  })
-}
-
-export const sortWorkshops = (events: Workshop[]): Workshop[] => {
-  return events.sort((a, b) => {
-    return getNextDate(dayToNumber(a.day)).toISOString() <
-      getNextDate(dayToNumber(b.day)).toISOString()
-      ? -1
-      : getNextDate(dayToNumber(a.day)).toISOString() >
-        getNextDate(dayToNumber(b.day)).toISOString()
-        ? 1
-        : 0
   })
 }
 

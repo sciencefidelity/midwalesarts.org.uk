@@ -93,7 +93,7 @@ const videoSubset = `
 
 const workshopSubset = `
   "workshops": *[_type == "workshop" && __i18n_lang == ^.__i18n_lang && ${omitDrafts}] | order(startTime){
-    _id, _type, day, endTime, mainImage, ${slug}, startTime, title
+    _id, _type, day, endTime, frequency, mainImage, ${slug}, startTime, title
   }
 `
 
@@ -342,8 +342,8 @@ const workshop = `
     && __i18n_lang == $locale
     && ${omitDrafts}
   ][0]{
-    __i18n_lang, _type, ${body}, briteLink, day, endTime, mainImage, ${seo}, startTime,
-    title, ${localizationNested}, ${sidebar},
+    __i18n_lang, _type, ${body}, briteLink, day, endTime, frequency, mainImage,
+    ${seo}, startTime, title, ${localizationNested}, ${sidebar},
     "category": select(
       __i18n_lang == "en" => category->.title[$locale],
       __i18n_lang == "cy" => __i18n_base->.category->.title[$locale]

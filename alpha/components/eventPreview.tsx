@@ -1,6 +1,7 @@
 import { CSSProperties, FC } from "react"
 import { useRouter } from "next/router"
-import { buildUrl, dayToNumber, getNextDate } from "@/lib/utils"
+import { dayToNumber, nextDate } from "lib/dateHelpers"
+import { buildUrl } from "lib/utils"
 import { GridImage } from "components/gridImage"
 import { LinkTo } from "components/linkTo"
 import { PostDate } from "components/date"
@@ -58,7 +59,9 @@ export const EventPreview: FC<Props> = ({
               }
               {(event.date || event.day) && <div className={`${s.caption} ${u.textRight}`}>
                 <PostDate
-                  date={event.date ? event.date : getNextDate(dayToNumber(event.day))}
+                  date={event.date
+                    ? event.date
+                    : nextDate(dayToNumber(event.day), event.frequency)}
                 />{event.startTime && ", " + event.startTime}
               </div>}
             </LinkTo>

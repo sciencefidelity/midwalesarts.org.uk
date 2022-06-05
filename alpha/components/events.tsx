@@ -1,6 +1,6 @@
 import { FC, useState } from "react"
 import { useRouter } from "next/router"
-import { sortWorkshops } from "lib/utils"
+import { sortWorkshops } from "lib/dateHelpers"
 import { EventPreview } from "components/eventPreview"
 import { Layout } from "components/layout"
 import {

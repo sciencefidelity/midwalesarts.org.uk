@@ -1,6 +1,7 @@
 import { FC } from "react"
 import { useRouter } from "next/router"
-import { buildUrl, days, dayToNumber } from "lib/utils"
+import { days, dayToNumber } from "lib/dateHelpers"
+import { buildUrl } from "lib/utils"
 import { LinkTo } from "components/linkTo"
 import { Workshop } from "lib/interfaces"
 import s from "styles/workshops.module.scss"

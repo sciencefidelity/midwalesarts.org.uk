@@ -262,6 +262,7 @@ export interface Workshop extends SanityDocument {
   category: string
   day: string
   endTime: string
+  frequency: string
   localization: Localization
   mainImage: Image
   ogDescription: string

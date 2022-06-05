@@ -1,6 +1,7 @@
 import { FC } from "react"
 import { useRouter } from "next/router"
-import { buildUrl, dayToNumber, getNextDate } from "@/lib/utils"
+import { dayToNumber, nextDate } from "lib/dateHelpers"
+import { buildUrl } from "lib/utils"
 import { GridImage } from "components/gridImage"
 import { LinkTo } from "components/linkTo"
 import { PostDate } from "components/date"
@@ -38,7 +39,7 @@ export const WorkshopPreview: FC<Props> = ({ fallbackImage, workshops }) => {
           }
           {workshop.day && <div className={`${s.caption} ${u.textRight}`}>
             <PostDate
-              date={workshop.day && getNextDate(dayToNumber(workshop.day))}
+              date={nextDate(dayToNumber(workshop.day), workshop.frequency)}
             />
             {workshop.startTime
               && ", " + workshop.startTime.toLowerCase().replace(/\s/g, "")

@@ -1,6 +1,7 @@
 import { FC } from "react"
 import { useRouter } from "next/router"
-import { buildUrl, dayToNumber, getNextDate, sortWorkshops } from "lib/utils"
+import { dayToNumber, nextDate, sortWorkshops } from "lib/dateHelpers"
+import { buildUrl } from "lib/utils"
 import { SidebarEventDate, SidebarExhibitionDate } from "components/date"
 import { LinkTo } from "components/linkTo"
 import { Label, Sidebar } from "lib/interfaces"
@@ -67,7 +68,9 @@ export const SidebarComponent: FC<Props> = ({ labels, sidebar }) => {
                 key={workshop._id}
               >
                 <li className={`${s.listItem}`}>
-                  <SidebarEventDate date={getNextDate(dayToNumber(workshop.day))} />
+                  <SidebarEventDate
+                    date={nextDate(dayToNumber(workshop.day), workshop.frequency)}
+                  />
                   {workshop.title && <h4 className={`${s.listHeading}`}>
                     {workshop.title}
                   </h4>}

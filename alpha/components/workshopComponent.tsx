@@ -2,7 +2,8 @@ import { FC } from "react"
 import { useRouter } from "next/router"
 import { PortableText } from "@portabletext/react"
 import { components } from "components/portableTextComponents"
-import { buildUrl, dayToNumber, getNextDate, subdir } from "lib/utils"
+import { dayToNumber, nextDate } from "lib/dateHelpers"
+import { buildUrl, subdir } from "lib/utils"
 import { GridImage } from "components/gridImage"
 import { Layout } from "components/layout"
 import { LinkTo } from "components/linkTo"
@@ -76,7 +77,9 @@ export const WorkshopComponent: FC<Props> = ({
               </h3>
               <div>
                 {workshop.day && <h2 className={`${s.subtitle}`}>
-                  <PostDate date={getNextDate(dayToNumber(workshop.day))} />{", "}
+                  <PostDate
+                    date={nextDate(dayToNumber(workshop.day), workshop.frequency)}
+                  />{", "}
                   {workshop.startTime.toLowerCase().replace(" ", "")}
                 </h2>}
                 {workshop.title && <h1 className={`${s.h1}`}>{workshop.title}</h1>}
