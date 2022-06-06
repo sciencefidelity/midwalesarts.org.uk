@@ -139,6 +139,10 @@ blockquote {
   }
 }
 
+button {
+  background-color: transparent;
+}
+
 .logoLink:focus {
   outline: 4px dotted rgba(c.$grey-650, 0.5);
 }
