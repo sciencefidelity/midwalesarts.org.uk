@@ -1,130 +1,84 @@
-/**
- * Post component (dynamic).
- *
- * @remarks
- * Generates all pages in the subdirectory `/news`.
- *
- * @param data - all props fetched with `postPageQuery` in `lib/queries.ts`.
- * @param slug - all props fetched with `postPathQuery` in `lib/queries.ts`.
- */
-import { GetStaticProps, GetStaticPaths } from "next"
-import Head from "next/head"
-import { useRouter } from "next/router"
-import { PortableText } from "@portabletext/react"
+import type { GetStaticPaths, GetStaticProps, NextPage } from "next"
 import sanityClient from "lib/sanityClient"
-import { postPageQuery, postPathQuery } from "lib/queries"
-import Layout from "components/layout"
-import { components } from "components/portableTextComponents"
-import ErrorTemplate from "components/errorTemplate"
-import Link from "components/link"
-import Localize from "components/localize"
-import PostDate from "components/postDate"
-import Sidebar from "components/sidebar"
-import { NewsData, Path } from "lib/interfaces"
-// TODO: published on, next post, back to news, previous post hard coded
-// TODO: create next and previous links
-export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
-  const paths = await sanityClient.fetch(postPathQuery)
-  const pathsWithLocales = paths.flatMap((path: Path) => {
-    return locales.map(locale => ({...path, locale}) )
-  })
+import { getLocalizedPaths } from "lib/localizeHelpers"
+import { postPathQuery, postQuery } from "lib/queries"
+import { PostComponent } from "components/postComponent"
+import {
+  Post,
+  Label,
+  Navigation,
+  Organisation,
+  PageContext,
+  Settings
+} from "lib/interfaces"
+
+interface Props {
+  post: Post
+  labels: Label[]
+  navigation: Navigation[]
+  organisation: Organisation
+  pageContext: PageContext
+  settings: Settings
+}
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const paths = await sanityClient.fetch(postPathQuery, { locale: "en" })
   return {
-    paths: pathsWithLocales,
+    paths: paths,
     fallback: false
   }
 }
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const { slug = "" } = params
-  const data = await sanityClient.fetch(postPageQuery, { slug })
+export const getStaticProps: GetStaticProps = async ({
+  defaultLocale,
+  locales,
+  locale,
+  params
+}) => {
+  const slug = params.slug
+  const data = await sanityClient.fetch(postQuery, {
+    slug, locale, template: "News"
+  })
+  const { post, labels, navigation, organisation, settings } = data as Props
+  const pageContext = {
+    locale: post.__i18n_lang,
+    localization: post.localization,
+    locales,
+    defaultLocale,
+    slug: params.slug ? params.slug : ""
+  }
+  const localizedPaths = pageContext.localization ? getLocalizedPaths(pageContext) : ""
   return {
     props: {
-      data
+      post,
+      labels,
+      navigation,
+      organisation,
+      pageContext: {
+        ...pageContext,
+        localizedPaths
+      },
+      settings
     }
   }
 }
 
-const PostPage = ({ data }: { data: NewsData }) => {
-  const router = useRouter()
-  if(router.isFallback) {
-    return (
-      <ErrorTemplate />
-    )
-  }
-  if(!data) {
-    return (
-      <>
-        <Head>
-          <meta name="robots" content="noindex" />
-        </Head>
-        <ErrorTemplate />
-      </>
-    )
-  }
-  const { locale } = router
-  const { menu, post, sidebar, site, socialLinks } = data
-  const blocks = locale === "cy" && post.body.cy ? post.body.cy : post.body.en
+const PostEn: NextPage<Props> = ({
+  post,
+  labels,
+  navigation,
+  organisation,
+  pageContext,
+  settings
+}) => {
   return (
-    <Layout
-      caption={locale === "cy" && post.title.cy
-        ? post.title.cy
-        : post.title.en
-      }
-      heroImage={post.image}
-      menu={menu}
-      site={site}
-      socialLinks={socialLinks}
-      title={locale === "cy" && post.title.cy ? post.title.cy : post.title.en}
-    >
-      <section>
-        <div className="sidebarContainer">
-          <div className="portableContainer">
-            <h1>{locale === "cy" ? "Newyddion" : "News"}</h1>
-            {post.title &&
-              <p className="subTitle"><Localize data={post.title} />.</p>
-            }
-            {post.body &&
-              <PortableText value={blocks} components={components} />
-            }
-            <p>
-              {locale === "cy" ? "Wedi'i gyhoeddi ar" : "Published on"}{" "}
-              {post.publishedAt && <PostDate date={post.publishedAt} />}
-            </p>
-            <div className="postNavigation">
-              {data ? (
-                <p className="prevLink">
-                  <Link href="#">
-                    &lt;{" "}
-                    {locale === "cy" ? "Post blaenorol" : "Previous post"}
-                  </Link>
-                </p>
-              ) : (
-                <p>{" "}</p>
-              )}
-              <p className="backLink">
-                <Link href="/news">
-                  {locale === "cy" ? "Yn ôl i Newyddion" : "Back to News"}
-                </Link>
-              </p>
-              {data ? (
-                <p className="nextLink">
-                  <Link href="#">
-                    {locale === "cy" ? "Post nesaf" : "Next post"}
-                    {" "}&gt;
-                  </Link>
-                </p>
-              ) : (
-                <p>{" "}</p>
-              )}
-            </div>
-          </div>
-          <Sidebar
-            events={sidebar.events}
-            exhibitions={sidebar.exhibitions}
-            posts={sidebar.posts}
-          />
-        </div>
-      </section>
-    </Layout>
+    <PostComponent
+      post={post}
+      labels={labels}
+      navigation={navigation}
+      organisation={organisation}
+      pageContext={pageContext}
+      settings={settings}
+    />
   )
 }
-export default PostPage
+export default PostEn

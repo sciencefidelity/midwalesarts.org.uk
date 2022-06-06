@@ -1,8 +1,30 @@
 import { PortableTextComponents } from "@portabletext/react"
 import { buildUrl } from "lib/utils"
-import Link from "components/link"
+import { LinkTo } from "components/linkTo"
 
 export const components: PortableTextComponents = {
+  list: {
+    bullet: ({ children }) => {
+      return (
+        <ul style={{
+          listStyle: "disc"
+        }}>
+          {children}
+        </ul>
+      )
+    }
+  },
+  listItem: {
+    bullet: ({ children }) => {
+      return (
+        <li style={{
+          marginBottom: "1rem"
+        }}>
+          {children}
+        </li>
+      )
+    }
+  },
   marks: {
     link: ({value, children}) => {
       const target = value?.blank ? "_blank" : undefined
@@ -13,11 +35,12 @@ export const components: PortableTextComponents = {
         >{children}</a>
       )
     },
+    mailto: ({value, children}) => {
+      return <a href={`mailto:${value?.mailto}`}>{children}</a>
+    },
     internalLink: ({value, children}) => {
-      const url = buildUrl(value?.item)
-      return (
-        <Link href={url}>{children}</Link>
-      )
+      const url = buildUrl(value?.item.__i18n_lang, value?.item.slug, value?.item._type)
+      return <LinkTo href={`/${url}`}>{children}</LinkTo>
     }
   }
 }

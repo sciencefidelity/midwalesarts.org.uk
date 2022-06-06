@@ -1,257 +1,387 @@
-import { CSSProperties, MouseEventHandler, ReactNode } from "react"
-import type {
-  Artist,
-  Artwork,
-  Event,
-  Exhibition,
-  FrontPage,
-  FrontPageSection,
-  LocaleRichText,
-  LocaleSlug,
-  LocaleString,
-  Post,
-  Page,
-  SanityReference,
-  SanityImageAsset,
-  SanityImageCrop,
-  SanityImageHotspot,
-  Site,
-  Space,
-  Social,
-  Video
-} from "@/generated/schema"
+import { CSSProperties } from "react"
+
+export interface Address {
+  town: string
+  county: string
+  postcode: string
+}
+
+export interface Artist extends SanityDocument {
+  __i18n_lang: "cy" | "en"
+  _type: "artist"
+  body: PortableText
+  disciplines: string[]
+  localization: Localization
+  mainImage: Image
+  ogDescription: string
+  ogImage: Image
+  ogTitle: string
+  permanent: boolean
+  slug: string
+  title: string
+  works: Artwork[]
+}
+
+export interface Artwork {
+  _id: string
+  artist: string
+  aspect: CSSProperties
+  date: number
+  mainImage: Image
+  medium: LocaleString
+  sold: boolean
+  price: string
+  title: LocaleString
+}
+
+export interface CTALink {
+  _type: string
+  slug: string
+}
+
+export interface Event extends SanityDocument {
+  __i18n_lang: "cy" | "en"
+  _type: "event"
+  body: PortableText
+  briteLink: string
+  category: string
+  date: string
+  localization: Localization
+  mainImage: Image
+  ogDescription: string
+  ogImage: Image
+  ogTitle: string
+  sidebar: Sidebar
+  slug: string
+  title: string
+}
+
+export interface Exhibition extends SanityDocument {
+  __i18n_lang: "cy" | "en"
+  _type: "exhibition"
+  body: PortableText
+  dateEnd: string
+  dateStart: string
+  localization: Localization
+  mainImage: Image
+  ogDescription: string
+  ogImage: Image
+  ogTitle: string
+  slug: string
+  title: string
+  works: Artwork[]
+}
+
+export interface Feedback {
+  _key: string
+  quote: string
+}
+
+export interface Headline extends SanityDocument {
+  body: string
+  caption: string
+  cta: string
+  ctaLink: CTALink
+  heading: string
+  mainImage: Image
+  subImage: Image
+  title: string
+}
 
 export interface Image {
+  _key?: string
   _type: "image"
   asset: SanityReference<SanityImageAsset>
+  caption?: string
   crop?: SanityImageCrop
   hotspot?: SanityImageHotspot
 }
 
-export interface CaptionImage {
-  _type: "image";
-  asset: SanityReference<SanityImageAsset>;
-  crop?: SanityImageCrop;
-  hotspot?: SanityImageHotspot;
-  caption?: string;
-  Caption?: string;
+export interface Label {
+  key: string
+  text: string
 }
 
-export interface Slug {
-  _type: "slug"
-  current: string
+export type Locale = "cy" | "en";
+
+export interface LocaleAddress {
+  cy: Address
+  en: Address
 }
 
-export interface AllPageData {
-  menu: Page[],
-  sidebar?: {
-    posts: Post[]
-    events: Event[]
-    exhibitions: Exhibition[]
-  }
-  site: Site,
-  socialLinks: Social[]
+export interface LocaleString {
+  cy: string
+  en: string
 }
 
-interface FrontPageLink extends FrontPage {
-  ctaSlug: SlugProps
+export interface Localization {
+  id: string
+  locale: "cy" | "en"
+  slug: string[]
 }
 
-interface FeaturedLink extends FrontPageSection {
-  ctaSlug: SlugProps
+export interface Navigation {
+  _key: string
+  label: LocaleString
+  slug: LocaleString
 }
 
-export interface IndexData extends AllPageData {
-  featured: FeaturedLink[]
-  frontPage: FrontPageLink
+export interface Organisation {
+  address: Address
+  email: string
+  opening: LocaleString
+  telephone: string
 }
 
-export interface PageData extends AllPageData {
+export interface Page extends SanityDocument {
+  __i18n_lang: "cy" | "en"
+  _type: "page"
+  body?: PortableText
   artists?: Artist[]
-  currentExhibitions?: Exhibition[]
-  futureExhibitions?: Exhibition[]
-  heroArtist?: Artist
-  page?: Page
-  pastEvents?: Event[]
-  pastExhibitions?: Exhibition[]
-  posts?: Post[]
-  recurringEvents?: Event[]
-  spaces?: Space[]
-  upcomingEvents?: Event[]
-  videos?: Video[]
-}
-
-export interface ArtistData extends AllPageData {
-  artist: ArtistArtworks
-}
-
-interface ArtistArtworks extends Artist {
-  artworks: ArtworkAspect[]
-}
-
-interface ArtworkAspect extends Artwork {
-  aspect: CSSProperties
-}
-
-export interface EventData extends AllPageData {
-  event: Event
-}
-
-export interface ExhibitionData extends AllPageData {
-  exhibition: ExhibitionArtworks
-}
-
-interface ExhibitionArtworks extends Exhibition {
-  artworks: ArtworkAspect[]
-}
-
-export interface NewsData extends AllPageData {
-  post: Post
-}
-
-export interface VideoData extends AllPageData {
-  video: Video
-}
-
-export interface LayoutProps {
-  caption: string
-  children: ReactNode
-  heroImage?: Image | CaptionImage
-  menu?: Page[]
-  site?: Site
-  socialLinks?: Social[]
-  title?: string
-}
-
-export interface ArtistsProps {
-  page: Page
-  artists: Artist[]
-}
-
-export interface EventsProps {
-  page: Page
-  pastEvents?: Event[]
-  recurringEvents?: Event[]
-  upcomingEvents?: Event[]
-}
-
-export interface ExhibitionsProps {
-  page: Page
-  currentExhibitions?: Exhibition[]
-  futureExhibitions?: Exhibition[]
-  pastExhibitions?: Exhibition[]
-}
-
-export interface NewsProps {
-  page: Page
-  posts: Post[]
-}
-
-export interface PageProps {
-  page: Page
+  cta?: string
+  ctaLink?: CTALink
   events?: Event[]
   exhibitions?: Exhibition[]
+  feedback?: Feedback[]
+  futureExhibitions?: Exhibition[]
+  headlines?: Headline[]
+  hero?: RandomHero
+  localization: Localization
+  mainImage?: Image
+  ogDescription: string
+  ogImage: Image
+  ogTitle: string
+  pastExhibitions?: Exhibition[]
+  pastEvents?: Event[]
   posts?: Post[]
+  sidebar?: Sidebar
+  slug: string
+  spaces?: Space[]
+  subImage?: Image
+  subtitle?: string
+  template: Template
+  title: string
+  videos?: Video[]
+  workshops?: Workshop[]
 }
 
-export interface VisitProps {
-  page: Page
-  spaces: Space[]
+export interface PageContext {
+  defaultLocale: string
+  locale: string
+  locales: string[]
+  localization: Localization
+  slug: string[] | string
 }
 
-export interface VideosProps {
-  page: Page
-  videos: Video[]
+export interface PageHead {
+  description: string
+  ogDescription: string
+  ogImage: Image
+  ogSiteName?: string
+  ogTitle: string
+  ogURL: string
+  slug?: string
+  title: string
 }
 
-export interface EventPreviewProps {
-  heading: string
-  eventData: Event[]
-  marginTop: CSSProperties
-  grid: string
+export interface Post extends SanityDocument {
+  __i18n_lang: "cy" | "en"
+  _type: "post"
+  accent: string
+  body: PortableText
+  image: Image
+  localization: Localization
+  next: Post
+  ogDescription: string
+  ogImage: Image
+  ogTitle: string
+  prev: Post
+  publishedAt: string
+  sidebar: Sidebar
+  slug: string
+  tags: string[]
+  title: string
 }
 
-export interface ExhibitionPreviewProps {
-  heading?: string
-  exhibition: Exhibition
+export interface RandomHero {
+  mainImage: Image
 }
 
-export interface HeaderProps {
-  caption: string
-  heroImage: CaptionImage
-  menu: Page[]
+export interface Settings {
+  canonicalURL: string
+  description: LocaleString
+  ogDescription: LocaleString
+  ogImage: Image
+  ogTitle: LocaleString
+  social: Social[]
+  title: LocaleString
 }
 
-export interface NavProps {
-  menu: Page[]
-}
-
-export interface FooterProps {
-  site: Site
-  socialLinks: Social[]
-}
-
-export interface CtaSlug {
-  ctaLink: LocaleSlug | Slug
-}
-
-export interface IntroProps {
-  body: LocaleRichText
-  cta: LocaleString
-  ctaSlug: SlugProps
-}
-
-export interface SidebarProps {
+export interface Sidebar {
   events: Event[]
   exhibitions: Exhibition[]
   posts: Post[]
+  workshops: Workshop[]
 }
 
-export interface LogoProps {
-  logoClass: string
-  containerClass: string
+export interface Social {
+  _key: string
+  name: string
+  url: string
 }
 
-export interface LocationProps {
-  _lat: number
-  _lng: number
-  _text: string
+export interface Space extends SanityDocument {
+  body: PortableText
+  mainImage: Image
+  slug: string
+  title: string
 }
 
-export interface ImageProps {
-  alt: string
-  image: Image | CaptionImage
-  width?: number
-  height?: number
+export interface Video extends SanityDocument {
+  __i18n_lang: "cy" | "en"
+  _type: "video"
+  body: PortableText
+  localization: Localization
+  mainImage: Image
+  next: Video
+  ogDescription: string
+  ogImage: Image
+  ogTitle: string
+  prev: Video
+  publishDate: string
+  sidebar: Sidebar
+  slug: string
+  title: string
+  videoLink: string
 }
 
-export interface ModalProps {
-  modal: boolean
-  modalImage: ArtworkAspect | Record<string, never>
-  closeModal: MouseEventHandler<HTMLDivElement>
-  prevIndex: MouseEventHandler<HTMLDivElement>
-  nextIndex: MouseEventHandler<HTMLDivElement>
+export interface Workshop extends SanityDocument {
+  __i18n_lang: "cy" | "en"
+  _type: "workshop"
+  body: PortableText
+  briteLink: string
+  category: string
+  day: string
+  endTime: string
+  frequency: string
+  localization: Localization
+  mainImage: Image
+  ogDescription: string
+  ogImage: Image
+  ogTitle: string
+  sidebar: Sidebar
+  slug: string
+  startTime: string
+  title: string
 }
 
-export interface FrontPageFeatureProps extends FrontPageSection {
-  ctaSlug: SlugProps
+type Template =
+  "Artists" |
+  "Events" |
+  "Exhibitions" |
+  "Home" |
+  "News" |
+  "Page" |
+  "Support" |
+  "Videos" |
+  "Visit" |
+  "Workshops";
+
+export type PortableText = Array<
+    | SanityKeyed<SanityBlock>
+    | SanityKeyed<{
+        _type: "image"
+        asset: SanityReference<SanityImageAsset>;
+        crop?: SanityImageCrop;
+        hotspot?: SanityImageHotspot;
+      }>
+  >;
+
+export interface SanityBlock {
+  _type: "block"
+  [key: string]: any
 }
 
-export interface SlugProps {
-  _type: "artist" | "event" | "exhibition" | "post" | "video" | "page"
-  slug?: {
-    current?: string
-    cy?: {
-      current: string
+export interface SanityDocument {
+  __i18n_lang: string
+  _id: string
+  _createdAt: string
+  _rev: string
+  _updatedAt: string
+}
+
+export interface SanityImageAsset extends SanityDocument {
+  _type: "sanity.imageAsset"
+  assetId: string
+  extension: string
+  metadata: SanityImageMetadata
+  mimeType: string
+  originalFilename: string
+  path: string
+  sha1hash: string
+  size: number
+  uploadId: string
+  url: string
+}
+
+export interface SanityImageCrop {
+  _type: "sanity.imageCrop"
+  bottom: number
+  left: number
+  right: number
+  top: number
+}
+
+export interface SanityImageDimensions {
+  _type: "sanity.imageDimensions"
+  aspectRatio: number
+  height: number
+  width: number
+}
+
+export interface SanityImageHotspot {
+  _type: "sanity.imageHotspot"
+  height: number
+  width: number
+  x: number
+  y: number
+}
+
+export interface SanityImageMetadata {
+  _type: "sanity.imageMetadata"
+  dimensions: SanityImageDimensions
+  hasAlpha: boolean
+  isOpaque: boolean
+  lqip: string
+  palette: SanityImagePalette
+}
+
+export interface SanityImagePalette {
+  _type: "sanity.imagePalette"
+  darkMuted: SanityImagePaletteSwatch
+  darkVibrant: SanityImagePaletteSwatch
+  dominant: SanityImagePaletteSwatch
+  lightMuted: SanityImagePaletteSwatch
+  lightVibrant: SanityImagePaletteSwatch
+  muted: SanityImagePaletteSwatch
+  vibrant: SanityImagePaletteSwatch
+}
+
+export interface SanityImagePaletteSwatch {
+  _type: "sanity.imagePaletteSwatch"
+  background: string
+  foreground: string
+  population: number
+  title: string
+}
+
+export declare type SanityKeyed<T> = T extends object
+  ? T & {
+      _key: string
     }
-    en?: {
-      current: string
-    }
-  }
-}
+  : T;
 
-export interface Path {
-  params: {
-    slug: string
-  }
-}
+export declare type SanityReference<_T> = {
+  _type: "reference"
+  _ref: string
+};

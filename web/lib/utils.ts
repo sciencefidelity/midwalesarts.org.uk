@@ -1,34 +1,10 @@
 import imageUrlBuilder from "@sanity/image-url"
 import sanityClient from "lib/sanityClient"
-import { LocaleRichText, LocaleString } from "generated/schema"
-import { Image, SlugProps } from "lib/interfaces"
-import { Artist } from "generated/schema"
+import { LocaleString } from "lib/interfaces"
+import { Artist, Artwork, Image } from "lib/interfaces"
 
-export const buildUrl = (slugData: SlugProps): string => {
-  let slug = ""
-  if (slugData?.slug?.current) slug = slugData?.slug?.current
-  if (slugData?.slug?.en?.current) slug = slugData?.slug?.en?.current
-  let directory: string
-  switch (slugData._type) {
-  case "artist":
-    directory = "/artists"
-    break
-  case "event":
-    directory = "/events"
-    break
-  case "exhibition":
-    directory = "/exhibitions"
-    break
-  case "post":
-    directory = "/news"
-    break
-  case "video":
-    directory = "/videos"
-    break
-  default:
-    directory = ""
-  }
-  return `${directory}/${slug}`
+export const buildUrl = (locale: string, slug: string, type: string): string => {
+  return `${subdir(locale, type)}/${slug}`
 }
 
 export const capitalize = (str: string): string => {
@@ -38,10 +14,13 @@ export const capitalize = (str: string): string => {
     .join(" ")
 }
 
+export const joinName = (name: string): string => {
+  return name.split(" ").join("&nbsp;")
+}
+
 export const localize = (
-  content: LocaleString | LocaleRichText,
-  locale: string
-) => {
+  content: LocaleString, locale: string
+): string => {
   return locale === "cy" && content.cy
     ? content.cy
     : content.en
@@ -54,6 +33,54 @@ export const sortArtists = (artists: Artist[]): Artist[] => {
       .replace(/(^\b\w+\s)/gi, "")
       .localeCompare(b.title.trim().replace(/(^\b\w+\s)/gi, ""))
   })
+}
+
+export const sortArtworks = (artists: Artwork[]): Artwork[] => {
+  return artists.sort((a, b) => {
+    return a.artist
+      .trim()
+      .replace(/(^\b\w+\s)/gi, "")
+      .localeCompare(b.artist.trim().replace(/(^\b\w+\s)/gi, ""))
+  })
+}
+
+export const subdir = (locale: string, type: string): string => {
+  if (locale === "cy") {
+    switch (type) {
+    case "artist":
+      return "artistiaid"
+    case "event":
+      return "digwyddiadau"
+    case "exhibition":
+      return "arddangosfeydd"
+    case "post":
+      return "newyddion"
+    case "video":
+      return "fideos"
+    case "workshop":
+      return "gweithdai"
+    default:
+      return ""
+    }
+  }
+  if (locale === "en") {
+    switch (type) {
+    case "artist":
+      return "artists"
+    case "event":
+      return "events"
+    case "exhibition":
+      return "exhibitions"
+    case "post":
+      return "news"
+    case "video":
+      return "videos"
+    case "workshop":
+      return "workshops"
+    default:
+      return ""
+    }
+  }
 }
 
 export const urlFor = (source: Image) => {

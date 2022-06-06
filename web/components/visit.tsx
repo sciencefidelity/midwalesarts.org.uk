@@ -1,76 +1,132 @@
-import { FC } from "react"
-import Image from "next/image"
+import { FC, Fragment, useState } from "react"
 import { useRouter } from "next/router"
 import { PortableText } from "@portabletext/react"
 import { components } from "components/portableTextComponents"
-import { urlFor } from "lib/utils"
-import GoogleMap from "components/googleMap"
-import Link from "components/link"
-import Localize from "components/localize"
-import { VisitProps } from "lib/interfaces"
+import { GoogleMap } from "components/googleMap"
+import { GridImage } from "components/gridImage"
+import { Layout } from "components/layout"
+import { LinkTo } from "components/linkTo"
+import {
+  Label,
+  Navigation,
+  Organisation,
+  Page,
+  PageContext,
+  PageHead,
+  Settings
+} from "lib/interfaces"
+import s from "styles/visit.module.scss"
+import u from "styles/utils.module.scss"
 
-const Visit: FC<VisitProps> = ({ page, spaces }) => {
+interface Props {
+  labels:Label[]
+  navigation: Navigation[]
+  organisation: Organisation
+  page: Page
+  pageContext: PageContext
+  settings: Settings
+}
+
+export const Visit: FC<Props> = ({
+  labels,
+  navigation,
+  organisation,
+  page,
+  pageContext,
+  settings
+}) => {
+  const [quoteNumber, setQuoteNumber] = useState(0)
   const { locale } = useRouter()
+  const pageHead: PageHead = {
+    title: page.title,
+    description: page.ogDescription,
+    ogTitle: page.ogTitle,
+    ogDescription: page.ogDescription,
+    ogURL: `${settings.canonicalURL}${locale === "cy" ? "/cy" : ""}/${page.slug}`,
+    ogImage: page.ogImage
+  }
   return (
-    <>
-      <section>
-        <div className="visitContainer">
-          <h1><Localize data={page.title} /></h1>
-          <p className="subTitle"><Localize data={page.subtitle} /></p>
-          <div className="spacesGrid">
-            {spaces && spaces.map(space => (
-              <Link
-                href={`#${space.slug.en.current}`}
-                key={space._id}
+    <Layout
+      caption={page.mainImage?.caption ? page.mainImage.caption : null}
+      heroImage={page.mainImage?.asset ? page.mainImage : settings.ogImage}
+      labels={labels}
+      navigation={navigation}
+      organisation={organisation}
+      pageContext={pageContext}
+      pageHead={pageHead}
+      settings={settings}
+    >
+      <section className={`${s.container} ${u.mAuto}`}>
+        {page.title && <h1>{page.title}</h1>}
+        {page.subtitle && <h2 className={`${s.subtitle}`}>
+          {page.subtitle.trim().replace(".", "")}.
+        </h2>}
+        {page.body && <div className={`${s.info}`}>
+          <PortableText value={page.body} components={components} />
+        </div>}
+        <div className={`${s.spacesGrid} ${u.grid}`}>
+          {page.spaces && page.spaces.map((space, idx) => (
+            <LinkTo
+              href={`#${space.slug}`}
+              key={space._id}
+              style={{ margin: 0 }}
+            >
+              <GridImage
+                alt={space.title ? space.title : ""}
+                idx={idx}
+                image={space.mainImage ? space.mainImage : settings.ogImage}
+                postsPerPage={12}
+                top={false}
+              />
+              {space.title && <div className={`${s.caption} ${u.textRight}`}>
+                {space.title}
+              </div>}
+            </LinkTo>
+          ))}
+        </div>
+        <div className={`${s.spacesTextGrid} ${u.grid}`}>
+          {page.spaces.map(space => (
+            space && (
+              <div
+                id={space.slug}
                 style={{ margin: 0 }}
+                key={space._id}
+                className={`${s.text}`}
               >
-                <Image
-                  src={urlFor(space.mainImage)
-                    .width(468)
-                    .height(468)
-                    .auto("format")
-                    .quality(75)
-                    .url()}
-                  alt={
-                    locale === "cy" && space.title.cy
-                      ? space.title.cy
-                      : space.title.en
-                  }
-                  width={2000}
-                  height={2000}
-                />
-                <div className="gridCaption">
-                  {space.title && <Localize data={space.title} />}
-                </div>
-              </Link>
-            ))}
-          </div>
-          <div className="spacesTextGrid">
-            {spaces.map(space => (
-              space && (
-                <div
-                  id={space.slug.en.current}
-                  style={{ margin: 0 }}
-                  key={space._id}
-                  className="spacesText"
-                >
-                  <h4 className="spacesGridTitle">
-                    {space.title &&<Localize data={space.title} />}
-                  </h4>
-                  {space.body && <PortableText
-                    value={locale === "cy" && space.body.cy
-                      ? space.body.cy
-                      : space.body.en}
-                    components={components}
-                  />}
-                </div>
-              )
-            ))}
-          </div>
+                {space.title && <h4>{space.title}</h4>}
+                {space.body &&
+                  <PortableText value={space.body} components={components} />
+                }
+              </div>
+            )
+          ))}
         </div>
       </section>
+      <section>
+        {page.feedback[0] && <div className={`${s.feedback}`}>
+          <blockquote>{page.feedback[quoteNumber].quote}</blockquote>
+        </div>}
+        <nav className={`${u.flex} ${s.quoteBtns}`}>
+          {page.feedback.map((quote, idx) =>
+            <Fragment key={quote._key}>
+              <button
+                onClick={() => setQuoteNumber(idx)}
+                className={`
+                  ${s.quoteBtn}
+                  ${idx === quoteNumber ? s.quoteBtnActive : null}
+                  ${u.pointer}
+                `}
+              >
+                {" "}&bull;{" "}
+                {/* <span className={`${u.screenReaderText}`}>
+                  <Localize data={label.text} />
+                </span> */}
+              </button>
+            </Fragment>
+          )}
+        </nav>
+      </section>
       <GoogleMap />
-    </>
+    </Layout>
   )
 }
-export default Visit

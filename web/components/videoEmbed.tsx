@@ -1,21 +1,20 @@
-import { useRouter } from "next/router"
+import { FC } from "react"
 import getYouTubeID from "get-youtube-id"
-// TODO: YouTube video missing hard coded
-const VideoEmbed = ({ videoId }) => {
-  const { locale } = useRouter()
+import s from "styles/video.module.scss"
+import u from "styles/utils.module.scss"
+
+interface Props {
+  label: string
+  videoId: string
+}
+
+export const VideoEmbed: FC<Props> = ({ label, videoId }) => {
   const id = getYouTubeID(videoId)
   const url = `https://www.youtube-nocookie.com/embed/${id}?modestbranding=1`
-
-  if (!id) {
-    return (
-      <div>
-        {locale === "cy" ? "Fideo YouTube ar goll" : "YouTube video missing"}
-      </div>
-    )
-  }
+  if (!id) return <div>{label}</div>
   return (
     <section>
-      <div className="embedContainer">
+      <div className={`${s.embedContainer} ${u.relative}`}>
         <iframe
           width="560"
           height="315"
@@ -30,5 +29,3 @@ const VideoEmbed = ({ videoId }) => {
     </section>
   )
 }
-
-export default VideoEmbed

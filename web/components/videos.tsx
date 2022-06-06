@@ -1,58 +1,82 @@
-import { FC } from "react"
-import Image from "next/image"
+import { FC, useState } from "react"
 import { useRouter } from "next/router"
-import { urlFor } from "lib/utils"
-import Link from "components/link"
-import Localize from "components/localize"
-import { VideosProps } from "lib/interfaces"
+import { Layout } from "components/layout"
+import { VideosList } from "components/videosList"
+import {
+  Label,
+  Navigation,
+  Organisation,
+  Page,
+  PageContext,
+  PageHead,
+  Settings,
+} from "lib/interfaces"
+import s from "styles/videos.module.scss"
+import u from "styles/utils.module.scss"
 
-const Videos: FC<VideosProps> = ({ page, videos }) => {
+interface Props {
+  labels: Label[]
+  navigation: Navigation[]
+  organisation: Organisation
+  page: Page
+  pageContext: PageContext
+  settings: Settings
+}
+
+export const Videos: FC<Props> = ({
+  labels,
+  navigation,
+  organisation,
+  page,
+  pageContext,
+  settings
+}) => {
+  const [videosPerPage, setVideosPerPage] = useState(12)
   const { locale } = useRouter()
+  const pageHead: PageHead = {
+    title: page.title,
+    description: page.ogDescription,
+    ogTitle: page.ogTitle,
+    ogDescription: page.ogDescription,
+    ogURL: `${settings.canonicalURL}${locale === "cy" ? "/cy" : ""}/${page.slug}`,
+    ogImage: page.ogImage
+  }
+  const handleShowMoreVideos = () => {
+    setVideosPerPage(prevVideosPerPage => prevVideosPerPage + 3)
+  }
   return (
-    <section>
-      <div className="sidebarContainer">
-        <div className="portableContainer">
-          {page.title &&
-            <h1><Localize data={page.title} /></h1>
-          }
-          {page.subtitle &&
-            <p className="sidebarContainer">
-              <Localize data={page.subtitle} />
-            </p>
-          }
+    <Layout
+      caption={page.videos[0]?.title ? page.videos[0].title : null}
+      heroImage={page.videos[0]?.mainImage?.asset
+        ? page.videos[0].mainImage
+        : settings.ogImage}
+      labels={labels}
+      navigation={navigation}
+      organisation={organisation}
+      pageContext={pageContext}
+      pageHead={pageHead}
+      settings={settings}
+    >
+      <div className={`${s.container} ${u.grid}`}>
+        <div className={`${s.title}`}>
+          {page.title && <h1>{page.title}</h1>}
+          {page.subtitle && <h2 className={`${s.subtitle}`}>
+            {page.subtitle.trim().replace(".", "")}.
+          </h2>}
         </div>
       </div>
-      <div className="imageGrid">
-        {videos && videos.map( video =>
-          video && (
-            <div key={video._id} style={{ margin: 0 }}>
-              <Link href={`/videos/${video.slug.en.current}`}>
-                <Image
-                  src={urlFor(video.mainImage)
-                    .width(468)
-                    .height(468)
-                    .auto("format")
-                    .quality(75)
-                    .url()}
-                  alt={
-                    locale === "cy" && video.title.cy
-                      ? video.title.cy
-                      : video.title.en
-                  }
-                  width={2000}
-                  height={2000}
-                />
-                {video.title &&
-                  <div className="gridCaption">
-                    <Localize data={video.title} />
-                  </div>
-                }
-              </Link>
-            </div>
-          )
-        )}
-      </div>
-    </section>
+      {page.videos[0] && <VideosList
+        fallbackImage={settings.ogImage}
+        label={labels[18].text.trim() + " "}
+        postsPerPage={videosPerPage}
+        videos={page.videos}
+      />}
+      {videosPerPage < page.videos.length && <button
+        onClick={handleShowMoreVideos}
+        className={`${s.loadMore} ${u.pointer}`}
+      >
+        {labels[84].text}
+      </button>}
+    </Layout>
   )
 }
-export default Videos

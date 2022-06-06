@@ -15,12 +15,12 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "typeRoots": ["node_modules/@types", "types"],
-    "types": ["node", "react"],
+    "types": ["jest", "node", "react"],
     "baseUrl": ".",
     "paths": {
       "@/components/*": ["components/*"],
-      "@/lib/*": ["lib/*"],
       "@/generated/*": ["generated/*"],
+      "@/lib/*": ["lib/*"],
       "@/pages/*": ["pages/*"],
       "@/styles/*": ["styles/*"]
     }

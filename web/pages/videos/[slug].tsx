@@ -1,104 +1,84 @@
-/**
- * Video component (dynamic).
- *
- * @remarks
- * Generates all pages in the subdirectory `/videos`.
- *
- * @param data - all props fetched with `videoPageQuery` in `lib/queries.ts`.
- * @param slug - all props fetched with `videoPathQuery` in `lib/queries.ts`.
- */
-import { GetStaticProps, GetStaticPaths } from "next"
-import Head from "next/head"
-import { useRouter } from "next/router"
-import { PortableText } from "@portabletext/react"
-import { components } from "components/portableTextComponents"
+import type { GetStaticPaths, GetStaticProps, NextPage } from "next"
 import sanityClient from "lib/sanityClient"
-import { videoPageQuery, videoPathQuery } from "lib/queries"
-import Layout from "components/layout"
-import ErrorTemplate from "components/errorTemplate"
-import Link from "components/link"
-import Localize from "components/localize"
-import Sidebar from "components/sidebar"
-import VideoEmbed from "components/videoEmbed"
-import { VideoData, Path } from "lib/interfaces"
-// TODO: video, back to videos hard coded
-export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
-  const paths = await sanityClient.fetch(videoPathQuery)
-  const pathsWithLocales = paths.flatMap((path: Path) => {
-    return locales.map(locale => ({...path, locale}) )
-  })
+import { getLocalizedPaths } from "lib/localizeHelpers"
+import { videoPathQuery, videoQuery } from "lib/queries"
+import { VideoComponent } from "components/videoComponent"
+import {
+  Label,
+  Navigation,
+  Organisation,
+  PageContext,
+  Settings,
+  Video
+} from "lib/interfaces"
+
+interface Props {
+  labels: Label[]
+  navigation: Navigation[]
+  organisation: Organisation
+  pageContext: PageContext
+  settings: Settings
+  video: Video
+}
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const paths = await sanityClient.fetch(videoPathQuery, { locale: "en" })
   return {
-    paths: pathsWithLocales,
+    paths: paths,
     fallback: false
   }
 }
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const { slug = "" } = params
-  const data = await sanityClient.fetch(videoPageQuery, { slug })
+export const getStaticProps: GetStaticProps = async ({
+  defaultLocale,
+  locales,
+  locale,
+  params
+}) => {
+  const slug = params.slug
+  const data = await sanityClient.fetch(videoQuery, {
+    slug, locale, template: "Videos"
+  })
+  const { video, labels, navigation, organisation, settings } = data as Props
+  const pageContext = {
+    locale: video.__i18n_lang,
+    localization: video.localization,
+    locales,
+    defaultLocale,
+    slug: params.slug ? params.slug : ""
+  }
+  const localizedPaths = pageContext.localization ? getLocalizedPaths(pageContext) : ""
   return {
     props: {
-      data
+      video,
+      labels,
+      navigation,
+      organisation,
+      pageContext: {
+        ...pageContext,
+        localizedPaths
+      },
+      settings
     }
   }
 }
 
-const VideoPage = ({ data }: { data: VideoData }) => {
-  const router = useRouter()
-  if(router.isFallback) return <ErrorTemplate />
-  if(!data) {
-    return (<>
-      <Head><meta name="robots" content="noindex" /></Head>
-      <ErrorTemplate />
-    </>)
-  }
-  const { locale } = router
-  const { video, menu, sidebar, site, socialLinks } = data
-  const blocks =  locale === "cy" && video.body.cy
-    ? video.body.cy
-    : video.body.en
+const VideoEn: NextPage<Props> = ({
+  video,
+  labels,
+  navigation,
+  organisation,
+  pageContext,
+  settings
+}) => {
   return (
-    <Layout
-      caption={locale === "cy" && video.title.cy
-        ? video.title.cy
-        : video.title.en
-      }
-      heroImage={video.mainImage}
-      menu={menu}
-      site={site}
-      socialLinks={socialLinks}
-      title={locale === "cy" && video.title.cy
-        ? video.title.cy
-        : video.title.en}
-    >
-      <section>
-        <div className="sidebarContainer">
-          <div className="portableContainer">
-            <h1>{locale === "cy" ? "Fideo" : "Video"}</h1>
-            {video.title &&
-              <p className="subTitle"><Localize data={video.title} />.</p>
-            }
-            {video.videoLink && (
-              <VideoEmbed videoId={video.videoLink} />
-            )}
-            {video.body && (
-              <PortableText value={blocks} components={components} />
-            )}
-            <div>
-              <p className="backLink">
-                <Link href="/videos">
-                  {locale === "cy" ? "Yn ôl i Fideos" : "Back to Videos"}
-                </Link>
-              </p>
-            </div>
-          </div>
-          <Sidebar
-            events={sidebar.events}
-            exhibitions={sidebar.exhibitions}
-            posts={sidebar.posts}
-          />
-        </div>
-      </section>
-    </Layout>
+    <VideoComponent
+      video={video}
+      labels={labels}
+      navigation={navigation}
+      organisation={organisation}
+      pageContext={pageContext}
+      settings={settings}
+    />
   )
 }
-export default VideoPage
+export default VideoEn

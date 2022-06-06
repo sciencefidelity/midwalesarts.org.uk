@@ -1,54 +1,64 @@
 import { FC } from "react"
-import Image from "next/image"
 import { useRouter } from "next/router"
-import { urlFor } from "@/lib/utils"
-import ExhibitionDate from "components/exhibitionDate"
-import Link from "components/link"
-import Localize from "components/localize"
-import { ExhibitionPreviewProps } from "lib/interfaces"
+import { buildUrl } from "@/lib/utils"
+import { ExhibitionDate } from "components/date"
+import { GridImage } from "components/gridImage"
+import { LinkTo } from "components/linkTo"
+import { Exhibition } from "lib/interfaces"
+import s from "styles/exhibitions.module.scss"
+import u from "styles/utils.module.scss"
 
-const ExhibitionPrieview: FC<ExhibitionPreviewProps> = ({
-  exhibition, heading
+interface Props {
+  fallbackImage: any
+  exhibition: Exhibition
+  heading?: string
+  idx: number
+  label: string
+  margin?: string
+  postsPerPage: number
+  top?: boolean
+}
+
+export const ExhibitionPreview: FC<Props> = ({
+  exhibition,
+  fallbackImage,
+  heading,
+  idx,
+  label,
+  margin,
+  postsPerPage,
+  top = true
 }) => {
   const { locale } = useRouter()
   return (
-    <div className="exhibitionPreview">
-      {heading ?
-        <p>{heading}</p> : <p dangerouslySetInnerHTML={{__html: "&nbsp;"}}/>
-      }
-      <Link href={`/exhibitions/${exhibition.slug.en.current}`}>
-        <Image
-          src={urlFor(exhibition.mainImage)
-            .width(624)
-            .height(624)
-            .auto("format")
-            .quality(75)
-            .url()}
-          alt={
-            locale === "cy" && exhibition.title.cy
-              ? exhibition.title.cy
-              : exhibition.title.en
-          }
-          width={2000}
-          height={2000}
+    <div style={ margin && { marginTop: margin }}>
+      <h3
+        className={`${s.heading}`}
+        dangerouslySetInnerHTML={{__html: heading ? heading : "&nbsp;"}}
+      />
+      <LinkTo href={buildUrl(locale, exhibition.slug, exhibition._type)}>
+        <GridImage
+          alt={exhibition.title ? exhibition.title : ""}
+          idx={idx}
+          image={exhibition.mainImage?.asset ? exhibition.mainImage : fallbackImage}
+          postsPerPage={postsPerPage}
+          top={top}
         />
-        {exhibition &&
-          <div className="gridCaption">
-            <Localize data={exhibition.title} />
-          </div>
-        }
-        {exhibition && (
-          <div className="gridCaption">
+        {exhibition && <div className={`${s.caption} ${u.textRight} ${u.semibold}`}>
+          {exhibition.title}
+        </div>}
+        {exhibition && exhibition.dateStart && (
+          <div className={`${s.caption} ${u.textRight}`}>
             <span>
               <ExhibitionDate
                 dateEnd={exhibition.dateEnd}
                 dateStart={exhibition.dateStart}
+                label={label}
               />
             </span>
           </div>
         )}
-      </Link>
+      </LinkTo>
     </div>
   )
 }
-export default ExhibitionPrieview

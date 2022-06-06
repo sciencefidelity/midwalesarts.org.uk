@@ -1,55 +1,73 @@
-import { FC } from "react"
-import Image from "next/image"
+import { CSSProperties, FC } from "react"
 import { useRouter } from "next/router"
-import { urlFor } from "@/lib/utils"
-import Link from "components/link"
-import Localize from "components/localize"
-import PostDate from "components/postDate"
-import { EventPreviewProps } from "lib/interfaces"
+import { dayToNumber, nextDate } from "lib/dateHelpers"
+import { buildUrl } from "lib/utils"
+import { GridImage } from "components/gridImage"
+import { LinkTo } from "components/linkTo"
+import { PostDate } from "components/date"
+import { Event, Image, Workshop } from "lib/interfaces"
+import s from "styles/events.module.scss"
+import u from "styles/utils.module.scss"
 
-const EventPreview: FC<EventPreviewProps> = ({
-  heading, eventData, marginTop, grid
+interface Props {
+  eventData: Event[] | Workshop[]
+  fallbackImage: Image
+  heading: string
+  marginTop: CSSProperties
+  postsPerPage: number
+  top?: boolean
+}
+
+export const EventPreview: FC<Props> = ({
+  eventData,
+  fallbackImage,
+  heading,
+  marginTop,
+  postsPerPage,
+  top = true
 }) => {
   const { locale } = useRouter()
   return (
     <>
-      <div className="sidebarContainer" style={marginTop}>
-        <div className="portableContainer">
-          <p>{heading}</p>
+      <div className={`${s.container} ${u.grid}`} style={marginTop}>
+        <div className={`${s.title}`}>
+          <h3 className={`${s.heading}`}>{heading}</h3>
         </div>
       </div>
-      <div className={grid}>
-        {eventData.map(event => (
-          <Link
-            href={`/events/${event.slug.en.current}`}
+      <div className={`${s.imageGrid} ${u.grid}`}>
+        {eventData.map((event, idx: number) => (
+          <div
             key={event._id}
-            style={{ margin: 0 }}
+            className={`${idx >= postsPerPage ? u.hidden : null}`}
           >
-            <Image
-              src={urlFor(event.mainImage)
-                .width(468)
-                .height(468)
-                .auto("format")
-                .quality(75)
-                .url()}
-              alt={
-                locale === "cy" && event.title.cy
-                  ? event.title.cy
-                  : event.title.en
+            <LinkTo
+              href={buildUrl(locale, event.slug, event._type)}
+              style={{ margin: 0 }}
+              className={`${u.truncate}`}
+            >
+              <GridImage
+                alt={event.title ? event.title : ""}
+                idx={idx}
+                image={event.mainImage ? event.mainImage : fallbackImage}
+                postsPerPage={postsPerPage}
+                top={top}
+              />
+              {event.title &&
+                <div className={`${s.caption} ${u.textRight} ${u.semibold}`}>
+                  {event.title}
+                </div>
               }
-              width={2000}
-              height={2000}
-            />
-            <div className="gridCaption">
-              {event.title && <Localize data={event.title} />}
-            </div>
-            <div className="gridCaption">
-              {event.date && <PostDate date={event.date} />}
-            </div>
-          </Link>
+              {(event.date || event.day) && <div className={`${s.caption} ${u.textRight}`}>
+                <PostDate
+                  date={event.date
+                    ? event.date
+                    : nextDate(dayToNumber(event.day), event.frequency)}
+                />{event.startTime && ", " + event.startTime}
+              </div>}
+            </LinkTo>
+          </div>
         ))}
       </div>
     </>
   )
 }
-export default EventPreview

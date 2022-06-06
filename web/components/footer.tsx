@@ -1,28 +1,39 @@
 import { FC } from "react"
-import FooterContact from "components/footerContact"
-import Signup from "components/signup"
-import FooterLinks from "components/footerLinks"
-import Localize from "components/localize"
-import Logos from "components/logos"
-import { FooterProps } from "lib/interfaces"
+import { useRouter } from "next/router"
+import { FooterContact } from "components/footerContact"
+import { FooterLinks } from "components/footerLinks"
+import { Logos } from "components/logos"
+import { Signup } from "components/signup"
+import { Label, Organisation, Settings } from "lib/interfaces"
+import s from "styles/footer.module.scss"
+import u from "styles/utils.module.scss"
 
-const Footer: FC<FooterProps> = ({ site, socialLinks}) => {
-  const currentYear = new Date().getFullYear()
+interface Props {
+  labels: Label[]
+  organisation: Organisation
+  settings: Settings
+}
+
+export const Footer: FC<Props> = ({ labels, organisation, settings }) => {
+  const { locale } = useRouter()
+  const year = new Date().getFullYear()
   return (
-    <footer>
-      <div className="footerContainer">
-        <FooterContact site={site} />
-        <div className="footerRight">
-          <Signup site={site} />
+    <footer className={`${s.footer} ${u.relative}`}>
+      <div className={`${s.footerContainer} ${u.grid} ${u.mAuto}`}>
+        <FooterContact
+          label={labels[4].text}
+          organisation={organisation}
+          settings={settings}
+        />
+        <div className={`${s.footerRight} ${u.grid}`}>
+          <Signup labels={labels} />
           <Logos />
-          <FooterLinks socialLinks={socialLinks} />
+          <FooterLinks social={settings.social} />
         </div>
-        <p className="smallCopy">
-          &copy;{" "}<Localize data={site.siteName} />{" "}{currentYear}
+        <p className={`${s.smallCopy}`}>
+          &copy;{" "}{settings.title[locale]}{" "}{year}
         </p>
       </div>
     </footer>
   )
 }
-
-export default Footer

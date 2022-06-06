@@ -1,32 +1,64 @@
 import { FC } from "react"
 import { useRouter } from "next/router"
-import ColorLogo from "components/colorLogo"
-import Image from "components/image"
-import Link from "components/link"
-import Navigation from "components/navigation"
-import { HeaderProps } from "lib/interfaces"
-// TODO: screen reader text hard coded
-const Header: FC<HeaderProps> = ({ caption, heroImage, menu }) => {
+import { ColorLogo } from "components/colorLogo"
+import { HeroImage } from "components/heroImage"
+import { LinkTo } from "components/linkTo"
+import { NavComponent } from "components/navComponent"
+import { Image, Label, Navigation, PageContext, Settings } from "lib/interfaces"
+import s from "styles/header.module.scss"
+import u from "styles/utils.module.scss"
+
+interface Props {
+  caption: string
+  heroImage: Image
+  labels: Label[]
+  navigation: Navigation[]
+  pageContext: PageContext
+  settings: Settings
+}
+
+export const Header: FC<Props> = ({
+  caption,
+  heroImage,
+  labels,
+  navigation,
+  pageContext,
+  settings
+}) => {
   const { locale } = useRouter()
   return (
     <>
-      <header>
-        <Link href="/">
-          <span className="screenReaderText">
-            {locale === "cy" ? "Hafan" : "Home"}
+      <header className={`${s.header} ${u.relative}`}>
+        <LinkTo href="/">
+          <span className={`${u.srOnly}`}>
+            {labels[0].text}
           </span>
-          <ColorLogo logoClass="colorLogo" containerClass="logoContainer" />
-        </Link>
+          <ColorLogo
+            alt={settings.title[locale]}
+            containerClass="logoContainer"
+            logoClass="colorLogo"
+          />
+        </LinkTo>
         <div
-          className="hero"
+          className={`${s.hero} ${u.relative}`}
           style={{ overflow: "hidden" }}
         >
-          <Image alt={caption} image={heroImage} width={1600} />
+          <HeroImage
+            alt={caption}
+            image={heroImage}
+          />
         </div>
       </header>
-      <Navigation menu={menu} />
-      <div className="heroCaption">{caption}</div>
+      <NavComponent
+        labels={labels}
+        navigation={navigation}
+        pageContext={pageContext}
+      />
+      <div
+        className={`${s.heroCaption} ${u.relative} ${u.textRight}`}
+        dangerouslySetInnerHTML={{__html: caption ? caption : "&nbsp;"}}
+      />
     </>
   )
 }
-export default Header
+

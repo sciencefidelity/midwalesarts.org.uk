@@ -1,73 +1,69 @@
-import { FC } from "react"
-import Head from "next/head"
-import { useRouter } from "next/router"
-import Header from "components/header"
-import Footer from "components/footer"
-import Scrollup from "components/scrollup"
-import { LayoutProps } from "lib/interfaces"
+import { FC, ReactNode } from "react"
+import { BaseHead } from "components/baseHead"
+import { Header } from "components/header"
+import { Footer } from "components/footer"
+import { Scrollup } from "components/scrollup"
+import {
+  Label,
+  Image,
+  Navigation,
+  Organisation,
+  PageContext,
+  PageHead,
+  Settings
+} from "lib/interfaces"
+import u from "styles/utils.module.scss"
 
-const Layout: FC<LayoutProps> = ({
+interface Props {
+  caption?: string
+  children: ReactNode
+  heroImage: Image
+  labels: Label[]
+  navigation: Navigation[]
+  organisation: Organisation
+  pageContext: PageContext
+  pageHead?: PageHead
+  settings: Settings
+}
+
+export const Layout: FC<Props> = ({
   caption,
   children,
   heroImage,
-  menu,
-  site,
-  socialLinks,
-  title
+  labels,
+  navigation,
+  organisation,
+  pageContext,
+  pageHead,
+  settings
 }) => {
-  const { locale } = useRouter()
-  const metaTitle = title === undefined ? `
-    ${locale === "cy" && site.siteName.cy ? site.siteName.cy : site.siteName.en}
-    ${" | "}
-    ${locale === "cy" && site.seoDescription.cy ? site.seoDescription.cy : site.seoDescription.en}
-  ` : `
-    ${title}
-    ${" | "}
-    ${locale === "cy" && site.siteName.cy ? site.siteName.cy : site.siteName.en}
-  `
   return (
-    <div>
-      <Head>
-        <title>{metaTitle}</title>
-        {site.seoDescription && <meta
-          name="Description"
-          content={locale === "cy" && site.seoDescription.cy ? site.seoDescription.cy : site.seoDescription.en}
-        />}
-        <meta name="keywords" content={site.keywords.en} />
-        <link
-          rel="preload"
-          href="/fonts/brandongrotesque-regular-lat.woff2"
-          as="font"
-          crossOrigin=""
-        />
-        <link
-          rel="preload"
-          href="/fonts/brandongrotesque-bold-lat.woff2"
-          as="font"
-          crossOrigin=""
-        />
-        <link
-          rel="preload"
-          href="/fonts/halisr-book-mwa.woff2"
-          as="font"
-          crossOrigin=""
-        />
-        <link
-          rel="preload"
-          href="/fonts/halisr-book-mwa.woff2"
-          as="font"
-          crossOrigin=""
-        />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <link rel="mask-icon" href="/mask-icon.svg" color="#424A4A" />
-      </Head>
-      <Header heroImage={heroImage} caption={caption} menu={menu} />
+    <>
+      <BaseHead
+        pageHead={pageHead}
+        settings={settings}
+      />
+      <Header
+        caption={caption}
+        heroImage={heroImage}
+        labels={labels}
+        navigation={navigation}
+        pageContext={pageContext}
+        settings={settings}
+      />
+      <div className={`${u.guide} ${u.zero}`}></div>
+      <div className={`${u.guide} ${u.one}`}></div>
+      <div className={`${u.guide} ${u.two}`}></div>
+      <div className={`${u.guide} ${u.three}`}></div>
+      <div className={`${u.guide} ${u.four}`}></div>
+      <div className={`${u.guide} ${u.five}`}></div>
+      <div className={`${u.guide} ${u.six}`}></div>
+      <div className={`${u.guide} ${u.seven}`}></div>
       <main>
         {children}
-        <Scrollup />
+        <Scrollup label={labels[8].text} />
       </main>
-      <Footer site={site} socialLinks={socialLinks} />
-    </div>
+      <Footer labels={labels} organisation={organisation} settings={settings} />
+    </>
   )
 }
-export default Layout
