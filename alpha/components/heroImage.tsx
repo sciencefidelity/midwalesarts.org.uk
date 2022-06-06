@@ -54,73 +54,72 @@ export const HeroImage: FC<Props> = ({ alt, image }) => {
               .width(400)
               .height(350)
               .auto("format")
-              .quality(70)
+              .quality(60)
               .url()} 400w,
             ${urlFor(image)
               .width(800)
               .height(700)
               .auto("format")
-              .quality(70)
+              .quality(60)
               .url()} 800w,
             ${urlFor(image)
               .width(1200)
               .height(667)
               .auto("format")
-              .quality(70)
+              .quality(60)
               .url()} 1200w,
             ${urlFor(image)
               .width(1620)
               .height(900)
               .auto("format")
-              .quality(70)
+              .quality(60)
               .url()} 1620w,
             ${urlFor(image)
               .width(1620)
               .height(900)
               .auto("format")
-              .quality(70)
+              .quality(60)
               .url()} 1620w,
             ${urlFor(image)
               .width(2000)
               .height(900)
               .auto("format")
-              .quality(70)
+              .quality(60)
               .url()} 2000w,
             ${urlFor(image)
               .width(2500)
               .height(900)
               .auto("format")
-              .quality(70)
+              .quality(60)
               .url()} 2500w,
             ${urlFor(image)
               .width(3000)
               .height(900)
               .auto("format")
-              .quality(70)
+              .quality(60)
               .url()} 3000w,
             ${urlFor(image)
               .width(3500)
               .height(900)
               .auto("format")
-              .quality(70)
+              .quality(60)
               .url()} 3500w,
             ${urlFor(image)
               .width(4000)
               .height(900)
               .auto("format")
-              .quality(70)
+              .quality(60)
               .url()} 4000w,
             ${urlFor(image)
               .width(5000)
               .height(900)
               .auto("format")
-              .quality(70)
+              .quality(60)
               .url()} 5000w
           `}
           alt={alt}
           onLoad={onLoad}
           loading="eager"
-          fetchPriority="high"
           className={`
             ${s.image} ${loaded ? s.loaded : null} ${u.relative} ${u.cover}
           `}

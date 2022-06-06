@@ -17,6 +17,7 @@
     "test": "jest --watchAll"
   },
   "dependencies": {
+    "@next/bundle-analyzer": "^12.1.6",
     "@portabletext/react": "^1.0.6",
     "@sanity/client": "^3.3.0",
     "@sanity/image-url": "^1.0.1",
@@ -24,8 +25,12 @@
     "get-youtube-id": "^1.0.1",
     "google-map-react": "^2.1.10",
     "groq": "^2.29.3",
+    "install": "^0.13.0",
     "modern-normalize": "^1.1.0",
     "next": "12.1.6",
+    "npm": "^8.12.1",
+    "postcss-flexbugs-fixes": "^5.0.2",
+    "postcss-preset-env": "^7.7.1",
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "sass": "^1.52.1"
