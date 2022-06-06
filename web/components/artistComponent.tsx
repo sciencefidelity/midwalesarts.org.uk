@@ -165,6 +165,7 @@ export const ArtistComponent: FC<Props> = ({
         <Modal
           closeModal={closeModal}
           fallbackImage={settings.ogImage}
+          labels={labels}
           modal={modal}
           modalImage={modalImage}
           prevIndex={prevIndex}
