@@ -18,6 +18,7 @@ export const BaseHead: FC<Props> = ({ pageHead, settings }) => {
         {settings.title[locale]}
         {pageHead ? "" : " | " + settings.description[locale]}
       </title>
+      <link href="https://cdn.sanity.io/" rel="preconnect" crossOrigin="" />
       <link
         rel="preload"
         href="/fonts/halisr-book-mwa.woff2"
