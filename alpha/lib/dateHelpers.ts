@@ -3,12 +3,12 @@ import { Workshop } from "lib/interfaces"
 export const days = {
   cy: [
     "Suliau",
-    "Dydd Llun",
-    "Dydd Mawrth",
-    "Dydd Mercher",
-    "Dydd Iau",
-    "Dydd Gwener",
-    "Dydd Sadwrn"
+    "dydd Llun",
+    "dydd Mawrth",
+    "dydd Mercher",
+    "dydd Iau",
+    "dydd Gwener",
+    "dydd Sadwrn"
   ],
   en: [
     "Sunday",
@@ -23,20 +23,39 @@ export const days = {
 
 export const dayToNumber = (type: string): number => {
   switch (type) {
-  case "Sunday":
-    return 0
-  case "Monday":
-    return 1
-  case "Tuesday":
-    return 2
-  case "Wednesday":
-    return 3
-  case "Thursday":
-    return 4
-  case "Friday":
-    return 5
-  case "Saturday":
-    return 6
+  case "Sunday":    return 0
+  case "Monday":    return 1
+  case "Tuesday":   return 2
+  case "Wednesday": return 3
+  case "Thursday":  return 4
+  case "Friday":    return 5
+  case "Saturday":  return 6
+  }
+}
+
+export const freqString = (day: string, pos: number, locale: string) => {
+  const localeDay = days[locale][dayToNumber(day)]
+  if (locale === "cy") {
+    switch (pos) {
+    case 1: return ""
+    case 2: return `(${localeDay} cyntaf a'r trydydd)`
+    case 3: return `(ail a phumed ${localeDay})`
+    case 4: return `(bob ${localeDay} cyntaf)`
+    case 5: return `(bob yn ail ${localeDay})`
+    case 6: return `(bob trydydd ${localeDay})`
+    case 7: return `(bob pedwerydd ${localeDay})`
+    default: return ""
+    }
+  }
+  switch (pos) {
+  case 1: return ""
+  case 2: return `(first and third ${localeDay})`
+  case 3: return `(second and forth ${localeDay})`
+  case 4: return `(every first ${localeDay})`
+  case 5: return `(every second ${localeDay})`
+  case 6: return `(every third ${localeDay})`
+  case 7: return `(every forth ${localeDay})`
+  default: return ""
   }
 }
 

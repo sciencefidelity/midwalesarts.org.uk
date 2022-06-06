@@ -1,6 +1,6 @@
 import { FC } from "react"
 import { useRouter } from "next/router"
-import { days, dayToNumber } from "lib/dateHelpers"
+import { days, dayToNumber, freqString } from "lib/dateHelpers"
 import { buildUrl } from "lib/utils"
 import { LinkTo } from "components/linkTo"
 import { Workshop } from "lib/interfaces"
@@ -32,6 +32,9 @@ export const CalendarWorkshops: FC<Props> = ({ workshops }) => {
               <LinkTo href={buildUrl(locale, workshop.slug, workshop._type)}>
                 {workshop.title}
               </LinkTo>
+              <span className={`${s.calendarDays}`}>
+                {` ${freqString(workshop.day, Number(workshop.frequency), locale)}`}
+              </span>
             </div>
           </li>
         )}
