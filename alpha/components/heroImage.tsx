@@ -1,5 +1,12 @@
 /* eslint indent: "off" */
-import { FC, useCallback, useEffect, useState } from "react"
+import {
+  DetailedHTMLProps,
+  FC,
+  ImgHTMLAttributes,
+  useCallback,
+  useEffect,
+  useState
+} from "react"
 import { urlFor } from "lib/utils"
 import { Image } from "lib/interfaces"
 import s from "styles/heroImage.module.scss"
@@ -8,6 +15,16 @@ import u from "styles/utils.module.scss"
 interface Props {
   alt: string
   image: Image
+}
+
+interface ImageProps extends
+  DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>,
+  HTMLImageElement> {
+  fetchPriority?: string
+}
+
+const Img: FC<ImageProps> = ({alt, ...props}) => {
+  return <img alt={alt} {...props}/>
 }
 
 export const HeroImage: FC<Props> = ({ alt, image }) => {
@@ -25,13 +42,7 @@ export const HeroImage: FC<Props> = ({ alt, image }) => {
   return (
     <div className={`${u.relative}`}>
       <div className={`${s.imageContainer} ${u.relative}`}>
-        <img
-          onLoad={onLoad}
-          loading="eager"
-          className={`
-            ${s.image} ${loaded ? s.loaded : null} ${u.relative} ${u.cover}
-          `}
-          alt={alt}
+        <Img
           src={urlFor(image)
             .width(1600)
             .height(450)
@@ -106,6 +117,13 @@ export const HeroImage: FC<Props> = ({ alt, image }) => {
               .quality(70)
               .url()} 5000w
           `}
+          alt={alt}
+          onLoad={onLoad}
+          loading="eager"
+          fetchPriority="high"
+          className={`
+            ${s.image} ${loaded ? s.loaded : null} ${u.relative} ${u.cover}
+          `}
           width={1600}
           height={450}
           style={{
@@ -114,7 +132,7 @@ export const HeroImage: FC<Props> = ({ alt, image }) => {
         />
       </div>
       <div className={`${s.placeholderContainer} ${u.absolute}`}>
-        <img
+        <Img
           src={urlFor(image)
             .width(10)
             .height(10)
@@ -126,6 +144,7 @@ export const HeroImage: FC<Props> = ({ alt, image }) => {
           width={1600}
           height={450}
           loading="eager"
+          fetchPriority="high"
           style={{
             objectPosition: position
           }}
