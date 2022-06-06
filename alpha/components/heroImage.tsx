@@ -20,7 +20,7 @@ interface Props {
 interface ImageProps extends
   DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>,
   HTMLImageElement> {
-  fetchPriority?: string
+  fetchpriority?: string
 }
 
 const Img: FC<ImageProps> = ({alt, ...props}) => {
@@ -143,7 +143,7 @@ export const HeroImage: FC<Props> = ({ alt, image }) => {
           width={1600}
           height={450}
           loading="eager"
-          fetchPriority="high"
+          fetchpriority="high"
           style={{
             objectPosition: position
           }}
