@@ -1,0 +1,28 @@
+@use './base/breakpoints' as b;
+
+.imageContainer {
+  inset: 0;
+  z-index: 2;
+  height: 45rem;
+}
+
+.image {
+  opacity: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.loaded {
+  opacity: 1;
+  transition: opacity 0.3s ease-in;
+}
+
+.placeholderContainer {
+  inset: 0;
+  height: 45rem;
+}
+
+.placeholder {
+  height: 100%;
+  width: 100%;
+}

@@ -1,0 +1,148 @@
+@use 'colors' as c;
+@use 'breakpoints' as b;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  text-underline-offset: 0.15em;
+  &::before,
+  &::after {
+    box-sizing: border-box;
+  }
+}
+
+::selection {
+  background-color: c.$grey-100;
+}
+
+#query-on-demand-indicator-element {
+  margin: 0;
+}
+
+html,
+body {
+  position: relative;
+  overflow-x: hidden;
+}
+
+html {
+  margin: 0;
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--sans);
+  color: c.$grey-550;
+  background-color: c.$grey-000;
+}
+
+main {
+  position: relative;
+  z-index: 3;
+  min-height: 350px;
+}
+
+footer {
+  position: relative;
+  z-index: 1;
+}
+
+h1 {
+  margin: 0;
+  font-size: 5em;
+  font-weight: 800;
+  line-height: 1;
+  color: c.$grey-700;
+  text-transform: uppercase;
+  @include b.mq(sm) {
+    font-size: 4.2em;
+  }
+}
+
+h4 {
+  margin: 0 0 2.2rem;
+  font-size: 4em;
+  font-weight: 700;
+  line-height: 1;
+  color: c.$grey-600;
+  @include b.mq(sm) {
+    font-size: 3.5em;
+    line-height: 1.2;
+  }
+}
+
+p {
+  margin-bottom: 1em;
+  font-size: 2.4rem;
+  line-height: 1.47;
+  @include b.mq(sm) {
+    font-size: 2rem;
+  }
+}
+
+ul {
+  padding: 0 0 2rem 3rem;
+}
+
+li {
+  font-size: 2.4rem;
+  @include b.mq(sm) {
+    font-size: 2rem;
+  }
+}
+
+b,
+strong {
+  color: c.$grey-600;
+}
+
+b {
+  font-weight: 500;
+}
+
+a {
+  color: c.$grey-600;
+  text-decoration: none;
+  &:focus {
+    outline: 1px dotted rgba(c.$grey-650, 0.5);
+  }
+}
+
+p a {
+  font-weight: 500;
+  color: c.$grey-600;
+  background-color: c.$grey-050;
+  transition:
+    color 0.5s ease-in-out,
+    background 0.5s ease-in-out;
+  &:hover {
+    color: c.$grey-700;
+    background-color: c.$grey-100;
+    transition:
+      color 0.5s ease-in-out,
+      background 0.5s ease-in-out;
+  }
+}
+
+blockquote {
+  padding: 0 1.5em;
+  margin: 1em 1.5em;
+  font-size: 2.1em;
+  font-style: italic;
+  line-height: 1.3;
+  border-left: 0.4rem solid rgba(c.$grey-500, 0.5);
+  @include b.mq(md) {
+    padding: 0 0 0 0.7em;
+    margin: 1em 1em;
+  }
+}
+
+button {
+  background-color: transparent;
+}
+
+.logoLink:focus {
+  outline: 4px dotted rgba(c.$grey-650, 0.5);
+}

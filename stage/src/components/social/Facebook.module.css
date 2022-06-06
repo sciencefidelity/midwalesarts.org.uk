@@ -1,0 +1,133 @@
+.ogContainer {
+  width: 476px;
+  margin-bottom: 2.4rem;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    'Droid Sans',
+    'Helvetica Neue',
+    sans-serif;
+  line-height: 1.65;
+  letter-spacing: 0.2px;
+  background: hsl(0, 0%, 100%);
+  border: 1px solid hsl(204, 11%, 91%);
+  border-radius: 3px;
+  text-rendering: optimizelegibility;
+}
+
+.ogTitle {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.38;
+  color: hsl(220, 46%, 41%);
+}
+
+.ogTime {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.34;
+  color: hsl(216, 7%, 41%);
+}
+
+.ogDesc {
+  display: inline-block;
+  height: 10px;
+  background: hsl(216, 13%, 92%);
+  border-radius: 5px;
+}
+
+.ogPreview {
+  background: hsl(220, 13%, 96%);
+}
+
+.ogPreviewImage {
+  width: 100%;
+  height: 247px;
+  border-top: 1px solid hsl(216, 8%, 88%);
+}
+
+.ogPreviewImage img {
+  object-fit: cover;
+  width: 100%;
+}
+
+.ogPreviewBookmark {
+  padding: 10px 12px 8px;
+  border-bottom: 1px solid hsl(216, 8%, 88%);
+}
+
+
+.ogPreviewContent {
+  height: 69px;
+  padding: 0 1px 0 4px;
+  margin: 0 -1px 0 -4px;
+  overflow: hidden;
+}
+
+.ogPreviewMeta {
+  overflow: hidden;
+  font-size: 12px;
+  line-height: 16px;
+  color: hsl(214, 8%, 41%);
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.ogPreviewTitle {
+  max-height: 110px;
+  padding-top: 2px;
+  margin: 3px 0 0;
+  overflow: hidden;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+  color: hsl(220, 17%, 14%);
+  word-wrap: break-word;
+}
+
+.ogPreviewDesc {
+  max-height: 20px;
+  margin-top: 3px;
+  overflow: hidden;
+  font-size: 14px;
+  line-height: 20px;
+  color: hsl(218, 7%, 32%);
+  text-overflow: ellipsis;
+  word-break: break-word;
+  word-wrap: break-word;
+  white-space: nowrap;
+}
+
+.ogReactions {
+  display: flex;
+  align-items: center;
+  margin: 12px;
+}
+
+.ogLikes {
+  display: flex;
+  flex-grow: 1;
+  overflow: hidden;
+  font-size: 13px;
+  line-height: 20px;
+  color: hsl(214, 8%, 41%);
+}
+
+.ogLikes svg {
+  width: 20px;
+  height: 20px;
+}
+
+.ogComments {
+  display: flex;
+  flex-shrink: 0;
+  font-size: 13px;
+  line-height: 20px;
+  color: hsl(214, 8%, 41%);
+  word-wrap: break-word;
+}

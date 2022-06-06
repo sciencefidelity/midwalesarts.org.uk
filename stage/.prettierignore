@@ -1,0 +1,10 @@
+package.json
+package-lock.json
+yarn.lock
+node_modules
+*.scss
+*.css
+*.css.map
+*.log
+dist
+@sanity
