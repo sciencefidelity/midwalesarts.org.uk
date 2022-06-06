@@ -12,7 +12,7 @@ interface Options {
 // has it on the `slug` field at the root
 export function isUniqueLocale(slug: string, options: Options) {
   const { document } = options
-  const client = sanityClient.withConfig({apiVersion: '2021-06-07'})
+  const client = sanityClient.withConfig({apiVersion: '2022-05-25'})
   const id = document._id.replace(/^drafts\./, '')
   const params = {
     draft: `drafts.${id}`,
