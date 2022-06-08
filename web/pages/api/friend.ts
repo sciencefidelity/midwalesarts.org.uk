@@ -38,8 +38,8 @@ async function sendFriendForm(req, res) {
       console.log(`A friend was created, document ID is ${res._id}`)
     })
     await sendgrid.send({
-      to: "Matt Cook <matt@sciencefidelity.co.uk>",
-      from: "MWA Website <hello@artsed.wales>",
+      to: "Matt Cook <office@midwalesarts.org.uk>",
+      from: "MWA Website <office@midwalesarts.org.uk>",
       replyTo: `${name} <${req.body.email}>`,
       subject: `${subject}`,
       html: `
