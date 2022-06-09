@@ -1,5 +1,5 @@
 {
-  "name": "mwa-stage",
+  "name": "mwa-studio",
   "private": true,
   "version": "1.0.0",
   "description": "",
@@ -15,6 +15,22 @@
   "keywords": [
     "sanity"
   ],
+  "yarn-upgrade-all": {
+    "ignore": [
+      "@sanity/base",
+      "@sanity/core",
+      "@sanity/dashboard",
+      "@sanity/default-layout",
+      "@sanity/default-login",
+      "@sanity/desk-tool",
+      "@sanity/document-internationalization",
+      "@sanity/eslint-config-studio",
+      "@sanity/language-filter",
+      "@sanity/vision",
+      "react",
+      "react-dom"
+    ]
+  },
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
