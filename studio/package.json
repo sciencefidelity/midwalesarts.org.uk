@@ -42,7 +42,7 @@
     "@sanity/default-layout": "^2.30.1",
     "@sanity/default-login": "^2.30.1",
     "@sanity/desk-tool": "^2.30.1",
-    "@sanity/document-internationalization": "^0.3.2",
+    "@sanity/document-internationalization": "^0.3.4",
     "@sanity/language-filter": "^2.29.8",
     "@sanity/vision": "^2.30.1",
     "get-youtube-id": "^1.0.1",

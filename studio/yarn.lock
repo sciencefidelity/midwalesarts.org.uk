@@ -1699,10 +1699,10 @@
   dependencies:
     diff-match-patch "^1.0.4"
 
-"@sanity/document-internationalization@^0.3.2":
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/@sanity/document-internationalization/-/document-internationalization-0.3.2.tgz#b489be5ae2b3d19ba38b9c8b32010b9e34e32da7"
-  integrity sha512-GhTGPBxSP2k32PoGeaGyG+kgZHPVSIZJfjsMxAIRrMKNNLVa1cePp5npVhnLnbymsQm77iwCS4C236Pi9Fg4Hg==
+"@sanity/document-internationalization@^0.3.4":
+  version "0.3.4"
+  resolved "https://registry.npmjs.org/@sanity/document-internationalization/-/document-internationalization-0.3.4.tgz#ea29b58e4e9454bdad9c38a334a30d8e2582d968"
+  integrity sha512-1AD5sqapbAhDNJuegREBbnTHbapLBNMSqmPFKbQ6cV/RmZw2CkFAyxZ5S6A4F28DpDoB2MOB7M5Uf3HJKFRADA==
   dependencies:
     "@babel/runtime" "^7.12.5"
     "@cprecioso/country-flag-emoji" "^1.0.0"
