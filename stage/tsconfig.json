@@ -1,15 +1,20 @@
 {
-  "__comment": "Any compiler configuration in here will be ignored.",
   "compilerOptions": {
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
     "esModuleInterop": true,
-    "lib": ["dom", "esnext"],
-    "jsx": "react",
-    "types": ["@sanity/types"]
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true
   },
-  "include": [
-    "./node_modules/@sanity/base/types/**/*.ts",
-    "./node_modules/@sanity/types/**/*.ts",
-    "./**/*.ts",
-    "./**/*.tsx"
-  ]
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
 }
