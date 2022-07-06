@@ -1,6 +1,6 @@
-import React, { FC } from 'react'
-import { urlFor } from '../../lib/utils'
-import { FacebookLogo, HeartIcon, ThumbIcon } from './FacebookIcons'
+import React, {FC} from 'react'
+// import { urlFor } from '../../lib/utils'
+import {FacebookLogo, HeartIcon, ThumbIcon} from './FacebookIcons'
 import s from './Facebook.module.css'
 import u from './Seo.module.css'
 
@@ -17,11 +17,9 @@ interface Props {
   }
 }
 
-const Facebook: FC<Props> = ({ document }) => {
+const Facebook: FC<Props> = ({document}) => {
   const url = 'midwalesarts.org.uk'
-  let facebookTitle = document?.displayed?.ogTitle
-    ? document?.displayed?.ogTitle
-    : '(untitled)'
+  let facebookTitle = document?.displayed?.ogTitle ? document?.displayed?.ogTitle : '(untitled)'
   let facebookDescription = document?.displayed?.ogDescription
     ? document?.displayed?.ogDescription
     : ''
@@ -44,7 +42,7 @@ const Facebook: FC<Props> = ({ document }) => {
           </div>
           <div className={s.ogPreview}>
             <div className={s.ogPreviewImage}>
-              {document.displayed.ogImage && (
+              {/* {document.displayed.ogImage && (
                 <img
                   src={urlFor(document.displayed.ogImage)
                     .auto('format')
@@ -54,7 +52,7 @@ const Facebook: FC<Props> = ({ document }) => {
                     .url()}
                   alt=""
                 />
-              )}
+              )} */}
             </div>
             <div className={s.ogPreviewBookmark}>
               <div className={s.ogPreviewContent}>

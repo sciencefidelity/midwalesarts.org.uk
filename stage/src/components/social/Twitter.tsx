@@ -1,12 +1,6 @@
-import React, { FC } from 'react'
-import { urlFor } from '../../lib/utils'
-import {
-  CommentIcon,
-  LikeIcon,
-  RetweetIcon,
-  ShareIcon,
-  TwitterLogo
-} from './TwitterIcons'
+import React, {FC} from 'react'
+// import { urlFor } from '../../lib/utils'
+import {CommentIcon, LikeIcon, RetweetIcon, ShareIcon, TwitterLogo} from './TwitterIcons'
 import s from './Twitter.module.css'
 import u from './Seo.module.css'
 
@@ -23,11 +17,9 @@ interface Props {
   }
 }
 
-const Twitter: FC<Props> = ({ document }) => {
+const Twitter: FC<Props> = ({document}) => {
   const url = 'midwalesarts.org.uk'
-  let twitterTitle = document?.displayed?.ogTitle
-    ? document?.displayed?.ogTitle
-    : '(untitled)'
+  let twitterTitle = document?.displayed?.ogTitle ? document?.displayed?.ogTitle : '(untitled)'
   let twitterDescription = document?.displayed?.ogDescription
     ? document?.displayed?.ogDescription
     : ''
@@ -48,7 +40,7 @@ const Twitter: FC<Props> = ({ document }) => {
               </div>
               <div className={s.twitterPostPreview}>
                 <div className={s.twitterPreviewImage}>
-                  {document.displayed.ogImage && (
+                  {/* {document.displayed.ogImage && (
                     <img
                       src={urlFor(document.displayed.ogImage)
                         .auto('format')
@@ -58,14 +50,12 @@ const Twitter: FC<Props> = ({ document }) => {
                         .url()}
                       alt=""
                     />
-                  )}
+                  )} */}
                 </div>
                 <div className={s.twitterPreviewContent}>
                   <div className={s.twitterPreviewMeta}>{url}</div>
                   <div className={s.twitterPreviewTitle}>{twitterTitle}</div>
-                  <div className={s.twitterPreviewDesc}>
-                    {twitterDescription}
-                  </div>
+                  <div className={s.twitterPreviewDesc}>{twitterDescription}</div>
                 </div>
               </div>
               <div className={s.twitterReactions}>

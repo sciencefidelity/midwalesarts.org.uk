@@ -1,8 +1,8 @@
-import { i18n } from '../../languages'
+import {i18n} from '../../languages'
 // import { StringWithLimits } from '../../components/StringWithLimits'
-import { isUniqueLocale } from '../../lib/isUniqueLocale'
-import { Rule } from '@sanity/types'
-import { Artist } from '../../components/twemoji'
+// import { isUniqueLocale } from '../../lib/isUniqueLocale'
+import {Rule} from '@sanity/types'
+import {Artist} from '../../components/twemoji'
 
 export default {
   name: 'artist',
@@ -12,21 +12,21 @@ export default {
   i18n,
   initialValue: {
     __i18n_lang: i18n.base,
-    __i18n_refs: []
+    __i18n_refs: [],
   },
   groups: [
     {
       name: 'content',
-      title: 'Content'
+      title: 'Content',
     },
     {
       name: 'settings',
-      title: 'Settings'
+      title: 'Settings',
     },
     {
       name: 'social',
-      title: 'Social'
-    }
+      title: 'Social',
+    },
   ],
   fields: [
     {
@@ -35,21 +35,22 @@ export default {
       description: 'Artist full name.',
       type: 'string',
       validation: (Rule: Rule) => Rule.required(),
-      group: 'content'
+      group: 'content',
     },
     {
       name: 'permanent',
       title: 'Permanent collection',
       type: 'boolean',
       group: 'content',
-      initialValue: false
+      initialValue: false,
     },
     {
       name: 'body',
       title: 'Biography',
-      description: 'Biography or artistic statment, choose Quote from the dropdown in the top left for statements.',
+      description:
+        'Biography or artistic statment, choose Quote from the dropdown in the top left for statements.',
       type: 'portableText',
-      group: 'content'
+      group: 'content',
     },
     {
       name: 'mainImage',
@@ -57,9 +58,9 @@ export default {
       description: 'Should be a jpeg of 1440px along the longest edge, 500-600k is best.',
       type: 'captionImage',
       options: {
-        hotspot: true
+        hotspot: true,
       },
-      group: 'settings'
+      group: 'settings',
     },
     {
       name: 'slug',
@@ -69,18 +70,18 @@ export default {
       options: {
         source: 'title',
         maxLength: 96,
-        isUnique: isUniqueLocale
+        // isUnique: isUniqueLocale
       },
       validation: (Rule: Rule) => Rule.required(),
-      group: 'settings'
+      group: 'settings',
     },
     {
       name: 'disciplines',
       title: 'Disciplines',
       description: 'Choose from the dropdown. Add disciplines in the Discipline section.',
       type: 'array',
-      of: [{ type: 'reference', to: { type: 'discipline' } }],
-      group: 'settings'
+      of: [{type: 'reference', to: {type: 'discipline'}}],
+      group: 'settings',
     },
     {
       name: 'ogImage',
@@ -88,9 +89,9 @@ export default {
       description: 'Image for Facebook and Twitter share (1200 x 630px).',
       type: 'image',
       options: {
-        hotspot: true
+        hotspot: true,
       },
-      group: 'social'
+      group: 'social',
     },
     {
       name: 'ogTitle',
@@ -98,7 +99,7 @@ export default {
       type: 'string',
       // inputComponent: StringWithLimits,
       validation: (Rule: Rule) => Rule.max(70).warning("Some text won't be visible."),
-      group: 'social'
+      group: 'social',
     },
     {
       name: 'ogDescription',
@@ -107,8 +108,8 @@ export default {
       rows: 3,
       description: 'Recommended: 125 characters.',
       validation: (Rule: Rule) => Rule.max(125).warning("Some text won't be visible."),
-      group: 'social'
-    }
+      group: 'social',
+    },
   ],
 
   preview: {
@@ -118,17 +119,31 @@ export default {
       discipline1: 'disciplines.1.title.en',
       discipline2: 'disciplines.2.title.en',
       discipline3: 'disciplines.3.title.en',
-      media: 'mainImage'
+      media: 'mainImage',
     },
-    prepare: ({ title, discipline0, discipline1, discipline2, discipline3, media }) => {
+    prepare: ({
+      title,
+      discipline0,
+      discipline1,
+      discipline2,
+      discipline3,
+      media,
+    }: {
+      title: string
+      discipline0: string
+      discipline1: string
+      discipline2: string
+      discipline3: string
+      media: string
+    }) => {
       const disciplines = [discipline0, discipline1, discipline2].filter(Boolean)
       const subtitle = disciplines.length > 0 ? disciplines.join(', ') : ''
       const hasMoreDisciplines = Boolean(discipline3)
       return {
         title,
         subtitle: hasMoreDisciplines ? `${subtitle}…` : subtitle,
-        media
+        media,
       }
-    }
-  }
+    },
+  },
 }

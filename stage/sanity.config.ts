@@ -6,7 +6,7 @@ import {dashboardTool, projectUsersWidget, projectInfoWidget} from '@sanity/dash
 
 export default createConfig({
   name: 'default',
-  title: 'Coast',
+  title: 'Mid Wales Arts',
 
   projectId: 'atuc1oy0',
   dataset: 'production',

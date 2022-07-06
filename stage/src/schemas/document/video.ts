@@ -1,10 +1,9 @@
-import { i18n } from '../../languages'
+import {i18n} from '../../languages'
 import moment from 'moment'
-import { isUniqueLocale } from '../../lib/isUniqueLocale'
+// import { isUniqueLocale } from '../../lib/isUniqueLocale'
 // import { StringWithLimits } from '../../components/StringWithLimits'
-import { Rule } from '@sanity/types'
-import { FilmProjector } from '../../components/twemoji'
-
+import {Rule} from '@sanity/types'
+import {FilmProjector} from '../../components/twemoji'
 
 export default {
   name: 'video',
@@ -14,40 +13,40 @@ export default {
   i18n,
   initialValue: {
     __i18n_lang: i18n.base,
-    __i18n_refs: []
+    __i18n_refs: [],
   },
   groups: [
     {
       name: 'content',
-      title: 'Content'
+      title: 'Content',
     },
     {
       name: 'settings',
-      title: 'Settings'
+      title: 'Settings',
     },
     {
       name: 'social',
-      title: 'Social'
-    }
+      title: 'Social',
+    },
   ],
   fields: [
     {
       name: 'title',
       title: 'Title',
       type: 'string',
-      group: 'content'
+      group: 'content',
     },
     {
       name: 'body',
       title: 'Body',
       type: 'portableText',
-      group: 'content'
+      group: 'content',
     },
     {
       name: 'videoLink',
       title: 'Video Link',
       type: 'url',
-      group: 'settings'
+      group: 'settings',
     },
     {
       name: 'mainImage',
@@ -55,9 +54,9 @@ export default {
       type: 'image',
       description: 'Video thumbnail (1920 x 1080px).',
       options: {
-        hotspot: true
+        hotspot: true,
       },
-      group: 'settings'
+      group: 'settings',
     },
     {
       name: 'publishDate',
@@ -65,11 +64,11 @@ export default {
       type: 'datetime',
       options: {
         dateFormat: 'dddd, MMMM Do YYYY',
-        calendarTodayLabel: 'Today'
+        calendarTodayLabel: 'Today',
       },
       initialValue: new Date().toISOString(),
       validation: (Rule: Rule) => Rule.required(),
-      group: 'settings'
+      group: 'settings',
     },
     {
       name: 'slug',
@@ -79,9 +78,9 @@ export default {
       options: {
         source: 'title',
         maxLength: 96,
-        isUnique: isUniqueLocale
+        // isUnique: isUniqueLocale
       },
-      validation: (Rule: Rule) => Rule.required()
+      validation: (Rule: Rule) => Rule.required(),
     },
     {
       name: 'ogImage',
@@ -89,9 +88,9 @@ export default {
       type: 'image',
       description: 'Image for Facebook and Twitter share (1200 x 630px).',
       options: {
-        hotspot: true
+        hotspot: true,
       },
-      group: 'social'
+      group: 'social',
     },
     {
       name: 'ogTitle',
@@ -99,7 +98,7 @@ export default {
       type: 'string',
       // inputComponent: StringWithLimits,
       validation: (Rule: Rule) => Rule.max(70).warning("Some text won't be visible."),
-      group: 'social'
+      group: 'social',
     },
     {
       name: 'ogDescription',
@@ -108,22 +107,22 @@ export default {
       rows: 3,
       description: 'Recommended: 125 characters.',
       validation: (Rule: Rule) => Rule.max(125).warning("Some text won't be visible."),
-      group: 'social'
-    }
+      group: 'social',
+    },
   ],
 
   preview: {
     select: {
       title: 'title',
       date: 'publishDate',
-      media: 'mainImage'
+      media: 'mainImage',
     },
-    prepare: ({ date, media, title }) => {
+    prepare: ({date, media, title}: {date: string; media: string; title: string}) => {
       return {
         title,
         subtitle: moment(date).format('Do MMM YYYY'),
-        media
+        media,
       }
-    }
-  }
+    },
+  },
 }

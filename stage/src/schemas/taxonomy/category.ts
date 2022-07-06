@@ -1,4 +1,4 @@
-import { Tickets } from '../../components/twemoji'
+import {Tickets} from '../../components/twemoji'
 
 export default {
   name: 'category',
@@ -9,20 +9,20 @@ export default {
     {
       name: 'title',
       title: 'Title',
-      type: 'localeString'
-    }
+      type: 'localeString',
+    },
   ],
   preview: {
     select: {
       title: 'title.en',
-      subtitle: 'title.cy'
+      subtitle: 'title.cy',
     },
-    prepare({ subtitle, title }) {
+    prepare({subtitle, title}: {subtitle: string; title: string}) {
       return {
         title: title,
         subtitle: subtitle,
-        media: Tickets
+        media: Tickets,
       }
-    }
-  }
+    },
+  },
 }

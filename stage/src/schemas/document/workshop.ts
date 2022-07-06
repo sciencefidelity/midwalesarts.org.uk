@@ -1,8 +1,8 @@
-import { i18n } from '../../languages'
-import { isUniqueLocale } from '../../lib/isUniqueLocale'
+import {i18n} from '../../languages'
+// import { isUniqueLocale } from '../../lib/isUniqueLocale'
 // import { TimeInput } from '../../components/TimeInput'
-import { Rule } from '@sanity/types'
-import { Clipboard } from '../../components/twemoji'
+import {Rule} from '@sanity/types'
+import {Clipboard} from '../../components/twemoji'
 
 export default {
   name: 'workshop',
@@ -12,52 +12,44 @@ export default {
   i18n,
   initialValue: {
     __i18n_lang: i18n.base,
-    __i18n_refs: []
+    __i18n_refs: [],
   },
   groups: [
     {
       name: 'content',
-      title: 'Content'
+      title: 'Content',
     },
     {
       name: 'settings',
-      title: 'Settings'
+      title: 'Settings',
     },
     {
       name: 'social',
-      title: 'Social'
-    }
+      title: 'Social',
+    },
   ],
   fields: [
     {
       name: 'title',
       title: 'Title',
       type: 'string',
-      group: 'content'
+      group: 'content',
     },
     {
       name: 'body',
       title: 'Body',
       type: 'portableText',
-      group: 'content'
+      group: 'content',
     },
     {
       name: 'day',
       title: 'Day of the week',
       type: 'string',
       options: {
-        list: [
-          'Sunday',
-          'Monday',
-          'Tuesday',
-          'Wednesday',
-          'Thursday',
-          'Friday',
-          'Saturday'
-        ]
+        list: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
       },
       initialValue: 'Sunday',
-      group: 'settings'
+      group: 'settings',
     },
     {
       name: 'frequency',
@@ -71,23 +63,23 @@ export default {
           {title: 'Monthly, first week', value: '4'},
           {title: 'Monthly, second week', value: '5'},
           {title: 'Monthly, third week', value: '6'},
-          {title: 'Monthly, fourth week', value: '7'}
-        ]
+          {title: 'Monthly, fourth week', value: '7'},
+        ],
       },
       initialValue: '1',
-      group: 'settings'
+      group: 'settings',
     },
     {
       name: 'startTime',
       title: 'Start time',
       type: 'string',
-      group: 'settings'
+      group: 'settings',
     },
     {
       name: 'endTime',
       title: 'End time',
       type: 'string',
-      group: 'settings'
+      group: 'settings',
     },
     {
       name: 'mainImage',
@@ -95,9 +87,9 @@ export default {
       description: 'Should be a jpeg of 1440px along the longest edge, 500-600k is best.',
       type: 'image',
       options: {
-        hotspot: true
+        hotspot: true,
       },
-      group: 'settings'
+      group: 'settings',
     },
     {
       name: 'slug',
@@ -107,24 +99,24 @@ export default {
       options: {
         source: 'title',
         maxLength: 96,
-        isUnique: isUniqueLocale
+        // isUnique: isUniqueLocale
       },
       validation: (Rule: Rule) => Rule.required(),
-      group: 'settings'
+      group: 'settings',
     },
     {
       name: 'category',
       title: 'Category',
       type: 'reference',
-      to: { type: 'category' },
-      group: 'settings'
+      to: {type: 'category'},
+      group: 'settings',
     },
     {
       name: 'briteLink',
       title: 'Eventbrite link',
       description: 'Leave blank if the event is not on Eventbrite.',
       type: 'url',
-      group: 'settings'
+      group: 'settings',
     },
     {
       name: 'ogImage',
@@ -132,16 +124,16 @@ export default {
       description: 'Image for Facebook and Twitter share (1200 x 630px).',
       type: 'image',
       options: {
-        hotspot: true
+        hotspot: true,
       },
-      group: 'social'
+      group: 'social',
     },
     {
       name: 'ogTitle',
       title: 'Social title',
       type: 'string',
       validation: (Rule: Rule) => Rule.max(70).warning("Some text won't be visible."),
-      group: 'social'
+      group: 'social',
     },
     {
       name: 'ogDescription',
@@ -150,8 +142,8 @@ export default {
       rows: 3,
       description: 'Recommended: 125 characters.',
       validation: (Rule: Rule) => Rule.max(125).warning("Some text won't be visible."),
-      group: 'social'
-    }
+      group: 'social',
+    },
   ],
 
   preview: {
@@ -160,14 +152,26 @@ export default {
       day: 'day',
       startTime: 'startTime',
       endTime: 'endTime',
-      media: 'mainImage'
+      media: 'mainImage',
     },
-    prepare: ({ day, endTime, media, startTime, title }) => {
+    prepare: ({
+      day,
+      endTime,
+      media,
+      startTime,
+      title,
+    }: {
+      day: string
+      endTime: string
+      media: string
+      startTime: string
+      title: string
+    }) => {
       return {
         title,
         subtitle: `${day}s – ${startTime} to ${endTime}`,
-        media
+        media,
       }
-    }
-  }
+    },
+  },
 }

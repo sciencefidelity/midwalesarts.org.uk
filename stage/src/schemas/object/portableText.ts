@@ -1,6 +1,6 @@
-import { emailRender, linkRender } from '../../components/textComponents'
-import { MdOutlineAddLink, MdOutlineAlternateEmail } from 'react-icons/md'
-import { RiExternalLinkLine, RiHashtag } from 'react-icons/ri'
+import {emailRender, linkRender} from '../../components/textComponents'
+import {MdOutlineAddLink, MdOutlineAlternateEmail} from 'react-icons/md'
+import {RiExternalLinkLine} from 'react-icons/ri'
 
 export default {
   title: 'Rich Text',
@@ -10,20 +10,20 @@ export default {
     {
       title: 'Block',
       type: 'block',
-      options: { spellCheck: true },
+      options: {spellCheck: true},
       styles: [
-        { title: 'Normal', value: 'normal' },
-        { title: 'H1', value: 'h1' },
-        { title: 'H2', value: 'h2' },
-        { title: 'H3', value: 'h3' },
-        { title: 'H4', value: 'h4' },
-        { title: 'Quote', value: 'blockquote' }
+        {title: 'Normal', value: 'normal'},
+        {title: 'H1', value: 'h1'},
+        {title: 'H2', value: 'h2'},
+        {title: 'H3', value: 'h3'},
+        {title: 'H4', value: 'h4'},
+        {title: 'Quote', value: 'blockquote'},
       ],
-      lists: [{ title: 'Bullet', value: 'bullet' }],
+      lists: [{title: 'Bullet', value: 'bullet'}],
       marks: {
         decorators: [
-          { title: 'Strong', value: 'strong' },
-          { title: 'Emphasis', value: 'em' }
+          {title: 'Strong', value: 'strong'},
+          {title: 'Emphasis', value: 'em'},
         ],
         annotations: [
           {
@@ -35,27 +35,27 @@ export default {
                 name: 'item',
                 type: 'reference',
                 to: [
-                  { type: 'artist' },
-                  { type: 'event' },
-                  { type: 'exhibition' },
-                  { type: 'page' },
-                  { type: 'post' },
-                  { type: 'video' },
-                  { type: 'workshop' }
+                  {type: 'artist'},
+                  {type: 'event'},
+                  {type: 'exhibition'},
+                  {type: 'page'},
+                  {type: 'post'},
+                  {type: 'video'},
+                  {type: 'workshop'},
                 ],
                 options: {
-                  filter: ({ document }) => {
+                  filter: ({document}: any) => {
                     return {
-                      filter: `__i18n_lang == 'en'`
+                      filter: `__i18n_lang == 'en'`,
                     }
-                  }
-                }
-              }
+                  },
+                },
+              },
             ],
             blockEditor: {
               icon: MdOutlineAddLink,
-              render: linkRender
-            }
+              render: linkRender,
+            },
           },
           {
             title: 'URL',
@@ -64,18 +64,18 @@ export default {
             fields: [
               {
                 name: 'href',
-                type: 'url'
+                type: 'url',
               },
               {
                 title: 'Open in a new window',
                 name: 'blank',
                 type: 'boolean',
-                initialValue: true
-              }
+                initialValue: true,
+              },
             ],
             blockEditor: {
-              icon: RiExternalLinkLine
-            }
+              icon: RiExternalLinkLine,
+            },
           },
           {
             title: 'Email',
@@ -84,23 +84,23 @@ export default {
             fields: [
               {
                 name: 'mailto',
-                type: 'email'
-              }
+                type: 'email',
+              },
             ],
             blockEditor: {
               icon: MdOutlineAlternateEmail,
-              render: emailRender
-            }
-          }
-        ]
-      }
+              render: emailRender,
+            },
+          },
+        ],
+      },
     },
     {
       type: 'image',
-      options: { hotspot: true }
+      options: {hotspot: true},
     },
     {
-      type: 'youtube'
+      type: 'youtube',
     },
-  ]
+  ],
 }
