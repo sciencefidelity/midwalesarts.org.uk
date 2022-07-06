@@ -1,6 +1,3 @@
-import createSchema from 'part:@sanity/base/schema-creator'
-import schemaTypes from 'all:part:@sanity/base/schema-type'
-
 // objects
 import address from './object/address'
 import captionImage from './object/captionImage'
@@ -38,44 +35,39 @@ import category from './taxonomy/category'
 import discipline from './taxonomy/discipline'
 import tag from './taxonomy/tag'
 
-export default createSchema({
-  name: 'default',
-  types: schemaTypes.concat([
+export const schemaTypes = [
+  // objects
+  address,
+  captionImage,
+  portableText,
+  social,
+  youtube,
 
-    // objects
-    address,
-    captionImage,
-    portableText,
-    social,
-    youtube,
+  // locale
+  localeString,
+  localeText,
+  localeTextSmall,
 
-    // locale
-    localeString,
-    localeText,
-    localeTextSmall,
+  // documement translation
+  artist,
+  category,
+  discipline,
+  event,
+  exhibition,
+  page,
+  post,
+  space,
+  tag,
+  video,
+  workshop,
 
-    // documement translation
-    artist,
-    category,
-    discipline,
-    event,
-    exhibition,
-    page,
-    post,
-    space,
-    tag,
-    video,
-    workshop,
-
-    // field translation
-    artwork,
-    feedback,
-    friend,
-    frontPageSection,
-    labelGroup,
-    navigation,
-    organisation,
-    settings
-
-  ])
-})
+  // field translation
+  artwork,
+  feedback,
+  friend,
+  frontPageSection,
+  labelGroup,
+  navigation,
+  organisation,
+  settings,
+]

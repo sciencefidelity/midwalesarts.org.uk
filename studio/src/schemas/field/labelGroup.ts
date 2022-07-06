@@ -1,4 +1,5 @@
-import { CardFileBox } from '../../components/twemoji'
+import {Rule} from '@sanity/types'
+import {CardFileBox} from '../../components/twemoji'
 
 export default {
   name: 'labelGroup',
@@ -9,8 +10,7 @@ export default {
     {
       name: 'labels',
       title: 'Labels',
-      description:
-        'Strings of text that are used through the Website and require translation',
+      description: 'Strings of text that are used through the Website and require translation',
       type: 'array',
       of: [
         {
@@ -23,39 +23,39 @@ export default {
               title: 'Key',
               type: 'string',
               description: `This will be used to identify the label in the code. It should be unique and contain only lowercase letters and periods`,
-              validation: Rule =>
+              validation: (Rule: Rule) =>
                 Rule.regex(/^[a-z.]+$/).error(
                   'The key should contain only lowercase letters and periods'
-                )
+                ),
             },
-            { name: 'text', type: 'localeString' }
+            {name: 'text', type: 'localeString'},
           ],
           preview: {
             select: {
               title: 'text.en',
-              subtitle: 'text.cy'
+              subtitle: 'text.cy',
             },
-            prepare({ subtitle, title }) {
+            prepare({subtitle, title}: {subtitle: string; title: string}) {
               return {
                 title: title,
                 subtitle: subtitle,
-                media: CardFileBox
+                media: CardFileBox,
               }
-            }
-          }
-        }
-      ]
-    }
+            },
+          },
+        },
+      ],
+    },
   ],
   preview: {
     select: {
-      title: 'title'
+      title: 'title',
     },
     prepare() {
       return {
         title: 'Label groups',
-        media: CardFileBox
+        media: CardFileBox,
       }
-    }
-  }
+    },
+  },
 }

@@ -1,4 +1,4 @@
-import sanityClient from 'part:@sanity/base/client'
+import sanityClient from './sanityClient'
 
 interface Options {
   document: {
@@ -11,7 +11,7 @@ interface Options {
 // Note: this assumes that every document that has a slug field
 // has it on the `slug` field at the root
 export function isUniqueLocale(slug: string, options: Options) {
-  const { document } = options
+  const {document} = options
   const client = sanityClient.withConfig({apiVersion: '2022-05-25'})
   const id = document._id.replace(/^drafts\./, '')
   const params = {
@@ -19,14 +19,14 @@ export function isUniqueLocale(slug: string, options: Options) {
     published: id,
     type: document._type,
     locale: document.__i18n_lang,
-    slug
+    slug,
   }
 
   const constraints = [
     '!(_id in [$draft, $published])',
     '_type == $type',
     '__i18n_lang == $locale',
-    'slug.current == $slug'
+    'slug.current == $slug',
   ].join(' && ')
   const query = `!defined(*[${constraints}][0]._id)`
 

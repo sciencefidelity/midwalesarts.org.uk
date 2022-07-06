@@ -1,8 +1,8 @@
-import { i18n } from '../../languages'
+import {i18n} from '../../languages'
 // import { StringWithLimits } from '../../components/StringWithLimits'
-import { isUniqueLocale } from '../../lib/isUniqueLocale'
-import { Rule } from '@sanity/types'
-import { Books } from '../../components/twemoji'
+import {isUniqueLocale} from '../../lib/isUniqueLocale'
+import {Rule} from '@sanity/types'
+import {Books} from '../../components/twemoji'
 
 export default {
   name: 'page',
@@ -12,25 +12,25 @@ export default {
   i18n,
   initialValue: {
     __i18n_lang: i18n.base,
-    __i18n_refs: []
+    __i18n_refs: [],
   },
   groups: [
     {
       name: 'settings',
-      title: 'Settings'
+      title: 'Settings',
     },
     {
       name: 'content',
-      title: 'Content'
+      title: 'Content',
     },
     {
       name: 'links',
-      title: 'Links'
+      title: 'Links',
     },
     {
       name: 'social',
-      title: 'Social'
-    }
+      title: 'Social',
+    },
   ],
   fields: [
     {
@@ -48,28 +48,27 @@ export default {
           'Support',
           'Videos',
           'Visit',
-          'Workshops'
-        ]
+          'Workshops',
+        ],
       },
       initialValue: 'Page',
       validation: (Rule: Rule) => Rule.required(),
-      hidden: ({ document }) => document?.template !== '',
-      group: 'settings'
+      hidden: ({document}: {document: any}) => document?.template !== '',
+      group: 'settings',
     },
     {
       name: 'title',
       title: 'Title',
       type: 'string',
-      hidden: ({ document }) => document?.template === 'Home',
-      group: 'settings'
-
+      hidden: ({document}: {document: any}) => document?.template === 'Home',
+      group: 'settings',
     },
     {
       name: 'subtitle',
       title: 'Subtitle',
       type: 'string',
-      hidden: ({ document }) => document?.template === 'Home',
-      group: 'settings'
+      hidden: ({document}: {document: any}) => document?.template === 'Home',
+      group: 'settings',
     },
     {
       name: 'slug',
@@ -79,11 +78,11 @@ export default {
       options: {
         source: 'title',
         maxLength: 96,
-        isUnique: isUniqueLocale
+        isUnique: isUniqueLocale,
       },
       validation: (Rule: Rule) => Rule.required(),
-      hidden: ({ document }) => document?.template !== 'Page',
-      group: 'settings'
+      hidden: ({document}: {document: any}) => document?.template !== 'Page',
+      group: 'settings',
     },
     {
       name: 'mainImage',
@@ -91,7 +90,7 @@ export default {
       description: 'Should be a jpeg of 1440px along the longest edge, 500-600k is best.',
       type: 'image',
       options: {
-        hotspot: true
+        hotspot: true,
       },
       fields: [
         {
@@ -101,18 +100,15 @@ export default {
           description: 'Image caption (title of artwork)',
           options: {
             isHighlighted: true,
-            collapsible: true
-          }
-        }
+            collapsible: true,
+          },
+        },
       ],
-      hidden: ({ document }) => [
-        'Artists',
-        'Events',
-        'Exhibitions',
-        'News',
-        'Videos'
-      ].find(e => e === document?.template),
-      group: 'content'
+      hidden: ({document}: {document: any}) =>
+        ['Artists', 'Events', 'Exhibitions', 'News', 'Videos'].find(
+          (e) => e === document?.template
+        ),
+      group: 'content',
     },
     {
       name: 'subImage',
@@ -120,7 +116,7 @@ export default {
       description: 'Should be jpeg of 1440px along the longest edge, 500-600k is best.',
       type: 'image',
       options: {
-        hotspot: true
+        hotspot: true,
       },
       fields: [
         {
@@ -130,77 +126,74 @@ export default {
           description: 'Image caption (title of artwork)',
           options: {
             isHighlighted: true,
-            collapsible: true
-          }
-        }
+            collapsible: true,
+          },
+        },
       ],
-      hidden: ({ document }) => document?.template !== 'Home',
-      group: 'content'
+      hidden: ({document}: {document: any}) => document?.template !== 'Home',
+      group: 'content',
     },
     {
       name: 'body',
       title: 'Body',
       type: 'portableText',
-      hidden: ({ document }) => [
-        'Artists',
-        'Events',
-        'Exhibitions',
-        'News',
-        'Videos'
-      ].find(e => e === document?.template),
-      group: 'content'
+      hidden: ({document}: {document: any}) =>
+        ['Artists', 'Events', 'Exhibitions', 'News', 'Videos'].find(
+          (e) => e === document?.template
+        ),
+      group: 'content',
     },
     {
       name: 'cta',
       title: 'Call to Action',
       type: 'string',
       description: 'A call to action for the internal link (20 characters max).',
-      hidden: ({ document }) => document?.template !== 'Home',
-      group: 'links'
+      hidden: ({document}: {document: any}) => document?.template !== 'Home',
+      group: 'links',
     },
     {
       title: 'Link',
       name: 'ctaLink',
       type: 'reference',
       to: [
-        { type: 'artist' },
-        { type: 'event' },
-        { type: 'exhibition' },
-        { type: 'page' },
-        { type: 'post' },
-        { type: 'video' },
-        { type: 'workshop' }
+        {type: 'artist'},
+        {type: 'event'},
+        {type: 'exhibition'},
+        {type: 'page'},
+        {type: 'post'},
+        {type: 'video'},
+        {type: 'workshop'},
       ],
       options: {
         filter: () => {
           return {
-            filter: '__i18n_lang == "en"'
+            filter: '__i18n_lang == "en"',
           }
-        }
+        },
       },
       // validation: (Rule: Rule) => Rule.required(),
-      hidden: ({ document }) => document?.template !== 'Home',
-      group: 'links'
+      hidden: ({document}: {document: any}) => document?.template !== 'Home',
+      group: 'links',
     },
     {
       name: 'spaces',
       title: 'Spaces',
       type: 'array',
-      of: [{ type: 'reference', to: { type: 'space' } }],
+      of: [{type: 'reference', to: {type: 'space'}}],
       sortable: true,
       validation: (Rule: Rule) => Rule.max(6),
-      hidden: ({ document }) => document?.template !== 'Visit',
-      group: 'content'
+      hidden: ({document}: {document: any}) => document?.template !== 'Visit',
+      group: 'content',
     },
     {
       name: 'headline',
       title: 'Headline',
       type: 'array',
-      of: [{ type: 'reference', to: { type: 'frontPageSection' } }],
+      of: [{type: 'reference', to: {type: 'frontPageSection'}}],
       sortable: true,
       validation: (Rule: Rule) => Rule.max(4),
-      hidden: ({ document }) => document?.template !== 'Home',
-      group: 'content'
+      hidden: ({document}: {document: any}) => document?.template !== 'Home',
+      group: 'content',
     },
     {
       name: 'ogImage',
@@ -208,10 +201,10 @@ export default {
       type: 'image',
       description: 'Image for Facebook and Twitter share (1200 x 630px).',
       options: {
-        hotspot: true
+        hotspot: true,
       },
-      hidden: ({ document }) => document?.template === 'Home',
-      group: 'social'
+      hidden: ({document}: {document: any}) => document?.template === 'Home',
+      group: 'social',
     },
     {
       name: 'ogTitle',
@@ -220,8 +213,8 @@ export default {
       // inputComponent: StringWithLimits,
       description: 'Recommended: 70 characters.',
       validation: (Rule: Rule) => Rule.max(70).warning("Some text won't be visible."),
-      hidden: ({ document }) => document?.template === 'Home',
-      group: 'social'
+      hidden: ({document}: {document: any}) => document?.template === 'Home',
+      group: 'social',
     },
     {
       name: 'ogDescription',
@@ -230,24 +223,23 @@ export default {
       rows: 3,
       description: 'Recommended: 125 characters.',
       validation: (Rule: Rule) => Rule.max(125).warning("Some text won't be visible."),
-      hidden: ({ document }) => document?.template === 'Home',
-      group: 'social'
-    }
+      hidden: ({document}: {document: any}) => document?.template === 'Home',
+      group: 'social',
+    },
   ],
 
   preview: {
     select: {
       title: 'title',
       template: 'template',
-      media: 'mainImage'
+      media: 'mainImage',
     },
-    prepare: ({ media, template, title }) => {
+    prepare: ({media, template, title}: {media: string; template: string; title: string}) => {
       return {
         title: title,
         subtitle: `Template: ${template}`,
-        media: media
+        media: media,
       }
-    }
-  }
+    },
+  },
 }
-

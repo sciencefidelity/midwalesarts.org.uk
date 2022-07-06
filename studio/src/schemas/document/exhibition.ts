@@ -1,9 +1,9 @@
-import { i18n } from '../../languages'
+import {i18n} from '../../languages'
 import moment from 'moment'
 // import { StringWithLimits } from '../../components/StringWithLimits'
-import { isUniqueLocale } from '../../lib/isUniqueLocale'
-import { Rule } from '@sanity/types'
-import { FramedPicture } from '../../components/twemoji'
+import {isUniqueLocale} from '../../lib/isUniqueLocale'
+import {Rule} from '@sanity/types'
+import {FramedPicture} from '../../components/twemoji'
 
 export default {
   name: 'exhibition',
@@ -13,28 +13,28 @@ export default {
   i18n,
   initialValue: {
     __i18n_lang: i18n.base,
-    __i18n_refs: []
+    __i18n_refs: [],
   },
   groups: [
     {
       name: 'content',
-      title: 'Content'
+      title: 'Content',
     },
     {
       name: 'settings',
-      title: 'Settings'
+      title: 'Settings',
     },
     {
       name: 'social',
-      title: 'Social'
-    }
+      title: 'Social',
+    },
   ],
   fields: [
     {
       name: 'title',
       title: 'Title',
       type: 'string',
-      group: 'content'
+      group: 'content',
     },
     {
       name: 'dateStart',
@@ -42,9 +42,9 @@ export default {
       type: 'datetime',
       options: {
         dateFormat: 'dddd, MMMM Do YYYY',
-        timeFormat: ''
+        timeFormat: '',
       },
-      group: 'content'
+      group: 'content',
     },
     {
       name: 'dateEnd',
@@ -53,15 +53,15 @@ export default {
       options: {
         dateFormat: 'dddd, MMMM Do YYYY',
         timeFormat: '',
-        timeStep: 15
+        timeStep: 15,
       },
-      group: 'content'
+      group: 'content',
     },
     {
       name: 'body',
       title: 'Body',
       type: 'portableText',
-      group: 'content'
+      group: 'content',
     },
     {
       name: 'mainImage',
@@ -69,7 +69,7 @@ export default {
       description: 'Should be a jpeg of 1440px along the longest edge, 500-600k is best.',
       type: 'image',
       options: {
-        hotspot: true
+        hotspot: true,
       },
       fields: [
         {
@@ -78,11 +78,11 @@ export default {
           title: 'Caption',
           description: 'Image caption (title of artwork)',
           options: {
-            isHighlighted: true
-          }
-        }
+            isHighlighted: true,
+          },
+        },
       ],
-      group: 'settings'
+      group: 'settings',
     },
     {
       name: 'slug',
@@ -92,10 +92,10 @@ export default {
       options: {
         source: 'title',
         maxLength: 96,
-        isUnique: isUniqueLocale
+        isUnique: isUniqueLocale,
       },
       validation: (Rule: Rule) => Rule.required(),
-      group: 'settings'
+      group: 'settings',
     },
     {
       name: 'ogImage',
@@ -103,16 +103,16 @@ export default {
       description: 'Image for Facebook and Twitter share (1200 x 630px).',
       type: 'image',
       options: {
-        hotspot: true
+        hotspot: true,
       },
-      group: 'social'
+      group: 'social',
     },
     {
       name: 'ogTitle',
       title: 'Social title',
       type: 'string',
       validation: (Rule: Rule) => Rule.max(70).warning("Some text won't be visible."),
-      group: 'social'
+      group: 'social',
     },
     {
       name: 'ogDescription',
@@ -121,8 +121,8 @@ export default {
       rows: 3,
       description: 'Recommended: 125 characters.',
       validation: (Rule: Rule) => Rule.max(125).warning("Some text won't be visible."),
-      group: 'social'
-    }
+      group: 'social',
+    },
   ],
 
   preview: {
@@ -130,16 +130,28 @@ export default {
       title: 'title',
       dateStart: 'dateStart',
       dateEnd: 'dateEnd',
-      media: 'mainImage'
+      media: 'mainImage',
     },
-    prepare: ({ dateEnd, dateStart, media, title }) => {
+    prepare({
+      dateEnd,
+      dateStart,
+      media,
+      title,
+    }: {
+      dateEnd: string
+      dateStart: string
+      media: string
+      title: string
+    }) {
       return {
         title: title,
         subtitle: `${
-          dateStart ? moment(dateStart).format('Do MMM') + ' – ' + moment(dateEnd).format('Do MMM YYYY') : 'TBA'
+          dateStart
+            ? moment(dateStart).format('Do MMM') + ' – ' + moment(dateEnd).format('Do MMM YYYY')
+            : 'TBA'
         }`,
-        media: media
+        media: media,
       }
-    }
-  }
+    },
+  },
 }

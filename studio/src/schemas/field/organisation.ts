@@ -1,4 +1,4 @@
-import { PostOffice } from '../../components/twemoji'
+import {PostOffice} from '../../components/twemoji'
 
 export default {
   name: 'organisation',
@@ -9,38 +9,38 @@ export default {
     {
       name: 'title',
       title: 'Organisation name',
-      type: 'localeString'
+      type: 'localeString',
     },
     {
       name: 'address',
       title: 'Address',
-      type: 'address'
+      type: 'address',
     },
     {
       name: 'email',
       title: 'Email',
-      type: 'email'
+      type: 'email',
     },
     {
       name: 'telephone',
       title: 'Telephone',
-      type: 'string'
+      type: 'string',
     },
     {
       name: 'opening',
       title: 'Opening times',
-      type: 'localeString'
-    }
+      type: 'localeString',
+    },
   ],
   preview: {
     select: {
-      title: 'title.en'
+      title: 'title.en',
     },
-    prepare({ title }) {
+    prepare({title}: {title: string}) {
       return {
         title: title,
-        media: PostOffice
+        media: PostOffice,
       }
-    }
-  }
+    },
+  },
 }

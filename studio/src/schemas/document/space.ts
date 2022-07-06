@@ -1,7 +1,7 @@
-import { i18n } from '../../languages'
-import { isUniqueLocale } from '../../lib/isUniqueLocale'
-import { Rule } from '@sanity/types'
-import { ClassicalBuilding } from '../../components/twemoji'
+import {i18n} from '../../languages'
+import {isUniqueLocale} from '../../lib/isUniqueLocale'
+import {Rule} from '@sanity/types'
+import {ClassicalBuilding} from '../../components/twemoji'
 
 export default {
   name: 'space',
@@ -11,18 +11,18 @@ export default {
   i18n,
   initialValue: {
     __i18n_lang: i18n.base,
-    __i18n_refs: []
+    __i18n_refs: [],
   },
   fields: [
     {
       name: 'title',
       title: 'Title',
-      type: 'string'
+      type: 'string',
     },
     {
       name: 'body',
       title: 'Body',
-      type: 'portableText'
+      type: 'portableText',
     },
     {
       name: 'slug',
@@ -32,7 +32,7 @@ export default {
       options: {
         source: 'title',
         maxLength: 96,
-        isUnique: isUniqueLocale
+        isUnique: isUniqueLocale,
       },
       validation: (Rule: Rule) => Rule.required(),
     },
@@ -41,15 +41,15 @@ export default {
       title: 'Main image',
       type: 'image',
       options: {
-        hotspot: true
-      }
-    }
+        hotspot: true,
+      },
+    },
   ],
 
   preview: {
     select: {
       title: 'title',
-      media: 'mainImage'
-    }
-  }
+      media: 'mainImage',
+    },
+  },
 }

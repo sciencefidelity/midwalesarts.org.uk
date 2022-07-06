@@ -1,4 +1,4 @@
-import sanityClient from 'part:@sanity/base/client'
+import sanityClient from './sanityClient'
 import imageUrlBuilder from '@sanity/image-url'
 
 export const urlFor = (source: any) => {

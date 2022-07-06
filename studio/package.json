@@ -1,68 +1,47 @@
 {
-  "name": "mwa-studio",
+  "name": "coast",
   "private": true,
   "version": "1.0.0",
-  "description": "",
   "main": "package.json",
-  "author": "Matt Cook <sciencefidelity@hotmail.com>",
   "license": "UNLICENSED",
   "scripts": {
-    "start": "sanity start",
     "dev": "sanity start",
-    "build": "sanity build",
-    "format": "prettier --write '**/*.{ts,js,tsx,jsx,json,md,yml}'"
+    "start": "sanity start",
+    "build": "sanity build"
   },
   "keywords": [
     "sanity"
   ],
-  "yarn-upgrade-all": {
-    "ignore": [
-      "@sanity/base",
-      "@sanity/core",
-      "@sanity/dashboard",
-      "@sanity/default-layout",
-      "@sanity/default-login",
-      "@sanity/desk-tool",
-      "@sanity/document-internationalization",
-      "@sanity/eslint-config-studio",
-      "@sanity/language-filter",
-      "@sanity/vision",
-      "react",
-      "react-dom"
-    ]
-  },
   "dependencies": {
-    "@emotion/react": "^11.9.0",
-    "@emotion/styled": "^11.8.1",
-    "@mui/material": "^5.8.0",
-    "@mui/x-date-pickers": "^5.0.0-alpha.4",
-    "@sanity/base": "^2.30.1",
-    "@sanity/core": "^2.30.2",
-    "@sanity/dashboard": "^2.30.1",
-    "@sanity/default-layout": "^2.30.1",
-    "@sanity/default-login": "^2.30.1",
-    "@sanity/desk-tool": "^2.30.1",
-    "@sanity/document-internationalization": "^0.3.4",
-    "@sanity/language-filter": "^2.29.8",
-    "@sanity/vision": "^2.30.1",
+    "@sanity/client": "^3.3.2",
+    "@sanity/dashboard": "^3.0.0-v3-studio.1",
+    "@sanity/document-internationalization": "^1.0.0-v3-studio.6",
+    "@sanity/eslint-config-studio": "^2.0.0",
+    "esbuild": "^0.14.48",
+    "eslint": "^8.6.0",
     "get-youtube-id": "^1.0.1",
-    "html-react-parser": "^1.4.12",
-    "prop-types": "^15.7",
-    "react": "^17.0",
-    "react-dom": "^17.0",
-    "react-icons": "^4.3.1",
-    "sanity-plugin-dashboard-widget-vercel": "^1.1.1",
+    "html-react-parser": "^3.0.0",
+    "prettier": "^2.7.1",
+    "prop-types": "^15.8.1",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0",
+    "react-icons": "^4.4.0",
+    "react-is": "^18.2.0",
+    "sanity": "dev-preview",
     "styled-components": "^5.2.0",
     "twemoji": "^14.0.2"
   },
   "devDependencies": {
-    "@sanity/eslint-config-studio": "^2.0.0",
     "@types/styled-components": "^5.1.25",
-    "eslint": "^8.16.0",
-    "prettier": "^2.6.2"
+    "typescript": "^4.7.4"
   },
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:sciencefidelity/midwalesarts.org.uk.git"
+  "resolutions": {
+    "esbuild": "0.14.44"
+  },
+  "prettier": {
+    "semi": false,
+    "printWidth": 100,
+    "bracketSpacing": false,
+    "singleQuote": true
   }
 }

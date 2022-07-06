@@ -1,4 +1,4 @@
-import { Compass } from '../../components/twemoji'
+import {Compass} from '../../components/twemoji'
 
 export default {
   name: 'navigation',
@@ -17,47 +17,47 @@ export default {
             {
               name: 'label',
               title: 'Label',
-              type: 'localeString'
+              type: 'localeString',
             },
             {
               name: 'url',
               type: 'reference',
-              to: [{ type: 'page' }],
+              to: [{type: 'page'}],
               options: {
                 filter: () => {
                   return {
-                    filter: '__i18n_lang == "en"'
+                    filter: '__i18n_lang == "en"',
                   }
-                }
-              }
-            }
+                },
+              },
+            },
           ],
           preview: {
             select: {
               title: 'label.en',
-              subtitle: 'label.cy'
+              subtitle: 'label.cy',
             },
-            prepare({ title, subtitle }) {
+            prepare({title, subtitle}: {title: string; subtitle: string}) {
               return {
                 title: title,
                 subtitle: subtitle,
-                media: Compass
+                media: Compass,
               }
-            }
-          }
-        }
+            },
+          },
+        },
       ],
-      sortable: true
-    }
+      sortable: true,
+    },
   ],
   preview: {
     select: {
-      title: 'title'
+      title: 'title',
     },
     prepare: () => {
       return {
-        title: 'Navigation'
+        title: 'Navigation',
       }
-    }
-  }
+    },
+  },
 }

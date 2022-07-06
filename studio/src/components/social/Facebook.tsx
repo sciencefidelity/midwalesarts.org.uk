@@ -1,6 +1,6 @@
-import React, { FC } from 'react'
-import { urlFor } from '../../lib/utils'
-import { FacebookLogo, HeartIcon, ThumbIcon } from './FacebookIcons'
+import React, {FC} from 'react'
+import {urlFor} from '../../lib/utils'
+import {FacebookLogo, HeartIcon, ThumbIcon} from './FacebookIcons'
 import s from './Facebook.module.css'
 import u from './Seo.module.css'
 
@@ -17,11 +17,9 @@ interface Props {
   }
 }
 
-const Facebook: FC<Props> = ({ document }) => {
+const Facebook: FC<Props> = ({document}) => {
   const url = 'midwalesarts.org.uk'
-  let facebookTitle = document?.displayed?.ogTitle
-    ? document?.displayed?.ogTitle
-    : '(untitled)'
+  let facebookTitle = document?.displayed?.ogTitle ? document?.displayed?.ogTitle : '(untitled)'
   let facebookDescription = document?.displayed?.ogDescription
     ? document?.displayed?.ogDescription
     : ''

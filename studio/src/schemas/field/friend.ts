@@ -1,4 +1,4 @@
-import { Dolls } from '../../components/twemoji'
+import {Dolls} from '../../components/twemoji'
 
 export default {
   name: 'friend',
@@ -10,76 +10,73 @@ export default {
       name: 'processed',
       title: 'Applicant contacted',
       type: 'boolean',
-      initialValue: false
+      initialValue: false,
     },
     {
       name: 'friendGift',
       title: 'Who is becoming a friend',
       type: 'string',
       options: {
-        list: [
-          'I would like to become a friend',
-          'I would like to give as a gift'
-        ],
+        list: ['I would like to become a friend', 'I would like to give as a gift'],
         layout: 'radio',
-        direction: 'vertical'
-      }
+        direction: 'vertical',
+      },
     },
     {
       name: 'honorificPrefix',
       title: 'Title',
-      type: 'string'
+      type: 'string',
     },
     {
       name: 'givenName',
       title: 'First name',
-      type: 'string'
+      type: 'string',
     },
     {
       name: 'familyName',
       title: 'Surname',
-      type: 'string'
+      type: 'string',
     },
     {
       name: 'friend',
-      title: 'Joint friend\'s name',
-      type: 'string'
+      title: "Joint friend's name",
+      type: 'string',
     },
     {
       name: 'addressLine1',
       title: 'Address line 1',
-      type: 'string'
+      type: 'string',
     },
     {
       name: 'addressLine2',
       title: 'Address line 2',
-      type: 'string'
+      type: 'string',
     },
     {
       name: 'addressLine3',
       title: 'Address line 3',
-      type: 'string'
+      type: 'string',
     },
     {
       name: 'postalCode',
       title: 'Post code',
-      type: 'string'
+      type: 'string',
     },
     {
       name: 'tel',
       title: 'Telephone',
-      type: 'string'
+      type: 'string',
     },
     {
       name: 'email',
       title: 'Email address',
-      type: 'email'
+      type: 'email',
     },
     {
       name: 'message',
       title: 'If a gift, message to recipient',
       type: 'text',
-      rows: 3
+      rows: 3,
     },
     {
       name: 'reason',
@@ -91,35 +88,35 @@ export default {
           'To be invited to openings',
           'To meet fellow art lovers',
           'To learn more about art',
-          'Other, please state...'
+          'Other, please state...',
         ],
         layout: 'radio',
-        direction: 'vertical'
-      }
+        direction: 'vertical',
+      },
     },
     {
       name: 'otherReason',
       title: 'Other reason',
-      type: 'string'
+      type: 'string',
     },
     {
       name: 'giftAid',
       title: 'Gift Aid',
       type: 'boolean',
-      initialValue: false
-    }
+      initialValue: false,
+    },
   ],
   preview: {
     select: {
       email: 'email',
       name: 'givenName',
-      surname: 'familyName'
+      surname: 'familyName',
     },
-    prepare: ({ email, name, surname }) => {
+    prepare: ({email, name, surname}: {email: string; name: string; surname: string}) => {
       return {
         title: `${name} ${surname}`,
-        subtitle: email
+        subtitle: email,
       }
-    }
-  }
+    },
+  },
 }
