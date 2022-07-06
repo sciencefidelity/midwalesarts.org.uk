@@ -1,8 +1,8 @@
-import { i18n } from '../../languages'
+import {i18n} from '../../languages'
 import moment from 'moment'
-import { isUniqueLocale } from '../../lib/isUniqueLocale'
-import { Rule } from '@sanity/types'
-import { StudioMicrophone } from '../../components/twemoji'
+import {createIsSlugUnique} from '@sanity/document-internationalization'
+import {Rule} from '@sanity/types'
+import {StudioMicrophone} from '../../components/twemoji'
 
 export default {
   name: 'event',
@@ -12,28 +12,28 @@ export default {
   i18n,
   initialValue: {
     __i18n_lang: i18n.base,
-    __i18n_refs: []
+    __i18n_refs: [],
   },
   groups: [
     {
       name: 'content',
-      title: 'Content'
+      title: 'Content',
     },
     {
       name: 'settings',
-      title: 'Settings'
+      title: 'Settings',
     },
     {
       name: 'social',
-      title: 'Social'
-    }
+      title: 'Social',
+    },
   ],
   fields: [
     {
       name: 'title',
       title: 'Title',
       type: 'string',
-      group: 'content'
+      group: 'content',
     },
     {
       name: 'date',
@@ -43,15 +43,15 @@ export default {
         dateFormat: 'dddd, MMMM Do YYYY,',
         timeFormat: 'h:mm a',
         timeStep: 15,
-        calendarTodayLabel: 'Today'
+        calendarTodayLabel: 'Today',
       },
-      group: 'content'
+      group: 'content',
     },
     {
       name: 'body',
       title: 'Body',
       type: 'portableText',
-      group: 'content'
+      group: 'content',
     },
     {
       name: 'mainImage',
@@ -59,9 +59,9 @@ export default {
       description: 'Images should be jpeg of 1440px along the longest edge, 500-600k is best.',
       type: 'image',
       options: {
-        hotspot: true
+        hotspot: true,
       },
-      group: 'settings'
+      group: 'settings',
     },
     {
       name: 'slug',
@@ -71,24 +71,24 @@ export default {
       options: {
         source: 'title',
         maxLength: 96,
-        isUnique: isUniqueLocale
+        isUnique: createIsSlugUnique,
       },
       validation: (Rule: Rule) => Rule.required(),
-      group: 'settings'
+      group: 'settings',
     },
     {
       name: 'category',
       title: 'Category',
       type: 'reference',
-      to: { type: 'category' },
-      group: 'settings'
+      to: {type: 'category'},
+      group: 'settings',
     },
     {
       name: 'briteLink',
       title: 'Eventbrite link',
       description: 'Leave blank if the event is not on Eventbrite.',
       type: 'url',
-      group: 'settings'
+      group: 'settings',
     },
     {
       name: 'ogImage',
@@ -96,16 +96,16 @@ export default {
       description: 'Image for Facebook and Twitter share (1200 x 630px).',
       type: 'image',
       options: {
-        hotspot: true
+        hotspot: true,
       },
-      group: 'social'
+      group: 'social',
     },
     {
       name: 'ogTitle',
       title: 'Social title',
       type: 'string',
       validation: (Rule: Rule) => Rule.max(70).warning("Some text won't be visible."),
-      group: 'social'
+      group: 'social',
     },
     {
       name: 'ogDescription',
@@ -114,25 +114,22 @@ export default {
       rows: 3,
       description: 'Recommended: 125 characters.',
       validation: (Rule: Rule) => Rule.max(125).warning("Some text won't be visible."),
-      group: 'social'
-    }
+      group: 'social',
+    },
   ],
 
   preview: {
     select: {
       title: 'title',
       subtitle: 'date',
-      media: 'mainImage'
+      media: 'mainImage',
     },
-    prepare: ({ title, subtitle, media }) => {
+    prepare: ({title, subtitle, media}: {title: string; subtitle: string; media: string}) => {
       return {
         title: title,
-        subtitle: `${
-          subtitle ? moment(subtitle).format('ddd Do MMM YYYY') : 'TBA'
-        }`,
-        media: media
+        subtitle: `${subtitle ? moment(subtitle).format('ddd Do MMM YYYY') : 'TBA'}`,
+        media: media,
       }
-    }
-  }
+    },
+  },
 }
-

@@ -1,4 +1,4 @@
-import { Label } from '../../components/twemoji'
+import {Label} from '../../components/twemoji'
 
 export default {
   name: 'tag',
@@ -9,20 +9,20 @@ export default {
     {
       name: 'title',
       title: 'Title',
-      type: 'localeString'
-    }
+      type: 'localeString',
+    },
   ],
   preview: {
     select: {
       title: 'title.en',
-      subtitle: 'title.cy'
+      subtitle: 'title.cy',
     },
-    prepare({ subtitle, title }) {
+    prepare({subtitle, title}: {subtitle: string; title: string}) {
       return {
         title: title,
         subtitle: subtitle,
-        media: Label
+        media: Label,
       }
-    }
-  }
+    },
+  },
 }
