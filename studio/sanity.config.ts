@@ -1,6 +1,7 @@
 import {createConfig} from 'sanity'
 import {deskTool} from 'sanity/desk'
-import {dashboardTool, projectUsersWidget, projectInfoWidget} from '@sanity/dashboard'
+import {dashboardTool} from '@sanity/dashboard'
+import {plausibleWidget} from './src/widgets/plausibleWidget'
 import {
   documentI18n,
   getFilteredDocumentTypeListItems,
@@ -46,7 +47,11 @@ export default createConfig({
   plugins: withDocumentI18nPlugin(
     (pluginConfig) => [
       dashboardTool({
-        widgets: [projectInfoWidget(), projectUsersWidget()],
+        widgets: [
+          // projectInfoWidget(),
+          // projectUsersWidget(),
+          plausibleWidget(),
+        ],
       }),
       deskTool({
         defaultDocumentNode,
