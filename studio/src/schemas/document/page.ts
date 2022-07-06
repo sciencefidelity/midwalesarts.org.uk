@@ -1,6 +1,6 @@
 import {i18n} from '../../languages'
 // import { StringWithLimits } from '../../components/StringWithLimits'
-import {isUniqueLocale} from '../../lib/isUniqueLocale'
+import {createIsSlugUnique} from '@sanity/document-internationalization'
 import {Rule} from '@sanity/types'
 import {Books} from '../../components/twemoji'
 
@@ -78,7 +78,7 @@ export default {
       options: {
         source: 'title',
         maxLength: 96,
-        isUnique: isUniqueLocale,
+        isUnique: createIsSlugUnique,
       },
       validation: (Rule: Rule) => Rule.required(),
       hidden: ({document}: {document: any}) => document?.template !== 'Page',

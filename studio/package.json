@@ -13,7 +13,6 @@
     "sanity"
   ],
   "dependencies": {
-    "@sanity/client": "^3.3.2",
     "@sanity/dashboard": "^3.0.0-v3-studio.1",
     "@sanity/document-internationalization": "^1.0.0-v3-studio.6",
     "@sanity/eslint-config-studio": "^2.0.0",

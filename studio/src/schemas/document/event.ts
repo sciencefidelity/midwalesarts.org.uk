@@ -1,6 +1,6 @@
 import {i18n} from '../../languages'
 import moment from 'moment'
-import {isUniqueLocale} from '../../lib/isUniqueLocale'
+import {createIsSlugUnique} from '@sanity/document-internationalization'
 import {Rule} from '@sanity/types'
 import {StudioMicrophone} from '../../components/twemoji'
 
@@ -71,7 +71,7 @@ export default {
       options: {
         source: 'title',
         maxLength: 96,
-        isUnique: isUniqueLocale,
+        isUnique: createIsSlugUnique,
       },
       validation: (Rule: Rule) => Rule.required(),
       group: 'settings',

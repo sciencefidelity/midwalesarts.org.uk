@@ -1,5 +1,6 @@
 import React, {FC} from 'react'
-import {urlFor} from '../../lib/utils'
+import {useClient} from 'sanity'
+import imageUrlBuilder from '@sanity/image-url'
 import {CommentIcon, LikeIcon, RetweetIcon, ShareIcon, TwitterLogo} from './TwitterIcons'
 import s from './Twitter.module.css'
 import u from './Seo.module.css'
@@ -18,6 +19,10 @@ interface Props {
 }
 
 const Twitter: FC<Props> = ({document}) => {
+  const client = useClient()
+  const urlFor = (source: any) => {
+    return imageUrlBuilder(client).image(source)
+  }
   const url = 'midwalesarts.org.uk'
   let twitterTitle = document?.displayed?.ogTitle ? document?.displayed?.ogTitle : '(untitled)'
   let twitterDescription = document?.displayed?.ogDescription
