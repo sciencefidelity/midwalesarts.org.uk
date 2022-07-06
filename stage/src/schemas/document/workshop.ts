@@ -1,5 +1,5 @@
 import {i18n} from '../../languages'
-// import { isUniqueLocale } from '../../lib/isUniqueLocale'
+import {isUniqueLocale} from '../../lib/isUniqueLocale'
 // import { TimeInput } from '../../components/TimeInput'
 import {Rule} from '@sanity/types'
 import {Clipboard} from '../../components/twemoji'
@@ -99,7 +99,7 @@ export default {
       options: {
         source: 'title',
         maxLength: 96,
-        // isUnique: isUniqueLocale
+        isUnique: isUniqueLocale,
       },
       validation: (Rule: Rule) => Rule.required(),
       group: 'settings',

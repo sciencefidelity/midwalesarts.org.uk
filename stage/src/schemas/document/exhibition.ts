@@ -1,7 +1,7 @@
 import {i18n} from '../../languages'
 import moment from 'moment'
 // import { StringWithLimits } from '../../components/StringWithLimits'
-// import { isUniqueLocale } from '../../lib/isUniqueLocale'
+import {isUniqueLocale} from '../../lib/isUniqueLocale'
 import {Rule} from '@sanity/types'
 import {FramedPicture} from '../../components/twemoji'
 
@@ -92,7 +92,7 @@ export default {
       options: {
         source: 'title',
         maxLength: 96,
-        // isUnique: isUniqueLocale
+        isUnique: isUniqueLocale,
       },
       validation: (Rule: Rule) => Rule.required(),
       group: 'settings',
