@@ -3,47 +3,20 @@ root = true
 
 [*]
 end_of_line = lf
-insert_final_newline = true
 charset = utf-8
 trim_trailing_whitespace = true
 insert_final_newline = true
-
-# TypeScript, JavaScript
-[*.{ts,tsx,js,jsx,cjs,mjs}]
 indent_style = space
 indent_size = 2
 
-# Framework component
-[*.{astro,svelte,vue}]
-indent_style = space
-indent_size = 2
+# Some languages prefer 4 spaces
+[{*.py,*.pyw,*.sh,*.xml}]
+indent_size = 4
 
-# Go
+# We use tabs in Go
 [{*.go,go.mod,go.sum}]
 indent_style = tab
-indent_size = 2
 
-# Markup
-[*.html]
-indent_style = space
-indent_size = 2
-
-# Markdown
+# Lets not trim Markdown
 [*.md]
-indent_style = space
-indent_size = 2
-
-# Stylesheet
-[*.{css,scss}]
-indent_style = space
-indent_size = 2
-
-# json
-[*.json]
-indent_style = space
-indent_size = 2
-
-# yml
-[*.yml]
-indent_style = space
-indent_size = 2
+trim_trailing_whitespace = false
