@@ -1,5 +1,9 @@
-import { Workshop } from "lib/interfaces"
+import { Workshop } from "lib/interfaces";
 
+/**
+ * An object of day names and translated in English and Welsh
+ * @remarks Welsh: days.cy; English: days.en
+ */
 export const days = {
   cy: [
     "Suliau",
@@ -8,7 +12,7 @@ export const days = {
     "dydd Mercher",
     "dydd Iau",
     "dydd Gwener",
-    "dydd Sadwrn"
+    "dydd Sadwrn",
   ],
   en: [
     "Sunday",
@@ -17,96 +21,172 @@ export const days = {
     "Wednesday",
     "Thursday",
     "Friday",
-    "Saturday"
-  ]
-}
+    "Saturday",
+  ],
+};
 
-export const dayToNumber = (type: string): number => {
+/**
+ * Converts a day name to its corresponding day number
+ * @remarks generates the day number from the day name, used in calculations
+ * @param type - the day name
+ * @returns the day number
+ */
+export function dayToNumber(type: string): number {
   switch (type) {
-  case "Sunday":    return 0
-  case "Monday":    return 1
-  case "Tuesday":   return 2
-  case "Wednesday": return 3
-  case "Thursday":  return 4
-  case "Friday":    return 5
-  case "Saturday":  return 6
+    case "Sunday":
+      return 0;
+    case "Monday":
+      return 1;
+    case "Tuesday":
+      return 2;
+    case "Wednesday":
+      return 3;
+    case "Thursday":
+      return 4;
+    case "Friday":
+      return 5;
+    case "Saturday":
+      return 6;
   }
 }
 
-export const freqString = (day: string, pos: number, locale: string) => {
-  const localeDay = days[locale][dayToNumber(day)]
+/**
+ * Gets the frequency of a workshop in the month
+ * @remarks prints the times a workshop occurs in the month in Welsh and English
+ * @param day - the day of the week the workshop occurs on
+ * @param pos - the position in the month the workshop occurs on
+ * @param locale - the current locale
+ * @returns the day number
+ */
+export function freqString(day: string, pos: number, locale: string) {
+  const localeDay = days[locale][dayToNumber(day)];
   if (locale === "cy") {
     switch (pos) {
-    case 1: return ""
-    case 2: return `(${localeDay} cyntaf a'r trydydd)`
-    case 3: return `(ail a phumed ${localeDay})`
-    case 4: return `(bob ${localeDay} cyntaf)`
-    case 5: return `(bob yn ail ${localeDay})`
-    case 6: return `(bob trydydd ${localeDay})`
-    case 7: return `(bob pedwerydd ${localeDay})`
-    default: return ""
+      case 1:
+        return "";
+      case 2:
+        return `(${localeDay} cyntaf a'r trydydd)`;
+      case 3:
+        return `(ail a phumed ${localeDay})`;
+      case 4:
+        return `(bob ${localeDay} cyntaf)`;
+      case 5:
+        return `(bob yn ail ${localeDay})`;
+      case 6:
+        return `(bob trydydd ${localeDay})`;
+      case 7:
+        return `(bob pedwerydd ${localeDay})`;
+      default:
+        return "";
     }
   }
   switch (pos) {
-  case 1: return ""
-  case 2: return `(first and third ${localeDay})`
-  case 3: return `(second and forth ${localeDay})`
-  case 4: return `(every first ${localeDay})`
-  case 5: return `(every second ${localeDay})`
-  case 6: return `(every third ${localeDay})`
-  case 7: return `(every forth ${localeDay})`
-  default: return ""
+    case 1:
+      return "";
+    case 2:
+      return `(first and third ${localeDay})`;
+    case 3:
+      return `(second and forth ${localeDay})`;
+    case 4:
+      return `(every first ${localeDay})`;
+    case 5:
+      return `(every second ${localeDay})`;
+    case 6:
+      return `(every third ${localeDay})`;
+    case 7:
+      return `(every forth ${localeDay})`;
+    default:
+      return "";
   }
 }
 
-export const frequency = (pos: number) => {
+/**
+ * The frequesncy of a workshop over a two month period
+ * @remarks uses a number returned by the Sanity API to determine the frequency
+ * @param pos - the position in the month the workshop occurs on
+ * @returns the workshop frequency as an array of numbers
+ */
+export function frequency(pos: number): number[] {
   switch (pos) {
-  case 1: return [0, 1, 2, 3, 4, 5, 6, 7]
-  case 2: return [0, 2, 4, 6]
-  case 3: return [1, 3, 5, 7]
-  case 4: return [0, 4]
-  case 5: return [1, 5]
-  case 6: return [2, 6]
-  case 7: return [3, 7]
-  default: return [0, 1, 2, 3, 4, 5, 6, 7]
+    case 1:
+      return [0, 1, 2, 3, 4, 5, 6, 7];
+    case 2:
+      return [0, 2, 4, 6];
+    case 3:
+      return [1, 3, 5, 7];
+    case 4:
+      return [0, 4];
+    case 5:
+      return [1, 5];
+    case 6:
+      return [2, 6];
+    case 7:
+      return [3, 7];
+    default:
+      return [0, 1, 2, 3, 4, 5, 6, 7];
   }
 }
 
-export const nextMonth = () => {
-  const first = new Date(new Date().setDate(1))
+/**
+ * Next month
+ * @remarks determines the first day of the next month from now
+ * @returns the first day of the next month
+ */
+export function nextMonth(): Date {
+  const first = new Date(new Date().setDate(1));
   if (first.getMonth() === 11) {
-    return new Date(first.getFullYear() + 1, 0, 1)
+    return new Date(first.getFullYear() + 1, 0, 1);
   } else {
-    return new Date(first.getFullYear(), first.getMonth() + 1, 1)
+    return new Date(first.getFullYear(), first.getMonth() + 1, 1);
   }
 }
 
+/**
+ * Workshop dates
+ * @remarks gets the dates of workshops over the next two months
+ * @param day - the day of the week the workshop occurs on
+ * @param freq - the frequency of the workshop as defined by the Sanity API
+ * @returns an array of dates of the workshop for the next two months
+ */
 export const getDates = (day: number, freq: number[]): Date[] => {
-  const first = new Date(new Date().setDate(1))
-  const days = []
+  const first = new Date(new Date().setDate(1));
+  const days = [];
   while (first.getDay() !== day) {
-    first.setDate(first.getDate() + 1)
+    first.setDate(first.getDate() + 1);
   }
   while (days.length < 4) {
-    days.push(new Date(first.getTime()))
-    first.setDate(first.getDate() + 7)
+    days.push(new Date(first.getTime()));
+    first.setDate(first.getDate() + 7);
   }
-  const next = nextMonth()
+  const next = nextMonth();
   while (next.getDay() !== day) {
-    next.setDate(next.getDate() + 1)
+    next.setDate(next.getDate() + 1);
   }
   while (days.length < 8) {
-    days.push(new Date(next.getTime()))
-    next.setDate(next.getDate() + 7)
+    days.push(new Date(next.getTime()));
+    next.setDate(next.getDate() + 7);
   }
-  return days.filter((_, idx) => freq.some(p => idx === p))
-}
+  return days.filter((_, idx) => freq.some((p) => idx === p));
+};
 
+/**
+ * Next workshop date
+ * @remarks gets the next workshop date from the current date
+ * @param day - the day of the week the workshop occurs on
+ * @param freq - the frequency of the workshop as defined by the Sanity API
+ * @returns the date of the next workshop as a Date string
+ */
 export const nextDate = (day: number, freq: string): Date => {
-  const dates = getDates(day, frequency(Number(freq)))
-  return dates.filter(e => e >= new Date())[0]
-}
+  const dates = getDates(day, frequency(Number(freq)));
+  return dates.filter((e) => e >= new Date())[0];
+};
 
+/**
+ * Workshops in the next two months
+ * @remarks sorts the workshops in the next two months by date
+ * @param events - an array of {@link Workshop} objects
+ * @returns an array of {@link Workshop} objects sorted by date
+ */
 export const sortWorkshops = (events: Workshop[]): Workshop[] => {
   return events.sort((a, b) => {
     return nextDate(dayToNumber(a.day), a.frequency).toISOString() <
@@ -114,7 +194,7 @@ export const sortWorkshops = (events: Workshop[]): Workshop[] => {
       ? -1
       : nextDate(dayToNumber(a.day), a.frequency).toISOString() >
         nextDate(dayToNumber(b.day), a.frequency).toISOString()
-        ? 1
-        : 0
-  })
-}
+      ? 1
+      : 0;
+  });
+};
