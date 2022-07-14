@@ -1,5 +1,4 @@
-/* eslint indent: "off" */
-import { FC, useCallback, useEffect, useState } from "react"
+import { useState } from "react"
 import { urlFor } from "lib/utils"
 import { Image } from "lib/interfaces"
 import s from "styles/headlineImage.module.scss"
@@ -10,14 +9,12 @@ interface Props {
   image: Image
 }
 
-export const HeadlineHeroImage: FC<Props> = ({ alt, image }) => {
+export function HeadlineHeroImage({ alt, image }: Props) {
   const [loaded, setLoaded] = useState(false)
-  const onLoad = useCallback(() => {
+  function onLoad() {
     setLoaded(true)
-  }, [])
-  useEffect(() => {
-    setLoaded(true)
-  }, [loaded, onLoad])
+  }
+
   const hotspot = image.hotspot
   const position = hotspot
     ? `${Math.round(hotspot.x * 100)}% ${Math.round(hotspot.y * 100)}%`
@@ -38,13 +35,12 @@ export const HeadlineHeroImage: FC<Props> = ({ alt, image }) => {
             .auto("format")
             .quality(75)
             .url()}
-          srcSet={
-            `${urlFor(image)
-              .width(400)
-              .height(450)
-              .auto("format")
-              .quality(70)
-              .url()} 400w,
+          srcSet={`${urlFor(image)
+            .width(400)
+            .height(450)
+            .auto("format")
+            .quality(70)
+            .url()} 400w,
             ${urlFor(image)
               .width(600)
               .height(450)
@@ -79,7 +75,7 @@ export const HeadlineHeroImage: FC<Props> = ({ alt, image }) => {
           width={1600}
           height={450}
           style={{
-            objectPosition: position
+            objectPosition: position,
           }}
         />
       </div>
@@ -97,7 +93,7 @@ export const HeadlineHeroImage: FC<Props> = ({ alt, image }) => {
           height={450}
           loading="eager"
           style={{
-            objectPosition: position
+            objectPosition: position,
           }}
         />
       </div>

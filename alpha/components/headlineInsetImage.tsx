@@ -1,5 +1,4 @@
-/* eslint indent: "off" */
-import { FC, useCallback, useEffect, useState } from "react"
+import { useState } from "react"
 import { urlFor } from "lib/utils"
 import { Image } from "lib/interfaces"
 import s from "styles/home.module.scss"
@@ -10,14 +9,12 @@ interface Props {
   image: Image
 }
 
-export const HeadlineInsetImage: FC<Props> = ({ alt, image }) => {
+export function HeadlineInsetImage({ alt, image }: Props) {
   const [loaded, setLoaded] = useState(false)
-  const onLoad = useCallback(() => {
+  function onLoad() {
     setLoaded(true)
-  }, [])
-  useEffect(() => {
-    setLoaded(true)
-  }, [loaded, onLoad])
+  }
+
   const hotspot = image.hotspot
   const position = hotspot
     ? `${Math.round(hotspot.x * 100)}% ${Math.round(hotspot.y * 100)}%`
@@ -29,7 +26,9 @@ export const HeadlineInsetImage: FC<Props> = ({ alt, image }) => {
           onLoad={onLoad}
           loading="lazy"
           className={`
-            ${s.sectionInset} ${loaded ? s.loaded : null} ${u.relative} ${u.cover}
+            ${s.sectionInset} ${loaded ? s.loaded : null} ${u.relative} ${
+            u.cover
+          }
           `}
           alt={alt}
           src={urlFor(image)
@@ -38,13 +37,12 @@ export const HeadlineInsetImage: FC<Props> = ({ alt, image }) => {
             .auto("format")
             .quality(75)
             .url()}
-          srcSet={
-            `${urlFor(image)
-              .width(225)
-              .height(383)
-              .auto("format")
-              .quality(70)
-              .url()} 225w,
+          srcSet={`${urlFor(image)
+            .width(225)
+            .height(383)
+            .auto("format")
+            .quality(70)
+            .url()} 225w,
             ${urlFor(image)
               .width(340)
               .height(510)
@@ -61,7 +59,7 @@ export const HeadlineInsetImage: FC<Props> = ({ alt, image }) => {
           width={340}
           height={510}
           style={{
-            objectPosition: position
+            objectPosition: position,
           }}
         />
         <div className={`${s.sectionPlaceholderContainer} ${u.absolute}`}>
@@ -78,7 +76,7 @@ export const HeadlineInsetImage: FC<Props> = ({ alt, image }) => {
             height={510}
             loading="eager"
             style={{
-              objectPosition: position
+              objectPosition: position,
             }}
           />
         </div>

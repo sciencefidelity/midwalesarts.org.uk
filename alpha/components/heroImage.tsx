@@ -1,12 +1,4 @@
-/* eslint indent: "off" */
-import {
-  DetailedHTMLProps,
-  FC,
-  ImgHTMLAttributes,
-  useCallback,
-  useEffect,
-  useState
-} from "react"
+import { DetailedHTMLProps, ImgHTMLAttributes, useState } from "react"
 import { urlFor } from "lib/utils"
 import { Image } from "lib/interfaces"
 import s from "styles/heroImage.module.scss"
@@ -17,24 +9,23 @@ interface Props {
   image: Image
 }
 
-interface ImageProps extends
-  DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>,
-  HTMLImageElement> {
+interface ImageProps
+  extends DetailedHTMLProps<
+    ImgHTMLAttributes<HTMLImageElement>,
+    HTMLImageElement
+  > {
   fetchpriority?: string
 }
 
-const Img: FC<ImageProps> = ({alt, ...props}) => {
-  return <img alt={alt} {...props}/>
+function Img({ alt, ...props }: ImageProps) {
+  return <img alt={alt} {...props} />
 }
 
-export const HeroImage: FC<Props> = ({ alt, image }) => {
+export function HeroImage({ alt, image }: Props) {
   const [loaded, setLoaded] = useState(false)
-  const onLoad = useCallback(() => {
+  function onLoad() {
     setLoaded(true)
-  }, [])
-  useEffect(() => {
-    setLoaded(true)
-  }, [loaded, onLoad])
+  }
   const hotspot = image.hotspot
   const position = hotspot
     ? `${Math.round(hotspot.x * 100)}% ${Math.round(hotspot.y * 100)}%`
@@ -49,13 +40,12 @@ export const HeroImage: FC<Props> = ({ alt, image }) => {
             .auto("format")
             .quality(75)
             .url()}
-          srcSet={
-            `${urlFor(image)
-              .width(400)
-              .height(350)
-              .auto("format")
-              .quality(60)
-              .url()} 400w,
+          srcSet={`${urlFor(image)
+            .width(400)
+            .height(350)
+            .auto("format")
+            .quality(60)
+            .url()} 400w,
             ${urlFor(image)
               .width(800)
               .height(700)
@@ -126,7 +116,7 @@ export const HeroImage: FC<Props> = ({ alt, image }) => {
           width={1600}
           height={450}
           style={{
-            objectPosition: position
+            objectPosition: position,
           }}
         />
       </div>
@@ -145,7 +135,7 @@ export const HeroImage: FC<Props> = ({ alt, image }) => {
           loading="eager"
           fetchpriority="high"
           style={{
-            objectPosition: position
+            objectPosition: position,
           }}
         />
       </div>

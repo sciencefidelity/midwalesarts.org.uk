@@ -1,5 +1,4 @@
-/* eslint indent: "off" */
-import { FC, useCallback, useEffect, useState } from "react"
+import { useState } from "react"
 import { urlFor } from "lib/utils"
 import { Image } from "lib/interfaces"
 import s from "styles/home.module.scss"
@@ -10,14 +9,12 @@ interface Props {
   image: Image
 }
 
-export const InsetImage: FC<Props> = ({ alt, image }) => {
+export function InsetImage({ alt, image }: Props) {
   const [loaded, setLoaded] = useState(false)
-  const onLoad = useCallback(() => {
+  function onLoad() {
     setLoaded(true)
-  }, [])
-  useEffect(() => {
-    setLoaded(true)
-  }, [loaded, onLoad])
+  }
+
   return (
     <>
       <div className={`${s.imageContainer} ${u.relative}`}>
@@ -34,33 +31,20 @@ export const InsetImage: FC<Props> = ({ alt, image }) => {
             .auto("format")
             .quality(75)
             .url()}
-          srcSet={
-            `${urlFor(image)
-              .width(400)
-              .auto("format")
-              .quality(70)
-              .url()} 400w,
+          srcSet={`${urlFor(image)
+            .width(400)
+            .auto("format")
+            .quality(70)
+            .url()} 400w,
             ${urlFor(image)
               .width(500)
               .height(317)
               .auto("format")
               .quality(70)
               .url()} 500w,
-            ${urlFor(image)
-              .width(600)
-              .auto("format")
-              .quality(70)
-              .url()} 600w,
-            ${urlFor(image)
-              .width(800)
-              .auto("format")
-              .quality(60)
-              .url()} 800w,
-            ${urlFor(image)
-              .width(1000)
-              .auto("format")
-              .quality(60)
-              .url()} 1000w,
+            ${urlFor(image).width(600).auto("format").quality(70).url()} 600w,
+            ${urlFor(image).width(800).auto("format").quality(60).url()} 800w,
+            ${urlFor(image).width(1000).auto("format").quality(60).url()} 1000w,
           `}
           width={600}
           height={443}
