@@ -1,19 +1,19 @@
-import sanityClient from "@sanity/client"
-import sendgrid from "@sendgrid/mail"
+import sanityClient from "@sanity/client";
+import sendgrid from "@sendgrid/mail";
 
-sendgrid.setApiKey(process.env.SENDGRID_API_KEY)
+sendgrid.setApiKey(process.env.SENDGRID_API_KEY);
 
 async function sendFriendForm(req, res) {
-  const subject = "MWA Website - New Friend Application"
-  const name = `${req.body.givenName} ${req.body.familyName}`
-  const descripton = "Friends of Mid Wales Arts - Annual membership form"
+  const subject = "MWA Website - New Friend Application";
+  const name = `${req.body.givenName} ${req.body.familyName}`;
+  const descripton = "Friends of Mid Wales Arts - Annual membership form";
   const client = sanityClient({
     projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "",
     dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || "production",
     apiVersion: "2021-09-20",
     token: process.env.SANITY_API_TOKEN || "",
-    useCdn: true
-  })
+    useCdn: true,
+  });
   const doc = {
     _type: "friend",
     processed: false,
@@ -31,18 +31,20 @@ async function sendFriendForm(req, res) {
     message: req.body.message,
     reason: req.body.reason,
     otherReason: req.body.otherReason,
-    giftAid: req.body.giftAid
-  }
+    giftAid: req.body.giftAid,
+  };
   try {
-    await client.create(doc).then(res => {
-      console.log(`A friend was created, document ID is ${res._id}`)
-    })
-    await sendgrid.send({
-      to: "Matt Cook <matt@sciencefidelity.co.uk>",
-      from: "MWA Website <hello@artsed.wales>",
-      replyTo: `${name} <${req.body.email}>`,
-      subject: `${subject}`,
-      html: `
+    await client.create(doc).then((res) => {
+      console.log(`A friend was created, document ID is ${res._id}`);
+    });
+    await sendgrid
+      .send({
+        to: "Office <office@midwalesarts.org.uk>",
+        from: "MWA Website <office@midwalesarts.org.uk>",
+        replyTo: `${name} <${req.body.email}>`,
+        subject: `${subject}`,
+        // prettier-ignore
+        html: `
         <!DOCTYPE html>
         <html lang="en">
           <head>
@@ -70,13 +72,14 @@ async function sendFriendForm(req, res) {
             <p>Gift Aid: ${req.body.giftAid ? "YES" : "NO"}</p>
           </body>
         </html>
-      `
-    }).then(() => {
-      console.log("Email sent")
-    })
+      `,
+      })
+      .then(() => {
+        console.log("Email sent");
+      });
   } catch (error) {
-    return res.status(error.statusCode || 500).json({ error: error.message })
+    return res.status(error.statusCode || 500).json({ error: error.message });
   }
-  return res.status(200).json({ success: "message sent" })
+  return res.status(200).json({ success: "message sent" });
 }
-export default sendFriendForm
+export default sendFriendForm;
