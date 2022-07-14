@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { FC, useCallback, useEffect, useState } from "react"
 import { urlFor } from "lib/utils"
 import { Image } from "lib/interfaces"
 import s from "styles/home.module.scss"
@@ -9,12 +9,14 @@ interface Props {
   image: Image
 }
 
-export function InsetImage({ alt, image }: Props) {
+export const InsetImage: FC<Props> = ({ alt, image }) => {
   const [loaded, setLoaded] = useState(false)
-  function onLoad() {
+  const onLoad = useCallback(() => {
     setLoaded(true)
-  }
-
+  }, [])
+  useEffect(() => {
+    setLoaded(true)
+  }, [loaded, onLoad])
   return (
     <>
       <div className={`${s.imageContainer} ${u.relative}`}>

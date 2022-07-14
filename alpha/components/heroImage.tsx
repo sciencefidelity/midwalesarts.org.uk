@@ -1,4 +1,10 @@
-import { DetailedHTMLProps, ImgHTMLAttributes, useState } from "react"
+import {
+  DetailedHTMLProps,
+  ImgHTMLAttributes,
+  useCallback,
+  useEffect,
+  useState,
+} from "react"
 import { urlFor } from "lib/utils"
 import { Image } from "lib/interfaces"
 import s from "styles/heroImage.module.scss"
@@ -23,9 +29,12 @@ function Img({ alt, ...props }: ImageProps) {
 
 export function HeroImage({ alt, image }: Props) {
   const [loaded, setLoaded] = useState(false)
-  function onLoad() {
+  const onLoad = useCallback(() => {
     setLoaded(true)
-  }
+  }, [])
+  useEffect(() => {
+    setLoaded(true)
+  }, [loaded, onLoad])
   const hotspot = image.hotspot
   const position = hotspot
     ? `${Math.round(hotspot.x * 100)}% ${Math.round(hotspot.y * 100)}%`

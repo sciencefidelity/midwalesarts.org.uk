@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { urlFor } from "lib/utils"
 import { Image } from "lib/interfaces"
 import s from "styles/home.module.scss"
@@ -11,9 +11,12 @@ interface Props {
 
 export function HeadlineInsetImage({ alt, image }: Props) {
   const [loaded, setLoaded] = useState(false)
-  function onLoad() {
+  const onLoad = useCallback(() => {
     setLoaded(true)
-  }
+  }, [])
+  useEffect(() => {
+    setLoaded(true)
+  }, [loaded, onLoad])
 
   const hotspot = image.hotspot
   const position = hotspot
