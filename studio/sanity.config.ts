@@ -41,8 +41,8 @@ export default createConfig({
   name: 'default',
   title: 'Mid Wales Arts',
 
-  projectId: 'e5f80r5a',
-  dataset: 'production',
+  projectId: import.meta.env.SANITY_STUDIO_API_PROJECT_ID,
+  dataset: import.meta.env.SANITY_STUDIO_API_DATASET,
 
   plugins: withDocumentI18nPlugin(
     (pluginConfig) => [

@@ -71,6 +71,7 @@ export default {
         source: 'title',
         maxLength: 96,
         isUnique: createIsSlugUnique,
+        slugify: (input: string) => input.trim().toLowerCase().replace(/\s+/g, '-').slice(0, 96),
       },
       validation: (Rule: Rule) => Rule.required(),
       group: 'settings',
