@@ -1,4 +1,4 @@
-import { FC, useState } from "react"
+import { FC, useCallback, useState } from "react"
 import { useRouter } from "next/router"
 import { PortableText } from "@portabletext/react"
 import { components } from "components/portableTextComponents"
@@ -37,8 +37,8 @@ export const ArtistComponent: FC<Props> = ({
   settings,
 }) => {
   const { locale } = useRouter()
-  const [bio, setBio] = useState(artist.works[0] ? false : true)
-  const [gallery, setGallery] = useState(artist.works[0] ? true : false)
+  const [bio, setBio] = useState(!artist.works[0])
+  const [gallery, setGallery] = useState(!!artist.works[0])
   const [modal, setModal] = useState(false)
   const [imageToShow, setImageToShow] = useState(0)
   const toggleBio = () => {
@@ -57,20 +57,20 @@ export const ArtistComponent: FC<Props> = ({
     setModal(false)
   }
   let currentIndex = imageToShow
-  function prevIndex() {
-    currentIndex = currentIndex - 1
+  const prevIndexCallback = useCallback(() => {
+    currentIndex -= 1
     if (currentIndex < 0) {
       currentIndex = artist.works.length - 1
     }
     setImageToShow(currentIndex)
-  }
-  function nextIndex() {
-    currentIndex = currentIndex + 1
-    if (currentIndex > artist.works.length - 1) {
+  }, [])
+  const nextIndexCallback = useCallback(() => {
+    currentIndex += 1
+    if (currentIndex >= artist.works.length) {
       currentIndex = 0
     }
     setImageToShow(currentIndex)
-  }
+  }, [])
   const modalImage =
     artist.works[0] !== undefined ? artist.works[imageToShow] : {}
   const blocks = artist.body && artist.body
@@ -87,7 +87,7 @@ export const ArtistComponent: FC<Props> = ({
   }
   return (
     <Layout
-      caption={artist.mainImage?.caption ? artist.mainImage.caption : null}
+      caption={artist.mainImage?.caption ?? undefined}
       heroImage={artist.mainImage?.asset ? artist.mainImage : settings.ogImage}
       labels={labels}
       navigation={navigation}
@@ -106,34 +106,44 @@ export const ArtistComponent: FC<Props> = ({
           )}
           <ul className={`${s.tabs} ${u.flex}`}>
             {artist.works[0] && (
-              <li
-                onClick={toggleGallery}
-                className={`${s.tabItem} ${bio ? null : s.selected} ${
-                  u.pointer
-                }`}
-              >
-                <h3 className={`${s.h3}`}>{labels[24].text}</h3>
+              <li>
+                <button
+                  onClick={toggleGallery}
+                  onKeyDown={toggleGallery}
+                  type="button"
+                  className={`${s.tabItem} ${u.pointer} ${
+                    bio ? undefined : s.selected
+                  }`}
+                >
+                  <h3 className={`${s.h3}`}>{labels[24].text}</h3>
+                </button>
               </li>
             )}
             {artist.works[0] && (
-              <li
-                onClick={toggleBio}
-                className={`${s.tabItem} ${bio ? s.selected : null} ${
-                  u.pointer
-                }`}
-              >
-                <h3 className={`${s.h3}`}>{labels[25].text}</h3>
+              <li>
+                <button
+                  onClick={toggleBio}
+                  onKeyDown={toggleBio}
+                  type="button"
+                  className={`${s.tabItem} ${bio ? s.selected : undefined} ${
+                    u.pointer
+                  }`}
+                >
+                  <h3 className={`${s.h3}`}>{labels[25].text}</h3>
+                </button>
               </li>
             )}
           </ul>
-          <div className={`${s.info} ${bio ? null : s.hidden}`}>
+          <div className={`${s.info} ${bio ? undefined : s.hidden}`}>
             {artist.body && (
               <PortableText value={blocks} components={components} />
             )}
           </div>
         </div>
       </div>
-      <div className={`${s.imageGrid} ${gallery ? null : s.hidden} ${u.grid}`}>
+      <div
+        className={`${s.imageGrid} ${gallery ? undefined : s.hidden} ${u.grid}`}
+      >
         {artist.works[0] ? (
           artist.works.map(
             (artwork, idx) =>
@@ -144,19 +154,19 @@ export const ArtistComponent: FC<Props> = ({
                   onClick={() => openModal(idx)}
                   className={`${u.pointer}`}
                 >
-                  <GridImage
-                    alt={`
-                ${artist.title && artist.title + ", "}
-                ${artwork.title && localize(artwork.title, locale) + ", "}
-                ${artwork.date && artwork.date}
-              `}
-                    idx={idx}
-                    image={
-                      artwork.mainImage ? artwork.mainImage : settings.ogImage
-                    }
-                    postsPerPage={100}
-                  />
-                  {artwork.title && (
+                  {locale && (
+                    <GridImage
+                      alt={`
+                      ${artist.title && `${artist.title}, `}
+                      ${artwork.title && `${localize(artwork.title, locale)}, `}
+                      ${artwork.date && artwork.date}
+                    `}
+                      idx={idx}
+                      image={artwork.mainImage ?? settings.ogImage}
+                      postsPerPage={100}
+                    />
+                  )}
+                  {artwork.title && locale && (
                     <div
                       className={`${s.caption} ${u.textRight} ${u.semibold}`}
                     >
@@ -164,10 +174,10 @@ export const ArtistComponent: FC<Props> = ({
                       {artwork.date && `(${artwork.date})`}
                     </div>
                   )}
-                  {(artwork.medium || artwork.price) && (
+                  {(artwork.medium || artwork.price) && locale && (
                     <div className={`${s.caption} ${u.textRight}`}>
                       {artwork.medium &&
-                        localize(artwork.medium, locale) + ", "}
+                        `${localize(artwork.medium, locale)}, `}
                       {artwork.price}
                     </div>
                   )}
@@ -180,9 +190,11 @@ export const ArtistComponent: FC<Props> = ({
       </div>
       <div className={`${s.backLink}`}>
         <p className={`${u.textCenter}`}>
-          <LinkTo href={`/${subdir(locale, artist._type)}`}>
-            {labels[28].text}
-          </LinkTo>
+          {locale && (
+            <LinkTo href={`/${subdir(locale, artist._type)}`}>
+              {labels[28].text}
+            </LinkTo>
+          )}
         </p>
       </div>
       {artist.works[0] !== undefined ? (
@@ -192,11 +204,11 @@ export const ArtistComponent: FC<Props> = ({
           labels={labels}
           modal={modal}
           modalImage={modalImage}
-          prevIndex={prevIndex}
-          nextIndex={nextIndex}
+          prevIndex={prevIndexCallback}
+          nextIndex={nextIndexCallback}
         />
       ) : (
-        <></>
+        <>{}</>
       )}
     </Layout>
   )

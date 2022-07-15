@@ -3,6 +3,7 @@
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
+    "checkJs": false,
     "skipLibCheck": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
@@ -14,17 +15,17 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
+    "baseUrl": "./",
     "typeRoots": ["node_modules/@types", "types"],
-    "types": ["jest", "node", "react"],
-    "baseUrl": ".",
+    "types": ["jest", "node", "react", "react-dom"],
     "paths": {
+      "*": ["types/*", "*"],
       "@/components/*": ["components/*"],
-      "@/generated/*": ["generated/*"],
       "@/lib/*": ["lib/*"],
       "@/pages/*": ["pages/*"],
       "@/styles/*": ["styles/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["./**/*", "./**/.*"],
   "exclude": ["node_modules"]
 }
