@@ -9,7 +9,7 @@ import {
   Organisation,
   PageContext,
   Settings,
-  Video
+  Video,
 } from "lib/interfaces"
 
 interface Props {
@@ -25,18 +25,20 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await sanityClient.fetch(videoPathQuery, { locale: "en" })
   return {
     paths: paths,
-    fallback: false
+    fallback: false,
   }
 }
 export const getStaticProps: GetStaticProps = async ({
   defaultLocale,
   locales,
   locale,
-  params
+  params,
 }) => {
   const slug = params.slug
   const data = await sanityClient.fetch(videoQuery, {
-    slug, locale, template: "Videos"
+    slug,
+    locale,
+    template: "Videos",
   })
   const { video, labels, navigation, organisation, settings } = data as Props
   const pageContext = {
@@ -44,9 +46,11 @@ export const getStaticProps: GetStaticProps = async ({
     localization: video.localization,
     locales,
     defaultLocale,
-    slug: params.slug ? params.slug : ""
+    slug: params.slug ? params.slug : "",
   }
-  const localizedPaths = pageContext.localization ? getLocalizedPaths(pageContext) : ""
+  const localizedPaths = pageContext.localization
+    ? getLocalizedPaths(pageContext)
+    : ""
   return {
     props: {
       video,
@@ -55,10 +59,10 @@ export const getStaticProps: GetStaticProps = async ({
       organisation,
       pageContext: {
         ...pageContext,
-        localizedPaths
+        localizedPaths,
       },
-      settings
-    }
+      settings,
+    },
   }
 }
 
@@ -68,7 +72,7 @@ const VideoEn: NextPage<Props> = ({
   navigation,
   organisation,
   pageContext,
-  settings
+  settings,
 }) => {
   return (
     <VideoComponent

@@ -18,7 +18,7 @@ import {
   Organisation,
   Page,
   PageContext,
-  Settings
+  Settings,
 } from "lib/interfaces"
 
 interface Props {
@@ -34,14 +34,14 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await sanityClient.fetch(pagePathQuery)
   return {
     paths: paths,
-    fallback: false
+    fallback: false,
   }
 }
 export const getStaticProps: GetStaticProps = async ({
   defaultLocale,
   locales,
   locale,
-  params
+  params,
 }) => {
   const slug = params.slug ? params.slug[params?.slug?.length - 1] : "index"
   const data = await sanityClient.fetch(pageQuery, { slug, locale })
@@ -51,9 +51,11 @@ export const getStaticProps: GetStaticProps = async ({
     localization: page.localization,
     locales,
     defaultLocale,
-    slug: params.slug ? params.slug : ""
+    slug: params.slug ? params.slug : "",
   }
-  const localizedPaths = pageContext.localization ? getLocalizedPaths(pageContext) : ""
+  const localizedPaths = pageContext.localization
+    ? getLocalizedPaths(pageContext)
+    : ""
   return {
     props: {
       labels,
@@ -62,10 +64,10 @@ export const getStaticProps: GetStaticProps = async ({
       page,
       pageContext: {
         ...pageContext,
-        localizedPaths
+        localizedPaths,
       },
-      settings
-    }
+      settings,
+    },
   }
 }
 
@@ -75,11 +77,11 @@ const Pages: NextPage<Props> = ({
   organisation,
   page,
   pageContext,
-  settings
+  settings,
 }) => {
   return (
     <>
-      {page.template === "Artists" &&
+      {page.template === "Artists" && (
         <Artists
           labels={labels}
           navigation={navigation}
@@ -88,8 +90,8 @@ const Pages: NextPage<Props> = ({
           pageContext={pageContext}
           settings={settings}
         />
-      }
-      {page.template === "Events" &&
+      )}
+      {page.template === "Events" && (
         <Events
           labels={labels}
           navigation={navigation}
@@ -98,8 +100,8 @@ const Pages: NextPage<Props> = ({
           pageContext={pageContext}
           settings={settings}
         />
-      }
-      {page.template === "Exhibitions" &&
+      )}
+      {page.template === "Exhibitions" && (
         <Exhibitions
           labels={labels}
           navigation={navigation}
@@ -108,8 +110,8 @@ const Pages: NextPage<Props> = ({
           pageContext={pageContext}
           settings={settings}
         />
-      }
-      {page.template === "Home" &&
+      )}
+      {page.template === "Home" && (
         <Home
           labels={labels}
           navigation={navigation}
@@ -118,8 +120,8 @@ const Pages: NextPage<Props> = ({
           pageContext={pageContext}
           settings={settings}
         />
-      }
-      {page.template === "News" &&
+      )}
+      {page.template === "News" && (
         <News
           labels={labels}
           navigation={navigation}
@@ -128,8 +130,8 @@ const Pages: NextPage<Props> = ({
           pageContext={pageContext}
           settings={settings}
         />
-      }
-      {page.template === "Page" &&
+      )}
+      {page.template === "Page" && (
         <PageComponent
           labels={labels}
           navigation={navigation}
@@ -138,8 +140,8 @@ const Pages: NextPage<Props> = ({
           pageContext={pageContext}
           settings={settings}
         />
-      }
-      {page.template === "Support" &&
+      )}
+      {page.template === "Support" && (
         <Support
           labels={labels}
           navigation={navigation}
@@ -148,8 +150,8 @@ const Pages: NextPage<Props> = ({
           pageContext={pageContext}
           settings={settings}
         />
-      }
-      {page.template === "Videos" &&
+      )}
+      {page.template === "Videos" && (
         <Videos
           labels={labels}
           navigation={navigation}
@@ -158,8 +160,8 @@ const Pages: NextPage<Props> = ({
           pageContext={pageContext}
           settings={settings}
         />
-      }
-      {page.template === "Visit" &&
+      )}
+      {page.template === "Visit" && (
         <Visit
           labels={labels}
           navigation={navigation}
@@ -168,8 +170,8 @@ const Pages: NextPage<Props> = ({
           pageContext={pageContext}
           settings={settings}
         />
-      }
-      {page.template === "Workshops" &&
+      )}
+      {page.template === "Workshops" && (
         <Workshops
           labels={labels}
           navigation={navigation}
@@ -178,7 +180,7 @@ const Pages: NextPage<Props> = ({
           pageContext={pageContext}
           settings={settings}
         />
-      }
+      )}
     </>
   )
 }
