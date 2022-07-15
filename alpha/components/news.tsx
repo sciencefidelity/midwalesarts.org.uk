@@ -9,7 +9,7 @@ import {
   Page,
   PageContext,
   PageHead,
-  Settings
+  Settings,
 } from "lib/interfaces"
 import s from "styles/news.module.scss"
 import u from "styles/utils.module.scss"
@@ -29,7 +29,7 @@ export const News: FC<Props> = ({
   organisation,
   page,
   pageContext,
-  settings
+  settings,
 }) => {
   const [postsPerPage, setPostsPerPage] = useState(9)
   const { locale } = useRouter()
@@ -38,11 +38,13 @@ export const News: FC<Props> = ({
     description: page.ogDescription,
     ogTitle: page.ogTitle,
     ogDescription: page.ogDescription,
-    ogURL: `${settings.canonicalURL}${locale === "cy" ? "/cy" : ""}/${page.slug}`,
-    ogImage: page.ogImage
+    ogURL: `${settings.canonicalURL}${locale === "cy" ? "/cy" : ""}/${
+      page.slug
+    }`,
+    ogImage: page.ogImage,
   }
   const handleShowMorePosts = () => {
-    setPostsPerPage(prevPostsPerPage => prevPostsPerPage + 9)
+    setPostsPerPage((prevPostsPerPage) => prevPostsPerPage + 9)
   }
   return (
     <Layout
@@ -58,23 +60,29 @@ export const News: FC<Props> = ({
       <div className={`${s.container} ${u.grid}`}>
         <div className={`${s.title}`}>
           {page.title && <h1>{page.title}</h1>}
-          {page.subtitle && <h2 className={`${s.subtitle}`}>
-            {page.subtitle.trim().replace(".", "")}.
-          </h2>}
+          {page.subtitle && (
+            <h2 className={`${s.subtitle}`}>
+              {page.subtitle.trim().replace(".", "")}.
+            </h2>
+          )}
         </div>
       </div>
-      {page.posts[0] && <PostsList
-        fallbackImage={settings.ogImage}
-        label={labels[18].text.trim() + " "}
-        posts={page.posts}
-        postsPerPage={postsPerPage}
-      />}
-      {postsPerPage < page.posts.length && <button
-        onClick={handleShowMorePosts}
-        className={`${s.loadMore} ${u.pointer}`}
-      >
-        {labels[84].text}
-      </button>}
+      {page.posts[0] && (
+        <PostsList
+          fallbackImage={settings.ogImage}
+          label={labels[18].text.trim() + " "}
+          posts={page.posts}
+          postsPerPage={postsPerPage}
+        />
+      )}
+      {postsPerPage < page.posts.length && (
+        <button
+          onClick={handleShowMorePosts}
+          className={`${s.loadMore} ${u.pointer}`}
+        >
+          {labels[84].text}
+        </button>
+      )}
     </Layout>
   )
 }

@@ -10,7 +10,7 @@ import {
   Organisation,
   PageContext,
   PageHead,
-  Settings
+  Settings,
 } from "lib/interfaces"
 import u from "styles/utils.module.scss"
 
@@ -35,14 +35,11 @@ export const Layout: FC<Props> = ({
   organisation,
   pageContext,
   pageHead,
-  settings
+  settings,
 }) => {
   return (
     <>
-      <BaseHead
-        pageHead={pageHead}
-        settings={settings}
-      />
+      <BaseHead pageHead={pageHead} settings={settings} />
       <Header
         caption={caption}
         heroImage={heroImage}

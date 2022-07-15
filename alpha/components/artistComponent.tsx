@@ -2,7 +2,7 @@ import { FC, useState } from "react"
 import { useRouter } from "next/router"
 import { PortableText } from "@portabletext/react"
 import { components } from "components/portableTextComponents"
-import { buildUrl, localize, subdir } from "lib/utils"
+import { buildURL, localize, subdir } from "lib/utils"
 import { GridImage } from "components/gridImage"
 import { Layout } from "components/layout"
 import { LinkTo } from "components/linkTo"
@@ -14,7 +14,7 @@ import {
   Organisation,
   PageContext,
   PageHead,
-  Settings
+  Settings,
 } from "lib/interfaces"
 import s from "styles/artist.module.scss"
 import u from "styles/utils.module.scss"
@@ -34,7 +34,7 @@ export const ArtistComponent: FC<Props> = ({
   navigation,
   organisation,
   pageContext,
-  settings
+  settings,
 }) => {
   const { locale } = useRouter()
   const [bio, setBio] = useState(artist.works[0] ? false : true)
@@ -71,9 +71,8 @@ export const ArtistComponent: FC<Props> = ({
     }
     setImageToShow(currentIndex)
   }
-  const modalImage = artist.works[0] !== undefined
-    ? artist.works[imageToShow]
-    : {}
+  const modalImage =
+    artist.works[0] !== undefined ? artist.works[imageToShow] : {}
   const blocks = artist.body && artist.body
   const pageHead: PageHead = {
     title: artist.title,
@@ -83,8 +82,8 @@ export const ArtistComponent: FC<Props> = ({
     ogURL: `
       ${settings.canonicalURL}
       ${locale === "cy" ? "/cy" : ""}
-      /${buildUrl(locale, artist.slug, artist._type)}`,
-    ogImage: artist.ogImage
+      /${buildURL(locale, artist.slug, artist._type)}`,
+    ogImage: artist.ogImage,
   }
   return (
     <Layout
@@ -100,59 +99,84 @@ export const ArtistComponent: FC<Props> = ({
       <div className={`${s.container} ${u.grid}`}>
         <div className={`${s.title}`}>
           <h1>{labels[23].text}</h1>
-          {artist.title && <h2 className={`${s.subtitle}`}>
-            {artist.title.trim().replace(".", "")}.
-          </h2>}
+          {artist.title && (
+            <h2 className={`${s.subtitle}`}>
+              {artist.title.trim().replace(".", "")}.
+            </h2>
+          )}
           <ul className={`${s.tabs} ${u.flex}`}>
-            {artist.works[0] && <li
-              onClick={toggleGallery}
-              className={`${s.tabItem} ${bio ? null : s.selected} ${u.pointer}`}
-            >
-              <h3 className={`${s.h3}`}>{labels[24].text}</h3>
-            </li>}
-            {artist.works[0] && <li
-              onClick={toggleBio}
-              className={`${s.tabItem} ${bio ? s.selected : null} ${u.pointer}`}
-            >
-              <h3 className={`${s.h3}`}>{labels[25].text}</h3>
-            </li>}
+            {artist.works[0] && (
+              <li
+                onClick={toggleGallery}
+                className={`${s.tabItem} ${bio ? null : s.selected} ${
+                  u.pointer
+                }`}
+              >
+                <h3 className={`${s.h3}`}>{labels[24].text}</h3>
+              </li>
+            )}
+            {artist.works[0] && (
+              <li
+                onClick={toggleBio}
+                className={`${s.tabItem} ${bio ? s.selected : null} ${
+                  u.pointer
+                }`}
+              >
+                <h3 className={`${s.h3}`}>{labels[25].text}</h3>
+              </li>
+            )}
           </ul>
           <div className={`${s.info} ${bio ? null : s.hidden}`}>
-            {artist.body &&
+            {artist.body && (
               <PortableText value={blocks} components={components} />
-            }
+            )}
           </div>
         </div>
       </div>
-      <div
-        className={`${s.imageGrid} ${gallery ? null : s.hidden} ${u.grid}`}
-      >
-        {artist.works[0] ? (artist.works.map((artwork, idx) => artwork &&
-          <div
-            style={{ margin: 0 }}
-            key={artwork._id}
-            onClick={() => openModal(idx)}
-            className={`${u.pointer}`}
-          >
-            <GridImage
-              alt={`
+      <div className={`${s.imageGrid} ${gallery ? null : s.hidden} ${u.grid}`}>
+        {artist.works[0] ? (
+          artist.works.map(
+            (artwork, idx) =>
+              artwork && (
+                <div
+                  style={{ margin: 0 }}
+                  key={artwork._id}
+                  onClick={() => openModal(idx)}
+                  className={`${u.pointer}`}
+                >
+                  <GridImage
+                    alt={`
                 ${artist.title && artist.title + ", "}
                 ${artwork.title && localize(artwork.title, locale) + ", "}
                 ${artwork.date && artwork.date}
               `}
-              idx={idx}
-              image={artwork.mainImage ? artwork.mainImage : settings.ogImage}
-              postsPerPage={100}
-            />
-            {artwork.title && <div className={`${s.caption} ${u.textRight} ${u.semibold}`}>
-              {localize(artwork.title, locale)}{" "}
-              {artwork.date && `(${artwork.date})`}
-            </div>}
-            {(artwork.medium || artwork.price) && <div className={`${s.caption} ${u.textRight}`}>
-              {artwork.medium && localize(artwork.medium, locale) + ", "}{artwork.price}
-            </div>}
-          </div>
-        )) : <p>{labels[26].text}</p>}
+                    idx={idx}
+                    image={
+                      artwork.mainImage ? artwork.mainImage : settings.ogImage
+                    }
+                    postsPerPage={100}
+                  />
+                  {artwork.title && (
+                    <div
+                      className={`${s.caption} ${u.textRight} ${u.semibold}`}
+                    >
+                      {localize(artwork.title, locale)}{" "}
+                      {artwork.date && `(${artwork.date})`}
+                    </div>
+                  )}
+                  {(artwork.medium || artwork.price) && (
+                    <div className={`${s.caption} ${u.textRight}`}>
+                      {artwork.medium &&
+                        localize(artwork.medium, locale) + ", "}
+                      {artwork.price}
+                    </div>
+                  )}
+                </div>
+              )
+          )
+        ) : (
+          <p>{labels[26].text}</p>
+        )}
       </div>
       <div className={`${s.backLink}`}>
         <p className={`${u.textCenter}`}>

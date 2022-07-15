@@ -23,16 +23,14 @@ export const Header: FC<Props> = ({
   labels,
   navigation,
   pageContext,
-  settings
+  settings,
 }) => {
   const { locale } = useRouter()
   return (
     <>
       <header className={`${s.header} ${u.relative}`}>
         <LinkTo href="/">
-          <span className={`${u.srOnly}`}>
-            {labels[0].text}
-          </span>
+          <span className={`${u.srOnly}`}>{labels[0].text}</span>
           <ColorLogo
             alt={settings.title[locale]}
             containerClass="logoContainer"
@@ -43,10 +41,7 @@ export const Header: FC<Props> = ({
           className={`${s.hero} ${u.relative}`}
           style={{ overflow: "hidden" }}
         >
-          <HeroImage
-            alt={caption}
-            image={heroImage}
-          />
+          <HeroImage alt={caption} image={heroImage} />
         </div>
       </header>
       <NavComponent
@@ -56,9 +51,8 @@ export const Header: FC<Props> = ({
       />
       <div
         className={`${s.heroCaption} ${u.relative} ${u.textRight}`}
-        dangerouslySetInnerHTML={{__html: caption ? caption : "&nbsp;"}}
+        dangerouslySetInnerHTML={{ __html: caption ? caption : "&nbsp;" }}
       />
     </>
   )
 }
-

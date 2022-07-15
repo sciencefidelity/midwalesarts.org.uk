@@ -13,7 +13,13 @@ interface Props {
   top?: boolean
 }
 
-export const GridImage: FC<Props> = ({ alt, idx, image, postsPerPage, top = true }) => {
+export const GridImage: FC<Props> = ({
+  alt,
+  idx,
+  image,
+  postsPerPage,
+  top = true,
+}) => {
   const [loaded, setLoaded] = useState(false)
   const onLoad = useCallback(() => {
     setLoaded(true)
@@ -27,7 +33,9 @@ export const GridImage: FC<Props> = ({ alt, idx, image, postsPerPage, top = true
         <img
           onLoad={onLoad}
           loading={top && idx < 3 ? "eager" : "lazy"}
-          className={`${s.image} ${loaded ? s.loaded : null} ${u.relative} ${u.cover}`}
+          className={`${s.image} ${loaded ? s.loaded : null} ${u.relative} ${
+            u.cover
+          }`}
           alt={alt}
           src={urlFor(image)
             .width(468)
@@ -35,13 +43,12 @@ export const GridImage: FC<Props> = ({ alt, idx, image, postsPerPage, top = true
             .auto("format")
             .quality(75)
             .url()}
-          srcSet={
-            `${urlFor(image)
-              .width(300)
-              .height(300)
-              .auto("format")
-              .quality(70)
-              .url()} 300w,
+          srcSet={`${urlFor(image)
+            .width(300)
+            .height(300)
+            .auto("format")
+            .quality(70)
+            .url()} 300w,
             ${urlFor(image)
               .width(400)
               .height(400)

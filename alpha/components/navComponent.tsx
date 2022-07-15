@@ -14,7 +14,11 @@ interface Props {
   pageContext: PageContext
 }
 
-export const NavComponent: FC<Props> = ({ labels, navigation, pageContext }) => {
+export const NavComponent: FC<Props> = ({
+  labels,
+  navigation,
+  pageContext,
+}) => {
   const router = useRouter()
   const { locale } = router
   const [isActive, setActive] = useState(false)
@@ -31,16 +35,19 @@ export const NavComponent: FC<Props> = ({ labels, navigation, pageContext }) => 
       className={`${s.navOverlay} ${u.absolute}`}
       onClick={isActive ? menuClose : null}
     >
-      <div
-        className={`${s.nav} ${isActive ? s.isActive : null} ${u.absolute}`}
-      >
-        <ul style={align} className={`${s.navList} ${u.absolute} ${u.uppercase}`}>
-          {navigation.map(item => (
+      <div className={`${s.nav} ${isActive ? s.isActive : null} ${u.absolute}`}>
+        <ul
+          style={align}
+          className={`${s.navList} ${u.absolute} ${u.uppercase}`}
+        >
+          {navigation.map((item) => (
             <li key={item._key} className={`${s.navItem}`}>
               <LinkTo
                 href={`/${item.slug[locale].replace("index", "")}`}
                 className={`${s.navLink}`}
-              >{item.label[locale]}</LinkTo>
+              >
+                {item.label[locale]}
+              </LinkTo>
             </li>
           ))}
         </ul>
@@ -59,7 +66,9 @@ export const NavComponent: FC<Props> = ({ labels, navigation, pageContext }) => 
         >
           <span className={`${u.srOnly}`}>{labels[1].text}</span>
           <div
-            className={`${s.hamburger} ${isActive ? s.active : null} ${u.relative}`}
+            className={`${s.hamburger} ${isActive ? s.active : null} ${
+              u.relative
+            }`}
           ></div>
         </button>
         <Language pageContext={pageContext} />

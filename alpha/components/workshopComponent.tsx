@@ -3,7 +3,7 @@ import { useRouter } from "next/router"
 import { PortableText } from "@portabletext/react"
 import { components } from "components/portableTextComponents"
 import { dayToNumber, nextDate } from "lib/dateHelpers"
-import { buildUrl, subdir } from "lib/utils"
+import { buildURL, subdir } from "lib/utils"
 import { GridImage } from "components/gridImage"
 import { Layout } from "components/layout"
 import { LinkTo } from "components/linkTo"
@@ -16,7 +16,7 @@ import {
   Organisation,
   PageContext,
   PageHead,
-  Settings
+  Settings,
 } from "lib/interfaces"
 import s from "styles/workshop.module.scss"
 import u from "styles/utils.module.scss"
@@ -36,7 +36,7 @@ export const WorkshopComponent: FC<Props> = ({
   navigation,
   organisation,
   pageContext,
-  settings
+  settings,
 }) => {
   const { locale } = useRouter()
   const pageHead: PageHead = {
@@ -47,12 +47,14 @@ export const WorkshopComponent: FC<Props> = ({
     ogURL: `
       ${settings.canonicalURL}
       ${locale === "cy" ? "/cy" : ""}
-      /${buildUrl(locale, workshop.slug, workshop._type)}`,
-    ogImage: workshop.ogImage
+      /${buildURL(locale, workshop.slug, workshop._type)}`,
+    ogImage: workshop.ogImage,
   }
   return (
     <Layout
-      heroImage={workshop.mainImage?.asset ? workshop.mainImage : settings.ogImage}
+      heroImage={
+        workshop.mainImage?.asset ? workshop.mainImage : settings.ogImage
+      }
       labels={labels}
       navigation={navigation}
       organisation={organisation}
@@ -67,7 +69,9 @@ export const WorkshopComponent: FC<Props> = ({
               <GridImage
                 alt={workshop.title ? workshop.title : ""}
                 idx={1}
-                image={workshop.mainImage ? workshop.mainImage : settings.ogImage}
+                image={
+                  workshop.mainImage ? workshop.mainImage : settings.ogImage
+                }
                 postsPerPage={1}
               />
             </div>
@@ -76,35 +80,54 @@ export const WorkshopComponent: FC<Props> = ({
                 {workshop.category ? workshop.category : labels[51].text}
               </h3>
               <div>
-                {workshop.day && <h2 className={`${s.subtitle}`}>
-                  <PostDate
-                    date={nextDate(dayToNumber(workshop.day), workshop.frequency)}
-                  />{", "}
-                  {workshop.startTime.toLowerCase().replace(" ", "")}
-                </h2>}
-                {workshop.title && <h1 className={`${s.h1}`}>{workshop.title}</h1>}
+                {workshop.day && (
+                  <h2 className={`${s.subtitle}`}>
+                    <PostDate
+                      date={nextDate(
+                        dayToNumber(workshop.day),
+                        workshop.frequency
+                      )}
+                    />
+                    {", "}
+                    {workshop.startTime.toLowerCase().replace(" ", "")}
+                  </h2>
+                )}
+                {workshop.title && (
+                  <h1 className={`${s.h1}`}>{workshop.title}</h1>
+                )}
               </div>
-              {workshop.briteLink ? <p className={`${s.headerLink}`}>
-                <a href={`${workshop.briteLink}`} target="blank" rel="noreferrer">
-                  {labels[52].text}
-                </a>
-              </p>
-                : <p
+              {workshop.briteLink ? (
+                <p className={`${s.headerLink}`}>
+                  <a
+                    href={`${workshop.briteLink}`}
+                    target="blank"
+                    rel="noreferrer"
+                  >
+                    {labels[52].text}
+                  </a>
+                </p>
+              ) : (
+                <p
                   className={`${s.headerLink}`}
                   dangerouslySetInnerHTML={{ __html: "&nbsp;" }}
-                />}
+                />
+              )}
             </div>
           </div>
           <div>
-            {workshop.body &&
+            {workshop.body && (
               <PortableText value={workshop.body} components={components} />
-            }
+            )}
             <p className={`${s.briteLink} ${u.textCenter}`}>
-              {workshop.briteLink &&
-                <a href={`${workshop.briteLink}`} target="blank" rel="noreferrer">
+              {workshop.briteLink && (
+                <a
+                  href={`${workshop.briteLink}`}
+                  target="blank"
+                  rel="noreferrer"
+                >
                   {labels[52].text}
                 </a>
-              }
+              )}
             </p>
             <div>
               <p className={`${s.backLink} ${u.textCenter}`}>

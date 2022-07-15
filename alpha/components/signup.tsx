@@ -10,9 +10,7 @@ interface Props {
 export const Signup: FC<Props> = ({ labels }) => {
   return (
     <div className={`${s.signup}`}>
-      <div className={`${s.signupHeading}`}>
-        {labels[5].text}
-      </div>
+      <div className={`${s.signupHeading}`}>{labels[5].text}</div>
       <div className={`${s.signupForm}`}>
         <form
           action="https://midwalesarts.us8.list-manage.com/subscribe/post?u=886d00d2217d67cd8145db87b&amp;id=625e7cefb6"

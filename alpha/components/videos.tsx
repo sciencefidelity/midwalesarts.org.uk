@@ -29,7 +29,7 @@ export const Videos: FC<Props> = ({
   organisation,
   page,
   pageContext,
-  settings
+  settings,
 }) => {
   const [videosPerPage, setVideosPerPage] = useState(12)
   const { locale } = useRouter()
@@ -38,18 +38,22 @@ export const Videos: FC<Props> = ({
     description: page.ogDescription,
     ogTitle: page.ogTitle,
     ogDescription: page.ogDescription,
-    ogURL: `${settings.canonicalURL}${locale === "cy" ? "/cy" : ""}/${page.slug}`,
-    ogImage: page.ogImage
+    ogURL: `${settings.canonicalURL}${locale === "cy" ? "/cy" : ""}/${
+      page.slug
+    }`,
+    ogImage: page.ogImage,
   }
   const handleShowMoreVideos = () => {
-    setVideosPerPage(prevVideosPerPage => prevVideosPerPage + 3)
+    setVideosPerPage((prevVideosPerPage) => prevVideosPerPage + 3)
   }
   return (
     <Layout
       caption={page.videos[0]?.title ? page.videos[0].title : null}
-      heroImage={page.videos[0]?.mainImage?.asset
-        ? page.videos[0].mainImage
-        : settings.ogImage}
+      heroImage={
+        page.videos[0]?.mainImage?.asset
+          ? page.videos[0].mainImage
+          : settings.ogImage
+      }
       labels={labels}
       navigation={navigation}
       organisation={organisation}
@@ -60,23 +64,29 @@ export const Videos: FC<Props> = ({
       <div className={`${s.container} ${u.grid}`}>
         <div className={`${s.title}`}>
           {page.title && <h1>{page.title}</h1>}
-          {page.subtitle && <h2 className={`${s.subtitle}`}>
-            {page.subtitle.trim().replace(".", "")}.
-          </h2>}
+          {page.subtitle && (
+            <h2 className={`${s.subtitle}`}>
+              {page.subtitle.trim().replace(".", "")}.
+            </h2>
+          )}
         </div>
       </div>
-      {page.videos[0] && <VideosList
-        fallbackImage={settings.ogImage}
-        label={labels[18].text.trim() + " "}
-        postsPerPage={videosPerPage}
-        videos={page.videos}
-      />}
-      {videosPerPage < page.videos.length && <button
-        onClick={handleShowMoreVideos}
-        className={`${s.loadMore} ${u.pointer}`}
-      >
-        {labels[84].text}
-      </button>}
+      {page.videos[0] && (
+        <VideosList
+          fallbackImage={settings.ogImage}
+          label={labels[18].text.trim() + " "}
+          postsPerPage={videosPerPage}
+          videos={page.videos}
+        />
+      )}
+      {videosPerPage < page.videos.length && (
+        <button
+          onClick={handleShowMoreVideos}
+          className={`${s.loadMore} ${u.pointer}`}
+        >
+          {labels[84].text}
+        </button>
+      )}
     </Layout>
   )
 }

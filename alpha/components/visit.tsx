@@ -13,13 +13,13 @@ import {
   Page,
   PageContext,
   PageHead,
-  Settings
+  Settings,
 } from "lib/interfaces"
 import s from "styles/visit.module.scss"
 import u from "styles/utils.module.scss"
 
 interface Props {
-  labels:Label[]
+  labels: Label[]
   navigation: Navigation[]
   organisation: Organisation
   page: Page
@@ -33,7 +33,7 @@ export const Visit: FC<Props> = ({
   organisation,
   page,
   pageContext,
-  settings
+  settings,
 }) => {
   const [quoteNumber, setQuoteNumber] = useState(0)
   const { locale } = useRouter()
@@ -42,8 +42,10 @@ export const Visit: FC<Props> = ({
     description: page.ogDescription,
     ogTitle: page.ogTitle,
     ogDescription: page.ogDescription,
-    ogURL: `${settings.canonicalURL}${locale === "cy" ? "/cy" : ""}/${page.slug}`,
-    ogImage: page.ogImage
+    ogURL: `${settings.canonicalURL}${locale === "cy" ? "/cy" : ""}/${
+      page.slug
+    }`,
+    ogImage: page.ogImage,
   }
   return (
     <Layout
@@ -58,56 +60,66 @@ export const Visit: FC<Props> = ({
     >
       <section className={`${s.container} ${u.mAuto}`}>
         {page.title && <h1>{page.title}</h1>}
-        {page.subtitle && <h2 className={`${s.subtitle}`}>
-          {page.subtitle.trim().replace(".", "")}.
-        </h2>}
-        {page.body && <div className={`${s.info}`}>
-          <PortableText value={page.body} components={components} />
-        </div>}
+        {page.subtitle && (
+          <h2 className={`${s.subtitle}`}>
+            {page.subtitle.trim().replace(".", "")}.
+          </h2>
+        )}
+        {page.body && (
+          <div className={`${s.info}`}>
+            <PortableText value={page.body} components={components} />
+          </div>
+        )}
         <div className={`${s.spacesGrid} ${u.grid}`}>
-          {page.spaces && page.spaces.map((space, idx) => (
-            <LinkTo
-              href={`#${space.slug}`}
-              key={space._id}
-              style={{ margin: 0 }}
-            >
-              <GridImage
-                alt={space.title ? space.title : ""}
-                idx={idx}
-                image={space.mainImage ? space.mainImage : settings.ogImage}
-                postsPerPage={12}
-                top={false}
-              />
-              {space.title && <div className={`${s.caption} ${u.textRight}`}>
-                {space.title}
-              </div>}
-            </LinkTo>
-          ))}
+          {page.spaces &&
+            page.spaces.map((space, idx) => (
+              <LinkTo
+                href={`#${space.slug}`}
+                key={space._id}
+                style={{ margin: 0 }}
+              >
+                <GridImage
+                  alt={space.title ? space.title : ""}
+                  idx={idx}
+                  image={space.mainImage ? space.mainImage : settings.ogImage}
+                  postsPerPage={12}
+                  top={false}
+                />
+                {space.title && (
+                  <div className={`${s.caption} ${u.textRight}`}>
+                    {space.title}
+                  </div>
+                )}
+              </LinkTo>
+            ))}
         </div>
         <div className={`${s.spacesTextGrid} ${u.grid}`}>
-          {page.spaces.map(space => (
-            space && (
-              <div
-                id={space.slug}
-                style={{ margin: 0 }}
-                key={space._id}
-                className={`${s.text}`}
-              >
-                {space.title && <h4>{space.title}</h4>}
-                {space.body &&
-                  <PortableText value={space.body} components={components} />
-                }
-              </div>
-            )
-          ))}
+          {page.spaces.map(
+            (space) =>
+              space && (
+                <div
+                  id={space.slug}
+                  style={{ margin: 0 }}
+                  key={space._id}
+                  className={`${s.text}`}
+                >
+                  {space.title && <h4>{space.title}</h4>}
+                  {space.body && (
+                    <PortableText value={space.body} components={components} />
+                  )}
+                </div>
+              )
+          )}
         </div>
       </section>
       <section>
-        {page.feedback[0] && <div className={`${s.feedback}`}>
-          <blockquote>{page.feedback[quoteNumber].quote}</blockquote>
-        </div>}
+        {page.feedback[0] && (
+          <div className={`${s.feedback}`}>
+            <blockquote>{page.feedback[quoteNumber].quote}</blockquote>
+          </div>
+        )}
         <nav className={`${u.flex} ${s.quoteBtns}`}>
-          {page.feedback.map((quote, idx) =>
+          {page.feedback.map((quote, idx) => (
             <Fragment key={quote._key}>
               <button
                 onClick={() => setQuoteNumber(idx)}
@@ -117,13 +129,14 @@ export const Visit: FC<Props> = ({
                   ${u.pointer}
                 `}
               >
-                {" "}&bull;{" "}
+                {" "}
+                &bull;{" "}
                 {/* <span className={`${u.screenReaderText}`}>
                   <Localize data={label.text} />
                 </span> */}
               </button>
             </Fragment>
-          )}
+          ))}
         </nav>
       </section>
       <GoogleMap />

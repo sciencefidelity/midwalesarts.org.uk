@@ -2,7 +2,7 @@ import { FC, useState } from "react"
 import { useRouter } from "next/router"
 import { PortableText } from "@portabletext/react"
 import { components } from "components/portableTextComponents"
-import { buildUrl, localize, sortArtworks, subdir } from "lib/utils"
+import { buildURL, localize, sortArtworks, subdir } from "lib/utils"
 import { ExhibitionDate } from "components/date"
 import { GridImage } from "components/gridImage"
 import { Layout } from "components/layout"
@@ -15,7 +15,7 @@ import {
   Organisation,
   PageContext,
   PageHead,
-  Settings
+  Settings,
 } from "lib/interfaces"
 import s from "styles/exhibition.module.scss"
 import u from "styles/utils.module.scss"
@@ -35,15 +35,19 @@ export const ExhibitionComponent: FC<Props> = ({
   navigation,
   organisation,
   pageContext,
-  settings
+  settings,
 }) => {
   const { locale } = useRouter()
   const [info, setInfo] = useState(
     exhibition.works[0] && exhibition.dateStart < new Date().toISOString()
-      ? false : true)
+      ? false
+      : true
+  )
   const [gallery, setGallery] = useState(
     exhibition.works[0] && exhibition.dateStart < new Date().toISOString()
-      ? true : false)
+      ? true
+      : false
+  )
   const [modal, setModal] = useState(false)
   const [imageToShow, setImageToShow] = useState(0)
   const pageHead: PageHead = {
@@ -54,8 +58,8 @@ export const ExhibitionComponent: FC<Props> = ({
     ogURL: `
       ${settings.canonicalURL}
       ${locale === "cy" ? "/cy" : ""}
-      /${buildUrl(locale, exhibition.slug, exhibition._type)}`,
-    ogImage: exhibition.ogImage
+      /${buildURL(locale, exhibition.slug, exhibition._type)}`,
+    ogImage: exhibition.ogImage,
   }
   const toggleInfo = () => {
     setInfo(true)
@@ -87,13 +91,16 @@ export const ExhibitionComponent: FC<Props> = ({
     }
     setImageToShow(currentIndex)
   }
-  const modalImage = exhibition.works[0] !== undefined
-    ? exhibition.works[imageToShow]
-    : {}
+  const modalImage =
+    exhibition.works[0] !== undefined ? exhibition.works[imageToShow] : {}
   return (
     <Layout
-      caption={exhibition.mainImage?.caption ? exhibition.mainImage.caption : null}
-      heroImage={exhibition.mainImage?.asset ? exhibition.mainImage : settings.ogImage}
+      caption={
+        exhibition.mainImage?.caption ? exhibition.mainImage.caption : null
+      }
+      heroImage={
+        exhibition.mainImage?.asset ? exhibition.mainImage : settings.ogImage
+      }
       labels={labels}
       navigation={navigation}
       organisation={organisation}
@@ -104,65 +111,82 @@ export const ExhibitionComponent: FC<Props> = ({
       <div className={`${s.container} ${u.grid}`}>
         <div className={`${s.title}`}>
           {exhibition.title && <h1>{exhibition.title}</h1>}
-          {exhibition.dateStart && exhibition.dateEnd && <h2 className={`${s.subtitle}`}>
-            <ExhibitionDate
-              dateEnd={exhibition.dateEnd}
-              dateStart={exhibition.dateStart}
-            />
-          </h2>}
+          {exhibition.dateStart && exhibition.dateEnd && (
+            <h2 className={`${s.subtitle}`}>
+              <ExhibitionDate
+                dateEnd={exhibition.dateEnd}
+                dateStart={exhibition.dateStart}
+              />
+            </h2>
+          )}
           <ul className={`${s.tabs} ${u.flex}`}>
-            {exhibition.body && <li
-              onClick={toggleInfo}
-              className={`${s.tabItem} ${info ? s.selected : null} ${u.pointer}`}
-            >
-              <h3 className={`${s.h3}`}>{labels[35].text}</h3>
-            </li>}
-            {exhibition.works[0] && exhibition.dateStart < new Date().toISOString() &&
+            {exhibition.body && (
               <li
-                onClick={toggleGallery}
-                className={`${s.tabItem} ${info ? null : s.selected} ${u.pointer}`}
+                onClick={toggleInfo}
+                className={`${s.tabItem} ${info ? s.selected : null} ${
+                  u.pointer
+                }`}
               >
-                <h3 className={`${s.h3}`}>{labels[36].text}</h3>
+                <h3 className={`${s.h3}`}>{labels[35].text}</h3>
               </li>
-            }
+            )}
+            {exhibition.works[0] &&
+              exhibition.dateStart < new Date().toISOString() && (
+                <li
+                  onClick={toggleGallery}
+                  className={`${s.tabItem} ${info ? null : s.selected} ${
+                    u.pointer
+                  }`}
+                >
+                  <h3 className={`${s.h3}`}>{labels[36].text}</h3>
+                </li>
+              )}
           </ul>
           <div className={`${s.info} ${info ? null : s.hidden}`}>
-            {exhibition.body &&
+            {exhibition.body && (
               <PortableText value={exhibition.body} components={components} />
-            }
+            )}
           </div>
         </div>
       </div>
-      <div
-        className={`${s.imageGrid}  ${gallery ? null : s.hidden} ${u.grid}`}
-      >
-        {exhibition.works ?
-          (sortArtworks(exhibition.works).map((artwork, idx) =>
-            artwork && (<div
-              key={artwork._id}
-              onClick={() => openModal(idx)}
-              className={`${u.pointer}`}
-            >
-              <GridImage
-                alt={`
+      <div className={`${s.imageGrid}  ${gallery ? null : s.hidden} ${u.grid}`}>
+        {exhibition.works ? (
+          sortArtworks(exhibition.works).map(
+            (artwork, idx) =>
+              artwork && (
+                <div
+                  key={artwork._id}
+                  onClick={() => openModal(idx)}
+                  className={`${u.pointer}`}
+                >
+                  <GridImage
+                    alt={`
                   ${artwork.artist && artwork.artist + ", "}
                   ${artwork.title && localize(artwork.title, locale) + ", "}
                   ${artwork.date && artwork.date}
                 `}
-                idx={idx}
-                image={artwork.mainImage ? artwork.mainImage : settings.ogImage}
-                postsPerPage={200}
-              />
-              {artwork.artist && <div className={`${s.caption} ${u.semibold}`}>
-                {artwork.artist}
-              </div>}
-              {artwork.title && <div className={`${s.caption}`}>
-                <em>{localize(artwork.title, locale)}</em>
-              </div>}
-            </div>)
-          )) :
-          (<p>{labels[37].text}</p>)
-        }
+                    idx={idx}
+                    image={
+                      artwork.mainImage ? artwork.mainImage : settings.ogImage
+                    }
+                    postsPerPage={200}
+                  />
+                  {artwork.artist && (
+                    <div className={`${s.caption} ${u.semibold}`}>
+                      {artwork.artist}
+                    </div>
+                  )}
+                  {artwork.title && (
+                    <div className={`${s.caption}`}>
+                      <em>{localize(artwork.title, locale)}</em>
+                    </div>
+                  )}
+                </div>
+              )
+          )
+        ) : (
+          <p>{labels[37].text}</p>
+        )}
       </div>
       <div>
         <p className={`${s.backLink} ${u.textCenter}`}>

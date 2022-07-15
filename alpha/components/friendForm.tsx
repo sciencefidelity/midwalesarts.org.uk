@@ -45,10 +45,10 @@ export const FriendForm: FC<Props> = ({ labels }) => {
         message: message,
         reason: reason,
         otherReason: otherReason,
-        giftAid: giftAid
+        giftAid: giftAid,
       }),
-      headers: {"Content-Type": "application/json"},
-      method: "POST"
+      headers: { "Content-Type": "application/json" },
+      method: "POST",
     })
     const { error } = await res.json()
     if (error) {
@@ -132,7 +132,9 @@ export const FriendForm: FC<Props> = ({ labels }) => {
         <input
           type="text"
           value={givenName}
-          onChange={e => {setGivenName(e.target.value)}}
+          onChange={(e) => {
+            setGivenName(e.target.value)
+          }}
           placeholder={labels[59].text}
           name="given-name"
           id="given-name"
@@ -145,7 +147,9 @@ export const FriendForm: FC<Props> = ({ labels }) => {
         <input
           type="text"
           value={familyName}
-          onChange={e => {setFamilyName(e.target.value)}}
+          onChange={(e) => {
+            setFamilyName(e.target.value)
+          }}
           placeholder={labels[60].text}
           name="family-name"
           id="family-name"
@@ -158,7 +162,9 @@ export const FriendForm: FC<Props> = ({ labels }) => {
         <input
           type="text"
           value={honorificPrefix}
-          onChange={e => {setHonorificPrefix(e.target.value)}}
+          onChange={(e) => {
+            setHonorificPrefix(e.target.value)
+          }}
           placeholder={labels[61].text}
           name="honorific-prefix"
           id="honorific-prefix"
@@ -170,7 +176,9 @@ export const FriendForm: FC<Props> = ({ labels }) => {
         <input
           type="text"
           value={friend}
-          onChange={e => {setFriend(e.target.value)}}
+          onChange={(e) => {
+            setFriend(e.target.value)
+          }}
           placeholder={labels[62].text}
           name="friend"
           id="friend"
@@ -182,7 +190,9 @@ export const FriendForm: FC<Props> = ({ labels }) => {
         <input
           type="text"
           value={addressLine1}
-          onChange={e => {setAddressLine1(e.target.value)}}
+          onChange={(e) => {
+            setAddressLine1(e.target.value)
+          }}
           placeholder={labels[63].text}
           name="address-line1"
           id="address-line1"
@@ -194,7 +204,9 @@ export const FriendForm: FC<Props> = ({ labels }) => {
         <input
           type="text"
           value={addressLine2}
-          onChange={e => {setAddressLine2(e.target.value)}}
+          onChange={(e) => {
+            setAddressLine2(e.target.value)
+          }}
           placeholder={labels[64].text}
           name="address-line2"
           id="address-line2"
@@ -206,7 +218,9 @@ export const FriendForm: FC<Props> = ({ labels }) => {
         <input
           type="text"
           value={addressLine3}
-          onChange={e => {setAddressLine3(e.target.value)}}
+          onChange={(e) => {
+            setAddressLine3(e.target.value)
+          }}
           placeholder={labels[65].text}
           name="address-line3"
           id="address-line3"
@@ -218,7 +232,9 @@ export const FriendForm: FC<Props> = ({ labels }) => {
         <input
           type="text"
           value={postalCode}
-          onChange={e => {setPostalCode(e.target.value)}}
+          onChange={(e) => {
+            setPostalCode(e.target.value)
+          }}
           placeholder={labels[66].text}
           name="postal-code"
           id="postal-code"
@@ -230,7 +246,9 @@ export const FriendForm: FC<Props> = ({ labels }) => {
         <input
           type="text"
           value={tel}
-          onChange={e => {setTel(e.target.value)}}
+          onChange={(e) => {
+            setTel(e.target.value)
+          }}
           placeholder={labels[67].text}
           name="tel"
           id="tel"
@@ -242,7 +260,9 @@ export const FriendForm: FC<Props> = ({ labels }) => {
         <input
           type="email"
           value={email}
-          onChange={e => {setEmail(e.target.value)}}
+          onChange={(e) => {
+            setEmail(e.target.value)
+          }}
           placeholder={labels[68].text}
           name="email"
           id="email"
@@ -255,7 +275,9 @@ export const FriendForm: FC<Props> = ({ labels }) => {
       </label>
       <textarea
         value={message}
-        onChange={e => {setMessage(e.target.value)}}
+        onChange={(e) => {
+          setMessage(e.target.value)
+        }}
         name="comment"
         id="comment"
         className={`${u.block}`}
@@ -324,7 +346,9 @@ export const FriendForm: FC<Props> = ({ labels }) => {
         <input
           type="text"
           value={otherReason}
-          onChange={e => {setOtherReason(e.target.value)}}
+          onChange={(e) => {
+            setOtherReason(e.target.value)
+          }}
           // placeholder="Other reason"
           name="other-reason"
           id="other-reason"
@@ -344,9 +368,7 @@ export const FriendForm: FC<Props> = ({ labels }) => {
             onChange={handleGiftAidChange}
             className={`${s.other} ${u.block}`}
           />
-          <label htmlFor="gift-aid">
-            {labels[79].text}
-          </label>
+          <label htmlFor="gift-aid">{labels[79].text}</label>
         </div>
       </div>
 
@@ -354,12 +376,8 @@ export const FriendForm: FC<Props> = ({ labels }) => {
         {buttonText}
       </button>
       <div className={`${s.successFailure}`}>
-        {showSuccessMessage && (
-          <p>{labels[82].text}</p>
-        )}
-        {showFailureMessage && (
-          <p>{labels[83].text}</p>
-        )}
+        {showSuccessMessage && <p>{labels[82].text}</p>}
+        {showFailureMessage && <p>{labels[83].text}</p>}
       </div>
     </form>
   )

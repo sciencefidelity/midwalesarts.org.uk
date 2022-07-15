@@ -121,7 +121,7 @@ export const subdir = (locale: string, type: string): string => {
  * @param slug - the slug defined in the document
  * @returns the URL to the page formatted as `subdirectory/slug`
  */
-export function buildUrl(locale: string, slug: string, type: string): string {
+export function buildURL(locale: string, slug: string, type: string): string {
   return `${subdir(locale, type)}/${slug}`;
 }
 

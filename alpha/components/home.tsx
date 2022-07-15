@@ -12,13 +12,13 @@ import {
   Organisation,
   Page,
   PageContext,
-  Settings
+  Settings,
 } from "lib/interfaces"
 import s from "styles/home.module.scss"
 import u from "styles/utils.module.scss"
 
 interface Props {
-  labels:Label[]
+  labels: Label[]
   navigation: Navigation[]
   organisation: Organisation
   page: Page
@@ -32,7 +32,7 @@ export const Home: FC<Props> = ({
   organisation,
   page,
   pageContext,
-  settings
+  settings,
 }) => {
   const { locale } = useRouter()
   const dynamicGap = { gap: `${locale === "cy" ? "8.2rem" : "9.4rem"}` }
@@ -60,12 +60,14 @@ export const Home: FC<Props> = ({
             <Intro page={page} />
             <div className={`${s.sideImageContainer} ${u.absolute}`}>
               <InsetImage image={page.subImage} alt={page.subImage.caption} />
-              <div className={`${s.sideImageCaption}`}>{page.subImage.caption}</div>
+              <div className={`${s.sideImageCaption}`}>
+                {page.subImage.caption}
+              </div>
             </div>
           </div>
         </div>
       </section>
-      {page.headlines.map(headline => (
+      {page.headlines.map((headline) => (
         <section key={headline._id}>
           <FrontPageHeadline headline={headline} settings={settings} />
         </section>

@@ -7,7 +7,7 @@ import u from "styles/utils.module.scss"
 interface Props {
   exhibitions: Exhibition[]
   fallbackImage: Image
-  labels:Label[]
+  labels: Label[]
   postsPerPage: number
 }
 
@@ -19,22 +19,23 @@ export const PastExhibitionsList: FC<Props> = ({
 }) => {
   return (
     <section className={`${s.exhibitionGrid} ${s.pastExhibitions} ${u.grid}`}>
-      {exhibitions && exhibitions.map((exhibition, idx) =>
-        <div
-          key={exhibition._id}
-          className={`${idx >= postsPerPage ? u.hidden : null}`}
-        >
-          <ExhibitionPreview
-            exhibition={exhibition}
-            fallbackImage={fallbackImage}
-            heading={idx === 0 && labels[17].text}
-            idx={idx}
-            label={labels[56].text}
-            postsPerPage={postsPerPage}
-            top={false}
-          />
-        </div>
-      )}
+      {exhibitions &&
+        exhibitions.map((exhibition, idx) => (
+          <div
+            key={exhibition._id}
+            className={`${idx >= postsPerPage ? u.hidden : null}`}
+          >
+            <ExhibitionPreview
+              exhibition={exhibition}
+              fallbackImage={fallbackImage}
+              heading={idx === 0 && labels[17].text}
+              idx={idx}
+              label={labels[56].text}
+              postsPerPage={postsPerPage}
+              top={false}
+            />
+          </div>
+        ))}
     </section>
   )
 }

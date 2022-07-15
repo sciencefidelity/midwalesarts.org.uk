@@ -1,6 +1,6 @@
 import { FC } from "react"
 import { useRouter } from "next/router"
-import { buildUrl } from "@/lib/utils"
+import { buildURL } from "@/lib/utils"
 import { ExhibitionDate } from "components/date"
 import { GridImage } from "components/gridImage"
 import { LinkTo } from "components/linkTo"
@@ -27,26 +27,30 @@ export const ExhibitionPreview: FC<Props> = ({
   label,
   margin,
   postsPerPage,
-  top = true
+  top = true,
 }) => {
   const { locale } = useRouter()
   return (
-    <div style={ margin && { marginTop: margin }}>
+    <div style={margin && { marginTop: margin }}>
       <h3
         className={`${s.heading}`}
-        dangerouslySetInnerHTML={{__html: heading ? heading : "&nbsp;"}}
+        dangerouslySetInnerHTML={{ __html: heading ? heading : "&nbsp;" }}
       />
-      <LinkTo href={buildUrl(locale, exhibition.slug, exhibition._type)}>
+      <LinkTo href={buildURL(locale, exhibition.slug, exhibition._type)}>
         <GridImage
           alt={exhibition.title ? exhibition.title : ""}
           idx={idx}
-          image={exhibition.mainImage?.asset ? exhibition.mainImage : fallbackImage}
+          image={
+            exhibition.mainImage?.asset ? exhibition.mainImage : fallbackImage
+          }
           postsPerPage={postsPerPage}
           top={top}
         />
-        {exhibition && <div className={`${s.caption} ${u.textRight} ${u.semibold}`}>
-          {exhibition.title}
-        </div>}
+        {exhibition && (
+          <div className={`${s.caption} ${u.textRight} ${u.semibold}`}>
+            {exhibition.title}
+          </div>
+        )}
         {exhibition && exhibition.dateStart && (
           <div className={`${s.caption} ${u.textRight}`}>
             <span>

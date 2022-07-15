@@ -11,13 +11,13 @@ import {
   Page,
   PageContext,
   PageHead,
-  Settings
+  Settings,
 } from "lib/interfaces"
 import s from "styles/pages.module.scss"
 import u from "styles/utils.module.scss"
 
 interface Props {
-  labels:Label[]
+  labels: Label[]
   navigation: Navigation[]
   organisation: Organisation
   page: Page
@@ -31,7 +31,7 @@ export const PageComponent: FC<Props> = ({
   organisation,
   page,
   pageContext,
-  settings
+  settings,
 }) => {
   const { locale } = useRouter()
   const pageHead: PageHead = {
@@ -39,8 +39,10 @@ export const PageComponent: FC<Props> = ({
     description: page.ogDescription,
     ogTitle: page.ogTitle,
     ogDescription: page.ogDescription,
-    ogURL: `${settings.canonicalURL}${locale === "cy" ? "/cy" : ""}/${page.slug}`,
-    ogImage: page.ogImage
+    ogURL: `${settings.canonicalURL}${locale === "cy" ? "/cy" : ""}/${
+      page.slug
+    }`,
+    ogImage: page.ogImage,
   }
   return (
     <Layout
@@ -55,12 +57,16 @@ export const PageComponent: FC<Props> = ({
       <div className={`${s.container} ${u.grid}`}>
         <section className={`${s.title}`}>
           {page.title && <h1>{page.title}</h1>}
-          {page.subtitle && <h2 className={`${s.subtitle}`}>
-            {page.subtitle.trim().replace(".", "")}.
-          </h2>}
-          {page.body && <div className={`${s.body}`}>
-            <PortableText value={page.body} components={components} />
-          </div>}
+          {page.subtitle && (
+            <h2 className={`${s.subtitle}`}>
+              {page.subtitle.trim().replace(".", "")}.
+            </h2>
+          )}
+          {page.body && (
+            <div className={`${s.body}`}>
+              <PortableText value={page.body} components={components} />
+            </div>
+          )}
         </section>
         <SidebarComponent labels={labels} sidebar={page.sidebar} />
       </div>

@@ -1,7 +1,7 @@
 import { CSSProperties, FC } from "react"
 import { useRouter } from "next/router"
 import { dayToNumber, nextDate } from "lib/dateHelpers"
-import { buildUrl } from "lib/utils"
+import { buildURL } from "lib/utils"
 import { GridImage } from "components/gridImage"
 import { LinkTo } from "components/linkTo"
 import { PostDate } from "components/date"
@@ -24,7 +24,7 @@ export const EventPreview: FC<Props> = ({
   heading,
   marginTop,
   postsPerPage,
-  top = true
+  top = true,
 }) => {
   const { locale } = useRouter()
   return (
@@ -41,7 +41,7 @@ export const EventPreview: FC<Props> = ({
             className={`${idx >= postsPerPage ? u.hidden : null}`}
           >
             <LinkTo
-              href={buildUrl(locale, event.slug, event._type)}
+              href={buildURL(locale, event.slug, event._type)}
               style={{ margin: 0 }}
               className={`${u.truncate}`}
             >
@@ -52,18 +52,23 @@ export const EventPreview: FC<Props> = ({
                 postsPerPage={postsPerPage}
                 top={top}
               />
-              {event.title &&
+              {event.title && (
                 <div className={`${s.caption} ${u.textRight} ${u.semibold}`}>
                   {event.title}
                 </div>
-              }
-              {(event.date || event.day) && <div className={`${s.caption} ${u.textRight}`}>
-                <PostDate
-                  date={event.date
-                    ? event.date
-                    : nextDate(dayToNumber(event.day), event.frequency)}
-                />{event.startTime && ", " + event.startTime}
-              </div>}
+              )}
+              {(event.date || event.day) && (
+                <div className={`${s.caption} ${u.textRight}`}>
+                  <PostDate
+                    date={
+                      event.date
+                        ? event.date
+                        : nextDate(dayToNumber(event.day), event.frequency)
+                    }
+                  />
+                  {event.startTime && ", " + event.startTime}
+                </div>
+              )}
             </LinkTo>
           </div>
         ))}

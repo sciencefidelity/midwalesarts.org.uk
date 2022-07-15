@@ -26,26 +26,36 @@ export const Language: FC<Props> = ({ pageContext }) => {
       isMounted.current = true
     }
   }, [currentLocale, locale, pageContext])
-  return (
-    pageContext.localization ? <div
+  return pageContext.localization ? (
+    <div
       className={`${s.languageSwitcher} ${u.pointer} ${u.inlineBlock} ${u.relative}`}
     >
-      {locale === "cy" ?
+      {locale === "cy" ? (
         <LinkTo
-          href={`/${pageContext.localization.slug.join("/").replace("index", "")}`}
+          href={`/${pageContext.localization.slug
+            .join("/")
+            .replace("index", "")}`}
           locale={locales[0]}
           onClick={() => handleLocaleChange(locales[0])}
-        >{langs[0]}</LinkTo>
-        :
+        >
+          {langs[0]}
+        </LinkTo>
+      ) : (
         <LinkTo
-          href={`/${pageContext.localization.slug.join("/").replace("index", "")}`}
+          href={`/${pageContext.localization.slug
+            .join("/")
+            .replace("index", "")}`}
           locale={locales[1]}
           onClick={() => handleLocaleChange(locales[1])}
-        >{langs[1]}</LinkTo>
-      }
-    </div> : <div
+        >
+          {langs[1]}
+        </LinkTo>
+      )}
+    </div>
+  ) : (
+    <div
       className={`${s.languageSwitcher} ${u.inlineBlock} ${u.relative} ${u.noSelect}`}
-      dangerouslySetInnerHTML={{__html: "&nbsp;"}}
+      dangerouslySetInnerHTML={{ __html: "&nbsp;" }}
     />
   )
 }

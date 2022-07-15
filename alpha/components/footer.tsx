@@ -31,7 +31,7 @@ export const Footer: FC<Props> = ({ labels, organisation, settings }) => {
           <FooterLinks social={settings.social} />
         </div>
         <p className={`${s.smallCopy}`}>
-          &copy;{" "}{settings.title[locale]}{" "}{year}
+          &copy; {settings.title[locale]} {year}
         </p>
       </div>
     </footer>

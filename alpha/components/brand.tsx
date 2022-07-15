@@ -4,10 +4,13 @@ import s from "styles/home.module.scss"
 export const BrandCy: FC = () => {
   return (
     <div>
-      <h1 className={`${s.brand}`} style={{
-        fontWeight: "bold",
-        paddingBottom: "0.1em"
-      }}>
+      <h1
+        className={`${s.brand}`}
+        style={{
+          fontWeight: "bold",
+          paddingBottom: "0.1em",
+        }}
+      >
         <span style={{ letterSpacing: "0.02em" }}>C</span>
         <span style={{ letterSpacing: "0.3rem" }}>e</span>
         <span>l</span>
@@ -51,7 +54,7 @@ export const BrandEn: FC = () => {
         style={{
           fontWeight: "bold",
           paddingLeft: "0.03em",
-          paddingTop: "0.1em"
+          paddingTop: "0.1em",
         }}
       >
         <span>A</span>

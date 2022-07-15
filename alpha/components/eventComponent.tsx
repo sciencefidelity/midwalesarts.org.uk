@@ -2,7 +2,7 @@ import { FC } from "react"
 import { useRouter } from "next/router"
 import { PortableText } from "@portabletext/react"
 import { components } from "components/portableTextComponents"
-import { buildUrl, subdir } from "lib/utils"
+import { buildURL, subdir } from "lib/utils"
 import { EventDate } from "components/date"
 import { GridImage } from "components/gridImage"
 import { Layout } from "components/layout"
@@ -15,7 +15,7 @@ import {
   Organisation,
   PageContext,
   PageHead,
-  Settings
+  Settings,
 } from "lib/interfaces"
 import s from "styles/event.module.scss"
 import u from "styles/utils.module.scss"
@@ -35,7 +35,7 @@ export const EventComponent: FC<Props> = ({
   navigation,
   organisation,
   pageContext,
-  settings
+  settings,
 }) => {
   const { locale } = useRouter()
   const pageHead: PageHead = {
@@ -46,8 +46,8 @@ export const EventComponent: FC<Props> = ({
     ogURL: `
       ${settings.canonicalURL}
       ${locale === "cy" ? "/cy" : ""}
-      /${buildUrl(locale, event.slug, event._type)}`,
-    ogImage: event.ogImage
+      /${buildURL(locale, event.slug, event._type)}`,
+    ogImage: event.ogImage,
   }
   return (
     <Layout
@@ -66,7 +66,9 @@ export const EventComponent: FC<Props> = ({
               <GridImage
                 alt={event.title ? event.title : ""}
                 idx={1}
-                image={event.mainImage?.asset ? event.mainImage : settings.ogImage}
+                image={
+                  event.mainImage?.asset ? event.mainImage : settings.ogImage
+                }
                 postsPerPage={1}
               />
             </div>
@@ -75,32 +77,41 @@ export const EventComponent: FC<Props> = ({
                 {event.category ? event.category : labels[30].text}
               </h3>
               <div>
-                {event.date && <h2 className={`${s.subtitle}`}>
-                  <EventDate date={event.date} />
-                </h2>}
+                {event.date && (
+                  <h2 className={`${s.subtitle}`}>
+                    <EventDate date={event.date} />
+                  </h2>
+                )}
                 {event.title && <h1 className={`${s.h1}`}>{event.title}</h1>}
               </div>
-              {event.briteLink ? <p className={`${s.headerLink}`}>
-                <a href={`${event.briteLink}`} target="blank" rel="noreferrer">
-                  {labels[31].text}
-                </a>
-              </p>
-                : <p
+              {event.briteLink ? (
+                <p className={`${s.headerLink}`}>
+                  <a
+                    href={`${event.briteLink}`}
+                    target="blank"
+                    rel="noreferrer"
+                  >
+                    {labels[31].text}
+                  </a>
+                </p>
+              ) : (
+                <p
                   className={`${s.headerLink}`}
                   dangerouslySetInnerHTML={{ __html: "&nbsp;" }}
-                />}
+                />
+              )}
             </div>
           </div>
           <div>
-            {event.body &&
+            {event.body && (
               <PortableText value={event.body} components={components} />
-            }
+            )}
             <p className={`${s.briteLink} ${u.textCenter}`}>
-              {event.briteLink &&
+              {event.briteLink && (
                 <a href={`${event.briteLink}`} target="blank" rel="noreferrer">
                   {labels[31].text}
                 </a>
-              }
+              )}
             </p>
             <div>
               <p className={`${s.backLink} ${u.textCenter}`}>

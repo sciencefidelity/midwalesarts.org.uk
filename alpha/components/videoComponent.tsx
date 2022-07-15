@@ -2,7 +2,7 @@ import { FC } from "react"
 import { useRouter } from "next/router"
 import { PortableText } from "@portabletext/react"
 import { components } from "components/portableTextComponents"
-import { buildUrl, subdir } from "lib/utils"
+import { buildURL, subdir } from "lib/utils"
 import { Layout } from "components/layout"
 import { LinkTo } from "components/linkTo"
 import { SidebarComponent } from "components/sidebarComponent"
@@ -14,7 +14,7 @@ import {
   PageContext,
   PageHead,
   Settings,
-  Video
+  Video,
 } from "lib/interfaces"
 import s from "styles/video.module.scss"
 import u from "styles/utils.module.scss"
@@ -34,7 +34,7 @@ export const VideoComponent: FC<Props> = ({
   organisation,
   pageContext,
   settings,
-  video
+  video,
 }) => {
   const { locale } = useRouter()
   const pageHead: PageHead = {
@@ -45,8 +45,8 @@ export const VideoComponent: FC<Props> = ({
     ogURL: `
       ${settings.canonicalURL}
       ${locale === "cy" ? "/cy" : ""}
-      /${buildUrl(locale, video.slug, video._type)}`,
-    ogImage: video.ogImage
+      /${buildURL(locale, video.slug, video._type)}`,
+    ogImage: video.ogImage,
   }
   return (
     <Layout
@@ -61,39 +61,55 @@ export const VideoComponent: FC<Props> = ({
       <div className={`${s.container} ${u.grid}`}>
         <div className={`${s.title}`}>
           <h1>{labels[46].text}</h1>
-          {video.title && <h2 className={`${s.subtitle}`}>
-            {video.title.trim().replace(".", "")}.
-          </h2>}
+          {video.title && (
+            <h2 className={`${s.subtitle}`}>
+              {video.title.trim().replace(".", "")}.
+            </h2>
+          )}
           {video.videoLink && (
             <VideoEmbed label={labels[50].text} videoId={video.videoLink} />
           )}
-          {video.body && <div className={`${s.body}`}>
-            <PortableText value={video.body} components={components} />
-          </div>}
+          {video.body && (
+            <div className={`${s.body}`}>
+              <PortableText value={video.body} components={components} />
+            </div>
+          )}
           <nav className={`${s.postNavigation} ${u.flex}`}>
-            {video.prev ? <p className={`${s.prevLink}`}>
-              <LinkTo
-                href={`/${buildUrl(
-                  locale, video.prev.slug, video.prev._type
-                )}`}
-              >
-                &laquo;{" "}{labels[47].text}
-              </LinkTo>
-            </p> : <p>{" "}</p>}
+            {video.prev ? (
+              <p className={`${s.prevLink}`}>
+                <LinkTo
+                  href={`/${buildURL(
+                    locale,
+                    video.prev.slug,
+                    video.prev._type
+                  )}`}
+                >
+                  &laquo; {labels[47].text}
+                </LinkTo>
+              </p>
+            ) : (
+              <p> </p>
+            )}
             <p className={`${s.backLink} ${u.textCenter}`}>
               <LinkTo href={`/${subdir(locale, video._type)}`}>
                 {labels[48].text}
               </LinkTo>
             </p>
-            {video.next ? <p className={`${s.nextLink} ${u.textRight}`}>
-              <LinkTo
-                href={`/${buildUrl(
-                  locale, video.next.slug, video.next._type
-                )}`}
-              >
-                {labels[49].text}{" "}&raquo;
-              </LinkTo>
-            </p> : <p>{" "}</p>}
+            {video.next ? (
+              <p className={`${s.nextLink} ${u.textRight}`}>
+                <LinkTo
+                  href={`/${buildURL(
+                    locale,
+                    video.next.slug,
+                    video.next._type
+                  )}`}
+                >
+                  {labels[49].text} &raquo;
+                </LinkTo>
+              </p>
+            ) : (
+              <p> </p>
+            )}
           </nav>
         </div>
         <SidebarComponent labels={labels} sidebar={video.sidebar} />

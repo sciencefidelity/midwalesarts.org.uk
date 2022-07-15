@@ -2,7 +2,8 @@
 import Link, { LinkProps } from "next/link"
 import { AnchorHTMLAttributes, PropsWithChildren } from "react"
 
-type PropTypes = LinkProps & Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "href">;
+type PropTypes = LinkProps &
+  Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "href">
 
 export const LinkTo = ({
   children,
@@ -22,4 +23,3 @@ export const LinkTo = ({
     </Link>
   )
 }
-
