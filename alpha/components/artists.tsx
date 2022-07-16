@@ -6,6 +6,7 @@ import { Layout } from "components/layout"
 import { LinkTo } from "components/linkTo"
 import {
   Label,
+  LocaleString,
   Navigation,
   Organisation,
   Page,
@@ -45,6 +46,7 @@ export const Artists: FC<Props> = ({
     ogImage: page.ogImage,
   }
   const count = page?.artists?.filter((e) => e.permanent).length
+  const key: keyof LocaleString = locale === "cy" ? "cy" : "en"
   return (
     <Layout
       caption={page?.hero?.mainImage?.caption ?? undefined}
@@ -87,7 +89,11 @@ export const Artists: FC<Props> = ({
                     key={artist._id}
                   >
                     <GridImage
-                      alt={artist?.mainImage?.caption ?? ""}
+                      alt={
+                        artist?.mainImage?.caption
+                          ? artist?.mainImage?.caption[key]
+                          : ""
+                      }
                       idx={idx}
                       image={
                         artist.mainImage?.asset
@@ -129,7 +135,11 @@ export const Artists: FC<Props> = ({
                   key={artist._id}
                 >
                   <GridImage
-                    alt={artist?.mainImage?.caption ?? ""}
+                    alt={
+                      artist?.mainImage?.caption
+                        ? artist?.mainImage?.caption[key]
+                        : ""
+                    }
                     idx={idx}
                     image={
                       artist.mainImage?.asset

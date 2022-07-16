@@ -11,11 +11,12 @@ import {
   PageContext,
   PageHead,
   Settings,
+  LocaleString,
 } from "lib/interfaces"
 import u from "styles/utils.module.scss"
 
 interface Props {
-  caption?: string
+  caption?: LocaleString
   children: ReactNode
   heroImage: Image
   labels: Label[]
@@ -26,7 +27,7 @@ interface Props {
   settings: Settings
 }
 
-export const Layout: FC<Props> = ({
+export function Layout({
   caption,
   children,
   heroImage,
@@ -36,7 +37,7 @@ export const Layout: FC<Props> = ({
   pageContext,
   pageHead,
   settings,
-}) => {
+}: Props) {
   return (
     <>
       <BaseHead pageHead={pageHead} settings={settings} />
@@ -48,14 +49,14 @@ export const Layout: FC<Props> = ({
         pageContext={pageContext}
         settings={settings}
       />
-      <div className={`${u.guide} ${u.zero}`}></div>
-      <div className={`${u.guide} ${u.one}`}></div>
-      <div className={`${u.guide} ${u.two}`}></div>
-      <div className={`${u.guide} ${u.three}`}></div>
-      <div className={`${u.guide} ${u.four}`}></div>
-      <div className={`${u.guide} ${u.five}`}></div>
-      <div className={`${u.guide} ${u.six}`}></div>
-      <div className={`${u.guide} ${u.seven}`}></div>
+      <div className={`${u.guide} ${u.zero}`} />
+      <div className={`${u.guide} ${u.one}`} />
+      <div className={`${u.guide} ${u.two}`} />
+      <div className={`${u.guide} ${u.three}`} />
+      <div className={`${u.guide} ${u.four}`} />
+      <div className={`${u.guide} ${u.five}`} />
+      <div className={`${u.guide} ${u.six}`} />
+      <div className={`${u.guide} ${u.seven}`} />
       <main>
         {children}
         <Scrollup label={labels[8].text} />

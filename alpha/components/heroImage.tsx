@@ -35,7 +35,7 @@ export function HeroImage({ alt, image }: Props) {
   useEffect(() => {
     setLoaded(true)
   }, [loaded, onLoad])
-  const hotspot = image.hotspot
+  const { hotspot } = image
   const position = hotspot
     ? `${Math.round(hotspot.x * 100)}% ${Math.round(hotspot.y * 100)}%`
     : "50% 50%"
@@ -120,7 +120,7 @@ export function HeroImage({ alt, image }: Props) {
           onLoad={onLoad}
           loading="eager"
           className={`
-            ${s.image} ${loaded ? s.loaded : null} ${u.relative} ${u.cover}
+            ${s.image} ${loaded ? s.loaded : ""} ${u.relative} ${u.cover}
           `}
           width={1600}
           height={450}
@@ -150,4 +150,8 @@ export function HeroImage({ alt, image }: Props) {
       </div>
     </div>
   )
+}
+
+Img.defaultProps = {
+  fetchpriority: undefined,
 }

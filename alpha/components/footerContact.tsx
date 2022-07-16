@@ -1,6 +1,6 @@
 import { FC } from "react"
 import { useRouter } from "next/router"
-import { Organisation, Settings } from "lib/interfaces"
+import { LocaleString, Organisation, Settings } from "lib/interfaces"
 import s from "styles/footer.module.scss"
 
 interface Props {
@@ -10,7 +10,8 @@ interface Props {
 }
 
 export const FooterContact: FC<Props> = ({ label, organisation, settings }) => {
-  const { locale = "" } = useRouter()
+  const { locale = "en" } = useRouter()
+  const key: keyof LocaleString = locale === "cy" ? "cy" : "en"
   const year = new Date().getFullYear()
   return (
     <div>
@@ -19,10 +20,10 @@ export const FooterContact: FC<Props> = ({ label, organisation, settings }) => {
           {label}
           <br />
         </b>
-        {organisation.opening[locale]}
+        {organisation.opening[key]}
       </p>
       <p className={`${s.footerText}`}>
-        <b>{settings.title[locale]}</b>
+        <b>{settings.title[key]}</b>
         <br />
         {organisation.address.town}
         <br />
@@ -36,7 +37,7 @@ export const FooterContact: FC<Props> = ({ label, organisation, settings }) => {
         </a>
       </p>
       <p className={`${s.footerText} ${s.copy}`}>
-        &copy; {settings.title[locale]} {year}
+        &copy; {settings.title[key]} {year}
       </p>
     </div>
   )

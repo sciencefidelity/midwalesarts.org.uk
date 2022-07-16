@@ -1,5 +1,4 @@
-/* eslint indent: "off" */
-import { FC, useCallback, useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { urlFor } from "lib/utils"
 import { Image } from "lib/interfaces"
 import s from "styles/gridImage.module.scss"
@@ -13,13 +12,13 @@ interface Props {
   top?: boolean
 }
 
-export const GridImage: FC<Props> = ({
+export function GridImage({
   alt,
   idx,
   image,
   postsPerPage,
   top = true,
-}) => {
+}: Props) {
   const [loaded, setLoaded] = useState(false)
   const onLoad = useCallback(() => {
     setLoaded(true)
@@ -33,7 +32,7 @@ export const GridImage: FC<Props> = ({
         <img
           onLoad={onLoad}
           loading={top && idx < 3 ? "eager" : "lazy"}
-          className={`${s.image} ${loaded ? s.loaded : null} ${u.relative} ${
+          className={`${s.image} ${loaded ? s.loaded : ""} ${u.relative} ${
             u.cover
           }`}
           alt={alt}
@@ -101,4 +100,8 @@ export const GridImage: FC<Props> = ({
       </div>
     </div>
   )
+}
+
+GridImage.defaultProps = {
+  top: false,
 }

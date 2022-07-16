@@ -3,7 +3,7 @@ import { FooterContact } from "components/footerContact"
 import { FooterLinks } from "components/footerLinks"
 import { Logos } from "components/logos"
 import { Signup } from "components/signup"
-import { Label, Organisation, Settings } from "lib/interfaces"
+import { Label, LocaleString, Organisation, Settings } from "lib/interfaces"
 import s from "styles/footer.module.scss"
 import u from "styles/utils.module.scss"
 
@@ -15,6 +15,7 @@ interface Props {
 
 export function Footer({ labels, organisation, settings }: Props) {
   const { locale = "" } = useRouter()
+  const key: keyof LocaleString = locale === "cy" ? "cy" : "en"
   const year = new Date().getFullYear()
   return (
     <footer className={`${s.footer} ${u.relative}`}>
@@ -30,7 +31,7 @@ export function Footer({ labels, organisation, settings }: Props) {
           <FooterLinks social={settings.social} />
         </div>
         <p className={`${s.smallCopy}`}>
-          &copy; {settings.title[locale]} {year}
+          &copy; {settings.title[key]} {year}
         </p>
       </div>
     </footer>

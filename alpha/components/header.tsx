@@ -1,10 +1,16 @@
-import { FC } from "react"
 import { useRouter } from "next/router"
 import { ColorLogo } from "components/colorLogo"
 import { HeroImage } from "components/heroImage"
 import { LinkTo } from "components/linkTo"
 import { NavComponent } from "components/navComponent"
-import { Image, Label, Navigation, PageContext, Settings } from "lib/interfaces"
+import {
+  Image,
+  Label,
+  LocaleString,
+  Navigation,
+  PageContext,
+  Settings,
+} from "lib/interfaces"
 import s from "styles/header.module.scss"
 import u from "styles/utils.module.scss"
 
@@ -17,22 +23,23 @@ interface Props {
   settings: Settings
 }
 
-export const Header: FC<Props> = ({
+export function Header({
   caption,
   heroImage,
   labels,
   navigation,
   pageContext,
   settings,
-}) => {
+}: Props) {
   const { locale } = useRouter()
+  const key: keyof LocaleString = locale === "cy" ? "cy" : "en"
   return (
     <>
       <header className={`${s.header} ${u.relative}`}>
         <LinkTo href="/">
           <span className={`${u.srOnly}`}>{labels[0].text}</span>
           <ColorLogo
-            alt={settings.title[locale]}
+            alt={settings.title[key]}
             containerClass="logoContainer"
             logoClass="colorLogo"
           />
@@ -51,7 +58,9 @@ export const Header: FC<Props> = ({
       />
       <div
         className={`${s.heroCaption} ${u.relative} ${u.textRight}`}
-        dangerouslySetInnerHTML={{ __html: caption ? caption : "&nbsp;" }}
+        // TODO: make this less dangerous
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: caption ?? "&nbsp;" }}
       />
     </>
   )

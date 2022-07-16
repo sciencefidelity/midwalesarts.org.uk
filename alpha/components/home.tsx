@@ -8,6 +8,7 @@ import { Intro } from "components/intro"
 import { Layout } from "components/layout"
 import {
   Label,
+  LocaleString,
   Navigation,
   Organisation,
   Page,
@@ -35,10 +36,11 @@ export const Home: FC<Props> = ({
   settings,
 }) => {
   const { locale } = useRouter()
+  const key: keyof LocaleString = locale === "cy" ? "cy" : "en"
   const dynamicGap = { gap: `${locale === "cy" ? "8.2rem" : "9.4rem"}` }
   return (
     <Layout
-      caption={page.mainImage?.caption ? page.mainImage.caption : null}
+      caption={page.mainImage?.caption ?? ""}
       heroImage={page.mainImage?.asset ? page.mainImage : settings.ogImage}
       labels={labels}
       navigation={navigation}
@@ -51,7 +53,7 @@ export const Home: FC<Props> = ({
           <div style={dynamicGap} className={`${s.introduction} ${u.grid}`}>
             <div className={`${s.introBranding} ${u.grid}`}>
               <ColorLogo
-                alt={settings.title[locale]}
+                alt={settings.title[key]}
                 containerClass="introLogoContainer"
                 logoClass="introLogo"
               />
@@ -59,15 +61,15 @@ export const Home: FC<Props> = ({
             </div>
             <Intro page={page} />
             <div className={`${s.sideImageContainer} ${u.absolute}`}>
-              <InsetImage image={page.subImage} alt={page.subImage.caption} />
+              <InsetImage image={page.subImage} alt={page.subImage?.caption} />
               <div className={`${s.sideImageCaption}`}>
-                {page.subImage.caption}
+                {page.subImage?.caption}
               </div>
             </div>
           </div>
         </div>
       </section>
-      {page.headlines.map((headline) => (
+      {page.headlines?.map((headline) => (
         <section key={headline._id}>
           <FrontPageHeadline headline={headline} settings={settings} />
         </section>
