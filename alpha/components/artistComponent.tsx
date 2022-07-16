@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from "react"
+import { useCallback, useState } from "react"
 import { useRouter } from "next/router"
 import { PortableText } from "@portabletext/react"
 import { components } from "components/portableTextComponents"
@@ -28,15 +28,15 @@ interface Props {
   settings: Settings
 }
 
-export const ArtistComponent: FC<Props> = ({
+export function ArtistComponent({
   artist,
   labels,
   navigation,
   organisation,
   pageContext,
   settings,
-}) => {
-  const { locale } = useRouter()
+}: Props) {
+  const { locale = "en" } = useRouter()
   const [bio, setBio] = useState(!artist.works[0])
   const [gallery, setGallery] = useState(!!artist.works[0])
   const [modal, setModal] = useState(false)
@@ -56,21 +56,24 @@ export const ArtistComponent: FC<Props> = ({
   const closeModal = () => {
     setModal(false)
   }
-  let currentIndex = imageToShow
   const prevIndexCallback = useCallback(() => {
+    // TODO: this could also be set with refs
+    let currentIndex = imageToShow
     currentIndex -= 1
     if (currentIndex < 0) {
       currentIndex = artist.works.length - 1
     }
     setImageToShow(currentIndex)
-  }, [])
+  }, [imageToShow, artist.works])
   const nextIndexCallback = useCallback(() => {
+    // TODO: this could also be set with refs
+    let currentIndex = imageToShow
     currentIndex += 1
     if (currentIndex >= artist.works.length) {
       currentIndex = 0
     }
     setImageToShow(currentIndex)
-  }, [])
+  }, [imageToShow, artist.works])
   const modalImage =
     artist.works[0] !== undefined ? artist.works[imageToShow] : {}
   const blocks = artist.body && artist.body
@@ -112,7 +115,7 @@ export const ArtistComponent: FC<Props> = ({
                   onKeyDown={toggleGallery}
                   type="button"
                   className={`${s.tabItem} ${u.pointer} ${
-                    bio ? undefined : s.selected
+                    bio ? "" : s.selected
                   }`}
                 >
                   <h3 className={`${s.h3}`}>{labels[24].text}</h3>
@@ -125,7 +128,7 @@ export const ArtistComponent: FC<Props> = ({
                   onClick={toggleBio}
                   onKeyDown={toggleBio}
                   type="button"
-                  className={`${s.tabItem} ${bio ? s.selected : undefined} ${
+                  className={`${s.tabItem} ${bio ? s.selected : ""} ${
                     u.pointer
                   }`}
                 >
@@ -134,16 +137,14 @@ export const ArtistComponent: FC<Props> = ({
               </li>
             )}
           </ul>
-          <div className={`${s.info} ${bio ? undefined : s.hidden}`}>
+          <div className={`${s.info} ${bio ? "" : s.hidden}`}>
             {artist.body && (
               <PortableText value={blocks} components={components} />
             )}
           </div>
         </div>
       </div>
-      <div
-        className={`${s.imageGrid} ${gallery ? undefined : s.hidden} ${u.grid}`}
-      >
+      <div className={`${s.imageGrid} ${gallery ? "" : s.hidden} ${u.grid}`}>
         {artist.works[0] ? (
           artist.works.map(
             (artwork, idx) =>
@@ -152,21 +153,22 @@ export const ArtistComponent: FC<Props> = ({
                   style={{ margin: 0 }}
                   key={artwork._id}
                   onClick={() => openModal(idx)}
+                  onKeyDown={() => openModal(idx)}
+                  role="button"
+                  tabIndex={0}
                   className={`${u.pointer}`}
                 >
-                  {locale && (
-                    <GridImage
-                      alt={`
+                  <GridImage
+                    alt={`
                       ${artist.title && `${artist.title}, `}
                       ${artwork.title && `${localize(artwork.title, locale)}, `}
                       ${artwork.date && artwork.date}
                     `}
-                      idx={idx}
-                      image={artwork.mainImage ?? settings.ogImage}
-                      postsPerPage={100}
-                    />
-                  )}
-                  {artwork.title && locale && (
+                    idx={idx}
+                    image={artwork.mainImage ?? settings.ogImage}
+                    postsPerPage={100}
+                  />
+                  {artwork.title && (
                     <div
                       className={`${s.caption} ${u.textRight} ${u.semibold}`}
                     >
@@ -174,7 +176,7 @@ export const ArtistComponent: FC<Props> = ({
                       {artwork.date && `(${artwork.date})`}
                     </div>
                   )}
-                  {(artwork.medium || artwork.price) && locale && (
+                  {(artwork.medium || artwork.price) && (
                     <div className={`${s.caption} ${u.textRight}`}>
                       {artwork.medium &&
                         `${localize(artwork.medium, locale)}, `}
@@ -190,11 +192,9 @@ export const ArtistComponent: FC<Props> = ({
       </div>
       <div className={`${s.backLink}`}>
         <p className={`${u.textCenter}`}>
-          {locale && (
-            <LinkTo href={`/${subdir(locale, artist._type)}`}>
-              {labels[28].text}
-            </LinkTo>
-          )}
+          <LinkTo href={`/${subdir(locale, artist._type)}`}>
+            {labels[28].text}
+          </LinkTo>
         </p>
       </div>
       {artist.works[0] !== undefined ? (

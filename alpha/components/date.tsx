@@ -1,21 +1,28 @@
-import { FC } from "react"
 import { useRouter } from "next/router"
 import format from "date-fns/format"
 import { cy, enGB } from "date-fns/locale"
 
-interface Props {
-  date?: string | Date
-  dateEnd?: string
-  dateStart?: string
-  label?: string
+interface DateProps {
+  date: string | Date
+}
+
+interface ExhibitionDateProps {
+  dateEnd: string
+  dateStart: string
+  label: string
+}
+
+interface SidebarDateProps {
+  dateEnd: string
+  dateStart: string
 }
 
 const year = new Date().getFullYear()
 
 // Saturday, February 12th 2022
 // dydd Sadwrn, Chwefror 12, 2022
-export const EventDate: FC<Props> = ({ date }) => {
-  const { locale } = useRouter()
+export function EventDate({ date }: DateProps) {
+  const { locale = "en" } = useRouter()
   return (
     <time dateTime={format(new Date(date), "yyyy-MM-dd")}>
       {locale === "cy"
@@ -30,28 +37,33 @@ export const EventDate: FC<Props> = ({ date }) => {
 }
 
 // 4th November to 19th December 2021
-//4ydd Tachwedd i 19eg Rhagfyr 2021
-export const ExhibitionDate: FC<Props> = ({ dateEnd, dateStart, label }) => {
-  const { locale } = useRouter()
+// 4ydd Tachwedd i 19eg Rhagfyr 2021
+export function ExhibitionDate({
+  dateEnd,
+  dateStart,
+  label,
+}: ExhibitionDateProps) {
+  const { locale = "en" } = useRouter()
   return (
     <time dateTime={format(new Date(dateStart), "yyyy-MM-dd")}>
-      {!dateEnd && label && label.trim() + " "}
+      {!dateEnd && label && `${label.trim()} `}
       {locale === "cy"
         ? format(new Date(dateStart), "do MMMM", { locale: cy })
         : format(new Date(dateStart), "do MMMM", { locale: enGB })}
       {dateEnd &&
         (locale === "cy"
-          ? " i " + format(new Date(dateEnd), "do MMMM yyyy", { locale: cy })
-          : " to " +
-            format(new Date(dateEnd), "do MMMM yyyy", { locale: enGB }))}
+          ? ` i ${format(new Date(dateEnd), "do MMMM yyyy", { locale: cy })}`
+          : ` to ${format(new Date(dateEnd), "do MMMM yyyy", {
+              locale: enGB,
+            })}`)}
     </time>
   )
 }
 
 // Saturday, February 12th 2022
 // dydd Sadwrn, Chwefror 12, 2022
-export const PostDate: FC<Props> = ({ date }) => {
-  const { locale } = useRouter()
+export function PostDate({ date }: DateProps) {
+  const { locale = "en" } = useRouter()
   return (
     <time dateTime={format(new Date(date), "yyyy-MM-dd")}>
       {locale === "cy"
@@ -68,8 +80,8 @@ export const PostDate: FC<Props> = ({ date }) => {
 
 // Sat, 5th February
 // Sad, 5ed Chwefror
-export const SidebarEventDate: FC<Props> = ({ date }) => {
-  const { locale } = useRouter()
+export function SidebarEventDate({ date }: DateProps) {
+  const { locale = "en" } = useRouter()
   return (
     <time dateTime={format(new Date(date), "yyyy-MM-dd")}>
       {locale === "cy"
@@ -80,8 +92,11 @@ export const SidebarEventDate: FC<Props> = ({ date }) => {
 }
 
 // 4th November to 19th December 2021
-//4ydd Tachwedd i 19eg Rhagfyr 2021
-export const SidebarExhibitionDate: FC<Props> = ({ dateEnd, dateStart }) => {
+// 4ydd Tachwedd i 19eg Rhagfyr 2021
+export function SidebarExhibitionDate({
+  dateEnd,
+  dateStart,
+}: SidebarDateProps) {
   const { locale } = useRouter()
   return (
     <time dateTime={format(new Date(dateStart), "yyyy-MM-dd")}>

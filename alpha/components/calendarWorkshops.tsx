@@ -1,4 +1,3 @@
-import { FC } from "react"
 import { useRouter } from "next/router"
 import { days, dayToNumber, freqString } from "lib/dateHelpers"
 import { buildURL } from "lib/utils"
@@ -11,8 +10,8 @@ interface Props {
   workshops: Workshop[]
 }
 
-export const CalendarWorkshops: FC<Props> = ({ workshops }) => {
-  const { locale } = useRouter()
+export function CalendarWorkshops({ workshops }: Props) {
+  const { locale = "en" } = useRouter()
   return (
     <section className={`${s.calendarDay}`}>
       {workshops[0] && (

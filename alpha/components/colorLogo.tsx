@@ -1,4 +1,3 @@
-import { FC } from "react"
 import s from "styles/layout.module.scss"
 
 interface Props {
@@ -7,7 +6,7 @@ interface Props {
   logoClass: string
 }
 
-export const ColorLogo: FC<Props> = ({ alt, containerClass, logoClass }) => {
+export function ColorLogo({ alt, containerClass, logoClass }: Props) {
   return (
     <div className={`${s[containerClass]}`}>
       <svg

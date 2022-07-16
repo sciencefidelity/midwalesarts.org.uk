@@ -1,7 +1,6 @@
-import { FC } from "react"
 import s from "styles/home.module.scss"
 
-export const BrandCy: FC = () => {
+export function BrandCy() {
   return (
     <div>
       <h1
@@ -34,7 +33,7 @@ export const BrandCy: FC = () => {
   )
 }
 
-export const BrandEn: FC = () => {
+export function BrandEn() {
   return (
     <div>
       <h1 className={`${s.brand}`} style={{ paddingLeft: "0.05em" }}>

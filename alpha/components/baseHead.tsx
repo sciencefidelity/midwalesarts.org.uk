@@ -1,4 +1,3 @@
-import { FC } from "react"
 import Head from "next/head"
 import { useRouter } from "next/router"
 import { urlFor } from "lib/utils"
@@ -9,14 +8,14 @@ interface Props {
   settings: Settings
 }
 
-export const BaseHead: FC<Props> = ({ pageHead, settings }) => {
-  const { locale } = useRouter()
+export function BaseHead({ pageHead, settings }: Props) {
+  const { locale = "en" } = useRouter()
   return (
     <Head>
       <title>
-        {pageHead && pageHead.title + " | "}
+        {pageHead && `${pageHead.title} | `}
         {settings.title[locale]}
-        {pageHead ? "" : " | " + settings.description[locale]}
+        {pageHead ? "" : ` | ${settings.description[locale]}`}
       </title>
       <link href="https://cdn.sanity.io/" rel="preconnect" crossOrigin="" />
       <link
@@ -129,4 +128,8 @@ export const BaseHead: FC<Props> = ({ pageHead, settings }) => {
       <link rel="mask-icon" href="/mask-icon.svg" color="#FFFFFF" />
     </Head>
   )
+}
+
+BaseHead.defaultProps = {
+  pageHead: {},
 }
