@@ -20,7 +20,7 @@ export const NavComponent: FC<Props> = ({
   pageContext,
 }) => {
   const router = useRouter()
-  const { locale } = router
+  const { locale = "" } = router
   const [isActive, setActive] = useState(false)
   const menuOpen = () => {
     setActive(true)
@@ -33,9 +33,11 @@ export const NavComponent: FC<Props> = ({
   return (
     <nav
       className={`${s.navOverlay} ${u.absolute}`}
-      onClick={isActive ? menuClose : null}
+      onClick={isActive ? menuClose : undefined}
+      onKeyDown={isActive ? menuClose : undefined}
+      tabIndex={0}
     >
-      <div className={`${s.nav} ${isActive ? s.isActive : null} ${u.absolute}`}>
+      <div className={`${s.nav} ${isActive ? s.isActive : ""} ${u.absolute}`}>
         <ul
           style={align}
           className={`${s.navList} ${u.absolute} ${u.uppercase}`}

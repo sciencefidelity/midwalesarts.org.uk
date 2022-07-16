@@ -1,4 +1,3 @@
-import { FC } from "react"
 import s from "styles/visit.module.scss"
 
 export interface Props {
@@ -7,7 +6,7 @@ export interface Props {
   _text: string
 }
 
-export const LocationPin: FC<Props> = ({ _lat, _lng, _text }) => {
+export function LocationPin({ _lat, _lng, _text }: Props) {
   return (
     <div className={`${s.pin}`}>
       <img

@@ -1,4 +1,3 @@
-import { FC } from "react"
 import { useRouter } from "next/router"
 import { PortableText } from "@portabletext/react"
 import { buildURL } from "lib/utils"
@@ -12,8 +11,8 @@ interface Props {
   page: Page
 }
 
-export const Intro: FC<Props> = ({ page }) => {
-  const { locale } = useRouter()
+export function Intro({ page }: Props) {
+  const { locale = "en" } = useRouter()
   const url = buildURL(locale, page.ctaLink.slug, page.ctaLink._type)
   return (
     <div className={`${s.introText} ${u.relative}`}>
@@ -23,6 +22,7 @@ export const Intro: FC<Props> = ({ page }) => {
           {page.cta && (
             <h2
               className={`${s.introCta} ${u.relative} ${u.textRight}`}
+              // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
               tabIndex={0}
             >
               <span>{page.cta.trim()}&nbsp;</span>
@@ -30,7 +30,7 @@ export const Intro: FC<Props> = ({ page }) => {
           )}
         </LinkTo>
       )}
-      <div className={`${s.introCtaHr} ${u.absolute}`}></div>
+      <div className={`${s.introCtaHr} ${u.absolute}`} />
     </div>
   )
 }

@@ -46,9 +46,9 @@ export const EventPreview: FC<Props> = ({
               className={`${u.truncate}`}
             >
               <GridImage
-                alt={event.title ? event.title : ""}
+                alt={event.title ?? ""}
                 idx={idx}
-                image={event.mainImage ? event.mainImage : fallbackImage}
+                image={event.mainImage ?? fallbackImage}
                 postsPerPage={postsPerPage}
                 top={top}
               />
@@ -66,7 +66,7 @@ export const EventPreview: FC<Props> = ({
                         : nextDate(dayToNumber(event.day), event.frequency)
                     }
                   />
-                  {event.startTime && ", " + event.startTime}
+                  {event.startTime && `, ${event.startTime}`}
                 </div>
               )}
             </LinkTo>

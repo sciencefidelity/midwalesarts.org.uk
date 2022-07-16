@@ -56,7 +56,7 @@ export function Exhibitions({
   const count = page.exhibitions.length + page.futureExhibitions.length
   return (
     <Layout
-      caption={exhibitionHero?.caption ? exhibitionHero.caption : null}
+      caption={exhibitionHero?.caption ?? undefined}
       heroImage={exhibitionHero?.asset ? exhibitionHero : settings.ogImage}
       labels={labels}
       navigation={navigation}
