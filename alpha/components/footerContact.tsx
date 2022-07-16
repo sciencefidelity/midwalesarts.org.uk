@@ -10,7 +10,7 @@ interface Props {
 }
 
 export const FooterContact: FC<Props> = ({ label, organisation, settings }) => {
-  const { locale } = useRouter()
+  const { locale = "" } = useRouter()
   const year = new Date().getFullYear()
   return (
     <div>

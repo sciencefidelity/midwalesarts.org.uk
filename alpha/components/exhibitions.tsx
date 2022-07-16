@@ -1,4 +1,4 @@
-import { FC, Fragment, useState } from "react"
+import { Fragment, useState } from "react"
 import { useRouter } from "next/router"
 import { ExhibitionPreview } from "components/exhibitionPreview"
 import { Layout } from "components/layout"
@@ -24,14 +24,14 @@ interface Props {
   settings: Settings
 }
 
-export const Exhibitions: FC<Props> = ({
+export function Exhibitions({
   labels,
   navigation,
   organisation,
   page,
   pageContext,
   settings,
-}) => {
+}: Props) {
   const [pastExhibitionsPerPage, setPastExhibitionsPerPage] = useState(9)
   const { locale } = useRouter()
   const pageHead: PageHead = {
@@ -77,7 +77,7 @@ export const Exhibitions: FC<Props> = ({
       </header>
       <section
         className={`
-        ${s.exhibitionGrid} ${count < 3 && s.twoCols} ${u.grid} ${u.mAuto}`}
+        ${s.exhibitionGrid} ${count < 3 ? s.twoCols : ""} ${u.grid} ${u.mAuto}`}
       >
         {page.exhibitions[0] &&
           page.exhibitions.map((exhibition, idx) => (
@@ -130,6 +130,7 @@ export const Exhibitions: FC<Props> = ({
         <button
           onClick={handleShowMoreExhibitions}
           className={`${s.loadMore} ${u.pointer}`}
+          type="button"
         >
           {labels[84].text}
         </button>

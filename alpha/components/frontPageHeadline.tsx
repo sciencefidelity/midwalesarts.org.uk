@@ -1,4 +1,3 @@
-import { FC } from "react"
 import { useRouter } from "next/router"
 import { buildURL } from "lib/utils"
 import { HeadlineHeroImage } from "components/headlineHeroImage"
@@ -13,8 +12,8 @@ interface Props {
   settings: Settings
 }
 
-export const FrontPageHeadline: FC<Props> = ({ headline, settings }) => {
-  const { locale } = useRouter()
+export function FrontPageHeadline({ headline, settings }: Props) {
+  const { locale = "en" } = useRouter()
   const url = buildURL(locale, headline.ctaLink.slug, headline.ctaLink._type)
   return (
     <div className={`${s.sectionContainer} ${u.relative} ${u.mAuto}`}>
@@ -69,7 +68,7 @@ export const FrontPageHeadline: FC<Props> = ({ headline, settings }) => {
         </div>
       </div>
       <div className={`${s.sectionCtaContainer}`}>
-        <div className={`${s.sectionCtaHr} ${u.absolute}`}></div>
+        <div className={`${s.sectionCtaHr} ${u.absolute}`} />
         <LinkTo href={url} tabIndex={-1}>
           <h2
             className={`${s.sectionCta} ${u.relative} ${u.textRight}`}

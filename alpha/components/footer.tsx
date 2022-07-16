@@ -1,4 +1,3 @@
-import { FC } from "react"
 import { useRouter } from "next/router"
 import { FooterContact } from "components/footerContact"
 import { FooterLinks } from "components/footerLinks"
@@ -14,8 +13,8 @@ interface Props {
   settings: Settings
 }
 
-export const Footer: FC<Props> = ({ labels, organisation, settings }) => {
-  const { locale } = useRouter()
+export function Footer({ labels, organisation, settings }: Props) {
+  const { locale = "" } = useRouter()
   const year = new Date().getFullYear()
   return (
     <footer className={`${s.footer} ${u.relative}`}>
