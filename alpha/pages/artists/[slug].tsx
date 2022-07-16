@@ -9,10 +9,12 @@ import {
   Navigation,
   Organisation,
   PageContext,
+  Params,
+  Path,
   Settings,
 } from "lib/interfaces"
 
-interface Props {
+interface Data {
   artist: Artist
   labels: Label[]
   navigation: Navigation[]
@@ -22,9 +24,11 @@ interface Props {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = await sanityClient.fetch(artistPathQuery, { locale: "en" })
+  const paths: Path[] = await sanityClient.fetch(artistPathQuery, {
+    locale: "en",
+  })
   return {
-    paths: paths,
+    paths,
     fallback: false,
   }
 }
@@ -34,20 +38,20 @@ export const getStaticProps: GetStaticProps = async ({
   locale,
   params,
 }) => {
-  const slug = params.slug
-  const data = await sanityClient.fetch(artistQuery, {
+  const { slug } = params as Params
+  const data: Data = await sanityClient.fetch(artistQuery, {
     slug,
     locale,
     template: "Artists",
   })
-  const { artist, labels, navigation, organisation, settings } = data as Props
+  const { artist, labels, navigation, organisation, settings } = data
   const pageContext = {
     locale: artist.__i18n_lang,
     localization: artist.localization,
     locales,
     defaultLocale,
-    slug: params.slug ? params.slug : "",
-  }
+    slug: params?.slug ?? "",
+  } as PageContext
   const localizedPaths = pageContext.localization
     ? getLocalizedPaths(pageContext)
     : ""
@@ -66,23 +70,21 @@ export const getStaticProps: GetStaticProps = async ({
   }
 }
 
-const ArtistEn: NextPage<Props> = ({
+const ArtistEn: NextPage<Data> = ({
   artist,
   labels,
   navigation,
   organisation,
   pageContext,
   settings,
-}) => {
-  return (
-    <ArtistComponent
-      artist={artist}
-      labels={labels}
-      navigation={navigation}
-      organisation={organisation}
-      pageContext={pageContext}
-      settings={settings}
-    />
-  )
-}
+}: Data) => (
+  <ArtistComponent
+    artist={artist}
+    labels={labels}
+    navigation={navigation}
+    organisation={organisation}
+    pageContext={pageContext}
+    settings={settings}
+  />
+)
 export default ArtistEn

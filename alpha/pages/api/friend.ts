@@ -34,7 +34,9 @@ async function sendFriendForm(req, res) {
     giftAid: req.body.giftAid,
   };
   try {
-    await client.create(doc).then(res);
+    await client.create(doc).then((res) => {
+      console.log(`A friend was created, document ID is ${res._id}`);
+    });
     await sendgrid
       .send({
         to: "Office <office@midwalesarts.org.uk>",
@@ -72,7 +74,9 @@ async function sendFriendForm(req, res) {
         </html>
       `,
       })
-      .then(() => {});
+      .then(() => {
+        console.log("Email sent");
+      });
   } catch (error) {
     return res.status(error.statusCode || 500).json({ error: error.message });
   }

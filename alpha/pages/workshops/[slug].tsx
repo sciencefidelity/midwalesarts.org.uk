@@ -9,10 +9,12 @@ import {
   Navigation,
   Organisation,
   PageContext,
+  Params,
+  Path,
   Settings,
 } from "lib/interfaces"
 
-interface Props {
+interface Data {
   workshop: Workshop
   labels: Label[]
   navigation: Navigation[]
@@ -22,9 +24,11 @@ interface Props {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = await sanityClient.fetch(workshopPathQuery, { locale: "en" })
+  const paths: Path[] = await sanityClient.fetch(workshopPathQuery, {
+    locale: "en",
+  })
   return {
-    paths: paths,
+    paths,
     fallback: false,
   }
 }
@@ -34,20 +38,20 @@ export const getStaticProps: GetStaticProps = async ({
   locale,
   params,
 }) => {
-  const slug = params.slug
-  const data = await sanityClient.fetch(workshopQuery, {
+  const { slug } = params as Params
+  const data: Data = await sanityClient.fetch(workshopQuery, {
     slug,
     locale,
     template: "Workshops",
   })
-  const { workshop, labels, navigation, organisation, settings } = data as Props
+  const { workshop, labels, navigation, organisation, settings } = data
   const pageContext = {
     locale: workshop.__i18n_lang,
     localization: workshop.localization,
     locales,
     defaultLocale,
-    slug: params.slug ? params.slug : "",
-  }
+    slug: params?.slug ?? "",
+  } as PageContext
   const localizedPaths = pageContext.localization
     ? getLocalizedPaths(pageContext)
     : ""
@@ -66,23 +70,21 @@ export const getStaticProps: GetStaticProps = async ({
   }
 }
 
-const WorkshopEn: NextPage<Props> = ({
+const WorkshopEn: NextPage<Data> = ({
   workshop,
   labels,
   navigation,
   organisation,
   pageContext,
   settings,
-}) => {
-  return (
-    <WorkshopComponent
-      workshop={workshop}
-      labels={labels}
-      navigation={navigation}
-      organisation={organisation}
-      pageContext={pageContext}
-      settings={settings}
-    />
-  )
-}
+}: Data) => (
+  <WorkshopComponent
+    workshop={workshop}
+    labels={labels}
+    navigation={navigation}
+    organisation={organisation}
+    pageContext={pageContext}
+    settings={settings}
+  />
+)
 export default WorkshopEn

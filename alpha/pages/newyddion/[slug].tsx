@@ -9,10 +9,12 @@ import {
   Navigation,
   Organisation,
   PageContext,
+  Params,
+  Path,
   Settings,
 } from "lib/interfaces"
 
-interface Props {
+interface Data {
   post: Post
   labels: Label[]
   navigation: Navigation[]
@@ -22,9 +24,11 @@ interface Props {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = await sanityClient.fetch(postPathQuery, { locale: "cy" })
+  const paths: Path[] = await sanityClient.fetch(postPathQuery, {
+    locale: "cy",
+  })
   return {
-    paths: paths,
+    paths,
     fallback: false,
   }
 }
@@ -34,20 +38,20 @@ export const getStaticProps: GetStaticProps = async ({
   locale,
   params,
 }) => {
-  const slug = params.slug
-  const data = await sanityClient.fetch(postQuery, {
+  const { slug } = params as Params
+  const data: Data = await sanityClient.fetch(postQuery, {
     slug,
     locale,
     template: "News",
   })
-  const { post, labels, navigation, organisation, settings } = data as Props
+  const { post, labels, navigation, organisation, settings } = data
   const pageContext = {
     locale: post.__i18n_lang,
     localization: post.localization,
     locales,
     defaultLocale,
-    slug: params.slug ? params.slug : "",
-  }
+    slug: params?.slug ?? "",
+  } as PageContext
   const localizedPaths = pageContext.localization
     ? getLocalizedPaths(pageContext)
     : ""
@@ -66,23 +70,21 @@ export const getStaticProps: GetStaticProps = async ({
   }
 }
 
-const PostCy: NextPage<Props> = ({
+const PostCy: NextPage<Data> = ({
   post,
   labels,
   navigation,
   organisation,
   pageContext,
   settings,
-}) => {
-  return (
-    <PostComponent
-      post={post}
-      labels={labels}
-      navigation={navigation}
-      organisation={organisation}
-      pageContext={pageContext}
-      settings={settings}
-    />
-  )
-}
+}: Data) => (
+  <PostComponent
+    post={post}
+    labels={labels}
+    navigation={navigation}
+    organisation={organisation}
+    pageContext={pageContext}
+    settings={settings}
+  />
+)
 export default PostCy

@@ -18,10 +18,11 @@ import {
   Organisation,
   Page,
   PageContext,
+  Path,
   Settings,
 } from "lib/interfaces"
 
-interface Props {
+interface Data {
   labels: Label[]
   navigation: Navigation[]
   organisation: Organisation
@@ -31,7 +32,7 @@ interface Props {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = await sanityClient.fetch(pagePathQuery)
+  const paths: Path[] = await sanityClient.fetch(pagePathQuery)
   return {
     paths,
     fallback: false,
@@ -43,16 +44,16 @@ export const getStaticProps: GetStaticProps = async ({
   locale = "en",
   params,
 }) => {
-  const slug = params?.slug ? params.slug[params?.slug?.length - 1] : "index"
-  const data = await sanityClient.fetch(pageQuery, { slug, locale })
-  const { labels, navigation, organisation, page, settings } = data as Props
+  const slug = params?.slug ? params.slug[0] : "index"
+  const data: Data = await sanityClient.fetch(pageQuery, { slug, locale })
+  const { labels, navigation, organisation, page, settings } = data
   const pageContext = {
     locale: page.__i18n_lang,
     localization: page.localization,
     locales,
     defaultLocale,
-    slug: params.slug ? params.slug : "",
-  }
+    slug: params?.slug ?? "",
+  } as PageContext
   const localizedPaths = pageContext.localization
     ? getLocalizedPaths(pageContext)
     : ""
@@ -71,14 +72,14 @@ export const getStaticProps: GetStaticProps = async ({
   }
 }
 
-const Pages: NextPage<Props> = ({
+const Pages: NextPage<Data> = ({
   labels,
   navigation,
   organisation,
   page,
   pageContext,
   settings,
-}: Props) => (
+}: Data) => (
   <>
     {page.template === "Artists" && (
       <Artists

@@ -1,4 +1,5 @@
 import { CSSProperties } from "react";
+import { ParsedUrlQuery } from "node:querystring";
 
 export interface Address {
   town: string;
@@ -182,6 +183,17 @@ export interface PageHead {
   ogURL: string;
   slug?: string;
   title: string;
+}
+
+export interface Params extends ParsedUrlQuery {
+  slug: string;
+}
+
+export interface Path {
+  locale: "en" | "cy";
+  params: {
+    slug: string;
+  };
 }
 
 export interface Post extends SanityDocument {

@@ -9,10 +9,12 @@ import {
   Navigation,
   Organisation,
   PageContext,
+  Params,
+  Path,
   Settings,
 } from "lib/interfaces"
 
-interface Props {
+interface Data {
   event: Event
   labels: Label[]
   navigation: Navigation[]
@@ -22,9 +24,11 @@ interface Props {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = await sanityClient.fetch(eventPathQuery, { locale: "cy" })
+  const paths: Path[] = await sanityClient.fetch(eventPathQuery, {
+    locale: "cy",
+  })
   return {
-    paths: paths,
+    paths,
     fallback: false,
   }
 }
@@ -34,20 +38,20 @@ export const getStaticProps: GetStaticProps = async ({
   locale,
   params,
 }) => {
-  const slug = params.slug
-  const data = await sanityClient.fetch(eventQuery, {
+  const { slug } = params as Params
+  const data: Data = await sanityClient.fetch(eventQuery, {
     slug,
     locale,
     template: "Events",
   })
-  const { event, labels, navigation, organisation, settings } = data as Props
+  const { event, labels, navigation, organisation, settings } = data
   const pageContext = {
     locale: event.__i18n_lang,
     localization: event.localization,
     locales,
     defaultLocale,
-    slug: params.slug ? params.slug : "",
-  }
+    slug: params?.slug ?? "",
+  } as PageContext
   const localizedPaths = pageContext.localization
     ? getLocalizedPaths(pageContext)
     : ""
@@ -66,23 +70,21 @@ export const getStaticProps: GetStaticProps = async ({
   }
 }
 
-const EventCy: NextPage<Props> = ({
+const EventCy: NextPage<Data> = ({
   event,
   labels,
   navigation,
   organisation,
   pageContext,
   settings,
-}) => {
-  return (
-    <EventComponent
-      event={event}
-      labels={labels}
-      navigation={navigation}
-      organisation={organisation}
-      pageContext={pageContext}
-      settings={settings}
-    />
-  )
-}
+}: Data) => (
+  <EventComponent
+    event={event}
+    labels={labels}
+    navigation={navigation}
+    organisation={organisation}
+    pageContext={pageContext}
+    settings={settings}
+  />
+)
 export default EventCy

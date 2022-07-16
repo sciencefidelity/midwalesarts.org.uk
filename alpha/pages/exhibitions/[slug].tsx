@@ -9,10 +9,12 @@ import {
   Navigation,
   Organisation,
   PageContext,
+  Params,
+  Path,
   Settings,
 } from "lib/interfaces"
 
-interface Props {
+interface Data {
   exhibition: Exhibition
   labels: Label[]
   navigation: Navigation[]
@@ -22,9 +24,11 @@ interface Props {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = await sanityClient.fetch(exhibitionPathQuery, { locale: "en" })
+  const paths: Path[] = await sanityClient.fetch(exhibitionPathQuery, {
+    locale: "en",
+  })
   return {
-    paths: paths,
+    paths,
     fallback: false,
   }
 }
@@ -34,21 +38,20 @@ export const getStaticProps: GetStaticProps = async ({
   locale,
   params,
 }) => {
-  const slug = params.slug
-  const data = await sanityClient.fetch(exhibitionQuery, {
+  const { slug } = params as Params
+  const data: Data = await sanityClient.fetch(exhibitionQuery, {
     slug,
     locale,
     template: "Exhibitions",
   })
-  const { exhibition, labels, navigation, organisation, settings } =
-    data as Props
+  const { exhibition, labels, navigation, organisation, settings } = data
   const pageContext = {
     locale: exhibition.__i18n_lang,
     localization: exhibition.localization,
     locales,
     defaultLocale,
-    slug: params.slug ? params.slug : "",
-  }
+    slug: params?.slug ?? "",
+  } as PageContext
   const localizedPaths = pageContext.localization
     ? getLocalizedPaths(pageContext)
     : ""
@@ -67,23 +70,21 @@ export const getStaticProps: GetStaticProps = async ({
   }
 }
 
-const ExhibitionEn: NextPage<Props> = ({
+const ExhibitionEn: NextPage<Data> = ({
   exhibition,
   labels,
   navigation,
   organisation,
   pageContext,
   settings,
-}) => {
-  return (
-    <ExhibitionComponent
-      exhibition={exhibition}
-      labels={labels}
-      navigation={navigation}
-      organisation={organisation}
-      pageContext={pageContext}
-      settings={settings}
-    />
-  )
-}
+}: Data) => (
+  <ExhibitionComponent
+    exhibition={exhibition}
+    labels={labels}
+    navigation={navigation}
+    organisation={organisation}
+    pageContext={pageContext}
+    settings={settings}
+  />
+)
 export default ExhibitionEn
