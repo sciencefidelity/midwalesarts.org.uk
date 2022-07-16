@@ -37,7 +37,7 @@ export const EventComponent: FC<Props> = ({
   pageContext,
   settings,
 }) => {
-  const { locale } = useRouter()
+  const { locale = "en" } = useRouter()
   const pageHead: PageHead = {
     title: event.title,
     description: event.ogDescription,
@@ -51,7 +51,7 @@ export const EventComponent: FC<Props> = ({
   }
   return (
     <Layout
-      heroImage={event.mainImage ? event.mainImage : settings.ogImage}
+      heroImage={event.mainImage ?? settings.ogImage}
       labels={labels}
       navigation={navigation}
       organisation={organisation}
@@ -64,7 +64,7 @@ export const EventComponent: FC<Props> = ({
           <div className={`${s.header} ${u.grid}`}>
             <div>
               <GridImage
-                alt={event.title ? event.title : ""}
+                alt={event.title ?? ""}
                 idx={1}
                 image={
                   event.mainImage?.asset ? event.mainImage : settings.ogImage
@@ -74,7 +74,7 @@ export const EventComponent: FC<Props> = ({
             </div>
             <div className={`${s.headerContent} ${u.grid}`}>
               <h3 className={`${s.type} ${u.uppercase}`}>
-                {event.category ? event.category : labels[30].text}
+                {event.category ?? labels[30].text}
               </h3>
               <div>
                 {event.date && (
@@ -97,6 +97,8 @@ export const EventComponent: FC<Props> = ({
               ) : (
                 <p
                   className={`${s.headerLink}`}
+                  // TODO: make this less dangerous
+                  // eslint-disable-next-line react/no-danger
                   dangerouslySetInnerHTML={{ __html: "&nbsp;" }}
                 />
               )}

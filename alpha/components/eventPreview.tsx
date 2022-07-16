@@ -26,7 +26,7 @@ export const EventPreview: FC<Props> = ({
   postsPerPage,
   top = true,
 }) => {
-  const { locale } = useRouter()
+  const { locale = "en" } = useRouter()
   return (
     <>
       <div className={`${s.container} ${u.grid}`} style={marginTop}>
@@ -38,7 +38,7 @@ export const EventPreview: FC<Props> = ({
         {eventData.map((event, idx: number) => (
           <div
             key={event._id}
-            className={`${idx >= postsPerPage ? u.hidden : null}`}
+            className={`${idx >= postsPerPage ? u.hidden : ""}`}
           >
             <LinkTo
               href={buildURL(locale, event.slug, event._type)}

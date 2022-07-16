@@ -1,4 +1,4 @@
-import { FC, useState } from "react"
+import { useCallback, useState } from "react"
 import { useRouter } from "next/router"
 import { PortableText } from "@portabletext/react"
 import { components } from "components/portableTextComponents"
@@ -29,24 +29,20 @@ interface Props {
   settings: Settings
 }
 
-export const ExhibitionComponent: FC<Props> = ({
+export function ExhibitionComponent({
   exhibition,
   labels,
   navigation,
   organisation,
   pageContext,
   settings,
-}) => {
-  const { locale } = useRouter()
+}: Props) {
+  const { locale = "en" } = useRouter()
   const [info, setInfo] = useState(
-    exhibition.works[0] && exhibition.dateStart < new Date().toISOString()
-      ? false
-      : true
+    !(exhibition.works[0] && exhibition.dateStart < new Date().toISOString())
   )
   const [gallery, setGallery] = useState(
-    exhibition.works[0] && exhibition.dateStart < new Date().toISOString()
-      ? true
-      : false
+    !!(exhibition.works[0] && exhibition.dateStart < new Date().toISOString())
   )
   const [modal, setModal] = useState(false)
   const [imageToShow, setImageToShow] = useState(0)
@@ -76,28 +72,31 @@ export const ExhibitionComponent: FC<Props> = ({
   const closeModal = () => {
     setModal(false)
   }
-  let currentIndex = imageToShow
-  function prevIndex() {
-    currentIndex = currentIndex - 1
+
+  const prevIndexCallback = useCallback(() => {
+    // TODO: this could also be set with refs
+    let currentIndex = imageToShow
+    currentIndex -= 1
     if (currentIndex < 0) {
       currentIndex = exhibition.works.length - 1
     }
     setImageToShow(currentIndex)
-  }
-  function nextIndex() {
-    currentIndex = currentIndex + 1
+  }, [imageToShow, exhibition.works])
+  const nextIndexCallback = useCallback(() => {
+    // TODO: this could also be set with refs
+    let currentIndex = imageToShow
+    currentIndex += 1
     if (currentIndex > exhibition.works.length - 1) {
       currentIndex = 0
     }
     setImageToShow(currentIndex)
-  }
+  }, [imageToShow, exhibition.works])
+
   const modalImage =
     exhibition.works[0] !== undefined ? exhibition.works[imageToShow] : {}
   return (
     <Layout
-      caption={
-        exhibition.mainImage?.caption ? exhibition.mainImage.caption : null
-      }
+      caption={exhibition.mainImage?.caption ?? undefined}
       heroImage={
         exhibition.mainImage?.asset ? exhibition.mainImage : settings.ogImage
       }
@@ -121,35 +120,43 @@ export const ExhibitionComponent: FC<Props> = ({
           )}
           <ul className={`${s.tabs} ${u.flex}`}>
             {exhibition.body && (
-              <li
-                onClick={toggleInfo}
-                className={`${s.tabItem} ${info ? s.selected : null} ${
-                  u.pointer
-                }`}
-              >
-                <h3 className={`${s.h3}`}>{labels[35].text}</h3>
+              <li>
+                <button
+                  onClick={toggleInfo}
+                  onKeyDown={toggleInfo}
+                  type="button"
+                  className={`${s.tabItem} ${u.pointer} ${
+                    info ? s.selected : ""
+                  }`}
+                >
+                  <h3 className={`${s.h3}`}>{labels[35].text}</h3>
+                </button>
               </li>
             )}
             {exhibition.works[0] &&
               exhibition.dateStart < new Date().toISOString() && (
-                <li
-                  onClick={toggleGallery}
-                  className={`${s.tabItem} ${info ? null : s.selected} ${
-                    u.pointer
-                  }`}
-                >
-                  <h3 className={`${s.h3}`}>{labels[36].text}</h3>
+                <li>
+                  <button
+                    onClick={toggleGallery}
+                    onKeyDown={toggleGallery}
+                    type="button"
+                    className={`${s.tabItem} ${u.pointer} ${
+                      info ? "" : s.selected
+                    }`}
+                  >
+                    <h3 className={`${s.h3}`}>{labels[36].text}</h3>
+                  </button>
                 </li>
               )}
           </ul>
-          <div className={`${s.info} ${info ? null : s.hidden}`}>
+          <div className={`${s.info} ${info ? "" : s.hidden}`}>
             {exhibition.body && (
               <PortableText value={exhibition.body} components={components} />
             )}
           </div>
         </div>
       </div>
-      <div className={`${s.imageGrid}  ${gallery ? null : s.hidden} ${u.grid}`}>
+      <div className={`${s.imageGrid}  ${gallery ? "" : s.hidden} ${u.grid}`}>
         {exhibition.works ? (
           sortArtworks(exhibition.works).map(
             (artwork, idx) =>
@@ -157,18 +164,19 @@ export const ExhibitionComponent: FC<Props> = ({
                 <div
                   key={artwork._id}
                   onClick={() => openModal(idx)}
+                  onKeyDown={() => openModal(idx)}
+                  role="button"
+                  tabIndex={0}
                   className={`${u.pointer}`}
                 >
                   <GridImage
                     alt={`
-                  ${artwork.artist && artwork.artist + ", "}
-                  ${artwork.title && localize(artwork.title, locale) + ", "}
+                  ${artwork.artist && `${artwork.artist}, `}
+                  ${artwork.title && `${localize(artwork.title, locale)}, `}
                   ${artwork.date && artwork.date}
                 `}
                     idx={idx}
-                    image={
-                      artwork.mainImage ? artwork.mainImage : settings.ogImage
-                    }
+                    image={artwork.mainImage ?? settings.ogImage}
                     postsPerPage={200}
                   />
                   {artwork.artist && (
@@ -202,11 +210,11 @@ export const ExhibitionComponent: FC<Props> = ({
           labels={labels}
           modal={modal}
           modalImage={modalImage}
-          prevIndex={prevIndex}
-          nextIndex={nextIndex}
+          prevIndex={prevIndexCallback}
+          nextIndex={nextIndexCallback}
         />
       ) : (
-        <></>
+        <>{}</>
       )}
     </Layout>
   )

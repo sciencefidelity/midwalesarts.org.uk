@@ -1,15 +1,14 @@
-import { FC } from "react"
 import { useRouter } from "next/router"
-import { buildURL } from "@/lib/utils"
+import { buildURL } from "lib/utils"
 import { ExhibitionDate } from "components/date"
 import { GridImage } from "components/gridImage"
 import { LinkTo } from "components/linkTo"
-import { Exhibition } from "lib/interfaces"
+import { Exhibition, Image } from "lib/interfaces"
 import s from "styles/exhibitions.module.scss"
 import u from "styles/utils.module.scss"
 
 interface Props {
-  fallbackImage: any
+  fallbackImage: Image
   exhibition: Exhibition
   heading?: string
   idx: number
@@ -19,7 +18,7 @@ interface Props {
   top?: boolean
 }
 
-export const ExhibitionPreview: FC<Props> = ({
+export function ExhibitionPreview({
   exhibition,
   fallbackImage,
   heading,
@@ -28,17 +27,19 @@ export const ExhibitionPreview: FC<Props> = ({
   margin,
   postsPerPage,
   top = true,
-}) => {
-  const { locale } = useRouter()
+}: Props) {
+  const { locale = "en" } = useRouter()
   return (
-    <div style={margin && { marginTop: margin }}>
+    <div style={{ marginTop: margin ?? "inherit" }}>
       <h3
         className={`${s.heading}`}
-        dangerouslySetInnerHTML={{ __html: heading ? heading : "&nbsp;" }}
+        // TODO: make this less dangerous
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: heading ?? "&nbsp;" }}
       />
       <LinkTo href={buildURL(locale, exhibition.slug, exhibition._type)}>
         <GridImage
-          alt={exhibition.title ? exhibition.title : ""}
+          alt={exhibition.title ?? ""}
           idx={idx}
           image={
             exhibition.mainImage?.asset ? exhibition.mainImage : fallbackImage

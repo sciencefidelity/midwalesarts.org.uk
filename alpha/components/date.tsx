@@ -9,7 +9,7 @@ interface DateProps {
 interface ExhibitionDateProps {
   dateEnd: string
   dateStart: string
-  label: string
+  label?: string
 }
 
 interface SidebarDateProps {
@@ -109,4 +109,8 @@ export function SidebarExhibitionDate({
         : format(new Date(dateEnd), "do MMMM", { locale: enGB })}
     </time>
   )
+}
+
+ExhibitionDate.defaultProps = {
+  label: undefined,
 }

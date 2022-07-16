@@ -1,5 +1,5 @@
-@use './base/colors' as c;
-@use './base/breakpoints' as b;
+@use "./base/colors" as c;
+@use "./base/breakpoints" as b;
 
 .container {
   grid-template-columns: 3fr 1fr;
@@ -30,7 +30,6 @@
 
 .tabs {
   padding: 0;
-  // margin-block: 3.5rem -3.1rem;
   margin-block: 3rem -2.6rem;
 }
 
@@ -38,6 +37,12 @@
   padding: 0 5rem 0 0;
   margin: 0;
   list-style: none;
+  color: c.$grey-550;
+  transition: color 0.2s ease-in-out;
+  &:hover {
+    color: c.$grey-700;
+    transition: color 0.2s ease-in-out;
+  }
 }
 
 .h3 {
@@ -48,6 +53,9 @@
   text-decoration: underline;
   text-decoration-thickness: 0.1em;
   cursor: default;
+  &:hover {
+    color: c.$grey-550;
+  }
 }
 
 .info {
