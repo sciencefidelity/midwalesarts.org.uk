@@ -1,4 +1,4 @@
-import { FC, MouseEventHandler } from "react"
+import { MouseEventHandler } from "react"
 import { useRouter } from "next/router"
 import { localize, urlFor } from "lib/utils"
 import { Artwork, Label, Image } from "lib/interfaces"
@@ -15,7 +15,7 @@ interface Props {
   nextIndex: MouseEventHandler<HTMLButtonElement>
 }
 
-export const Modal: FC<Props> = ({
+export function Modal({
   closeModal,
   fallbackImage,
   labels,
@@ -23,8 +23,8 @@ export const Modal: FC<Props> = ({
   modalImage,
   prevIndex,
   nextIndex,
-}) => {
-  const { locale } = useRouter()
+}: Props) {
+  const { locale = "en" } = useRouter()
   // const aspect = modalImage.aspect
   // const imageAspect = {
   //   aspectRatio: aspect,
@@ -33,13 +33,14 @@ export const Modal: FC<Props> = ({
   // } as CSSProperties
   return (
     <div
-      className={`${s.modalContainer} ${modal ? null : s.hideModal} ${u.flex} ${
+      className={`${s.modalContainer} ${modal ? "" : s.hideModal} ${u.flex} ${
         u.fixed
       }`}
     >
       <button
         className={`${s.btnPrev} ${u.absolute} ${u.pointer}`}
         onClick={prevIndex}
+        type="button"
       >
         <span className={u.srOnly}>{labels[87].text}</span>
         <svg viewBox="0 0 54 104" xmlns="http://www.w3.org/2000/svg">
@@ -53,6 +54,7 @@ export const Modal: FC<Props> = ({
       <button
         className={`${s.btnNext} ${u.absolute} ${u.pointer}`}
         onClick={nextIndex}
+        type="button"
       >
         <svg viewBox="0 0 54 104" xmlns="http://www.w3.org/2000/svg">
           <title>{labels[88].text}</title>
@@ -65,10 +67,14 @@ export const Modal: FC<Props> = ({
       <div
         className={`${s.handleClose} ${u.absolute}`}
         onClick={closeModal}
-      ></div>
+        onKeyDown={closeModal}
+        role="button"
+        tabIndex={0}
+      />
       <button
         className={`${s.modalClose} ${u.absolute} ${u.pointer}`}
         onClick={closeModal}
+        type="button"
       >
         <svg viewBox="0 0 104 104" xmlns="http://www.w3.org/2000/svg">
           <title>{labels[89].text}</title>
@@ -81,16 +87,14 @@ export const Modal: FC<Props> = ({
       <div className={`${s.modalImageContiner} ${u.mAuto}`}>
         <div className={`${s.modalImageWrapper} ${u.relative}`}>
           <img
-            src={urlFor(
-              modalImage?.mainImage ? modalImage?.mainImage : fallbackImage
-            )
+            src={urlFor(modalImage?.mainImage ?? fallbackImage)
               .width(893)
               .auto("format")
               .quality(75)
               .url()}
             alt={`
-              ${modalImage?.artist && modalImage.artist + ", "}
-              ${modalImage?.title && modalImage.title + ", "}
+              ${modalImage?.artist && `${modalImage.artist}, `}
+              ${modalImage?.title && `${modalImage.title[key]}, `}
               ${modalImage?.date && modalImage.date}
             `}
             style={{

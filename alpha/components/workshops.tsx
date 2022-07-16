@@ -1,4 +1,4 @@
-import { FC, Fragment } from "react"
+import { Fragment } from "react"
 import { useRouter } from "next/router"
 import { PortableText } from "@portabletext/react"
 import { components } from "components/portableTextComponents"
@@ -28,15 +28,15 @@ interface Props {
   settings: Settings
 }
 
-export const Workshops: FC<Props> = ({
+export function Workshops({
   labels,
   navigation,
   organisation,
   page,
   pageContext,
   settings,
-}) => {
-  const { locale } = useRouter()
+}: Props) {
+  const { locale = "en" } = useRouter()
   const pageHead: PageHead = {
     title: page.title,
     description: page.ogDescription,
@@ -48,11 +48,11 @@ export const Workshops: FC<Props> = ({
     ogImage: page.ogImage,
   }
   const workshops = sortWorkshops(page.workshops)
-  let calendarDays = []
-  for (let i = 0; i < 7; i++) {
-    calendarDays[i] = workshops.filter((workshop) => {
-      return dayToNumber(workshop.day) === i
-    })
+  const calendarDays = []
+  for (let i = 0; i < 7; i += 1) {
+    calendarDays[i] = workshops.filter(
+      (workshop) => dayToNumber(workshop.day) === i
+    )
   }
   return (
     <Layout

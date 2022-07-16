@@ -1,4 +1,4 @@
-import { FC, useState } from "react"
+import { useState } from "react"
 import { useRouter } from "next/router"
 import { Layout } from "components/layout"
 import { PostsList } from "components/postsList"
@@ -23,14 +23,14 @@ interface Props {
   settings: Settings
 }
 
-export const News: FC<Props> = ({
+export function News({
   labels,
   navigation,
   organisation,
   page,
   pageContext,
   settings,
-}) => {
+}: Props) {
   const [postsPerPage, setPostsPerPage] = useState(9)
   const { locale } = useRouter()
   const pageHead: PageHead = {
@@ -48,8 +48,8 @@ export const News: FC<Props> = ({
   }
   return (
     <Layout
-      caption={page.posts[0]?.title ? page.posts[0]?.title : null}
-      heroImage={page.posts[0]?.image ? page.posts[0]?.image : settings.ogImage}
+      caption={page.posts[0]?.title ?? undefined}
+      heroImage={page.posts[0]?.image ?? settings.ogImage}
       labels={labels}
       navigation={navigation}
       organisation={organisation}
@@ -70,7 +70,7 @@ export const News: FC<Props> = ({
       {page.posts[0] && (
         <PostsList
           fallbackImage={settings.ogImage}
-          label={labels[18].text.trim() + " "}
+          label={`${labels[18].text.trim()} `}
           posts={page.posts}
           postsPerPage={postsPerPage}
         />
@@ -78,6 +78,7 @@ export const News: FC<Props> = ({
       {postsPerPage < page.posts.length && (
         <button
           onClick={handleShowMorePosts}
+          type="button"
           className={`${s.loadMore} ${u.pointer}`}
         >
           {labels[84].text}

@@ -1,10 +1,9 @@
-import { FC } from "react"
 import { useState } from "react"
 import { useRouter } from "next/router"
 import { Language } from "components/language"
 import { LinkTo } from "components/linkTo"
 import { Social } from "components/social"
-import { Label, Navigation, PageContext } from "lib/interfaces"
+import { Label, LocaleString, Navigation, PageContext } from "lib/interfaces"
 import s from "styles/header.module.scss"
 import u from "styles/utils.module.scss"
 
@@ -14,13 +13,9 @@ interface Props {
   pageContext: PageContext
 }
 
-export const NavComponent: FC<Props> = ({
-  labels,
-  navigation,
-  pageContext,
-}) => {
+export function NavComponent({ labels, navigation, pageContext }: Props) {
   const router = useRouter()
-  const { locale } = router
+  const { locale = "en" } = router
   const [isActive, setActive] = useState(false)
   const menuOpen = () => {
     setActive(true)
@@ -28,14 +23,20 @@ export const NavComponent: FC<Props> = ({
   const menuClose = () => {
     setActive(false)
   }
+  const key: keyof LocaleString = locale === "cy" ? "cy" : "en"
   let align = { right: "calc(50% - 27rem)" }
   if (locale === "cy") align = { right: "calc(50% - 35.5rem)" }
   return (
+    // TODO: fix these a11y issues
+    // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
     <nav
       className={`${s.navOverlay} ${u.absolute}`}
-      onClick={isActive ? menuClose : null}
+      onClick={isActive ? menuClose : undefined}
+      onKeyDown={isActive ? menuClose : undefined}
+      // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
+      tabIndex={0}
     >
-      <div className={`${s.nav} ${isActive ? s.isActive : null} ${u.absolute}`}>
+      <div className={`${s.nav} ${isActive ? s.isActive : ""} ${u.absolute}`}>
         <ul
           style={align}
           className={`${s.navList} ${u.absolute} ${u.uppercase}`}
@@ -43,10 +44,10 @@ export const NavComponent: FC<Props> = ({
           {navigation.map((item) => (
             <li key={item._key} className={`${s.navItem}`}>
               <LinkTo
-                href={`/${item.slug[locale].replace("index", "")}`}
+                href={`/${item.slug[key].replace("index", "")}`}
                 className={`${s.navLink}`}
               >
-                {item.label[locale]}
+                {item.label[key]}
               </LinkTo>
             </li>
           ))}
@@ -62,14 +63,15 @@ export const NavComponent: FC<Props> = ({
             ${u.outline}
           `}
           onClick={isActive ? menuClose : menuOpen}
+          type="button"
           tabIndex={0}
         >
           <span className={`${u.srOnly}`}>{labels[1].text}</span>
           <div
-            className={`${s.hamburger} ${isActive ? s.active : null} ${
+            className={`${s.hamburger} ${isActive ? s.active : ""} ${
               u.relative
             }`}
-          ></div>
+          />
         </button>
         <Language pageContext={pageContext} />
         <Social label={labels[3].text} />

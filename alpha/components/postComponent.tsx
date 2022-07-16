@@ -37,7 +37,7 @@ export const PostComponent: FC<Props> = ({
   post,
   settings,
 }) => {
-  const { locale } = useRouter()
+  const { locale = "en" } = useRouter()
   const pageHead: PageHead = {
     title: post.title,
     description: post.ogDescription,
@@ -64,9 +64,9 @@ export const PostComponent: FC<Props> = ({
           <div className={`${s.header} ${u.grid}`}>
             <div>
               <GridImage
-                alt={post.title ? post.title : ""}
+                alt={post.title ?? ""}
                 idx={1}
-                image={post.image ? post.image : settings.ogImage}
+                image={post.image ?? settings.ogImage}
                 postsPerPage={1}
               />
             </div>
@@ -85,6 +85,8 @@ export const PostComponent: FC<Props> = ({
               </div>
               <p
                 className={`${s.headerLink}`}
+                // TODO: make this less dangerous
+                // eslint-disable-next-line react/no-danger
                 dangerouslySetInnerHTML={{ __html: "&nbsp;" }}
               />
             </div>

@@ -24,16 +24,16 @@ interface Props {
   settings: Settings
 }
 
-export const Events: FC<Props> = ({
+export function Events({
   labels,
   navigation,
   organisation,
   page,
   pageContext,
   settings,
-}) => {
+}: Props) {
   const [pastEventsPerPage, setPastEventsPerPage] = useState(6)
-  const { locale } = useRouter()
+  const { locale = "en" } = useRouter()
   const pageHead: PageHead = {
     title: page.title,
     description: page.ogDescription,
@@ -50,7 +50,7 @@ export const Events: FC<Props> = ({
   }
   return (
     <Layout
-      caption={page.events[0]?.title ? page.events[0].title : null}
+      caption={page.events[0]?.title ?? undefined}
       heroImage={
         page.events[0]?.mainImage?.asset
           ? page.events[0].mainImage
@@ -115,6 +115,7 @@ export const Events: FC<Props> = ({
         <button
           onClick={handleShowMoreEvents}
           className={`${s.loadMore} ${u.pointer}`}
+          type="button"
         >
           {labels[84].text}
         </button>

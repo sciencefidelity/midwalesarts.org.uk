@@ -1,27 +1,26 @@
-import { FC } from "react"
 import { useRouter } from "next/router"
 import { buildURL } from "lib/utils"
 import { GridImage } from "components/gridImage"
 import { LinkTo } from "components/linkTo"
 import { PostDate } from "components/date"
-import { Video } from "lib/interfaces"
+import { Image, Video } from "lib/interfaces"
 import s from "styles/videos.module.scss"
 import u from "styles/utils.module.scss"
 
 interface Props {
-  fallbackImage: any
+  fallbackImage: Image
   label: string
   postsPerPage: number
   videos: Video[]
 }
 
-export const VideosList: FC<Props> = ({
+export function VideosList({
   fallbackImage,
   label,
   postsPerPage,
   videos,
-}) => {
-  const { locale } = useRouter()
+}: Props) {
+  const { locale = "en" } = useRouter()
   return (
     <div className={`${s.imageGrid} ${u.grid}`}>
       {videos &&
@@ -30,13 +29,13 @@ export const VideosList: FC<Props> = ({
             video && (
               <div
                 key={video._id}
-                className={`${idx >= postsPerPage ? u.hidden : null}`}
+                className={`${idx >= postsPerPage ? u.hidden : ""}`}
               >
                 <LinkTo href={buildURL(locale, video.slug, video._type)}>
                   <GridImage
-                    alt={video.title ? video.title : ""}
+                    alt={video.title ?? ""}
                     idx={idx}
-                    image={video.mainImage ? video.mainImage : fallbackImage}
+                    image={video.mainImage ?? fallbackImage}
                     postsPerPage={postsPerPage}
                   />
                   {video.title && (

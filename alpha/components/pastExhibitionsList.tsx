@@ -1,4 +1,3 @@
-import { FC } from "react"
 import { ExhibitionPreview } from "components/exhibitionPreview"
 import { Image, Label, Exhibition } from "lib/interfaces"
 import s from "styles/exhibitions.module.scss"
@@ -11,19 +10,19 @@ interface Props {
   postsPerPage: number
 }
 
-export const PastExhibitionsList: FC<Props> = ({
+export function PastExhibitionsList({
   exhibitions,
   fallbackImage,
   labels,
   postsPerPage,
-}) => {
+}: Props) {
   return (
     <section className={`${s.exhibitionGrid} ${s.pastExhibitions} ${u.grid}`}>
       {exhibitions &&
         exhibitions.map((exhibition, idx) => (
           <div
             key={exhibition._id}
-            className={`${idx >= postsPerPage ? u.hidden : null}`}
+            className={`${idx >= postsPerPage ? u.hidden : ""}`}
           >
             <ExhibitionPreview
               exhibition={exhibition}

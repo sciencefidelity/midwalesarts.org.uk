@@ -1,8 +1,8 @@
 import { useRouter } from "next/router"
 import s from "styles/footer.module.scss"
 
-export const WG = () => {
-  const { locale } = useRouter()
+export function WG() {
+  const { locale = "en" } = useRouter()
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

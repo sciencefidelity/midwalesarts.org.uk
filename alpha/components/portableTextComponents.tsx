@@ -4,30 +4,26 @@ import { LinkTo } from "components/linkTo"
 
 export const components: PortableTextComponents = {
   list: {
-    bullet: ({ children }) => {
-      return (
-        <ul
-          style={{
-            listStyle: "disc",
-          }}
-        >
-          {children}
-        </ul>
-      )
-    },
+    bullet: ({ children }) => (
+      <ul
+        style={{
+          listStyle: "disc",
+        }}
+      >
+        {children}
+      </ul>
+    ),
   },
   listItem: {
-    bullet: ({ children }) => {
-      return (
-        <li
-          style={{
-            marginBottom: "1rem",
-          }}
-        >
-          {children}
-        </li>
-      )
-    },
+    bullet: ({ children }) => (
+      <li
+        style={{
+          marginBottom: "1rem",
+        }}
+      >
+        {children}
+      </li>
+    ),
   },
   marks: {
     link: ({ value, children }) => {
@@ -42,9 +38,9 @@ export const components: PortableTextComponents = {
         </a>
       )
     },
-    mailto: ({ value, children }) => {
-      return <a href={`mailto:${value?.mailto}`}>{children}</a>
-    },
+    mailto: ({ value, children }) => (
+      <a href={`mailto:${value?.mailto}`}>{children}</a>
+    ),
     internalLink: ({ value, children }) => {
       const url = buildURL(
         value?.item.__i18n_lang,

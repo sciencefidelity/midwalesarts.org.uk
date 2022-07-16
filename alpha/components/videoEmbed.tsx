@@ -1,4 +1,3 @@
-import { FC } from "react"
 import getYouTubeID from "get-youtube-id"
 import s from "styles/video.module.scss"
 import u from "styles/utils.module.scss"
@@ -8,7 +7,7 @@ interface Props {
   videoId: string
 }
 
-export const VideoEmbed: FC<Props> = ({ label, videoId }) => {
+export function VideoEmbed({ label, videoId }: Props) {
   const id = getYouTubeID(videoId)
   const url = `https://www.youtube-nocookie.com/embed/${id}?modestbranding=1`
   if (!id) return <div>{label}</div>
@@ -24,7 +23,7 @@ export const VideoEmbed: FC<Props> = ({ label, videoId }) => {
           frameBorder="0"
           allowFullScreen
           loading="lazy"
-        ></iframe>
+        />
       </div>
     </section>
   )

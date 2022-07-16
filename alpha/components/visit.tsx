@@ -1,4 +1,4 @@
-import { FC, Fragment, useState } from "react"
+import { Fragment, useState } from "react"
 import { useRouter } from "next/router"
 import { PortableText } from "@portabletext/react"
 import { components } from "components/portableTextComponents"
@@ -27,14 +27,14 @@ interface Props {
   settings: Settings
 }
 
-export const Visit: FC<Props> = ({
+export function Visit({
   labels,
   navigation,
   organisation,
   page,
   pageContext,
   settings,
-}) => {
+}: Props) {
   const [quoteNumber, setQuoteNumber] = useState(0)
   const { locale } = useRouter()
   const pageHead: PageHead = {
@@ -49,7 +49,7 @@ export const Visit: FC<Props> = ({
   }
   return (
     <Layout
-      caption={page.mainImage?.caption ? page.mainImage.caption : null}
+      caption={page.mainImage?.caption ?? undefined}
       heroImage={page.mainImage?.asset ? page.mainImage : settings.ogImage}
       labels={labels}
       navigation={navigation}
@@ -79,9 +79,9 @@ export const Visit: FC<Props> = ({
                 style={{ margin: 0 }}
               >
                 <GridImage
-                  alt={space.title ? space.title : ""}
+                  alt={space.title ?? ""}
                   idx={idx}
-                  image={space.mainImage ? space.mainImage : settings.ogImage}
+                  image={space.mainImage ?? settings.ogImage}
                   postsPerPage={12}
                   top={false}
                 />
@@ -94,7 +94,7 @@ export const Visit: FC<Props> = ({
             ))}
         </div>
         <div className={`${s.spacesTextGrid} ${u.grid}`}>
-          {page.spaces.map(
+          {page.spaces?.map(
             (space) =>
               space && (
                 <div
@@ -113,19 +113,20 @@ export const Visit: FC<Props> = ({
         </div>
       </section>
       <section>
-        {page.feedback[0] && (
+        {page.feedback && (
           <div className={`${s.feedback}`}>
             <blockquote>{page.feedback[quoteNumber].quote}</blockquote>
           </div>
         )}
         <nav className={`${u.flex} ${s.quoteBtns}`}>
-          {page.feedback.map((quote, idx) => (
+          {page.feedback?.map((quote, idx) => (
             <Fragment key={quote._key}>
               <button
                 onClick={() => setQuoteNumber(idx)}
+                type="button"
                 className={`
                   ${s.quoteBtn}
-                  ${idx === quoteNumber ? s.quoteBtnActive : null}
+                  ${idx === quoteNumber ? s.quoteBtnActive : ""}
                   ${u.pointer}
                 `}
               >

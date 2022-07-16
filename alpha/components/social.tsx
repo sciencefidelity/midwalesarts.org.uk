@@ -1,4 +1,3 @@
-import { FC } from "react"
 import s from "styles/header.module.scss"
 import u from "styles/utils.module.scss"
 
@@ -6,7 +5,7 @@ interface Props {
   label: string
 }
 
-export const Social: FC<Props> = ({ label }) => {
+export function Social({ label }: Props) {
   return (
     <>
       <div className={`${s.social} ${u.relative}`}>

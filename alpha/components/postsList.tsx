@@ -4,12 +4,12 @@ import { buildURL } from "lib/utils"
 import { GridImage } from "components/gridImage"
 import { LinkTo } from "components/linkTo"
 import { PostDate } from "components/date"
-import { Post } from "lib/interfaces"
+import { Image, Post } from "lib/interfaces"
 import s from "styles/news.module.scss"
 import u from "styles/utils.module.scss"
 
 interface Props {
-  fallbackImage: any
+  fallbackImage: Image
   label: string
   posts: Post[]
   postsPerPage: number
@@ -21,7 +21,7 @@ export const PostsList: FC<Props> = ({
   posts,
   postsPerPage,
 }) => {
-  const { locale } = useRouter()
+  const { locale = "en" } = useRouter()
   return (
     <div className={`${s.imageGrid} ${u.grid}`}>
       {posts &&
@@ -30,13 +30,13 @@ export const PostsList: FC<Props> = ({
             post && (
               <div
                 key={post._id}
-                className={`${idx >= postsPerPage ? u.hidden : null}`}
+                className={`${idx >= postsPerPage ? u.hidden : ""}`}
               >
                 <LinkTo href={buildURL(locale, post.slug, post._type)}>
                   <GridImage
-                    alt={post.title ? post.title : ""}
+                    alt={post.title ?? ""}
                     idx={idx}
-                    image={post.image ? post.image : fallbackImage}
+                    image={post.image ?? fallbackImage}
                     postsPerPage={postsPerPage}
                   />
                   {post.title && (

@@ -12,11 +12,11 @@ interface Props {
 export const Language: FC<Props> = ({ pageContext }) => {
   const isMounted = useRef(false)
   const router = useRouter()
-  const { locale, locales } = router
+  const { locale = "en", locales = ["en", "cy"] } = router
   const [currentLocale, setCurrentLocale] = useState(locale)
   const langs = ["En", "Cy"]
-  const handleLocaleChange = async (locale: string) => {
-    setCurrentLocale(locale)
+  function handleLocaleChange(_locale: string) {
+    setCurrentLocale(_locale)
   }
   const handleLocaleChangeRef = useRef(handleLocaleChange)
   useEffect(() => {
@@ -55,6 +55,8 @@ export const Language: FC<Props> = ({ pageContext }) => {
   ) : (
     <div
       className={`${s.languageSwitcher} ${u.inlineBlock} ${u.relative} ${u.noSelect}`}
+      // TODO: make this less dangerous
+      // eslint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={{ __html: "&nbsp;" }}
     />
   )

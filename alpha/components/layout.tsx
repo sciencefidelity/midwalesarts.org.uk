@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react"
+import { ReactNode } from "react"
 import { BaseHead } from "components/baseHead"
 import { Header } from "components/header"
 import { Footer } from "components/footer"

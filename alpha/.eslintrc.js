@@ -39,7 +39,7 @@ module.exports = {
     // Allow specific cases from Sanity
     "no-underscore-dangle": [
       "error",
-      { allow: ["__i18n_refs", "_id", "_type", "_key"] },
+      { allow: ["__i18n_lang", "__i18n_refs", "_id", "_type", "_key"] },
     ],
     // https://basarat.gitbook.io/typescript/main-1/defaultisbad
     "import/prefer-default-export": "off",

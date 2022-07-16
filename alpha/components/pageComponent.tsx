@@ -1,4 +1,3 @@
-import { FC } from "react"
 import { useRouter } from "next/router"
 import { PortableText } from "@portabletext/react"
 import { components } from "components/portableTextComponents"
@@ -25,15 +24,15 @@ interface Props {
   settings: Settings
 }
 
-export const PageComponent: FC<Props> = ({
+export function PageComponent({
   labels,
   navigation,
   organisation,
   page,
   pageContext,
   settings,
-}) => {
-  const { locale } = useRouter()
+}: Props) {
+  const { locale = "en" } = useRouter()
   const pageHead: PageHead = {
     title: page.title,
     description: page.ogDescription,

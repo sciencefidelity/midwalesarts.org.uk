@@ -1,11 +1,10 @@
-import { FC } from "react"
 import { useRouter } from "next/router"
 import { ACW } from "components/acw"
 import { WG } from "components/wg"
 import s from "styles/footer.module.scss"
 import u from "styles/utils.module.scss"
 
-export const Logos: FC = () => {
+export function Logos() {
   const { locale } = useRouter()
   return (
     <div className={`${s.funderLogos} ${u.flex}`}>

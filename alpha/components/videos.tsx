@@ -1,4 +1,4 @@
-import { FC, useState } from "react"
+import { useState } from "react"
 import { useRouter } from "next/router"
 import { Layout } from "components/layout"
 import { VideosList } from "components/videosList"
@@ -23,16 +23,16 @@ interface Props {
   settings: Settings
 }
 
-export const Videos: FC<Props> = ({
+export function Videos({
   labels,
   navigation,
   organisation,
   page,
   pageContext,
   settings,
-}) => {
+}: Props) {
   const [videosPerPage, setVideosPerPage] = useState(12)
-  const { locale } = useRouter()
+  const { locale = "en" } = useRouter()
   const pageHead: PageHead = {
     title: page.title,
     description: page.ogDescription,
@@ -48,7 +48,7 @@ export const Videos: FC<Props> = ({
   }
   return (
     <Layout
-      caption={page.videos[0]?.title ? page.videos[0].title : null}
+      caption={page.videos[0]?.title ?? undefined}
       heroImage={
         page.videos[0]?.mainImage?.asset
           ? page.videos[0].mainImage
@@ -71,10 +71,10 @@ export const Videos: FC<Props> = ({
           )}
         </div>
       </div>
-      {page.videos[0] && (
+      {page.videos && (
         <VideosList
           fallbackImage={settings.ogImage}
-          label={labels[18].text.trim() + " "}
+          label={`${labels[18].text.trim()} `}
           postsPerPage={videosPerPage}
           videos={page.videos}
         />
@@ -82,6 +82,7 @@ export const Videos: FC<Props> = ({
       {videosPerPage < page.videos.length && (
         <button
           onClick={handleShowMoreVideos}
+          type="button"
           className={`${s.loadMore} ${u.pointer}`}
         >
           {labels[84].text}

@@ -1,4 +1,3 @@
-import { FC } from "react"
 import { useRouter } from "next/router"
 import { PortableText } from "@portabletext/react"
 import { components } from "components/portableTextComponents"
@@ -30,15 +29,15 @@ interface Props {
   settings: Settings
 }
 
-export const WorkshopComponent: FC<Props> = ({
+export function WorkshopComponent({
   workshop,
   labels,
   navigation,
   organisation,
   pageContext,
   settings,
-}) => {
-  const { locale } = useRouter()
+}: Props) {
+  const { locale = "en" } = useRouter()
   const pageHead: PageHead = {
     title: workshop.title,
     description: workshop.ogDescription,
@@ -67,17 +66,15 @@ export const WorkshopComponent: FC<Props> = ({
           <div className={`${s.header} ${u.grid}`}>
             <div>
               <GridImage
-                alt={workshop.title ? workshop.title : ""}
+                alt={workshop.title ?? ""}
                 idx={1}
-                image={
-                  workshop.mainImage ? workshop.mainImage : settings.ogImage
-                }
+                image={workshop.mainImage ?? settings.ogImage}
                 postsPerPage={1}
               />
             </div>
             <div className={`${s.headerContent} ${u.grid}`}>
               <h3 className={`${s.type} ${u.uppercase}`}>
-                {workshop.category ? workshop.category : labels[51].text}
+                {workshop.category ?? labels[51].text}
               </h3>
               <div>
                 {workshop.day && (
@@ -109,6 +106,8 @@ export const WorkshopComponent: FC<Props> = ({
               ) : (
                 <p
                   className={`${s.headerLink}`}
+                  // TODO: make this less dangerous
+                  // eslint-disable-next-line react/no-danger
                   dangerouslySetInnerHTML={{ __html: "&nbsp;" }}
                 />
               )}

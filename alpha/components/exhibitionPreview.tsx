@@ -67,3 +67,9 @@ export function ExhibitionPreview({
     </div>
   )
 }
+
+ExhibitionPreview.defaultProps = {
+  heading: undefined,
+  margin: undefined,
+  top: true,
+}

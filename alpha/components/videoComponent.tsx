@@ -1,4 +1,3 @@
-import { FC } from "react"
 import { useRouter } from "next/router"
 import { PortableText } from "@portabletext/react"
 import { components } from "components/portableTextComponents"
@@ -28,15 +27,15 @@ interface Props {
   video: Video
 }
 
-export const VideoComponent: FC<Props> = ({
+export function VideoComponent({
   labels,
   navigation,
   organisation,
   pageContext,
   settings,
   video,
-}) => {
-  const { locale } = useRouter()
+}: Props) {
+  const { locale = "en" } = useRouter()
   const pageHead: PageHead = {
     title: video.title,
     description: video.ogDescription,

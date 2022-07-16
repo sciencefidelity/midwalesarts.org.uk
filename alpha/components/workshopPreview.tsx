@@ -1,21 +1,20 @@
-import { FC } from "react"
 import { useRouter } from "next/router"
 import { dayToNumber, nextDate } from "lib/dateHelpers"
 import { buildURL } from "lib/utils"
 import { GridImage } from "components/gridImage"
 import { LinkTo } from "components/linkTo"
 import { PostDate } from "components/date"
-import { Workshop } from "lib/interfaces"
+import { Image, Workshop } from "lib/interfaces"
 import s from "styles/workshops.module.scss"
 import u from "styles/utils.module.scss"
 
 interface Props {
-  fallbackImage: any
+  fallbackImage: Image
   workshops: Workshop[]
 }
 
-export const WorkshopPreview: FC<Props> = ({ fallbackImage, workshops }) => {
-  const { locale } = useRouter()
+export function WorkshopPreview({ fallbackImage, workshops }: Props) {
+  const { locale = "en" } = useRouter()
   return (
     <div className={`${s.imageGrid} ${u.grid}`}>
       {workshops.map((workshop, idx) => (
@@ -26,9 +25,9 @@ export const WorkshopPreview: FC<Props> = ({ fallbackImage, workshops }) => {
           className={`${u.truncate}`}
         >
           <GridImage
-            alt={workshop.title ? workshop.title : ""}
+            alt={workshop.title ?? ""}
             idx={idx}
-            image={workshop.mainImage ? workshop.mainImage : fallbackImage}
+            image={workshop.mainImage ?? fallbackImage}
             postsPerPage={12}
             top={false}
           />
@@ -43,7 +42,7 @@ export const WorkshopPreview: FC<Props> = ({ fallbackImage, workshops }) => {
                 date={nextDate(dayToNumber(workshop.day), workshop.frequency)}
               />
               {workshop.startTime &&
-                ", " + workshop.startTime.toLowerCase().replace(/\s/g, "")}
+                `, ${workshop.startTime.toLowerCase().replace(/\s/g, "")}`}
             </div>
           )}
         </LinkTo>

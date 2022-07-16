@@ -1,4 +1,3 @@
-import { FC } from "react"
 import { Label } from "lib/interfaces"
 import s from "styles/footer.module.scss"
 import u from "styles/utils.module.scss"
@@ -7,7 +6,7 @@ interface Props {
   labels: Label[]
 }
 
-export const Signup: FC<Props> = ({ labels }) => {
+export function Signup({ labels }: Props) {
   return (
     <div className={`${s.signup}`}>
       <div className={`${s.signupHeading}`}>{labels[5].text}</div>
@@ -35,9 +34,9 @@ export const Signup: FC<Props> = ({ labels }) => {
             alt={labels[7].text}
           />
           <div id="mce-responses">
-            <div id="mce-error-response" style={{ display: "none" }}></div>
+            <div id="mce-error-response" style={{ display: "none" }} />
           </div>
-          <div id="mce-success-response" style={{ display: "none" }}></div>
+          <div id="mce-success-response" style={{ display: "none" }} />
           <div
             style={{ position: "absolute", left: "-5000px" }}
             aria-hidden="true"

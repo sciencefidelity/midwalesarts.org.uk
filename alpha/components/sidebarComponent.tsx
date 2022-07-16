@@ -1,4 +1,3 @@
-import { FC } from "react"
 import { useRouter } from "next/router"
 import { dayToNumber, nextDate, sortWorkshops } from "lib/dateHelpers"
 import { buildURL } from "lib/utils"
@@ -12,8 +11,8 @@ interface Props {
   sidebar: Sidebar
 }
 // TODO: Create sidebar document in studo to change order
-export const SidebarComponent: FC<Props> = ({ labels, sidebar }) => {
-  const { locale } = useRouter()
+export function SidebarComponent({ labels, sidebar }: Props) {
+  const { locale = "en" } = useRouter()
   const workshops = sortWorkshops(sidebar.workshops)
   return (
     <aside className={`${s.sidebar}`}>

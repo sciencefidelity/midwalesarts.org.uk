@@ -1,4 +1,3 @@
-import { FC } from "react"
 import { LinkTo } from "components/linkTo"
 import s from "styles/layout.module.scss"
 import u from "styles/utils.module.scss"
@@ -7,11 +6,11 @@ interface Props {
   label: string
 }
 // TODO: change icon to svg
-export const Scrollup: FC<Props> = ({ label }) => {
+export function Scrollup({ label }: Props) {
   return (
     <LinkTo href="#" tabIndex={-1}>
       <span className={`${u.srOnly}`}>{label}</span>
-      <button className={`${s.scrollupContainer} ${u.fixed}`}>
+      <button className={`${s.scrollupContainer} ${u.fixed}`} type="button">
         <span className={`${u.srOnly}`}>{label}</span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
