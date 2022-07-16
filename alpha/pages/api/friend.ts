@@ -1,7 +1,7 @@
 import sanityClient from "@sanity/client";
 import sendgrid from "@sendgrid/mail";
 
-sendgrid.setApiKey(process.env.SENDGRID_API_KEY);
+sendgrid.setApiKey(process.env.SENDGRID_API_KEY ?? "");
 
 async function sendFriendForm(req, res) {
   const subject = "MWA Website - New Friend Application";
@@ -34,9 +34,7 @@ async function sendFriendForm(req, res) {
     giftAid: req.body.giftAid,
   };
   try {
-    await client.create(doc).then((res) => {
-      console.log(`A friend was created, document ID is ${res._id}`);
-    });
+    await client.create(doc).then(res);
     await sendgrid
       .send({
         to: "Office <office@midwalesarts.org.uk>",
@@ -74,9 +72,7 @@ async function sendFriendForm(req, res) {
         </html>
       `,
       })
-      .then(() => {
-        console.log("Email sent");
-      });
+      .then(() => {});
   } catch (error) {
     return res.status(error.statusCode || 500).json({ error: error.message });
   }

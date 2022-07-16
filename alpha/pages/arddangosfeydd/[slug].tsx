@@ -21,10 +21,16 @@ interface Props {
   settings: Settings
 }
 
+interface Paths {
+  paths: any
+}
+
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = await sanityClient.fetch(exhibitionPathQuery, { locale: "cy" })
+  const paths: Paths = await sanityClient.fetch(exhibitionPathQuery, {
+    locale: "cy",
+  })
   return {
-    paths: paths,
+    paths,
     fallback: false,
   }
 }
@@ -34,7 +40,7 @@ export const getStaticProps: GetStaticProps = async ({
   locale,
   params,
 }) => {
-  const slug = params.slug
+  const { slug } = params
   const data = await sanityClient.fetch(exhibitionQuery, {
     slug,
     locale,
@@ -47,7 +53,7 @@ export const getStaticProps: GetStaticProps = async ({
     localization: exhibition.localization,
     locales,
     defaultLocale,
-    slug: params.slug ? params.slug : "",
+    slug: params?.slug ?? "",
   }
   const localizedPaths = pageContext.localization
     ? getLocalizedPaths(pageContext)
@@ -74,16 +80,14 @@ const ExhibitionCy: NextPage<Props> = ({
   organisation,
   pageContext,
   settings,
-}) => {
-  return (
-    <ExhibitionComponent
-      exhibition={exhibition}
-      labels={labels}
-      navigation={navigation}
-      organisation={organisation}
-      pageContext={pageContext}
-      settings={settings}
-    />
-  )
-}
+}: Props) => (
+  <ExhibitionComponent
+    exhibition={exhibition}
+    labels={labels}
+    navigation={navigation}
+    organisation={organisation}
+    pageContext={pageContext}
+    settings={settings}
+  />
+)
 export default ExhibitionCy

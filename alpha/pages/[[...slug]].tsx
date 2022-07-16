@@ -33,17 +33,17 @@ interface Props {
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await sanityClient.fetch(pagePathQuery)
   return {
-    paths: paths,
+    paths,
     fallback: false,
   }
 }
 export const getStaticProps: GetStaticProps = async ({
   defaultLocale,
   locales,
-  locale,
+  locale = "en",
   params,
 }) => {
-  const slug = params.slug ? params.slug[params?.slug?.length - 1] : "index"
+  const slug = params?.slug ? params.slug[params?.slug?.length - 1] : "index"
   const data = await sanityClient.fetch(pageQuery, { slug, locale })
   const { labels, navigation, organisation, page, settings } = data as Props
   const pageContext = {
@@ -78,110 +78,108 @@ const Pages: NextPage<Props> = ({
   page,
   pageContext,
   settings,
-}) => {
-  return (
-    <>
-      {page.template === "Artists" && (
-        <Artists
-          labels={labels}
-          navigation={navigation}
-          page={page}
-          organisation={organisation}
-          pageContext={pageContext}
-          settings={settings}
-        />
-      )}
-      {page.template === "Events" && (
-        <Events
-          labels={labels}
-          navigation={navigation}
-          page={page}
-          organisation={organisation}
-          pageContext={pageContext}
-          settings={settings}
-        />
-      )}
-      {page.template === "Exhibitions" && (
-        <Exhibitions
-          labels={labels}
-          navigation={navigation}
-          page={page}
-          organisation={organisation}
-          pageContext={pageContext}
-          settings={settings}
-        />
-      )}
-      {page.template === "Home" && (
-        <Home
-          labels={labels}
-          navigation={navigation}
-          page={page}
-          organisation={organisation}
-          pageContext={pageContext}
-          settings={settings}
-        />
-      )}
-      {page.template === "News" && (
-        <News
-          labels={labels}
-          navigation={navigation}
-          page={page}
-          organisation={organisation}
-          pageContext={pageContext}
-          settings={settings}
-        />
-      )}
-      {page.template === "Page" && (
-        <PageComponent
-          labels={labels}
-          navigation={navigation}
-          page={page}
-          organisation={organisation}
-          pageContext={pageContext}
-          settings={settings}
-        />
-      )}
-      {page.template === "Support" && (
-        <Support
-          labels={labels}
-          navigation={navigation}
-          page={page}
-          organisation={organisation}
-          pageContext={pageContext}
-          settings={settings}
-        />
-      )}
-      {page.template === "Videos" && (
-        <Videos
-          labels={labels}
-          navigation={navigation}
-          page={page}
-          organisation={organisation}
-          pageContext={pageContext}
-          settings={settings}
-        />
-      )}
-      {page.template === "Visit" && (
-        <Visit
-          labels={labels}
-          navigation={navigation}
-          page={page}
-          organisation={organisation}
-          pageContext={pageContext}
-          settings={settings}
-        />
-      )}
-      {page.template === "Workshops" && (
-        <Workshops
-          labels={labels}
-          navigation={navigation}
-          page={page}
-          organisation={organisation}
-          pageContext={pageContext}
-          settings={settings}
-        />
-      )}
-    </>
-  )
-}
+}: Props) => (
+  <>
+    {page.template === "Artists" && (
+      <Artists
+        labels={labels}
+        navigation={navigation}
+        page={page}
+        organisation={organisation}
+        pageContext={pageContext}
+        settings={settings}
+      />
+    )}
+    {page.template === "Events" && (
+      <Events
+        labels={labels}
+        navigation={navigation}
+        page={page}
+        organisation={organisation}
+        pageContext={pageContext}
+        settings={settings}
+      />
+    )}
+    {page.template === "Exhibitions" && (
+      <Exhibitions
+        labels={labels}
+        navigation={navigation}
+        page={page}
+        organisation={organisation}
+        pageContext={pageContext}
+        settings={settings}
+      />
+    )}
+    {page.template === "Home" && (
+      <Home
+        labels={labels}
+        navigation={navigation}
+        page={page}
+        organisation={organisation}
+        pageContext={pageContext}
+        settings={settings}
+      />
+    )}
+    {page.template === "News" && (
+      <News
+        labels={labels}
+        navigation={navigation}
+        page={page}
+        organisation={organisation}
+        pageContext={pageContext}
+        settings={settings}
+      />
+    )}
+    {page.template === "Page" && (
+      <PageComponent
+        labels={labels}
+        navigation={navigation}
+        page={page}
+        organisation={organisation}
+        pageContext={pageContext}
+        settings={settings}
+      />
+    )}
+    {page.template === "Support" && (
+      <Support
+        labels={labels}
+        navigation={navigation}
+        page={page}
+        organisation={organisation}
+        pageContext={pageContext}
+        settings={settings}
+      />
+    )}
+    {page.template === "Videos" && (
+      <Videos
+        labels={labels}
+        navigation={navigation}
+        page={page}
+        organisation={organisation}
+        pageContext={pageContext}
+        settings={settings}
+      />
+    )}
+    {page.template === "Visit" && (
+      <Visit
+        labels={labels}
+        navigation={navigation}
+        page={page}
+        organisation={organisation}
+        pageContext={pageContext}
+        settings={settings}
+      />
+    )}
+    {page.template === "Workshops" && (
+      <Workshops
+        labels={labels}
+        navigation={navigation}
+        page={page}
+        organisation={organisation}
+        pageContext={pageContext}
+        settings={settings}
+      />
+    )}
+  </>
+)
 export default Pages
