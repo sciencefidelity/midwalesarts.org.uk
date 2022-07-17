@@ -12,8 +12,12 @@ interface Props {
 }
 
 export function Intro({ page }: Props) {
-  const { locale = "en" } = useRouter()
-  const url = buildURL(locale, page.ctaLink.slug, page.ctaLink._type)
+  const { locale = "en" } = useRouter() as TRouter
+  const url = buildURL(
+    locale,
+    page.ctaLink ? page.ctaLink.slug : "",
+    page.ctaLink ? page.ctaLink._type : ""
+  )
   return (
     <div className={`${s.introText} ${u.relative}`}>
       {page.body && <PortableText value={page.body} components={components} />}

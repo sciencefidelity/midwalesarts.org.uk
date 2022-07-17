@@ -6,6 +6,8 @@ export interface Props {
   _text: string
 }
 
+// TODO: can the props be removed?
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function LocationPin({ _lat, _lng, _text }: Props) {
   return (
     <div className={`${s.pin}`}>

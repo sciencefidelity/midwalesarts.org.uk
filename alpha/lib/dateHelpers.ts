@@ -1,4 +1,4 @@
-import { Workshop } from "lib/interfaces";
+import { Locale, Workshop } from "lib/interfaces";
 
 /**
  * An object of day names and translated in English and Welsh
@@ -47,6 +47,8 @@ export function dayToNumber(type: string): number {
       return 5;
     case "Saturday":
       return 6;
+    default:
+      return 0;
   }
 }
 
@@ -58,7 +60,7 @@ export function dayToNumber(type: string): number {
  * @param locale - the current locale
  * @returns the day number
  */
-export function freqString(day: string, pos: number, locale: string) {
+export function freqString(day: string, pos: number, locale: Locale) {
   const localeDay = days[locale][dayToNumber(day)];
   if (locale === "cy") {
     switch (pos) {
@@ -134,11 +136,9 @@ export function frequency(pos: number): number[] {
  */
 export function nextMonth(): Date {
   const first = new Date(new Date().setDate(1));
-  if (first.getMonth() === 11) {
-    return new Date(first.getFullYear() + 1, 0, 1);
-  } else {
-    return new Date(first.getFullYear(), first.getMonth() + 1, 1);
-  }
+  return first.getMonth() === 11
+    ? new Date(first.getFullYear() + 1, 0, 1)
+    : new Date(first.getFullYear(), first.getMonth() + 1, 1);
 }
 
 /**
@@ -150,23 +150,23 @@ export function nextMonth(): Date {
  */
 export const getDates = (day: number, freq: number[]): Date[] => {
   const first = new Date(new Date().setDate(1));
-  const days = [];
+  const daysArray = [];
   while (first.getDay() !== day) {
     first.setDate(first.getDate() + 1);
   }
-  while (days.length < 4) {
-    days.push(new Date(first.getTime()));
+  while (daysArray.length < 4) {
+    daysArray.push(new Date(first.getTime()));
     first.setDate(first.getDate() + 7);
   }
   const next = nextMonth();
   while (next.getDay() !== day) {
     next.setDate(next.getDate() + 1);
   }
-  while (days.length < 8) {
-    days.push(new Date(next.getTime()));
+  while (daysArray.length < 8) {
+    daysArray.push(new Date(next.getTime()));
     next.setDate(next.getDate() + 7);
   }
-  return days.filter((_, idx) => freq.some((p) => idx === p));
+  return daysArray.filter((_, idx) => freq.includes(idx));
 };
 
 /**
@@ -178,6 +178,7 @@ export const getDates = (day: number, freq: number[]): Date[] => {
  */
 export const nextDate = (day: number, freq: string): Date => {
   const dates = getDates(day, frequency(Number(freq)));
+  // eslint-disable-next-line unicorn/prefer-array-find
   return dates.filter((e) => e >= new Date())[0];
 };
 
@@ -187,14 +188,14 @@ export const nextDate = (day: number, freq: string): Date => {
  * @param events - an array of {@link Workshop} objects
  * @returns an array of {@link Workshop} objects sorted by date
  */
-export const sortWorkshops = (events: Workshop[]): Workshop[] => {
-  return events.sort((a, b) => {
-    return nextDate(dayToNumber(a.day), a.frequency).toISOString() <
-      nextDate(dayToNumber(b.day), b.frequency).toISOString()
+export function sortWorkshops(events: Workshop[]): Workshop[] {
+  return events.sort((a, b) =>
+    nextDate(dayToNumber(a.day), a.frequency).toISOString() <
+    nextDate(dayToNumber(b.day), b.frequency).toISOString()
       ? -1
       : nextDate(dayToNumber(a.day), a.frequency).toISOString() >
         nextDate(dayToNumber(b.day), a.frequency).toISOString()
       ? 1
-      : 0;
-  });
-};
+      : 0
+  );
+}

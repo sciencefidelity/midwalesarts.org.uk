@@ -67,8 +67,7 @@ export function Support({
           )}
           <FriendForm labels={labels} />
         </section>
-        {/* TODO: the sidebar could be queried seperately so that typescripts knows it exists */}
-        <SidebarComponent labels={labels} sidebar={page.sidebar!} />
+        <SidebarComponent labels={labels} sidebar={page.sidebar} />
       </div>
     </Layout>
   )

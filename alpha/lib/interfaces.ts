@@ -155,7 +155,7 @@ export interface Page extends SanityDocument {
   pastExhibitions?: Exhibition[];
   pastEvents?: Event[];
   posts?: Post[];
-  sidebar?: Sidebar;
+  sidebar: Sidebar;
   slug: string;
   spaces?: Space[];
   subImage?: Image;
