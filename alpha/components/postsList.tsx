@@ -1,4 +1,3 @@
-import { FC } from "react"
 import { useRouter } from "next/router"
 import { buildURL } from "lib/utils"
 import { GridImage } from "components/gridImage"
@@ -15,13 +14,13 @@ interface Props {
   postsPerPage: number
 }
 
-export const PostsList: FC<Props> = ({
+export function PostsList({
   fallbackImage,
   label,
   posts,
   postsPerPage,
-}) => {
-  const { locale = "en" } = useRouter()
+}: Props) {
+  const { locale = "en" } = useRouter() as TRouter
   return (
     <div className={`${s.imageGrid} ${u.grid}`}>
       {posts &&

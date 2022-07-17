@@ -37,7 +37,7 @@ export const PostComponent: FC<Props> = ({
   post,
   settings,
 }) => {
-  const { locale = "en" } = useRouter()
+  const { locale = "en" } = useRouter() as TRouter
   const pageHead: PageHead = {
     title: post.title,
     description: post.ogDescription,
@@ -51,6 +51,7 @@ export const PostComponent: FC<Props> = ({
   }
   return (
     <Layout
+      caption=""
       heroImage={post.image?.asset ? post.image : settings.ogImage}
       labels={labels}
       navigation={navigation}

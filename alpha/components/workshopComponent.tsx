@@ -37,7 +37,7 @@ export function WorkshopComponent({
   pageContext,
   settings,
 }: Props) {
-  const { locale = "en" } = useRouter()
+  const { locale = "en" } = useRouter() as TRouter
   const pageHead: PageHead = {
     title: workshop.title,
     description: workshop.ogDescription,
@@ -51,6 +51,7 @@ export function WorkshopComponent({
   }
   return (
     <Layout
+      caption=""
       heroImage={
         workshop.mainImage?.asset ? workshop.mainImage : settings.ogImage
       }

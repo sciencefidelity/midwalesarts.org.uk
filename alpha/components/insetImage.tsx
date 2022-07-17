@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { urlFor } from "lib/utils"
 import { Image } from "lib/interfaces"
 import s from "styles/home.module.scss"
@@ -9,7 +9,7 @@ interface Props {
   image: Image
 }
 
-export const InsetImage: FC<Props> = ({ alt, image }) => {
+export function InsetImage({ alt, image }: Props) {
   const [loaded, setLoaded] = useState(false)
   const onLoad = useCallback(() => {
     setLoaded(true)

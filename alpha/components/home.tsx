@@ -1,4 +1,3 @@
-import { FC } from "react"
 import { useRouter } from "next/router"
 import { ColorLogo } from "components/colorLogo"
 import { BrandCy, BrandEn } from "components/brand"
@@ -8,7 +7,6 @@ import { Intro } from "components/intro"
 import { Layout } from "components/layout"
 import {
   Label,
-  LocaleString,
   Navigation,
   Organisation,
   Page,
@@ -27,20 +25,19 @@ interface Props {
   settings: Settings
 }
 
-export const Home: FC<Props> = ({
+export function Home({
   labels,
   navigation,
   organisation,
   page,
   pageContext,
   settings,
-}) => {
-  const { locale } = useRouter()
-  const key: keyof LocaleString = locale === "cy" ? "cy" : "en"
+}: Props) {
+  const { locale } = useRouter() as TRouter
   const dynamicGap = { gap: `${locale === "cy" ? "8.2rem" : "9.4rem"}` }
   return (
     <Layout
-      caption={page.mainImage?.caption ?? ""}
+      caption={page.subImage?.caption ? page.subImage?.caption[locale] : ""}
       heroImage={page.mainImage?.asset ? page.mainImage : settings.ogImage}
       labels={labels}
       navigation={navigation}
@@ -53,7 +50,7 @@ export const Home: FC<Props> = ({
           <div style={dynamicGap} className={`${s.introduction} ${u.grid}`}>
             <div className={`${s.introBranding} ${u.grid}`}>
               <ColorLogo
-                alt={settings.title[key]}
+                alt={settings.title[locale]}
                 containerClass="introLogoContainer"
                 logoClass="introLogo"
               />
@@ -61,9 +58,14 @@ export const Home: FC<Props> = ({
             </div>
             <Intro page={page} />
             <div className={`${s.sideImageContainer} ${u.absolute}`}>
-              <InsetImage image={page.subImage} alt={page.subImage?.caption} />
+              <InsetImage
+                image={page.subImage ?? settings.ogImage}
+                alt={
+                  page.subImage?.caption ? page.subImage?.caption[locale] : ""
+                }
+              />
               <div className={`${s.sideImageCaption}`}>
-                {page.subImage?.caption}
+                {page.subImage?.caption ? page.subImage?.caption[locale] : ""}
               </div>
             </div>
           </div>

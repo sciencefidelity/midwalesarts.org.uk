@@ -56,6 +56,7 @@ export function Workshops({
   }
   return (
     <Layout
+      caption=""
       heroImage={page.mainImage?.asset ? page.mainImage : settings.ogImage}
       labels={labels}
       navigation={navigation}
@@ -92,7 +93,8 @@ export function Workshops({
             ))}
           </section>
         </section>
-        <SidebarComponent labels={labels} sidebar={page.sidebar} />
+        {/* TODO: the sidebar could be queried seperately so that typescripts knows it exists */}
+        <SidebarComponent labels={labels} sidebar={page.sidebar!} />
       </div>
     </Layout>
   )

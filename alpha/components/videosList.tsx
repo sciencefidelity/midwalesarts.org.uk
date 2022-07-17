@@ -20,7 +20,7 @@ export function VideosList({
   postsPerPage,
   videos,
 }: Props) {
-  const { locale = "en" } = useRouter()
+  const { locale = "en" } = useRouter() as TRouter
   return (
     <div className={`${s.imageGrid} ${u.grid}`}>
       {videos &&

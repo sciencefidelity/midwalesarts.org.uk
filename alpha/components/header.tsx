@@ -3,14 +3,7 @@ import { ColorLogo } from "components/colorLogo"
 import { HeroImage } from "components/heroImage"
 import { LinkTo } from "components/linkTo"
 import { NavComponent } from "components/navComponent"
-import {
-  Image,
-  Label,
-  LocaleString,
-  Navigation,
-  PageContext,
-  Settings,
-} from "lib/interfaces"
+import { Image, Label, Navigation, PageContext, Settings } from "lib/interfaces"
 import s from "styles/header.module.scss"
 import u from "styles/utils.module.scss"
 
@@ -31,15 +24,14 @@ export function Header({
   pageContext,
   settings,
 }: Props) {
-  const { locale } = useRouter()
-  const key: keyof LocaleString = locale === "cy" ? "cy" : "en"
+  const { locale } = useRouter() as TRouter
   return (
     <>
       <header className={`${s.header} ${u.relative}`}>
         <LinkTo href="/">
           <span className={`${u.srOnly}`}>{labels[0].text}</span>
           <ColorLogo
-            alt={settings.title[key]}
+            alt={settings.title[locale]}
             containerClass="logoContainer"
             logoClass="colorLogo"
           />

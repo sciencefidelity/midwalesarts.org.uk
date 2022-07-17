@@ -15,7 +15,7 @@ interface Props {
 
 export function NavComponent({ labels, navigation, pageContext }: Props) {
   const router = useRouter()
-  const { locale = "en" } = router
+  const { locale = "en" } = router as TRouter
   const [isActive, setActive] = useState(false)
   const menuOpen = () => {
     setActive(true)

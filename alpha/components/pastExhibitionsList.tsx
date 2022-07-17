@@ -27,7 +27,7 @@ export function PastExhibitionsList({
             <ExhibitionPreview
               exhibition={exhibition}
               fallbackImage={fallbackImage}
-              heading={idx === 0 && labels[17].text}
+              heading={idx === 0 ? labels[17].text : undefined}
               idx={idx}
               label={labels[56].text}
               postsPerPage={postsPerPage}

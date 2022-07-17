@@ -35,7 +35,7 @@ export function VideoComponent({
   settings,
   video,
 }: Props) {
-  const { locale = "en" } = useRouter()
+  const { locale = "en" } = useRouter() as TRouter
   const pageHead: PageHead = {
     title: video.title,
     description: video.ogDescription,
@@ -49,6 +49,7 @@ export function VideoComponent({
   }
   return (
     <Layout
+      caption=""
       heroImage={video.mainImage?.asset ? video.mainImage : settings.ogImage}
       labels={labels}
       navigation={navigation}

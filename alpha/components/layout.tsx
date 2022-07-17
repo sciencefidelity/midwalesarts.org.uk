@@ -11,12 +11,11 @@ import {
   PageContext,
   PageHead,
   Settings,
-  LocaleString,
 } from "lib/interfaces"
 import u from "styles/utils.module.scss"
 
 interface Props {
-  caption?: LocaleString
+  caption: string
   children: ReactNode
   heroImage: Image
   labels: Label[]
@@ -64,4 +63,8 @@ export function Layout({
       <Footer labels={labels} organisation={organisation} settings={settings} />
     </>
   )
+}
+
+Layout.defaultProps = {
+  pageHead: {},
 }

@@ -32,7 +32,7 @@ export function PageComponent({
   pageContext,
   settings,
 }: Props) {
-  const { locale = "en" } = useRouter()
+  const { locale = "en" } = useRouter() as TRouter
   const pageHead: PageHead = {
     title: page.title,
     description: page.ogDescription,
@@ -45,6 +45,7 @@ export function PageComponent({
   }
   return (
     <Layout
+      caption=""
       heroImage={page.mainImage?.asset ? page.mainImage : settings.ogImage}
       labels={labels}
       navigation={navigation}
@@ -67,7 +68,8 @@ export function PageComponent({
             </div>
           )}
         </section>
-        <SidebarComponent labels={labels} sidebar={page.sidebar} />
+        {/* TODO: the sidebar could be queried seperately so that typescripts knows it exists */}
+        <SidebarComponent labels={labels} sidebar={page.sidebar!} />
       </div>
     </Layout>
   )

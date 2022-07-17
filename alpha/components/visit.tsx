@@ -49,7 +49,7 @@ export function Visit({
   }
   return (
     <Layout
-      caption={page.mainImage?.caption ?? undefined}
+      caption={page.mainImage?.caption ?? ""}
       heroImage={page.mainImage?.asset ? page.mainImage : settings.ogImage}
       labels={labels}
       navigation={navigation}

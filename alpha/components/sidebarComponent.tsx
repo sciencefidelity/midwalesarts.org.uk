@@ -12,7 +12,7 @@ interface Props {
 }
 // TODO: Create sidebar document in studo to change order
 export function SidebarComponent({ labels, sidebar }: Props) {
-  const { locale = "en" } = useRouter()
+  const { locale = "en" } = useRouter() as TRouter
   const workshops = sortWorkshops(sidebar.workshops)
   return (
     <aside className={`${s.sidebar}`}>

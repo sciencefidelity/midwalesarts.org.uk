@@ -10,7 +10,6 @@ import { Modal } from "components/modal"
 import {
   Artist,
   Label,
-  LocaleString,
   Navigation,
   Organisation,
   PageContext,
@@ -38,7 +37,6 @@ export function ArtistComponent({
   settings,
 }: Props) {
   const { locale = "en" } = useRouter() as TRouter
-  const localeKey: keyof LocaleString = locale
   const [bio, setBio] = useState(!artist.works[0])
   const [gallery, setGallery] = useState(!!artist.works[0])
   const [modal, setModal] = useState(false)
@@ -163,7 +161,7 @@ export function ArtistComponent({
                   <GridImage
                     alt={`
                       ${artist.title && `${artist.title}, `}
-                      ${artwork.title && `${artwork.title[localeKey]}, `}
+                      ${artwork.title && `${artwork.title[locale]}, `}
                       ${artwork.date && artwork.date}
                     `}
                     idx={idx}
@@ -174,13 +172,13 @@ export function ArtistComponent({
                     <div
                       className={`${s.caption} ${u.textRight} ${u.semibold}`}
                     >
-                      {artwork.title[localeKey]}{" "}
+                      {artwork.title[locale]}{" "}
                       {artwork.date && `(${artwork.date})`}
                     </div>
                   )}
                   {(artwork.medium || artwork.price) && (
                     <div className={`${s.caption} ${u.textRight}`}>
-                      {artwork.medium && `${artwork.medium[localeKey]}, `}
+                      {artwork.medium && `${artwork.medium[locale]}, `}
                       {artwork.price}
                     </div>
                   )}

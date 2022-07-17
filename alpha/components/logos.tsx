@@ -5,7 +5,7 @@ import s from "styles/footer.module.scss"
 import u from "styles/utils.module.scss"
 
 export function Logos() {
-  const { locale } = useRouter()
+  const { locale } = useRouter() as TRouter
   return (
     <div className={`${s.funderLogos} ${u.flex}`}>
       <a href="https://arts.wales" target="blank" rel="noreferrer">

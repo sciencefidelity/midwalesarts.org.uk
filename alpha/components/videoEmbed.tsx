@@ -9,8 +9,8 @@ interface Props {
 
 export function VideoEmbed({ label, videoId }: Props) {
   const id = getYouTubeID(videoId)
-  const url = `https://www.youtube-nocookie.com/embed/${id}?modestbranding=1`
   if (!id) return <div>{label}</div>
+  const url = `https://www.youtube-nocookie.com/embed/${id}?modestbranding=1`
   return (
     <section>
       <div className={`${s.embedContainer} ${u.relative}`}>

@@ -46,7 +46,8 @@ export function Support({
   }
   return (
     <Layout
-      heroImage={page.mainImage}
+      caption=""
+      heroImage={page.mainImage ?? settings.ogImage}
       labels={labels}
       navigation={navigation}
       organisation={organisation}
@@ -67,7 +68,8 @@ export function Support({
           )}
           <FriendForm labels={labels} />
         </section>
-        <SidebarComponent labels={labels} sidebar={page.sidebar} />
+        {/* TODO: the sidebar could be queried seperately so that typescripts knows it exists */}
+        <SidebarComponent labels={labels} sidebar={page.sidebar!} />
       </div>
     </Layout>
   )

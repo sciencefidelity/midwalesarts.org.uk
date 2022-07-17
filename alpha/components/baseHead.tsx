@@ -1,7 +1,7 @@
 import Head from "next/head"
 import { useRouter } from "next/router"
 import { urlFor } from "lib/utils"
-import { LocaleString, PageHead, Settings } from "lib/interfaces"
+import { PageHead, Settings } from "lib/interfaces"
 
 interface Props {
   pageHead?: PageHead
@@ -10,13 +10,12 @@ interface Props {
 
 export function BaseHead({ pageHead, settings }: Props) {
   const { locale = "en" } = useRouter() as TRouter
-  const key: keyof LocaleString = locale
   return (
     <Head>
       <title>
         {pageHead && `${pageHead.title} | `}
-        {settings.title[key]}
-        {pageHead ? "" : ` | ${settings.description[key]}`}
+        {settings.title[locale]}
+        {pageHead ? "" : ` | ${settings.description[locale]}`}
       </title>
       <link href="https://cdn.sanity.io/" rel="preconnect" crossOrigin="" />
       <link
@@ -48,7 +47,7 @@ export function BaseHead({ pageHead, settings }: Props) {
         content={
           pageHead && pageHead.description
             ? pageHead.description
-            : settings.description[key]
+            : settings.description[locale]
         }
       />
       {/* <meta name="keywords" content="" /> */}
@@ -58,7 +57,7 @@ export function BaseHead({ pageHead, settings }: Props) {
         content={
           pageHead && pageHead.ogTitle
             ? pageHead.ogTitle
-            : settings.ogTitle[key]
+            : settings.ogTitle[locale]
         }
       />
       <meta
@@ -66,7 +65,7 @@ export function BaseHead({ pageHead, settings }: Props) {
         content={
           pageHead && pageHead.ogDescription
             ? pageHead.ogDescription
-            : settings.ogDescription[key]
+            : settings.ogDescription[locale]
         }
       />
       <meta
@@ -86,7 +85,7 @@ export function BaseHead({ pageHead, settings }: Props) {
           .quality(100)
           .url()}
       />
-      <meta property="og:site_name" content={settings.title[key]} />
+      <meta property="og:site_name" content={settings.title[locale]} />
       <meta property="og:locale" content="en_GB" />
       <meta property="og:type" content="article" />
       {/* Twitter */}
@@ -96,7 +95,7 @@ export function BaseHead({ pageHead, settings }: Props) {
         content={
           pageHead && pageHead.ogTitle
             ? pageHead.ogTitle
-            : settings.ogTitle[key]
+            : settings.ogTitle[locale]
         }
       />
       <meta
@@ -104,7 +103,7 @@ export function BaseHead({ pageHead, settings }: Props) {
         content={
           pageHead && pageHead.ogDescription
             ? pageHead.ogDescription
-            : settings.ogDescription[key]
+            : settings.ogDescription[locale]
         }
       />
       <meta

@@ -48,9 +48,9 @@ export function Videos({
   }
   return (
     <Layout
-      caption={page.videos[0]?.title ?? undefined}
+      caption={page.videos ? page.videos[0]?.title : ""}
       heroImage={
-        page.videos[0]?.mainImage?.asset
+        page.videos && page.videos[0]?.mainImage?.asset
           ? page.videos[0].mainImage
           : settings.ogImage
       }
@@ -79,7 +79,7 @@ export function Videos({
           videos={page.videos}
         />
       )}
-      {videosPerPage < page.videos.length && (
+      {videosPerPage < (page.videos?.length ?? 0) && (
         <button
           onClick={handleShowMoreVideos}
           type="button"

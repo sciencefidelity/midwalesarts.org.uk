@@ -48,8 +48,8 @@ export function News({
   }
   return (
     <Layout
-      caption={page.posts[0]?.title ?? undefined}
-      heroImage={page.posts[0]?.image ?? settings.ogImage}
+      caption={page.posts ? page.posts[0]?.title : ""}
+      heroImage={page.posts ? page.posts[0]?.image : settings.ogImage}
       labels={labels}
       navigation={navigation}
       organisation={organisation}
@@ -67,7 +67,7 @@ export function News({
           )}
         </div>
       </div>
-      {page.posts[0] && (
+      {page.posts && (
         <PostsList
           fallbackImage={settings.ogImage}
           label={`${labels[18].text.trim()} `}
@@ -75,7 +75,7 @@ export function News({
           postsPerPage={postsPerPage}
         />
       )}
-      {postsPerPage < page.posts.length && (
+      {postsPerPage < (page.posts?.length ?? 0) && (
         <button
           onClick={handleShowMorePosts}
           type="button"
