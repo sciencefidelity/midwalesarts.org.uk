@@ -1,16 +1,15 @@
 import { CSSProperties } from "react"
 import { useRouter } from "next/router"
-import { dayToNumber, nextDate } from "lib/dateHelpers"
 import { buildURL } from "lib/utils"
 import { GridImage } from "components/gridImage"
 import { LinkTo } from "components/linkTo"
 import { PostDate } from "components/date"
-import { Event, Image, Workshop } from "lib/interfaces"
+import { Event, Image } from "lib/interfaces"
 import s from "styles/events.module.scss"
 import u from "styles/utils.module.scss"
 
 interface Props {
-  eventData: Event[] | Workshop[]
+  eventData: Event[]
   fallbackImage: Image
   heading: string
   marginTop: CSSProperties
@@ -57,16 +56,9 @@ export function EventPreview({
                   {event.title}
                 </div>
               )}
-              {(event.date || event.day) && (
+              {event.date && (
                 <div className={`${s.caption} ${u.textRight}`}>
-                  <PostDate
-                    date={
-                      event.date
-                        ? event.date
-                        : nextDate(dayToNumber(event.day), event.frequency)
-                    }
-                  />
-                  {event.startTime && `, ${event.startTime}`}
+                  <PostDate date={event.date} />
                 </div>
               )}
             </LinkTo>

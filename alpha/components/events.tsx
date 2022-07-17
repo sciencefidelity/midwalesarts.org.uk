@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useRouter } from "next/router"
 import { sortWorkshops } from "lib/dateHelpers"
 import { EventPreview } from "components/eventPreview"
+import { WorkshopEventPreview } from "components/workshopEventPreview"
 import { Layout } from "components/layout"
 import {
   Label,
@@ -92,7 +93,7 @@ export function Events({
         </div>
       )}
       {page.workshops && (
-        <EventPreview
+        <WorkshopEventPreview
           heading={labels[11].text}
           eventData={workshops}
           fallbackImage={settings.ogImage}

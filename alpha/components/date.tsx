@@ -22,7 +22,7 @@ const year = new Date().getFullYear()
 // Saturday, February 12th 2022
 // dydd Sadwrn, Chwefror 12, 2022
 export function EventDate({ date }: DateProps) {
-  const { locale = "en" } = useRouter()
+  const { locale = "en" } = useRouter() as TRouter
   return (
     <time dateTime={format(new Date(date), "yyyy-MM-dd")}>
       {locale === "cy"
@@ -43,7 +43,7 @@ export function ExhibitionDate({
   dateStart,
   label,
 }: ExhibitionDateProps) {
-  const { locale = "en" } = useRouter()
+  const { locale = "en" } = useRouter() as TRouter
   return (
     <time dateTime={format(new Date(dateStart), "yyyy-MM-dd")}>
       {!dateEnd && label && `${label.trim()} `}
@@ -63,7 +63,7 @@ export function ExhibitionDate({
 // Saturday, February 12th 2022
 // dydd Sadwrn, Chwefror 12, 2022
 export function PostDate({ date }: DateProps) {
-  const { locale = "en" } = useRouter()
+  const { locale = "en" } = useRouter() as TRouter
   return (
     <time dateTime={format(new Date(date), "yyyy-MM-dd")}>
       {locale === "cy"
@@ -81,7 +81,7 @@ export function PostDate({ date }: DateProps) {
 // Sat, 5th February
 // Sad, 5ed Chwefror
 export function SidebarEventDate({ date }: DateProps) {
-  const { locale = "en" } = useRouter()
+  const { locale = "en" } = useRouter() as TRouter
   return (
     <time dateTime={format(new Date(date), "yyyy-MM-dd")}>
       {locale === "cy"
@@ -97,7 +97,7 @@ export function SidebarExhibitionDate({
   dateEnd,
   dateStart,
 }: SidebarDateProps) {
-  const { locale } = useRouter()
+  const { locale } = useRouter() as TRouter
   return (
     <time dateTime={format(new Date(dateStart), "yyyy-MM-dd")}>
       {locale === "cy"
