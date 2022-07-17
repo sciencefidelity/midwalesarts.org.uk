@@ -48,7 +48,7 @@ export function Artists({
   const key: keyof LocaleString = locale === "cy" ? "cy" : "en"
   return (
     <Layout
-      caption={page?.hero?.mainImage?.caption ?? undefined}
+      caption={page?.hero?.mainImage?.caption ?? ""}
       heroImage={
         page?.hero?.mainImage?.asset ? page.hero.mainImage : settings.ogImage
       }

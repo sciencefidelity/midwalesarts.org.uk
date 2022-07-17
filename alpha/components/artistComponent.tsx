@@ -90,7 +90,7 @@ export function ArtistComponent({
   }
   return (
     <Layout
-      caption={artist.mainImage?.caption ?? undefined}
+      caption={artist.mainImage?.caption ?? ""}
       heroImage={artist.mainImage?.asset ? artist.mainImage : settings.ogImage}
       labels={labels}
       navigation={navigation}

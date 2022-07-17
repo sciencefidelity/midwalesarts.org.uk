@@ -15,7 +15,7 @@ import {
 import u from "styles/utils.module.scss"
 
 interface Props {
-  caption: string
+  caption?: string
   children: ReactNode
   heroImage: Image
   labels: Label[]
@@ -66,5 +66,6 @@ export function Layout({
 }
 
 Layout.defaultProps = {
+  caption: undefined,
   pageHead: {},
 }

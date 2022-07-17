@@ -99,7 +99,8 @@ export function FriendForm({ labels }: Props) {
   }
   const handleGiftAidChange = () => setGiftAid(!giftAid)
   return (
-    <form onSubmit={handleSubmit} className={s.friendForm}>
+    // TODO: test that this still works with a callback in the event handler
+    <form onSubmit={() => handleSubmit} className={s.friendForm}>
       <div className={`${s.friendGift} ${u.flex}`}>
         <div>
           <input

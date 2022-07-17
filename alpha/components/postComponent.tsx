@@ -51,7 +51,6 @@ export const PostComponent: FC<Props> = ({
   }
   return (
     <Layout
-      caption=""
       heroImage={post.image?.asset ? post.image : settings.ogImage}
       labels={labels}
       navigation={navigation}

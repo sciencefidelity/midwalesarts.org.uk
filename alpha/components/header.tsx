@@ -8,7 +8,7 @@ import s from "styles/header.module.scss"
 import u from "styles/utils.module.scss"
 
 interface Props {
-  caption: string
+  caption?: string
   heroImage: Image
   labels: Label[]
   navigation: Navigation[]
@@ -40,7 +40,8 @@ export function Header({
           className={`${s.hero} ${u.relative}`}
           style={{ overflow: "hidden" }}
         >
-          <HeroImage alt={caption} image={heroImage} />
+          {/* TODO: find a way to get an alt text when we aren't passing a caption */}
+          <HeroImage alt={caption ?? ""} image={heroImage} />
         </div>
       </header>
       <NavComponent
@@ -56,4 +57,8 @@ export function Header({
       />
     </>
   )
+}
+
+Header.defaultProps = {
+  caption: undefined,
 }

@@ -46,7 +46,6 @@ export function Support({
   }
   return (
     <Layout
-      caption=""
       heroImage={page.mainImage ?? settings.ogImage}
       labels={labels}
       navigation={navigation}

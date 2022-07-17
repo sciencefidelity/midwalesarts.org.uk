@@ -47,13 +47,15 @@ export function Workshops({
     }`,
     ogImage: page.ogImage,
   }
-  const workshops = sortWorkshops(page.workshops)
+  const workshops = sortWorkshops(page.workshops || [])
   const calendarDays = []
   for (let i = 0; i < 7; i += 1) {
     calendarDays[i] = workshops.filter(
       (workshop) => dayToNumber(workshop.day) === i
     )
   }
+  calendarDays.filter((day) => day.length > 0)
+  console.log(calendarDays)
   return (
     <Layout
       caption=""
@@ -86,9 +88,9 @@ export function Workshops({
           )}
           <section className={`${s.calendar}`}>
             {/* <h3 className={`${s.h3}`}>Workshop Calendar</h3> */}
-            {calendarDays.map((day, idx) => (
+            {calendarDays.map((days, idx) => (
               <Fragment key={idx}>
-                <CalendarWorkshops workshops={day} />
+                <CalendarWorkshops workshops={days} />
               </Fragment>
             ))}
           </section>

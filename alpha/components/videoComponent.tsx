@@ -49,7 +49,6 @@ export function VideoComponent({
   }
   return (
     <Layout
-      caption=""
       heroImage={video.mainImage?.asset ? video.mainImage : settings.ogImage}
       labels={labels}
       navigation={navigation}

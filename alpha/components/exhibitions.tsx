@@ -50,15 +50,22 @@ export function Exhibitions({
       (prevExhibitionsPerPage) => prevExhibitionsPerPage + 3
     )
   }
-  let exhibitionHero: Image = page.pastExhibitions[0].mainImage
-  if (page.futureExhibitions[0])
+  let exhibitionHero: Image = settings.ogImage
+  if (page.pastExhibitions && page.pastExhibitions[0]) {
+    exhibitionHero = page.pastExhibitions[0].mainImage
+  }
+  if (page.futureExhibitions && page.futureExhibitions[0]) {
     exhibitionHero = page.futureExhibitions[0].mainImage
-  if (page.exhibitions[0]) exhibitionHero = page.exhibitions[0].mainImage
-  const count = page.exhibitions.length + page.futureExhibitions.length
+  }
+  if (page.exhibitions && page.exhibitions[0]) {
+    exhibitionHero = page.exhibitions[0].mainImage
+  }
+  const count =
+    (page.exhibitions?.length ?? 0) + (page.futureExhibitions?.length ?? 0)
   return (
     <Layout
-      caption={exhibitionHero?.caption ?? undefined}
-      heroImage={exhibitionHero?.asset ? exhibitionHero : settings.ogImage}
+      caption={exhibitionHero?.caption ?? ""}
+      heroImage={exhibitionHero}
       labels={labels}
       navigation={navigation}
       organisation={organisation}
@@ -80,46 +87,48 @@ export function Exhibitions({
         className={`
         ${s.exhibitionGrid} ${count < 3 ? s.twoCols : ""} ${u.grid} ${u.mAuto}`}
       >
-        {page.exhibitions[0] &&
+        {page.exhibitions &&
           page.exhibitions.map((exhibition, idx) => (
             <Fragment key={exhibition._id}>
               <ExhibitionPreview
                 exhibition={exhibition}
                 fallbackImage={settings.ogImage}
                 heading={
-                  idx === 0 &&
-                  (page.exhibitions.length === 1
-                    ? labels[13].text
-                    : labels[14].text)
+                  idx === 0
+                    ? page.exhibitions?.length === 1
+                      ? labels[13].text
+                      : labels[14].text
+                    : undefined
                 }
                 idx={idx}
                 label={labels[56].text}
-                margin={page.futureExhibitions[0] && idx >= 3 ? "6rem" : "2rem"}
+                margin={page.futureExhibitions && idx >= 3 ? "6rem" : "2rem"}
                 postsPerPage={10}
               />
             </Fragment>
           ))}
-        {page.futureExhibitions[0] &&
+        {page.futureExhibitions &&
           page.futureExhibitions.map((exhibition, idx) => (
             <Fragment key={exhibition._id}>
               <ExhibitionPreview
                 exhibition={exhibition}
                 fallbackImage={settings.ogImage}
                 heading={
-                  idx === 0 &&
-                  (page.futureExhibitions.length === 1
-                    ? labels[15].text
-                    : labels[16].text)
+                  idx === 0
+                    ? page.futureExhibitions?.length === 1
+                      ? labels[15].text
+                      : labels[16].text
+                    : undefined
                 }
-                idx={page.exhibitions.length + idx}
+                idx={(page.exhibitions?.length ?? 0) + idx}
                 label={labels[56].text}
-                margin={page.exhibitions.length >= 3 ? "6rem" : "2rem"}
+                margin={(page.exhibitions?.length ?? 0) >= 3 ? "6rem" : "2rem"}
                 postsPerPage={10}
               />
             </Fragment>
           ))}
       </section>
-      {page.pastExhibitions[0] && (
+      {page.pastExhibitions && (
         <PastExhibitionsList
           exhibitions={page.pastExhibitions}
           fallbackImage={settings.ogImage}
@@ -127,7 +136,7 @@ export function Exhibitions({
           postsPerPage={pastExhibitionsPerPage}
         />
       )}
-      {pastExhibitionsPerPage < page.pastExhibitions.length && (
+      {pastExhibitionsPerPage < (page.pastExhibitions?.length ?? 0) && (
         <button
           onClick={handleShowMoreExhibitions}
           className={`${s.loadMore} ${u.pointer}`}

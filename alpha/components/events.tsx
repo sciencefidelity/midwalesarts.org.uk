@@ -50,9 +50,9 @@ export function Events({
   }
   return (
     <Layout
-      caption={page.events[0]?.title ?? undefined}
+      caption={page.events ? page.events[0]?.title : ""}
       heroImage={
-        page.events[0]?.mainImage?.asset
+        page.events && page.events[0]?.mainImage?.asset
           ? page.events[0].mainImage
           : settings.ogImage
       }
@@ -73,7 +73,7 @@ export function Events({
           )}
         </div>
       </div>
-      {page.events[0] !== undefined ? (
+      {page.events !== undefined ? (
         <EventPreview
           heading={labels[9].text}
           eventData={page.events}
@@ -101,7 +101,7 @@ export function Events({
           top={false}
         />
       )}
-      {page.pastEvents[0] && (
+      {page.pastEvents && (
         <EventPreview
           heading={labels[12].text}
           eventData={page.pastEvents}
@@ -111,7 +111,7 @@ export function Events({
           top={false}
         />
       )}
-      {pastEventsPerPage < page.pastEvents.length && (
+      {pastEventsPerPage < (page.pastEvents?.length ?? 0) && (
         <button
           onClick={handleShowMoreEvents}
           className={`${s.loadMore} ${u.pointer}`}

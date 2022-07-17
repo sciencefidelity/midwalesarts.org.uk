@@ -96,7 +96,7 @@ export function ExhibitionComponent({
     exhibition.works[0] !== undefined ? exhibition.works[imageToShow] : {}
   return (
     <Layout
-      caption={exhibition.mainImage?.caption ?? undefined}
+      caption={exhibition.mainImage?.caption ?? ""}
       heroImage={
         exhibition.mainImage?.asset ? exhibition.mainImage : settings.ogImage
       }

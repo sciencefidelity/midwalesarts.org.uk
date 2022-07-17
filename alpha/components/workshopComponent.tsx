@@ -51,7 +51,6 @@ export function WorkshopComponent({
   }
   return (
     <Layout
-      caption=""
       heroImage={
         workshop.mainImage?.asset ? workshop.mainImage : settings.ogImage
       }
