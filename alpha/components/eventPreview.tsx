@@ -1,4 +1,4 @@
-import { CSSProperties, FC } from "react"
+import { CSSProperties } from "react"
 import { useRouter } from "next/router"
 import { dayToNumber, nextDate } from "lib/dateHelpers"
 import { buildURL } from "lib/utils"

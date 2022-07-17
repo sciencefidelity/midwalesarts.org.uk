@@ -24,7 +24,7 @@ export function SidebarComponent({ labels, sidebar }: Props) {
               (event) =>
                 event && (
                   <LinkTo
-                    href={buildURL(locale, event.slug, event._type)}
+                    href={`/${buildURL(locale, event.slug, event._type)}`}
                     key={event._id}
                   >
                     <li className={`${s.listItem}`}>
@@ -45,7 +45,11 @@ export function SidebarComponent({ labels, sidebar }: Props) {
               (exhibition) =>
                 exhibition && (
                   <LinkTo
-                    href={buildURL(locale, exhibition.slug, exhibition._type)}
+                    href={`/${buildURL(
+                      locale,
+                      exhibition.slug,
+                      exhibition._type
+                    )}`}
                     key={exhibition._id}
                   >
                     <li className={`${s.listItem}`}>
@@ -73,7 +77,7 @@ export function SidebarComponent({ labels, sidebar }: Props) {
               (workshop) =>
                 workshop && (
                   <LinkTo
-                    href={buildURL(locale, workshop.slug, workshop._type)}
+                    href={`/${buildURL(locale, workshop.slug, workshop._type)}`}
                     key={workshop._id}
                   >
                     <li className={`${s.listItem}`}>
@@ -98,7 +102,7 @@ export function SidebarComponent({ labels, sidebar }: Props) {
               (post) =>
                 post && (
                   <LinkTo
-                    href={buildURL(locale, post.slug, post._type)}
+                    href={`/${buildURL(locale, post.slug, post._type)}`}
                     key={post._id}
                   >
                     <li className={`${s.listItem}`}>

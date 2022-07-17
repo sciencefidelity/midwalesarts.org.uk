@@ -54,8 +54,6 @@ export function Workshops({
       (workshop) => dayToNumber(workshop.day) === i
     )
   }
-  calendarDays.filter((day) => day.length > 0)
-  console.log(calendarDays)
   return (
     <Layout
       heroImage={page.mainImage?.asset ? page.mainImage : settings.ogImage}
@@ -86,12 +84,14 @@ export function Workshops({
             />
           )}
           <section className={`${s.calendar}`}>
-            {/* <h3 className={`${s.h3}`}>Workshop Calendar</h3> */}
-            {calendarDays.map((days, idx) => (
-              <Fragment key={idx}>
-                <CalendarWorkshops workshops={days} />
-              </Fragment>
-            ))}
+            {calendarDays.map(
+              (days) =>
+                days.length > 0 && (
+                  <Fragment key={days[0]._id}>
+                    <CalendarWorkshops workshops={days} />
+                  </Fragment>
+                )
+            )}
           </section>
         </section>
         {/* TODO: the sidebar could be queried seperately so that typescripts knows it exists */}

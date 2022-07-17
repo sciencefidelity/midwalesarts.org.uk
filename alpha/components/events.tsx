@@ -1,4 +1,4 @@
-import { FC, useState } from "react"
+import { useState } from "react"
 import { useRouter } from "next/router"
 import { sortWorkshops } from "lib/dateHelpers"
 import { EventPreview } from "components/eventPreview"
@@ -44,7 +44,7 @@ export function Events({
     }`,
     ogImage: page.ogImage,
   }
-  const workshops = sortWorkshops(page.workshops)
+  const workshops = sortWorkshops(page.workshops || [])
   const handleShowMoreEvents = () => {
     setPastEventsPerPage((prevEventsPerPage) => prevEventsPerPage + 9)
   }
