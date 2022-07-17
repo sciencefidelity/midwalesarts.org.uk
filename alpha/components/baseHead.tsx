@@ -13,9 +13,9 @@ export function BaseHead({ pageHead, settings }: Props) {
   return (
     <Head>
       <title>
-        {pageHead && `${pageHead.title} | `}
+        {pageHead?.title && `${pageHead?.title} | `}
         {settings.title[locale]}
-        {pageHead ? "" : ` | ${settings.description[locale]}`}
+        {pageHead?.title ? "" : ` | ${settings.description[locale]}`}
       </title>
       <link href="https://cdn.sanity.io/" rel="preconnect" crossOrigin="" />
       <link
@@ -131,5 +131,5 @@ export function BaseHead({ pageHead, settings }: Props) {
 }
 
 BaseHead.defaultProps = {
-  pageHead: {},
+  pageHead: undefined,
 }

@@ -93,7 +93,7 @@ export interface Image {
   _key?: string;
   _type: "image";
   asset: SanityReference<SanityImageAsset>;
-  caption?: LocaleString & string;
+  caption: LocaleString & string;
   crop?: SanityImageCrop;
   hotspot?: SanityImageHotspot;
 }

@@ -37,7 +37,7 @@ export function Home({
   const dynamicGap = { gap: `${locale === "cy" ? "8.2rem" : "9.4rem"}` }
   return (
     <Layout
-      caption={page.subImage?.caption ? page.subImage?.caption[locale] : ""}
+      caption={page.mainImage?.caption ?? undefined}
       heroImage={page.mainImage?.asset ? page.mainImage : settings.ogImage}
       labels={labels}
       navigation={navigation}
@@ -60,12 +60,10 @@ export function Home({
             <div className={`${s.sideImageContainer} ${u.absolute}`}>
               <InsetImage
                 image={page.subImage ?? settings.ogImage}
-                alt={
-                  page.subImage?.caption ? page.subImage?.caption[locale] : ""
-                }
+                alt={page.subImage?.caption ?? ""}
               />
               <div className={`${s.sideImageCaption}`}>
-                {page.subImage?.caption ? page.subImage?.caption[locale] : ""}
+                {page.subImage?.caption ?? ""}
               </div>
             </div>
           </div>
