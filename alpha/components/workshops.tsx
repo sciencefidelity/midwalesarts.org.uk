@@ -58,7 +58,6 @@ export function Workshops({
   console.log(calendarDays)
   return (
     <Layout
-      caption=""
       heroImage={page.mainImage?.asset ? page.mainImage : settings.ogImage}
       labels={labels}
       navigation={navigation}
