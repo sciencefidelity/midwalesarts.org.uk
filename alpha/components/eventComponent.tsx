@@ -1,4 +1,3 @@
-import { FC } from "react"
 import { useRouter } from "next/router"
 import { PortableText } from "@portabletext/react"
 import { components } from "components/portableTextComponents"
@@ -29,15 +28,15 @@ interface Props {
   settings: Settings
 }
 
-export const EventComponent: FC<Props> = ({
+export function EventComponent({
   event,
   labels,
   navigation,
   organisation,
   pageContext,
   settings,
-}) => {
-  const { locale = "en" } = useRouter()
+}: Props) {
+  const { locale = "en" } = useRouter() as TRouter
   const pageHead: PageHead = {
     title: event.title,
     description: event.ogDescription,

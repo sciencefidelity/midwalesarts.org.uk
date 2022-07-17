@@ -93,7 +93,7 @@ export interface Image {
   _key?: string;
   _type: "image";
   asset: SanityReference<SanityImageAsset>;
-  caption?: LocaleString | string;
+  caption?: LocaleString;
   crop?: SanityImageCrop;
   hotspot?: SanityImageHotspot;
 }
@@ -194,6 +194,10 @@ export interface Path {
   params: {
     slug: string;
   };
+}
+
+export interface RootParams extends ParsedUrlQuery {
+  slug: string[];
 }
 
 export interface Post extends SanityDocument {

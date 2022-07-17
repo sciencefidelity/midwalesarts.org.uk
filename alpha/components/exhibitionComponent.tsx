@@ -37,7 +37,7 @@ export function ExhibitionComponent({
   pageContext,
   settings,
 }: Props) {
-  const { locale = "en" } = useRouter()
+  const { locale = "en" } = useRouter() as TRouter
   const [info, setInfo] = useState(
     !(exhibition.works[0] && exhibition.dateStart < new Date().toISOString())
   )

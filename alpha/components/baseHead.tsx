@@ -9,8 +9,8 @@ interface Props {
 }
 
 export function BaseHead({ pageHead, settings }: Props) {
-  const { locale = "en" } = useRouter()
-  const key: keyof LocaleString = locale === "cy" ? "cy" : "en"
+  const { locale = "en" } = useRouter() as TRouter
+  const key: keyof LocaleString = locale
   return (
     <Head>
       <title>

@@ -13,7 +13,7 @@ interface Props {
 }
 
 export function FrontPageHeadline({ headline, settings }: Props) {
-  const { locale = "en" } = useRouter()
+  const { locale = "en" } = useRouter() as TRouter
   const url = buildURL(locale, headline.ctaLink.slug, headline.ctaLink._type)
   const key: keyof LocaleString = locale === "cy" ? "cy" : "en"
   return (

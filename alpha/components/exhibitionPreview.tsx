@@ -28,7 +28,7 @@ export function ExhibitionPreview({
   postsPerPage,
   top = true,
 }: Props) {
-  const { locale = "en" } = useRouter()
+  const { locale = "en" } = useRouter() as TRouter
   return (
     <div style={{ marginTop: margin ?? "inherit" }}>
       <h3

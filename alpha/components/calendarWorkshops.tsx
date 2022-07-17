@@ -11,7 +11,7 @@ interface Props {
 }
 
 export function CalendarWorkshops({ workshops }: Props) {
-  const { locale = "en" } = useRouter()
+  const { locale = "en" } = useRouter() as TRouter
   return (
     <section className={`${s.calendarDay}`}>
       {workshops[0] && (

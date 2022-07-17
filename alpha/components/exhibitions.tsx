@@ -4,6 +4,7 @@ import { ExhibitionPreview } from "components/exhibitionPreview"
 import { Layout } from "components/layout"
 import { PastExhibitionsList } from "components/pastExhibitionsList"
 import {
+  Image,
   Label,
   Navigation,
   Organisation,
@@ -33,7 +34,7 @@ export function Exhibitions({
   settings,
 }: Props) {
   const [pastExhibitionsPerPage, setPastExhibitionsPerPage] = useState(9)
-  const { locale } = useRouter()
+  const { locale } = useRouter() as TRouter
   const pageHead: PageHead = {
     title: page.title,
     description: page.ogDescription,
@@ -49,7 +50,7 @@ export function Exhibitions({
       (prevExhibitionsPerPage) => prevExhibitionsPerPage + 3
     )
   }
-  let exhibitionHero: any = page.pastExhibitions[0].mainImage
+  let exhibitionHero: Image = page.pastExhibitions[0].mainImage
   if (page.futureExhibitions[0])
     exhibitionHero = page.futureExhibitions[0].mainImage
   if (page.exhibitions[0]) exhibitionHero = page.exhibitions[0].mainImage

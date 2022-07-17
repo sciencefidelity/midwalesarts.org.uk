@@ -33,7 +33,7 @@ export function Events({
   settings,
 }: Props) {
   const [pastEventsPerPage, setPastEventsPerPage] = useState(6)
-  const { locale = "en" } = useRouter()
+  const { locale = "en" } = useRouter() as TRouter
   const pageHead: PageHead = {
     title: page.title,
     description: page.ogDescription,

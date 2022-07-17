@@ -2,7 +2,7 @@ import { useCallback, useState } from "react"
 import { useRouter } from "next/router"
 import { PortableText } from "@portabletext/react"
 import { components } from "components/portableTextComponents"
-import { buildURL, localize, subdir } from "lib/utils"
+import { buildURL, subdir } from "lib/utils"
 import { GridImage } from "components/gridImage"
 import { Layout } from "components/layout"
 import { LinkTo } from "components/linkTo"
@@ -10,6 +10,7 @@ import { Modal } from "components/modal"
 import {
   Artist,
   Label,
+  LocaleString,
   Navigation,
   Organisation,
   PageContext,
@@ -36,7 +37,8 @@ export function ArtistComponent({
   pageContext,
   settings,
 }: Props) {
-  const { locale = "en" } = useRouter()
+  const { locale = "en" } = useRouter() as TRouter
+  const localeKey: keyof LocaleString = locale
   const [bio, setBio] = useState(!artist.works[0])
   const [gallery, setGallery] = useState(!!artist.works[0])
   const [modal, setModal] = useState(false)
@@ -161,7 +163,7 @@ export function ArtistComponent({
                   <GridImage
                     alt={`
                       ${artist.title && `${artist.title}, `}
-                      ${artwork.title && `${localize(artwork.title, locale)}, `}
+                      ${artwork.title && `${artwork.title[localeKey]}, `}
                       ${artwork.date && artwork.date}
                     `}
                     idx={idx}
@@ -172,14 +174,13 @@ export function ArtistComponent({
                     <div
                       className={`${s.caption} ${u.textRight} ${u.semibold}`}
                     >
-                      {localize(artwork.title, locale)}{" "}
+                      {artwork.title[localeKey]}{" "}
                       {artwork.date && `(${artwork.date})`}
                     </div>
                   )}
                   {(artwork.medium || artwork.price) && (
                     <div className={`${s.caption} ${u.textRight}`}>
-                      {artwork.medium &&
-                        `${localize(artwork.medium, locale)}, `}
+                      {artwork.medium && `${artwork.medium[localeKey]}, `}
                       {artwork.price}
                     </div>
                   )}

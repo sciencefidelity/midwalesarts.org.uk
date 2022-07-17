@@ -10,8 +10,8 @@ interface Props {
 }
 
 export const FooterContact: FC<Props> = ({ label, organisation, settings }) => {
-  const { locale = "en" } = useRouter()
-  const key: keyof LocaleString = locale === "cy" ? "cy" : "en"
+  const { locale = "en" } = useRouter() as TRouter
+  const localeKey: keyof LocaleString = locale
   const year = new Date().getFullYear()
   return (
     <div>
@@ -20,10 +20,10 @@ export const FooterContact: FC<Props> = ({ label, organisation, settings }) => {
           {label}
           <br />
         </b>
-        {organisation.opening[key]}
+        {organisation.opening[localeKey]}
       </p>
       <p className={`${s.footerText}`}>
-        <b>{settings.title[key]}</b>
+        <b>{settings.title[localeKey]}</b>
         <br />
         {organisation.address.town}
         <br />
@@ -37,7 +37,7 @@ export const FooterContact: FC<Props> = ({ label, organisation, settings }) => {
         </a>
       </p>
       <p className={`${s.footerText} ${s.copy}`}>
-        &copy; {settings.title[key]} {year}
+        &copy; {settings.title[localeKey]} {year}
       </p>
     </div>
   )

@@ -1,7 +1,7 @@
 import { MouseEventHandler } from "react"
 import { useRouter } from "next/router"
 import { localize, urlFor } from "lib/utils"
-import { Artwork, Label, Image } from "lib/interfaces"
+import { Artwork, Label, LocaleString, Image } from "lib/interfaces"
 import s from "styles/artist.module.scss"
 import u from "styles/utils.module.scss"
 
@@ -25,6 +25,7 @@ export function Modal({
   nextIndex,
 }: Props) {
   const { locale = "en" } = useRouter()
+  const localeKey: keyof LocaleString = locale === "cy" ? "cy" : "en"
   // const aspect = modalImage.aspect
   // const imageAspect = {
   //   aspectRatio: aspect,
@@ -94,7 +95,7 @@ export function Modal({
               .url()}
             alt={`
               ${modalImage?.artist && `${modalImage.artist}, `}
-              ${modalImage?.title && `${modalImage.title[key]}, `}
+              ${modalImage?.title && `${modalImage.title[localeKey]}, `}
               ${modalImage?.date && modalImage.date}
             `}
             style={{

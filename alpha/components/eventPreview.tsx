@@ -18,15 +18,15 @@ interface Props {
   top?: boolean
 }
 
-export const EventPreview: FC<Props> = ({
+export function EventPreview({
   eventData,
   fallbackImage,
   heading,
   marginTop,
   postsPerPage,
   top = true,
-}) => {
-  const { locale = "en" } = useRouter()
+}: Props) {
+  const { locale = "en" } = useRouter() as TRouter
   return (
     <>
       <div className={`${s.container} ${u.grid}`} style={marginTop}>
@@ -75,4 +75,8 @@ export const EventPreview: FC<Props> = ({
       </div>
     </>
   )
+}
+
+EventPreview.defaultProps = {
+  top: true,
 }

@@ -14,8 +14,8 @@ interface Props {
 }
 
 export function Footer({ labels, organisation, settings }: Props) {
-  const { locale = "" } = useRouter()
-  const key: keyof LocaleString = locale === "cy" ? "cy" : "en"
+  const { locale = "en" } = useRouter() as TRouter
+  const localeKey: keyof LocaleString = locale
   const year = new Date().getFullYear()
   return (
     <footer className={`${s.footer} ${u.relative}`}>
@@ -31,7 +31,7 @@ export function Footer({ labels, organisation, settings }: Props) {
           <FooterLinks social={settings.social} />
         </div>
         <p className={`${s.smallCopy}`}>
-          &copy; {settings.title[key]} {year}
+          &copy; {settings.title[localeKey]} {year}
         </p>
       </div>
     </footer>

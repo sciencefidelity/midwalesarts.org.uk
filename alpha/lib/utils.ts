@@ -1,7 +1,6 @@
 import imageUrlBuilder from "@sanity/image-url";
 import sanityClient from "lib/sanityClient";
-import { LocaleString } from "lib/interfaces";
-import { Artist, Artwork, Image } from "lib/interfaces";
+import { Artist, Artwork, Image, Locale, LocaleString } from "lib/interfaces";
 
 /**
  * Capitalizes a string
@@ -43,14 +42,14 @@ export function localize(content: LocaleString, locale: string): string {
  * @param artists - an array of artist documents from the Sanity database
  * @returns the sorted array of artists
  */
-export const sortArtists = (artists: Artist[]): Artist[] => {
-  return artists.sort((a, b) => {
-    return a.title
+export function sortArtists(artists: Artist[]): Artist[] {
+  return artists.sort((a, b) =>
+    a.title
       .trim()
       .replace(/(^\b\w+\s)/gi, "")
-      .localeCompare(b.title.trim().replace(/(^\b\w+\s)/gi, ""));
-  });
-};
+      .localeCompare(b.title.trim().replace(/(^\b\w+\s)/gi, ""))
+  );
+}
 
 /**
  * Sorts artworks by the name of the artist who created them
@@ -58,14 +57,14 @@ export const sortArtists = (artists: Artist[]): Artist[] => {
  * @param artworks - an array of artwork documents from the Sanity database
  * @returns the sorted array of artworks
  */
-export const sortArtworks = (artworks: Artwork[]): Artwork[] => {
-  return artworks.sort((a, b) => {
-    return a.artist
+export function sortArtworks(artworks: Artwork[]): Artwork[] {
+  return artworks.sort((a, b) =>
+    a.artist
       .trim()
       .replace(/(^\b\w+\s)/gi, "")
-      .localeCompare(b.artist.trim().replace(/(^\b\w+\s)/gi, ""));
-  });
-};
+      .localeCompare(b.artist.trim().replace(/(^\b\w+\s)/gi, ""))
+  );
+}
 
 /**
  * Returns the subdirectory of the site based on the schema type
@@ -74,7 +73,7 @@ export const sortArtworks = (artworks: Artwork[]): Artwork[] => {
  * @param type - the document type defined in the Sanity schema
  * @returns the subdirectory used in the site
  */
-export const subdir = (locale: string, type: string): string => {
+export function subdir(locale: Locale, type: string): string {
   if (locale === "cy") {
     switch (type) {
       case "artist":
@@ -111,7 +110,8 @@ export const subdir = (locale: string, type: string): string => {
         return "";
     }
   }
-};
+  return "";
+}
 
 /**
  * Builds a URL to a page relative to the root of the site
@@ -121,7 +121,7 @@ export const subdir = (locale: string, type: string): string => {
  * @param slug - the slug defined in the document
  * @returns the URL to the page formatted as `subdirectory/slug`
  */
-export function buildURL(locale: string, slug: string, type: string): string {
+export function buildURL(locale: Locale, slug: string, type: string): string {
   return `${subdir(locale, type)}/${slug}`;
 }
 
@@ -131,6 +131,6 @@ export function buildURL(locale: string, slug: string, type: string): string {
  * @param source - the image object
  * @returns the image url
  */
-export const urlFor = (source: Image) => {
+export function urlFor(source: Image) {
   return imageUrlBuilder(sanityClient).image(source);
-};
+}

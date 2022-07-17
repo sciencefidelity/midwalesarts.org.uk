@@ -1,4 +1,3 @@
-import { FC } from "react"
 import { useRouter } from "next/router"
 import { buildURL, sortArtists } from "lib/utils"
 import { GridImage } from "components/gridImage"
@@ -26,15 +25,15 @@ interface Props {
   settings: Settings
 }
 
-export const Artists: FC<Props> = ({
+export function Artists({
   labels,
   navigation,
   organisation,
   page,
   pageContext,
   settings,
-}) => {
-  const { locale = "en" } = useRouter()
+}: Props) {
+  const { locale = "en" } = useRouter() as TRouter
   const pageHead: PageHead = {
     title: page.title,
     description: page.ogDescription,
