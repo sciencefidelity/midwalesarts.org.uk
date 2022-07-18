@@ -64,6 +64,7 @@ module.exports = {
       2,
       { namedComponents: ["arrow-function", "function-declaration"] },
     ],
+    // This helpful when using with TypeScript
     "react/jsx-no-useless-fragment": ["error", { allowExpressions: true }],
     // Airbnb prefers forEach
     "unicorn/no-array-for-each": "off",
