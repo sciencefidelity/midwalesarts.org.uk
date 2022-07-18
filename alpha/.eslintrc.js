@@ -16,8 +16,6 @@ module.exports = {
     "plugin:promise/recommended",
     "plugin:unicorn/recommended",
     "plugin:@next/next/recommended",
-    "plugin:@typescript-eslint/recommended",
-
     "prettier",
   ],
   env: {
@@ -42,8 +40,8 @@ module.exports = {
       { allow: ["__i18n_lang", "__i18n_refs", "_id", "_type", "_key"] },
     ],
     // https://basarat.gitbook.io/typescript/main-1/defaultisbad
+    // Next uses default export to route pages so we'll use a different paradigm for them
     "import/prefer-default-export": "off",
-    // Next uses default exports for routing pages
     "import/no-default-export": "off",
     // It's not accurate in the monorepo style
     "import/no-extraneous-dependencies": "off",
@@ -58,13 +56,14 @@ module.exports = {
     "react/jsx-props-no-spreading": "off",
     // The standard Next.js pattern for pages is arrow functions with `NextPage`.
     // For components it seems better to use `function-declaration` so that the
-    // return statement is required to help with refactoring
+    // return statement is required to help with refactoring,
     // the `arrow-body-style` rule prefers arrows without the return block
     "react/function-component-definition": [
       2,
       { namedComponents: ["arrow-function", "function-declaration"] },
     ],
-    // This helpful when using with TypeScript
+    // This is useful Typescript where string does not satisfy the expected
+    // return type of JSX.Element.
     "react/jsx-no-useless-fragment": ["error", { allowExpressions: true }],
     // Airbnb prefers forEach
     "unicorn/no-array-for-each": "off",
