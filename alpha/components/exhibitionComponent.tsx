@@ -44,6 +44,7 @@ export function ExhibitionComponent({
   const [gallery, setGallery] = useState(
     !!(exhibition.works[0] && exhibition.dateStart < new Date().toISOString())
   )
+
   const [modal, setModal] = useState(false)
   const [imageToShow, setImageToShow] = useState(0)
   const pageHead: PageHead = {
@@ -57,6 +58,7 @@ export function ExhibitionComponent({
       /${buildURL(locale, exhibition.slug, exhibition._type)}`,
     ogImage: exhibition.ogImage,
   }
+
   const toggleInfo = () => {
     setInfo(true)
     setGallery(false)
@@ -73,27 +75,38 @@ export function ExhibitionComponent({
     setModal(false)
   }
 
-  const prevIndexCallback = useCallback(() => {
-    // TODO: this could also be set with refs
+  function handleNextImage() {
     let currentIndex = imageToShow
     currentIndex -= 1
     if (currentIndex < 0) {
       currentIndex = exhibition.works.length - 1
     }
     setImageToShow(currentIndex)
-  }, [imageToShow, exhibition.works])
-  const nextIndexCallback = useCallback(() => {
-    // TODO: this could also be set with refs
+  }
+
+  function handlePrevImage() {
     let currentIndex = imageToShow
     currentIndex += 1
     if (currentIndex > exhibition.works.length - 1) {
       currentIndex = 0
     }
     setImageToShow(currentIndex)
-  }, [imageToShow, exhibition.works])
+  }
+
+  const prevIndexCallback = useCallback(handlePrevImage, [
+    imageToShow,
+    exhibition.works,
+  ])
+  const nextIndexCallback = useCallback(handleNextImage, [
+    imageToShow,
+    exhibition.works,
+  ])
 
   const modalImage =
     exhibition.works[0] !== undefined ? exhibition.works[imageToShow] : {}
+
+  console.log(exhibition.works[0])
+
   return (
     <Layout
       caption={exhibition.mainImage?.caption ?? ""}
