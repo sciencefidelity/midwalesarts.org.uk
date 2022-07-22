@@ -105,8 +105,6 @@ export function ExhibitionComponent({
   const modalImage =
     exhibition.works[0] !== undefined ? exhibition.works[imageToShow] : {}
 
-  console.log(exhibition.works[0])
-
   return (
     <Layout
       caption={exhibition.mainImage?.caption ?? ""}
