@@ -1,0 +1,183 @@
+@use "./base/colors" as c;
+@use "./base/breakpoints" as b;
+
+.container {
+  grid-template-columns: 3fr 1fr;
+  @include b.mq(lg) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.title {
+  width: 75%;
+  margin: 0 auto;
+  @include b.mq(lg) {
+    width: 81.25%;
+  }
+  @include b.mq(md) {
+    width: 90%;
+  }
+}
+
+.subtitle {
+  margin-block: 0.5em 0.4em;
+  font-size: 3rem;
+  color: c.$grey-600;
+  @include b.mq(sm) {
+    font-size: 2.6em;
+  }
+}
+
+.tabs {
+  padding: 0;
+  margin-block: 3rem -2.6rem;
+}
+
+.tabItem {
+  padding: 0 5rem 0 0;
+  margin: 0;
+  list-style: none;
+  color: c.$grey-550;
+  transition: color 0.2s ease-in-out;
+  &:hover {
+    color: c.$grey-700;
+    transition: color 0.2s ease-in-out;
+  }
+}
+
+.h3 {
+  font-weight: 500;
+}
+
+.selected {
+  text-decoration: underline;
+  text-decoration-thickness: 0.1em;
+  cursor: default;
+  &:hover {
+    color: c.$grey-550;
+  }
+}
+
+.info {
+  padding-bottom: 6rem;
+  margin: 5rem auto 0;
+}
+
+.hidden {
+  display: none;
+}
+
+.imageGrid {
+  z-index: 5;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 3rem;
+  width: 81.25%;
+  margin: 5rem auto 0;
+  margin-inline: auto;
+  @include b.mq(lg) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @include b.mq(md) {
+    width: 90%;
+  }
+  @include b.mq(sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.caption {
+  margin-top: 2.1rem;
+  font-size: 1.8rem;
+  color: c.$grey-550;
+  &:last-of-type {
+    margin-block: 1.1rem 2.3rem;
+  }
+  &:first-of-type {
+    margin-block: 1.1rem 0;
+    line-height: 1.4;
+  }
+}
+
+.backLink {
+  margin-block: 6.5rem -6.5rem;
+}
+
+.hideModal {
+  display: none;
+}
+
+.modalContainer {
+  inset: 0;
+  z-index: 7;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  overflow: auto;
+  font-size: 1rem;
+  background-color: rgba(c.$grey-000, 0.75);
+}
+
+.btnNext,
+.btnPrev {
+  top: 50%;
+  width: 2.5rem;
+  transform: translateY(-50%);
+}
+
+.modalClose {
+  inset: 2em 3em auto auto;
+}
+
+.btnNext {
+  right: 3em;
+}
+
+.btnPrev {
+  left: 3em;
+}
+
+.modalClose,
+.btnNext,
+.btnPrev {
+  z-index: 9;
+  width: 4rem;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+  @include b.mq(sm) {
+    display: none;
+  }
+  &:hover {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+  }
+}
+
+.handleClose {
+  inset: 0;
+  z-index: 8;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+}
+
+.modalImageContiner {
+  z-index: 7;
+  padding: 2rem;
+  background-color: c.$grey-000;
+}
+
+.modalImageWrapper {
+  height: 80vh;
+}
+
+.modalCaption {
+  z-index: 7;
+  margin-bottom: 0;
+  font-size: 1.8rem;
+  @include b.mq(sm) {
+    font-size: 1.6rem;
+  }
+  &:first-of-type {
+    margin-top: 1rem;
+  }
+}

@@ -1,0 +1,79 @@
+@use './base/colors' as c;
+@use './base/breakpoints' as b;
+
+.container {
+  grid-template-columns: 3fr 1fr;
+  @include b.mq(lg) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.title {
+  width: 75%;
+  margin: 0 auto;
+  @include b.mq(lg) {
+    width: 81.25%;
+  }
+  @include b.mq(md) {
+    width: 90%;
+  }
+}
+
+.subtitle {
+  margin-block: 0.5em;
+  font-size: 3rem;
+  color: c.$grey-600;
+  @include b.mq(sm) {
+    font-size: 2.6em;
+  }
+}
+
+.heading {
+  margin-bottom: 0.5em;
+  font-size: 2.4rem;
+  font-weight: 500;
+  line-height: 1.47;
+  color: c.$grey-550;
+  @include b.mq(sm) {
+    font-size: 2rem;
+  }
+}
+
+.imageGrid {
+  z-index: 5;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 3rem;
+  width: 81.25%;
+  // margin-inline: auto;
+  margin: auto;
+  // margin-top: 7rem;
+  @include b.mq(lg) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @include b.mq(md) {
+    width: 90%;
+  }
+  @include b.mq(sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.twoCols {
+  grid-template-columns: 1fr 1fr;
+  @include b.mq(md) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.caption {
+  margin-top: 2.1rem;
+  font-size: 1.8rem;
+  color: c.$grey-550;
+  &:last-of-type {
+    margin-block: 1.1rem 2.3rem;
+  }
+  &:first-of-type {
+    margin-block: 1.1rem 0;
+    line-height: 1.4;
+  }
+}

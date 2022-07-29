@@ -1,0 +1,61 @@
+@use './base/colors' as c;
+@use './base/breakpoints' as b;
+
+.container {
+  grid-template-columns: 3fr 1fr;
+  @include b.mq(lg) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.title {
+  width: 75%;
+  margin: 0 auto;
+  @include b.mq(lg) {
+    width: 81.25%;
+  }
+  @include b.mq(md) {
+    width: 90%;
+  }
+}
+
+.subtitle {
+  margin-block: 0.5em 0.4em;
+  font-size: 3rem;
+  color: c.$grey-600;
+  @include b.mq(sm) {
+    font-size: 2.6em;
+  }
+}
+
+.embedContainer {
+  max-width: 100%;
+  height: 0;
+  padding-bottom: 56.25%;
+  margin-top: 8.1rem;
+  margin-bottom: 5rem;
+  overflow: hidden;
+}
+
+.embedContainer iframe,
+.embedContainer object,
+.embedContainer embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.body {
+  margin-top: 8.1rem;
+}
+
+.postNavigation {
+  align-items: flex-end;
+  margin-block: 6.5rem -6.5rem;
+  > p {
+    width: 100%;
+    margin: 0;
+  }
+}
