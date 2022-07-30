@@ -11,17 +11,17 @@ const nextConfig = {
           { key: "Access-Control-Allow-Credentials", value: "true" },
           { key: "Access-Control-Allow-Origin", value: "http://sendgrid.com" },
           { key: "Access-Control-Allow-Methods", value: "POST, GET, OPTIONS" },
-          { key: "Access-Control-Allow-Headers", value: "X-Requested-With" }
-        ]
-      }
+          { key: "Access-Control-Allow-Headers", value: "X-Requested-With" },
+        ],
+      },
     ]
   },
   i18n: {
     locales: ["en", "cy"],
-    defaultLocale: "en"
+    defaultLocale: "en",
   },
-  images: {
-    domains: ["cdn.sanity.io"]
+  compimages: {
+    domains: ["cdn.sanity.io"],
   },
   plugins: [
     "postcss-flexbugs-fixes",
@@ -29,27 +29,27 @@ const nextConfig = {
       "postcss-preset-env",
       {
         autoprefixer: {
-          flexbox: "no-2009"
+          flexbox: "no-2009",
         },
         stage: 3,
         features: {
-          "custom-properties": false
-        }
-      }
+          "custom-properties": false,
+        },
+      },
     ],
     [
       "@fullhuman/postcss-purgecss",
       {
         content: [
           "./pages/**/*.{js,jsx,ts,tsx}",
-          "./components/**/*.{js,jsx,ts,tsx}"
+          "./components/**/*.{js,jsx,ts,tsx}",
         ],
         defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || [],
-        safelist: ["html", "body"]
-      }
-    ]
+        safelist: ["html", "body"],
+      },
+    ],
   ],
-  swcMinify: true
+  swcMinify: true,
 }
 
 module.exports = nextConfig
