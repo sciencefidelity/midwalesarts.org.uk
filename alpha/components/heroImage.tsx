@@ -3,6 +3,7 @@ import {
   ImgHTMLAttributes,
   useCallback,
   useEffect,
+  useRef,
   useState,
 } from "react"
 import { urlFor } from "lib/utils"
@@ -29,12 +30,13 @@ function Img({ alt, ...props }: ImageProps) {
 
 export function HeroImage({ alt, image }: Props) {
   const [loaded, setLoaded] = useState(false)
-  const onLoad = useCallback(() => {
+  const imageRef = useRef(null)
+  const handleOnLoad = useCallback(() => {
     setLoaded(true)
   }, [])
   useEffect(() => {
     setLoaded(true)
-  }, [loaded, onLoad])
+  }, [])
   const { hotspot } = image
   const position = hotspot
     ? `${Math.round(hotspot.x * 100)}% ${Math.round(hotspot.y * 100)}%`
@@ -117,7 +119,8 @@ export function HeroImage({ alt, image }: Props) {
               .url()} 5000w
           `}
           alt={alt}
-          onLoad={onLoad}
+          onLoad={handleOnLoad}
+          ref={imageRef}
           loading="eager"
           className={`
             ${s.image} ${loaded ? s.loaded : ""} ${u.relative} ${u.cover}

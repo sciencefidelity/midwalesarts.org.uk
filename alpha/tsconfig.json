@@ -16,8 +16,6 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "baseUrl": "./",
-    "typeRoots": ["node_modules/@types", "types"],
-    "types": ["jest", "node", "react", "react-dom"],
     "paths": {
       "*": ["types/*", "*"],
       "@/components/*": ["components/*"],
