@@ -23,7 +23,7 @@
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "react-icons": "^4.4.0",
-    "sanity": "^3.0.0-dev-preview.11",
+    "sanity": "^3.0.0-dev-preview.12",
     "styled-components": "^5.2.0",
     "twemoji": "^14.0.2"
   },
