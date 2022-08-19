@@ -3,8 +3,7 @@
   "description": "Arts center in Mid Wales",
   "private": true,
   "version": "1.0.0",
-  "author": "sciencefidelity <32623301+sciencefidelity@users.noreply.github.com>",
-  "license": "UNLICENCED",
+  "author": "Matt Cook <matt@sciencefidelity.co.uk>",
   "repository": {
     "type": "git",
     "url": "https://github.com/sciencefidelity/midwalesarts.org.uk/web"
