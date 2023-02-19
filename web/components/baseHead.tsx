@@ -33,85 +33,91 @@ export const BaseHead: FC<Props> = ({ pageHead, settings }) => {
       />
       <link
         rel="preload"
-        href="/fonts/brandongrotesque-bold-lat.woff2"
+        href="/fonts/josefin-sans-v25-latin-600.woff2.woff2"
         as="font"
         crossOrigin=""
       />
       <link
         rel="preload"
-        href="/fonts/brandongrotesque-regular-lat.woff2"
+        href="/fonts/josefin-sans-v25-latin-300.woff2.woff2"
         as="font"
         crossOrigin=""
       />
       <meta
         name="Description"
-        content={pageHead && pageHead.description
-          ? pageHead.description
-          : settings.description[locale]}
+        content={
+          pageHead && pageHead.description
+            ? pageHead.description
+            : settings.description[locale]
+        }
       />
       {/* <meta name="keywords" content="" /> */}
       {/* Facebook */}
       <meta
         property="og:title"
-        content={pageHead && pageHead.ogTitle
-          ? pageHead.ogTitle
-          : settings.ogTitle[locale]}
+        content={
+          pageHead && pageHead.ogTitle
+            ? pageHead.ogTitle
+            : settings.ogTitle[locale]
+        }
       />
       <meta
         property="og:description"
-        content={pageHead && pageHead.ogDescription
-          ? pageHead.ogDescription
-          : settings.ogDescription[locale]}
+        content={
+          pageHead && pageHead.ogDescription
+            ? pageHead.ogDescription
+            : settings.ogDescription[locale]
+        }
       />
       <meta
         property="og:url"
-        content={pageHead && pageHead.ogURL
-          ? pageHead.ogURL
-          : settings.canonicalURL}
+        content={
+          pageHead && pageHead.ogURL ? pageHead.ogURL : settings.canonicalURL
+        }
       />
       <meta
         property="og:image"
-        content={urlFor(pageHead && pageHead.ogImage
-          ? pageHead.ogImage
-          : settings.ogImage)
+        content={urlFor(
+          pageHead && pageHead.ogImage ? pageHead.ogImage : settings.ogImage
+        )
           .auto("format")
           .width(1200)
           .height(630)
           .quality(100)
           .url()}
       />
-      <meta
-        property="og:site_name"
-        content={settings.title[locale]}
-      />
+      <meta property="og:site_name" content={settings.title[locale]} />
       <meta property="og:locale" content="en_GB" />
       <meta property="og:type" content="article" />
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta
         name="twitter:title"
-        content={pageHead && pageHead.ogTitle
-          ? pageHead.ogTitle
-          : settings.ogTitle[locale]}
+        content={
+          pageHead && pageHead.ogTitle
+            ? pageHead.ogTitle
+            : settings.ogTitle[locale]
+        }
       />
       <meta
         name="twitter:description"
-        content={pageHead &&
-          pageHead.ogDescription
-          ? pageHead.ogDescription
-          : settings.ogDescription[locale]}
+        content={
+          pageHead && pageHead.ogDescription
+            ? pageHead.ogDescription
+            : settings.ogDescription[locale]
+        }
       />
       <meta
         name="twitter:site"
-        content={pageHead && pageHead.ogURL
-          ? pageHead.ogURL
-          : settings.canonicalURL}
+        content={
+          pageHead && pageHead.ogURL ? pageHead.ogURL : settings.canonicalURL
+        }
       />
       <meta
         name="twitter:image"
-        content={urlFor(pageHead && pageHead.ogImage
-          ? pageHead.ogImage
-          : settings.ogImage)
+        content={urlFor(
+          pageHead && pageHead.ogImage ? pageHead.ogImage : settings.ogImage
+        )
           .auto("format")
           .width(1200)
           .height(628)

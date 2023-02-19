@@ -32,13 +32,13 @@ export function BaseHead({ pageHead, settings }: Props) {
       />
       <link
         rel="preload"
-        href="/fonts/brandongrotesque-bold-lat.woff2"
+        href="/fonts/josefin-sans-v25-latin-600.woff2.woff2"
         as="font"
         crossOrigin=""
       />
       <link
         rel="preload"
-        href="/fonts/brandongrotesque-regular-lat.woff2"
+        href="/fonts/josefin-sans-v25-latin-300.woff2.woff2"
         as="font"
         crossOrigin=""
       />
